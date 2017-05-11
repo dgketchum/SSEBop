@@ -108,6 +108,7 @@ class Landsat5(LandsatImage):
                              1036.0, 215.0, 1e-6, 80.67)
 
         for i, esun in enumerate(self.ex_atm_irrad, start=1):
+            ## add comment
             qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(i))
             qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(i))
             l_min = getattr(self, 'radiance_minimum_band_{}'.format(i))
