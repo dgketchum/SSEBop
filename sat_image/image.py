@@ -18,7 +18,7 @@ import os
 import rasterio
 import numpy as np
 
-from sat_image import mtl
+from sat_image import mtl, fmask
 
 
 class UnmatchedStackGeoError(ValueError):
@@ -34,9 +34,14 @@ class LandsatImage(object):
     Object to process landsat images. The parent class: LandsatImage takes a directory 
     containing untarred files, for now this ingests images that have been downloaded
     from USGS earth explorer, using our Landsat578 package.
+    
     '''
 
     def __init__(self, obj):
+        ''' 
+        :param obj: Directory containing an unzipped Landsat 5, 7, or 8 image.  This should include at least
+        a tif for each band, and a .mtl file.
+        '''
         self.obj = obj
         if os.path.isdir(obj):
             self.isdir = True
@@ -93,7 +98,12 @@ class LandsatImage(object):
 
     @staticmethod
     def earth_sun_d(dtime):
-        """ Earth-sun distance in AU"""
+        """ Earth-sun distance in AU
+        
+        :param dtime time, e.g. datetime.datetime(2007, 5, 1)
+        :type datetime object
+        :return float(distance from sun to earth in astronomical units)
+        """
         doy = int(dtime.strftime('%j'))
         rad_term = 0.9856 * (doy - 4) * np.pi / 180
         distance_au = 1 - 0.01672 * np.cos(rad_term)
@@ -124,6 +134,9 @@ class Landsat5(LandsatImage):
                 atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
                 setattr(self, 'atsat_bright_band_{}'.format(i), atsat_bright_temp)
 
+        def get_fmask(self):
+            self.fmask = fmask.fmask(self)
+
 
 class Landsat7(LandsatImage):
     def __init__(self, obj):
@@ -150,6 +163,9 @@ class Landsat7(LandsatImage):
                 atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
                 setattr(self, 'atsat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
 
+        def get_fmask(self):
+            self.fmask = fmask.fmask(self)
+
 
 class Landsat8(LandsatImage):
     def __init__(self, obj):
@@ -175,6 +191,9 @@ class Landsat8(LandsatImage):
             k2 = getattr(self, "k2_constant_band_{}".format(band))
             atsat_bright_temp = k2 / (np.log((k1 / radiance) + 1))
             setattr(self, 'atsat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
+
+    def get_fmask(self):
+        self.fmask = fmask.fmask(self)
 
 
 # =============================================================================================
