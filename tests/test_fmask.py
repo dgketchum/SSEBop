@@ -1,4 +1,4 @@
-# =============================================================================================
+# ===============================================================================
 # Copyright 2017 dgketchum
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,12 +12,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# =============================================================================================
+# ===============================================================================
 
-import os
+import unittest
+
+
+class MyTestCase(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_something(self):
+        self.assertEqual(True, False)
 
 
 if __name__ == '__main__':
-    home = os.path.expanduser('~')
+    unittest.main()
 
-# =============================================================================================
+# ===============================================================================
