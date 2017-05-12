@@ -62,8 +62,6 @@ class Landsat5TestCase(unittest.TestCase):
         atsat_bright_temp = self.l5.atsat_bright_band_6[150, 150]
         self.assertAlmostEqual(atsat_bright_temp, 289.253709377)
 
-    def test_fmask(self):
-        self.assertIsInstance(str, list)
 
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
@@ -95,9 +93,6 @@ class Landsat7TestCase(unittest.TestCase):
         atsat_bright_temp = self.l7.atsat_bright_band_6_vcid_1[150, 150]
         self.assertAlmostEqual(atsat_bright_temp, 299.150658873)
 
-    def test_fmask(self):
-        self.assertIsInstance(str, list)
-
 
 class Landsat8TestCase(unittest.TestCase):
     def setUp(self):
@@ -110,10 +105,10 @@ class Landsat8TestCase(unittest.TestCase):
         self.assertEqual(l8.band_count, 11)
         self.assertEqual(l8.utm_zone, 12)
         self.assertEqual(l8.reflectance_mult_band_1, 2.0000E-05)
-        not_nan = np.count_nonzero(~np.isnan(l8.b1))
-        is_nan = np.count_nonzero(np.isnan(l8.b1))
-        zero_count = np.count_nonzero(l8.b1 == 0)
-        non_zero_count = np.count_nonzero(l8.b1 > 0)
+        not_nan = np.count_nonzero(~np.isnan(l8.b1_nan_unset))
+        is_nan = np.count_nonzero(np.isnan(l8.b1_nan_unset))
+        zero_count = np.count_nonzero(l8.b1_nan_unset == 0)
+        non_zero_count = np.count_nonzero(l8.b1_nan_unset > 0)
         self.assertEqual(not_nan, l8.b1_counts['non_nan'])
         self.assertEqual(is_nan, l8.b1_counts['nan'])
         self.assertEqual(zero_count, l8.b1_counts['zero'])
@@ -132,6 +127,7 @@ class Landsat8TestCase(unittest.TestCase):
         self.assertEqual(l8.k1_constant_band_10, 774.8853)
         self.assertEqual(l8.k2_constant_band_10, 1321.0789)
         self.assertAlmostEqual(l8.atsat_bright_band_10[150, 150], 254.315403913, delta=0.0001)
+
 
 if __name__ == '__main__':
     unittest.main()

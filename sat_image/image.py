@@ -76,9 +76,9 @@ class LandsatImage(object):
             end_ind = tif.index('.tif')
             att_string = tif[front_ind: end_ind]
             count_att_string = '{}_counts'.format(att_string)
-            nan_set = '{}_nan_set'.format(att_string)
+            nan_unset = '{}_nan_unset'.format(att_string)
 
-            setattr(self, att_string, np_array)
+            setattr(self, att_string, np.where(np_array == 0, np.nan, np_array))
 
             setattr(self, count_att_string,
                     {'zero': np.count_nonzero(np_array == 0),
@@ -86,7 +86,7 @@ class LandsatImage(object):
                      'nan': np.count_nonzero(np.isnan(np_array)),
                      'non_nan': np.count_nonzero(~np.isnan(np_array))})
 
-            setattr(self, nan_set, np.where(np_array == 0, np.nan, np_array))
+            setattr(self, nan_unset, np_array)
 
             self.band_list.append(att_string)
             self.band_count = i + 1
@@ -122,7 +122,7 @@ class Landsat5(LandsatImage):
             qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(i))
             l_min = getattr(self, 'radiance_minimum_band_{}'.format(i))
             l_max = getattr(self, 'radiance_maximum_band_{}'.format(i))
-            qcal = getattr(self, 'b{}_nan_set'.format(i))
+            qcal = getattr(self, 'b{}'.format(i))
             radiance = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
 
             if i != 6:
@@ -134,8 +134,9 @@ class Landsat5(LandsatImage):
                 atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
                 setattr(self, 'atsat_bright_band_{}'.format(i), atsat_bright_temp)
 
-        def get_fmask(self):
-            self.fmask = fmask.fmask(self)
+    def get_fmask(self):
+        mask = fmask.form_fmask(self)
+        return mask
 
 
 class Landsat7(LandsatImage):
@@ -151,7 +152,7 @@ class Landsat7(LandsatImage):
             qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band.replace('b', '')))
             l_min = getattr(self, 'radiance_minimum_band_{}'.format(band.replace('b', '')))
             l_max = getattr(self, 'radiance_maximum_band_{}'.format(band.replace('b', '')))
-            qcal = getattr(self, '{}_nan_set'.format(band))
+            qcal = getattr(self, '{}'.format(band))
             radiance = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
 
             if band not in ['b6_vcid_1', 'b6_vcid_2']:
@@ -163,8 +164,9 @@ class Landsat7(LandsatImage):
                 atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
                 setattr(self, 'atsat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
 
-        def get_fmask(self):
-            self.fmask = fmask.fmask(self)
+    def get_fmask(self):
+        mask = fmask.form_fmask(self)
+        return mask
 
 
 class Landsat8(LandsatImage):
@@ -177,12 +179,12 @@ class Landsat8(LandsatImage):
             multi_band_reflect = getattr(self, 'reflectance_mult_band_{}'.format(oli))  # Mp
             reflect_add_band = getattr(self, 'reflectance_add_band_{}'.format(oli))  # Ap
             sun_elevation = getattr(self, 'sun_elevation') * np.pi / 180.  # sea
-            dn_array = getattr(self, '{}_nan_set'.format(band))
+            dn_array = getattr(self, '{}'.format(band))
             toa_reflect = (((dn_array * multi_band_reflect) + reflect_add_band) / (np.sin(sun_elevation)))
             setattr(self, 'toa_reflectance_band_{}'.format(band.replace('b', '')), toa_reflect)
 
         for band in ['10', '11']:
-            dn_array = getattr(self, 'b{}_nan_set'.format(band))
+            dn_array = getattr(self, 'b{}'.format(band))
             ml = getattr(self, "radiance_mult_band_{}".format(band))
             al = getattr(self, "radiance_add_band_{}".format(band))
             radiance = (dn_array * ml) + al
@@ -193,7 +195,8 @@ class Landsat8(LandsatImage):
             setattr(self, 'atsat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
 
     def get_fmask(self):
-        self.fmask = fmask.fmask(self)
+        mask = fmask.form_fmask(self)
+        return mask
 
 
 # =============================================================================================
