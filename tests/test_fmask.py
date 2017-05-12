@@ -15,16 +15,18 @@
 # ===============================================================================
 
 import unittest
+import numpy as np
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        pass
+        shape = (3, 3)
+
 
     def tearDown(self):
         pass
 
-    def test_something(self):
+    def test_form_fmask(self):
         self.assertEqual(True, False)
 
 
