@@ -20,7 +20,8 @@ import numpy as np
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        shape = (3, 3)
+        shape = (10, 10)
+        true_arr, false_arr = np.full(shape, True, dtype=bool), np.full(shape, False, dtype=bool)
 
 
     def tearDown(self):

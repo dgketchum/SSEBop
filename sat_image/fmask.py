@@ -60,8 +60,27 @@ def form_fmask(image):
         ndvi = (image.b4 - image.b3) / (image.b4 + image.b3)
 
         true_array, false_array = np.full(shape, True, dtype=bool), np.full(shape, False, dtype=bool)
-        basic_test = np.where((image.b7 > 0.03 and bt < 27), true_array, false_array)
-        basic_test = np.where((ndsi < 0.8 and ndvi < 0.8), true_array, basic_test)
+
+        basic_test = np.where((image.b7 > 0.03) & (bt < 27), true_array, false_array)
+        basic_test = np.where((ndsi < 0.8) & (ndvi < 0.8), true_array, basic_test)
+
+        mean_vis = (image.b1 + image.b2 + image.b3) / 3.
+
+        # Eqn 2, whiteness test
+        whiteness = np.zeros(shape)
+        for band in [image.b1, image.b2, image.b3]:
+            whiteness += np.abs((band - mean_vis) / mean_vis)
+        whiteness_test = np.where(whiteness < 0.7, true_array, false_array)
+
+        # Eqn 3, Haze Optimized Transformation (HOT)
+        hot_test = np.where(image.b1 - 0.5 * image.b3 - 0.08 > 0, true_array, false_array)
+
+        # Eqn 4
+        b_45_test = np.where(image.b4 / image.b5 > 0.75, true_array, false_array)
+
+        # Eqn 5
+        water_test = np.where((ndvi < 0.01) & (image.b4 < 0.11), true_array, false_array)
+        water_test = np.where((ndvi < 0.1) & (image.b4 < 0.05), true_array, water_test)
 
     # if image.sensor_id == 'OLI_TIRS':
     #     bt = image.
