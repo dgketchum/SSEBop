@@ -30,7 +30,6 @@ Remote Sensing of Environment 159 (2015) 269-277.
 '''
 from __future__ import print_function, division
 
-import os
 import numpy as np
 from scipy.ndimage import generic_filter, grey_dilation
 import fmask.fmask
@@ -67,6 +66,9 @@ class Fmask(object):
 
         self.trues, self.false = np.full(self.shape, True, dtype=bool), np.full(self.shape, False, dtype=bool)
 
+    def get_fmask(self):
+        pass
+
     def get_potential_cloud_layer(self):
         potential_pixels, water, white = self._do_first_pass_tests()
         potential_cloud_layer = self._do_second_pass_tests(potential_pixels, water, white)
@@ -92,6 +94,10 @@ class Fmask(object):
         potential_snow = np.where(self.image.b2 > 0.1, self.trues, self.false)
 
         return potential_snow
+
+    def _do_cloud_height(self):
+        pass
+
 
     def _do_first_pass_tests(self):
         # this is cond and cond AND cond and cond, must meet all criteria
@@ -178,8 +184,5 @@ class Fmask(object):
 
         return potential_cloud
 
-
-if __name__ == '__main__':
-    home = os.path.expanduser('~')
 
 # ========================= EOF ====================================================================
