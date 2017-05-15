@@ -32,7 +32,7 @@ from __future__ import print_function, division
 
 import os
 import numpy as np
-from scipy.ndimage import generic_filter
+from scipy.ndimage import generic_filter, grey_dilation
 import fmask.fmask
 
 OUT_CODE_NULL = 0
@@ -48,107 +48,135 @@ OUT_CODE_SNOW = 4
 OUT_CODE_WATER = 5
 
 
-def form_fmask(image):
+class Fmask(object):
     ''' Implement fmask algorithm.
     :param image: Landsat image stack LandsatImage object
     :return: fmask object
     '''
 
-    def potential_cloud_layer(image):
-        shape = image.b1.shape
-        nan = np.full(shape, np.nan)
+    def __init__(self, image):
+        self.image = image
+        self.shape = image.b1.shape
+        self.nan = np.full(self.shape, np.nan)
+        self.brightness_temp = image.at_sat_bright_band_6
 
-        if image.sensor_id in ['TM', 'ETM']:
-            brightness_temp = image.at_sat_bright_band_6
-            # Potential Cloud Layer 1
-            # Eqn 1, Basic Test
-            ndsi = (image.b2 - image.b5) / (image.b2 + image.b5)
-            ndvi = (image.b4 - image.b3) / (image.b4 + image.b3)
+        # Potential Cloud Layer 1
+        # Eqn 1, Basic Test
+        self.ndsi = (image.b2 - image.b5) / (image.b2 + image.b5)
+        self.ndvi = (image.b4 - image.b3) / (image.b4 + image.b3)
 
-            true_array, false_array = np.full(shape, True, dtype=bool), np.full(shape, False, dtype=bool)
+        self.trues, self.false = np.full(self.shape, True, dtype=bool), np.full(self.shape, False, dtype=bool)
 
-            # this is cond and cond AND cond and cond, must meet all criteria
-            basic_test = np.where((image.b7 > 0.03) & (brightness_temp < 27), true_array, false_array)
-            basic_test = np.where((ndsi < 0.8) & (ndvi < 0.8), basic_test, false_array)
+    def get_potential_cloud_layer(self):
+        potential_pixels, water, white = self._do_first_pass_tests()
+        potential_cloud_layer = self._do_second_pass_tests(potential_pixels, water, white)
+        return potential_cloud_layer
 
-            mean_vis = (image.b1 + image.b2 + image.b3) / 3.
+    def get_potential_shadow_layer(self):
+        band = self.b4_nan_unset
+        max_height, min_height = np.max(band), np.min(band[band > 0])
+        null_mask = np.where(band == 0, 1, 0)
+        dilated = grey_dilation(null_mask, size=(3, 3))
+        inner_bound = dilated - null_mask
+        boundary_value = max(np.percentile(band[band > 0], 17.5), min_height)
+        marker = np.where(inner_bound, max_height, boundary_value)
+        marker = np.where(null_mask, 0, marker)
+        potential_shadow = np.where(marker - band > 0.02, 1, 0)
 
-            # Eqn 2, whiteness test
-            whiteness = np.zeros(shape)
-            for band in [image.b1, image.b2, image.b3]:
-                whiteness += np.abs((band - mean_vis) / mean_vis)
-            whiteness_test = np.where(whiteness < 0.7, true_array, false_array)
+        return potential_shadow
 
-            # Eqn 3, Haze Optimized Transformation (HOT)
-            hot_test = np.where(image.b1 - 0.5 * image.b3 - 0.08 > 0, true_array, false_array)
+    def get_potential_snow_layer(self):
+        potential_snow = np.where(self.ndsi > 0.15, self.trues, self.false)
+        potential_snow = np.where(self.brightness_temp < 3.8, self.trues, self.false)
+        potential_snow = np.where(self.image.b4 > 0.11, self.trues, self.false)
+        potential_snow = np.where(self.image.b2 > 0.1, self.trues, self.false)
 
-            # Eqn 4
-            b_45_test = np.where(image.b4 / image.b5 > 0.75, true_array, false_array)
+        return potential_snow
 
-            # Eqn 5
-            # this is cond and cond OR cond and cond, must meet one test or the other
-            water_test = np.where((ndvi < 0.01) & (image.b4 < 0.11), true_array, false_array)
-            water_test = np.where((ndvi < 0.1) & (image.b4 < 0.05), true_array, water_test)
+    def _do_first_pass_tests(self):
+        # this is cond and cond AND cond and cond, must meet all criteria
+        basic_test = np.where((self.image.b7 > 0.03) & (self.brightness_temp < 27), self.trues, self.false)
+        basic_test = np.where((self.ndsi < 0.8) & (self.ndvi < 0.8), basic_test, self.false)
 
-            # Potential Cloud Pixels
-            p_pix = np.where(basic_test & whiteness_test & hot_test & b_45_test, true_array, false_array)
+        mean_vis = (self.image.b1 + self.image.b2 + self.image.b3) / 3.
 
-            # Potential Cloud Layer Pass 2
-            # Eqn 7, 8, 9; temperature probability for clear-sky water
-            clear_sky_water_test = np.where(water_test & (image.b7 < 0.03), true_array, false_array)
-            clear_sky_water_bt = np.where(clear_sky_water_test, brightness_temp, np.full(shape, np.nan))
-            temp_water = int(np.nanpercentile(clear_sky_water_bt, 82.5))
-            water_temp_prob = (temp_water - brightness_temp) / 4.
+        # Eqn 2, whiteness test
+        whiteness = np.zeros(self.shape)
+        for band in [self.image.b1, self.image.b2, self.image.b3]:
+            whiteness += np.abs((band - mean_vis) / mean_vis)
+        whiteness_test = np.where(whiteness < 0.7, self.trues, self.false)
 
-            # Eqn 10; constrain normalized brightness probability
-            water_brightness_prob = np.where(image.b5 > 0.11, np.ones(shape) * 0.11, image.b5) / 0.11
+        # Eqn 3, Haze Optimized Transformation (HOT)
+        hot_test = np.where(self.image.b1 - 0.5 * self.image.b3 - 0.08 > 0, self.trues, self.false)
 
-            # Eqn 11, 12, 13; temperature probability for clear-sky land
-            water_cloud_prob = water_temp_prob * water_brightness_prob
-            clear_sky_land_test = np.where(~p_pix & ~water_test, true_array, false_array)
-            clear_sky_land_bt = np.where(clear_sky_land_test, brightness_temp, np.full(shape, np.nan))
-            low_temp, high_temp = int(np.nanpercentile(clear_sky_land_bt, 17.5)), int(
-                np.nanpercentile(clear_sky_land_bt, 82.5))
+        # Eqn 4
+        b_45_test = np.where(self.image.b4 / self.image.b5 > 0.75, self.trues, self.false)
 
-            # Eqn 14
-            low_temp_prob = (high_temp + 4. - brightness_temp) / (high_temp + 4 - (low_temp - 4))
+        # Eqn 5
+        # this is cond and cond OR cond and cond, must meet one test or the other
+        water_test = np.where((self.ndvi < 0.01) & (self.image.b4 < 0.11), self.trues, self.false)
+        water_test = np.where((self.ndvi < 0.1) & (self.image.b4 < 0.05), self.trues, water_test)
 
-            saturated_5 = image.quantize_cal_max_band_5
-            saturated_3 = image.quantize_cal_max_band_3
+        # Potential Cloud Pixels
+        p_pix = np.where(basic_test & whiteness_test & hot_test & b_45_test, self.trues, self.false)
 
-            ndsi_mod = np.where((image.b5 == saturated_5) & (image.b5 > image.b2), np.zeros(shape), ndsi)
-            ndvi_mod = np.where((image.b3 == saturated_3) & (image.b4 > image.b3), np.zeros(shape), ndvi)
+        return p_pix, water_test, whiteness
 
-            # Eqn 15, 16, 17
-            spect_var_prob = 1 - np.max(np.abs(ndvi_mod), np.abs(ndsi_mod), whiteness)
-            land_cloud_prob = low_temp_prob * spect_var_prob
-            # find where clear sky land pixels, extract land cloud probability
-            lc_prob_clear = np.where(clear_sky_land_test, land_cloud_prob, nan)
-            land_threshold = np.nanpercentile(lc_prob_clear, 82.5)
+    def _do_second_pass_tests(self, p_pix, water_test, whiteness):
+        # Potential Cloud Layer Pass 2
+        # Eqn 7, 8, 9; temperature probability for clear-sky water
+        clear_sky_water_test = np.where(water_test & (self.image.b7 < 0.03), self.trues, self.false)
+        clear_sky_water_bt = np.where(clear_sky_water_test, self.brightness_temp, np.full(self.shape, np.nan))
+        temp_water = int(np.nanpercentile(clear_sky_water_bt, 82.5))
+        water_temp_prob = (temp_water - self.brightness_temp) / 4.
 
-            # Eqn 18
-            potential_cloud = np.where(p_pix & water_test & (water_cloud_prob > 0.5), true_array, false_array)
-            potential_cloud = np.where(p_pix & ~water_test & (land_cloud_prob > land_threshold), true_array,
-                                       potential_cloud)
-            potential_cloud = np.where((land_cloud_prob > 0.99) & ~water_test, true_array, potential_cloud)
-            potential_cloud = np.where(brightness_temp < low_temp - 35, true_array, potential_cloud)
+        # Eqn 10; constrain normalized brightness probability
+        water_brightness_prob = np.where(self.image.b5 > 0.11, np.ones(self.shape) * 0.11, self.image.b5) / 0.11
 
-            # 'spatially improve cloud mask by using the rule that sets a pixel to cloud if five or more
-            # neighboring pixels in 3x3 neighborhood are cloud'
-            def do_filter(input_arr, count):
-                def func(arr):
-                    return bool(np.count_nonzero(arr) > count)
+        # Eqn 11, 12, 13; temperature probability for clear-sky land
+        water_cloud_prob = water_temp_prob * water_brightness_prob
+        clear_sky_land_test = np.where(~p_pix & ~water_test, self.trues, self.false)
+        clear_sky_land_bt = np.where(clear_sky_land_test, self.brightness_temp, np.full(self.shape, np.nan))
+        low_temp, high_temp = int(np.nanpercentile(clear_sky_land_bt, 17.5)), int(
+            np.nanpercentile(clear_sky_land_bt, 82.5))
 
-                return generic_filter(input_arr, func, footprint=np.ones((3, 3)))
+        # Eqn 14
+        low_temp_prob = (high_temp + 4. - self.brightness_temp) / (high_temp + 4 - (low_temp - 4))
 
-            potential_cloud = do_filter(potential_cloud, 5)
+        saturated_5 = self.image.quantize_cal_max_band_5
+        saturated_3 = self.image.quantize_cal_max_band_3
 
-            return potential_cloud
+        ndsi_mod = np.where((self.image.b5 == saturated_5) & (self.image.b5 > self.image.b2), np.zeros(self.shape),
+                            self.ndsi)
+        ndvi_mod = np.where((self.image.b3 == saturated_3) & (self.image.b4 > self.image.b3), np.zeros(self.shape),
+                            self.ndvi)
 
-    def potential_shadow_layer(image):
+        # Eqn 15, 16, 17
+        spect_var_prob = 1 - np.max(np.abs(ndvi_mod), np.abs(ndsi_mod), whiteness)
+        land_cloud_prob = low_temp_prob * spect_var_prob
+        # find where clear sky land pixels, extract land cloud probability
+        lc_prob_clear = np.where(clear_sky_land_test, land_cloud_prob, self.nan)
+        land_threshold = np.nanpercentile(lc_prob_clear, 82.5)
 
+        # Eqn 18
+        potential_cloud = np.where(p_pix & water_test & (water_cloud_prob > 0.5), self.trues, self.false)
+        potential_cloud = np.where(p_pix & ~water_test & (land_cloud_prob > land_threshold), self.trues,
+                                   potential_cloud)
+        potential_cloud = np.where((land_cloud_prob > 0.99) & ~water_test, self.trues, potential_cloud)
+        potential_cloud = np.where(self.brightness_temp < low_temp - 35, self.trues, potential_cloud)
 
-    return None
+        # 'spatially improve cloud mask by using the rule that sets a pixel to cloud if five or more
+        # neighboring pixels in 3x3 neighborhood are cloud'
+
+        def do_filter(input_arr, count):
+            def func(arr):
+                return bool(np.count_nonzero(arr) > count)
+
+            return generic_filter(input_arr, func, footprint=np.ones((3, 3)), mode='constant', cval=1)
+
+        potential_cloud = do_filter(potential_cloud, 5)
+
+        return potential_cloud
 
 
 if __name__ == '__main__':
