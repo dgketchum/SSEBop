@@ -93,7 +93,6 @@ class LandsatImage(object):
                 # get rasterio metadata/geospatial reference for one tif
                 rasterio_str = 'rasterio_geometry'.format(att_string)
                 meta = src.meta.copy()
-                print('obj: {}, metadata: {}'.format(self.obj, meta))
                 setattr(self, rasterio_str, meta)
 
         self.solar_zenith = 90. - self.sun_elevation

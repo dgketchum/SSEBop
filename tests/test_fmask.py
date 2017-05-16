@@ -18,15 +18,20 @@ import unittest
 
 import os
 
+from sat_image.image import Landsat5
 
-class FmaskTestCase(unittest.TestCase):
+
+class FmaskTestCaseL5(unittest.TestCase):
     def setUp(self):
+        self.dirname_cloud = 'tests/data/lt5_cloud'
+        self.image = Landsat5(self.dirname_cloud)
+
 
     def tearDown(self):
         pass
 
-    def test_form_fmask(self):
-        self.assertEqual(True, False)
+    def test_instantiat_fmask(self):
+        self.assertIsInstance(self.image, Landsat5)
 
 
 if __name__ == '__main__':
