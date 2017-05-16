@@ -16,6 +16,8 @@
 
 import unittest
 import numpy as np
+from rasterio.crs import CRS
+from rasterio.transform import Affine
 
 from sat_image.image import LandsatImage, Landsat5, Landsat7, Landsat8
 
@@ -44,6 +46,11 @@ class Landsat5TestCase(unittest.TestCase):
         self.assertEqual(self.l5.utm_zone, 13)
         self.assertEqual(self.l5.ex_atm_irrad, (1957.0, 1826.0, 1554.0,
                                                 1036.0, 215.0, 1e-6, 80.67))
+
+        self.assertEqual(self.l5.rasterio_geometry['height'], 300)
+        self.assertEqual(self.l5.rasterio_geometry['driver'], 'GTiff')
+        self.assertEqual(self.l5.rasterio_geometry['dtype'], 'uint8')
+        self.assertEqual(self.l5.rasterio_geometry['transform'], (176385.0, 822.1, 0.0, 5055315.0, 0.0, -742.1))
 
         toa_reflect = self.l5.toa_reflectance_band_1[150, 150]
         # independent method on yceo.yal.edu/how-to-convert-landsat-dns-top-atmosphere-toa-reflectance:
@@ -75,6 +82,11 @@ class Landsat7TestCase(unittest.TestCase):
         self.assertEqual(self.l7.utm_zone, 12)
         self.assertEqual(self.l7.ex_atm_irrad, (1969.0, 1840.0, 1551.0, 1044.0,
                                                 255.700, 1e-6, 1e-6, 82.07, 1368.00))
+
+        self.assertEqual(self.l7.rasterio_geometry['height'], 300)
+        self.assertEqual(self.l7.rasterio_geometry['driver'], 'GTiff')
+        self.assertEqual(self.l7.rasterio_geometry['dtype'], 'uint8')
+        self.assertEqual(self.l7.rasterio_geometry['transform'], (491985.0, 808.1, 0.0, 5364915.0, 0.0, -723.1))
 
         toa_reflect = self.l7.toa_reflectance_band_1[150, 150]
         # independent method on yceo.yal.edu/how-to-convert-landsat-dns-top-atmosphere-toa-reflectance:
@@ -113,6 +125,11 @@ class Landsat8TestCase(unittest.TestCase):
         self.assertEqual(is_nan, l8.b1_counts['nan'])
         self.assertEqual(zero_count, l8.b1_counts['zero'])
         self.assertEqual(non_zero_count, l8.b1_counts['non_zero'])
+
+        self.assertEqual(l8.rasterio_geometry['height'], 300)
+        self.assertEqual(l8.rasterio_geometry['driver'], 'GTiff')
+        self.assertEqual(l8.rasterio_geometry['dtype'], 'uint16')
+        self.assertEqual(l8.rasterio_geometry['transform'], (381885.0, 784.1, 0.0, 5373915.0, 0.0, -795.1))
 
     def test_toa_reflectance(self):
         l8 = Landsat8(self.dir_name_LC8)

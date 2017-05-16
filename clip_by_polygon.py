@@ -33,10 +33,11 @@ def clip_w_poly(rasters, polygon, out):
 
             out_meta.update({'driver': 'GTiff', 'height': out_image.shape[1],
                              'width': out_image.shape[2], 'transform': out_transform})
+            print('metadata for {}: {}'.format(tif, out_meta))
 
-        new_tif_name = os.path.join(out, '{}{}{}'.format(tif[:5], tif[10:16], tif[-7:]))
-        with rasterio.open(new_tif_name, 'w', **out_meta) as dst:
-            dst.write(out_image)
+            # new_tif_name = os.path.join(out, '{}{}{}'.format(tif[:5], tif[10:16], tif[-7:]))
+            # with rasterio.open(new_tif_name, 'w', **out_meta) as dst:
+            #     dst.write(out_image)
 
 
 if __name__ == '__main__':
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     raster_dir = os.path.join(home, 'images', 'LT5', 'cloudtest', 'full_image')
 
     test_data = os.path.join(home, 'images', 'test_data', 'cloudtest')
-    shape = os.path.join(test_data, 'test_cloud_butte.shp')
+    shape = os.path.join(test_data, 'butte_shape', 'test_cloud_butte.shp')
     # print(os.path.isdir(raster_dir))
     clip_w_poly(raster_dir, shape, test_data)
 

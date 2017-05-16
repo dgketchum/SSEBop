@@ -77,8 +77,8 @@ class LandsatImage(object):
             att_string = tif[front_ind: end_ind]
             count_att_string = '{}_counts'.format(att_string)
             nan_unset = '{}_nan_unset'.format(att_string)
-
             setattr(self, att_string, np.where(np_array == 0, np.nan, np_array))
+            setattr(self, nan_unset, np_array)
 
             setattr(self, count_att_string,
                     {'zero': np.count_nonzero(np_array == 0),
@@ -86,10 +86,15 @@ class LandsatImage(object):
                      'nan': np.count_nonzero(np.isnan(np_array)),
                      'non_nan': np.count_nonzero(~np.isnan(np_array))})
 
-            setattr(self, nan_unset, np_array)
-
             self.band_list.append(att_string)
             self.band_count = i + 1
+
+            if i == 0:
+                # get rasterio metadata/geospatial reference for one tif
+                rasterio_str = 'rasterio_geometry'.format(att_string)
+                meta = src.meta.copy()
+                print('obj: {}, metadata: {}'.format(self.obj, meta))
+                setattr(self, rasterio_str, meta)
 
         self.solar_zenith = 90. - self.sun_elevation
         self.solar_zenith_rad = self.solar_zenith * np.pi / 180
