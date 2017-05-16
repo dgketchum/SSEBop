@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="clip landsat image for testing">
+    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clip_by_polygon.py" afterPath="$PROJECT_DIR$/clip_by_polygon.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/image.py" afterPath="$PROJECT_DIR$/sat_image/image.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_image.py" afterPath="$PROJECT_DIR$/tests/test_image.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_fmask.py" afterPath="$PROJECT_DIR$/tests/test_fmask.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,41 +15,57 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="test_image.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/test_image.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="108" column="42" lean-forward="false" selection-start-line="108" selection-start-column="42" selection-end-line="108" selection-end-column="42" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#961#1212#0" expanded="false" />
-                <element signature="e#986#1029#0" expanded="false" />
-                <element signature="e#1069#1212#0" expanded="false" />
-                <element signature="e#1262#3306#0" expanded="false" />
-                <element signature="e#1287#1376#0" expanded="false" />
-                <element signature="e#1424#3306#0" expanded="false" />
-                <element signature="e#1808#1906#0" expanded="false" />
-                <element signature="e#2303#2398#0" expanded="false" />
-                <element signature="e#3356#5351#0" expanded="false" />
-                <element signature="e#3381#3470#0" expanded="false" />
-                <element signature="e#3808#3923#0" expanded="false" />
-                <element signature="e#4320#4415#0" expanded="false" />
-                <element signature="e#5401#7451#0" expanded="false" />
-                <element signature="e#5426#5469#0" expanded="false" />
-                <element signature="e#6704#7451#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.56268436">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="fmask.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="107">
+                  <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="false" />
+                    <element signature="e#761#1250#1" expanded="false" />
+                    <element signature="e#1251#1298#0" expanded="true" />
+                    <element signature="e#1458#1580#1" expanded="false" />
+                    <element signature="e#2255#2731#0" expanded="false" />
+                    <element signature="e#2782#2954#0" expanded="false" />
+                    <element signature="e#3004#3347#0" expanded="false" />
+                    <element signature="e#3399#3910#0" expanded="false" />
+                    <element signature="e#3973#3996#0" expanded="false" />
+                    <element signature="e#4042#5459#0" expanded="false" />
+                    <element signature="e#5536#8514#0" expanded="false" />
+                    <element signature="e#8571#8820#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="test_fmask.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#734#749#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Unit Test" />
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
@@ -94,16 +109,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/test_fmask.py" />
         <option value="$PROJECT_DIR$/sat_image/throw.py" />
         <option value="$PROJECT_DIR$/sat_image/throw_2.py" />
         <option value="$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/fmask.py" />
         <option value="$PROJECT_DIR$/convert_to_std_domain.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/sat_image/fmask.py" />
         <option value="$PROJECT_DIR$/clip_by_polygon.py" />
-        <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/tests/test_image.py" />
+        <option value="$PROJECT_DIR$/tests/test_unit.py" />
+        <option value="$PROJECT_DIR$/sat_image/fmask.py" />
+        <option value="$PROJECT_DIR$/sat_image/image.py" />
+        <option value="$PROJECT_DIR$/tests/test_fmask.py" />
       </list>
     </option>
   </component>
@@ -186,7 +202,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -200,7 +220,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sat_image" />
+              <option name="myItemId" value="ssebop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -234,7 +254,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_image.py">
+  <component name="RunManager" selected="Python tests.Unittests in test_fmask.py">
     <configuration default="false" name="Unittests in test_image.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -384,10 +404,10 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python.clip_by_polygon" />
-        <item index="2" class="java.lang.String" itemvalue="Python.throw_2" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python.clip_by_polygon" />
+        <item index="3" class="java.lang.String" itemvalue="Python.throw_2" />
       </list>
     </recent_temporary>
   </component>
@@ -472,15 +492,26 @@
       <option name="project" value="LOCAL" />
       <updated>1494959801736</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="updated image tests for rasterio geometry attributes">
+      <created>1494963104131</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1494963104131</updated>
+    </task>
+    <task id="LOCAL-00012" summary="test fmask initial commit">
+      <created>1494965011495</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1494965011495</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_test_image_py - 2017.05.16 at 13h 21m 43s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.05.16 at 13h 22m 15s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_fmask_py - 2017.05.16 at 14h 08m 21s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_test_image_py - 2017.05.16 at 13h 22m 23s.xml">
       <configuration name="Unittests in test_image.py" configurationId="tests" />
@@ -506,16 +537,18 @@
     <history-entry file="Unittests_in_test_image_py - 2017.05.16 at 13h 31m 08s.xml">
       <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_test_image_py - 2017.05.16 at 14h 08m 13s.xml">
+      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16224189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19026549" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45966852" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29281768" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2718232" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -545,7 +578,9 @@
     <MESSAGE value="to cloud shadow match" />
     <MESSAGE value="clip landsat image for testing" />
     <MESSAGE value="initial commit .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit .gitignore" />
+    <MESSAGE value="updated image tests for rasterio geometry attributes" />
+    <MESSAGE value="test fmask initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="test fmask initial commit" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -561,11 +596,11 @@
           <caret line="183" column="50" lean-forward="true" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="50" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
+            <element signature="e#762#771#0" expanded="false" />
             <element signature="e#976#1225#1" expanded="false" />
             <element signature="e#1264#1435#1" expanded="false" />
-            <element signature="e#4018#4231#1" expanded="false" />
-            <element signature="e#5661#7087#0" expanded="false" />
+            <element signature="e#3948#4161#1" expanded="false" />
+            <element signature="e#5591#7017#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -578,14 +613,15 @@
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1432#1554#1" expanded="false" />
-            <element signature="e#1595#2194#0" expanded="false" />
-            <element signature="e#2229#2705#0" expanded="false" />
-            <element signature="e#2756#2928#0" expanded="false" />
-            <element signature="e#2978#3321#0" expanded="false" />
-            <element signature="e#3373#3884#0" expanded="false" />
-            <element signature="e#4016#5433#0" expanded="false" />
-            <element signature="e#5510#8488#0" expanded="false" />
+            <element signature="e#1458#1580#1" expanded="false" />
+            <element signature="e#2255#2731#0" expanded="false" />
+            <element signature="e#2782#2954#0" expanded="false" />
+            <element signature="e#3004#3347#0" expanded="false" />
+            <element signature="e#3399#3910#0" expanded="false" />
+            <element signature="e#3973#3996#0" expanded="false" />
+            <element signature="e#4042#5459#0" expanded="false" />
+            <element signature="e#5536#8514#0" expanded="false" />
+            <element signature="e#8571#8820#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -596,11 +632,11 @@
           <caret line="108" column="52" lean-forward="false" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
+            <element signature="e#762#771#0" expanded="false" />
             <element signature="e#976#1225#1" expanded="false" />
             <element signature="e#1264#1435#1" expanded="false" />
-            <element signature="e#4018#4231#1" expanded="false" />
-            <element signature="e#5661#7087#0" expanded="false" />
+            <element signature="e#3948#4161#1" expanded="false" />
+            <element signature="e#5591#7017#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -613,14 +649,15 @@
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1432#1554#1" expanded="false" />
-            <element signature="e#1595#2194#0" expanded="false" />
-            <element signature="e#2229#2705#0" expanded="false" />
-            <element signature="e#2756#2928#0" expanded="false" />
-            <element signature="e#2978#3321#0" expanded="false" />
-            <element signature="e#3373#3884#0" expanded="false" />
-            <element signature="e#4016#5433#0" expanded="false" />
-            <element signature="e#5510#8488#0" expanded="false" />
+            <element signature="e#1458#1580#1" expanded="false" />
+            <element signature="e#2255#2731#0" expanded="false" />
+            <element signature="e#2782#2954#0" expanded="false" />
+            <element signature="e#3004#3347#0" expanded="false" />
+            <element signature="e#3399#3910#0" expanded="false" />
+            <element signature="e#3973#3996#0" expanded="false" />
+            <element signature="e#4042#5459#0" expanded="false" />
+            <element signature="e#5536#8514#0" expanded="false" />
+            <element signature="e#8571#8820#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,11 +668,11 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
+            <element signature="e#762#771#0" expanded="false" />
             <element signature="e#976#1225#1" expanded="false" />
             <element signature="e#1264#1435#1" expanded="false" />
-            <element signature="e#4018#4231#1" expanded="false" />
-            <element signature="e#5661#7087#0" expanded="false" />
+            <element signature="e#3948#4161#1" expanded="false" />
+            <element signature="e#5591#7017#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -672,13 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -760,26 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="45" column="30" lean-forward="false" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#761#1250#1" expanded="false" />
-            <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1432#1554#1" expanded="false" />
-            <element signature="e#1595#2194#0" expanded="false" />
-            <element signature="e#2229#2705#0" expanded="false" />
-            <element signature="e#2756#2928#0" expanded="false" />
-            <element signature="e#2978#3321#0" expanded="false" />
-            <element signature="e#3373#3884#0" expanded="false" />
-            <element signature="e#4016#5433#0" expanded="false" />
-            <element signature="e#5510#8488#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -793,7 +803,7 @@
         <state relative-caret-position="119">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#211#303#0" expanded="true" />
+            <element signature="e#211#303#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -809,32 +819,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_unit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="85" column="65" lean-forward="true" selection-start-line="85" selection-start-column="65" selection-end-line="85" selection-end-column="65" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
-            <element signature="e#976#1225#1" expanded="false" />
-            <element signature="e#1264#1435#1" expanded="false" />
-            <element signature="e#4018#4231#1" expanded="false" />
-            <element signature="e#5661#7087#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_image.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="108" column="42" lean-forward="false" selection-start-line="108" selection-start-column="42" selection-end-line="108" selection-end-column="42" />
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#961#1212#0" expanded="false" />
             <element signature="e#986#1029#0" expanded="false" />
             <element signature="e#1069#1212#0" expanded="false" />
-            <element signature="e#1262#3306#0" expanded="false" />
-            <element signature="e#1287#1376#0" expanded="false" />
             <element signature="e#1424#3306#0" expanded="false" />
             <element signature="e#1808#1906#0" expanded="false" />
             <element signature="e#2303#2398#0" expanded="false" />
@@ -845,6 +846,51 @@
             <element signature="e#5401#7451#0" expanded="false" />
             <element signature="e#5426#5469#0" expanded="false" />
             <element signature="e#6704#7451#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="100" column="33" lean-forward="false" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#976#1225#1" expanded="false" />
+            <element signature="e#1264#1435#1" expanded="false" />
+            <element signature="e#3948#4161#1" expanded="false" />
+            <element signature="e#5591#7017#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#761#1250#1" expanded="false" />
+            <element signature="e#1251#1298#0" expanded="true" />
+            <element signature="e#1458#1580#1" expanded="false" />
+            <element signature="e#2255#2731#0" expanded="false" />
+            <element signature="e#2782#2954#0" expanded="false" />
+            <element signature="e#3004#3347#0" expanded="false" />
+            <element signature="e#3399#3910#0" expanded="false" />
+            <element signature="e#3973#3996#0" expanded="false" />
+            <element signature="e#4042#5459#0" expanded="false" />
+            <element signature="e#5536#8514#0" expanded="false" />
+            <element signature="e#8571#8820#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#734#749#0" expanded="true" />
           </folding>
         </state>
       </provider>
