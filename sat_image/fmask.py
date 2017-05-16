@@ -53,10 +53,11 @@ class Fmask(object):
         self.ndsi = (image.b2 - image.b5) / (image.b2 + image.b5)
         self.ndvi = (image.b4 - image.b3) / (image.b4 + image.b3)
 
-        self.trues, self.false = np.full(self.shape, True, dtype=bool), np.full(self.shape, False, dtype=bool)
+        self.trues, self.false = np.full(self.shape, True, dtype=bool), \
+                                 np.full(self.shape, False, dtype=bool)
 
-        for attr, code in zip(['code_null', 'code_clear', 'code_cloud', 'code_shadow', 'code_snow',
-                               'code_water'], range(6)):
+        for attr, code in zip(['code_null', 'code_clear', 'code_cloud',
+                               'code_shadow', 'code_snow', 'code_water'], range(6)):
             setattr(self, attr, code)
 
     def get_fmask(self):
