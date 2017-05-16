@@ -15,14 +15,12 @@
 # ===============================================================================
 
 import unittest
-import numpy as np
+
+import os
 
 
-class MyTestCase(unittest.TestCase):
+class FmaskTestCase(unittest.TestCase):
     def setUp(self):
-        shape = (10, 10)
-        true_arr, false_arr = np.full(shape, True, dtype=bool), np.full(shape, False, dtype=bool)
-
 
     def tearDown(self):
         pass

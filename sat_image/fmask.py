@@ -30,6 +30,8 @@ Remote Sensing of Environment 159 (2015) 269-277.
 '''
 from __future__ import print_function, division
 
+import os
+import rasterio
 import numpy as np
 from scipy.ndimage import generic_filter, grey_dilation, label
 
@@ -181,5 +183,13 @@ class Fmask(object):
         potential_cloud = do_filter(potential_cloud, 5)
 
         return potential_cloud
+
+    def save_array(self, array, outfile=None):
+        if not outfile:
+            home = os.path.expanduser('~')
+            outfile = os.path.join(home, 'output_fmask.tif')
+        with rasterio.open(outfile, 'w', **self.image.rasterio_geometry) as dst:
+            dst.write(array)
+        return None
 
 # ========================= EOF ====================================================================
