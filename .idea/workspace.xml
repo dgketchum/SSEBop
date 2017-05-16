@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ssebop.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/cna372.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/clip_by_polygon.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/fmask.py" afterPath="$PROJECT_DIR$/sat_image/fmask.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +19,8 @@
       <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sat_image/image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2057">
-              <caret line="183" column="50" lean-forward="true" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="50" />
+            <state relative-caret-position="488">
+              <caret line="164" column="51" lean-forward="false" selection-start-line="164" selection-start-column="31" selection-end-line="164" selection-end-column="51" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#762#771#0" expanded="true" />
@@ -34,23 +32,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state relative-caret-position="425">
+              <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#761#1250#1" expanded="false" />
                 <element signature="e#1251#1298#0" expanded="true" />
-                <element signature="e#1706#1828#1" expanded="false" />
-                <element signature="e#1869#2335#0" expanded="false" />
-                <element signature="e#2425#2613#0" expanded="false" />
-                <element signature="e#2665#3193#0" expanded="false" />
-                <element signature="e#3243#3586#0" expanded="false" />
-                <element signature="e#3680#5035#0" expanded="false" />
-                <element signature="e#5112#8100#0" expanded="false" />
+                <element signature="e#1432#1554#1" expanded="false" />
+                <element signature="e#1595#2194#0" expanded="false" />
+                <element signature="e#2756#2928#0" expanded="false" />
+                <element signature="e#2978#3321#0" expanded="false" />
+                <element signature="e#3373#3884#0" expanded="false" />
+                <element signature="e#4016#5433#0" expanded="false" />
+                <element signature="e#5510#8488#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clip_by_polygon.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/clip_by_polygon.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#762#771#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mask.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/mask.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,6 +102,7 @@
       <find>band</find>
       <find>.b4</find>
       <find>self.image.b4</find>
+      <find>code</find>
     </findStrings>
     <replaceStrings>
       <replace>nan_unset</replace>
@@ -90,6 +112,8 @@
       <replace>self.image.b4</replace>
       <replace>.b4_nan_unset</replace>
       <replace>band</replace>
+      <replace>code</replace>
+      <replace>self.code</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -105,6 +129,8 @@
         <option value="$PROJECT_DIR$/sat_image/throw_2.py" />
         <option value="$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/fmask.py" />
         <option value="$PROJECT_DIR$/sat_image/fmask.py" />
+        <option value="$PROJECT_DIR$/convert_to_std_domain.py" />
+        <option value="$PROJECT_DIR$/clip_by_polygon.py" />
       </list>
     </option>
   </component>
@@ -151,7 +177,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -164,74 +189,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sat_image" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="ignore_missing_gitignore" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Recharge/utils/convert_to_std_domain.py" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/../Recharge/utils" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -245,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.throw_2">
+  <component name="RunManager" selected="Python.clip_by_polygon">
     <configuration default="false" name="Unittests in test_image.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -289,6 +262,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sat_image/throw_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="clip_by_polygon" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clip_by_polygon.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -369,16 +360,18 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
       <item index="2" class="java.lang.String" itemvalue="Python.throw_2" />
+      <item index="3" class="java.lang.String" itemvalue="Python.clip_by_polygon" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.throw_2" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.clip_by_polygon" />
+        <item index="1" class="java.lang.String" itemvalue="Python.throw_2" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
       </list>
     </recent_temporary>
   </component>
@@ -435,7 +428,21 @@
       <option name="project" value="LOCAL" />
       <updated>1494886542589</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="start cloud height function">
+      <created>1494887084059</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1494887084059</updated>
+    </task>
+    <task id="LOCAL-00008" summary="to cloud shadow match">
+      <created>1494954681539</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1494954681539</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -463,12 +470,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31120944" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43067846" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7812155" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2718232" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50276244" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -489,16 +496,51 @@
     <MESSAGE value="potential cloud pixels pass 2 finsished, still needs neighborhood resample" />
     <MESSAGE value="filtered potential cloud layer" />
     <MESSAGE value="made fmask a class" />
-    <option name="LAST_COMMIT_MESSAGE" value="made fmask a class" />
+    <MESSAGE value="start cloud height function" />
+    <MESSAGE value="to cloud shadow match" />
+    <option name="LAST_COMMIT_MESSAGE" value="to cloud shadow match" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3111">
+          <caret line="183" column="50" lean-forward="true" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="50" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#771#0" expanded="true" />
+            <element signature="e#976#1225#1" expanded="false" />
+            <element signature="e#1264#1435#1" expanded="false" />
+            <element signature="e#3694#3907#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="66" column="110" lean-forward="true" selection-start-line="66" selection-start-column="110" selection-end-line="66" selection-end-column="110" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#761#1250#1" expanded="false" />
+            <element signature="e#1251#1298#0" expanded="true" />
+            <element signature="e#1432#1554#1" expanded="false" />
+            <element signature="e#1595#2194#0" expanded="false" />
+            <element signature="e#2756#2928#0" expanded="false" />
+            <element signature="e#2978#3321#0" expanded="false" />
+            <element signature="e#3373#3884#0" expanded="false" />
+            <element signature="e#4016#5433#0" expanded="false" />
+            <element signature="e#5510#8488#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/image.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1377">
@@ -521,13 +563,13 @@
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1706#1828#1" expanded="false" />
-            <element signature="e#1869#2335#0" expanded="false" />
-            <element signature="e#2425#2613#0" expanded="false" />
-            <element signature="e#2665#3193#0" expanded="false" />
-            <element signature="e#3243#3586#0" expanded="false" />
-            <element signature="e#3680#5035#0" expanded="false" />
-            <element signature="e#5112#8100#0" expanded="false" />
+            <element signature="e#1432#1554#1" expanded="false" />
+            <element signature="e#1595#2194#0" expanded="false" />
+            <element signature="e#2756#2928#0" expanded="false" />
+            <element signature="e#2978#3321#0" expanded="false" />
+            <element signature="e#3373#3884#0" expanded="false" />
+            <element signature="e#4016#5433#0" expanded="false" />
+            <element signature="e#5510#8488#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -588,29 +630,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/throw_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/throw.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="29" column="16" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/throw_2.py" />
+    <entry file="file://$PROJECT_DIR$/sat_image/throw.py" />
     <entry file="file://$PROJECT_DIR$/tests/test_image.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="111" column="58" lean-forward="false" selection-start-line="111" selection-start-column="58" selection-end-line="111" selection-end-column="58" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -618,7 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2839">
           <caret line="173" column="35" lean-forward="false" selection-start-line="173" selection-start-column="35" selection-end-line="173" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -626,7 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="687" column="34" lean-forward="false" selection-start-line="687" selection-start-column="34" selection-end-line="687" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -634,9 +657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="72" column="24" lean-forward="true" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
-          <folding>
-            <element signature="e#1304#1313#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -644,14 +664,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2057">
-          <caret line="183" column="50" lean-forward="true" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="50" />
+        <state relative-caret-position="488">
+          <caret line="164" column="51" lean-forward="false" selection-start-line="164" selection-start-column="31" selection-end-line="164" selection-end-column="51" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#771#0" expanded="true" />
@@ -664,19 +683,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1706#1828#1" expanded="false" />
-            <element signature="e#1869#2335#0" expanded="false" />
-            <element signature="e#2425#2613#0" expanded="false" />
-            <element signature="e#2665#3193#0" expanded="false" />
-            <element signature="e#3243#3586#0" expanded="false" />
-            <element signature="e#3680#5035#0" expanded="false" />
-            <element signature="e#5112#8100#0" expanded="false" />
+            <element signature="e#1432#1554#1" expanded="false" />
+            <element signature="e#1595#2194#0" expanded="false" />
+            <element signature="e#2756#2928#0" expanded="false" />
+            <element signature="e#2978#3321#0" expanded="false" />
+            <element signature="e#3373#3884#0" expanded="false" />
+            <element signature="e#4016#5433#0" expanded="false" />
+            <element signature="e#5510#8488#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Recharge/utils/convert_to_std_domain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="14" lean-forward="true" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_to_std_domain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/tools/mask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/mask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clip_by_polygon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#771#0" expanded="true" />
           </folding>
         </state>
       </provider>
