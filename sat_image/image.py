@@ -195,8 +195,8 @@ class Landsat8(LandsatImage):
             setattr(self, 'atsat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
 
     def get_fmask(self):
-        mask = fmask.form_fmask(self)
-        return mask
-
+        mask = fmask.Fmask(self)
+        fmask_array = mask.get_fmask()
+        return fmask_array
 
 # =============================================================================================
