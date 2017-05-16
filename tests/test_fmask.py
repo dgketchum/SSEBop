@@ -28,6 +28,7 @@ class FmaskTestCaseL5(unittest.TestCase):
         self.dirname_cloud = 'tests/data/lt5_cloud'
         self.image = Landsat5(self.dirname_cloud)
         point_extract = 'tests/data/point_data/butte_lt5_extract.shp'
+
         self.point_data = {}
         with fiona.open(point_extract) as src:
             for feature in src:
