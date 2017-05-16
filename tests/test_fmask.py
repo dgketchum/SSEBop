@@ -17,6 +17,8 @@
 import unittest
 
 import os
+import fiona
+from pprint import pprint
 
 from sat_image.image import Landsat5
 
@@ -25,7 +27,12 @@ class FmaskTestCaseL5(unittest.TestCase):
     def setUp(self):
         self.dirname_cloud = 'tests/data/lt5_cloud'
         self.image = Landsat5(self.dirname_cloud)
-
+        point_extract = 'tests/data/point_data/butte_lt5_extract.shp'
+        self.point_data = {}
+        with fiona.open(point_extract) as src:
+            for feature in src:
+                self.point_data[feature['id']] = feature
+        pprint(self.point_data)
 
     def tearDown(self):
         pass
