@@ -31,20 +31,10 @@ Remote Sensing of Environment 159 (2015) 269-277.
 from __future__ import print_function, division
 
 import numpy as np
-from scipy.ndimage import generic_filter, grey_dilation
-import fmask.fmask
+from scipy.ndimage import generic_filter, grey_dilation, label
 
-OUT_CODE_NULL = 0
-#: Output pixel value for clear land
-OUT_CODE_CLEAR = 1
-#: Output pixel value for cloud
-OUT_CODE_CLOUD = 2
-#: Output pixel value for cloud shadow
-OUT_CODE_SHADOW = 3
-#: Output pixel value for snow
-OUT_CODE_SNOW = 4
-#: Output pixel value for water
-OUT_CODE_WATER = 5
+
+# import fmask.fmask
 
 
 class Fmask(object):
@@ -58,34 +48,29 @@ class Fmask(object):
         self.shape = image.b1.shape
         self.nan = np.full(self.shape, np.nan)
         self.brightness_temp = image.at_sat_bright_band_6
-
-        # Potential Cloud Layer 1
-        # Eqn 1, Basic Test
         self.ndsi = (image.b2 - image.b5) / (image.b2 + image.b5)
         self.ndvi = (image.b4 - image.b3) / (image.b4 + image.b3)
 
         self.trues, self.false = np.full(self.shape, True, dtype=bool), np.full(self.shape, False, dtype=bool)
 
+        for attr, code in zip(['code_null', 'code_clear', 'code_cloud', 'code_shadow', 'code_snow',
+                               'code_water'], range(6)):
+            setattr(self, attr, code)
+
     def get_fmask(self):
-        pass
+        potential_cloud_layer = self.get_potential_cloud_layer()
+        potential_shadow_layer = self.get_potential_shadow_layer()
+        potential_snow_layer = self.get_potential_snow_layer()
+        fmask = np.full(self.shape, self.code_clear)
+        fmask = np.where(potential_cloud_layer, self.code_cloud, fmask)
+        fmask = np.where(potential_snow_layer, self.code_snow, fmask)
+        fmask = np.where(potential_shadow_layer, self.code_shadow, fmask)
+        return fmask
 
     def get_potential_cloud_layer(self):
         potential_pixels, water, white = self._do_first_pass_tests()
-        potential_cloud_layer = self._do_second_pass_tests(potential_pixels, water, white)
-        return potential_cloud_layer
-
-    def get_potential_shadow_layer(self):
-        band = self.b4_nan_unset
-        max_height, min_height = np.max(band), np.min(band[band > 0])
-        null_mask = np.where(band == 0, 1, 0)
-        dilated = grey_dilation(null_mask, size=(3, 3))
-        inner_bound = dilated - null_mask
-        boundary_value = max(np.percentile(band[band > 0], 17.5), min_height)
-        marker = np.where(inner_bound, max_height, boundary_value)
-        marker = np.where(null_mask, 0, marker)
-        potential_shadow = np.where(marker - band > 0.02, 1, 0)
-
-        return potential_shadow
+        pot_cloud_lyr = self._do_second_pass_tests(potential_pixels, water, white)
+        return pot_cloud_lyr
 
     def get_potential_snow_layer(self):
         potential_snow = np.where(self.ndsi > 0.15, self.trues, self.false)
@@ -95,11 +80,24 @@ class Fmask(object):
 
         return potential_snow
 
-    def _do_cloud_height(self):
-        pass
+    def get_potential_shadow_layer(self):
+        band = self.b4_nan_unset
+        max_dn, min_dn = np.max(band), np.min(band[band > 0])
+        null_mask = np.where(band == 0, 1, 0)
+        dilated = grey_dilation(null_mask, size=(3, 3))
+        inner_bound = dilated - null_mask
+        boundary_value = max(np.percentile(band[band > 0], 17.5), min_dn)
+        marker = np.where(inner_bound, max_dn, boundary_value)
+        marker = np.where(null_mask, 0, marker)
+        potential_shadow = np.where(marker - band > 0.02, 1, 0)
+        return potential_shadow
 
+    def _do_cloud_shadow_match(self, cloud, shadow):
+        c_labels = label(cloud)
 
     def _do_first_pass_tests(self):
+        # Potential Cloud Layer 1
+        # Eqn 1, Basic Test
         # this is cond and cond AND cond and cond, must meet all criteria
         basic_test = np.where((self.image.b7 > 0.03) & (self.brightness_temp < 27), self.trues, self.false)
         basic_test = np.where((self.ndsi < 0.8) & (self.ndvi < 0.8), basic_test, self.false)
@@ -178,11 +176,10 @@ class Fmask(object):
             def func(arr):
                 return bool(np.count_nonzero(arr) > count)
 
-            return generic_filter(input_arr, func, footprint=np.ones((3, 3)), mode='constant', cval=1)
+            return generic_filter(input_arr, func, footprint=np.ones((3, 3)), mode='mirror')
 
         potential_cloud = do_filter(potential_cloud, 5)
 
         return potential_cloud
-
 
 # ========================= EOF ====================================================================
