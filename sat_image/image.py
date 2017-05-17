@@ -65,10 +65,7 @@ class LandsatImage(object):
         self.band_list = []
         for i, tif in enumerate(self.tif_list):
             with rasterio.open(os.path.join(self.obj, tif)) as src:
-                np_array = src.read()
-                # reshape to 2-d array from 3d.shape = (1, x, y)
-                shape = np_array.shape
-                np_array = np_array.reshape(shape[1], shape[2])
+                np_array = src.read(1)
 
             # set all lower case attributes
             tif = tif.lower()
@@ -136,7 +133,7 @@ class Landsat5(LandsatImage):
 
             else:
                 atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
-                setattr(self, 'atsat_bright_band_{}'.format(i), atsat_bright_temp)
+                setattr(self, 'at_sat_bright_band_{}'.format(i), atsat_bright_temp)
 
     def get_fmask(self):
         mask = fmask.form_fmask(self)
