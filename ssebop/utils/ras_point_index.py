@@ -16,6 +16,9 @@
 
 import fiona
 import rasterio
+from sat_image.image import LandsatImage
+
+from numpy import ndarray
 
 
 def raster_point_row_col(raster, points):
@@ -25,16 +28,16 @@ def raster_point_row_col(raster, points):
         for feature in src:
             pt_data[feature['id']] = feature
 
-    with rasterio.open(raster, 'r') as src:
-        arr = src.read()
-        arr = arr.reshape(arr.shape[1], arr.shape[2])
-        a = src.affine
+    if isinstance(raster, LandsatImage):
+        a = raster.rasterio_geometry['affine']
+    if isinstance(raster, str):
+        with rasterio.open(raster, 'r') as src:
+            a = src.affine
 
     for key, val in pt_data.items():
         x, y = val['geometry']['coordinates'][0], val['geometry']['coordinates'][1]
         col, row = ~a * (x, y)
         val['index'] = row, col
-        val['raster_value'] = arr[int(row), int(col)]
 
     return pt_data
 

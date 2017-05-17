@@ -14,13 +14,16 @@
 # limitations under the License.
 # ===============================================================================
 
+import os
 import unittest
 
-import os
-import fiona
 from pprint import pprint
 
 from sat_image.image import Landsat5
+from sat_image.fmask import Fmask
+from ssebop.utils.ras_point_index import raster_point_row_col
+
+LOCAL = os.path.join(os.path.expanduser('~'), 'images', 'sandbox')
 
 
 class FmaskTestCaseL5(unittest.TestCase):
@@ -28,18 +31,20 @@ class FmaskTestCaseL5(unittest.TestCase):
         self.dirname_cloud = 'tests/data/lt5_cloud'
         self.image = Landsat5(self.dirname_cloud)
         point_extract = 'tests/data/point_data/butte_lt5_extract.shp'
-
-        self.point_data = {}
-        with fiona.open(point_extract) as src:
-            for feature in src:
-                self.point_data[feature['id']] = feature
-        pprint(self.point_data)
+        self.point_data = raster_point_row_col(self.image, point_extract)
+        # pprint(self.point_data)
 
     def tearDown(self):
         pass
 
-    def test_instantiat_fmask(self):
+    def test_instantiate_fmask(self):
         self.assertIsInstance(self.image, Landsat5)
+
+    def test_get_potential_cloud_layer(self):
+        f = Fmask(self.image)
+        self.assertIsInstance(f, Fmask)
+        pcl = f.get_potential_cloud_layer()
+        f.save_array(pcl, LOCAL)
 
 
 if __name__ == '__main__':
