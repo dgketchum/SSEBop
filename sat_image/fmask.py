@@ -53,8 +53,12 @@ class Fmask(object):
 
         self.image = image
         self.shape = image.b1.shape
-        # self.nan = np.full(self.shape, np.nan)
-        self.brightness_temp = image.at_sat_bright_band_6
+
+        if self.image.satellite in ['LE7', 'LT5']:
+            self.brightness_temp = image.at_sat_bright_band_6
+        else:
+            self.brightness_temp = image.at_sat_bright_band_10
+
         self.ndsi = (image.b2 - image.b5) / (image.b2 + image.b5)
         self.ndvi = (image.b4 - image.b3) / (image.b4 + image.b3)
 
@@ -109,7 +113,7 @@ class Fmask(object):
         # this is cond and cond AND cond and cond, must meet all criteria
         basic_test = np.where((self.image.b7 > 0.03) & (self.brightness_temp < 27), self.trues, self.false)
         basic_test = np.where((self.ndsi < 0.8) & (self.ndvi < 0.8), basic_test, self.false)
-        self.save_array(basic_test, self.out)
+
         mean_vis = (self.image.b1 + self.image.b2 + self.image.b3) / 3.
 
         # Eqn 2, whiteness test

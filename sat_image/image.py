@@ -60,7 +60,8 @@ class LandsatImage(object):
             for sub_key, sub_val in val.items():
                 # print(sub_key.lower(), sub_val)
                 setattr(self, sub_key.lower(), sub_val)
-
+        self.satellite = self.landsat_scene_id[:3]
+        print(self.satellite)
         # create numpy nd_array objects for each band
         self.band_list = []
         for i, tif in enumerate(self.tif_list):
@@ -163,7 +164,7 @@ class Landsat7(LandsatImage):
 
             else:
                 atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
-                setattr(self, 'atsat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
+                setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
 
     def get_fmask(self):
         mask = fmask.form_fmask(self)
@@ -193,7 +194,7 @@ class Landsat8(LandsatImage):
             k1 = getattr(self, "k1_constant_band_{}".format(band))
             k2 = getattr(self, "k2_constant_band_{}".format(band))
             atsat_bright_temp = k2 / (np.log((k1 / radiance) + 1))
-            setattr(self, 'atsat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
+            setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
 
     def get_fmask(self):
         mask = fmask.Fmask(self)

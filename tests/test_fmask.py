@@ -19,11 +19,9 @@ import unittest
 
 from pprint import pprint
 
-from sat_image.image import Landsat5
+from sat_image.image import Landsat5, Landsat8
 from sat_image.fmask import Fmask
 from ssebop.utils.ras_point_index import raster_point_row_col
-
-LOCAL = os.path.join(os.path.expanduser('~'), 'images', 'sandbox')
 
 
 class FmaskTestCaseL5(unittest.TestCase):
@@ -43,9 +41,25 @@ class FmaskTestCaseL5(unittest.TestCase):
     def test_get_potential_cloud_layer(self):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
-        pcl = f.get_potential_cloud_layer()
-        f.save_array(pcl, LOCAL)
 
+
+class FmaskTestCaseL8(unittest.TestCase):
+    def setUp(self):
+        self.dirname_cloud = 'tests/data/lc8_cloud'
+        self.image = Landsat8(self.dirname_cloud)
+        # point_extract = 'tests/data/point_data/butte_lt5_extract.shp'
+        # self.point_data = raster_point_row_col(self.image, point_extract)
+        # # pprint(self.point_data)
+
+    def tearDown(self):
+        pass
+
+    def test_instantiate_fmask(self):
+        self.assertIsInstance(self.image, Landsat8)
+
+    def test_get_potential_cloud_layer(self):
+        f = Fmask(self.image)
+        self.assertIsInstance(f, Fmask)
 
 if __name__ == '__main__':
     unittest.main()
