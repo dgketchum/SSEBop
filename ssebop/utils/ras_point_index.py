@@ -19,7 +19,6 @@ import rasterio
 
 
 def raster_point_row_col(raster, points):
-
     pt_data = {}
 
     with fiona.open(points, 'r') as src:
@@ -27,13 +26,17 @@ def raster_point_row_col(raster, points):
             pt_data[feature['id']] = feature
 
     with rasterio.open(raster, 'r') as src:
+        arr = src.read()
+        arr = arr.reshape(arr.shape[1], arr.shape[2])
         a = src.affine
 
     for key, val in pt_data.items():
         x, y = val['geometry']['coordinates'][0], val['geometry']['coordinates'][1]
         col, row = ~a * (x, y)
+        val['index'] = row, col
+        val['raster_value'] = arr[int(row), int(col)]
 
-    return row, col
+    return pt_data
 
 
 if __name__ == '__main__':
