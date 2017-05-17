@@ -14,26 +14,31 @@
 # limitations under the License.
 # =============================================================================================
 
-import os
 import fiona
 import rasterio
-import numpy as np
-from pprint import pprint
 
 
 def raster_point_coords(raster, points):
-    with rasterio.open(raster, 'r') as src:
-        array = src.read()
-        meta = src.meta.copy()
+    pt_data = {}
 
-    # seems all rasterio-generated np.ndarrays come 3d
-    array = array.reshape(array.shape[1], array.shape[2])
-    shape = array.shape
-    pprint(meta)
+    with fiona.open(points, 'r') as src:
+        for feature in src:
+            pt_data[feature['id']] = feature
+
+    with rasterio.open(raster, 'r') as src:
+        arr = src.read()
+        arr = arr.reshape(arr.shape[1], arr.shape[2])
+        a = src.affine
+
+    for key, val in pt_data.items():
+        x, y = val['geometry']['coordinates'][0], val['geometry']['coordinates'][1]
+        col, row = ~a * (x, y)
+        val['raster_value'] = arr[int(row), int(col)]
+
+    return pt_data
+
 
 if __name__ == '__main__':
-    ras = 'tests/data/lt5_cloud/LT05_040028_B1.TIF'
-    pts = 'tests/data/point_data/butte_lt5_extract.shp'
-    raster_point_coords(ras, pts)
+    pass
 
 # ========================= EOF ====================================================================
