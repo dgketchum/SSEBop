@@ -18,11 +18,9 @@ import os
 import rasterio
 import fiona
 import rasterio.tools.mask
-from pprint import pprint
 
 
 def clip_w_poly(rasters, polygon, out):
-
     files = os.listdir(rasters)
     tifs = [x for x in files if x.endswith('.TIF')]
     with fiona.open(polygon, 'r') as shapefile:
@@ -36,17 +34,17 @@ def clip_w_poly(rasters, polygon, out):
             out_meta.update({'driver': 'GTiff', 'height': out_image.shape[1],
                              'width': out_image.shape[2], 'transform': out_transform})
 
-            new_tif_name = os.path.join(out, '{}{}{}'.format(tif[:5], tif[10:16], tif[-7:]))
+            new_tif_name = os.path.join(out, '{}{}{}'.format(tif[:5],
+                                                             tif[10:16], tif[-7:]))
             with rasterio.open(new_tif_name, 'w', **out_meta) as dst:
                 dst.write(out_image)
 
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
-
-    raster_dir = os.path.join(home, 'images', 'LT5', 'cloudtest', 'full_image')
+    raster_dir = os.path.join(home, 'images', 'LE7', 'cloudtest')
     test_data = os.path.join(home, 'images', 'test_data', 'cloudtest')
-    out_dir = os.path.join(test_data, 'LT5_cloud_test')
+    out_dir = os.path.join(test_data, 'LE7_cloud_test')
     shape = os.path.join(test_data, 'butte_shape', 'test_cloud_butte.shp')
     clip_w_poly(raster_dir, shape, out_dir)
 

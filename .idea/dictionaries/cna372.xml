@@ -2,6 +2,8 @@
   <dictionary name="cna372">
     <words>
       <w>fmask</w>
+      <w>ndarrays</w>
+      <w>rasterio</w>
     </words>
   </dictionary>
 </component>
