@@ -22,13 +22,14 @@ from pprint import pprint
 
 
 def raster_point_coords(raster, points):
-    with rasterio.open(raster, 'r') as ras:
-        array = ras.read()
-        meta = ras.meta.copy()
+    with rasterio.open(raster, 'r') as src:
+        array = src.read()
+        meta = src.meta.copy()
 
+    # seems all rasterio-generated np.ndarrays come 3d
     array = array.reshape(array.shape[1], array.shape[2])
     shape = array.shape
-
+    pprint(meta)
 
 if __name__ == '__main__':
     ras = 'tests/data/lt5_cloud/LT05_040028_B1.TIF'
