@@ -34,20 +34,21 @@ def clip_w_poly(rasters, polygon, out):
             out_meta.update({'driver': 'GTiff', 'height': out_image.shape[1],
                              'width': out_image.shape[2], 'transform': out_transform})
 
-            new_tif_name = os.path.join(out, '{}{}'.format(tif[:3], tif[16:]))
-
+            new_tif_name = os.path.join(out, '{}{}'.format(tif[:4], tif[40:]))
+            # print(new_tif_name)
             with rasterio.open(new_tif_name, 'w', **out_meta) as dst:
                 dst.write(out_image)
 
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
-    raster_dir = os.path.join(home, 'images', 'LC8', 'cloudtest', 'rio')
+    raster_dir = os.path.join(home, 'images', 'LE7', 'cloudtest')
     test_data = os.path.join(home, 'images', 'test_data', 'cloudtest')
-    out_dir = os.path.join(test_data, 'LC8_rio_results')
+    out_dir = os.path.join(test_data, 'LE7_cloud_test')
     shape = os.path.join(test_data, 'clip_shapes', 'test_cloud_butte.shp')
     clip_w_poly(raster_dir, shape, out_dir)
 
 # LT05_L1TP_040028_20060706_20160909_01_T1_B7.TIF
+# LE07_L1TP_039028_20100702_20160915_01_T1_B8
 
 # ========================= EOF ====================================================================
