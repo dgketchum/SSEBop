@@ -16,6 +16,7 @@
 
 import os
 import unittest
+import rasterio
 
 from pprint import pprint
 
@@ -60,6 +61,7 @@ class FmaskTestCaseL8(unittest.TestCase):
     def test_get_potential_cloud_layer(self):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
+
 
 if __name__ == '__main__':
     unittest.main()
