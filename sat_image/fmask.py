@@ -48,7 +48,8 @@ class Fmask(object):
 
         ##
         # testing
-        self.out = os.path.join(os.path.expanduser('~'), 'images', 'sandbox', 'output_fmask.tif')
+        self.out = os.path.join(os.path.expanduser('~'),
+                                'images', 'sandbox', 'output_fmask.tif')
         ##
 
         self.image = image
@@ -66,7 +67,8 @@ class Fmask(object):
                                  np.full(self.shape, False, dtype=bool)
 
         for attr, code in zip(['code_null', 'code_clear', 'code_cloud',
-                               'code_shadow', 'code_snow', 'code_water'], range(6)):
+                               'code_shadow', 'code_snow', 'code_water'],
+                              range(6)):
             setattr(self, attr, code)
 
     def get_fmask(self):
