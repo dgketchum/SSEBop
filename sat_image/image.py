@@ -17,9 +17,7 @@
 import os
 import rasterio
 import numpy as np
-
 from sat_image import mtl
-from sat_image.rio_functions import reflectance, brightness_temp, radiance
 
 
 class UnmatchedStackGeoError(ValueError):
@@ -59,7 +57,7 @@ class LandsatImage(object):
 
         for key, val in self.super_dict.items():
             for sub_key, sub_val in val.items():
-                # print(sub_key.lower(), sub_val)
+                print(sub_key.lower(), sub_val)
                 setattr(self, sub_key.lower(), sub_val)
         self.satellite = self.landsat_scene_id[:3]
         # create numpy nd_array objects for each band
@@ -111,47 +109,89 @@ class LandsatImage(object):
         return distance_au
 
 
-class Landsat457(LandsatImage):
+class Landsat5(LandsatImage):
     def __init__(self, obj):
         LandsatImage.__init__(self, obj)
 
-        if self.satellite == 'LT5':
-            self.ex_atm_irrad = (1957.0, 1826.0, 1554.0,
-                                 1036.0, 215.0, 1e-6, 80.67)
-        elif self.satellite == 'LE7':
-            self.ex_atm_irrad = (1969.0, 1840.0, 1551.0, 1044.0,
-                                 255.700, 1e-6, 1e-6, 82.07, 1368.00)
-        else:
-            raise ValueError('Must instantiate Landsat57 class with LT5 or LE7 data.')
+        if self.satellite != 'LT5':
+            raise ValueError('Must init Landsat5 object with Landsat5 data, not {}'.format(self.satellite))
 
-        for band, esun in zip(self.band_list, self.ex_atm_irrad):
-            # use band string attribute to handle 'vcid' instances
-            qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(band.replace('b', '')))
-            qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band.replace('b', '')))
-            l_min = getattr(self, 'radiance_minimum_band_{}'.format(band.replace('b', '')))
-            l_max = getattr(self, 'radiance_maximum_band_{}'.format(band.replace('b', '')))
-            qcal = getattr(self, '{}'.format(band))
-            radiance = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
+        self.ex_atm_irrad = (1957.0, 1826.0, 1554.0,
+                             1036.0, 215.0, 1e-6, 80.67)
 
-            if self.satellite == 'LT5':
-                if band != 'b6':
-                    toa_reflect = (np.pi * radiance * self.earth_sun_dist ** 2) / (esun * np.cos(
-                        self.solar_zenith_rad))
-                    setattr(self, 'toa_reflectance_band_{}'.format(band.replace('b', '')), toa_reflect)
+    def radiance(self, band):
+        qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(band))
+        qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band))
+        l_min = getattr(self, 'radiance_minimum_band_{}'.format(band))
+        l_max = getattr(self, 'radiance_maximum_band_{}'.format(band))
+        qcal = getattr(self, 'b{}'.format(band))
+        rad = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
 
-                else:
-                    atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
-                    setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
+        return rad
 
-            if self.satellite == 'LE7':
-                if band not in ['b6_vcid_1', 'b6_vcid_2']:
-                    toa_reflect = (np.pi * radiance * self.earth_sun_dist ** 2) / (esun * np.cos(
-                        self.solar_zenith_rad))
-                    setattr(self, 'toa_reflectance_band_{}'.format(band.replace('b', '')), toa_reflect)
+    def brightness_temp(self, band):
 
-                else:
-                    atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
-                    setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
+        if band in [1, 2, 3, 4, 5, 7]:
+            raise ValueError('LT5 reflectance must be band 6')
+
+        k1 = getattr(self, 'k1_constant_band_{}'.format(band))
+        k2 = getattr(self, 'k2_constant_band_{}'.format(band))
+        rad = self.radiance(band)
+        brightness = k1 / (np.log((k2 / rad) + 1))
+
+        return brightness
+
+    def reflectance(self, band):
+
+        if band == 6:
+            raise ValueError('LT5 reflectance must be other than  band 6')
+
+        rad = self.radiance(band)
+        esun = self.ex_atm_irrad[band - 1]
+        toa_reflect = (np.pi * rad * self.earth_sun_dist ** 2) / (esun * np.cos(self.solar_zenith_rad))
+
+        return toa_reflect
+
+
+class Landsat7(LandsatImage):
+    def __init__(self, obj):
+        LandsatImage.__init__(self, obj)
+
+        if self.satellite != 'LE7':
+            raise ValueError('Must init Landsat7 object with Landsat5 data, not {}'.format(self.satellite))
+
+        self.ex_atm_irrad = (1969.0, 1840.0, 1551.0, 1044.0,
+                             255.700, 1e-6, 1e-6, 82.07, 1368.00)
+
+    def radiance(self, band):
+        qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(band))
+        qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band))
+        l_min = getattr(self, 'radiance_minimum_band_{}'.format(band))
+        l_max = getattr(self, 'radiance_maximum_band_{}'.format(band))
+        qcal = getattr(self, 'b{}'.format(band))
+        rad = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
+        return rad
+
+    def brightness_temp(self, band='vcid_1'):
+
+        if band in [1, 2, 3, 4, 5, 7, 8]:
+            raise ValueError('LE7 reflectance must be either vcid_1 or vcid_2')
+
+        k1 = getattr(self, 'k1_constant_band_6_{}'.format(band))
+        k2 = getattr(self, 'k2_constant_band_6_{}'.format(band))
+        rad = self.radiance(band)
+        brightness = k1 / (np.log((k2 / rad) + 1))
+        return brightness
+
+    def reflectance(self, band):
+
+        if band in ['b6_vcid_1', 'b6_vcid_2']:
+            raise ValueError('LE7 reflectance must be either b6_vcid_1 or b6_vcid_2')
+
+        rad = self.radiance(band)
+        esun = self.ex_atm_irrad[band - 1]
+        toa_reflect = (np.pi * rad * self.earth_sun_dist ** 2) / (esun * np.cos(self.solar_zenith_rad))
+        return toa_reflect
 
 
 class Landsat8(LandsatImage):
@@ -160,14 +200,46 @@ class Landsat8(LandsatImage):
 
         self.oli_bands = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-        for band in ['10', '11']:
-            tags = ('radiance_mult_band', 'radiance_add_band', 'k1_constant_band', 'k2_constant_band')
-            values = [getattr(self, '{}_{}'.format(tag, band)) for tag in tags]
-            values.insert(0, getattr(self, 'b{}'.format(band)))
-            bright_temp = brightness_temp(*values)
-            setattr(self, 'at_sat_bright_band_{}'.format(band), bright_temp)
+    def brightness_temp(self, band):
+        """Calculate brightness temperature of Landsat 8
+    as outlined here: http://landsat.usgs.gov/Landsat8_Using_Product.php
 
-    def reflectance(self, band=1, src_nodata=0):
+    T = K2 / np.log((K1 / L)  + 1)
+
+    and
+
+    L = ML * Q + AL
+
+    where:
+        T  = At-satellite brightness temperature (degrees kelvin)
+        L  = TOA spectral radiance (Watts / (m2 * srad * mm))
+        ML = Band-specific multiplicative rescaling factor from the metadata
+             (RADIANCE_MULT_BAND_x, where x is the band number)
+        AL = Band-specific additive rescaling factor from the metadata
+             (RADIANCE_ADD_BAND_x, where x is the band number)
+        Q  = Quantized and calibrated standard product pixel values (DN)
+             (ndarray img)
+        K1 = Band-specific thermal conversion constant from the metadata
+             (K1_CONSTANT_BAND_x, where x is the thermal band number)
+        K2 = Band-specific thermal conversion constant from the metadata
+             (K1_CONSTANT_BAND_x, where x is the thermal band number)
+
+    Returns
+    --------
+    ndarray:
+        float32 ndarray with shape == input shape
+    """
+        if band in self.oli_bands:
+            raise ValueError('Landsat 8 brightness should be TIRS band (i.e. 10 or 11)')
+
+        k1 = getattr(self, 'k1_constant_band_{}'.format(band))
+        k2 = getattr(self, 'k2_constant_band_{}'.format(band))
+        rad = self.radiance(band)
+        bt = k2 / np.log((k1 / rad) + 1)
+
+        return bt
+
+    def reflectance(self, band):
         """Calculate top of atmosphere reflectance of Landsat 8
         as outlined here: http://landsat.usgs.gov/Landsat8_Using_Product.php
     
@@ -197,9 +269,8 @@ class Landsat8(LandsatImage):
             float32 ndarray with shape == input shape
     
         """
-
         if band not in self.oli_bands:
-            raise ValueError('Landsat 8 reflectance should be of an OLI band (i.e. 1-8)')
+            raise ValueError('Landsat 8 reflectance should OLI band (i.e. 1-8)')
 
         elev = getattr(self, 'sun_elevation')
         dn = getattr(self, 'b{}'.format(band))
@@ -211,7 +282,34 @@ class Landsat8(LandsatImage):
                              "(sun must be above horizon for entire scene)")
 
         rf = ((mr * dn.astype(np.float32)) + ar) / np.sin(np.deg2rad(elev))
+
         return rf
 
+    def radiance(self, band):
+        """Calculate top of atmosphere radiance of Landsat 8
+        as outlined here: http://landsat.usgs.gov/Landsat8_Using_Product.php
+    
+        L = ML * Q + AL
+    
+        where:
+            L  = TOA spectral radiance (Watts / (m2 * srad * mm))
+            ML = Band-specific multiplicative rescaling factor from the metadata
+                 (RADIANCE_MULT_BAND_x, where x is the band number)
+            AL = Band-specific additive rescaling factor from the metadata
+                 (RADIANCE_ADD_BAND_x, where x is the band number)
+            Q  = Quantized and calibrated standard product pixel values (DN)
+                 (ndarray img)
+    
+        Returns
+        --------
+        ndarray:
+            float32 ndarray with shape == input shape
+    """
+        ml = getattr(self, 'radiance_mult_band_{}'.format(band))
+        al = getattr(self, 'radiance_add_band_{}'.format(band))
+        dn = getattr(self, 'b{}'.format(band))
+        rs = ml * dn.astype(np.float32) + al
+
+        return rs
 
 # =============================================================================================
