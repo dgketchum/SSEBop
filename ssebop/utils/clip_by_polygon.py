@@ -34,8 +34,8 @@ def clip_w_poly(rasters, polygon, out):
             out_meta.update({'driver': 'GTiff', 'height': out_image.shape[1],
                              'width': out_image.shape[2], 'transform': out_transform})
 
-            new_tif_name = os.path.join(out, '{}{}{}'.format(tif[:5],
-                                                             tif[10:16], tif[-7:]))
+            new_tif_name = os.path.join(out, '{}{}'.format(tif[:3], tif[16:]))
+
             with rasterio.open(new_tif_name, 'w', **out_meta) as dst:
                 dst.write(out_image)
 
