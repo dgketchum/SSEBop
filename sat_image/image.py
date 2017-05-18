@@ -18,7 +18,7 @@ import os
 import rasterio
 import numpy as np
 
-from sat_image import mtl, fmask
+from sat_image import mtl
 from sat_image.rio_functions import reflectance, brightness_temp, radiance
 
 
@@ -90,6 +90,7 @@ class LandsatImage(object):
                 rasterio_str = 'rasterio_geometry'.format(att_string)
                 meta = src.meta.copy()
                 setattr(self, rasterio_str, meta)
+                self.shape = dn_array.shape
 
         self.solar_zenith = 90. - self.sun_elevation
         self.solar_zenith_rad = self.solar_zenith * np.pi / 180
@@ -157,26 +158,60 @@ class Landsat8(LandsatImage):
     def __init__(self, obj):
         LandsatImage.__init__(self, obj)
 
-        self.oli_bands = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-
-        for oli, band in zip(self.oli_bands, self.band_list):
-            multi_band_reflect = getattr(self, 'reflectance_mult_band_{}'.format(oli))  # Mp
-            reflect_add_band = getattr(self, 'reflectance_add_band_{}'.format(oli))  # Ap
-            sun_elevation_rad = getattr(self, 'sun_elevation_rad')
-            dn_array = getattr(self, '{}'.format(band))
-            toa_reflect = (((dn_array * multi_band_reflect) + reflect_add_band) / (np.sin(sun_elevation_rad)))
-            setattr(self, 'toa_reflectance_band_{}'.format(band.replace('b', '')), toa_reflect)
+        self.oli_bands = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
         for band in ['10', '11']:
-            dn_array = getattr(self, 'b{}'.format(band))
-            ml = getattr(self, "radiance_mult_band_{}".format(band))
-            al = getattr(self, "radiance_add_band_{}".format(band))
-            radiance = (dn_array * ml) + al
-            # now convert to at-sattelite brightness temperature
-            k1 = getattr(self, "k1_constant_band_{}".format(band))
-            k2 = getattr(self, "k2_constant_band_{}".format(band))
-            atsat_bright_temp = k2 / (np.log((k1 / radiance) + 1))
-            rio_brightnes = brightness_temp.brightness_temp(dn_array, ml, al, k1, k2)
-            setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
+            tags = ('radiance_mult_band', 'radiance_add_band', 'k1_constant_band', 'k2_constant_band')
+            values = [getattr(self, '{}_{}'.format(tag, band)) for tag in tags]
+            values.insert(0, getattr(self, 'b{}'.format(band)))
+            bright_temp = brightness_temp(*values)
+            setattr(self, 'at_sat_bright_band_{}'.format(band), bright_temp)
+
+    def reflectance(self, band=1, src_nodata=0):
+        """Calculate top of atmosphere reflectance of Landsat 8
+        as outlined here: http://landsat.usgs.gov/Landsat8_Using_Product.php
+    
+        R_raw = MR * Q + AR
+    
+        R = R_raw / cos(Z) = R_raw / sin(E)
+    
+        Z = 90 - E (in degrees)
+    
+        where:
+    
+            R_raw = TOA planetary reflectance, without correction for solar angle.
+            R = TOA reflectance with a correction for the sun angle.
+            MR = Band-specific multiplicative rescaling factor from the metadata
+                (REFLECTANCE_MULT_BAND_x, where x is the band number)
+            AR = Band-specific additive rescaling factor from the metadata
+                (REFLECTANCE_ADD_BAND_x, where x is the band number)
+            Q = Quantized and calibrated standard product pixel values (DN)
+            E = Local sun elevation angle. The scene center sun elevation angle
+                in degrees is provided in the metadata (SUN_ELEVATION).
+            Z = Local solar zenith angle (same angle as E, but measured from the
+                zenith instead of from the horizon).
+    
+        Returns
+        --------
+        ndarray:
+            float32 ndarray with shape == input shape
+    
+        """
+
+        if band not in self.oli_bands:
+            raise ValueError('Landsat 8 reflectance should be of an OLI band (i.e. 1-8)')
+
+        elev = getattr(self, 'sun_elevation')
+        dn = getattr(self, 'b{}'.format(band))
+        mr = getattr(self, 'reflectance_mult_band_{}'.format(band))
+        ar = getattr(self, 'reflectance_add_band_{}'.format(band))
+
+        if elev < 0.0:
+            raise ValueError("Sun elevation must be nonnegative "
+                             "(sun must be above horizon for entire scene)")
+
+        rf = ((mr * dn.astype(np.float32)) + ar) / np.sin(np.deg2rad(elev))
+        return rf
+
 
 # =============================================================================================
