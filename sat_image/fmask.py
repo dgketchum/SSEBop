@@ -46,11 +46,6 @@ class Fmask(object):
 
     def __init__(self, image):
 
-        ##
-        # testing
-        self.out = os.path.join(os.path.expanduser('~'),
-                                'images', 'sandbox', 'output_fmask.tif')
-        ##
 
         self.image = image
         self.shape = image.b1.shape
@@ -60,6 +55,13 @@ class Fmask(object):
         else:
             self.brightness_temp = image.at_sat_bright_band_10
 
+        ##
+        # testing
+        if self.image.satellite == 'LC8':
+            self.out = os.path.join(os.path.expanduser('~'),
+                                    'images', 'sandbox', 'output_fmask.tif')
+            self.save_array(image.toa_reflectance_band_2, self.out)
+        ##
         self.ndsi = (image.b2 - image.b5) / (image.b2 + image.b5)
         self.ndvi = (image.b4 - image.b3) / (image.b4 + image.b3)
 
@@ -196,11 +198,10 @@ class Fmask(object):
 
         return potential_cloud
 
-    def save_array(self, array, outfile=None):
-        if not outfile:
-            home = os.path.expanduser('~')
-            outfile = os.path.join(home, 'output_fmask.tif')
+    def save_array(self, array, outfile):
         georeference = self.image.rasterio_geometry
+        array = array.reshape(1, array.shape[0], array.shape[1])
+        array = np.array(array, dtype='uint16')
         with rasterio.open(outfile, 'w', **georeference) as dst:
             dst.write(array)
         return None

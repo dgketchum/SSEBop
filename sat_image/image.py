@@ -19,6 +19,7 @@ import rasterio
 import numpy as np
 
 from sat_image import mtl, fmask
+from sat_image.rio_functions import reflectance, brightness_temp, radiance
 
 
 class UnmatchedStackGeoError(ValueError):
@@ -61,12 +62,11 @@ class LandsatImage(object):
                 # print(sub_key.lower(), sub_val)
                 setattr(self, sub_key.lower(), sub_val)
         self.satellite = self.landsat_scene_id[:3]
-        print(self.satellite)
         # create numpy nd_array objects for each band
         self.band_list = []
         for i, tif in enumerate(self.tif_list):
             with rasterio.open(os.path.join(self.obj, tif)) as src:
-                np_array = src.read(1)
+                dn_array = src.read(1)
 
             # set all lower case attributes
             tif = tif.lower()
@@ -74,15 +74,13 @@ class LandsatImage(object):
             end_ind = tif.index('.tif')
             att_string = tif[front_ind: end_ind]
             count_att_string = '{}_counts'.format(att_string)
-            nan_unset = '{}_nan_unset'.format(att_string)
-            setattr(self, att_string, np.where(np_array == 0, np.nan, np_array))
-            setattr(self, nan_unset, np_array)
+            setattr(self, att_string, dn_array)
 
             setattr(self, count_att_string,
-                    {'zero': np.count_nonzero(np_array == 0),
-                     'non_zero': np.count_nonzero(np_array > 0),
-                     'nan': np.count_nonzero(np.isnan(np_array)),
-                     'non_nan': np.count_nonzero(~np.isnan(np_array))})
+                    {'zero': np.count_nonzero(dn_array == 0),
+                     'non_zero': np.count_nonzero(dn_array > 0),
+                     'nan': np.count_nonzero(np.isnan(dn_array)),
+                     'non_nan': np.count_nonzero(~np.isnan(dn_array))})
 
             self.band_list.append(att_string)
             self.band_count = i + 1
@@ -112,41 +110,18 @@ class LandsatImage(object):
         return distance_au
 
 
-class Landsat5(LandsatImage):
+class Landsat457(LandsatImage):
     def __init__(self, obj):
         LandsatImage.__init__(self, obj)
 
-        self.ex_atm_irrad = (1957.0, 1826.0, 1554.0,
-                             1036.0, 215.0, 1e-6, 80.67)
-
-        for i, esun in enumerate(self.ex_atm_irrad, start=1):
-            qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(i))
-            qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(i))
-            l_min = getattr(self, 'radiance_minimum_band_{}'.format(i))
-            l_max = getattr(self, 'radiance_maximum_band_{}'.format(i))
-            qcal = getattr(self, 'b{}'.format(i))
-            radiance = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
-
-            if i != 6:
-                toa_reflect = (np.pi * radiance * self.earth_sun_dist ** 2) / (esun * np.cos(
-                    self.solar_zenith_rad))
-                setattr(self, 'toa_reflectance_band_{}'.format(i), toa_reflect)
-
-            else:
-                atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
-                setattr(self, 'at_sat_bright_band_{}'.format(i), atsat_bright_temp)
-
-    def get_fmask(self):
-        mask = fmask.form_fmask(self)
-        return mask
-
-
-class Landsat7(LandsatImage):
-    def __init__(self, obj):
-        LandsatImage.__init__(self, obj)
-
-        self.ex_atm_irrad = (1969.0, 1840.0, 1551.0, 1044.0,
-                             255.700, 1e-6, 1e-6, 82.07, 1368.00)
+        if self.satellite == 'LT5':
+            self.ex_atm_irrad = (1957.0, 1826.0, 1554.0,
+                                 1036.0, 215.0, 1e-6, 80.67)
+        elif self.satellite == 'LE7':
+            self.ex_atm_irrad = (1969.0, 1840.0, 1551.0, 1044.0,
+                                 255.700, 1e-6, 1e-6, 82.07, 1368.00)
+        else:
+            raise ValueError('Must instantiate Landsat57 class with LT5 or LE7 data.')
 
         for band, esun in zip(self.band_list, self.ex_atm_irrad):
             # use band string attribute to handle 'vcid' instances
@@ -157,18 +132,25 @@ class Landsat7(LandsatImage):
             qcal = getattr(self, '{}'.format(band))
             radiance = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
 
-            if band not in ['b6_vcid_1', 'b6_vcid_2']:
-                toa_reflect = (np.pi * radiance * self.earth_sun_dist ** 2) / (esun * np.cos(
-                    self.solar_zenith_rad))
-                setattr(self, 'toa_reflectance_band_{}'.format(band.replace('b', '')), toa_reflect)
+            if self.satellite == 'LT5':
+                if band != 'b6':
+                    toa_reflect = (np.pi * radiance * self.earth_sun_dist ** 2) / (esun * np.cos(
+                        self.solar_zenith_rad))
+                    setattr(self, 'toa_reflectance_band_{}'.format(band.replace('b', '')), toa_reflect)
 
-            else:
-                atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
-                setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
+                else:
+                    atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
+                    setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
 
-    def get_fmask(self):
-        mask = fmask.form_fmask(self)
-        return mask
+            if self.satellite == 'LE7':
+                if band not in ['b6_vcid_1', 'b6_vcid_2']:
+                    toa_reflect = (np.pi * radiance * self.earth_sun_dist ** 2) / (esun * np.cos(
+                        self.solar_zenith_rad))
+                    setattr(self, 'toa_reflectance_band_{}'.format(band.replace('b', '')), toa_reflect)
+
+                else:
+                    atsat_bright_temp = 1260.56 / (np.log((607.76 / radiance) + 1))
+                    setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
 
 
 class Landsat8(LandsatImage):
@@ -180,9 +162,9 @@ class Landsat8(LandsatImage):
         for oli, band in zip(self.oli_bands, self.band_list):
             multi_band_reflect = getattr(self, 'reflectance_mult_band_{}'.format(oli))  # Mp
             reflect_add_band = getattr(self, 'reflectance_add_band_{}'.format(oli))  # Ap
-            sun_elevation = getattr(self, 'sun_elevation') * np.pi / 180.  # sea
+            sun_elevation_rad = getattr(self, 'sun_elevation_rad')
             dn_array = getattr(self, '{}'.format(band))
-            toa_reflect = (((dn_array * multi_band_reflect) + reflect_add_band) / (np.sin(sun_elevation)))
+            toa_reflect = (((dn_array * multi_band_reflect) + reflect_add_band) / (np.sin(sun_elevation_rad)))
             setattr(self, 'toa_reflectance_band_{}'.format(band.replace('b', '')), toa_reflect)
 
         for band in ['10', '11']:
@@ -194,11 +176,7 @@ class Landsat8(LandsatImage):
             k1 = getattr(self, "k1_constant_band_{}".format(band))
             k2 = getattr(self, "k2_constant_band_{}".format(band))
             atsat_bright_temp = k2 / (np.log((k1 / radiance) + 1))
+            rio_brightnes = brightness_temp.brightness_temp(dn_array, ml, al, k1, k2)
             setattr(self, 'at_sat_bright_band_{}'.format(band.replace('b', '')), atsat_bright_temp)
-
-    def get_fmask(self):
-        mask = fmask.Fmask(self)
-        fmask_array = mask.get_fmask()
-        return fmask_array
 
 # =============================================================================================

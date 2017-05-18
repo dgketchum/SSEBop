@@ -14,12 +14,12 @@
 # limitations under the License.
 # ===============================================================================
 
+import os
 import unittest
 import numpy as np
-from rasterio.crs import CRS
-from rasterio.transform import Affine
+import rasterio
 
-from sat_image.image import LandsatImage, Landsat5, Landsat7, Landsat8
+from sat_image.image import LandsatImage, Landsat457, Landsat8
 
 
 class LandsatImageTestCase(unittest.TestCase):
@@ -35,7 +35,7 @@ class LandsatImageTestCase(unittest.TestCase):
 class Landsat5TestCase(unittest.TestCase):
     def setUp(self):
         self.dir_name_LT5 = 'tests/data/d_36_29_l5'
-        self.l5 = Landsat5(self.dir_name_LT5)
+        self.l5 = Landsat457(self.dir_name_LT5)
 
     def test_instantiate_scene(self):
         self.assertTrue(self.l5.isdir)
@@ -66,14 +66,14 @@ class Landsat5TestCase(unittest.TestCase):
             self.l5.solar_zenith_rad))
         self.assertEqual(toa_reflect_test, toa_reflect)
         self.assertAlmostEqual(toa_reflect, 0.140619859807, delta=0.00001)
-        atsat_bright_temp = self.l5.atsat_bright_band_6[150, 150]
-        self.assertAlmostEqual(atsat_bright_temp, 289.253709377)
+        at_sat_bright_temp = self.l5.at_sat_bright_band_6[150, 150]
+        self.assertAlmostEqual(at_sat_bright_temp, 289.253709377)
 
 
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
         self.dir_name_LT7 = 'tests/data/d_38_27_l7'
-        self.l7 = Landsat7(self.dir_name_LT7)
+        self.l7 = Landsat457(self.dir_name_LT7)
 
     def test_instantiate_scene(self):
         self.assertEqual(self.l7.mtl['L1_METADATA_FILE']['PRODUCT_METADATA']['FILE_NAME_BAND_1'],
@@ -102,49 +102,43 @@ class Landsat7TestCase(unittest.TestCase):
             self.l7.solar_zenith_rad))
         self.assertAlmostEqual(toa_reflect_test, toa_reflect, delta=0.00001)
         self.assertAlmostEqual(toa_reflect, 0.112894940522, delta=0.00001)
-        atsat_bright_temp = self.l7.atsat_bright_band_6_vcid_1[150, 150]
-        self.assertAlmostEqual(atsat_bright_temp, 299.150658873)
+        at_sat_bright_temp = self.l7.at_sat_bright_band_6_vcid_1[150, 150]
+        self.assertAlmostEqual(at_sat_bright_temp, 299.150658873)
 
 
 class Landsat8TestCase(unittest.TestCase):
     def setUp(self):
+        self.dirname_cloud = 'tests/data/lc8_cloud'
         self.dir_name_LC8 = 'tests/data/d_39_27_l8'
+        self.ex_bright = os.path.join(self.dirname_cloud, 'LC8_brightemp_B10.TIF')
+        self.ex_reflect = os.path.join(self.dirname_cloud, 'LC8_reflct_B2.TIF')
 
     def test_instantiate_scene(self):
         l8 = Landsat8(self.dir_name_LC8)
         self.assertEqual(l8.mtl['L1_METADATA_FILE']['PRODUCT_METADATA']['FILE_NAME_BAND_1'],
                          'LC08_L1TP_039027_20140518_20170307_01_T1_B1.TIF')
         self.assertEqual(l8.band_count, 11)
-        self.assertEqual(l8.utm_zone, 12)
         self.assertEqual(l8.reflectance_mult_band_1, 2.0000E-05)
-        not_nan = np.count_nonzero(~np.isnan(l8.b1_nan_unset))
-        is_nan = np.count_nonzero(np.isnan(l8.b1_nan_unset))
-        zero_count = np.count_nonzero(l8.b1_nan_unset == 0)
-        non_zero_count = np.count_nonzero(l8.b1_nan_unset > 0)
-        self.assertEqual(not_nan, l8.b1_counts['non_nan'])
-        self.assertEqual(is_nan, l8.b1_counts['nan'])
-        self.assertEqual(zero_count, l8.b1_counts['zero'])
+        non_zero_count = np.count_nonzero(l8.b1 > 0)
         self.assertEqual(non_zero_count, l8.b1_counts['non_zero'])
-
-        self.assertEqual(l8.rasterio_geometry['height'], 300)
-        self.assertEqual(l8.rasterio_geometry['driver'], 'GTiff')
-        self.assertEqual(l8.rasterio_geometry['dtype'], 'uint16')
         self.assertEqual(l8.rasterio_geometry['transform'], (381885.0, 784.1, 0.0, 5373915.0, 0.0, -795.1))
+
+    def test_toa_brightness(self):
+        l8 = Landsat8(self.dir_name_LC8)
+
+        with rasterio.open(self.ex_bright, 'r') as src:
+            expected_bright = src.read(1)
+        self.assertAlmostEqual(expected_bright[100, 100],
+                               l8.at_sat_bright_band_10[100, 100],
+                               delta=0.001)
 
     def test_toa_reflectance(self):
         l8 = Landsat8(self.dir_name_LC8)
-        self.assertAlmostEqual(l8.toa_reflectance_band_1[150, 150], 0.454697365494, delta=0.0001)
-        mp = l8.reflectance_mult_band_1
-        ap = l8.reflectance_add_band_1
-        qcal = l8.b1[150, 150]
-        sun_el = l8.sun_elevation * np.pi / 180
-        toa_reflct_test = ((mp * qcal) + ap) / np.sin(sun_el)
-        self.assertAlmostEqual(toa_reflct_test, l8.toa_reflectance_band_1[150, 150], delta=0.0001)
-        self.assertAlmostEqual(l8.toa_reflectance_band_1[150, 150], 0.454697365494)
-        self.assertEqual(l8.k1_constant_band_10, 774.8853)
-        self.assertEqual(l8.k2_constant_band_10, 1321.0789)
-        self.assertAlmostEqual(l8.atsat_bright_band_10[150, 150], 254.315403913, delta=0.0001)
-
+        with rasterio.open(self.ex_reflect, 'r') as src:
+            expected_reflectance = src.read(1)
+        self.assertAlmostEqual(expected_reflectance[100, 100],
+                               l8.toa_reflectance_band_2[100, 100],
+                               delta=0.001)
 
 if __name__ == '__main__':
     unittest.main()
