@@ -19,6 +19,9 @@ import rasterio
 import numpy as np
 from sat_image import mtl
 
+from rio_toa import brightness_temp
+import fmask.fmask
+
 
 class UnmatchedStackGeoError(ValueError):
     pass
@@ -57,7 +60,7 @@ class LandsatImage(object):
 
         for key, val in self.super_dict.items():
             for sub_key, sub_val in val.items():
-                print(sub_key.lower(), sub_val)
+                # print(sub_key.lower(), sub_val)
                 setattr(self, sub_key.lower(), sub_val)
         self.satellite = self.landsat_scene_id[:3]
         # create numpy nd_array objects for each band
@@ -108,6 +111,15 @@ class LandsatImage(object):
         distance_au = 1 - 0.01672 * np.cos(rad_term)
         return distance_au
 
+    @classmethod
+    def save(cls, array, output_filename):
+        geometry = cls.rasterio_geometry
+        array = array.reshape(1, array.shape[0], array.shape[1])
+        array = np.array(array, dtype=np.float32)
+        with rasterio.open(output_filename, 'w', **geometry) as dst:
+            dst.write(array)
+        return None
+
 
 class Landsat5(LandsatImage):
     def __init__(self, obj):
@@ -119,6 +131,8 @@ class Landsat5(LandsatImage):
         self.ex_atm_irrad = (1957.0, 1826.0, 1554.0,
                              1036.0, 215.0, 1e-6, 80.67)
 
+        self.k1, self.k2 = 607.76, 1260.56
+
     def radiance(self, band):
         qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(band))
         qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band))
@@ -129,17 +143,25 @@ class Landsat5(LandsatImage):
 
         return rad
 
-    def brightness_temp(self, band):
+    def brightness_temp(self, band, temp_scale='K'):
 
         if band in [1, 2, 3, 4, 5, 7]:
             raise ValueError('LT5 reflectance must be band 6')
 
-        k1 = getattr(self, 'k1_constant_band_{}'.format(band))
-        k2 = getattr(self, 'k2_constant_band_{}'.format(band))
         rad = self.radiance(band)
-        brightness = k1 / (np.log((k2 / rad) + 1))
+        brightness = self.k1 / (np.log((self.k2 / rad) + 1))
 
-        return brightness
+        if temp_scale == 'K':
+            return brightness
+
+        elif temp_scale == 'F':
+            return brightness * (9 / 5.0) - 459.67
+
+        elif temp_scale == 'C':
+            return brightness - 273.15
+
+        else:
+            raise ValueError('{} is not a valid temperature scale'.format(temp_scale))
 
     def reflectance(self, band):
 
@@ -163,6 +185,8 @@ class Landsat7(LandsatImage):
         self.ex_atm_irrad = (1969.0, 1840.0, 1551.0, 1044.0,
                              255.700, 1e-6, 1e-6, 82.07, 1368.00)
 
+        self.k1, self.k2 = 666.09, 1282.71
+
     def radiance(self, band):
         qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(band))
         qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band))
@@ -172,16 +196,31 @@ class Landsat7(LandsatImage):
         rad = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
         return rad
 
-    def brightness_temp(self, band='vcid_1'):
+    def brightness_temp(self, band=6, gain='low', temp_scale='K'):
 
         if band in [1, 2, 3, 4, 5, 7, 8]:
             raise ValueError('LE7 reflectance must be either vcid_1 or vcid_2')
 
-        k1 = getattr(self, 'k1_constant_band_6_{}'.format(band))
-        k2 = getattr(self, 'k2_constant_band_6_{}'.format(band))
-        rad = self.radiance(band)
-        brightness = k1 / (np.log((k2 / rad) + 1))
-        return brightness
+        if gain == 'low':
+            # low gain : b6_vcid_1
+            band_gain = '6_vcid_1'
+        else:
+            band_gain = '6_vcid_2'
+
+        rad = self.radiance(band_gain)
+        brightness = self.k1 / (np.log((self.k2 / rad) + 1))
+
+        if temp_scale == 'K':
+            return brightness
+
+        elif temp_scale == 'F':
+            return brightness * (9 / 5.0) - 459.67
+
+        elif temp_scale == 'C':
+            return brightness - 273.15
+
+        else:
+            raise ValueError('{} is not a valid temperature scale'.format(temp_scale))
 
     def reflectance(self, band):
 
@@ -200,7 +239,7 @@ class Landsat8(LandsatImage):
 
         self.oli_bands = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    def brightness_temp(self, band):
+    def brightness_temp(self, band, temp_scale='K'):
         """Calculate brightness temperature of Landsat 8
     as outlined here: http://landsat.usgs.gov/Landsat8_Using_Product.php
 
@@ -235,9 +274,19 @@ class Landsat8(LandsatImage):
         k1 = getattr(self, 'k1_constant_band_{}'.format(band))
         k2 = getattr(self, 'k2_constant_band_{}'.format(band))
         rad = self.radiance(band)
-        bt = k2 / np.log((k1 / rad) + 1)
+        brightness = k2 / np.log((k1 / rad) + 1)
 
-        return bt
+        if temp_scale == 'K':
+            return brightness
+
+        elif temp_scale == 'F':
+            return brightness * (9 / 5.0) - 459.67
+
+        elif temp_scale == 'C':
+            return brightness - 273.15
+
+        else:
+            raise ValueError('{} is not a valid temperature scale'.format(temp_scale))
 
     def reflectance(self, band):
         """Calculate top of atmosphere reflectance of Landsat 8
