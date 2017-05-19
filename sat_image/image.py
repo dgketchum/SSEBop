@@ -111,11 +111,10 @@ class LandsatImage(object):
         distance_au = 1 - 0.01672 * np.cos(rad_term)
         return distance_au
 
-    @classmethod
-    def save(cls, array, output_filename):
-        geometry = cls.rasterio_geometry
+    def save(self, array, output_filename):
+        geometry = self.rasterio_geometry
         array = array.reshape(1, array.shape[0], array.shape[1])
-        array = np.array(array, dtype=np.float32)
+        geometry['dtype'] = array.dtype
         with rasterio.open(output_filename, 'w', **geometry) as dst:
             dst.write(array)
         return None
@@ -128,8 +127,13 @@ class Landsat5(LandsatImage):
         if self.satellite != 'LT5':
             raise ValueError('Must init Landsat5 object with Landsat5 data, not {}'.format(self.satellite))
 
-        self.ex_atm_irrad = (1957.0, 1826.0, 1554.0,
-                             1036.0, 215.0, 1e-6, 80.67)
+        #
+        self.ex_atm_irrad = (1958.0, 1827.0, 1551.0,
+                             1036.0, 214.9, np.nan, 80.65)
+
+        # old values from fmask.exe
+        # self.ex_atm_irrad = (1983.0, 1796.0, 1536.0, 1031.0, 220.0, np.nan, 83.44)
+
 
         self.k1, self.k2 = 607.76, 1260.56
 
@@ -268,6 +272,7 @@ class Landsat8(LandsatImage):
     ndarray:
         float32 ndarray with shape == input shape
     """
+
         if band in self.oli_bands:
             raise ValueError('Landsat 8 brightness should be TIRS band (i.e. 10 or 11)')
 
@@ -318,6 +323,7 @@ class Landsat8(LandsatImage):
             float32 ndarray with shape == input shape
     
         """
+
         if band not in self.oli_bands:
             raise ValueError('Landsat 8 reflectance should OLI band (i.e. 1-8)')
 
