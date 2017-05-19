@@ -36,7 +36,7 @@ class Landsat5TestCase(unittest.TestCase):
     def setUp(self):
         self.dir_name_LT5 = 'tests/data/lt5_cloud'
         # results from fmask.exe
-        self.exp_reflect = 'tests/data/lt5_cloud/LT5_reflct_1000x.tif'
+        self.exp_reflect = 'tests/data/lt5_cloud/LT5_reflct_10000x.tif'
         self.l5 = Landsat5(self.dir_name_LT5)
 
     def test_instantiate_scene(self):
@@ -54,8 +54,9 @@ class Landsat5TestCase(unittest.TestCase):
         self.assertEqual(self.l5.rasterio_geometry['transform'], (367035.0, 30.0, 0.0, 5082585.0, 0.0, -30.0))
 
     def test_reflectance(self):
-        toa_reflect = self.l5.reflectance(1)[150, 150]
-        qcal = self.l5.b1[150, 150]
+        cell = 150, 150
+        toa_reflect = self.l5.reflectance(1)[cell]
+        qcal = self.l5.b1[cell]
         qcal_min = self.l5.quantize_cal_min_band_1
         qcal_max = self.l5.quantize_cal_max_band_1
         l_min = self.l5.radiance_minimum_band_1
@@ -67,48 +68,57 @@ class Landsat5TestCase(unittest.TestCase):
         self.assertAlmostEqual(toa_reflect, 0.1105287, delta=0.001)
 
         with rasterio.open(self.exp_reflect, 'r') as src:
-            reflct = src.read(1) / 10000.
+            reflct = src.read(1)
+            reflct = np.array(reflct, dtype=np.float32)
+            reflct[reflct == 32767.] = np.nan
+            reflct *= 1 / 10000.
 
-        self.assertAlmostEqual(reflct[150, 150], toa_reflect)
-        at_sat_bright_temp = self.l5.brightness_temp(6)[150, 150]
-        self.assertAlmostEqual(at_sat_bright_temp, )
+        self.assertAlmostEqual(reflct[cell], toa_reflect)
 
 
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
-        self.dir_name_LT7 = 'tests/data/d_38_27_l7'
+        self.dir_name_LT7 = 'tests/data/le7_cloud'
+        self.exp_reflect = 'tests/data/le7_cloud/LE7_reflct_10000x.tif'
         self.l7 = Landsat7(self.dir_name_LT7)
 
     def test_instantiate_scene(self):
         self.assertEqual(self.l7.mtl['L1_METADATA_FILE']['PRODUCT_METADATA']['FILE_NAME_BAND_1'],
-                         'LE70380272007136EDC00_B1.TIF')
-        self.assertEqual(self.l7.band_count, 9)
+                         'LE07_L1TP_039028_20100702_20160915_01_T1_B1.TIF')
         self.assertEqual(self.l7.utm_zone, 12)
         self.assertEqual(self.l7.ex_atm_irrad, (1970.0, 1842.0, 1547.0, 1044.0,
                                                 255.700, np.nan, np.nan, 82.06, 1369.00))
-
-        self.assertEqual(self.l7.rasterio_geometry['height'], 300)
+        self.assertEqual(self.l7.rasterio_geometry['height'], 727)
         self.assertEqual(self.l7.rasterio_geometry['driver'], 'GTiff')
         self.assertEqual(self.l7.rasterio_geometry['dtype'], 'uint8')
-        self.assertEqual(self.l7.rasterio_geometry['transform'], (491985.0, 808.1, 0.0, 5364915.0, 0.0, -723.1))
+        self.assertEqual(self.l7.rasterio_geometry['transform'], (367035.0, 30.0, 0.0, 5082585.0, 0.0, -30.0))
 
     def test_reflectance(self):
-        toa_reflect = self.l7.reflectance(1)[150, 150]
-        # independent method on yceo.yal.edu/how-to-convert-landsat-dns-top-atmosphere-toa-reflectance:
-        # 3.2.1 Spectral radiance scaling method L = ((lmax - limn) / (qcalmax - qcalmin)) * (qcal - qcalmin) + lmin
-        # lmin/lmax: radiance_min/max_band_x,
-        qcal = self.l7.b1[150, 150]
-        qcal_min = self.l7.quantize_cal_min_band_1
-        qcal_max = self.l7.quantize_cal_max_band_1
-        l_min = self.l7.radiance_minimum_band_1
-        l_max = self.l7.radiance_maximum_band_1
-        radiance = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
-        toa_reflect_test = (np.pi * radiance) / ((1 / (self.l7.earth_sun_dist ** 2)) * self.l7.ex_atm_irrad[0] * np.cos(
-            self.l7.solar_zenith_rad))
-        self.assertAlmostEqual(toa_reflect_test, toa_reflect, delta=0.00001)
-        self.assertAlmostEqual(toa_reflect, 0.112894940522, delta=0.00001)
-        at_sat_bright_temp = self.l7.brightness_temp()[150, 150]
-        self.assertAlmostEqual(at_sat_bright_temp, 299.150658873)
+        toa_reflect = self.l7.reflectance(1)
+        cell = 300, 300
+        toa_reflect_cell = toa_reflect[cell]
+        with rasterio.open(self.exp_reflect, 'r') as src:
+            reflct = src.read(1)
+            reflct = np.array(reflct, dtype=np.float32)
+            reflct[reflct == 32767.] = np.nan
+            reflct *= 1 / 10000.
+
+        toa_reflect = np.where(np.isnan(reflct), reflct, toa_reflect)
+
+        print('size expected: {}, calculated: {}'.format(reflct.shape, toa_reflect.shape))
+        print('nan counts expect: {}, calculated: {}'.format(np.count_nonzero(reflct),
+                                                             np.count_nonzero(toa_reflect)))
+
+        print('expected mean: {}, min: {}, max: {}'.format(np.nanmean(reflct),
+                                                           np.nanmin(reflct),
+                                                           np.nanmax(reflct)))
+
+        print('calculated mean: {}, min: {}, max: {}'.format(np.nanmean(toa_reflect),
+                                                             np.nanmin(toa_reflect),
+                                                             np.nanmax(toa_reflect)))
+
+        print('size expected: {}, calculated: {}'.format(reflct[cell], toa_reflect_cell))
+        self.assertAlmostEqual(reflct[cell], toa_reflect_cell)
 
 
 class Landsat8TestCase(unittest.TestCase):
@@ -155,17 +165,6 @@ class Landsat8TestCase(unittest.TestCase):
             expected_reflectance = src.read(1)
         reflectance = l8.reflectance(2)
 
-        print('nan counts expect: {}, calculated: {}'.format(np.count_nonzero(expected_reflectance),
-                                                             np.count_nonzero(reflectance)))
-
-        print('expected mean: {}, min: {}, max: {}'.format(np.nanmean(expected_reflectance),
-                                                           np.nanmin(expected_reflectance),
-                                                           np.nanmax(expected_reflectance)))
-
-        print('calculated mean: {}, min: {}, max: {}'.format(np.nanmean(reflectance),
-                                                             np.nanmin(reflectance),
-                                                             np.nanmax(reflectance)))
-
         self.assertAlmostEqual(expected_reflectance[100, 100],
                                reflectance[100, 100],
                                delta=0.001)
@@ -173,5 +172,6 @@ class Landsat8TestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 
 # ===============================================================================

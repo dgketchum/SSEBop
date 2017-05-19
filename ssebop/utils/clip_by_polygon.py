@@ -42,13 +42,10 @@ def clip_w_poly(rasters, polygon, out):
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
-    raster_dir = os.path.join(home, 'images', 'LT5', 'cloudtest', 'fmask_prods')
+    raster_dir = os.path.join(home, 'images', 'LE7', 'cloudtest', 'fmask_prods')
     test_data = os.path.join(home, 'images', 'test_data', 'cloudtest')
-    out_dir = os.path.join(test_data, 'LT5_cloud_test')
+    out_dir = os.path.join(test_data, 'LE7_cloud_test')
     shape = os.path.join(test_data, 'clip_shapes', 'test_cloud_butte.shp')
     clip_w_poly(raster_dir, shape, out_dir)
-
-# LT05_L1TP_040028_20060706_20160909_01_T1_B7.TIF
-# LE07_L1TP_039028_20100702_20160915_01_T1_B8
 
 # ========================= EOF ====================================================================
