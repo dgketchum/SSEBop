@@ -65,7 +65,7 @@ class Landsat5TestCase(unittest.TestCase):
         self.assertEqual(toa_reflect_test, toa_reflect)
         self.assertAlmostEqual(toa_reflect, 0.140619859807, delta=0.00001)
         at_sat_bright_temp = self.l5.brightness_temp(6)[150, 150]
-        self.assertAlmostEqual(at_sat_bright_temp, 289.253709377)
+        self.assertAlmostEqual(at_sat_bright_temp, )
 
 
 class Landsat7TestCase(unittest.TestCase):
@@ -101,7 +101,6 @@ class Landsat7TestCase(unittest.TestCase):
             self.l7.solar_zenith_rad))
         self.assertAlmostEqual(toa_reflect_test, toa_reflect, delta=0.00001)
         self.assertAlmostEqual(toa_reflect, 0.112894940522, delta=0.00001)
-        self.assertTrue(k1_constant_band_6_vcid_1)
         at_sat_bright_temp = self.l7.brightness_temp()[150, 150]
         self.assertAlmostEqual(at_sat_bright_temp, 299.150658873)
 
