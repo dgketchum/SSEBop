@@ -45,8 +45,8 @@ class Landsat5TestCase(unittest.TestCase):
                          'LT05_L1TP_040028_20060706_20160909_01_T1_B1.TIF')
         self.assertEqual(self.l5.b1.shape, (727, 727))
         self.assertEqual(self.l5.utm_zone, 12)
-        self.assertEqual(self.l5.ex_atm_irrad, (1957.0, 1826.0, 1554.0,
-                                                1036.0, 215.0, 1e-6, 80.67))
+        self.assertEqual(self.l5.ex_atm_irrad, (1958.0, 1827.0, 1551.0,
+                                                1036.0, 214.9, np.nan, 80.65))
 
         self.assertEqual(self.l5.rasterio_geometry['height'], 727)
         self.assertEqual(self.l5.rasterio_geometry['driver'], 'GTiff')
@@ -64,51 +64,51 @@ class Landsat5TestCase(unittest.TestCase):
         toa_reflect_test = (np.pi * radiance) / ((1 / (self.l5.earth_sun_dist ** 2)) * self.l5.ex_atm_irrad[0] * np.cos(
             self.l5.solar_zenith_rad))
         self.assertAlmostEqual(toa_reflect_test, toa_reflect, delta=0.001)
-        self.assertAlmostEqual(toa_reflect, 0.1105287, delta=0.00001)
+        self.assertAlmostEqual(toa_reflect, 0.1105287, delta=0.001)
 
         with rasterio.open(self.exp_reflect, 'r') as src:
-            reflct = src.read(1) / 1000.
+            reflct = src.read(1) / 10000.
 
         self.assertAlmostEqual(reflct[150, 150], toa_reflect)
         at_sat_bright_temp = self.l5.brightness_temp(6)[150, 150]
         self.assertAlmostEqual(at_sat_bright_temp, )
 
 
-# class Landsat7TestCase(unittest.TestCase):
-#     def setUp(self):
-#         self.dir_name_LT7 = 'tests/data/d_38_27_l7'
-#         self.l7 = Landsat7(self.dir_name_LT7)
-#
-#     def test_instantiate_scene(self):
-#         self.assertEqual(self.l7.mtl['L1_METADATA_FILE']['PRODUCT_METADATA']['FILE_NAME_BAND_1'],
-#                          'LE70380272007136EDC00_B1.TIF')
-#         self.assertEqual(self.l7.band_count, 9)
-#         self.assertEqual(self.l7.utm_zone, 12)
-#         self.assertEqual(self.l7.ex_atm_irrad, (1969.0, 1840.0, 1551.0, 1044.0,
-#                                                 255.700, 1e-6, 1e-6, 82.07, 1368.00))
-#
-#         self.assertEqual(self.l7.rasterio_geometry['height'], 300)
-#         self.assertEqual(self.l7.rasterio_geometry['driver'], 'GTiff')
-#         self.assertEqual(self.l7.rasterio_geometry['dtype'], 'uint8')
-#         self.assertEqual(self.l7.rasterio_geometry['transform'], (491985.0, 808.1, 0.0, 5364915.0, 0.0, -723.1))
-#
-#     def test_reflectance(self):
-#         toa_reflect = self.l7.reflectance(1)[150, 150]
-#         # independent method on yceo.yal.edu/how-to-convert-landsat-dns-top-atmosphere-toa-reflectance:
-#         # 3.2.1 Spectral radiance scaling method L = ((lmax - limn) / (qcalmax - qcalmin)) * (qcal - qcalmin) + lmin
-#         # lmin/lmax: radiance_min/max_band_x,
-#         qcal = self.l7.b1[150, 150]
-#         qcal_min = self.l7.quantize_cal_min_band_1
-#         qcal_max = self.l7.quantize_cal_max_band_1
-#         l_min = self.l7.radiance_minimum_band_1
-#         l_max = self.l7.radiance_maximum_band_1
-#         radiance = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
-#         toa_reflect_test = (np.pi * radiance) / ((1 / (self.l7.earth_sun_dist ** 2)) * self.l7.ex_atm_irrad[0] * np.cos(
-#             self.l7.solar_zenith_rad))
-#         self.assertAlmostEqual(toa_reflect_test, toa_reflect, delta=0.00001)
-#         self.assertAlmostEqual(toa_reflect, 0.112894940522, delta=0.00001)
-#         at_sat_bright_temp = self.l7.brightness_temp()[150, 150]
-#         # self.assertAlmostEqual(at_sat_bright_temp, 299.150658873)
+class Landsat7TestCase(unittest.TestCase):
+    def setUp(self):
+        self.dir_name_LT7 = 'tests/data/d_38_27_l7'
+        self.l7 = Landsat7(self.dir_name_LT7)
+
+    def test_instantiate_scene(self):
+        self.assertEqual(self.l7.mtl['L1_METADATA_FILE']['PRODUCT_METADATA']['FILE_NAME_BAND_1'],
+                         'LE70380272007136EDC00_B1.TIF')
+        self.assertEqual(self.l7.band_count, 9)
+        self.assertEqual(self.l7.utm_zone, 12)
+        self.assertEqual(self.l7.ex_atm_irrad, (1970.0, 1842.0, 1547.0, 1044.0,
+                                                255.700, np.nan, np.nan, 82.06, 1369.00))
+
+        self.assertEqual(self.l7.rasterio_geometry['height'], 300)
+        self.assertEqual(self.l7.rasterio_geometry['driver'], 'GTiff')
+        self.assertEqual(self.l7.rasterio_geometry['dtype'], 'uint8')
+        self.assertEqual(self.l7.rasterio_geometry['transform'], (491985.0, 808.1, 0.0, 5364915.0, 0.0, -723.1))
+
+    def test_reflectance(self):
+        toa_reflect = self.l7.reflectance(1)[150, 150]
+        # independent method on yceo.yal.edu/how-to-convert-landsat-dns-top-atmosphere-toa-reflectance:
+        # 3.2.1 Spectral radiance scaling method L = ((lmax - limn) / (qcalmax - qcalmin)) * (qcal - qcalmin) + lmin
+        # lmin/lmax: radiance_min/max_band_x,
+        qcal = self.l7.b1[150, 150]
+        qcal_min = self.l7.quantize_cal_min_band_1
+        qcal_max = self.l7.quantize_cal_max_band_1
+        l_min = self.l7.radiance_minimum_band_1
+        l_max = self.l7.radiance_maximum_band_1
+        radiance = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
+        toa_reflect_test = (np.pi * radiance) / ((1 / (self.l7.earth_sun_dist ** 2)) * self.l7.ex_atm_irrad[0] * np.cos(
+            self.l7.solar_zenith_rad))
+        self.assertAlmostEqual(toa_reflect_test, toa_reflect, delta=0.00001)
+        self.assertAlmostEqual(toa_reflect, 0.112894940522, delta=0.00001)
+        at_sat_bright_temp = self.l7.brightness_temp()[150, 150]
+        self.assertAlmostEqual(at_sat_bright_temp, 299.150658873)
 
 
 class Landsat8TestCase(unittest.TestCase):

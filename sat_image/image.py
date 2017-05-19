@@ -19,9 +19,6 @@ import rasterio
 import numpy as np
 from sat_image import mtl
 
-from rio_toa import brightness_temp
-import fmask.fmask
-
 
 class UnmatchedStackGeoError(ValueError):
     pass
@@ -127,13 +124,12 @@ class Landsat5(LandsatImage):
         if self.satellite != 'LT5':
             raise ValueError('Must init Landsat5 object with Landsat5 data, not {}'.format(self.satellite))
 
-        #
+        # https://landsat.usgs.gov/esun
         self.ex_atm_irrad = (1958.0, 1827.0, 1551.0,
                              1036.0, 214.9, np.nan, 80.65)
 
         # old values from fmask.exe
         # self.ex_atm_irrad = (1983.0, 1796.0, 1536.0, 1031.0, 220.0, np.nan, 83.44)
-
 
         self.k1, self.k2 = 607.76, 1260.56
 
@@ -185,9 +181,9 @@ class Landsat7(LandsatImage):
 
         if self.satellite != 'LE7':
             raise ValueError('Must init Landsat7 object with Landsat5 data, not {}'.format(self.satellite))
-
-        self.ex_atm_irrad = (1969.0, 1840.0, 1551.0, 1044.0,
-                             255.700, 1e-6, 1e-6, 82.07, 1368.00)
+        # https://landsat.usgs.gov/esun
+        self.ex_atm_irrad = (1970.0, 1842.0, 1547.0, 1044.0,
+                             255.700, np.nan, np.nan, 82.06, 1369.00)
 
         self.k1, self.k2 = 666.09, 1282.71
 
