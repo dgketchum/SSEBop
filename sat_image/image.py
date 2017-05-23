@@ -321,7 +321,7 @@ class Landsat8(LandsatImage):
         """
 
         if band not in self.oli_bands:
-            raise ValueError('Landsat 8 reflectance should OLI band (i.e. 1-8)')
+            raise ValueError('Landsat 8 reflectance should OLI band (i.e. bands 1-8)')
 
         elev = getattr(self, 'sun_elevation')
         dn = getattr(self, 'b{}'.format(band))
@@ -329,7 +329,7 @@ class Landsat8(LandsatImage):
         ar = getattr(self, 'reflectance_add_band_{}'.format(band))
 
         if elev < 0.0:
-            raise ValueError("Sun elevation must be nonnegative "
+            raise ValueError("Sun elevation must be non-negative "
                              "(sun must be above horizon for entire scene)")
 
         rf = ((mr * dn.astype(np.float32)) + ar) / np.sin(np.deg2rad(elev))
