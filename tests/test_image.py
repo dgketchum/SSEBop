@@ -24,7 +24,7 @@ from sat_image.image import LandsatImage, Landsat5, Landsat7, Landsat8
 
 class LandsatImageTestCase(unittest.TestCase):
     def setUp(self):
-        self.dir_name_LT5 = 'tests/data/d_36_29_l5'
+        self.dir_name_LT5 = 'tests/data/lc8_cloud'
 
     def test_earth_sun(self):
         landsat = LandsatImage(self.dir_name_LT5)
@@ -73,11 +73,12 @@ class Landsat5TestCase(unittest.TestCase):
             reflct[reflct == 32767.] = np.nan
             reflct *= 1 / 10000.
 
-        self.assertAlmostEqual(reflct[cell], toa_reflect)
+        self.assertAlmostEqual(reflct[cell], toa_reflect, delta=0.001)
 
 
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
+        # results from fmask.exe
         self.dir_name_LT7 = 'tests/data/le7_cloud'
         self.exp_reflect = 'tests/data/le7_cloud/LE7_reflct_10000x.tif'
         self.l7 = Landsat7(self.dir_name_LT7)
@@ -118,7 +119,7 @@ class Landsat7TestCase(unittest.TestCase):
                                                              np.nanmax(toa_reflect)))
 
         print('size expected: {}, calculated: {}'.format(reflct[cell], toa_reflect_cell))
-        self.assertAlmostEqual(reflct[cell], toa_reflect_cell)
+        self.assertAlmostEqual(reflct[cell], toa_reflect_cell, delta=0.001)
 
 
 class Landsat8TestCase(unittest.TestCase):
