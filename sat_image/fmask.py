@@ -35,6 +35,7 @@ import rasterio
 import numpy as np
 from scipy.ndimage import generic_filter, grey_dilation, label
 
+
 # import fmask.fmask
 
 
@@ -46,27 +47,18 @@ class Fmask(object):
 
     def __init__(self, image):
 
-
         self.image = image
         self.shape = image.b1.shape
 
         if self.image.satellite in ['LE7', 'LT5']:
-            self.brightness_temp = image.at_sat_bright_band_6
+            self.brightness_temp = image.brightness_temp(6, 'C')
         else:
-            self.brightness_temp = image.at_sat_bright_band_10
+            self.brightness_temp = image.brightness_temp(10, 'C')
 
-        ##
-        # testing
-        if self.image.satellite == 'LC8':
-            self.out = os.path.join(os.path.expanduser('~'),
-                                    'images', 'sandbox', 'output_fmask.tif')
-            self.save_array(image.toa_reflectance_band_2, self.out)
-        ##
-        self.ndsi = (image.b2 - image.b5) / (image.b2 + image.b5)
-        self.ndvi = (image.b4 - image.b3) / (image.b4 + image.b3)
+        self.ndsi = self._divide_zero((image.b2 - image.b5), (image.b2 + image.b5))
+        self.ndvi = self._divide_zero((image.b4 - image.b3), (image.b4 + image.b3))
 
-        self.trues, self.false = np.full(self.shape, True, dtype=bool), \
-                                 np.full(self.shape, False, dtype=bool)
+        self.trues, self.false = np.full(self.shape, True, dtype=bool), np.full(self.shape, False, dtype=bool)
 
         for attr, code in zip(['code_null', 'code_clear', 'code_cloud',
                                'code_shadow', 'code_snow', 'code_water'],
@@ -97,7 +89,7 @@ class Fmask(object):
         return potential_snow
 
     def get_potential_shadow_layer(self):
-        band = self.b4_nan_unset
+        band = self.image.b4
         max_dn, min_dn = np.max(band), np.min(band[band > 0])
         null_mask = np.where(band == 0, 1, 0)
         dilated = grey_dilation(null_mask, size=(3, 3))
@@ -205,5 +197,15 @@ class Fmask(object):
         with rasterio.open(outfile, 'w', **georeference) as dst:
             dst.write(array)
         return None
+
+    @staticmethod
+    def _divide_zero(a, b):
+        with np.errstate(divide='ignore', invalid='ignore'):
+            c = np.true_divide(a, b)
+            c[c == np.inf] = 0
+            c = np.nan_to_num(c)
+            return c
+        return potential_cloud
+
 
 # ========================= EOF ====================================================================
