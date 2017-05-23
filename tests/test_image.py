@@ -36,6 +36,7 @@ class Landsat5TestCase(unittest.TestCase):
     def setUp(self):
         self.dir_name_LT5 = 'tests/data/lt5_cloud'
         # results from fmask.exe
+        # bitbucket.org/chchrsc/python-fmask/
         self.exp_reflect = 'tests/data/lt5_cloud/LT5_reflct_10000x.tif'
         self.l5 = Landsat5(self.dir_name_LT5)
 
@@ -79,6 +80,7 @@ class Landsat5TestCase(unittest.TestCase):
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
         # results from fmask.exe
+        # bitbucket.org/chchrsc/python-fmask/
         self.dir_name_LT7 = 'tests/data/le7_cloud'
         self.exp_reflect = 'tests/data/le7_cloud/LE7_reflct_10000x.tif'
         self.l7 = Landsat7(self.dir_name_LT7)
@@ -127,7 +129,7 @@ class Landsat8TestCase(unittest.TestCase):
         self.dirname_cloud = 'tests/data/lc8_cloud'
         # results from rio-toa
         self.ex_bright = os.path.join(self.dirname_cloud, 'LC8_brightemp_B10.TIF')
-        self.ex_reflect = os.path.join(self.dirname_cloud, 'LC8_reflct_B2.TIF')
+        self.ex_reflect = os.path.join(self.dirname_cloud, 'LC8_reflct_B1.TIF')
 
     def test_instantiate_scene(self):
         l8 = Landsat8(self.dirname_cloud)
@@ -164,7 +166,7 @@ class Landsat8TestCase(unittest.TestCase):
         l8 = Landsat8(self.dirname_cloud)
         with rasterio.open(self.ex_reflect, 'r') as src:
             expected_reflectance = src.read(1)
-        reflectance = l8.reflectance(2)
+        reflectance = l8.reflectance(1)
 
         self.assertAlmostEqual(expected_reflectance[100, 100],
                                reflectance[100, 100],
