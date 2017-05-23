@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/image.py" afterPath="$PROJECT_DIR$/sat_image/image.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_image.py" afterPath="$PROJECT_DIR$/tests/test_image.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/fmask.py" afterPath="$PROJECT_DIR$/sat_image/fmask.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,7 +18,7 @@
       <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sat_image/image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
+            <state relative-caret-position="798">
               <caret line="366" column="0" lean-forward="true" selection-start-line="366" selection-start-column="0" selection-end-line="366" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
@@ -30,7 +29,6 @@
                 <element signature="e#3729#4114#0" expanded="false" />
                 <element signature="e#3729#3942#1" expanded="false" />
                 <element signature="e#4168#4424#0" expanded="false" />
-                <element signature="e#4461#6378#0" expanded="false" />
                 <element signature="e#6415#8447#0" expanded="false" />
                 <element signature="e#8484#13321#0" expanded="false" />
                 <element signature="e#8666#9751#1" expanded="false" />
@@ -41,14 +39,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_image.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/test_image.py">
+      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#734#743#0" expanded="true" />
+                <element signature="e#761#1250#1" expanded="false" />
+                <element signature="e#1251#1298#0" expanded="true" />
+                <element signature="e#1458#1580#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -66,12 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>flood</find>
-      <find>potentialSh</find>
-      <find>falses</find>
-      <find>band</find>
-      <find>.b4</find>
-      <find>self.image.b4</find>
       <find>code</find>
       <find>.git</find>
       <find>l5</find>
@@ -96,6 +90,12 @@
       <find>k1</find>
       <find>5</find>
       <find>150, 150</find>
+      <find>at_sat</find>
+      <find>self.image.b2</find>
+      <find>self.</find>
+      <find>b7</find>
+      <find>image.b2</find>
+      <find>image.b7</find>
     </findStrings>
     <replaceStrings>
       <replace>nan_unset</replace>
@@ -117,6 +117,16 @@
       <replace>band</replace>
       <replace>b1</replace>
       <replace>cell</replace>
+      <replace>self.b2_reflct</replace>
+      <replace>b2_reflct</replace>
+      <replace>self.b5_reflct</replace>
+      <replace>b5_reflct</replace>
+      <replace>b4_reflct</replace>
+      <replace>selfb3_reflct</replace>
+      <replace>self.b3_reflct</replace>
+      <replace>b3_reflct</replace>
+      <replace>self.b1_reflct</replace>
+      <replace>self.b7_reflct</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -134,14 +144,14 @@
         <option value="$PROJECT_DIR$/throwaway.py" />
         <option value="$PROJECT_DIR$/ras_point_index.py" />
         <option value="$PROJECT_DIR$/ssebop/utils/ras_point_index.py" />
-        <option value="$PROJECT_DIR$/sat_image/fmask.py" />
         <option value="$PROJECT_DIR$/tests/test_fmask.py" />
         <option value="$PROJECT_DIR$/sat_image/rio_functions.py" />
         <option value="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt" />
         <option value="$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/fmask.py" />
         <option value="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" />
-        <option value="$PROJECT_DIR$/tests/test_image.py" />
         <option value="$PROJECT_DIR$/sat_image/image.py" />
+        <option value="$PROJECT_DIR$/tests/test_image.py" />
+        <option value="$PROJECT_DIR$/sat_image/fmask.py" />
       </list>
     </option>
   </component>
@@ -210,25 +220,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
+              <option name="myItemId" value="sat_image" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -266,7 +258,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_image.Landsat8TestCase.test_toa_reflectance">
+  <component name="RunManager" selected="Python tests.Unittests in test_fmask.py">
     <configuration default="false" name="Unittests for tests.test_image.Landsat5TestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -279,21 +271,6 @@
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_image.Landsat5TestCase&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_image.Landsat7TestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_image.Landsat7TestCase&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -340,6 +317,21 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_image.Landsat8TestCase.test_toa_reflectance&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in test_fmask.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_fmask.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -419,18 +411,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat5TestCase" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase.test_reflectance" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat8TestCase.test_toa_reflectance" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase.test_reflectance" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat8TestCase.test_toa_reflectance" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat8TestCase.test_toa_reflectance" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
         <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat5TestCase" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase.test_reflectance" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase.test_reflectance" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat8TestCase.test_toa_reflectance" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat5TestCase" />
       </list>
     </recent_temporary>
   </component>
@@ -662,54 +654,69 @@
       <option name="project" value="LOCAL" />
       <updated>1495227735470</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="todo: fix final landsat 8 image tests">
+      <created>1495562279292</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1495562279292</updated>
+    </task>
+    <task id="LOCAL-00033" summary="move on to test fmask functions">
+      <created>1495573511688</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1495573511688</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_image_Landsat7TestCase_test_reflectance - 2017.05.19 at 14h 47m 08s.xml">
+    <history-entry file="Unittests_for_tests_test_image_Landsat7TestCase_test_reflectance - 2017.05.23 at 13h 17m 28s.xml">
       <configuration name="Unittests for tests.test_image.Landsat7TestCase.test_reflectance" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_Landsat7TestCase_test_reflectance - 2017.05.19 at 14h 49m 45s.xml">
-      <configuration name="Unittests for tests.test_image.Landsat7TestCase.test_reflectance" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_Landsat7TestCase_test_reflectance - 2017.05.19 at 14h 50m 05s.xml">
-      <configuration name="Unittests for tests.test_image.Landsat7TestCase.test_reflectance" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_Landsat7TestCase_test_reflectance - 2017.05.19 at 14h 51m 20s.xml">
-      <configuration name="Unittests for tests.test_image.Landsat7TestCase.test_reflectance" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_Landsat7TestCase_test_reflectance - 2017.05.19 at 14h 51m 36s.xml">
-      <configuration name="Unittests for tests.test_image.Landsat7TestCase.test_reflectance" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_Landsat7TestCase_test_reflectance - 2017.05.19 at 14h 52m 06s.xml">
-      <configuration name="Unittests for tests.test_image.Landsat7TestCase.test_reflectance" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_Landsat8TestCase_test_toa_reflectance - 2017.05.23 at 11h 43m 19s.xml">
+    <history-entry file="Unittests_for_tests_test_image_Landsat8TestCase_test_toa_reflectance - 2017.05.23 at 12h 43m 19s.xml">
       <configuration name="Unittests for tests.test_image.Landsat8TestCase.test_toa_reflectance" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.05.19 at 14h 54m 43s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_fmask_py - 2017.05.23 at 13h 19m 00s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.05.23 at 11h 28m 14s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_fmask_py - 2017.05.23 at 13h 22m 36s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.05.23 at 11h 39m 10s.xml">
+    <history-entry file="Unittests_in_test_fmask_py - 2017.05.23 at 13h 22m 58s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_fmask_py - 2017.05.23 at 13h 24m 41s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_fmask_py - 2017.05.23 at 13h 33m 23s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_fmask_py - 2017.05.23 at 14h 55m 54s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_fmask_py - 2017.05.23 at 15h 04m 26s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_image_py - 2017.05.23 at 13h 17m 34s.xml">
       <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1600295" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19469027" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5116022" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38569322" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5016575" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4498525" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44174042" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44837758" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7839233" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -725,7 +732,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pre-fmask commit" />
     <MESSAGE value="to fmask basic test" />
     <MESSAGE value="applied correct np.where syntax to tests" />
     <MESSAGE value="potential cloud pixels pass 2 finsished, still needs neighborhood resample" />
@@ -749,46 +755,18 @@
     <MESSAGE value="add class method save to LandsatImage, add temperature scales to LandsatImage(num)" />
     <MESSAGE value="reconcile ex_atm_irrad with fmask.exe" />
     <MESSAGE value="enforce thermal band exatmirrad with np.nan" />
-    <option name="LAST_COMMIT_MESSAGE" value="enforce thermal band exatmirrad with np.nan" />
+    <MESSAGE value="todo: fix final landsat 8 image tests" />
+    <MESSAGE value="move on to test fmask functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="move on to test fmask functions" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sat_image/fmask.py</url>
-          <line>120</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="75" />
+      <option name="time" value="77" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="76" column="30" lean-forward="false" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
-            <element signature="e#968#4424#0" expanded="false" />
-            <element signature="e#968#1217#1" expanded="false" />
-            <element signature="e#1256#1427#1" expanded="false" />
-            <element signature="e#3729#4114#0" expanded="false" />
-            <element signature="e#3729#3942#1" expanded="false" />
-            <element signature="e#4168#4424#0" expanded="false" />
-            <element signature="e#4461#6378#0" expanded="false" />
-            <element signature="e#6415#8447#0" expanded="false" />
-            <element signature="e#8484#13321#0" expanded="false" />
-            <element signature="e#8666#9751#1" expanded="false" />
-            <element signature="e#10448#11659#1" expanded="false" />
-            <element signature="e#12319#13079#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -797,14 +775,7 @@
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1457#1579#1" expanded="false" />
-            <element signature="e#2696#3172#0" expanded="false" />
-            <element signature="e#3223#3395#0" expanded="false" />
-            <element signature="e#3445#3788#0" expanded="false" />
-            <element signature="e#3840#4351#0" expanded="false" />
-            <element signature="e#4414#4437#0" expanded="false" />
-            <element signature="e#4483#5900#0" expanded="false" />
-            <element signature="e#5977#8950#0" expanded="false" />
+            <element signature="e#1458#1580#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -843,7 +814,6 @@
             <element signature="e#3729#4114#0" expanded="false" />
             <element signature="e#3729#3942#1" expanded="false" />
             <element signature="e#4168#4424#0" expanded="false" />
-            <element signature="e#4461#6378#0" expanded="false" />
             <element signature="e#6415#8447#0" expanded="false" />
             <element signature="e#8484#13321#0" expanded="false" />
             <element signature="e#8666#9751#1" expanded="false" />
@@ -861,14 +831,7 @@
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1457#1579#1" expanded="false" />
-            <element signature="e#2696#3172#0" expanded="false" />
-            <element signature="e#3223#3395#0" expanded="false" />
-            <element signature="e#3445#3788#0" expanded="false" />
-            <element signature="e#3840#4351#0" expanded="false" />
-            <element signature="e#4414#4437#0" expanded="false" />
-            <element signature="e#4483#5900#0" expanded="false" />
-            <element signature="e#5977#8950#0" expanded="false" />
+            <element signature="e#1458#1580#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -886,7 +849,6 @@
             <element signature="e#3729#4114#0" expanded="false" />
             <element signature="e#3729#3942#1" expanded="false" />
             <element signature="e#4168#4424#0" expanded="false" />
-            <element signature="e#4461#6378#0" expanded="false" />
             <element signature="e#6415#8447#0" expanded="false" />
             <element signature="e#8484#13321#0" expanded="false" />
             <element signature="e#8666#9751#1" expanded="false" />
@@ -904,14 +866,7 @@
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1457#1579#1" expanded="false" />
-            <element signature="e#2696#3172#0" expanded="false" />
-            <element signature="e#3223#3395#0" expanded="false" />
-            <element signature="e#3445#3788#0" expanded="false" />
-            <element signature="e#3840#4351#0" expanded="false" />
-            <element signature="e#4414#4437#0" expanded="false" />
-            <element signature="e#4483#5900#0" expanded="false" />
-            <element signature="e#5977#8950#0" expanded="false" />
+            <element signature="e#1458#1580#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -929,7 +884,6 @@
             <element signature="e#3729#4114#0" expanded="false" />
             <element signature="e#3729#3942#1" expanded="false" />
             <element signature="e#4168#4424#0" expanded="false" />
-            <element signature="e#4461#6378#0" expanded="false" />
             <element signature="e#6415#8447#0" expanded="false" />
             <element signature="e#8484#13321#0" expanded="false" />
             <element signature="e#8666#9751#1" expanded="false" />
@@ -1029,13 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="24" column="61" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rio_toa/reflectance.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1061,26 +1008,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/data/d_38_27_l7/LE70380272007136EDC00_MTL.txt" />
-    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="206" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#761#1250#1" expanded="false" />
-            <element signature="e#1251#1298#0" expanded="true" />
-            <element signature="e#1457#1579#1" expanded="false" />
-            <element signature="e#2696#3172#0" expanded="false" />
-            <element signature="e#3223#3395#0" expanded="false" />
-            <element signature="e#3445#3788#0" expanded="false" />
-            <element signature="e#3840#4351#0" expanded="false" />
-            <element signature="e#4414#4437#0" expanded="false" />
-            <element signature="e#4483#5900#0" expanded="false" />
-            <element signature="e#5977#8950#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1164,9 +1091,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/numpy/core/tests/test_multiarray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="4654" column="13" lean-forward="false" selection-start-line="4654" selection-start-column="13" selection-end-line="4654" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#743#0" expanded="false" />
+            <element signature="e#920#1170#0" expanded="false" />
+            <element signature="e#1220#3339#0" expanded="false" />
+            <element signature="e#3389#5780#0" expanded="false" />
+            <element signature="e#5830#7962#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1586#2134#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
+        <state relative-caret-position="798">
           <caret line="366" column="0" lean-forward="true" selection-start-line="366" selection-start-column="0" selection-end-line="366" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
@@ -1177,7 +1138,6 @@
             <element signature="e#3729#4114#0" expanded="false" />
             <element signature="e#3729#3942#1" expanded="false" />
             <element signature="e#4168#4424#0" expanded="false" />
-            <element signature="e#4461#6378#0" expanded="false" />
             <element signature="e#6415#8447#0" expanded="false" />
             <element signature="e#8484#13321#0" expanded="false" />
             <element signature="e#8666#9751#1" expanded="false" />
@@ -1187,13 +1147,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
+    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#743#0" expanded="true" />
+            <element signature="e#761#1250#1" expanded="false" />
+            <element signature="e#1251#1298#0" expanded="true" />
+            <element signature="e#1458#1580#1" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -55,8 +55,12 @@ class Fmask(object):
         else:
             self.brightness_temp = image.brightness_temp(10, 'C')
 
-        self.ndsi = self._divide_zero((image.b2 - image.b5), (image.b2 + image.b5))
-        self.ndvi = self._divide_zero((image.b4 - image.b3), (image.b4 + image.b3))
+        reflect_bands = [1, 2, 3, 4, 5, 7]
+        for band in reflect_bands:
+            setattr(self, 'b{}_reflct'.format(band), self.image.reflectance(band))
+
+        self.ndsi = self._divide_zero((self.b2_reflct - self.b5_reflct), (self.b2_reflct + self.b5_reflct))
+        self.ndvi = self._divide_zero((self.b4_reflct - self.b3_reflct), (self.b4_reflct + self.b3_reflct))
 
         self.trues, self.false = np.full(self.shape, True, dtype=bool), np.full(self.shape, False, dtype=bool)
 
@@ -83,13 +87,13 @@ class Fmask(object):
     def get_potential_snow_layer(self):
         potential_snow = np.where(self.ndsi > 0.15, self.trues, self.false)
         potential_snow = np.where(self.brightness_temp < 3.8, self.trues, self.false)
-        potential_snow = np.where(self.image.b4 > 0.11, self.trues, self.false)
-        potential_snow = np.where(self.image.b2 > 0.1, self.trues, self.false)
+        potential_snow = np.where(self.b4_reflct > 0.11, self.trues, self.false)
+        potential_snow = np.where(self.b2_reflct > 0.1, self.trues, self.false)
 
         return potential_snow
 
     def get_potential_shadow_layer(self):
-        band = self.image.b4
+        band = self.b4_reflct
         max_dn, min_dn = np.max(band), np.min(band[band > 0])
         null_mask = np.where(band == 0, 1, 0)
         dilated = grey_dilation(null_mask, size=(3, 3))
@@ -107,27 +111,27 @@ class Fmask(object):
         # Potential Cloud Layer 1
         # Eqn 1, Basic Test
         # this is cond and cond AND cond and cond, must meet all criteria
-        basic_test = np.where((self.image.b7 > 0.03) & (self.brightness_temp < 27), self.trues, self.false)
+        basic_test = np.where((self.self.b7_reflct > 0.03) & (self.brightness_temp < 27), self.trues, self.false)
         basic_test = np.where((self.ndsi < 0.8) & (self.ndvi < 0.8), basic_test, self.false)
 
-        mean_vis = (self.image.b1 + self.image.b2 + self.image.b3) / 3.
+        mean_vis = (self.b1_reflct + self.b2_reflct + self.b3_reflct) / 3.
 
         # Eqn 2, whiteness test
         whiteness = np.zeros(self.shape)
-        for band in [self.image.b1, self.image.b2, self.image.b3]:
+        for band in [self.b1_reflct, self.b2_reflct, self.b3_reflct]:
             whiteness += np.abs((band - mean_vis) / mean_vis)
         whiteness_test = np.where(whiteness < 0.7, self.trues, self.false)
 
         # Eqn 3, Haze Optimized Transformation (HOT)
-        hot_test = np.where(self.image.b1 - 0.5 * self.image.b3 - 0.08 > 0, self.trues, self.false)
+        hot_test = np.where(self.b1_reflct - 0.5 * self.b3_reflct - 0.08 > 0, self.trues, self.false)
 
         # Eqn 4
-        b_45_test = np.where(self.image.b4 / self.image.b5 > 0.75, self.trues, self.false)
+        b_45_test = np.where(self.b4_reflct / self.b5_reflct > 0.75, self.trues, self.false)
 
         # Eqn 5
         # this is cond and cond OR cond and cond, must meet one test or the other
-        water_test = np.where((self.ndvi < 0.01) & (self.image.b4 < 0.11), self.trues, self.false)
-        water_test = np.where((self.ndvi < 0.1) & (self.image.b4 < 0.05), self.trues, water_test)
+        water_test = np.where((self.ndvi < 0.01) & (self.b4_reflct < 0.11), self.trues, self.false)
+        water_test = np.where((self.ndvi < 0.1) & (self.b4_reflct < 0.05), self.trues, water_test)
 
         # Potential Cloud Pixels
         p_pix = np.where(basic_test & whiteness_test & hot_test & b_45_test, self.trues, self.false)
@@ -137,13 +141,13 @@ class Fmask(object):
     def _do_second_pass_tests(self, p_pix, water_test, whiteness):
         # Potential Cloud Layer Pass 2
         # Eqn 7, 8, 9; temperature probability for clear-sky water
-        clear_sky_water_test = np.where(water_test & (self.image.b7 < 0.03), self.trues, self.false)
+        clear_sky_water_test = np.where(water_test & (self.self.b7_reflct < 0.03), self.trues, self.false)
         clear_sky_water_bt = np.where(clear_sky_water_test, self.brightness_temp, np.full(self.shape, np.nan))
         temp_water = np.nanpercentile(clear_sky_water_bt, 82.5)
         water_temp_prob = (temp_water - self.brightness_temp) / 4.
 
         # Eqn 10; constrain normalized brightness probability
-        water_brightness_prob = np.where(self.image.b5 > 0.11, np.ones(self.shape) * 0.11, self.image.b5) / 0.11
+        water_brightness_prob = np.where(self.b5_reflct > 0.11, np.ones(self.shape) * 0.11, self.b5_reflct) / 0.11
 
         # Eqn 11, 12, 13; temperature probability for clear-sky land
         water_cloud_prob = water_temp_prob * water_brightness_prob
@@ -158,9 +162,10 @@ class Fmask(object):
         saturated_5 = self.image.quantize_cal_max_band_5
         saturated_3 = self.image.quantize_cal_max_band_3
 
-        ndsi_mod = np.where((self.image.b5 == saturated_5) & (self.image.b5 > self.image.b2), np.zeros(self.shape),
+        ndsi_mod = np.where((self.b5_reflct == saturated_5) & (self.b5_reflct > self.self.b2_reflct),
+                            np.zeros(self.shape),
                             self.ndsi)
-        ndvi_mod = np.where((self.image.b3 == saturated_3) & (self.image.b4 > self.image.b3), np.zeros(self.shape),
+        ndvi_mod = np.where((self.b3_reflct == saturated_3) & (self.b4_reflct > self.b3_reflct), np.zeros(self.shape),
                             self.ndvi)
 
         # Eqn 15, 16, 17
@@ -199,10 +204,10 @@ class Fmask(object):
         return None
 
     @staticmethod
-    def _divide_zero(a, b):
+    def _divide_zero(a, b, replace=0):
         with np.errstate(divide='ignore', invalid='ignore'):
             c = np.true_divide(a, b)
-            c[c == np.inf] = 0
+            c[c == np.inf] = replace
             c = np.nan_to_num(c)
             return c
         return potential_cloud
