@@ -30,13 +30,8 @@ Remote Sensing of Environment 159 (2015) 269-277.
 '''
 from __future__ import print_function, division
 
-import os
 import rasterio
 import numpy as np
-from scipy.ndimage import generic_filter, grey_dilation, label
-
-
-# import fmask.fmask
 
 
 class Fmask(object):
@@ -68,16 +63,12 @@ class Fmask(object):
             self.nir = image.b5
             self.swir1 = image.b6
             self.swir2 = image.b7
+            self.cirrus = image.b9
             self.tirs1 = image.brightness_temp(10, 'C')
             # self.tirs2 = image.brightness_temp(11, 'C')
 
         else:
             raise ValueError('Must provide satellite image from LT5, LE7, LC8')
-
-        self.ndsi = self._divide_zero((self.b2_rflct - self.b5_rflct), (self.b2_rflct + self.b5_rflct))
-        self.ndvi = self._divide_zero((self.b4_rflct - self.b3_rflct), (self.b4_rflct + self.b3_rflct))
-
-        self.trues, self.false = np.full(self.shape, True, dtype=bool), np.full(self.shape, False, dtype=bool)
 
         for attr, code in zip(['code_null', 'code_clear', 'code_cloud',
                                'code_shadow', 'code_snow', 'code_water'],
@@ -171,7 +162,7 @@ class Fmask(object):
         thres = 0.08
         return self.blue - (0.5 * self.red) - thres > 0.0
 
-    def nirswir_test(nir, swir1):
+    def nirswir_test(self):
         """Spectral test to exclude bright rock and desert
         see (Irish, 2000)
         Equation 4 (Zhu and Woodcock, 2012)
@@ -188,9 +179,9 @@ class Fmask(object):
         """
         th_ratio = 0.75
 
-        return (nir / swir1) > th_ratio
+        return (self.nir / self.swir1) > th_ratio
 
-    def cirrus_test(cirrus):
+    def cirrus_test(self):
         """Cirrus TOA test, see (Zhu and Woodcock, 2015)
         The threshold is derived from (Wilson & Oreopoulos, 2013)
         Parameters
@@ -202,9 +193,9 @@ class Fmask(object):
         """
         th_cirrus = 0.01
 
-        return cirrus > th_cirrus
+        return self.cirrus > th_cirrus
 
-    def water_test(ndvi, nir):
+    def water_test(self):
         """Water or Land?
         Equation 5 (Zhu and Woodcock, 2012)
         Parameters
@@ -220,11 +211,10 @@ class Fmask(object):
         th_ndvi_B = 0.1
         th_nir_B = 0.05
 
-        return (((ndvi < th_ndvi_A) & (nir < th_nir_A)) |
-                ((ndvi < th_ndvi_B) & (nir < th_nir_B)))
+        return (((self.ndvi < th_ndvi_A) & (self.nir < th_nir_A)) |
+                ((self.ndvi < th_ndvi_B) & (self.nir < th_nir_B)))
 
-    def potential_cloud_pixels(ndvi, ndsi, blue, green, red, nir,
-                               swir1, swir2, cirrus, tirs1):
+    def potential_cloud_pixels(self):
         """Determine potential cloud pixels (PCPs)
         Combine basic spectral tests to get a premliminary cloud mask
         First pass, section 3.1.1 in Zhu and Woodcock 2012
@@ -246,15 +236,15 @@ class Fmask(object):
         ndarray:
             potential cloud mask, boolean
         """
-        eq1 = basic_test(ndvi, ndsi, swir2, tirs1)
-        eq2 = whiteness_test(blue, green, red)
-        eq3 = hot_test(blue, red)
-        eq4 = nirswir_test(nir, swir1)
-        cir = cirrus_test(cirrus)
+        eq1 = self.basic_test()
+        eq2 = self.whiteness_test()
+        eq3 = self.hot_test()
+        eq4 = self.nirswir_test()
+        cir = self.cirrus_test()
 
         return (eq1 & eq2 & eq3 & eq4) | cir
 
-    def temp_water(is_water, swir2, tirs1):
+    def temp_water(self):
         """Use water to mask tirs and find 82.5 pctile
         Equation 7 and 8 (Zhu and Woodcock, 2012)
         Parameters
@@ -270,14 +260,14 @@ class Fmask(object):
         """
         # eq7
         th_swir2 = 0.03
-        clearsky_water = is_water & (swir2 < th_swir2)
+        clearsky_water = self.is_water & (self.swir2 < th_swir2)
 
         # eq8
-        clear_water_temp = tirs1.copy()
+        clear_water_temp = self.tirs1.copy()
         clear_water_temp[~clearsky_water] = np.nan
         return np.nanpercentile(clear_water_temp, 82.5)
 
-    def water_temp_prob(water_temp, tirs):
+    def water_temp_prob(self):
         """Temperature probability for water
         Equation 9 (Zhu and Woodcock, 2012)
         Parameters
@@ -292,22 +282,23 @@ class Fmask(object):
             probability of cloud over water based on temperature
         """
         temp_const = 4.0  # degrees C
-        return (water_temp - tirs) / temp_const
+        return (self.water_temp - self.tirs) / temp_const
 
-    def brightness_prob(nir, clip=True):
+    def brightness_prob(self, clip=True):
         """The brightest water may have Band 5 reflectance
         as high as 0.11
         Equation 10 (Zhu and Woodcock, 2012)
         Parameters
         ----------
         nir: ndarray
+        clip: boolean
         Output
         ------
         ndarray:
             brightness probability, constrained 0..1
         """
         thresh = 0.11
-        bp = np.minimum(thresh, nir) / thresh
+        bp = np.minimum(thresh, self.nir) / thresh
         if clip:
             bp[bp > 1] = 1
             bp[bp < 0] = 0
@@ -316,8 +307,7 @@ class Fmask(object):
     # Eq 11, water_cloud_prob
     # wCloud_Prob = wTemperature_Prob x Brightness_Prob
 
-
-    def temp_land(pcps, water, tirs1):
+    def temp_land(self, pcps, water):
         """Derive high/low percentiles of land temperature
         Equations 12 an 13 (Zhu and Woodcock, 2012)
         Parameters
@@ -336,13 +326,13 @@ class Fmask(object):
         clearsky_land = ~(pcps | water)
 
         # use clearsky_land to mask tirs1
-        clear_land_temp = tirs1.copy()
+        clear_land_temp = self.tirs1.copy()
         clear_land_temp[~clearsky_land] = np.nan
 
         # take 17.5 and 82.5 percentile, eq 13
         return np.nanpercentile(clear_land_temp, (17.5, 82.5))
 
-    def land_temp_prob(tirs1, tlow, thigh):
+    def land_temp_prob(self, tlow, thigh):
         """Temperature-based probability of cloud over land
         Equation 14 (Zhu and Woodcock, 2012)
         Parameters
@@ -358,8 +348,9 @@ class Fmask(object):
             probability of cloud over land based on temperature
         """
         temp_diff = 4  # degrees
-        return (thigh + temp_diff - tirs1) / (thigh + 4 - (tlow - 4))
+        return (thigh + temp_diff - self.tirs1) / (thigh + 4 - (tlow - 4))
 
+    @staticmethod
     def variability_prob(ndvi, ndsi, whiteness):
         """Use the probability of the spectral variability
         to identify clouds over land.
@@ -379,8 +370,8 @@ class Fmask(object):
     # Eq 16, land_cloud_prob
     # lCloud_Prob = lTemperature_Prob x Variability_Prob
 
-
-    def land_threshold(land_cloud_prob, pcps, water):
+    @staticmethod
+    def land_threshold(pcps, water, land_cloud_prob):
         """Dynamic threshold for determining cloud cutoff
         Equation 17 (Zhu and Woodcock, 2012)
         Parameters
@@ -407,8 +398,7 @@ class Fmask(object):
         th_const = 0.2
         return np.nanpercentile(cloud_prob, 82.5) + th_const
 
-    def potential_cloud_layer(pcp, water, tirs1, tlow,
-                              land_cloud_prob, land_threshold,
+    def potential_cloud_layer(self, pcp, water, tlow, land_cloud_prob, land_threshold,
                               water_cloud_prob, water_threshold=0.5):
         """Final step of determining potential cloud layer
         Equation 18 (Zhu and Woodcock, 2012)
@@ -437,11 +427,11 @@ class Fmask(object):
         # Using pcp and water as mask todo
         part1 = (pcp & water & (water_cloud_prob > water_threshold))
         part2 = (pcp & ~water & (land_cloud_prob > land_threshold))
-        temptest = tirs1 < (tlow - 35)  # 35degrees C colder
+        temptest = self.tirs1 < (tlow - 35)  # 35degrees C colder
 
         return part1 | part2 | temptest
 
-    def calc_ndsi(green, swir1):
+    def calc_ndsi(self):
         """NDSI calculation
         normalized difference snow index
         Parameters
@@ -455,9 +445,9 @@ class Fmask(object):
         ndarray:
             unitless index
         """
-        return (green - swir1) / (green + swir1)
+        return (self.green - self.swir1) / (self.green + self.swir1)
 
-    def calc_ndvi(red, nir):
+    def calc_ndvi(self):
         """NDVI calculation
         normalized difference vegetation index
         Parameters
@@ -469,9 +459,9 @@ class Fmask(object):
         ndarray:
             unitless index
         """
-        return (nir - red) / (nir + red)
+        return (self.nir - self.red) / (self.nir + self.red)
 
-    def potential_cloud_shadow_layer(nir, swir1, water):
+    def potential_cloud_shadow_layer(self, water):
         """Find low NIR/SWIR1 that is not classified as water
         This differs from the Zhu Woodcock algorithm
         but produces decent results without requiring a flood-fill
@@ -485,9 +475,9 @@ class Fmask(object):
         ndarray
             boolean, potential cloud shadows
         """
-        return (nir < 0.10) & (swir1 < 0.10) & ~water
+        return (self.nir < 0.10) & (self.swir1 < 0.10) & ~water
 
-    def potential_snow_layer(ndsi, green, nir, tirs1):
+    def potential_snow_layer(self):
         """Spectral test to determine potential snow
         Uses the 9.85C (283K) threshold defined in Zhu, Woodcock 2015
         Parameters
@@ -501,10 +491,9 @@ class Fmask(object):
         ndarray:
             boolean, True is potential snow
         """
-        return (ndsi > 0.15) & (tirs1 < 9.85) & (nir > 0.11) & (green > 0.1)
+        return (self.ndsi > 0.15) & (self.tirs1 < 9.85) & (self.nir > 0.11) & (self.green > 0.1)
 
-    def cloudmask(blue, green, red, nir, swir1, swir2,
-                  cirrus, tirs1, min_filter=(3, 3), max_filter=(21, 21)):
+    def cloud_mask(self, min_filter=(3, 3), max_filter=(21, 21)):
         """Calculate the potential cloud layer from source data
         *This is the high level function which ties together all
         the equations for generating potential clouds*
@@ -529,35 +518,34 @@ class Fmask(object):
         ndarray, boolean
             potential cloud shadow layer; True = cloud shadow
         """
-        logger.info("Running initial tests")
-        ndvi = calc_ndvi(red, nir)
-        ndsi = calc_ndsi(green, swir1)
-        whiteness = whiteness_index(blue, green, red)
-        water = water_test(ndvi, nir)
+        # logger.info("Running initial tests")
+        ndvi = self.calc_ndvi()
+        ndsi = self.calc_ndsi()
+        whiteness = self.whiteness_index()
+        water = self.water_test()
 
         # First pass, potential clouds
-        pcps = potential_cloud_pixels(
-            ndvi, ndsi, blue, green, red, nir, swir1, swir2, cirrus, tirs1)
+        pcps = self.potential_cloud_pixels()
 
-        cirrus_prob = cirrus / 0.04
+        cirrus_prob = self.cirrus / 0.04
 
         # Clouds over water
-        tw = temp_water(water, swir2, tirs1)
-        wtp = water_temp_prob(tw, tirs1)
-        bp = brightness_prob(nir)
+        tw = self.temp_water()
+        wtp = self.water_temp_prob()
+        bp = self.brightness_prob()
         water_cloud_prob = (wtp * bp) + cirrus_prob
         wthreshold = 0.5
 
         # Clouds over land
-        tlow, thigh = temp_land(pcps, water, tirs1)
-        ltp = land_temp_prob(tirs1, tlow, thigh)
-        vp = variability_prob(ndvi, ndsi, whiteness)
+        tlow, thigh = self.temp_land(pcps, water)
+        ltp = self.land_temp_prob(tlow, thigh)
+        vp = self.variability_prob(ndvi, ndsi, whiteness)
         land_cloud_prob = (ltp * vp) + cirrus_prob
-        lthreshold = land_threshold(land_cloud_prob, pcps, water)
+        lthreshold = self.land_threshold(land_cloud_prob, pcps, water)
 
-        logger.info("Calculate potential clouds")
-        pcloud = potential_cloud_layer(
-            pcps, water, tirs1, tlow,
+        # logger.info("Calculate potential clouds")
+        pcloud = self.potential_cloud_layer(
+            pcps, water, tlow,
             land_cloud_prob, lthreshold,
             water_cloud_prob, wthreshold)
 
@@ -566,8 +554,8 @@ class Fmask(object):
         # psnow = potential_snow_layer(ndsi, green, nir, tirs1)
         # pcloud = pcloud & ~psnow
 
-        logger.info("Calculate potential cloud shadows")
-        pshadow = potential_cloud_shadow_layer(nir, swir1, water)
+        # logger.info("Calculate potential cloud shadows")
+        pshadow = self.potential_cloud_shadow_layer(water)
 
         # The remainder of the algorithm differs significantly from Fmask
         # In an attempt to make a more visually appealling cloud mask
@@ -575,7 +563,7 @@ class Fmask(object):
 
         if min_filter:
             # Remove outliers
-            logger.info("Remove outliers with minimum filter")
+            # logger.info("Remove outliers with minimum filter")
 
             from scipy.ndimage.filters import minimum_filter
             from scipy.ndimage.morphology import distance_transform_edt
@@ -593,7 +581,7 @@ class Fmask(object):
 
         if max_filter:
             # grow around the edges
-            logger.info("Buffer edges with maximum filter")
+            # logger.info("Buffer edges with maximum filter")
 
             from scipy.ndimage.filters import maximum_filter
 
@@ -602,6 +590,7 @@ class Fmask(object):
 
         return pcloud, pshadow
 
+    @staticmethod
     def gdal_nodata_mask(pcl, pcsl, tirs_arr):
         """
         Given a boolean potential cloud layer,
