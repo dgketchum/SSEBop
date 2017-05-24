@@ -51,13 +51,28 @@ class Fmask(object):
         self.shape = image.b1.shape
 
         if self.image.satellite in ['LE7', 'LT5']:
-            self.brightness_temp = image.brightness_temp(6, 'C')
-        else:
-            self.brightness_temp = image.brightness_temp(10, 'C')
 
-        reflect_bands = [1, 2, 3, 4, 5, 7]
-        for band in reflect_bands:
-            setattr(self, 'b{}_rflct'.format(band), self.image.reflectance(band))
+            self.blue = image.b1
+            self.green = image.b2
+            self.red = image.b3
+            self.nir = image.b4
+            self.swir1 = image.b5
+            self.tirs1 = image.brightness_temp(6, 'C')
+            self.swir2 = image.b7
+
+        elif self.image.satellite == 'LC8':
+
+            self.blue = image.b2
+            self.green = image.b3
+            self.red = image.b4
+            self.nir = image.b5
+            self.swir1 = image.b6
+            self.swir2 = image.b7
+            self.tirs1 = image.brightness_temp(10, 'C')
+            # self.tirs2 = image.brightness_temp(11, 'C')
+
+        else:
+            raise ValueError('Must provide satellite image from LT5, LE7, LC8')
 
         self.ndsi = self._divide_zero((self.b2_rflct - self.b5_rflct), (self.b2_rflct + self.b5_rflct))
         self.ndvi = self._divide_zero((self.b4_rflct - self.b3_rflct), (self.b4_rflct + self.b3_rflct))
@@ -72,203 +87,529 @@ class Fmask(object):
         self.saturated_5 = self.image.quantize_cal_max_band_5
         self.saturated_3 = self.image.quantize_cal_max_band_3
 
-    def get_fmask(self):
-        potential_cloud_layer = self.get_potential_cloud_layer()
-        potential_shadow_layer = self.get_potential_shadow_layer()
-        potential_snow_layer = self.get_potential_snow_layer()
-        fmask = np.full(self.shape, self.code_clear)
-        fmask = np.where(potential_cloud_layer, self.code_cloud, fmask)
-        fmask = np.where(potential_snow_layer, self.code_snow, fmask)
-        fmask = np.where(potential_shadow_layer, self.code_shadow, fmask)
-        return fmask
-
-    def potential_cloud_layer(self):
-
-        # Eqn 18
-
-        potential_cloud = np.where(p_pix & water_test & (water_cloud_prob > 0.5), self.trues, self.false)
-        potential_cloud = np.where(p_pix & ~water_test & (land_cloud_prob > land_threshold), self.trues,
-                                   potential_cloud)
-        potential_cloud = np.where((land_cloud_prob > 0.99) & ~water_test, self.trues, potential_cloud)
-        potential_cloud = np.where(self.brightness_temp < low_temp - 35, self.trues, potential_cloud)
-
-        # 'spatially improve cloud mask by using the rule that sets a pixel to cloud if five or more
-        # neighboring pixels in 3x3 neighborhood are cloud'
-
-        def do_filter(input_arr, count):
-            def func(arr):
-                return bool(np.count_nonzero(arr) > count)
-
-            return generic_filter(input_arr, func, footprint=np.ones((3, 3)), mode='mirror')
-
-        potential_cloud = do_filter(potential_cloud, 5)
-
-        return potential_cloud
-
-    def get_potential_snow_layer(self):
-
-        return (self.ndsi > 0.15) & (self.b2_rflct > 0.1) & (self.brightness_temp < 3.8) & (self.b4_rflct > 0.11)
-
-    def get_potential_shadow_layer(self):
-        band = self.b4_rflct
-        max_dn, min_dn = np.max(band), np.min(band[band > 0])
-        null_mask = np.where(band == 0, 1, 0)
-        dilated = grey_dilation(null_mask, size=(3, 3))
-        inner_bound = dilated - null_mask
-        boundary_value = max(np.percentile(band[band > 0], 17.5), min_dn)
-        marker = np.where(inner_bound, max_dn, boundary_value)
-        marker = np.where(null_mask, 0, marker)
-        potential_shadow = np.where(marker - band > 0.02, 1, 0)
-        return potential_shadow
-
-    def cloud_shadow_match(self, cloud, shadow):
-        c_labels = label(cloud)
-
     def basic_test(self):
-        # Potential Cloud Layer 1
-        # Eqn 1, Basic Test
-        # this is cond and cond AND cond and cond, must meet all criteria
+        """Fundamental test to identify Potential Cloud Pixels (PCPs)
+        Equation 1 (Zhu and Woodcock, 2012)
+        Note: all input arrays must be the same shape
+        Parameters
+        ----------
+        ndvi: ndarray
+        ndsi: ndarray
+        swir2: ndarray
+            Shortwave Infrared Band TOA reflectance
+            Band 7 in Landsat 8, ~2.2 µm
+        tirs1: ndarray
+            Thermal band brightness temperature
+            Band 10 in Landsat 8, ~11 µm
+            units are degrees Celcius
+        Output
+        ------
+        ndarray: boolean
+        """
+        # Thresholds
+        th_ndsi = 0.8  # index
+        th_ndvi = 0.8  # index
+        th_tirs1 = 27.0  # degrees celsius
+        th_swir2 = 0.03  # toa
 
-        basic_test = np.where((self.self.b7_rflct > 0.03) & (self.brightness_temp < 27), self.trues, self.false)
-        basic_test = np.where((self.ndsi < 0.8) & (self.ndvi < 0.8), basic_test, self.false)
+        return ((self.swir2 > th_swir2) &
+                (self.tirs1 < th_tirs1) &
+                (self.ndsi < th_ndsi) &
+                (self.ndvi < th_ndvi))
 
-        return basic_test
+    def whiteness_index(self):
+        """Index of "Whiteness" based on visible bands.
+        Parameters
+        ----------
+        blue: ndarray
+        green: ndarray
+        red: ndarray
+        Output
+        ------
+        ndarray:
+            whiteness index
+        """
+        mean_vis = (self.blue + self.green + self.red) / 3
 
-    def mean_vis(self):
-        return (self.b1_rflct + self.b2_rflct + self.b3_rflct) / 3.
+        blue_absdiff = np.absolute((self.blue - mean_vis) / mean_vis)
+        green_absdiff = np.absolute((self.green - mean_vis) / mean_vis)
+        red_absdiff = np.absolute((self.red - mean_vis) / mean_vis)
+
+        return blue_absdiff + green_absdiff + red_absdiff
 
     def whiteness_test(self):
-
-        # Eqn 2, whiteness test
-
-        mean_visibility = self.mean_vis()
-        whiteness = np.zeros(self.shape)
-        for band in [self.b1_rflct, self.b2_rflct, self.b3_rflct]:
-            whiteness += np.abs((band - mean_visibility) / mean_visibility)
-        whiteness_test = np.where(whiteness < 0.7, self.trues, self.false)
-
-        return whiteness_test
+        """Whiteness test
+        Clouds appear white due to their "flat" reflectance in the visible bands
+        Equation 2 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        blue: ndarray
+        green: ndarray
+        red: ndarray
+        Output
+        ------
+        ndarray: boolean
+        """
+        whiteness_threshold = 0.7
+        return self.whiteness_index() < whiteness_threshold
 
     def hot_test(self):
+        """Haze Optimized Transformation (HOT) test
+        Equation 3 (Zhu and Woodcock, 2012)
+        Based on the premise that the visible bands for most land surfaces
+        are highly correlated, but the spectral response to haze and thin cloud
+        is different between the blue and red wavelengths.
+        Zhang et al. (2002)
+        Parameters
+        ----------
+        blue: ndarray
+        red: ndarray
+        Output
+        ------
+        ndarray: boolean
+        """
+        thres = 0.08
+        return self.blue - (0.5 * self.red) - thres > 0.0
 
-        # Eqn 3, Haze Optimized Transformation (HOT)
+    def nirswir_test(nir, swir1):
+        """Spectral test to exclude bright rock and desert
+        see (Irish, 2000)
+        Equation 4 (Zhu and Woodcock, 2012)
+        Note that Zhu and Woodcock 2015 refer to this as the "B4B5" test
+        due to the Landsat ETM+ band designations. In Landsat 8 OLI,
+        these are bands 5 and 6.
+        Parameters
+        ----------
+        nir: ndarray
+        swir1: ndarray
+        Output
+        ------
+        ndarray: boolean
+        """
+        th_ratio = 0.75
 
-        return np.where(self.b1_rflct - 0.5 * self.b3_rflct - 0.08 > 0, self.trues, self.false)
+        return (nir / swir1) > th_ratio
 
-    def band4_5_test(self):
-        # Eqn 4
-        return np.where(self.b4_rflct / self.b5_rflct > 0.75, self.trues, self.false)
+    def cirrus_test(cirrus):
+        """Cirrus TOA test, see (Zhu and Woodcock, 2015)
+        The threshold is derived from (Wilson & Oreopoulos, 2013)
+        Parameters
+        ----------
+        cirrus: ndarray
+        Output
+        ------
+        ndarray: boolean
+        """
+        th_cirrus = 0.01
 
-    def water_test(self):
+        return cirrus > th_cirrus
 
-        # Eqn 5
-        # this is cond and cond OR cond and cond, must meet one test or the other
+    def water_test(ndvi, nir):
+        """Water or Land?
+        Equation 5 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        ndvi: ndarray
+        nir: ndarray
+        Output
+        ------
+        ndarray: boolean
+        """
+        th_ndvi_A = 0.01
+        th_nir_A = 0.11
+        th_ndvi_B = 0.1
+        th_nir_B = 0.05
 
-        water_test = np.where((self.ndvi < 0.01) & (self.b4_rflct < 0.11), self.trues, self.false)
-        water_test = np.where((self.ndvi < 0.1) & (self.b4_rflct < 0.05), self.trues, water_test)
+        return (((ndvi < th_ndvi_A) & (nir < th_nir_A)) |
+                ((ndvi < th_ndvi_B) & (nir < th_nir_B)))
 
-        return water_test
+    def potential_cloud_pixels(ndvi, ndsi, blue, green, red, nir,
+                               swir1, swir2, cirrus, tirs1):
+        """Determine potential cloud pixels (PCPs)
+        Combine basic spectral tests to get a premliminary cloud mask
+        First pass, section 3.1.1 in Zhu and Woodcock 2012
+        Equation 6 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        ndvi: ndarray
+        ndsi: ndarray
+        blue: ndarray
+        green: ndarray
+        red: ndarray
+        nir: ndarray
+        swir1: ndarray
+        swir2: ndarray
+        cirrus: ndarray
+        tirs1: ndarray
+        Output
+        ------
+        ndarray:
+            potential cloud mask, boolean
+        """
+        eq1 = basic_test(ndvi, ndsi, swir2, tirs1)
+        eq2 = whiteness_test(blue, green, red)
+        eq3 = hot_test(blue, red)
+        eq4 = nirswir_test(nir, swir1)
+        cir = cirrus_test(cirrus)
 
-    def potential_c_pix(self):
+        return (eq1 & eq2 & eq3 & eq4) | cir
 
-        # Potential Cloud Pixels
+    def temp_water(is_water, swir2, tirs1):
+        """Use water to mask tirs and find 82.5 pctile
+        Equation 7 and 8 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        is_water: ndarray, boolean
+            water mask, water is True, land is False
+        swir2: ndarray
+        tirs1: ndarray
+        Output
+        ------
+        float:
+            82.5th percentile temperature over water
+        """
+        # eq7
+        th_swir2 = 0.03
+        clearsky_water = is_water & (swir2 < th_swir2)
 
-        basic = self.basic_test()
-        whiteness = self.whiteness_test()
-        hot = self.hot_test()
-        b45 = self.band4_5_test()
+        # eq8
+        clear_water_temp = tirs1.copy()
+        clear_water_temp[~clearsky_water] = np.nan
+        return np.nanpercentile(clear_water_temp, 82.5)
 
-        p_pix = np.where(basic & whiteness & hot & b45, self.trues, self.false)
-        return p_pix
+    def water_temp_prob(water_temp, tirs):
+        """Temperature probability for water
+        Equation 9 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        water_temp: float
+            82.5th percentile temperature over water
+        swir2: ndarray
+        tirs1: ndarray
+        Output
+        ------
+        ndarray:
+            probability of cloud over water based on temperature
+        """
+        temp_const = 4.0  # degrees C
+        return (water_temp - tirs) / temp_const
 
-        # Potential Cloud Layer Pass 2
+    def brightness_prob(nir, clip=True):
+        """The brightest water may have Band 5 reflectance
+        as high as 0.11
+        Equation 10 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        nir: ndarray
+        Output
+        ------
+        ndarray:
+            brightness probability, constrained 0..1
+        """
+        thresh = 0.11
+        bp = np.minimum(thresh, nir) / thresh
+        if clip:
+            bp[bp > 1] = 1
+            bp[bp < 0] = 0
+        return bp
 
-    def water_cloud_probability(self):
+    # Eq 11, water_cloud_prob
+    # wCloud_Prob = wTemperature_Prob x Brightness_Prob
 
-        # Eqn 7, 8, 9; temperature probability for clear-sky water
 
-        water = self.water_test()
+    def temp_land(pcps, water, tirs1):
+        """Derive high/low percentiles of land temperature
+        Equations 12 an 13 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        pcps: ndarray
+            potential cloud pixels, boolean
+        water: ndarray
+            water mask, boolean
+        tirs1: ndarray
+        Output
+        ------
+        tuple:
+            17.5 and 82.5 percentile temperature over clearsky land
+        """
+        # eq 12
+        clearsky_land = ~(pcps | water)
 
-        clear_sky_water_test = np.where(water & (self.self.b7_rflct < 0.03), self.trues, self.false)
-        clear_sky_water_bt = np.where(clear_sky_water_test, self.brightness_temp, np.full(self.shape, np.nan))
-        temp_water = np.nanpercentile(clear_sky_water_bt, 82.5)
-        water_temp_prob = (temp_water - self.brightness_temp) / 4.
+        # use clearsky_land to mask tirs1
+        clear_land_temp = tirs1.copy()
+        clear_land_temp[~clearsky_land] = np.nan
 
-        # Eqn 10; constrain normalized brightness probability
+        # take 17.5 and 82.5 percentile, eq 13
+        return np.nanpercentile(clear_land_temp, (17.5, 82.5))
 
-        water_brightness_prob = np.where(self.b5_rflct > 0.11, np.ones(self.shape) * 0.11, self.b5_rflct) / 0.11
+    def land_temp_prob(tirs1, tlow, thigh):
+        """Temperature-based probability of cloud over land
+        Equation 14 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        tirs1: ndarray
+        tlow: float
+            Low (17.5 percentile) temperature of land
+        thigh: float
+            High (82.5 percentile) temperature of land
+        Output
+        ------
+        ndarray :
+            probability of cloud over land based on temperature
+        """
+        temp_diff = 4  # degrees
+        return (thigh + temp_diff - tirs1) / (thigh + 4 - (tlow - 4))
 
-        # Eqn 11, cloud probability for water
-        water_cloud_prob = water_temp_prob * water_brightness_prob
+    def variability_prob(ndvi, ndsi, whiteness):
+        """Use the probability of the spectral variability
+        to identify clouds over land.
+        Equation 15 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        ndvi: ndarray
+        ndsi: ndarray
+        whiteness: ndarray
+        Output
+        ------
+        ndarray :
+            probability of cloud over land based on variability
+        """
+        return 1.0 - np.fmax(np.absolute(ndvi), np.absolute(ndsi), whiteness)
 
-        return water_cloud_prob
+    # Eq 16, land_cloud_prob
+    # lCloud_Prob = lTemperature_Prob x Variability_Prob
 
-    def clear_sky_land_test(self):
 
-        # Eqn 12, 13; temperature probability for clear-sky land
+    def land_threshold(land_cloud_prob, pcps, water):
+        """Dynamic threshold for determining cloud cutoff
+        Equation 17 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        land_cloud_prob: ndarray
+            probability of cloud over land
+        pcps: ndarray
+            potential cloud pixels
+        water: ndarray
+            water mask
+        Output
+        ------
+        float:
+            land cloud threshold
+        """
+        # eq 12
+        clearsky_land = ~(pcps | water)
 
-        p_pix = self.potential_c_pix()
-        water_test = self.water_test()
+        # 82.5th percentile of lCloud_Prob(masked by clearsky_land) + 0.2
+        cloud_prob = land_cloud_prob.copy()
+        cloud_prob[~clearsky_land] = np.nan
 
-        clear_sky_land_test = np.where(~p_pix & ~water_test, self.trues, self.false)
+        # eq 17
+        th_const = 0.2
+        return np.nanpercentile(cloud_prob, 82.5) + th_const
 
-        return clear_sky_land_test
+    def potential_cloud_layer(pcp, water, tirs1, tlow,
+                              land_cloud_prob, land_threshold,
+                              water_cloud_prob, water_threshold=0.5):
+        """Final step of determining potential cloud layer
+        Equation 18 (Zhu and Woodcock, 2012)
+        Parameters
+        ----------
+        pcps: ndarray
+            potential cloud pixels
+        water: ndarray
+            water mask
+        tirs1: ndarray
+        tlow: float
+            low percentile of land temperature
+        land_cloud_prob: ndarray
+            probability of cloud over land
+        land_threshold: float
+            cutoff for cloud over land
+        water_cloud_prob: ndarray
+            probability of cloud over water
+        water_threshold: float
+            cutoff for cloud over water
+        Output
+        ------
+        ndarray:
+            potential cloud layer, boolean
+        """
+        # Using pcp and water as mask todo
+        part1 = (pcp & water & (water_cloud_prob > water_threshold))
+        part2 = (pcp & ~water & (land_cloud_prob > land_threshold))
+        temptest = tirs1 < (tlow - 35)  # 35degrees C colder
 
-    def land_low_high_temp(self):
+        return part1 | part2 | temptest
 
-        clear_sky_land = self.clear_sky_land_test()
+    def calc_ndsi(green, swir1):
+        """NDSI calculation
+        normalized difference snow index
+        Parameters
+        ----------
+        green: ndarray
+        swir1: ndarray
+            ~1.62 µm
+            Band 6 in Landsat 8
+        Output
+        ------
+        ndarray:
+            unitless index
+        """
+        return (green - swir1) / (green + swir1)
 
-        clear_sky_land_bt = np.where(clear_sky_land, self.brightness_temp, np.full(self.shape, np.nan))
+    def calc_ndvi(red, nir):
+        """NDVI calculation
+        normalized difference vegetation index
+        Parameters
+        ----------
+        red: ndarray
+        nir: ndarray
+        Output
+        ------
+        ndarray:
+            unitless index
+        """
+        return (nir - red) / (nir + red)
 
-        low_temp, high_temp = int(np.nanpercentile(clear_sky_land_bt, 17.5)), int(
-            np.nanpercentile(clear_sky_land_bt, 82.5))
+    def potential_cloud_shadow_layer(nir, swir1, water):
+        """Find low NIR/SWIR1 that is not classified as water
+        This differs from the Zhu Woodcock algorithm
+        but produces decent results without requiring a flood-fill
+        Parameters
+        ----------
+        nir: ndarray
+        swir1: ndarray
+        water: ndarray
+        Output
+        ------
+        ndarray
+            boolean, potential cloud shadows
+        """
+        return (nir < 0.10) & (swir1 < 0.10) & ~water
 
-        return low_temp, high_temp
+    def potential_snow_layer(ndsi, green, nir, tirs1):
+        """Spectral test to determine potential snow
+        Uses the 9.85C (283K) threshold defined in Zhu, Woodcock 2015
+        Parameters
+        ----------
+        ndsi: ndarray
+        green: ndarray
+        nir: ndarray
+        tirs1: ndarray
+        Output
+        ------
+        ndarray:
+            boolean, True is potential snow
+        """
+        return (ndsi > 0.15) & (tirs1 < 9.85) & (nir > 0.11) & (green > 0.1)
 
-    def low_temp_probability(self):
+    def cloudmask(blue, green, red, nir, swir1, swir2,
+                  cirrus, tirs1, min_filter=(3, 3), max_filter=(21, 21)):
+        """Calculate the potential cloud layer from source data
+        *This is the high level function which ties together all
+        the equations for generating potential clouds*
+        Parameters
+        ----------
+        blue: ndarray
+        green: ndarray
+        red: ndarray
+        nir: ndarray
+        swir1: ndarray
+        swir2: ndarray
+        cirrus: ndarray
+        tirs1: ndarray
+        min_filter: 2-element tuple, default=(3,3)
+            Defines the window for the minimum_filter, for removing outliers
+        max_filter: 2-element tuple, default=(21, 21)
+            Defines the window for the maximum_filter, for "buffering" the edges
+        Output
+        ------
+        ndarray, boolean:
+            potential cloud layer; True = cloud
+        ndarray, boolean
+            potential cloud shadow layer; True = cloud shadow
+        """
+        logger.info("Running initial tests")
+        ndvi = calc_ndvi(red, nir)
+        ndsi = calc_ndsi(green, swir1)
+        whiteness = whiteness_index(blue, green, red)
+        water = water_test(ndvi, nir)
 
-        # Eqn 14
+        # First pass, potential clouds
+        pcps = potential_cloud_pixels(
+            ndvi, ndsi, blue, green, red, nir, swir1, swir2, cirrus, tirs1)
 
-        low_temp, high_temp = self.land_low_high_temp()
-        low_temp_prob = (high_temp + 4. - self.brightness_temp) / (high_temp + 4 - (low_temp - 4))
+        cirrus_prob = cirrus / 0.04
 
-        return low_temp_prob
+        # Clouds over water
+        tw = temp_water(water, swir2, tirs1)
+        wtp = water_temp_prob(tw, tirs1)
+        bp = brightness_prob(nir)
+        water_cloud_prob = (wtp * bp) + cirrus_prob
+        wthreshold = 0.5
 
-    def spectral_variability_probability(self):
+        # Clouds over land
+        tlow, thigh = temp_land(pcps, water, tirs1)
+        ltp = land_temp_prob(tirs1, tlow, thigh)
+        vp = variability_prob(ndvi, ndsi, whiteness)
+        land_cloud_prob = (ltp * vp) + cirrus_prob
+        lthreshold = land_threshold(land_cloud_prob, pcps, water)
 
-        # Eqn 15
+        logger.info("Calculate potential clouds")
+        pcloud = potential_cloud_layer(
+            pcps, water, tirs1, tlow,
+            land_cloud_prob, lthreshold,
+            water_cloud_prob, wthreshold)
 
-        whiteness = self.whiteness_test()
-        ndsi_mod = np.where((self.b5_rflct == self.saturated_5) & (self.b5_rflct > self.self.b2_rflct),
-                            np.zeros(self.shape),
-                            self.ndsi)
-        ndvi_mod = np.where((self.b3_rflct == self.saturated_3) & (self.b4_rflct > self.b3_rflct), np.zeros(self.shape),
-                            self.ndvi)
+        # Ignoring snow for now as it exhibits many false positives and negatives
+        # when used as a binary mask
+        # psnow = potential_snow_layer(ndsi, green, nir, tirs1)
+        # pcloud = pcloud & ~psnow
 
-        spect_var_prob = 1 - np.max(np.abs(ndvi_mod), np.abs(ndsi_mod), whiteness)
+        logger.info("Calculate potential cloud shadows")
+        pshadow = potential_cloud_shadow_layer(nir, swir1, water)
 
-        return spect_var_prob
+        # The remainder of the algorithm differs significantly from Fmask
+        # In an attempt to make a more visually appealling cloud mask
+        # with fewer inclusions and more broad shapes
 
-    def land_cloud_probability(self):
+        if min_filter:
+            # Remove outliers
+            logger.info("Remove outliers with minimum filter")
 
-        # Eqn 16
-        low_temp_prob = self.low_temp_probability()
-        spect_var_prob = self.spectral_variability_probability()
+            from scipy.ndimage.filters import minimum_filter
+            from scipy.ndimage.morphology import distance_transform_edt
 
-        return low_temp_prob * spect_var_prob
+            # remove cloud outliers by nibbling the edges
+            pcloud = minimum_filter(pcloud, size=min_filter)
 
-    def land_cloud_probability(self):
+            # crude, just look x pixels away for potential cloud pixels
+            dist = distance_transform_edt(~pcloud)
+            pixel_radius = 100.0
+            pshadow = (dist < pixel_radius) & pshadow
 
-        # Eqn 17
-        # find where clear sky land pixels, extract land cloud probability
-        clear_land = self.clear_sky_land_test()
-        land_cloud = self.land_cloud_probability()
+            # remove cloud shadow outliers
+            pshadow = minimum_filter(pshadow, size=min_filter)
 
-        lc_prob_clear = np.where(clear_land, land_cloud, self.nan)
+        if max_filter:
+            # grow around the edges
+            logger.info("Buffer edges with maximum filter")
 
-        land_threshold = np.nanpercentile(lc_prob_clear, 82.5)
+            from scipy.ndimage.filters import maximum_filter
 
-        return land_threshold
+            pcloud = maximum_filter(pcloud, size=max_filter)
+            pshadow = maximum_filter(pshadow, size=max_filter)
+
+        return pcloud, pshadow
+
+    def gdal_nodata_mask(pcl, pcsl, tirs_arr):
+        """
+        Given a boolean potential cloud layer,
+        a potential cloud shadow layer and a thermal band
+        Calculate the GDAL-style uint8 mask
+        """
+        tirs_mask = np.isnan(tirs_arr) | (tirs_arr == 0)
+        return ((~(pcl | pcsl | tirs_mask)) * 255).astype('uint8')
 
     def save_array(self, array, outfile):
         georeference = self.image.rasterio_geometry
@@ -286,6 +627,5 @@ class Fmask(object):
             c = np.nan_to_num(c)
             return c
         return potential_cloud
-
 
 # ========================= EOF ====================================================================
