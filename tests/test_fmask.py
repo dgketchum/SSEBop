@@ -62,11 +62,11 @@ class FmaskTestCaseL8(unittest.TestCase):
     def test_get_potential_cloud_layer(self):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
-        cloud = f.cloud_mask()
+        cloud, shadow = f.cloud_mask()
         home = os.path.expanduser('~')
         outdir = os.path.join(home, 'images', 'sandbox')
         f.save_array(cloud, os.path.join(outdir, 'cloud_mask.tif'))
-
+        f.save_array(shadow, os.path.join(outdir, 'shadow_mask.tif'))
 
 if __name__ == '__main__':
     unittest.main()

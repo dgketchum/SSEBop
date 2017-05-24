@@ -47,23 +47,23 @@ class Fmask(object):
 
         if self.image.satellite in ['LE7', 'LT5']:
 
-            self.blue = image.b1
-            self.green = image.b2
-            self.red = image.b3
-            self.nir = image.b4
-            self.swir1 = image.b5
+            self.blue = image.reflectance(1)
+            self.green = image.reflectance(2)
+            self.red = image.reflectance(3)
+            self.nir = image.reflectance(4)
+            self.swir1 = image.reflectance(5)
             self.tirs1 = image.brightness_temp(6, 'C')
-            self.swir2 = image.b7
+            self.swir2 = image.reflectance(7)
 
         elif self.image.satellite == 'LC8':
 
-            self.blue = image.b2
-            self.green = image.b3
-            self.red = image.b4
-            self.nir = image.b5
-            self.swir1 = image.b6
-            self.swir2 = image.b7
-            self.cirrus = image.b9
+            self.blue = image.reflectance(2)
+            self.green = image.reflectance(3)
+            self.red = image.reflectance(4)
+            self.nir = image.reflectance(5)
+            self.swir1 = image.reflectance(6)
+            self.swir2 = image.reflectance(7)
+            self.cirrus = image.reflectance(9)
             self.tirs1 = image.brightness_temp(10, 'C')
             # self.tirs2 = image.brightness_temp(11, 'C')
 
@@ -123,9 +123,9 @@ class Fmask(object):
         """
         mean_vis = (self.blue + self.green + self.red) / 3
 
-        blue_absdiff = np.absolute((self.blue - mean_vis) / mean_vis)
-        green_absdiff = np.absolute((self.green - mean_vis) / mean_vis)
-        red_absdiff = np.absolute((self.red - mean_vis) / mean_vis)
+        blue_absdiff = self._divide_zero(np.absolute((self.blue - mean_vis), mean_vis), np.nan)
+        green_absdiff = self._divide_zero(np.absolute((self.green - mean_vis), mean_vis), np.nan)
+        red_absdiff = self._divide_zero(np.absolute((self.red - mean_vis), mean_vis), np.nan)
 
         return blue_absdiff + green_absdiff + red_absdiff
 
@@ -500,7 +500,6 @@ class Fmask(object):
         cirrus_prob = self.cirrus / 0.04
 
         # Clouds over water
-        tw = self.temp_water()
         wtp = self.water_temp_prob()
         bp = self.brightness_prob()
         water_cloud_prob = (wtp * bp) + cirrus_prob
@@ -572,8 +571,8 @@ class Fmask(object):
 
     def save_array(self, array, outfile):
         georeference = self.image.rasterio_geometry
-        # array = array[0].reshape(1, array[0].shape[0], array[0].shape[1])
-        array = np.array(array, dtype='uint16')
+        array = array.reshape(1, array.shape[0], array.shape[1])
+        array = np.array(array, dtype=georeference['dtype'])
         with rasterio.open(outfile, 'w', **georeference) as dst:
             dst.write(array)
         return None
