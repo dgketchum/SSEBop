@@ -78,6 +78,9 @@ class Fmask(object):
         self.saturated_5 = self.image.quantize_cal_max_band_5
         self.saturated_3 = self.image.quantize_cal_max_band_3
 
+        self.ndsi = (self.green - self.swir1) / (self.green + self.swir1)
+        self.ndvi = (self.nir - self.red) / (self.nir + self.red)
+
     def basic_test(self):
         """Fundamental test to identify Potential Cloud Pixels (PCPs)
         Equation 1 (Zhu and Woodcock, 2012)
@@ -86,7 +89,7 @@ class Fmask(object):
         ----------
         ndvi: ndarray
         ndsi: ndarray
-        swir2: ndarray
+        swir2
             Shortwave Infrared Band TOA reflectance
             Band 7 in Landsat 8, ~2.2 µm
         tirs1: ndarray
@@ -112,9 +115,7 @@ class Fmask(object):
         """Index of "Whiteness" based on visible bands.
         Parameters
         ----------
-        blue: ndarray
-        green: ndarray
-        red: ndarray
+
         Output
         ------
         ndarray:
@@ -260,11 +261,12 @@ class Fmask(object):
         """
         # eq7
         th_swir2 = 0.03
-        clearsky_water = self.is_water & (self.swir2 < th_swir2)
+        water = self.water_test()
+        clear_sky_water = water & (self.swir2 < th_swir2)
 
         # eq8
         clear_water_temp = self.tirs1.copy()
-        clear_water_temp[~clearsky_water] = np.nan
+        clear_water_temp[~clear_sky_water] = np.nan
         return np.nanpercentile(clear_water_temp, 82.5)
 
     def water_temp_prob(self):
@@ -282,7 +284,8 @@ class Fmask(object):
             probability of cloud over water based on temperature
         """
         temp_const = 4.0  # degrees C
-        return (self.water_temp - self.tirs) / temp_const
+        water_temp = self.temp_water()
+        return (water_temp - self.tirs1) / temp_const
 
     def brightness_prob(self, clip=True):
         """The brightest water may have Band 5 reflectance
@@ -350,8 +353,7 @@ class Fmask(object):
         temp_diff = 4  # degrees
         return (thigh + temp_diff - self.tirs1) / (thigh + 4 - (tlow - 4))
 
-    @staticmethod
-    def variability_prob(ndvi, ndsi, whiteness):
+    def variability_prob(self, whiteness):
         """Use the probability of the spectral variability
         to identify clouds over land.
         Equation 15 (Zhu and Woodcock, 2012)
@@ -365,13 +367,13 @@ class Fmask(object):
         ndarray :
             probability of cloud over land based on variability
         """
-        return 1.0 - np.fmax(np.absolute(ndvi), np.absolute(ndsi), whiteness)
+        return 1.0 - np.fmax(np.absolute(self.ndvi), np.absolute(self.ndsi), whiteness)
 
     # Eq 16, land_cloud_prob
     # lCloud_Prob = lTemperature_Prob x Variability_Prob
 
     @staticmethod
-    def land_threshold(pcps, water, land_cloud_prob):
+    def land_threshold(land_cloud_prob, pcps, water):
         """Dynamic threshold for determining cloud cutoff
         Equation 17 (Zhu and Woodcock, 2012)
         Parameters
@@ -431,36 +433,6 @@ class Fmask(object):
 
         return part1 | part2 | temptest
 
-    def calc_ndsi(self):
-        """NDSI calculation
-        normalized difference snow index
-        Parameters
-        ----------
-        green: ndarray
-        swir1: ndarray
-            ~1.62 µm
-            Band 6 in Landsat 8
-        Output
-        ------
-        ndarray:
-            unitless index
-        """
-        return (self.green - self.swir1) / (self.green + self.swir1)
-
-    def calc_ndvi(self):
-        """NDVI calculation
-        normalized difference vegetation index
-        Parameters
-        ----------
-        red: ndarray
-        nir: ndarray
-        Output
-        ------
-        ndarray:
-            unitless index
-        """
-        return (self.nir - self.red) / (self.nir + self.red)
-
     def potential_cloud_shadow_layer(self, water):
         """Find low NIR/SWIR1 that is not classified as water
         This differs from the Zhu Woodcock algorithm
@@ -519,8 +491,6 @@ class Fmask(object):
             potential cloud shadow layer; True = cloud shadow
         """
         # logger.info("Running initial tests")
-        ndvi = self.calc_ndvi()
-        ndsi = self.calc_ndsi()
         whiteness = self.whiteness_index()
         water = self.water_test()
 
@@ -539,7 +509,7 @@ class Fmask(object):
         # Clouds over land
         tlow, thigh = self.temp_land(pcps, water)
         ltp = self.land_temp_prob(tlow, thigh)
-        vp = self.variability_prob(ndvi, ndsi, whiteness)
+        vp = self.variability_prob(whiteness)
         land_cloud_prob = (ltp * vp) + cirrus_prob
         lthreshold = self.land_threshold(land_cloud_prob, pcps, water)
 
@@ -602,7 +572,7 @@ class Fmask(object):
 
     def save_array(self, array, outfile):
         georeference = self.image.rasterio_geometry
-        array = array.reshape(1, array.shape[0], array.shape[1])
+        array = array[0].reshape(1, array[0].shape[0], array[0].shape[1])
         array = np.array(array, dtype='uint16')
         with rasterio.open(outfile, 'w', **georeference) as dst:
             dst.write(array)
