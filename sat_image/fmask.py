@@ -78,8 +78,8 @@ class Fmask(object):
         self.saturated_5 = self.image.quantize_cal_max_band_5
         self.saturated_3 = self.image.quantize_cal_max_band_3
 
-        self.ndsi = (self.green - self.swir1) / (self.green + self.swir1)
-        self.ndvi = (self.nir - self.red) / (self.nir + self.red)
+        self.ndsi = self._divide_zero((self.green - self.swir1), (self.green + self.swir1), np.nan)
+        self.ndvi = self._divide_zero((self.nir - self.red), (self.nir + self.red), np.nan)
 
     def basic_test(self):
         """Fundamental test to identify Potential Cloud Pixels (PCPs)
@@ -572,7 +572,7 @@ class Fmask(object):
 
     def save_array(self, array, outfile):
         georeference = self.image.rasterio_geometry
-        array = array[0].reshape(1, array[0].shape[0], array[0].shape[1])
+        # array = array[0].reshape(1, array[0].shape[0], array[0].shape[1])
         array = np.array(array, dtype='uint16')
         with rasterio.open(outfile, 'w', **georeference) as dst:
             dst.write(array)

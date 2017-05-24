@@ -63,8 +63,9 @@ class FmaskTestCaseL8(unittest.TestCase):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
         cloud = f.cloud_mask()
-        f.save_array(cloud, os.path.join('data01', 'images', 'sandbox',
-                                         'cloud_mask.tif'))
+        home = os.path.expanduser('~')
+        outdir = os.path.join(home, 'images', 'sandbox')
+        f.save_array(cloud, os.path.join(outdir, 'cloud_mask.tif'))
 
 
 if __name__ == '__main__':
