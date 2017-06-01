@@ -25,6 +25,7 @@ from sat_image.fmask import Fmask
 from ssebop.utils.ras_point_index import raster_point_row_col
 
 
+#
 # class FmaskTestCaseL5(unittest.TestCase):
 #     def setUp(self):
 #         self.dirname_cloud = 'tests/data/lt5_cloud'
@@ -42,7 +43,11 @@ from ssebop.utils.ras_point_index import raster_point_row_col
 #     def test_get_potential_cloud_layer(self):
 #         f = Fmask(self.image)
 #         self.assertIsInstance(f, Fmask)
-#         # cloud = f.cloud_mask()
+#         cloud, shadow = f.cloud_mask()
+#         home = os.path.expanduser('~')
+#         outdir = os.path.join(home, 'images', 'sandbox')
+#         f.save_array(cloud, os.path.join(outdir, 'cloud_mask.tif'))
+#         f.save_array(shadow, os.path.join(outdir, 'shadow_mask.tif'))
 
 
 class FmaskTestCaseL8(unittest.TestCase):
@@ -63,10 +68,7 @@ class FmaskTestCaseL8(unittest.TestCase):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
         cloud, shadow = f.cloud_mask()
-        home = os.path.expanduser('~')
-        outdir = os.path.join(home, 'images', 'sandbox')
-        f.save_array(cloud, os.path.join(outdir, 'cloud_mask.tif'))
-        f.save_array(shadow, os.path.join(outdir, 'shadow_mask.tif'))
+
 
 if __name__ == '__main__':
     unittest.main()
