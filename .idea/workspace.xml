@@ -2,47 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC80400282014193LGN00_MTL.txt" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC80400282014193LGN00_MTL.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193B10.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193B10.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193B11.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193B11.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B1.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B2.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B3.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B3.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B4.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B4.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B5.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B5.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B6.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B6.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B7.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B7.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B8.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B8.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B9.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B9.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC8_brightemp_B10.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_brightemp_B10.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC8_brightemp_B11.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_brightemp_B11.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC8_reflct_B1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_reflct_B1.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC8_reflct_B2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_reflct_B2.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B1.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B2.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B3.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B3.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B4.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B4.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B5.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B5.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B6_VCID_1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B6_VCID_1.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B6_VCID_2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B6_VCID_2.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B7.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B7.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B8.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B8.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_BQA.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_BQA.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE7_reflct_10000x.tif" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE7_reflct_10000x.tif" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028BQA.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028BQA.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B1.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B2.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B3.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B3.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B4.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B4.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B5.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B5.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B6.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B6.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B7.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B7.TIF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT5_reflct_10000x.tif" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT5_reflct_10000x.tif" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.cpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.dbf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.prj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.qpj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.shp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.shx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.cpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.dbf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.prj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.qpj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.shp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.shx" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/fmask.py" afterPath="$PROJECT_DIR$/sat_image/fmask.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_fmask.py" afterPath="$PROJECT_DIR$/tests/test_fmask.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_image.py" afterPath="$PROJECT_DIR$/tests/test_image.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,17 +46,22 @@
       <file leaf-file-name="test_image.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="162" column="43" lean-forward="true" selection-start-line="162" selection-start-column="43" selection-end-line="162" selection-end-column="43" />
+            <state relative-caret-position="2431">
+              <caret line="162" column="51" lean-forward="false" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <marker date="1496349313557" expanded="true" signature="915:977" ph="..." />
-                <marker date="1496349313557" expanded="true" signature="936:977" ph="..." />
-                <marker date="1496349313557" expanded="true" signature="5963:6158" ph="..." />
-                <marker date="1496349313557" expanded="true" signature="5963:8028" ph="..." />
-                <marker date="1496349313557" expanded="true" signature="6197:7243" ph="..." />
-                <marker date="1496349313557" expanded="true" signature="7279:7643" ph="..." />
-                <marker date="1496349313557" expanded="true" signature="7680:8028" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SSEBop_Landsat_OverpassETa.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -298,6 +275,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -310,70 +289,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sat_image" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -865,13 +782,17 @@
       <option name="project" value="LOCAL" />
       <updated>1496337170223</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="splitting tests; one set of images for test_image, another set for test_fmask">
+      <created>1496349624390</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1496349624390</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 13h 20m 19s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 13h 20m 37s.xml">
       <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
     </history-entry>
@@ -899,6 +820,9 @@
     <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 39m 23s.xml">
       <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 42m 15s.xml">
+      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -913,24 +837,24 @@
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2160767" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45132744" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5016575" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23820059" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45132744" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3318584" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3318584" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -938,7 +862,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="filtered potential cloud layer" />
     <MESSAGE value="made fmask a class" />
     <MESSAGE value="start cloud height function" />
     <MESSAGE value="to cloud shadow match" />
@@ -963,7 +886,8 @@
     <MESSAGE value="replacing functions with rio cloudmask funcs" />
     <MESSAGE value="implementing functions from rio cloudmask" />
     <MESSAGE value="fmask working for LC8" />
-    <option name="LAST_COMMIT_MESSAGE" value="fmask working for LC8" />
+    <MESSAGE value="splitting tests; one set of images for test_image, another set for test_fmask" />
+    <option name="LAST_COMMIT_MESSAGE" value="splitting tests; one set of images for test_image, another set for test_fmask" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -973,13 +897,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ssebop/utils/ras_point_index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/image.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3111">
@@ -1221,13 +1138,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/data/d_36_29_l5/LT50360292007146PAC01_VER.txt" />
     <entry file="file://$PROJECT_DIR$/tests/data/d_36_29_l5/LT50360292007146PAC01_MTL.txt" />
-    <entry file="file://$PROJECT_DIR$/tests/data/le7_image/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="222" column="0" lean-forward="false" selection-start-line="222" selection-start-column="0" selection-end-line="225" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/data/le7_image/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt" />
     <entry file="file://$PROJECT_DIR$/tests/data/d_38_27_l7/LE70380272007136EDC00_MTL.txt" />
     <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1264,25 +1175,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/data/lc8_image/LC80400282014193LGN00_MTL.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="44" column="52" lean-forward="false" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/data/lt5_image/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="182" column="25" lean-forward="false" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/data/lt5_image/LT5_reflct_10000x.tif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/data/lc8_image/LC80400282014193LGN00_MTL.txt" />
+    <entry file="file://$PROJECT_DIR$/tests/data/lt5_image/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt" />
+    <entry file="file://$PROJECT_DIR$/tests/data/lt5_image/LT5_reflct_10000x.tif" />
     <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/fmask.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -1322,7 +1217,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1330,14 +1224,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="127" column="52" lean-forward="true" selection-start-line="127" selection-start-column="52" selection-end-line="127" selection-end-column="52" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#968#4424#0" expanded="false" />
-            <element signature="e#3729#4114#0" expanded="false" />
-            <element signature="e#8666#9751#1" expanded="false" />
-            <element signature="e#10448#11659#1" expanded="false" />
-            <element signature="e#12319#13079#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1345,25 +1231,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/fmask_funcs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="294" column="0" lean-forward="true" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/fmask_funcs.py" />
     <entry file="file://$PROJECT_DIR$/ssebop/utils/ras_point_index.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1441,19 +1316,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
+    <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="162" column="43" lean-forward="true" selection-start-line="162" selection-start-column="43" selection-end-line="162" selection-end-column="43" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <marker date="1496349313557" expanded="true" signature="915:977" ph="..." />
-            <marker date="1496349313557" expanded="true" signature="936:977" ph="..." />
-            <marker date="1496349313557" expanded="true" signature="5963:6158" ph="..." />
-            <marker date="1496349313557" expanded="true" signature="5963:8028" ph="..." />
-            <marker date="1496349313557" expanded="true" signature="6197:7243" ph="..." />
-            <marker date="1496349313557" expanded="true" signature="7279:7643" ph="..." />
-            <marker date="1496349313557" expanded="true" signature="7680:8028" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2431">
+          <caret line="162" column="51" lean-forward="false" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
