@@ -76,6 +76,8 @@ class Landsat5TestCase(unittest.TestCase):
 
         self.assertAlmostEqual(reflct[cell], toa_reflect, delta=0.001)
 
+        # needs brightness temperature test todo
+
 
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
@@ -122,6 +124,7 @@ class Landsat7TestCase(unittest.TestCase):
 
         print('size expected: {}, calculated: {}'.format(reflct[cell], toa_reflect_cell))
         self.assertAlmostEqual(reflct[cell], toa_reflect_cell, delta=0.001)
+        # needs brightness temperature test todo
 
 
 class Landsat8TestCase(unittest.TestCase):
