@@ -44,8 +44,9 @@ class Fmask(object):
 
         self.image = image
         self.shape = image.b1.shape
+        self.sat = image.satellite
 
-        if self.image.satellite in ['LE7', 'LT5']:
+        if self.sat in ['LE7', 'LT5']:
 
             self.blue = image.reflectance(1)
             self.green = image.reflectance(2)
@@ -55,7 +56,7 @@ class Fmask(object):
             self.tirs1 = image.brightness_temp(6, 'C')
             self.swir2 = image.reflectance(7)
 
-        elif self.image.satellite == 'LC8':
+        elif self.sat == 'LC8':
 
             self.blue = image.reflectance(2)
             self.green = image.reflectance(3)
@@ -192,7 +193,7 @@ class Fmask(object):
         ------
         ndarray: boolean
         """
-        th_cirrus = 0.01
+        th_cirrus = 0.0113
 
         return self.cirrus > th_cirrus
 
@@ -241,9 +242,11 @@ class Fmask(object):
         eq2 = self.whiteness_test()
         eq3 = self.hot_test()
         eq4 = self.nirswir_test()
-        cir = self.cirrus_test()
-
-        return (eq1 & eq2 & eq3 & eq4) | cir
+        if self.sat == 'LC8':
+            cir = self.cirrus_test()
+            return (eq1 & eq2 & eq3 & eq4) | cir
+        else:
+            return eq1 & eq2 & eq3 & eq4
 
     def temp_water(self):
         """Use water to mask tirs and find 82.5 pctile
@@ -427,6 +430,7 @@ class Fmask(object):
             potential cloud layer, boolean
         """
         # Using pcp and water as mask todo
+        # change water threshold to dynamic, line 132 in Zhu, 2015 todo
         part1 = (pcp & water & (water_cloud_prob > water_threshold))
         part2 = (pcp & ~water & (land_cloud_prob > land_threshold))
         temptest = self.tirs1 < (tlow - 35)  # 35degrees C colder
@@ -497,7 +501,10 @@ class Fmask(object):
         # First pass, potential clouds
         pcps = self.potential_cloud_pixels()
 
-        cirrus_prob = self.cirrus / 0.04
+        if self.sat == 'LC8':
+            cirrus_prob = self.cirrus / 0.04
+        else:
+            cirrus_prob = 0.0
 
         # Clouds over water
         wtp = self.water_temp_prob()
@@ -567,7 +574,7 @@ class Fmask(object):
         #     dst.write(array)
         # mystery test
 
-        return pcloud, pshadow
+        return pcloud, pshadow, water
 
     @staticmethod
     def gdal_nodata_mask(pcl, pcsl, tirs_arr):

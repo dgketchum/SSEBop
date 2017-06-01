@@ -2,10 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sat_image/fmask_funcs.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC80400282014193LGN00_MTL.txt" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC80400282014193LGN00_MTL.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193B10.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193B10.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193B11.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193B11.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B1.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B2.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B3.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B3.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B4.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B4.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B5.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B5.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B6.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B6.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B7.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B7.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B8.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B8.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC804014193_B9.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC804014193_B9.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC8_brightemp_B10.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_brightemp_B10.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC8_brightemp_B11.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_brightemp_B11.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC8_reflct_B1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_reflct_B1.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lc8_cloud/LC8_reflct_B2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_reflct_B2.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B1.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B2.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B3.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B3.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B4.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B4.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B5.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B5.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B6_VCID_1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B6_VCID_1.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B6_VCID_2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B6_VCID_2.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B7.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B7.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_B8.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_B8.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_BQA.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_BQA.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/le7_cloud/LE7_reflct_10000x.tif" afterPath="$PROJECT_DIR$/tests/data/image_test/le7_image/LE7_reflct_10000x.tif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028BQA.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028BQA.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B1.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B1.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B2.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B2.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B3.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B3.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B4.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B4.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B5.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B5.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B6.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B6.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_040028_B7.TIF" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_040028_B7.TIF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/data/lt5_cloud/LT5_reflct_10000x.tif" afterPath="$PROJECT_DIR$/tests/data/image_test/lt5_image/LT5_reflct_10000x.tif" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/fmask.py" afterPath="$PROJECT_DIR$/sat_image/fmask.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_fmask.py" afterPath="$PROJECT_DIR$/tests/test_fmask.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_image.py" afterPath="$PROJECT_DIR$/tests/test_image.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,14 +55,36 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_fmask.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_fmask.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+            <state relative-caret-position="561">
+              <caret line="68" column="38" lean-forward="false" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#743#0" expanded="true" />
+                <element signature="e#1024#1933#0" expanded="false" />
+                <element signature="e#1630#1662#0" expanded="false" />
+                <element signature="e#2940#3542#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_image.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/test_image.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="457">
+              <caret line="162" column="43" lean-forward="true" selection-start-line="162" selection-start-column="43" selection-end-line="162" selection-end-column="43" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <marker date="1496349313557" expanded="true" signature="915:977" ph="..." />
+                <marker date="1496349313557" expanded="true" signature="936:977" ph="..." />
+                <marker date="1496349313557" expanded="true" signature="5963:6158" ph="..." />
+                <marker date="1496349313557" expanded="true" signature="5963:8028" ph="..." />
+                <marker date="1496349313557" expanded="true" signature="6197:7243" ph="..." />
+                <marker date="1496349313557" expanded="true" signature="7279:7643" ph="..." />
+                <marker date="1496349313557" expanded="true" signature="7680:8028" ph="..." />
               </folding>
             </state>
           </provider>
@@ -33,56 +93,60 @@
       <file leaf-file-name="fmask.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="557" column="62" lean-forward="true" selection-start-line="557" selection-start-column="62" selection-end-line="557" selection-end-column="62" />
+            <state relative-caret-position="476">
+              <caret line="249" column="0" lean-forward="false" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#761#1250#1" expanded="false" />
                 <element signature="e#1251#1298#0" expanded="true" />
                 <element signature="e#1362#1484#1" expanded="false" />
-                <element signature="e#1526#3076#0" expanded="false" />
-                <element signature="e#3112#3998#0" expanded="false" />
-                <element signature="e#3112#3677#1" expanded="false" />
-                <element signature="e#4039#4212#1" expanded="false" />
-                <element signature="e#4659#5066#0" expanded="false" />
-                <element signature="e#4659#4972#1" expanded="false" />
-                <element signature="e#5100#5656#0" expanded="false" />
-                <element signature="e#5100#5577#1" expanded="false" />
-                <element signature="e#5694#6213#0" expanded="false" />
-                <element signature="e#5694#6138#1" expanded="false" />
-                <element signature="e#6250#6558#0" expanded="false" />
-                <element signature="e#6250#6493#1" expanded="false" />
-                <element signature="e#6594#7036#0" expanded="false" />
-                <element signature="e#6594#6803#1" expanded="false" />
-                <element signature="e#7084#7873#0" expanded="false" />
-                <element signature="e#7084#7662#1" expanded="false" />
-                <element signature="e#7909#8585#0" expanded="false" />
-                <element signature="e#7909#8287#1" expanded="false" />
-                <element signature="e#8626#9124#0" expanded="false" />
-                <element signature="e#8626#8993#1" expanded="false" />
-                <element signature="e#9176#9650#0" expanded="false" />
-                <element signature="e#9176#9488#1" expanded="false" />
-                <element signature="e#9656#9681#0" expanded="false" />
-                <element signature="e#9785#10497#0" expanded="false" />
-                <element signature="e#9785#10194#1" expanded="false" />
-                <element signature="e#10550#11089#0" expanded="false" />
-                <element signature="e#10550#10981#1" expanded="false" />
-                <element signature="e#11142#11596#0" expanded="false" />
-                <element signature="e#11142#11508#1" expanded="false" />
-                <element signature="e#11602#11626#0" expanded="false" />
-                <element signature="e#11765#12486#0" expanded="false" />
-                <element signature="e#11765#12166#1" expanded="false" />
-                <element signature="e#12653#13662#0" expanded="false" />
-                <element signature="e#12653#13375#1" expanded="false" />
-                <element signature="e#13723#14104#1" expanded="false" />
-                <element signature="e#14214#14655#0" expanded="false" />
-                <element signature="e#14214#14558#1" expanded="false" />
-                <element signature="e#14731#15590#1" expanded="false" />
-                <element signature="e#18072#18144#0" expanded="false" />
-                <element signature="e#18637#18925#0" expanded="false" />
-                <element signature="e#18637#18801#1" expanded="false" />
-                <element signature="e#18977#19260#0" expanded="false" />
-                <element signature="e#19327#19538#0" expanded="false" />
+                <element signature="e#1526#3087#0" expanded="false" />
+                <element signature="e#3123#4009#0" expanded="false" />
+                <element signature="e#3123#3688#1" expanded="false" />
+                <element signature="e#4050#4630#0" expanded="false" />
+                <element signature="e#4050#4223#1" expanded="false" />
+                <element signature="e#4670#5077#0" expanded="false" />
+                <element signature="e#4670#4983#1" expanded="false" />
+                <element signature="e#5111#5667#0" expanded="false" />
+                <element signature="e#5111#5588#1" expanded="false" />
+                <element signature="e#5705#6224#0" expanded="false" />
+                <element signature="e#5705#6149#1" expanded="false" />
+                <element signature="e#6261#6571#0" expanded="false" />
+                <element signature="e#6261#6504#1" expanded="false" />
+                <element signature="e#6607#7049#0" expanded="false" />
+                <element signature="e#6607#6816#1" expanded="false" />
+                <element signature="e#7097#7978#0" expanded="false" />
+                <element signature="e#7097#7675#1" expanded="false" />
+                <element signature="e#8014#8690#0" expanded="false" />
+                <element signature="e#8014#8392#1" expanded="false" />
+                <element signature="e#8731#9229#0" expanded="false" />
+                <element signature="e#8731#9098#1" expanded="false" />
+                <element signature="e#9281#9755#0" expanded="false" />
+                <element signature="e#9281#9593#1" expanded="false" />
+                <element signature="e#9761#9786#0" expanded="false" />
+                <element signature="e#9890#10602#0" expanded="false" />
+                <element signature="e#9890#10299#1" expanded="false" />
+                <element signature="e#10655#11194#0" expanded="false" />
+                <element signature="e#10655#11086#1" expanded="false" />
+                <element signature="e#11247#11701#0" expanded="false" />
+                <element signature="e#11247#11613#1" expanded="false" />
+                <element signature="e#11707#11731#0" expanded="false" />
+                <element signature="e#11870#12591#0" expanded="false" />
+                <element signature="e#11870#12271#1" expanded="false" />
+                <element signature="e#12758#13839#0" expanded="false" />
+                <element signature="e#12758#13480#1" expanded="false" />
+                <element signature="e#13489#13523#0" expanded="false" />
+                <element signature="e#13900#14345#0" expanded="false" />
+                <element signature="e#13900#14281#1" expanded="false" />
+                <element signature="e#14391#14832#0" expanded="false" />
+                <element signature="e#14391#14735#1" expanded="false" />
+                <element signature="e#14908#18824#0" expanded="false" />
+                <element signature="e#14908#15767#1" expanded="false" />
+                <element signature="e#18327#18399#0" expanded="false" />
+                <element signature="e#18899#19187#0" expanded="false" />
+                <element signature="e#18899#19063#1" expanded="false" />
+                <element signature="e#19239#19522#0" expanded="false" />
+                <element signature="e#19589#19800#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -100,7 +164,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>'</find>
       <find>Landsat7</find>
       <find>band.replace('b', '')</find>
       <find>k1_constant_band_6_vcid_1</find>
@@ -130,6 +193,7 @@
       <find>is_water</find>
       <find>potential_cloud_pixels</find>
       <find>[0]</find>
+      <find>cirrus</find>
     </findStrings>
     <replaceStrings>
       <replace>nan_unset</replace>
@@ -184,10 +248,10 @@
         <option value="$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/fmask.py" />
         <option value="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" />
         <option value="$PROJECT_DIR$/sat_image/image.py" />
-        <option value="$PROJECT_DIR$/tests/test_image.py" />
         <option value="$PROJECT_DIR$/sat_image/fmask_funcs.py" />
         <option value="$PROJECT_DIR$/sat_image/fmask.py" />
         <option value="$PROJECT_DIR$/tests/test_fmask.py" />
+        <option value="$PROJECT_DIR$/tests/test_image.py" />
       </list>
     </option>
   </component>
@@ -319,13 +383,15 @@
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.gitignore" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/data" />
+      <recent name="$PROJECT_DIR$/tests/data/image_test" />
+      <recent name="$PROJECT_DIR$/ssebop/utils" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ssebop/utils" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/../Recharge/utils" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/ssebop/utils" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -340,8 +406,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_fmask.py">
-    <configuration default="false" name="Unittests for tests.test_image.Landsat7TestCase.test_reflectance" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in test_image.py">
+    <configuration default="false" name="Unittests in test_fmask.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -352,7 +418,52 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_image.Landsat7TestCase.test_reflectance&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_fmask.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL8" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL8&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL5" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL5&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL7" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL7&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -369,51 +480,6 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_image.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests in test_fmask.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_fmask.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL8" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL8&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -492,19 +558,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase.test_reflectance" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase.test_reflectance" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8" />
       </list>
     </recent_temporary>
   </component>
@@ -792,39 +858,46 @@
       <option name="project" value="LOCAL" />
       <updated>1495663021925</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="fmask working for LC8">
+      <created>1496337170223</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1496337170223</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_test_fmask_py - 2017.05.24 at 15h 55m 48s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 13h 20m 19s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 09h 35m 06s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 13h 20m 37s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 10h 04m 09s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 13h 20m 49s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 10h 06m 43s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 14h 26m 31s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 10h 08m 18s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 34m 26s.xml">
+      <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 10h 08m 22s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 35m 15s.xml">
+      <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 10h 15m 49s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 36m 06s.xml">
+      <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 10h 16m 00s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 37m 26s.xml">
+      <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 10h 16m 11s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 38m 43s.xml">
+      <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.01 at 10h 59m 18s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 39m 23s.xml">
+      <configuration name="Unittests in test_image.py" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -838,25 +911,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22418879" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42477876" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45132744" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5016575" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23820059" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3318584" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -864,7 +938,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="potential cloud pixels pass 2 finsished, still needs neighborhood resample" />
     <MESSAGE value="filtered potential cloud layer" />
     <MESSAGE value="made fmask a class" />
     <MESSAGE value="start cloud height function" />
@@ -889,12 +962,13 @@
     <MESSAGE value="move on to test fmask functions" />
     <MESSAGE value="replacing functions with rio cloudmask funcs" />
     <MESSAGE value="implementing functions from rio cloudmask" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementing functions from rio cloudmask" />
+    <MESSAGE value="fmask working for LC8" />
+    <option name="LAST_COMMIT_MESSAGE" value="fmask working for LC8" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="120" />
+      <option name="time" value="121" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -922,49 +996,53 @@
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
             <element signature="e#1362#1484#1" expanded="false" />
-            <element signature="e#1526#3076#0" expanded="false" />
-            <element signature="e#3112#3998#0" expanded="false" />
-            <element signature="e#3112#3677#1" expanded="false" />
-            <element signature="e#4039#4212#1" expanded="false" />
-            <element signature="e#4659#5066#0" expanded="false" />
-            <element signature="e#4659#4972#1" expanded="false" />
-            <element signature="e#5100#5656#0" expanded="false" />
-            <element signature="e#5100#5577#1" expanded="false" />
-            <element signature="e#5694#6213#0" expanded="false" />
-            <element signature="e#5694#6138#1" expanded="false" />
-            <element signature="e#6250#6558#0" expanded="false" />
-            <element signature="e#6250#6493#1" expanded="false" />
-            <element signature="e#6594#7036#0" expanded="false" />
-            <element signature="e#6594#6803#1" expanded="false" />
-            <element signature="e#7084#7873#0" expanded="false" />
-            <element signature="e#7084#7662#1" expanded="false" />
-            <element signature="e#7909#8585#0" expanded="false" />
-            <element signature="e#7909#8287#1" expanded="false" />
-            <element signature="e#8626#9124#0" expanded="false" />
-            <element signature="e#8626#8993#1" expanded="false" />
-            <element signature="e#9176#9650#0" expanded="false" />
-            <element signature="e#9176#9488#1" expanded="false" />
-            <element signature="e#9656#9681#0" expanded="false" />
-            <element signature="e#9785#10497#0" expanded="false" />
-            <element signature="e#9785#10194#1" expanded="false" />
-            <element signature="e#10550#11089#0" expanded="false" />
-            <element signature="e#10550#10981#1" expanded="false" />
-            <element signature="e#11142#11596#0" expanded="false" />
-            <element signature="e#11142#11508#1" expanded="false" />
-            <element signature="e#11602#11626#0" expanded="false" />
-            <element signature="e#11765#12486#0" expanded="false" />
-            <element signature="e#11765#12166#1" expanded="false" />
-            <element signature="e#12653#13662#0" expanded="false" />
-            <element signature="e#12653#13375#1" expanded="false" />
-            <element signature="e#13723#14104#1" expanded="false" />
-            <element signature="e#14214#14655#0" expanded="false" />
-            <element signature="e#14214#14558#1" expanded="false" />
-            <element signature="e#14731#15590#1" expanded="false" />
-            <element signature="e#18072#18144#0" expanded="false" />
-            <element signature="e#18637#18925#0" expanded="false" />
-            <element signature="e#18637#18801#1" expanded="false" />
-            <element signature="e#18977#19260#0" expanded="false" />
-            <element signature="e#19327#19538#0" expanded="false" />
+            <element signature="e#1526#3087#0" expanded="false" />
+            <element signature="e#3123#4009#0" expanded="false" />
+            <element signature="e#3123#3688#1" expanded="false" />
+            <element signature="e#4050#4630#0" expanded="false" />
+            <element signature="e#4050#4223#1" expanded="false" />
+            <element signature="e#4670#5077#0" expanded="false" />
+            <element signature="e#4670#4983#1" expanded="false" />
+            <element signature="e#5111#5667#0" expanded="false" />
+            <element signature="e#5111#5588#1" expanded="false" />
+            <element signature="e#5705#6224#0" expanded="false" />
+            <element signature="e#5705#6149#1" expanded="false" />
+            <element signature="e#6261#6571#0" expanded="false" />
+            <element signature="e#6261#6504#1" expanded="false" />
+            <element signature="e#6607#7049#0" expanded="false" />
+            <element signature="e#6607#6816#1" expanded="false" />
+            <element signature="e#7097#7978#0" expanded="false" />
+            <element signature="e#7097#7675#1" expanded="false" />
+            <element signature="e#8014#8690#0" expanded="false" />
+            <element signature="e#8014#8392#1" expanded="false" />
+            <element signature="e#8731#9229#0" expanded="false" />
+            <element signature="e#8731#9098#1" expanded="false" />
+            <element signature="e#9281#9755#0" expanded="false" />
+            <element signature="e#9281#9593#1" expanded="false" />
+            <element signature="e#9761#9786#0" expanded="false" />
+            <element signature="e#9890#10602#0" expanded="false" />
+            <element signature="e#9890#10299#1" expanded="false" />
+            <element signature="e#10655#11194#0" expanded="false" />
+            <element signature="e#10655#11086#1" expanded="false" />
+            <element signature="e#11247#11701#0" expanded="false" />
+            <element signature="e#11247#11613#1" expanded="false" />
+            <element signature="e#11707#11731#0" expanded="false" />
+            <element signature="e#11870#12591#0" expanded="false" />
+            <element signature="e#11870#12271#1" expanded="false" />
+            <element signature="e#12758#13839#0" expanded="false" />
+            <element signature="e#12758#13480#1" expanded="false" />
+            <element signature="e#13489#13523#0" expanded="false" />
+            <element signature="e#13900#14345#0" expanded="false" />
+            <element signature="e#13900#14281#1" expanded="false" />
+            <element signature="e#14391#14832#0" expanded="false" />
+            <element signature="e#14391#14735#1" expanded="false" />
+            <element signature="e#14908#18824#0" expanded="false" />
+            <element signature="e#14908#15767#1" expanded="false" />
+            <element signature="e#18327#18399#0" expanded="false" />
+            <element signature="e#18899#19187#0" expanded="false" />
+            <element signature="e#18899#19063#1" expanded="false" />
+            <element signature="e#19239#19522#0" expanded="false" />
+            <element signature="e#19589#19800#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -985,49 +1063,53 @@
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
             <element signature="e#1362#1484#1" expanded="false" />
-            <element signature="e#1526#3076#0" expanded="false" />
-            <element signature="e#3112#3998#0" expanded="false" />
-            <element signature="e#3112#3677#1" expanded="false" />
-            <element signature="e#4039#4212#1" expanded="false" />
-            <element signature="e#4659#5066#0" expanded="false" />
-            <element signature="e#4659#4972#1" expanded="false" />
-            <element signature="e#5100#5656#0" expanded="false" />
-            <element signature="e#5100#5577#1" expanded="false" />
-            <element signature="e#5694#6213#0" expanded="false" />
-            <element signature="e#5694#6138#1" expanded="false" />
-            <element signature="e#6250#6558#0" expanded="false" />
-            <element signature="e#6250#6493#1" expanded="false" />
-            <element signature="e#6594#7036#0" expanded="false" />
-            <element signature="e#6594#6803#1" expanded="false" />
-            <element signature="e#7084#7873#0" expanded="false" />
-            <element signature="e#7084#7662#1" expanded="false" />
-            <element signature="e#7909#8585#0" expanded="false" />
-            <element signature="e#7909#8287#1" expanded="false" />
-            <element signature="e#8626#9124#0" expanded="false" />
-            <element signature="e#8626#8993#1" expanded="false" />
-            <element signature="e#9176#9650#0" expanded="false" />
-            <element signature="e#9176#9488#1" expanded="false" />
-            <element signature="e#9656#9681#0" expanded="false" />
-            <element signature="e#9785#10497#0" expanded="false" />
-            <element signature="e#9785#10194#1" expanded="false" />
-            <element signature="e#10550#11089#0" expanded="false" />
-            <element signature="e#10550#10981#1" expanded="false" />
-            <element signature="e#11142#11596#0" expanded="false" />
-            <element signature="e#11142#11508#1" expanded="false" />
-            <element signature="e#11602#11626#0" expanded="false" />
-            <element signature="e#11765#12486#0" expanded="false" />
-            <element signature="e#11765#12166#1" expanded="false" />
-            <element signature="e#12653#13662#0" expanded="false" />
-            <element signature="e#12653#13375#1" expanded="false" />
-            <element signature="e#13723#14104#1" expanded="false" />
-            <element signature="e#14214#14655#0" expanded="false" />
-            <element signature="e#14214#14558#1" expanded="false" />
-            <element signature="e#14731#15590#1" expanded="false" />
-            <element signature="e#18072#18144#0" expanded="false" />
-            <element signature="e#18637#18925#0" expanded="false" />
-            <element signature="e#18637#18801#1" expanded="false" />
-            <element signature="e#18977#19260#0" expanded="false" />
-            <element signature="e#19327#19538#0" expanded="false" />
+            <element signature="e#1526#3087#0" expanded="false" />
+            <element signature="e#3123#4009#0" expanded="false" />
+            <element signature="e#3123#3688#1" expanded="false" />
+            <element signature="e#4050#4630#0" expanded="false" />
+            <element signature="e#4050#4223#1" expanded="false" />
+            <element signature="e#4670#5077#0" expanded="false" />
+            <element signature="e#4670#4983#1" expanded="false" />
+            <element signature="e#5111#5667#0" expanded="false" />
+            <element signature="e#5111#5588#1" expanded="false" />
+            <element signature="e#5705#6224#0" expanded="false" />
+            <element signature="e#5705#6149#1" expanded="false" />
+            <element signature="e#6261#6571#0" expanded="false" />
+            <element signature="e#6261#6504#1" expanded="false" />
+            <element signature="e#6607#7049#0" expanded="false" />
+            <element signature="e#6607#6816#1" expanded="false" />
+            <element signature="e#7097#7978#0" expanded="false" />
+            <element signature="e#7097#7675#1" expanded="false" />
+            <element signature="e#8014#8690#0" expanded="false" />
+            <element signature="e#8014#8392#1" expanded="false" />
+            <element signature="e#8731#9229#0" expanded="false" />
+            <element signature="e#8731#9098#1" expanded="false" />
+            <element signature="e#9281#9755#0" expanded="false" />
+            <element signature="e#9281#9593#1" expanded="false" />
+            <element signature="e#9761#9786#0" expanded="false" />
+            <element signature="e#9890#10602#0" expanded="false" />
+            <element signature="e#9890#10299#1" expanded="false" />
+            <element signature="e#10655#11194#0" expanded="false" />
+            <element signature="e#10655#11086#1" expanded="false" />
+            <element signature="e#11247#11701#0" expanded="false" />
+            <element signature="e#11247#11613#1" expanded="false" />
+            <element signature="e#11707#11731#0" expanded="false" />
+            <element signature="e#11870#12591#0" expanded="false" />
+            <element signature="e#11870#12271#1" expanded="false" />
+            <element signature="e#12758#13839#0" expanded="false" />
+            <element signature="e#12758#13480#1" expanded="false" />
+            <element signature="e#13489#13523#0" expanded="false" />
+            <element signature="e#13900#14345#0" expanded="false" />
+            <element signature="e#13900#14281#1" expanded="false" />
+            <element signature="e#14391#14832#0" expanded="false" />
+            <element signature="e#14391#14735#1" expanded="false" />
+            <element signature="e#14908#18824#0" expanded="false" />
+            <element signature="e#14908#15767#1" expanded="false" />
+            <element signature="e#18327#18399#0" expanded="false" />
+            <element signature="e#18899#19187#0" expanded="false" />
+            <element signature="e#18899#19063#1" expanded="false" />
+            <element signature="e#19239#19522#0" expanded="false" />
+            <element signature="e#19589#19800#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1139,7 +1221,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/data/d_36_29_l5/LT50360292007146PAC01_VER.txt" />
     <entry file="file://$PROJECT_DIR$/tests/data/d_36_29_l5/LT50360292007146PAC01_MTL.txt" />
-    <entry file="file://$PROJECT_DIR$/tests/data/le7_cloud/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt">
+    <entry file="file://$PROJECT_DIR$/tests/data/le7_image/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
           <caret line="222" column="0" lean-forward="false" selection-start-line="222" selection-start-column="0" selection-end-line="225" selection-end-column="39" />
@@ -1182,28 +1264,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssebop/utils/ras_point_index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/data/lc8_cloud/LC80400282014193LGN00_MTL.txt">
+    <entry file="file://$PROJECT_DIR$/tests/data/lc8_image/LC80400282014193LGN00_MTL.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
           <caret line="44" column="52" lean-forward="false" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/data/lt5_cloud/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt">
+    <entry file="file://$PROJECT_DIR$/tests/data/lt5_image/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="573">
           <caret line="182" column="25" lean-forward="false" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/data/lt5_cloud/LT5_reflct_10000x.tif">
+    <entry file="file://$PROJECT_DIR$/tests/data/lt5_image/LT5_reflct_10000x.tif">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1276,86 +1351,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/fmask_funcs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="294" column="0" lean-forward="true" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssebop/utils/ras_point_index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="557" column="62" lean-forward="true" selection-start-line="557" selection-start-column="62" selection-end-line="557" selection-end-column="62" />
+        <state relative-caret-position="476">
+          <caret line="249" column="0" lean-forward="false" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
             <element signature="e#1251#1298#0" expanded="true" />
             <element signature="e#1362#1484#1" expanded="false" />
-            <element signature="e#1526#3076#0" expanded="false" />
-            <element signature="e#3112#3998#0" expanded="false" />
-            <element signature="e#3112#3677#1" expanded="false" />
-            <element signature="e#4039#4212#1" expanded="false" />
-            <element signature="e#4659#5066#0" expanded="false" />
-            <element signature="e#4659#4972#1" expanded="false" />
-            <element signature="e#5100#5656#0" expanded="false" />
-            <element signature="e#5100#5577#1" expanded="false" />
-            <element signature="e#5694#6213#0" expanded="false" />
-            <element signature="e#5694#6138#1" expanded="false" />
-            <element signature="e#6250#6558#0" expanded="false" />
-            <element signature="e#6250#6493#1" expanded="false" />
-            <element signature="e#6594#7036#0" expanded="false" />
-            <element signature="e#6594#6803#1" expanded="false" />
-            <element signature="e#7084#7873#0" expanded="false" />
-            <element signature="e#7084#7662#1" expanded="false" />
-            <element signature="e#7909#8585#0" expanded="false" />
-            <element signature="e#7909#8287#1" expanded="false" />
-            <element signature="e#8626#9124#0" expanded="false" />
-            <element signature="e#8626#8993#1" expanded="false" />
-            <element signature="e#9176#9650#0" expanded="false" />
-            <element signature="e#9176#9488#1" expanded="false" />
-            <element signature="e#9656#9681#0" expanded="false" />
-            <element signature="e#9785#10497#0" expanded="false" />
-            <element signature="e#9785#10194#1" expanded="false" />
-            <element signature="e#10550#11089#0" expanded="false" />
-            <element signature="e#10550#10981#1" expanded="false" />
-            <element signature="e#11142#11596#0" expanded="false" />
-            <element signature="e#11142#11508#1" expanded="false" />
-            <element signature="e#11602#11626#0" expanded="false" />
-            <element signature="e#11765#12486#0" expanded="false" />
-            <element signature="e#11765#12166#1" expanded="false" />
-            <element signature="e#12653#13662#0" expanded="false" />
-            <element signature="e#12653#13375#1" expanded="false" />
-            <element signature="e#13723#14104#1" expanded="false" />
-            <element signature="e#14214#14655#0" expanded="false" />
-            <element signature="e#14214#14558#1" expanded="false" />
-            <element signature="e#14731#15590#1" expanded="false" />
-            <element signature="e#18072#18144#0" expanded="false" />
-            <element signature="e#18637#18925#0" expanded="false" />
-            <element signature="e#18637#18801#1" expanded="false" />
-            <element signature="e#18977#19260#0" expanded="false" />
-            <element signature="e#19327#19538#0" expanded="false" />
+            <element signature="e#1526#3087#0" expanded="false" />
+            <element signature="e#3123#4009#0" expanded="false" />
+            <element signature="e#3123#3688#1" expanded="false" />
+            <element signature="e#4050#4630#0" expanded="false" />
+            <element signature="e#4050#4223#1" expanded="false" />
+            <element signature="e#4670#5077#0" expanded="false" />
+            <element signature="e#4670#4983#1" expanded="false" />
+            <element signature="e#5111#5667#0" expanded="false" />
+            <element signature="e#5111#5588#1" expanded="false" />
+            <element signature="e#5705#6224#0" expanded="false" />
+            <element signature="e#5705#6149#1" expanded="false" />
+            <element signature="e#6261#6571#0" expanded="false" />
+            <element signature="e#6261#6504#1" expanded="false" />
+            <element signature="e#6607#7049#0" expanded="false" />
+            <element signature="e#6607#6816#1" expanded="false" />
+            <element signature="e#7097#7978#0" expanded="false" />
+            <element signature="e#7097#7675#1" expanded="false" />
+            <element signature="e#8014#8690#0" expanded="false" />
+            <element signature="e#8014#8392#1" expanded="false" />
+            <element signature="e#8731#9229#0" expanded="false" />
+            <element signature="e#8731#9098#1" expanded="false" />
+            <element signature="e#9281#9755#0" expanded="false" />
+            <element signature="e#9281#9593#1" expanded="false" />
+            <element signature="e#9761#9786#0" expanded="false" />
+            <element signature="e#9890#10602#0" expanded="false" />
+            <element signature="e#9890#10299#1" expanded="false" />
+            <element signature="e#10655#11194#0" expanded="false" />
+            <element signature="e#10655#11086#1" expanded="false" />
+            <element signature="e#11247#11701#0" expanded="false" />
+            <element signature="e#11247#11613#1" expanded="false" />
+            <element signature="e#11707#11731#0" expanded="false" />
+            <element signature="e#11870#12591#0" expanded="false" />
+            <element signature="e#11870#12271#1" expanded="false" />
+            <element signature="e#12758#13839#0" expanded="false" />
+            <element signature="e#12758#13480#1" expanded="false" />
+            <element signature="e#13489#13523#0" expanded="false" />
+            <element signature="e#13900#14345#0" expanded="false" />
+            <element signature="e#13900#14281#1" expanded="false" />
+            <element signature="e#14391#14832#0" expanded="false" />
+            <element signature="e#14391#14735#1" expanded="false" />
+            <element signature="e#14908#18824#0" expanded="false" />
+            <element signature="e#14908#15767#1" expanded="false" />
+            <element signature="e#18327#18399#0" expanded="false" />
+            <element signature="e#18899#19187#0" expanded="false" />
+            <element signature="e#18899#19063#1" expanded="false" />
+            <element signature="e#19239#19522#0" expanded="false" />
+            <element signature="e#19589#19800#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="68" column="38" lean-forward="false" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#743#0" expanded="true" />
+            <element signature="e#1024#1933#0" expanded="false" />
+            <element signature="e#1630#1662#0" expanded="false" />
+            <element signature="e#2940#3542#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+        <state relative-caret-position="457">
+          <caret line="162" column="43" lean-forward="true" selection-start-line="162" selection-start-column="43" selection-end-line="162" selection-end-column="43" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#743#0" expanded="true" />
+            <marker date="1496349313557" expanded="true" signature="915:977" ph="..." />
+            <marker date="1496349313557" expanded="true" signature="936:977" ph="..." />
+            <marker date="1496349313557" expanded="true" signature="5963:6158" ph="..." />
+            <marker date="1496349313557" expanded="true" signature="5963:8028" ph="..." />
+            <marker date="1496349313557" expanded="true" signature="6197:7243" ph="..." />
+            <marker date="1496349313557" expanded="true" signature="7279:7643" ph="..." />
+            <marker date="1496349313557" expanded="true" signature="7680:8028" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/fmask_funcs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="294" column="0" lean-forward="true" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
