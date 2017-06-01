@@ -557,6 +557,16 @@ class Fmask(object):
             pcloud = maximum_filter(pcloud, size=max_filter)
             pshadow = maximum_filter(pshadow, size=max_filter)
 
+        # mystery, save pcloud here, shows no nan in qgis, save later, shows nan
+        # outfile = '/data01/images/sandbox/pcloud.tif'
+        # georeference = self.image.rasterio_geometry
+        # array = pcloud
+        # array = array.reshape(1, array.shape[0], array.shape[1])
+        # array = np.array(array, dtype=georeference['dtype'])
+        # with rasterio.open(outfile, 'w', **georeference) as dst:
+        #     dst.write(array)
+        # mystery test
+
         return pcloud, pshadow
 
     @staticmethod
