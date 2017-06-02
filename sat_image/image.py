@@ -146,10 +146,10 @@ class Landsat5(LandsatImage):
     def brightness_temp(self, band, temp_scale='K'):
 
         if band in [1, 2, 3, 4, 5, 7]:
-            raise ValueError('LT5 reflectance must be band 6')
+            raise ValueError('LT5 brightness must be band 6')
 
         rad = self.radiance(band)
-        brightness = self.k1 / (np.log((self.k2 / rad) + 1))
+        brightness = self.k2 / (np.log((self.k1 / rad) + 1))
 
         if temp_scale == 'K':
             return brightness
@@ -199,7 +199,7 @@ class Landsat7(LandsatImage):
     def brightness_temp(self, band=6, gain='low', temp_scale='K'):
 
         if band in [1, 2, 3, 4, 5, 7, 8]:
-            raise ValueError('LE7 reflectance must be either vcid_1 or vcid_2')
+            raise ValueError('LE7 brightness must be either vcid_1 or vcid_2')
 
         if gain == 'low':
             # low gain : b6_vcid_1
@@ -208,7 +208,7 @@ class Landsat7(LandsatImage):
             band_gain = '6_vcid_2'
 
         rad = self.radiance(band_gain)
-        brightness = self.k1 / (np.log((self.k2 / rad) + 1))
+        brightness = self.k2 / (np.log((self.k1 / rad) + 1))
 
         if temp_scale == 'K':
             return brightness
@@ -225,7 +225,7 @@ class Landsat7(LandsatImage):
     def reflectance(self, band):
 
         if band in ['b6_vcid_1', 'b6_vcid_2']:
-            raise ValueError('LE7 reflectance must be either b6_vcid_1 or b6_vcid_2')
+            raise ValueError('LE7 reflectance must not be b6_vcid_1 or b6_vcid_2')
 
         rad = self.radiance(band)
         esun = self.ex_atm_irrad[band - 1]

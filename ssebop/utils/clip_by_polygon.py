@@ -50,7 +50,8 @@ if __name__ == '__main__':
     home = os.path.expanduser('~')
     raster_dir = os.path.join(home, 'images', 'LC8', 'cloud_test')
     test_data = os.path.join(home, 'images', 'test_data', 'cloud_test')
-    out_dir = os.path.join(test_data, 'LC8_cloud_test')
+    out_dir = os.path.join(home, 'PycharmProjects', 'ssebop', 'tests/data/fmask_test/lc8_fmask')
+    # out_dir = os.path.join(test_data, 'LC8_cloud_test')
     shape = os.path.join(test_data, 'test_shapes', 'flathead.shp')
     clip_w_poly(raster_dir, shape, out_dir)
 

@@ -54,6 +54,7 @@ class Fmask(object):
             self.nir = image.reflectance(4)
             self.swir1 = image.reflectance(5)
             self.tirs1 = image.brightness_temp(6, 'C')
+            self.tirmean = np.mean(self.tirs1)
             self.swir2 = image.reflectance(7)
 
         elif self.sat == 'LC8':
@@ -66,7 +67,8 @@ class Fmask(object):
             self.swir2 = image.reflectance(7)
             self.cirrus = image.reflectance(9)
             self.tirs1 = image.brightness_temp(10, 'C')
-            # self.tirs2 = image.brightness_temp(11, 'C')
+            self.tirmean = np.mean(self.tirs1)
+            self.tirs2 = image.brightness_temp(11, 'C')
 
         else:
             raise ValueError('Must provide satellite image from LT5, LE7, LC8')
@@ -487,6 +489,7 @@ class Fmask(object):
             Defines the window for the minimum_filter, for removing outliers
         max_filter: 2-element tuple, default=(21, 21)
             Defines the window for the maximum_filter, for "buffering" the edges
+        combined: make a boolean array masking all (cloud, shadow, water)
         Output
         ------
         ndarray, boolean:
@@ -604,5 +607,9 @@ class Fmask(object):
             c = np.nan_to_num(c)
             return c
         return potential_cloud
+
+    @staticmethod
+    def _counts(arr):
+        return np.count_nonzero(arr), np.count_nonzero(~arr)
 
 # ========================= EOF ====================================================================
