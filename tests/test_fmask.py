@@ -16,19 +16,15 @@
 
 import os
 import unittest
-import rasterio
-import numpy as np
-
-from pprint import pprint
+from numpy import count_nonzero
 
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from sat_image.fmask import Fmask
-from ssebop.utils.ras_point_index import raster_point_row_col
 
 
 class FmaskTestCaseL5(unittest.TestCase):
     def setUp(self):
-        self.dirname_cloud = 'tests/data/lt5_image'
+        self.dirname_cloud = 'tests/data/fmask_test/lt5_fmask'
         self.image = Landsat5(self.dirname_cloud)
 
     def test_instantiate_fmask(self):
@@ -38,21 +34,21 @@ class FmaskTestCaseL5(unittest.TestCase):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
         cloud, shadow, water = f.cloud_mask()
-        c_ct, s_ct = np.count_nonzero(cloud), np.count_nonzero(shadow)
-        w_ct = np.count_nonzero(water)
-        self.assertEqual(c_ct, 128564)
-        self.assertEqual(s_ct, 117770)
-        self.assertEqual(w_ct, 1456)
-        # home = os.path.expanduser('~')
-        # outdir = os.path.join(home, 'images', 'sandbox')
-        # f.save_array(cloud, os.path.join(outdir, 'cloud_mask.tif'))
-        # f.save_array(shadow, os.path.join(outdir, 'shadow_mask.tif'))
-        # f.save_array(water, os.path.join(outdir, 'water_mask.tif'))
+        # c_ct, s_ct = count_nonzero(cloud), count_nonzero(shadow)
+        # w_ct = count_nonzero(water)
+        # self.assertEqual(c_ct, 128564)
+        # self.assertEqual(s_ct, 117770)
+        # self.assertEqual(w_ct, 1456)
+        home = os.path.expanduser('~')
+        outdir = os.path.join(home, 'images', 'sandbox')
+        f.save_array(cloud, os.path.join(outdir, 'cloud_mask.tif'))
+        f.save_array(shadow, os.path.join(outdir, 'shadow_mask.tif'))
+        f.save_array(water, os.path.join(outdir, 'water_mask.tif'))
 
 
 class FmaskTestCaseL7(unittest.TestCase):
     def setUp(self):
-        self.dirname_cloud = 'tests/data/le7_image'
+        self.dirname_cloud = 'tests/data/fmask_test/le7_fmask'
         self.image = Landsat7(self.dirname_cloud)
 
     def test_instantiate_fmask(self):
@@ -62,8 +58,8 @@ class FmaskTestCaseL7(unittest.TestCase):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
         cloud, shadow, water = f.cloud_mask()
-        # c_ct, s_ct = np.count_nonzero(cloud), np.count_nonzero(shadow)
-        # w_ct = np.count_nonzero(water)
+        c_ct, s_ct = count_nonzero(cloud), count_nonzero(shadow)
+        w_ct = count_nonzero(water)
         # self.assertEqual(c_ct, 128564)
         # self.assertEqual(s_ct, 117770)
         # self.assertEqual(w_ct, 1456)
@@ -76,7 +72,7 @@ class FmaskTestCaseL7(unittest.TestCase):
 
 class FmaskTestCaseL8(unittest.TestCase):
     def setUp(self):
-        self.dirname_cloud = 'tests/data/lc8_image'
+        self.dirname_cloud = 'tests/data/fmask_test/lc8_fmask'
         self.image = Landsat8(self.dirname_cloud)
 
     def test_instantiate_fmask(self):
@@ -87,10 +83,12 @@ class FmaskTestCaseL8(unittest.TestCase):
         # test have-not-changed
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
-        cloud, shadow = f.cloud_mask()
-        c_ct, s_ct = np.count_nonzero(cloud), np.count_nonzero(shadow)
-        self.assertEqual(c_ct, 222601)
-        self.assertEqual(s_ct, 163867)
+        cloud, shadow, water = f.cloud_mask()
+        c_ct, s_ct = count_nonzero(cloud), count_nonzero(shadow)
+        w_ct = count_nonzero(water)
+        self.assertEqual(c_ct, 21086)
+        self.assertEqual(s_ct, 9395)
+        self.assertEqual(w_ct, 14431)
 
 
 if __name__ == '__main__':

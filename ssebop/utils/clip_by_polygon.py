@@ -21,6 +21,12 @@ import rasterio.tools.mask
 
 
 def clip_w_poly(rasters, polygon, out):
+    """ Clip rasters to shapefile extent. 
+    :param rasters: .tif raster files
+    :param polygon: .shp shapefile
+    :param out: output directory
+    :return: clipped .tif raster
+    """
     files = os.listdir(rasters)
     tifs = [x for x in files if x.endswith('.TIF') or x.endswith('.tif')]
     with fiona.open(polygon, 'r') as shapefile:
@@ -35,17 +41,17 @@ def clip_w_poly(rasters, polygon, out):
                              'width': out_image.shape[2], 'transform': out_transform})
 
             new_tif_name = os.path.join(out, tif)
-            # print(new_tif_name)
+            print(new_tif_name)
             with rasterio.open(new_tif_name, 'w', **out_meta) as dst:
                 dst.write(out_image)
 
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
-    raster_dir = os.path.join(home, 'images', 'LE7', 'cloudtest', 'fmask_prods')
-    test_data = os.path.join(home, 'images', 'test_data', 'cloudtest')
-    out_dir = os.path.join(test_data, 'LE7_cloud_test')
-    shape = os.path.join(test_data, 'clip_shapes', 'test_cloud_butte.shp')
+    raster_dir = os.path.join(home, 'images', 'LC8', 'cloud_test')
+    test_data = os.path.join(home, 'images', 'test_data', 'cloud_test')
+    out_dir = os.path.join(test_data, 'LC8_cloud_test')
+    shape = os.path.join(test_data, 'test_shapes', 'flathead.shp')
     clip_w_poly(raster_dir, shape, out_dir)
 
 # ========================= EOF ====================================================================

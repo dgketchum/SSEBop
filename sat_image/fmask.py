@@ -469,7 +469,7 @@ class Fmask(object):
         """
         return (self.ndsi > 0.15) & (self.tirs1 < 9.85) & (self.nir > 0.11) & (self.green > 0.1)
 
-    def cloud_mask(self, min_filter=(3, 3), max_filter=(21, 21)):
+    def cloud_mask(self, min_filter=(3, 3), max_filter=(10, 10), combined=False):
         """Calculate the potential cloud layer from source data
         *This is the high level function which ties together all
         the equations for generating potential clouds*
@@ -573,6 +573,8 @@ class Fmask(object):
         # with rasterio.open(outfile, 'w', **georeference) as dst:
         #     dst.write(array)
         # mystery test
+        if combined:
+            return pcloud | pshadow | water
 
         return pcloud, pshadow, water
 
