@@ -37,8 +37,9 @@ class Landsat5TestCase(unittest.TestCase):
         self.dir_name_LT5 = 'tests/data/image_test/lt5_image'
         # results from fmask.exe
         # bitbucket.org/chchrsc/python-fmask/
-        self.exp_reflect = 'tests/data/image_test/lt5_image/LT5_reflct_10000x.tif'
+        self.exp_reflect = 'tests/data/image_test/lt5_image/LT5_reflct_10000x_b1.tif'
         self.l5 = Landsat5(self.dir_name_LT5)
+        self.cell = 150, 150
 
     def test_instantiate_scene(self):
         self.assertTrue(self.l5.isdir)
@@ -55,9 +56,8 @@ class Landsat5TestCase(unittest.TestCase):
         self.assertEqual(self.l5.rasterio_geometry['transform'], (367035.0, 30.0, 0.0, 5082585.0, 0.0, -30.0))
 
     def test_reflectance(self):
-        cell = 150, 150
-        toa_reflect = self.l5.reflectance(1)[cell]
-        qcal = self.l5.b1[cell]
+        toa_reflect = self.l5.reflectance(1)[self.cell]
+        qcal = self.l5.b1[self.cell]
         qcal_min = self.l5.quantize_cal_min_band_1
         qcal_max = self.l5.quantize_cal_max_band_1
         l_min = self.l5.radiance_minimum_band_1
@@ -74,9 +74,11 @@ class Landsat5TestCase(unittest.TestCase):
             reflct[reflct == 32767.] = np.nan
             reflct *= 1 / 10000.
 
-        self.assertAlmostEqual(reflct[cell], toa_reflect, delta=0.001)
+        self.assertAlmostEqual(reflct[self.cell], toa_reflect, delta=0.01)
 
-        # needs brightness temperature test todo
+    def test_brightness(self):
+        bright = self.l5.brightness_temp(6)
+        self.assertEqual(bright[self.cell], 263)
 
 
 class Landsat7TestCase(unittest.TestCase):
@@ -84,8 +86,9 @@ class Landsat7TestCase(unittest.TestCase):
         # results from fmask.exe
         # bitbucket.org/chchrsc/python-fmask/
         self.dir_name_LT7 = 'tests/data/image_test/le7_image'
-        self.exp_reflect = 'tests/data/image_test/le7_image/LE7_reflct_10000x.tif'
+        self.exp_reflect = 'tests/data/image_test/le7_image/LE7_reflct_10000x_b1.tif'
         self.l7 = Landsat7(self.dir_name_LT7)
+        self.cell = 300, 300
 
     def test_instantiate_scene(self):
         self.assertEqual(self.l7.mtl['L1_METADATA_FILE']['PRODUCT_METADATA']['FILE_NAME_BAND_1'],
@@ -100,8 +103,7 @@ class Landsat7TestCase(unittest.TestCase):
 
     def test_reflectance(self):
         toa_reflect = self.l7.reflectance(1)
-        cell = 300, 300
-        toa_reflect_cell = toa_reflect[cell]
+
         with rasterio.open(self.exp_reflect, 'r') as src:
             reflct = src.read(1)
             reflct = np.array(reflct, dtype=np.float32)
@@ -110,21 +112,11 @@ class Landsat7TestCase(unittest.TestCase):
 
         toa_reflect = np.where(np.isnan(reflct), reflct, toa_reflect)
 
-        print('size expected: {}, calculated: {}'.format(reflct.shape, toa_reflect.shape))
-        print('nan counts expect: {}, calculated: {}'.format(np.count_nonzero(reflct),
-                                                             np.count_nonzero(toa_reflect)))
+        self.assertAlmostEqual(reflct[self.cell], toa_reflect[self.cell], delta=0.01)
 
-        print('expected mean: {}, min: {}, max: {}'.format(np.nanmean(reflct),
-                                                           np.nanmin(reflct),
-                                                           np.nanmax(reflct)))
-
-        print('calculated mean: {}, min: {}, max: {}'.format(np.nanmean(toa_reflect),
-                                                             np.nanmin(toa_reflect),
-                                                             np.nanmax(toa_reflect)))
-
-        print('size expected: {}, calculated: {}'.format(reflct[cell], toa_reflect_cell))
-        self.assertAlmostEqual(reflct[cell], toa_reflect_cell, delta=0.001)
-        # needs brightness temperature test todo
+    def test_brightness(self):
+        bright = self.l7.brightness_temp(6)
+        self.assertEqual(bright[self.cell], 263)
 
 
 class Landsat8TestCase(unittest.TestCase):
@@ -133,6 +125,7 @@ class Landsat8TestCase(unittest.TestCase):
         # results from rio-toa
         self.ex_bright = os.path.join(self.dirname_cloud, 'LC8_brightemp_B10.TIF')
         self.ex_reflect = os.path.join(self.dirname_cloud, 'LC8_reflct_B1.TIF')
+        self.cell = 300, 300
 
     def test_instantiate_scene(self):
         l8 = Landsat8(self.dirname_cloud)
@@ -161,8 +154,8 @@ class Landsat8TestCase(unittest.TestCase):
             ex_br = src.read(1)
         bright = l8.brightness_temp(10)
         self.assertEqual(bright.shape, ex_br.shape)
-        self.assertAlmostEqual(ex_br[100, 100],
-                               bright[100, 100],
+        self.assertAlmostEqual(ex_br[self.cell],
+                               bright[self.cell],
                                delta=0.001)
 
     def test_toa_reflectance(self):
@@ -171,8 +164,8 @@ class Landsat8TestCase(unittest.TestCase):
             expected_reflectance = src.read(1)
         reflectance = l8.reflectance(1)
 
-        self.assertAlmostEqual(expected_reflectance[100, 100],
-                               reflectance[100, 100],
+        self.assertAlmostEqual(expected_reflectance[self.cell],
+                               reflectance[self.cell],
                                delta=0.001)
 
 
