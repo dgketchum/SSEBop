@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.cpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.prj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.qpj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract.shx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.cpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.prj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.qpj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/data/point_data/butte_lt5_extract_wToa.shx" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_image.py" afterPath="$PROJECT_DIR$/tests/test_image.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/fmask.py" afterPath="$PROJECT_DIR$/sat_image/fmask.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" afterPath="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_fmask.py" afterPath="$PROJECT_DIR$/tests/test_fmask.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,54 +20,29 @@
       <file leaf-file-name="test_fmask.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="68" column="38" lean-forward="false" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
+            <state relative-caret-position="238">
+              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#743#0" expanded="true" />
-                <element signature="e#1024#1933#0" expanded="false" />
-                <element signature="e#1630#1662#0" expanded="false" />
-                <element signature="e#2940#3542#0" expanded="false" />
+                <element signature="e#932#1843#0" expanded="false" />
+                <element signature="e#1892#2799#0" expanded="false" />
+                <element signature="e#2848#3533#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_image.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/test_image.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2431">
-              <caret line="162" column="51" lean-forward="false" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SSEBop_Landsat_OverpassETa.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="249" column="0" lean-forward="false" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#761#1250#1" expanded="false" />
                 <element signature="e#1251#1298#0" expanded="true" />
                 <element signature="e#1362#1484#1" expanded="false" />
-                <element signature="e#1526#3087#0" expanded="false" />
                 <element signature="e#3123#4009#0" expanded="false" />
                 <element signature="e#3123#3688#1" expanded="false" />
                 <element signature="e#4050#4630#0" expanded="false" />
@@ -117,13 +82,12 @@
                 <element signature="e#13900#14281#1" expanded="false" />
                 <element signature="e#14391#14832#0" expanded="false" />
                 <element signature="e#14391#14735#1" expanded="false" />
-                <element signature="e#14908#18824#0" expanded="false" />
-                <element signature="e#14908#15767#1" expanded="false" />
-                <element signature="e#18327#18399#0" expanded="false" />
-                <element signature="e#18899#19187#0" expanded="false" />
-                <element signature="e#18899#19063#1" expanded="false" />
-                <element signature="e#19239#19522#0" expanded="false" />
-                <element signature="e#19589#19800#0" expanded="false" />
+                <element signature="e#14924#15783#1" expanded="false" />
+                <element signature="e#18343#18415#0" expanded="false" />
+                <element signature="e#18980#19268#0" expanded="false" />
+                <element signature="e#18980#19144#1" expanded="false" />
+                <element signature="e#19320#19603#0" expanded="false" />
+                <element signature="e#19670#19881#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -141,7 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Landsat7</find>
       <find>band.replace('b', '')</find>
       <find>k1_constant_band_6_vcid_1</find>
       <find>quanti</find>
@@ -171,6 +134,7 @@
       <find>potential_cloud_pixels</find>
       <find>[0]</find>
       <find>cirrus</find>
+      <find>np.</find>
     </findStrings>
     <replaceStrings>
       <replace>nan_unset</replace>
@@ -223,12 +187,13 @@
         <option value="$PROJECT_DIR$/sat_image/rio_functions.py" />
         <option value="$PROJECT_DIR$/tests/data/lt5_cloud/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt" />
         <option value="$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/fmask.py" />
-        <option value="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" />
         <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/sat_image/fmask_funcs.py" />
+        <option value="$PROJECT_DIR$/tests/test_image.py" />
+        <option value="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
+        <option value="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" />
         <option value="$PROJECT_DIR$/sat_image/fmask.py" />
         <option value="$PROJECT_DIR$/tests/test_fmask.py" />
-        <option value="$PROJECT_DIR$/tests/test_image.py" />
       </list>
     </option>
   </component>
@@ -275,7 +240,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -291,6 +255,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -323,37 +288,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_image.py">
-    <configuration default="false" name="Unittests in test_fmask.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_fmask.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL8" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL8&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8">
     <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL5" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -397,6 +332,39 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_image.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="clip_by_polygon" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ssebop/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL8" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL8&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -475,19 +443,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python.clip_by_polygon" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8" />
         <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL8" />
+        <item index="3" class="java.lang.String" itemvalue="Python.clip_by_polygon" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
       </list>
     </recent_temporary>
   </component>
@@ -789,39 +757,46 @@
       <option name="project" value="LOCAL" />
       <updated>1496349624390</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="brightness temp todo">
+      <created>1496352625969</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1496352625969</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 13h 20m 37s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 26m 08s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 13h 20m 49s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 26m 45s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7 - 2017.06.01 at 14h 26m 31s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 26m 53s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 34m 26s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 36m 41s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 35m 15s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 37m 17s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 36m 06s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 37m 27s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 37m 26s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 38m 32s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 38m 43s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 39m 33s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 39m 23s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 39m 41s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_image_py - 2017.06.01 at 14h 42m 15s.xml">
-      <configuration name="Unittests in test_image.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL8 - 2017.06.02 at 08h 39m 49s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL8" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -835,18 +810,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2160767" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17699115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41076696" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5016575" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45132744" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4918879" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3318584" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -862,7 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made fmask a class" />
     <MESSAGE value="start cloud height function" />
     <MESSAGE value="to cloud shadow match" />
     <MESSAGE value="clip landsat image for testing" />
@@ -887,12 +860,13 @@
     <MESSAGE value="implementing functions from rio cloudmask" />
     <MESSAGE value="fmask working for LC8" />
     <MESSAGE value="splitting tests; one set of images for test_image, another set for test_fmask" />
-    <option name="LAST_COMMIT_MESSAGE" value="splitting tests; one set of images for test_image, another set for test_fmask" />
+    <MESSAGE value="brightness temp todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="brightness temp todo" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="121" />
+      <option name="time" value="125" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -953,13 +927,6 @@
             <element signature="e#13900#14281#1" expanded="false" />
             <element signature="e#14391#14832#0" expanded="false" />
             <element signature="e#14391#14735#1" expanded="false" />
-            <element signature="e#14908#18824#0" expanded="false" />
-            <element signature="e#14908#15767#1" expanded="false" />
-            <element signature="e#18327#18399#0" expanded="false" />
-            <element signature="e#18899#19187#0" expanded="false" />
-            <element signature="e#18899#19063#1" expanded="false" />
-            <element signature="e#19239#19522#0" expanded="false" />
-            <element signature="e#19589#19800#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1020,13 +987,6 @@
             <element signature="e#13900#14281#1" expanded="false" />
             <element signature="e#14391#14832#0" expanded="false" />
             <element signature="e#14391#14735#1" expanded="false" />
-            <element signature="e#14908#18824#0" expanded="false" />
-            <element signature="e#14908#15767#1" expanded="false" />
-            <element signature="e#18327#18399#0" expanded="false" />
-            <element signature="e#18899#19187#0" expanded="false" />
-            <element signature="e#18899#19063#1" expanded="false" />
-            <element signature="e#19239#19522#0" expanded="false" />
-            <element signature="e#19589#19800#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1192,13 +1152,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="23" column="31" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/numpy/core/tests/test_multiarray.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -1242,10 +1195,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2431">
+          <caret line="162" column="51" lean-forward="false" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="16" column="76" lean-forward="false" selection-start-line="16" selection-start-column="76" selection-end-line="16" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#874#1059#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#743#0" expanded="true" />
+            <element signature="e#932#1843#0" expanded="false" />
+            <element signature="e#1892#2799#0" expanded="false" />
+            <element signature="e#2848#3533#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="249" column="0" lean-forward="false" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#1250#1" expanded="false" />
@@ -1291,47 +1284,6 @@
             <element signature="e#13900#14281#1" expanded="false" />
             <element signature="e#14391#14832#0" expanded="false" />
             <element signature="e#14391#14735#1" expanded="false" />
-            <element signature="e#14908#18824#0" expanded="false" />
-            <element signature="e#14908#15767#1" expanded="false" />
-            <element signature="e#18327#18399#0" expanded="false" />
-            <element signature="e#18899#19187#0" expanded="false" />
-            <element signature="e#18899#19063#1" expanded="false" />
-            <element signature="e#19239#19522#0" expanded="false" />
-            <element signature="e#19589#19800#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="68" column="38" lean-forward="false" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#743#0" expanded="true" />
-            <element signature="e#1024#1933#0" expanded="false" />
-            <element signature="e#1630#1662#0" expanded="false" />
-            <element signature="e#2940#3542#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2431">
-          <caret line="162" column="51" lean-forward="false" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
