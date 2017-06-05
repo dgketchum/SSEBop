@@ -58,6 +58,9 @@ class Fmask(object):
             self.meantir = np.mean(self.tirs1)
             self.swir2 = image.reflectance(7)
 
+            self.green_saturated = image.saturation_mask(2)
+            self.red_saturated = image.saturation_mask(3)
+
         elif self.sat == 'LC8':
 
             self.blue = image.reflectance(2)
@@ -370,7 +373,19 @@ class Fmask(object):
             probability of cloud over land based on variability
         """
 
-        ndi_max = np.fmax(np.absolute(self.ndvi), np.absolute(self.ndsi))
+        if self.sat in ['LT5', 'LE7']:
+            # check for green and red saturation
+
+            # if red is saturated and less than nir, ndvi = 0
+            mod_ndvi = np.where(self.red_saturated & (self.nir > self.red), 0, self.ndvi)
+
+            # if green is saturated and less than swir1, ndsi = 0
+            mod_ndsi = np.where(self.green_saturated & (self.swir1 > self.green), 0, self.ndsi)
+            ndi_max = np.fmax(np.absolute(mod_ndvi), np.absolute(mod_ndsi))
+
+        else:
+            ndi_max = np.fmax(np.absolute(self.ndvi), np.absolute(self.ndsi))
+
         f_max = 1.0 - np.fmax(ndi_max, whiteness)
 
         return f_max

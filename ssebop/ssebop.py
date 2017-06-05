@@ -16,7 +16,7 @@
 
 from __future__ import print_function
 
-import fmask
+from sat_image.fmask import Fmask
 
 from app.paths import paths, PathsNotSetExecption
 
