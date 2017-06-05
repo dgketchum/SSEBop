@@ -310,9 +310,6 @@ class Fmask(object):
             bp[bp < 0] = 0
         return bp
 
-    # Eq 11, water_cloud_prob
-    # wCloud_Prob = wTemperature_Prob x Brightness_Prob
-
     def temp_land(self, pcps, water):
         """Derive high/low percentiles of land temperature
         Equations 12 an 13 (Zhu and Woodcock, 2012)
@@ -377,9 +374,6 @@ class Fmask(object):
         f_max = 1.0 - np.fmax(ndi_max, whiteness)
 
         return f_max
-
-    # Eq 16, land_cloud_prob
-    # lCloud_Prob = lTemperature_Prob x Variability_Prob
 
     def land_threshold(self, land_cloud_prob, pcps, water):
         """Dynamic threshold for determining cloud cutoff
