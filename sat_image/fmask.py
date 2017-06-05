@@ -44,6 +44,7 @@ class Fmask(object):
 
         self.image = image
         self.shape = image.b1.shape
+        self.mask = image.mask
         self.sat = image.satellite
 
         if self.sat in ['LE7', 'LT5']:
@@ -53,8 +54,8 @@ class Fmask(object):
             self.red = image.reflectance(3)
             self.nir = image.reflectance(4)
             self.swir1 = image.reflectance(5)
-            self.tirs1 = image.brightness_temp(6, 'C')
-            self.tirmean = np.mean(self.tirs1)
+            self.tirs1 = image.brightness_temp(6, temp_scale='C')
+            self.meantir = np.mean(self.tirs1)
             self.swir2 = image.reflectance(7)
 
         elif self.sat == 'LC8':
@@ -67,7 +68,6 @@ class Fmask(object):
             self.swir2 = image.reflectance(7)
             self.cirrus = image.reflectance(9)
             self.tirs1 = image.brightness_temp(10, 'C')
-            self.tirmean = np.mean(self.tirs1)
             self.tirs2 = image.brightness_temp(11, 'C')
 
         else:
@@ -77,9 +77,6 @@ class Fmask(object):
                                'code_shadow', 'code_snow', 'code_water'],
                               range(6)):
             setattr(self, attr, code)
-
-        self.saturated_5 = self.image.quantize_cal_max_band_5
-        self.saturated_3 = self.image.quantize_cal_max_band_3
 
         self.ndsi = self._divide_zero((self.green - self.swir1), (self.green + self.swir1), np.nan)
         self.ndvi = self._divide_zero((self.nir - self.red), (self.nir + self.red), np.nan)
@@ -108,7 +105,6 @@ class Fmask(object):
         th_ndvi = 0.8  # index
         th_tirs1 = 27.0  # degrees celsius
         th_swir2 = 0.03  # toa
-
         return ((self.swir2 > th_swir2) &
                 (self.tirs1 < th_tirs1) &
                 (self.ndsi < th_ndsi) &
@@ -126,9 +122,9 @@ class Fmask(object):
         """
         mean_vis = (self.blue + self.green + self.red) / 3
 
-        blue_absdiff = self._divide_zero(np.absolute((self.blue - mean_vis), mean_vis), np.nan)
-        green_absdiff = self._divide_zero(np.absolute((self.green - mean_vis), mean_vis), np.nan)
-        red_absdiff = self._divide_zero(np.absolute((self.red - mean_vis), mean_vis), np.nan)
+        blue_absdiff = self._divide_zero(np.absolute(self.blue - mean_vis), mean_vis)
+        green_absdiff = self._divide_zero(np.absolute(self.green - mean_vis), mean_vis)
+        red_absdiff = self._divide_zero(np.absolute(self.red - mean_vis), mean_vis)
 
         return blue_absdiff + green_absdiff + red_absdiff
 
@@ -272,7 +268,9 @@ class Fmask(object):
         # eq8
         clear_water_temp = self.tirs1.copy()
         clear_water_temp[~clear_sky_water] = np.nan
-        return np.nanpercentile(clear_water_temp, 82.5)
+        clear_water_temp[~self.mask] = np.nan
+        pctl_clwt = np.nanpercentile(clear_water_temp, 82.5)
+        return pctl_clwt
 
     def water_temp_prob(self):
         """Temperature probability for water
@@ -336,9 +334,11 @@ class Fmask(object):
         # use clearsky_land to mask tirs1
         clear_land_temp = self.tirs1.copy()
         clear_land_temp[~clearsky_land] = np.nan
+        clear_land_temp[~self.mask] = np.nan
 
         # take 17.5 and 82.5 percentile, eq 13
-        return np.nanpercentile(clear_land_temp, (17.5, 82.5))
+        low, high = np.nanpercentile(clear_land_temp, (17.5, 82.5))
+        return low, high
 
     def land_temp_prob(self, tlow, thigh):
         """Temperature-based probability of cloud over land
@@ -377,8 +377,7 @@ class Fmask(object):
     # Eq 16, land_cloud_prob
     # lCloud_Prob = lTemperature_Prob x Variability_Prob
 
-    @staticmethod
-    def land_threshold(land_cloud_prob, pcps, water):
+    def land_threshold(self, land_cloud_prob, pcps, water):
         """Dynamic threshold for determining cloud cutoff
         Equation 17 (Zhu and Woodcock, 2012)
         Parameters
@@ -400,6 +399,7 @@ class Fmask(object):
         # 82.5th percentile of lCloud_Prob(masked by clearsky_land) + 0.2
         cloud_prob = land_cloud_prob.copy()
         cloud_prob[~clearsky_land] = np.nan
+        cloud_prob[~self.mask] = np.nan
 
         # eq 17
         th_const = 0.2
@@ -581,6 +581,14 @@ class Fmask(object):
 
         return pcloud, pshadow, water
 
+    def save_array(self, array, outfile):
+        georeference = self.image.rasterio_geometry
+        array = array.reshape(1, array.shape[0], array.shape[1])
+        array = np.array(array, dtype=georeference['dtype'])
+        with rasterio.open(outfile, 'w', **georeference) as dst:
+            dst.write(array)
+        return None
+
     @staticmethod
     def gdal_nodata_mask(pcl, pcsl, tirs_arr):
         """
@@ -590,14 +598,6 @@ class Fmask(object):
         """
         tirs_mask = np.isnan(tirs_arr) | (tirs_arr == 0)
         return ((~(pcl | pcsl | tirs_mask)) * 255).astype('uint8')
-
-    def save_array(self, array, outfile):
-        georeference = self.image.rasterio_geometry
-        array = array.reshape(1, array.shape[0], array.shape[1])
-        array = np.array(array, dtype=georeference['dtype'])
-        with rasterio.open(outfile, 'w', **georeference) as dst:
-            dst.write(array)
-        return None
 
     @staticmethod
     def _divide_zero(a, b, replace=0):
@@ -610,6 +610,6 @@ class Fmask(object):
 
     @staticmethod
     def _counts(arr):
-        return np.count_nonzero(arr), np.count_nonzero(~arr)
+        return np.count_nonzero(~arr), np.count_nonzero(arr)
 
 # ========================= EOF ====================================================================

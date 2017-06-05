@@ -65,7 +65,6 @@ class LandsatImage(object):
         for i, tif in enumerate(self.tif_list):
             with rasterio.open(os.path.join(self.obj, tif)) as src:
                 dn_array = src.read(1)
-
             # set all lower case attributes
             tif = tif.lower()
             front_ind = tif.index('b')
@@ -89,6 +88,7 @@ class LandsatImage(object):
                 meta = src.meta.copy()
                 setattr(self, rasterio_str, meta)
                 self.shape = dn_array.shape
+                self.mask = np.where(dn_array > 0, True, False)
 
         self.solar_zenith = 90. - self.sun_elevation
         self.solar_zenith_rad = self.solar_zenith * np.pi / 180
@@ -183,7 +183,7 @@ class Landsat7(LandsatImage):
             raise ValueError('Must init Landsat7 object with Landsat5 data, not {}'.format(self.satellite))
         # https://landsat.usgs.gov/esun
         self.ex_atm_irrad = (1970.0, 1842.0, 1547.0, 1044.0,
-                             255.700, np.nan, np.nan, 82.06, 1369.00)
+                             255.700, np.nan, 82.06, 1369.00)
 
         self.k1, self.k2 = 666.09, 1282.71
 

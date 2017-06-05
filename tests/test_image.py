@@ -78,7 +78,7 @@ class Landsat5TestCase(unittest.TestCase):
 
     def test_brightness(self):
         bright = self.l5.brightness_temp(6)
-        self.assertEqual(bright[self.cell], 263)
+        self.assertAlmostEqual(bright[self.cell], 298.55, delta=0.01)
 
 
 class Landsat7TestCase(unittest.TestCase):
@@ -116,7 +116,7 @@ class Landsat7TestCase(unittest.TestCase):
 
     def test_brightness(self):
         bright = self.l7.brightness_temp(6)
-        self.assertEqual(bright[self.cell], 263)
+        self.assertAlmostEqual(bright[self.cell], 259.98, delta=0.01)
 
 
 class Landsat8TestCase(unittest.TestCase):
