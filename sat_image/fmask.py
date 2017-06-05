@@ -122,9 +122,9 @@ class Fmask(object):
         """
         mean_vis = (self.blue + self.green + self.red) / 3
 
-        blue_absdiff = self._divide_zero(np.absolute(self.blue - mean_vis), mean_vis)
-        green_absdiff = self._divide_zero(np.absolute(self.green - mean_vis), mean_vis)
-        red_absdiff = self._divide_zero(np.absolute(self.red - mean_vis), mean_vis)
+        blue_absdiff = np.absolute(self._divide_zero(self.blue - mean_vis, mean_vis))
+        green_absdiff = np.absolute(self._divide_zero(self.green - mean_vis, mean_vis))
+        red_absdiff = np.absolute(self._divide_zero(self.red - mean_vis, mean_vis))
 
         return blue_absdiff + green_absdiff + red_absdiff
 
@@ -372,7 +372,11 @@ class Fmask(object):
         ndarray :
             probability of cloud over land based on variability
         """
-        return 1.0 - np.fmax(np.absolute(self.ndvi), np.absolute(self.ndsi), whiteness)
+
+        ndi_max = np.fmax(np.absolute(self.ndvi), np.absolute(self.ndsi))
+        f_max = 1.0 - np.fmax(ndi_max, whiteness)
+
+        return f_max
 
     # Eq 16, land_cloud_prob
     # lCloud_Prob = lTemperature_Prob x Variability_Prob
