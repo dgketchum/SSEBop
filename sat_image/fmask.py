@@ -145,7 +145,8 @@ class Fmask(object):
         ndarray: boolean
         """
         whiteness_threshold = 0.7
-        return self.whiteness_index() < whiteness_threshold
+        test = self.whiteness_index() < whiteness_threshold
+        return test
 
     def hot_test(self):
         """Haze Optimized Transformation (HOT) test
@@ -422,6 +423,9 @@ class Fmask(object):
                               water_cloud_prob, water_threshold=0.5):
         """Final step of determining potential cloud layer
         Equation 18 (Zhu and Woodcock, 2012)
+        
+        Saturation (green or red) test is not in the algorithm
+        
         Parameters
         ----------
         pcps: ndarray
@@ -449,8 +453,9 @@ class Fmask(object):
         part1 = (pcp & water & (water_cloud_prob > water_threshold))
         part2 = (pcp & ~water & (land_cloud_prob > land_threshold))
         temptest = self.tirs1 < (tlow - 35)  # 35degrees C colder
+        saturation = self.green_saturated | self.red_saturated
 
-        return part1 | part2 | temptest
+        return part1 | part2 | temptest | saturation
 
     def potential_cloud_shadow_layer(self, water):
         """Find low NIR/SWIR1 that is not classified as water
