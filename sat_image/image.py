@@ -174,6 +174,26 @@ class Landsat5(LandsatImage):
 
         return toa_reflect
 
+    def albedo(self):
+        # Smith (2010), Liang, 2000; LT5 bands 1, 3, 4, 5, 7
+        # normalized i.e. 0.356 + 0.130 + 0.373 + 0.085 + 0.07 = 1.014
+
+        blue, red, nir, swir1, swir2 = self.b1, self.b3, self.b4, self.b5, self.b7
+        alb = (0.356 * blue + 0.130 * red + 0.373 * nir + 0.085 * swir1 + 0.072 * swir2 - 0.0018) / 1.014
+
+        return alb
+
+    def saturation_mask(self, band, value=255):
+        """ Mask saturated pixels, 1 (True) is saturated.
+        :param band: Image band with dn values, type: array
+        :param value: Maximum (saturated) value, i.e. 255 for 8-bit data, type: int
+        :return: boolean array
+        """
+        dn = getattr(self, 'b{}'.format(band))
+        mask = np.where((dn == value) & (self.mask > 0), True, False)
+
+        return mask
+
 
 class Landsat7(LandsatImage):
     def __init__(self, obj):
@@ -231,6 +251,26 @@ class Landsat7(LandsatImage):
         esun = self.ex_atm_irrad[band - 1]
         toa_reflect = (np.pi * rad * self.earth_sun_dist ** 2) / (esun * np.cos(self.solar_zenith_rad))
         return toa_reflect
+
+    def albedo(self):
+        # Smith (2010), Liang, 2000; LE7 bands 1, 3, 4, 5, 7
+        # normalized i.e. 0.356 + 0.130 + 0.373 + 0.085 + 0.07 = 1.014
+
+        blue, red, nir, swir1, swir2 = self.b1, self.b3, self.b4, self.b5, self.b7
+        alb = (0.356 * blue + 0.130 * red + 0.373 * nir + 0.085 * swir1 + 0.072 * swir2 - 0.0018) / 1.014
+
+        return alb
+
+    def saturation_mask(self, band, value=255):
+        """ Mask saturated pixels, 1 (True) is saturated.
+        :param band: Image band with dn values, type: array
+        :param value: Maximum (saturated) value, i.e. 255 for 8-bit data, type: int
+        :return: boolean array
+        """
+        dn = getattr(self, 'b{}'.format(band))
+        mask = np.where((dn == value) & (self.mask > 0), True, False)
+
+        return mask
 
 
 class Landsat8(LandsatImage):
@@ -362,5 +402,14 @@ class Landsat8(LandsatImage):
         rs = ml * dn.astype(np.float32) + al
 
         return rs
+
+    def albedo(self):
+        # Smith (2010), Liang, 2000; LC8 bands 2, 4, 5, 6, 7
+        # normalized i.e. 0.356 + 0.130 + 0.373 + 0.085 + 0.07 = 1.014
+
+        blue, red, nir, swir1, swir2 = self.b2, self.b4, self.b5, self.b6, self.b7
+        alb = (0.356 * blue + 0.130 * red + 0.373 * nir + 0.085 * swir1 + 0.072 * swir2 - 0.0018) / 1.014
+
+        return alb
 
 # =============================================================================================
