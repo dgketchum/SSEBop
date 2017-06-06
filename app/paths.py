@@ -79,7 +79,6 @@ class Paths:
     def is_set(self):
         return self._is_set
 
-print('Instantiating paths object')
 paths = Paths()
 
 # ============= EOF =========================================================

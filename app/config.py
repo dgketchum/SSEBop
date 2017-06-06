@@ -25,38 +25,55 @@ import yaml
 from app.paths import paths
 
 DEFAULT_CFG = '''
-        input_root: /path/to/data
-        output_root: /path/to/output
-        start_date: 12/1/2013
-        end_date: 12/31/2013
-        mask: masks/please_set_me.tif
-        satellite: LT5
-        image_directory: /path/to/landsat_scenes
-        k_factor: 1.25
-        dem_folder: /path/to/dem
-        max_temp_folder: 
-        dt_folder:
-        eto_folder:
-        use_verify_paths: True
-        '''
+input_root: /path/to/inputs
+output_root: /path/to/output
+
+satellite: LT5
+start_date: 12/1/2013
+end_date: 12/31/2013
+
+# Add the path relative from /input_root/
+image_directory: /path/to/landsat_scene
+polygons: /path/to/please_set_me.shp
+mask: /path/to/mask/please_set_me.tif
+dem_folder: /path/to/dem
+tmax_folder: /path/to/tmax
+dt_folder: /path/to/dt
+eto_folder: /path/to/eto
+
+k_factor: 1.25
+verify_paths: True
+'''
 
 DATETIME_FMT = '%m/%d/%Y'
 
 
 class RunSpec:
     _obj = None
-    dem_name = None
-    mask = None
-    polygons = None
     input_root = None
     output_root = None
-    output_path = None
-    use_verify_paths = None
+    start_da = None
+    end_date = None
+    mask = None
+    polygons = None
+    satellite = None
+    image_directory = None
+    k_factor = None
+    dem_folder = None
+    tmax_folder = None
+    dt_folder = None
+    eto_folder = None
+    verify_paths = None
 
     def __init__(self, obj):
         self._obj = obj
-        attrs = ('mask', 'polygons', 'input_root', 'output_root',
-                 'output_path', 'use_verify_paths', 'dem_name')
+        attrs = ('input_root', 'output_root',
+                 'start_da', 'end_date',
+                 'mask', 'polygons',
+                 'satellite', 'image_directory',
+                 'k_factor', 'dem_folder',
+                 'tmax_folder', 'dt_folder',
+                 'eto_folder', 'verify_paths',)
 
         for attr in attrs:
             setattr(self, attr, self._obj.get(attr))
@@ -107,7 +124,7 @@ def check_config(path=None):
         path = paths.config
 
     if not os.path.isfile(path):
-        print('***** The config file {} does not exist. A default one will be written'.format(path))
+        print('\n***** The config file {} does not exist. A default one will be written'.format(path))
 
         with open(path, 'w') as wfile:
             print('-------------- DEFAULT CONFIG -----------------')
@@ -115,7 +132,7 @@ def check_config(path=None):
             print('-----------------------------------------------')
             wfile.write(DEFAULT_CFG)
 
-        print('***** Please edit the config file at {} and rerun the model'.format(path))
+        print('***** Please edit the config file at {} and run the model *****\n'.format(path))
         sys.exit()
 
 # ============= EOF =============================================

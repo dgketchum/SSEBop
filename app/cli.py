@@ -38,22 +38,35 @@ def cli():
     pass
 
 
-@click.command('configure', help='Create a template configuration file')
-@click.argument('--out, -o', default=None, type=click.Path(exists=False, writable=True, readable=False),
-                help='Output path and filename for template configuration, if this argument is omitted, \n'
-                     'generic file name will bu used and output saved to root directory.')
-def configure(ssebop_config):
-    if ssebop_config:
-        click.echo('Creating a config file and sending to {}'.format(os.path.expanduser('~')))
+@click.command('mkconfig', help='Create a template configuration file')
+@click.option('--path', '-p', 'path', default=None, type=click.Path(exists=False, writable=True))
+def configure(path):
+    """ Create a template configuration file.
+    
+    :param name: Name of ssebop_config file, :type str
+    :param path: Output path and filename for template configuration, if this argument is omitted,
+     generic file name will bu used and output saved to root directory. :type str
+    :return: None 
+    """
+
+    if path:
+        click.echo('Creating a config file "{}" '.format(path))
+        check_config(path=path)
+
+    else:
+        click.echo('Creating a config file "ssebop_config.yml" and sending to home directory')
         check_config(path=None)
 
 
 @click.command('run', help='Run the SSEBop model')
-@click.argument('config', '--configuration-path', default=None, type=click.Path(exists=True),
-                help='Path to a configuration file, if the file does not exist \n'
-                     'a blank template will be created at your root directory.')
+@click.argument('config_path', default=None, type=click.Path(exists=True))
 def run(config_path):
-    check_config(config_path)
+    """ Run the SSEBop model.
+    
+    :param config_path: Path to a configuration file, if the file does not exist
+                     a blank template will be created at your root directory. :type str
+    :return: None
+    """
 
     click.echo('Configuration file: {}'.format(config_path))
     click.echo('Running Model')
@@ -75,7 +88,8 @@ cli.add_command(run)
 
 def welcome():
     print(
-        '''====================================================================================
+        '''
+        =======================================================================================
         
             Welcome to SSEBop 
             
