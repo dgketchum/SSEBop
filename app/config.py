@@ -32,11 +32,12 @@ DEFAULT_CFG = '''
         mask: masks/please_set_me.tif
         satellite: LT5
         image_directory: /path/to/landsat_scenes
-        esun_table: /path/to/earth_sun_distance_table
         k_factor: 1.25
         dem_folder: /path/to/dem
+        max_temp_folder: 
+        dt_folder:
+        eto_folder:
         use_verify_paths: True
-        
         '''
 
 DATETIME_FMT = '%m/%d/%Y'
