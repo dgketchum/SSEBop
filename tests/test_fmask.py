@@ -76,10 +76,11 @@ class FmaskTestCaseL8(unittest.TestCase):
         cloud, shadow, water = f.cloud_mask()
         combo = f.cloud_mask(combined=True)
         c_ct, s_ct = count_nonzero(cloud), count_nonzero(shadow)
-        w_ct = count_nonzero(water)
+        w_ct, combo_ct = count_nonzero(water), count_nonzero(combo)
         self.assertEqual(c_ct, 21086)
         self.assertEqual(s_ct, 9395)
         self.assertEqual(w_ct, 14431)
+        self.assertEqual(combo_ct, 145184)
 
 
 if __name__ == '__main__':
