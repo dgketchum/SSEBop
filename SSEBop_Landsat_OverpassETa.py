@@ -32,7 +32,7 @@ from subprocess import Popen, PIPE
 import numpy as np
 import numpy.ma as ma
 
-# Check out necessary licenses, Set Environment settings
+# Check out necessary licenses, Set Environment settings.
 arcpy.CheckOutExtension("spatial")
 arcpy.gp.overwriteOutput = True
 arcpy.env.extent = "MINOF"

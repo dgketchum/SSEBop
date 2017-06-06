@@ -57,7 +57,7 @@ class SSEBopModel(object):
         self._is_configured = True
 
     def run(self):
-        pass
+        print('You had better start working on this.')
 
     @staticmethod
     def _info(msg):

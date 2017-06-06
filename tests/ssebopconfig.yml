@@ -1,0 +1,20 @@
+
+input_root: /data01/images/ssebop_data/
+output_root: /data01/images/ssebop_data/results/
+
+satellite: LT5
+start_date: 4/1/2006
+end_date: 11/1/2016
+k_factor: 1.25
+verify_paths: True
+
+# Add the path relative to /input_root/
+# They will be joined to input_root.
+# mask and polygon are optional, put None if None
+image_directory: /images
+polygons: None
+mask: None
+dem_folder: /DEM
+tmax_folder: /Tmax
+dt_folder: /DT
+eto_folder: /ETo
