@@ -18,11 +18,13 @@ from __future__ import print_function
 
 from app.paths import paths, PathsNotSetExecption
 
-K_FACTOR = 1.25
-
 
 class SSEBopModel(object):
     _date_range = None
+    _k_factor = None
+    _satellite = None
+
+    _is_configured = False
 
     def __init__(self, cfg):
 
@@ -34,7 +36,7 @@ class SSEBopModel(object):
         paths.set_polygons_path(cfg.polygons)
         paths.set_mask_path(cfg.mask)
 
-        if cfg.use_verify_paths:
+        if cfg.verify_paths:
             paths.verify()
 
         self._info('Constructing/Initializing SSEBop...')
@@ -45,10 +47,14 @@ class SSEBopModel(object):
         self._info('Configuring SSEBop run')
 
         self._date_range = runspec.date_range
+        self._k_factor = runspec.k_factor
+        self._satellite = runspec.satellite
 
         print('----------- CONFIGURATION --------------')
-        for attr in 'date_range':
-            print('{:<20x}{}'.format(attr, getattr(self, '_{}'.format(attr))))
+        for attr in ('date_range', 'satellite', 'k_factor'):
+            print('{:<20s}{}'.format(attr, getattr(self, '_{}'.format(attr))))
+        print('----------- ------------- --------------')
+        self._is_configured = True
 
     def run(self):
         pass
