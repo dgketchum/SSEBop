@@ -45,7 +45,7 @@ class Paths:
         self.ssebop_output_root = output_root
 
         now = datetime.now()
-        tag = now.strftime('%y%m%d_%H_%M')
+        tag = now.strftime('%Y%m%d_%H_%M')
 
         self.results_root = os.path.join(self.ssebop_output_root, tag)
 
