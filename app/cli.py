@@ -38,15 +38,20 @@ def cli():
     pass
 
 
-@cli.command()
+@click.command('configure', help='Create a template configuration file')
+@click.argument('--out, -o', default=None, type=click.Path(exists=False, writable=True, readable=False),
+                help='Output path and filename for template configuration, if this argument is omitted, \n'
+                     'generic file name will bu used and output saved to root directory.')
 def configure(ssebop_config):
     if ssebop_config:
         click.echo('Creating a config file and sending to {}'.format(os.path.expanduser('~')))
         check_config(path=None)
 
 
-@cli.command()
-@cli.argument('config_path')
+@click.command('run', help='Run the SSEBop model')
+@click.argument('config', '--configuration-path', default=None, type=click.Path(exists=True),
+                help='Path to a configuration file, if the file does not exist \n'
+                     'a blank template will be created at your root directory.')
 def run(config_path):
     check_config(config_path)
 
@@ -69,21 +74,21 @@ cli.add_command(run)
 
 
 def welcome():
-    print('''====================================================================================
-
-    Welcome to SSEBop 
-    
-====================================================================================
-Developed by David Ketchum, 2017
-Original Research by Gabriel Senay, 2007, 2013, 2016
-
-Montana Department of Natural Resources and Conservation
-
-Available commands are enumerated using "commands"
-
-For more information regarding a specific command use "help <command>". Replace <command>
-with the command of interest.
-''')
-
+    print(
+        '''====================================================================================
+        
+            Welcome to SSEBop 
+            
+        =======================================================================================
+        Developed by David Ketchum, 2017
+        Original Research by Gabriel Senay, 2007, 2013, 2016
+        
+        Montana Department of Natural Resources and Conservation
+        
+        Available commands are enumerated using "ssebop"
+        
+        For more information regarding a specific command use "help <command>". Replace <command>
+        with the command of interest.
+        ''')
 
 # ============= EOF =============================================

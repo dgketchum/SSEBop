@@ -28,7 +28,7 @@ setup(name='ssebop',
       description='The Operational Simplified Surface Energy Balance',
       setup_requires=[''],
       install_requires=['Click', 'numpy==1.12.1'],
-      py_modules=[''],
+      py_modules=[],
       license='Apache',
       entry_points='''
         [console_scripts]
