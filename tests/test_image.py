@@ -80,6 +80,21 @@ class Landsat5TestCase(unittest.TestCase):
         bright = self.l5.brightness_temp(6)
         self.assertAlmostEqual(bright[self.cell], 298.55, delta=0.01)
 
+    def test_albedo(self):
+        albedo = self.l5.albedo()[self.cell]
+        # inputs for self.cell toa reflect b 1, 3, 4, 5, 7
+        l = [0.11047232299890863, 0.094736151248181175, 0.22708428311416637, 0.23499215186750311, 0.13805073521100206]
+        exp_alb = (0.356 * l[0] + 0.130 * l[1] + 0.373 * l[2] + 0.085 * l[3] + 0.072 * l[4] - 0.0018) / 1.014
+        self.assertEqual(exp_alb, albedo)
+
+    def test_saturation_mask(self):
+        green_mask = self.l5.saturation_mask(2)
+        red_mask = self.l5.saturation_mask(3)
+        green_sat_cell = 175, 381
+        red_sat_cell = 96, 305
+        self.assertTrue(green_mask[green_sat_cell])
+        self.assertTrue(red_mask[red_sat_cell])
+
 
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
@@ -117,6 +132,21 @@ class Landsat7TestCase(unittest.TestCase):
     def test_brightness(self):
         bright = self.l7.brightness_temp(6)
         self.assertAlmostEqual(bright[self.cell], 259.98, delta=0.01)
+
+    def test_albedo(self):
+        albedo = self.l7.albedo()[self.cell]
+        # inputs for self.cell toa reflect b 1, 3, 4, 5, 7
+        l = [0.30141704688299908, 0.26113788900694823, 0.37401738034983784, 0.15728264090788563, 0.11929144012910768]
+        exp_alb = (0.356 * l[0] + 0.130 * l[1] + 0.373 * l[2] + 0.085 * l[3] + 0.072 * l[4] - 0.0018) / 1.014
+        self.assertEqual(exp_alb, albedo)
+
+    def test_saturation_mask(self):
+        green_mask = self.l7.saturation_mask(2)
+        red_mask = self.l7.saturation_mask(3)
+        green_sat_cell = 65, 398
+        red_sat_cell = 4, 52
+        self.assertTrue(green_mask[green_sat_cell])
+        self.assertTrue(red_mask[red_sat_cell])
 
 
 class Landsat8TestCase(unittest.TestCase):
@@ -168,6 +198,13 @@ class Landsat8TestCase(unittest.TestCase):
                                reflectance[self.cell],
                                delta=0.001)
 
+    def test_albedo(self):
+        l8 = Landsat8(self.dirname_cloud)
+        albedo = l8.albedo()[self.cell]
+        # inputs for self.cell toa reflect b 2, 4, 5, 6, 7
+        l = [0.021763351, 0.065929502, 0.33231941, 0.2018306, 0.10294776]
+        exp_alb = (0.356 * l[0] + 0.130 * l[1] + 0.373 * l[2] + 0.085 * l[3] + 0.072 * l[4] - 0.0018) / 1.014
+        self.assertAlmostEqual(exp_alb, albedo, delta=0.001)
 
 if __name__ == '__main__':
     unittest.main()
