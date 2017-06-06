@@ -30,10 +30,7 @@ class PathsNotSetExecption(BaseException):
 class Paths:
     ssebop_input_root = None
     ssebop_output_root = None
-    albedo_root = None
     dem_root = None
-    esun_root = None
-    results_root = None
 
     def __init__(self):
         self._is_set = False
@@ -41,12 +38,11 @@ class Paths:
 
     def build(self, input_root, output_root=None):
         self._is_set = True
-        self.ssebop_input_root = ssebop_input_root = os.path.join(input_root,
-                                                                  'ssebop_inputs')
+        self.ssebop_input_root = input_root
         if output_root is None:
             output_root = input_root
 
-        self.ssebop_output_root = os.path.join(output_root, 'ssebop_results')
+        self.ssebop_output_root = output_root
 
         now = datetime.now()
         tag = now.strftime('%y%m%d_%H_%M')
@@ -78,6 +74,7 @@ class Paths:
 
     def is_set(self):
         return self._is_set
+
 
 paths = Paths()
 

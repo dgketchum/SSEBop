@@ -31,8 +31,11 @@ output_root: /path/to/output
 satellite: LT5
 start_date: 12/1/2013
 end_date: 12/31/2013
+k_factor: 1.25
+verify_paths: True
 
-# Add the path relative from /input_root/
+# Add the path relative to /input_root/
+# They will be joined to input_root.
 image_directory: /path/to/landsat_scene
 polygons: /path/to/please_set_me.shp
 mask: /path/to/mask/please_set_me.tif
@@ -40,9 +43,6 @@ dem_folder: /path/to/dem
 tmax_folder: /path/to/tmax
 dt_folder: /path/to/dt
 eto_folder: /path/to/eto
-
-k_factor: 1.25
-verify_paths: True
 '''
 
 DATETIME_FMT = '%m/%d/%Y'
@@ -52,7 +52,7 @@ class RunSpec:
     _obj = None
     input_root = None
     output_root = None
-    start_da = None
+    start_date = None
     end_date = None
     mask = None
     polygons = None
@@ -68,7 +68,7 @@ class RunSpec:
     def __init__(self, obj):
         self._obj = obj
         attrs = ('input_root', 'output_root',
-                 'start_da', 'end_date',
+                 'start_date', 'end_date',
                  'mask', 'polygons',
                  'satellite', 'image_directory',
                  'k_factor', 'dem_folder',

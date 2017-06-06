@@ -89,20 +89,21 @@ cli.add_command(run)
 def welcome():
     print(
         '''
-        =======================================================================================
-        
-            Welcome to SSEBop 
-            
-        =======================================================================================
-        Developed by David Ketchum, 2017
-        Original Research by Gabriel Senay, 2007, 2013, 2016
-        
-        Montana Department of Natural Resources and Conservation
-        
-        Available commands are enumerated using "ssebop"
-        
-        For more information regarding a specific command use "help <command>". Replace <command>
-        with the command of interest.
+========================================================================
+
+    Welcome to SSEBop 
+    
+========================================================================
+Developed by David Ketchum, 2017
+Original Research by Gabriel Senay (USGS), 2007, 2013, 2016
+
+Montana Department of Natural Resources and Conservation
+
+Available commands are enumerated using "ssebop"
+
+For more information regarding a specific command use 
+"help <command>". Replace <command>
+with the command of interest.
         ''')
 
 # ============= EOF =============================================
