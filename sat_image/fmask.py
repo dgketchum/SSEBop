@@ -453,9 +453,14 @@ class Fmask(object):
         part1 = (pcp & water & (water_cloud_prob > water_threshold))
         part2 = (pcp & ~water & (land_cloud_prob > land_threshold))
         temptest = self.tirs1 < (tlow - 35)  # 35degrees C colder
-        saturation = self.green_saturated | self.red_saturated
 
-        return part1 | part2 | temptest | saturation
+        if self.sat in ['LT5', 'LE7']:
+            saturation = self.green_saturated | self.red_saturated
+
+            return part1 | part2 | temptest | saturation
+
+        else:
+            return part1 | part2 | temptest
 
     def potential_cloud_shadow_layer(self, water):
         """Find low NIR/SWIR1 that is not classified as water
