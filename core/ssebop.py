@@ -16,8 +16,6 @@
 
 from __future__ import print_function
 
-from sat_image.fmask import Fmask
-
 from app.paths import paths, PathsNotSetExecption
 
 K_FACTOR = 1.25

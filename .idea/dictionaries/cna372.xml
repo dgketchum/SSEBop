@@ -5,6 +5,7 @@
       <w>georeference</w>
       <w>ndarrays</w>
       <w>rasterio</w>
+      <w>ssebop</w>
       <w>uint</w>
     </words>
   </dictionary>

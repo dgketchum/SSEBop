@@ -21,64 +21,51 @@ import sys
 import click
 import logging
 
-from rasterio.rio.options import creation_options
+# checkout rasterio.rio.options creation_options for mixins todo
 
 from app.paths import paths
 from app.config import Config, check_config
-from ssebop.ssebop import SSEBopModel
+from core.ssebop import SSEBopModel
 
 pp = os.path.realpath(__file__)
 sys.path.append(os.path.dirname(os.path.dirname(pp)))
 
-logger = logging.getLogger('ssebop')
+logger = logging.getLogger('core')
 
 
-@click.group('ssebop')
-def ssebop():
-    """ Evapotranspiration model for satellite data.
-    """
+@click.group()
+def cli():
     pass
 
 
-@click.command('ssebop')
-@click.argument('config_path', type=click.Path(exits=False),
-                help='Use a configuration file to easily re-run model, type'
-                     '"ssebop config" to create a template configuration file')
-@click.argument('src_path', type=click.Path(exits=False),
-                help='Path containing zipped or unzipped source images')
-@click.argument('dst_path', type=click.Path(exists=False),
-                help='Path to save results')
-@click.argument('dem_path', type=click.Path(exists=False),
-                help='Path to DEM file')
-@click.argument('albedo_path', type=click.Path(exists=False),
-                help='Path to albedo folder')
-@click.argument('tmax_path', type=click.Path(exists=False),
-                help='Path to max temperature folder')
-@click.argument('dt_path', type=click.Path(exists=False),
-                help='Path to dT folder', default=None)
-@click.argument('eto_path', type=click.Path(exists=False),
-                help='Path to reference ET folder', default=None)
-@click.option('--verbose', 'v', is_flag=True, default=False)
-@click.pass_context
-@creation_options
-def run_model(ctx, cfg_path=None):
-    print('Running Model')
-    cfg = Config()
+@cli.command()
+def configure(ssebop_config):
+    if ssebop_config:
+        click.echo('Creating a config file and sending to {}'.format(os.path.expanduser('~')))
+        check_config(path=None)
+
+
+@cli.command()
+@cli.argument('config_path')
+def run(config_path):
+    check_config(config_path)
+
+    click.echo('Configuration file: {}'.format(config_path))
+    click.echo('Running Model')
+
+    cfg = Config(config_path)
     for runspec in cfg.runspecs:
         paths.build(runspec.input_root, runspec.output_root)
+
+        welcome()
 
         sseb = SSEBopModel(runspec)
         sseb.configure_run(runspec)
         sseb.run()
 
 
-def run_help():
-    print('help')
-
-
-def run_commands():
-    keys = ('model', 'rew', 'help')
-    print('Available Commands: {}'.format(','.join(keys)))
+cli.add_command(configure)
+cli.add_command(run)
 
 
 def welcome():
@@ -99,15 +86,4 @@ with the command of interest.
 ''')
 
 
-def run(cfg_path=None):
-    # check for a configuration file
-    check_config(cfg_path)
-
-    welcome()
-
-    run_model()
-
-
-if __name__ == '__main__':
-    run()
 # ============= EOF =============================================

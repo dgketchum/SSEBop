@@ -20,7 +20,6 @@
 # ------------------------------------------------------------------------------
 #
 from __future__ import print_function
-
 try:
     import StringIO
 except ImportError:
