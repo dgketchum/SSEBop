@@ -58,6 +58,7 @@ class Fmask(object):
             self.meantir = np.mean(self.tirs1)
             self.swir2 = image.reflectance(7)
 
+            self.blue_saturated = image.saturation_mask(1)
             self.green_saturated = image.saturation_mask(2)
             self.red_saturated = image.saturation_mask(3)
 
@@ -73,6 +74,7 @@ class Fmask(object):
             self.tirs1 = image.brightness_temp(10, 'C')
             self.tirs2 = image.brightness_temp(11, 'C')
 
+
         else:
             raise ValueError('Must provide satellite image from LT5, LE7, LC8')
 
@@ -81,8 +83,8 @@ class Fmask(object):
                               range(6)):
             setattr(self, attr, code)
 
-        self.ndsi = self._divide_zero((self.green - self.swir1), (self.green + self.swir1), np.nan)
-        self.ndvi = self._divide_zero((self.nir - self.red), (self.nir + self.red), np.nan)
+        self.ndvi = image.ndvi()
+        self.ndsi = image.ndsi()
 
     def basic_test(self):
         """Fundamental test to identify Potential Cloud Pixels (PCPs)
@@ -455,7 +457,7 @@ class Fmask(object):
         temptest = self.tirs1 < (tlow - 35)  # 35degrees C colder
 
         if self.sat in ['LT5', 'LE7']:
-            saturation = self.green_saturated | self.red_saturated
+            saturation = self.blue_saturated | self.green_saturated | self.red_saturated
 
             return part1 | part2 | temptest | saturation
 

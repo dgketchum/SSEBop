@@ -57,6 +57,9 @@ class SSEBopModel(object):
         self._is_configured = True
 
     def run(self):
+        """ Run the SSEBop algorithm.
+        :return: 
+        """
         print('You had better start working on this.')
 
     @staticmethod

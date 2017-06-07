@@ -108,6 +108,15 @@ class LandsatImage(object):
         distance_au = 1 - 0.01672 * np.cos(rad_term)
         return distance_au
 
+    @staticmethod
+    def _divide_zero(a, b, replace=0):
+        with np.errstate(divide='ignore', invalid='ignore'):
+            c = np.true_divide(a, b)
+            c[c == np.inf] = replace
+            c = np.nan_to_num(c)
+            return c
+        return potential_cloud
+
     def save(self, array, output_filename):
         geometry = self.rasterio_geometry
         array = array.reshape(1, array.shape[0], array.shape[1])
@@ -200,6 +209,24 @@ class Landsat5(LandsatImage):
 
         return mask
 
+    def ndvi(self):
+        """ Normalized difference vegetation index.
+        :return: NDVI
+        """
+        red, nir = self.reflectance(3), self.reflectance(4)
+        ndvi = self._divide_zero((nir - red), (nir + red), np.nan)
+
+        return ndvi
+
+    def ndsi(self):
+        """ Normalized difference snow index.
+        :return: NDSI
+        """
+        green, swir1 = self.reflectance(2), self.reflectance(5)
+        ndsi = self._divide_zero((green - swir1), (green + swir1), np.nan)
+
+        return ndsi
+
 
 class Landsat7(LandsatImage):
     def __init__(self, obj):
@@ -285,6 +312,24 @@ class Landsat7(LandsatImage):
         mask = np.where((dn == value) & (self.mask > 0), True, False)
 
         return mask
+
+    def ndvi(self):
+        """ Normalized difference vegetation index.
+        :return: NDVI
+        """
+        red, nir = self.reflectance(3), self.reflectance(4)
+        ndvi = self._divide_zero((nir - red), (nir + red), np.nan)
+
+        return ndvi
+
+    def ndsi(self):
+        """ Normalized difference snow index.
+        :return NDSI
+        """
+        green, swir1 = self.reflectance(2), self.reflectance(5)
+        ndsi = self._divide_zero((green - swir1), (green + swir1), np.nan)
+
+        return ndsi
 
 
 class Landsat8(LandsatImage):
@@ -433,4 +478,22 @@ class Landsat8(LandsatImage):
 
         return alb
 
-# =============================================================================================
+    def ndvi(self):
+        """ Normalized difference vegetation index.
+        :return: NDVI
+        """
+        red, nir = self.reflectance(4), self.reflectance(5)
+        ndvi = self._divide_zero((nir - red), (nir + red), np.nan)
+
+        return ndvi
+
+    def ndsi(self):
+        """ Normalized difference snow index.
+        :return: NDSI
+        """
+        green, swir1 = self.reflectance(3), self.reflectance(6)
+        ndsi = self._divide_zero((green - swir1), (green + swir1), np.nan)
+
+        return ndsi
+
+# ========================================================================= ====================
