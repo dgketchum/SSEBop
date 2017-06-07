@@ -5,7 +5,6 @@
 
 import os
 import requests
-import certifi
 
 
 class NOAAData(object):
@@ -15,10 +14,11 @@ class NOAAData(object):
         self.h = dict(token=token)
 
     def poll_api(self, req_type, payload):
+
         # Initiate http request - kwargs are constructed into a dict and passed as optional parameters
         # Ex (limit=100, sortorder='desc', startdate='1970-10-03', etc)
         r = requests.get('{}{}'.format(self.url, req_type), headers=self.h,
-                         params=payload)
+                         params=payload, verify=False)
 
         if r.status_code != 200:  # Handle erroneous requests
             print("Error: " + str(r.status_code))
