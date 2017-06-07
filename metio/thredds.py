@@ -13,41 +13,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # =============================================================================================
-
-import os
-
 from __future__ import print_function
+
 import os
 import numpy as np
 from netCDF4 import Dataset, num2date
-from datetime import datetime, timedelta
 from xlrd import xldate
 
-# Montana bounds (lat, lon)
-lat_bound = [44, 49]
-lon_bound = [-117, -104]
 
-
-def get_bounds_rectangle(lats, lons):
-    site = 'https://cida.usgs.gov/thredds/ncss/topowx?var=tmax&var=tmin&disableLLSubset=on&disableProjSubset=on&horizStride=1&time_start=1948-01-01T12%3A00%3A00Z&time_end=2015-12-31T12%3A00%3A00Z&timeStride=1&addLatLon=true'
-    nc = Dataset(site)
-    print(nc)
-
-
-def get_gridmet(day, variable):
-    """ get day values from U of I gridmet, return as numpy array per variable
-    :param variable:
+class GridMet(object):
+    """ U of I gridmet, return as numpy array per variable.
+    
+    :param variable: 
     :param day:
     :return:
 
     note: dates are in xl '1900' format, i.e., number of days since 1899-12-31 23:59
     """
 
-    variables = ['pr', 'rmax', 'rmin', 'sph', 'srad', 'th', 'tmmn', 'tmmx', 'pet', 'vs']
-    if variable not in variables:
-        raise Exception("invalid saveflag!, must be 'ALL', 'LIMITED', or 'ET-ONLY'")
-    else:
-        print('{} for year {}'.format(variable, day.year))
+    def __init__(self, **kwargs):
+
+        self.variables = None
+        self.available = ['pr', 'rmax', 'rmin', 'sph', 'srad', 'th', 'tmmn', 'tmmx', 'pet', 'vs']
+
+        for key, val in kwargs.items():
+            setattr(self, key, val)
+
+        if self.variables:
+            [setattr(self, var, True) for var in self.variables]
+
+    print('{} for year {}'.format(variable, day.year))
     url = 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET'
     var =
     site = '/{0}/{0}_{1}.nc'.format(variable, day.year)
@@ -80,7 +75,5 @@ if __name__ == '__main__':
     # day = datetime(2016, 4, 1, 12)
     get_bounds_rectangle(lat_bound, lon_bound)
 
-if __name__ == '__main__':
-    home = os.path.expanduser('~')
 
 # ========================= EOF ====================================================================
