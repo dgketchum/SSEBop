@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteo/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteo/noaa_api.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteo/get_gridded.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meteo/noaa_api.py" afterPath="$PROJECT_DIR$/meteo/noaa_api.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,13 +17,26 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="noaa_api.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="noaa_api.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/meteo/noaa_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+            <state relative-caret-position="174">
+              <caret line="13" column="62" lean-forward="true" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
               <folding>
                 <element signature="e#128#137#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_gridded.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/meteo/get_gridded.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#762#771#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,6 +156,7 @@
         <option value="$PROJECT_DIR$/sat_image/fmask.py" />
         <option value="$PROJECT_DIR$/tests/test_fmask.py" />
         <option value="$PROJECT_DIR$/sat_image/image.py" />
+        <option value="$PROJECT_DIR$/meteo/get_gridded.py" />
         <option value="$PROJECT_DIR$/meteo/noaa_api.py" />
       </list>
     </option>
@@ -254,22 +269,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer">
-    <configuration default="false" name="Unittests for tests.test_image.Landsat7TestCase.test_ndsi_ndsi" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_image.Landsat7TestCase.test_ndsi_ndsi&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.get_gridded">
     <configuration default="false" name="Unittests in test_image.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -328,6 +328,24 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="get_gridded" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/meteo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/meteo/get_gridded.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -406,19 +424,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase.test_ndsi_ndsi" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
+      <item index="4" class="java.lang.String" itemvalue="Python.get_gridded" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_image.Landsat7TestCase.test_ndsi_ndsi" />
+        <item index="0" class="java.lang.String" itemvalue="Python.get_gridded" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_image.py" />
       </list>
     </recent_temporary>
   </component>
@@ -432,13 +450,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00010" summary="initial commit .gitignore">
-      <created>1494959801736</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1494959801736</updated>
     </task>
     <task id="LOCAL-00011" summary="updated image tests for rasterio geometry attributes">
       <created>1494963104131</created>
@@ -776,7 +787,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496850567749</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="adding meteo package">
+      <created>1496857240612</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1496857240612</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -824,16 +842,16 @@
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16297935" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16297935" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2994475" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5339233" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3071823" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45501474" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52138644" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42772862" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -873,7 +891,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="reconcile ex_atm_irrad with fmask.exe" />
     <MESSAGE value="enforce thermal band exatmirrad with np.nan" />
     <MESSAGE value="todo: fix final landsat 8 image tests" />
     <MESSAGE value="move on to test fmask functions" />
@@ -898,7 +915,8 @@
     <MESSAGE value="failing on paths.py self.results_root is RunSpec object not str" />
     <MESSAGE value="added test_instantiate_ssebop" />
     <MESSAGE value="moved ndvi and ndsi methods to image.LandsatImage" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved ndvi and ndsi methods to image.LandsatImage" />
+    <MESSAGE value="adding meteo package" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding meteo package" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -909,6 +927,11 @@
           <line>159</line>
           <option name="timeStamp" value="276" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/meteo/get_gridded.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="316" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -917,20 +940,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="308" />
+      <option name="time" value="317" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rio_toa/radiance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="35" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/data/d_36_29_l5/LT50360292007146PAC01_VER.txt" />
-    <entry file="file://$PROJECT_DIR$/tests/data/d_36_29_l5/LT50360292007146PAC01_MTL.txt" />
     <entry file="file://$PROJECT_DIR$/tests/data/le7_image/LE07_L1TP_039028_20100702_20160915_01_T1_MTL.txt" />
     <entry file="file://$PROJECT_DIR$/tests/data/d_38_27_l7/LE70380272007136EDC00_MTL.txt" />
     <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/fmask/config.py">
@@ -1331,12 +1345,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/requests/packages/urllib3/connectionpool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="851" column="0" lean-forward="false" selection-start-line="851" selection-start-column="0" selection-end-line="851" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/requests/adapters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7837">
+          <caret line="487" column="0" lean-forward="true" selection-start-line="487" selection-start-column="0" selection-end-line="487" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/meteo/noaa_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+        <state relative-caret-position="174">
+          <caret line="13" column="62" lean-forward="true" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
           <folding>
             <element signature="e#128#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meteo/get_gridded.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#771#0" expanded="true" />
           </folding>
         </state>
       </provider>
