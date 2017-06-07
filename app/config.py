@@ -132,7 +132,9 @@ def check_config(path=None):
             print('-----------------------------------------------')
             wfile.write(DEFAULT_CFG)
 
-        print('***** Please edit the config file at {} and run the model *****\n'.format(path))
+        print('***** Please edit the config file at {} and run the model *****\n'.format(
+            os.path.join(os.getcwd(), path)))
+
         sys.exit()
 
 # ============= EOF =============================================

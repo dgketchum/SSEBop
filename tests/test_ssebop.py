@@ -19,10 +19,12 @@ import unittest
 from app.config import Config
 from app.paths import paths
 
+from core.ssebop import SSEBopModel
+
 
 class SSEBopModelTestCase(unittest.TestCase):
     def setUp(self):
-        self.config_path = 'ssebopconfig.yml'
+        self.config_path = 'tests/ssebop_config_test.yml'
         self.cfg = Config(self.config_path)
 
     def test_config(self):
@@ -30,9 +32,18 @@ class SSEBopModelTestCase(unittest.TestCase):
 
     def test_runspecs(self):
         for runspec in self.cfg.runspecs:
-            paths.build(runspec)
+            paths.build(runspec.input_root, runspec.output_root)
             self.assertEqual(runspec.k_factor, 1.25)
 
+    def test_instantiate_ssebop(self):
+        for runspec in self.cfg.runspecs:
+            paths.build(runspec.input_root, runspec.output_root)
+            sseb = SSEBopModel(runspec)
+            self.assertIsInstance(sseb, SSEBopModel)
+            sseb.configure_run(runspec)
+            self.assertTrue(sseb._is_configured, True)
+            self.assertEqual(sseb._satellite, 'LT5')
+            self.assertEqual(runspec.date_range, sseb._date_range)
 
 if __name__ == '__main__':
     unittest.main()
