@@ -4,6 +4,8 @@
       <w>fmask</w>
       <w>georeference</w>
       <w>ndarrays</w>
+      <w>ndsi</w>
+      <w>ndvi</w>
       <w>rasterio</w>
       <w>ssebop</w>
       <w>uint</w>

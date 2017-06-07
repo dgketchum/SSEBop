@@ -95,6 +95,18 @@ class Landsat5TestCase(unittest.TestCase):
         self.assertTrue(green_mask[green_sat_cell])
         self.assertTrue(red_mask[red_sat_cell])
 
+    def test_ndsi(self):
+        ndvi = self.l5.ndvi()[self.cell]
+        b4, b3 = self.l5.reflectance(4)[self.cell], self.l5.reflectance(3)[self.cell]
+        ndvi_exp = (b4 - b3) / (b4 + b3)
+        self.assertEqual(ndvi, ndvi_exp)
+
+    def test_ndsi(self):
+        ndsi = self.l5.ndsi()[self.cell]
+        b2, b5 = self.l5.reflectance(2)[self.cell], self.l5.reflectance(5)[self.cell]
+        ndsi_exp = (b2 - b5) / (b2 + b5)
+        self.assertEqual(ndsi, ndsi_exp)
+
 
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
@@ -110,7 +122,7 @@ class Landsat7TestCase(unittest.TestCase):
                          'LE07_L1TP_039028_20100702_20160915_01_T1_B1.TIF')
         self.assertEqual(self.l7.utm_zone, 12)
         self.assertEqual(self.l7.ex_atm_irrad, (1970.0, 1842.0, 1547.0, 1044.0,
-                                                255.700, np.nan, np.nan, 82.06, 1369.00))
+                                                255.700, np.nan, 82.06, 1369.00))
         self.assertEqual(self.l7.rasterio_geometry['height'], 727)
         self.assertEqual(self.l7.rasterio_geometry['driver'], 'GTiff')
         self.assertEqual(self.l7.rasterio_geometry['dtype'], 'uint8')
@@ -147,6 +159,18 @@ class Landsat7TestCase(unittest.TestCase):
         red_sat_cell = 4, 52
         self.assertTrue(green_mask[green_sat_cell])
         self.assertTrue(red_mask[red_sat_cell])
+
+    def test_ndvi(self):
+        ndvi = self.l7.ndvi()[self.cell]
+        b4, b3 = self.l7.reflectance(4)[self.cell], self.l7.reflectance(3)[self.cell]
+        ndvi_exp = (b4 - b3) / (b4 + b3)
+        self.assertEqual(ndvi, ndvi_exp)
+
+    def test_ndsi(self):
+        ndsi = self.l7.ndsi()[self.cell]
+        b2, b5 = self.l7.reflectance(2)[self.cell], self.l7.reflectance(5)[self.cell]
+        ndsi_exp = (b2 - b5) / (b2 + b5)
+        self.assertEqual(ndsi, ndsi_exp)
 
 
 class Landsat8TestCase(unittest.TestCase):
@@ -205,6 +229,20 @@ class Landsat8TestCase(unittest.TestCase):
         l = [0.021763351, 0.065929502, 0.33231941, 0.2018306, 0.10294776]
         exp_alb = (0.356 * l[0] + 0.130 * l[1] + 0.373 * l[2] + 0.085 * l[3] + 0.072 * l[4] - 0.0018) / 1.014
         self.assertAlmostEqual(exp_alb, albedo, delta=0.001)
+
+    def test_ndvi(self):
+        l8 = Landsat8(self.dirname_cloud)
+        ndvi = l8.ndvi()[self.cell]
+        b5, b4 = l8.reflectance(5)[self.cell], l8.reflectance(4)[self.cell]
+        ndvi_exp = (b5 - b4) / (b5 + b4)
+        self.assertEqual(ndvi, ndvi_exp)
+
+    def test_ndsi(self):
+        l8 = Landsat8(self.dirname_cloud)
+        ndsi = l8.ndsi()[self.cell]
+        b3, b6 = l8.reflectance(3)[self.cell], l8.reflectance(6)[self.cell]
+        ndsi_exp = (b3 - b6) / (b3 + b6)
+        self.assertEqual(ndsi, ndsi_exp)
 
 if __name__ == '__main__':
     unittest.main()
