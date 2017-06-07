@@ -4,20 +4,21 @@
 # http://www.ncdc.noaa.gov/cdo-web/webservices/v2
 
 import os
-
 import requests
+import certifi
 
 
 class NOAAData(object):
     def __init__(self, token):
         # NOAA API Endpoint
-        self.url = 'http://www.ncdc.noaa.gov/cdo-web/api/v2/'
+        self.url = 'https://www.ncdc.noaa.gov/cdo-web/api/v2/'
         self.h = dict(token=token)
 
     def poll_api(self, req_type, payload):
         # Initiate http request - kwargs are constructed into a dict and passed as optional parameters
         # Ex (limit=100, sortorder='desc', startdate='1970-10-03', etc)
-        r = requests.get(self.url + req_type, headers=self.h, params=payload)
+        r = requests.get('{}{}'.format(self.url, req_type), headers=self.h,
+                         params=payload)
 
         if r.status_code != 200:  # Handle erroneous requests
             print("Error: " + str(r.status_code))
