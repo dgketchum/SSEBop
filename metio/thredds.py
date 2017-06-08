@@ -17,6 +17,7 @@ from __future__ import print_function
 
 import os
 from datetime import datetime
+from urllib.parse import ParseResult, urlunparse, urlencode
 import numpy as np
 from netCDF4 import Dataset
 from xlrd import xldate
@@ -35,6 +36,7 @@ class GridMet(object):
         - 'elev' : elevation above sea level [m]
         - 'erc' : energy release component [-]
         - 'fm100' : 100-hour dead fuel moisture [%]
+        - 'fm1000' : 1000-hour dead fuel moisture [%]
         - 'pdsi' : Palmer Drough Severity Index [-]
         - 'pet' : daily reference potential evapotranspiration [mm]
         - 'pr' : daily accumulated precipitation [mm]
@@ -86,8 +88,6 @@ class GridMet(object):
             [Warning('Variable {} is not available'.
                      format(var)) for var in self.requested_variables if var not in self.available]
 
-        self.url = 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET'
-
         if not self.start and not self.date:
             raise ValueError('Must include a start and end, or a date.')
         if self.start and self.end and self.date:
@@ -98,7 +98,8 @@ class GridMet(object):
     def get_data(self):
 
         for var in self.variables:
-            met_type = '/{0}/{0}_{1}.nc'.format(var, self.start.year)
+            self._build_url(var)
+
 
     def _time(self):
 
@@ -110,12 +111,58 @@ class GridMet(object):
             d = datetime.strftime(self.date, '%Y-%m-%dT00:00:00Z')
             return d, d
 
-    def _build_query_str(self):
+    def _build_query_str(self, var):
 
-        query = {'timeStride': ['1'], 'disableLLSubset': ['off'], 'horizStride': ['1'],
-                 'accept': ['netcdf4'], 'time_start': [self._time()[0]],
-                 'disableProjSubset': ['on'], 'time_end': [self._time()[1]]}
+        kwords = {'bi': 'burning_index_g',
+                  'elev': '',
+                  'erc': 'energy_release_component-g',
+                  'fm100': 'dead_fuel_moisture_100hr',
+                  'fm1000': 'dead_fuel_moisture_1000hr',
+                  'pdsi': 'palmer_drought_severity_index',
+                  'pet': 'potential_evapotranspiration',
+                  'pr': 'precipitation_amount',
+                  'rmax': 'relative_humidity',
+                  'rmin': 'relative_humidity',
+                  'sph': 'specific_humidity',
+                  'srad': 'surface_downwelling_shortwave_flux_in_air',
+                  'th': 'wind_from_direction',
+                  'tmmn': 'air_temperature',
+                  'tmmx': 'air_temperature',
+                  'vs': 'wind_speed', }
 
+        if self.start:
+            params = {'west': [self.bbox.west_str], 'north': [self.bbox.north_str],
+                      'east': [self.bbox.east_str], 'south': [self.bbox.south_str],
+                      'timeStride': ['1'], 'horizStride': ['1'],
+                      'accept': ['netcdf4'], 'time_start': [self._time()[0]],
+                      'time_end': [self._time()[1]], 'var': kwords[var]}
+            # check if None value works in query, join conditionals into one statement todo
+        elif self.date:
+            params = {'west': [self.bbox.west_str], 'north': [self.bbox.north_str],
+                      'east': [self.bbox.east_str], 'south': [self.bbox.south_str],
+                      'timeStride': ['1'], 'horizStride': ['1'],
+                      'accept': ['netcdf4'], 'time': [self._time()[0]],
+                      'var': kwords[var]}
+
+        else:
+            params = None
+
+        query = urlencode(params, doseq=True)
+
+        return query
+
+    def _build_url(self, var):
+
+        # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
+        url = urlunparse(['http', 'thredds.northwestknowledge.net:8080',
+                          '/thredds/ncss/MET/{0}/{0}_{1}.nc'.format(var, self.start.year),
+                          '', self._build_query_str(var), ''])
+        if var == 'elev':
+            url = urlunparse(['http', 'thredds.northwestknowledge.net:8080',
+                              '/thredds/ncss/MET/{0}/metdata_elevationdata.nc'.format(var, self.start.year),
+                              '', self._build_query_str(var), ''])
+
+        return url
 
 
         # nc = Dataset(site)
@@ -139,12 +186,6 @@ class GridMet(object):
         # subset = nc.variables['potential_evapotranspiration'][date_index, :, :]  # lat_lower:lat_upper, lon_lower:lon_upper]
         # nc.close()
         # print('variable of type {} has shape {}'.format(type(subset), subset.shape))
-
-
-if __name__ == '__main__':
-    home = os.path.expanduser('~')
-    # day = datetime(2016, 4, 1, 12)
-    get_bounds_rectangle(lat_bound, lon_bound)
 
 
 # ========================= EOF ====================================================================
