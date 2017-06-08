@@ -1,4 +1,4 @@
-# Taken from work by Jared Oyler, https://github.com/jaredwo
+# Adapted from work by Jared Oyler, https://github.com/jaredwo
 import os
 
 
