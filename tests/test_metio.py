@@ -15,15 +15,26 @@
 # ===============================================================================
 
 import unittest
+from datetime import datetime
 
-from metio.noaa import NOAAData
+from metio.misc import BBox
+from metio.thredds import GridMet
 
 
-class MyTestCase(unittest.TestCase):
+class TestGridMet(unittest.TestCase):
     def setUp(self):
+        self.bbox = BBox(west_lon=-116.4, east_lon=-103.0,
+                         south_lat=44.3, north_lat=49.1)
 
-    def tearDown(self):
-        pass
+        self.vars = ['pr', 'pet', 'not_a_var']
+
+        self.start = datetime(2011, 5, 1)
+        self.end = datetime(2011, 7, 31)
+
+    def test_instantiate(self):
+        gridmet = GridMet(self.vars, start=self.start, end=self.end,
+                          bbox=self.bbox)
+        self.assertIsInstance(gridmet, GridMet)
 
 
 if __name__ == '__main__':

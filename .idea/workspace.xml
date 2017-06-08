@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_metio.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/metio/misc.py" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/meteo/__init__.py" afterPath="$PROJECT_DIR$/metio/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/meteo/get_gridded.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/meteo/noaa_api.py" afterPath="$PROJECT_DIR$/metio/noaa.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/cna372.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/cna372.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/mtl.py" afterPath="$PROJECT_DIR$/sat_image/mtl.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_metio.py" afterPath="$PROJECT_DIR$/tests/test_metio.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,11 +20,11 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="noaa.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metio/noaa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="136">
               <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
               <folding>
                 <element signature="e#128#137#0" expanded="true" />
@@ -35,8 +36,8 @@
       <file leaf-file-name="test_metio.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+            <state relative-caret-position="238">
+              <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#749#0" expanded="true" />
@@ -48,23 +49,23 @@
       <file leaf-file-name="thredds.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
-              <caret line="53" column="4" lean-forward="false" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+            <state relative-caret-position="248">
+              <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding>
-                <element signature="e#762#771#0" expanded="true" />
-                <element signature="e#1358#1576#1" expanded="false" />
+                <element signature="e#761#798#0" expanded="true" />
+                <element signature="e#969#2920#1" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="acis.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/obsio/providers/acis.py">
+      <file leaf-file-name="factory.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/obsio/factory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="61" lean-forward="true" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
+            <state relative-caret-position="204">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="35" selection-end-column="38" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,7 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>os.path.join(s</find>
       <find>os.path.join(input</find>
       <find>os.path.join(inpu</find>
       <find>os.path.join(inp</find>
@@ -112,10 +112,9 @@
       <find>ndvi</find>
       <find>self.l7</find>
       <find>3</find>
+      <find>)</find>
     </findStrings>
     <replaceStrings>
-      <replace>k2</replace>
-      <replace>Landsat 5</replace>
       <replace>band</replace>
       <replace>b1</replace>
       <replace>cell</replace>
@@ -144,6 +143,8 @@
       <replace>5</replace>
       <replace>3</replace>
       <replace>6</replace>
+      <replace>[</replace>
+      <replace>]</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -171,7 +172,6 @@
         <option value="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" />
         <option value="$PROJECT_DIR$/ssebop/ssebop.py" />
         <option value="$PROJECT_DIR$/app/generic_runner.py" />
-        <option value="$PROJECT_DIR$/sat_image/mtl.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/ssebopconfig.yml" />
         <option value="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
@@ -190,8 +190,10 @@
         <option value="$PROJECT_DIR$/meteo/noaa_api.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/tests/data/local/token_file.txt" />
-        <option value="$PROJECT_DIR$/tests/test_metio.py" />
         <option value="$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py" />
+        <option value="$PROJECT_DIR$/sat_image/mtl.py" />
+        <option value="$PROJECT_DIR$/metio/misc.py" />
+        <option value="$PROJECT_DIR$/tests/test_metio.py" />
         <option value="$PROJECT_DIR$/metio/thredds.py" />
       </list>
     </option>
@@ -239,6 +241,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -293,6 +296,34 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="sat_image" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="obsio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="metio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -314,14 +345,13 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/tests/data/local/token_file.txt&#10;/data01/PycharmProjects/ssebop/obsio/providers/acis.py&#10;true" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/obsio/factory.py&#10;/data01/PycharmProjects/ssebop/tests/data/local/token_file.txt&#10;/data01/PycharmProjects/ssebop/obsio/providers/acis.py&#10;true&#10;/data01/PycharmProjects/ssebop/obsio/util/misc.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -350,22 +380,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_metio.py">
-    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL5" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL5&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_metio.TestGridMet">
     <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -430,6 +445,21 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_metio.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_metio.TestGridMet" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_metio.TestGridMet&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -508,19 +538,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
-      <item index="2" class="java.lang.String" itemvalue="Python.get_gridded" />
-      <item index="3" class="java.lang.String" itemvalue="Python.get_meteo" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
+      <item index="1" class="java.lang.String" itemvalue="Python.get_gridded" />
+      <item index="2" class="java.lang.String" itemvalue="Python.get_meteo" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python.get_meteo" />
-        <item index="2" class="java.lang.String" itemvalue="Python.get_gridded" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python.get_meteo" />
+        <item index="3" class="java.lang.String" itemvalue="Python.get_gridded" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
       </list>
     </recent_temporary>
   </component>
@@ -534,20 +564,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00012" summary="test fmask initial commit">
-      <created>1494965011495</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1494965011495</updated>
-    </task>
-    <task id="LOCAL-00013" summary="test fmask instantite">
-      <created>1494967468481</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1494967468481</updated>
     </task>
     <task id="LOCAL-00014" summary="added ordered dict of point extract to test, how to actually use it?">
       <created>1494968976302</created>
@@ -878,30 +894,44 @@
       <option name="project" value="LOCAL" />
       <updated>1496862683967</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="thredds.py for gridmet">
+      <created>1496874387136</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1496874387136</updated>
+    </task>
+    <task id="LOCAL-00062" summary="working on gridmet class">
+      <created>1496875398087</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1496875398087</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL5 - 2017.06.07 at 09h 20m 59s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL5" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 19m 15s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL5 - 2017.06.07 at 09h 21m 22s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL5" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 19m 32s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL5 - 2017.06.07 at 09h 22m 07s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL5" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 20m 14s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL5 - 2017.06.07 at 09h 22m 15s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL5" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 26m 03s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL7_test_get_potential_cloud_layer - 2017.06.07 at 09h 24m 28s.xml">
-      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 26m 27s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.07 at 09h 11m 23s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 30m 13s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.06.07 at 09h 12m 28s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 30m 28s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_test_metio_py - 2017.06.07 at 15h 54m 24s.xml">
       <configuration name="Unittests in test_metio.py" configurationId="tests" />
@@ -926,16 +956,17 @@
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13864307" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14085546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3071823" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4800885" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4563536" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47071823" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43141592" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45856354" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -944,7 +975,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -975,8 +1005,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="todo: fix final landsat 8 image tests" />
-    <MESSAGE value="move on to test fmask functions" />
     <MESSAGE value="replacing functions with rio cloudmask funcs" />
     <MESSAGE value="implementing functions from rio cloudmask" />
     <MESSAGE value="fmask working for LC8" />
@@ -1000,7 +1028,9 @@
     <MESSAGE value="moved ndvi and ndsi methods to image.LandsatImage" />
     <MESSAGE value="adding meteo package" />
     <MESSAGE value="stuck on certification error for NOAA" />
-    <option name="LAST_COMMIT_MESSAGE" value="stuck on certification error for NOAA" />
+    <MESSAGE value="thredds.py for gridmet" />
+    <MESSAGE value="working on gridmet class" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on gridmet class" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1019,35 +1049,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="320" />
+      <option name="time" value="325" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/data/lt5_image/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt" />
-    <entry file="file://$PROJECT_DIR$/tests/data/lt5_image/LT5_reflct_10000x.tif" />
-    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/unittest/case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="868" column="0" lean-forward="false" selection-start-line="868" selection-start-column="0" selection-end-line="868" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/numpy/core/tests/test_multiarray.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="4654" column="13" lean-forward="false" selection-start-line="4654" selection-start-column="13" selection-end-line="4654" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/fmask_funcs.py" />
     <entry file="file://$PROJECT_DIR$/../utils/utils/ras_point_index.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -1157,13 +1163,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/mtl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ssebopconfig.yml" />
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1259,54 +1258,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="424" column="69" lean-forward="false" selection-start-line="424" selection-start-column="69" selection-end-line="424" selection-end-column="69" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#761#1250#1" expanded="false" />
-            <element signature="e#1362#1484#1" expanded="false" />
-            <element signature="e#3138#4023#0" expanded="false" />
-            <element signature="e#3138#3703#1" expanded="false" />
-            <element signature="e#4064#4614#0" expanded="false" />
-            <element signature="e#4064#4237#1" expanded="false" />
-            <element signature="e#4654#5081#0" expanded="false" />
-            <element signature="e#4654#4967#1" expanded="false" />
-            <element signature="e#5115#5671#0" expanded="false" />
-            <element signature="e#5115#5592#1" expanded="false" />
-            <element signature="e#5709#6228#0" expanded="false" />
-            <element signature="e#5709#6153#1" expanded="false" />
-            <element signature="e#6265#6575#0" expanded="false" />
-            <element signature="e#6265#6508#1" expanded="false" />
-            <element signature="e#6611#7053#0" expanded="false" />
-            <element signature="e#6611#6820#1" expanded="false" />
-            <element signature="e#7101#7982#0" expanded="false" />
-            <element signature="e#7101#7679#1" expanded="false" />
-            <element signature="e#8018#8770#0" expanded="false" />
-            <element signature="e#8018#8396#1" expanded="false" />
-            <element signature="e#8811#9309#0" expanded="false" />
-            <element signature="e#8811#9178#1" expanded="false" />
-            <element signature="e#9361#9835#0" expanded="false" />
-            <element signature="e#9361#9673#1" expanded="false" />
-            <element signature="e#9883#10670#0" expanded="false" />
-            <element signature="e#9883#10292#1" expanded="false" />
-            <element signature="e#10723#11262#0" expanded="false" />
-            <element signature="e#10723#11154#1" expanded="false" />
-            <element signature="e#11315#12328#0" expanded="false" />
-            <element signature="e#11315#11681#1" expanded="false" />
-            <element signature="e#12398#13159#0" expanded="false" />
-            <element signature="e#12398#12799#1" expanded="false" />
-            <element signature="e#13326#14693#0" expanded="false" />
-            <element signature="e#13326#14129#1" expanded="false" />
-            <element signature="e#14138#14172#0" expanded="false" />
-            <element signature="e#14754#15199#0" expanded="false" />
-            <element signature="e#14754#15135#1" expanded="false" />
-            <element signature="e#15245#15686#0" expanded="false" />
-            <element signature="e#15245#15589#1" expanded="false" />
-            <element signature="e#15778#19833#0" expanded="false" />
-            <element signature="e#15778#16711#1" expanded="false" />
-            <element signature="e#19271#19343#0" expanded="false" />
-            <element signature="e#19885#20168#0" expanded="false" />
-            <element signature="e#20243#20531#0" expanded="false" />
-            <element signature="e#20598#20809#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1328,11 +1279,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="539">
           <caret line="61" column="11" lean-forward="true" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#799#0" expanded="false" />
-            <element signature="e#1883#1942#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1340,56 +1286,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="497" column="0" lean-forward="true" selection-start-line="497" selection-start-column="0" selection-end-line="497" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#968#4765#0" expanded="false" />
-            <element signature="e#968#1217#1" expanded="false" />
-            <element signature="e#1256#3736#0" expanded="false" />
-            <element signature="e#1256#1427#1" expanded="false" />
-            <element signature="e#3792#4177#0" expanded="false" />
-            <element signature="e#3792#4005#1" expanded="false" />
-            <element signature="e#4244#4455#0" expanded="false" />
-            <element signature="e#4509#4765#0" expanded="false" />
-            <element signature="e#4802#8304#0" expanded="false" />
-            <element signature="e#4835#5331#0" expanded="false" />
-            <element signature="e#5371#5805#0" expanded="false" />
-            <element signature="e#5869#6376#0" expanded="false" />
-            <element signature="e#6420#6718#0" expanded="false" />
-            <element signature="e#6750#7356#0" expanded="false" />
-            <element signature="e#6750#7045#1" expanded="false" />
-            <element signature="e#7414#7788#0" expanded="false" />
-            <element signature="e#7414#7650#1" expanded="false" />
-            <element signature="e#7818#8043#0" expanded="false" />
-            <element signature="e#7818#7895#1" expanded="false" />
-            <element signature="e#8073#8304#0" expanded="false" />
-            <element signature="e#8073#8144#1" expanded="false" />
-            <element signature="e#8341#12024#0" expanded="false" />
-            <element signature="e#8374#8758#0" expanded="false" />
-            <element signature="e#8798#9231#0" expanded="false" />
-            <element signature="e#9309#9987#0" expanded="false" />
-            <element signature="e#10031#10361#0" expanded="false" />
-            <element signature="e#10393#11077#0" expanded="false" />
-            <element signature="e#11135#11509#0" expanded="false" />
-            <element signature="e#11135#11371#1" expanded="false" />
-            <element signature="e#11539#11764#0" expanded="false" />
-            <element signature="e#11539#11616#1" expanded="false" />
-            <element signature="e#11794#12024#0" expanded="false" />
-            <element signature="e#11794#11864#1" expanded="false" />
-            <element signature="e#12061#18053#0" expanded="false" />
-            <element signature="e#12094#12180#0" expanded="false" />
-            <element signature="e#12243#13982#0" expanded="false" />
-            <element signature="e#12243#13328#1" expanded="false" />
-            <element signature="e#14025#15856#0" expanded="false" />
-            <element signature="e#14025#15236#1" expanded="false" />
-            <element signature="e#15896#16896#0" expanded="false" />
-            <element signature="e#15896#16656#1" expanded="false" />
-            <element signature="e#16928#17535#0" expanded="false" />
-            <element signature="e#16928#17223#1" expanded="false" />
-            <element signature="e#17565#17790#0" expanded="false" />
-            <element signature="e#17565#17642#1" expanded="false" />
-            <element signature="e#17820#18051#0" expanded="false" />
-            <element signature="e#17820#17891#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1397,7 +1293,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="851" column="0" lean-forward="false" selection-start-line="851" selection-start-column="0" selection-end-line="851" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1405,26 +1300,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7837">
           <caret line="487" column="0" lean-forward="true" selection-start-line="487" selection-start-column="0" selection-end-line="487" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/meteo/get_gridded.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="29" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/meteo/get_meteo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/meteo/get_gridded.py" />
+    <entry file="file://$PROJECT_DIR$/meteo/get_meteo.py" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="888">
@@ -1437,23 +1317,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="32" lean-forward="true" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/obsio/providers/acis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="61" lean-forward="true" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/noaa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="136">
           <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
           <folding>
             <element signature="e#128#137#0" expanded="true" />
@@ -1465,16 +1334,251 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="76" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/transform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="33" column="43" lean-forward="true" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/rasterio/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="47" column="4" lean-forward="false" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/mtl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obsio/providers/acis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="73" column="86" lean-forward="true" selection-start-line="73" selection-start-column="86" selection-end-line="73" selection-end-column="86" />
           <folding>
-            <element signature="e#733#770#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/misc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obsio/util/misc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/urllib/parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="754" column="36" lean-forward="true" selection-start-line="754" selection-start-column="36" selection-end-line="754" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#1129#1" expanded="false" />
+            <element signature="e#1182#1548#0" expanded="false" />
+            <element signature="e#1624#1829#0" expanded="false" />
+            <element signature="e#1844#2111#0" expanded="false" />
+            <element signature="e#2126#2274#0" expanded="false" />
+            <element signature="e#2276#2344#0" expanded="false" />
+            <element signature="e#2439#2544#0" expanded="false" />
+            <element signature="e#2558#2667#0" expanded="false" />
+            <element signature="e#2684#2825#0" expanded="false" />
+            <element signature="e#2878#3002#0" expanded="false" />
+            <element signature="e#3118#3219#0" expanded="false" />
+            <element signature="e#3222#3250#0" expanded="false" />
+            <element signature="e#3556#3566#0" expanded="false" />
+            <element signature="e#3675#3710#0" expanded="false" />
+            <element signature="e#3817#3884#0" expanded="false" />
+            <element signature="e#3915#4527#0" expanded="false" />
+            <element signature="e#3915#3963#0" expanded="false" />
+            <element signature="e#4200#4428#0" expanded="false" />
+            <element signature="e#4200#4249#0" expanded="false" />
+            <element signature="e#4617#4848#0" expanded="false" />
+            <element signature="e#4771#4848#0" expanded="false" />
+            <element signature="e#4888#5119#0" expanded="false" />
+            <element signature="e#5042#5119#0" expanded="false" />
+            <element signature="e#5164#5898#0" expanded="false" />
+            <element signature="e#5309#5333#0" expanded="false" />
+            <element signature="e#5381#5405#0" expanded="false" />
+            <element signature="e#5453#5633#0" expanded="false" />
+            <element signature="e#5677#5898#0" expanded="false" />
+            <element signature="e#5743#5878#0" expanded="false" />
+            <element signature="e#5975#6818#0" expanded="false" />
+            <element signature="e#6038#6368#0" expanded="false" />
+            <element signature="e#6156#6281#0" expanded="false" />
+            <element signature="e#6417#6818#0" expanded="false" />
+            <element signature="e#6584#6673#0" expanded="false" />
+            <element signature="e#6899#7749#0" expanded="false" />
+            <element signature="e#6962#7294#0" expanded="false" />
+            <element signature="e#7081#7207#0" expanded="false" />
+            <element signature="e#7343#7749#0" expanded="false" />
+            <element signature="e#7512#7603#0" expanded="false" />
+            <element signature="e#8023#8081#0" expanded="false" />
+            <element signature="e#8341#8495#0" expanded="false" />
+            <element signature="e#8386#8495#0" expanded="false" />
+            <element signature="e#8561#8629#0" expanded="false" />
+            <element signature="e#8606#8629#0" expanded="false" />
+            <element signature="e#8695#8765#0" expanded="false" />
+            <element signature="e#8740#8763#0" expanded="false" />
+            <element signature="e#8875#9030#0" expanded="false" />
+            <element signature="e#8920#9030#0" expanded="false" />
+            <element signature="e#9103#9171#0" expanded="false" />
+            <element signature="e#9148#9171#0" expanded="false" />
+            <element signature="e#9244#9314#0" expanded="false" />
+            <element signature="e#9289#9312#0" expanded="false" />
+            <element signature="e#9389#9680#0" expanded="false" />
+            <element signature="e#9415#9531#0" expanded="false" />
+            <element signature="e#9591#9680#0" expanded="false" />
+            <element signature="e#9793#10482#0" expanded="false" />
+            <element signature="e#9793#10090#1" expanded="false" />
+            <element signature="e#10511#10679#0" expanded="false" />
+            <element signature="e#10535#10613#0" expanded="false" />
+            <element signature="e#10717#11128#0" expanded="false" />
+            <element signature="e#10873#11061#0" expanded="false" />
+            <element signature="e#11186#13473#0" expanded="false" />
+            <element signature="e#11186#11466#1" expanded="false" />
+            <element signature="e#11897#12995#0" expanded="false" />
+            <element signature="e#11958#12583#0" expanded="false" />
+            <element signature="e#12059#12275#0" expanded="false" />
+            <element signature="e#12622#12669#0" expanded="false" />
+            <element signature="e#12696#12995#0" expanded="false" />
+            <element signature="e#12696#12758#0" expanded="false" />
+            <element signature="e#12924#12995#0" expanded="false" />
+            <element signature="e#13029#13221#0" expanded="false" />
+            <element signature="e#13507#14040#0" expanded="false" />
+            <element signature="e#13507#13763#1" expanded="false" />
+            <element signature="e#14074#14916#0" expanded="false" />
+            <element signature="e#14074#14443#1" expanded="false" />
+            <element signature="e#14655#14739#0" expanded="false" />
+            <element signature="e#14968#17304#0" expanded="false" />
+            <element signature="e#15546#15722#0" expanded="false" />
+            <element signature="e#15569#15697#0" expanded="false" />
+            <element signature="e#15603#15694#0" expanded="false" />
+            <element signature="e#15764#15983#0" expanded="false" />
+            <element signature="e#15893#15980#0" expanded="false" />
+            <element signature="e#16056#16193#0" expanded="false" />
+            <element signature="e#16056#16125#0" expanded="false" />
+            <element signature="e#16348#16548#0" expanded="false" />
+            <element signature="e#16396#16466#0" expanded="false" />
+            <element signature="e#16607#16981#0" expanded="false" />
+            <element signature="e#16635#16883#0" expanded="false" />
+            <element signature="e#16723#16883#0" expanded="false" />
+            <element signature="e#16723#16788#0" expanded="false" />
+            <element signature="e#17027#17181#0" expanded="false" />
+            <element signature="e#17027#17098#0" expanded="false" />
+            <element signature="e#17221#17301#0" expanded="false" />
+            <element signature="e#17331#17787#0" expanded="false" />
+            <element signature="e#17331#17528#1" expanded="false" />
+            <element signature="e#17600#17684#0" expanded="false" />
+            <element signature="e#17703#17733#0" expanded="false" />
+            <element signature="e#17877#18836#0" expanded="false" />
+            <element signature="e#17932#18006#0" expanded="false" />
+            <element signature="e#18095#18164#0" expanded="false" />
+            <element signature="e#18360#18419#0" expanded="false" />
+            <element signature="e#18515#18627#0" expanded="false" />
+            <element signature="e#18528#18627#0" expanded="false" />
+            <element signature="e#18662#18811#0" expanded="false" />
+            <element signature="e#18679#18736#0" expanded="false" />
+            <element signature="e#18774#18811#0" expanded="false" />
+            <element signature="e#18940#19757#0" expanded="false" />
+            <element signature="e#18940#19352#1" expanded="false" />
+            <element signature="e#19387#19421#0" expanded="false" />
+            <element signature="e#19647#19733#0" expanded="false" />
+            <element signature="e#19877#21061#0" expanded="false" />
+            <element signature="e#19877#20730#1" expanded="false" />
+            <element signature="e#20909#21036#0" expanded="false" />
+            <element signature="e#21183#22968#0" expanded="false" />
+            <element signature="e#21183#22016#1" expanded="false" />
+            <element signature="e#22172#22955#0" expanded="false" />
+            <element signature="e#22310#22570#0" expanded="false" />
+            <element signature="e#22627#22955#0" expanded="false" />
+            <element signature="e#23036#23280#0" expanded="false" />
+            <element signature="e#23036#23197#1" expanded="false" />
+            <element signature="e#23307#23462#0" expanded="false" />
+            <element signature="e#23568#24372#0" expanded="false" />
+            <element signature="e#23568#23778#1" expanded="false" />
+            <element signature="e#23783#23853#0" expanded="false" />
+            <element signature="e#23945#24015#0" expanded="false" />
+            <element signature="e#24049#24164#0" expanded="false" />
+            <element signature="e#24204#24372#0" expanded="false" />
+            <element signature="e#24435#26150#0" expanded="false" />
+            <element signature="e#24435#25637#1" expanded="false" />
+            <element signature="e#25678#25884#0" expanded="false" />
+            <element signature="e#25903#26108#0" expanded="false" />
+            <element signature="e#26217#26947#0" expanded="false" />
+            <element signature="e#26217#26445#1" expanded="false" />
+            <element signature="e#26450#26522#0" expanded="false" />
+            <element signature="e#26989#27815#0" expanded="false" />
+            <element signature="e#26989#27201#1" expanded="false" />
+            <element signature="e#27381#27497#0" expanded="false" />
+            <element signature="e#27929#28541#1" expanded="false" />
+            <element signature="e#28623#29385#0" expanded="false" />
+            <element signature="e#28623#28688#0" expanded="false" />
+            <element signature="e#28735#29188#0" expanded="false" />
+            <element signature="e#28735#28782#0" expanded="false" />
+            <element signature="e#28909#29188#0" expanded="false" />
+            <element signature="e#28937#29000#0" expanded="false" />
+            <element signature="e#29227#29385#0" expanded="false" />
+            <element signature="e#29283#29365#0" expanded="false" />
+            <element signature="e#29424#29789#0" expanded="false" />
+            <element signature="e#29455#29789#0" expanded="false" />
+            <element signature="e#29808#30908#0" expanded="false" />
+            <element signature="e#29839#30908#0" expanded="false" />
+            <element signature="e#30037#30097#0" expanded="false" />
+            <element signature="e#30151#30229#0" expanded="false" />
+            <element signature="e#30264#30908#0" expanded="false" />
+            <element signature="e#30289#30366#0" expanded="false" />
+            <element signature="e#30421#30545#0" expanded="false" />
+            <element signature="e#30588#30908#0" expanded="false" />
+            <element signature="e#30671#30908#0" expanded="false" />
+            <element signature="e#30956#31363#0" expanded="false" />
+            <element signature="e#30994#31059#0" expanded="false" />
+            <element signature="e#31151#31348#0" expanded="false" />
+            <element signature="e#31244#31348#0" expanded="false" />
+            <element signature="e#31386#31613#0" expanded="false" />
+            <element signature="e#31656#31969#0" expanded="false" />
+            <element signature="e#31883#31948#0" expanded="false" />
+            <element signature="e#32012#32391#0" expanded="false" />
+            <element signature="e#32241#32370#0" expanded="false" />
+            <element signature="e#32418#32586#0" expanded="false" />
+            <element signature="e#32615#32759#0" expanded="false" />
+            <element signature="e#32846#33155#0" expanded="false" />
+            <element signature="e#33059#33133#0" expanded="false" />
+            <element signature="e#33195#33665#0" expanded="false" />
+            <element signature="e#33195#33420#1" expanded="false" />
+            <element signature="e#33527#33640#0" expanded="false" />
+            <element signature="e#33692#33852#0" expanded="false" />
+            <element signature="e#33877#34027#0" expanded="false" />
+            <element signature="e#34053#34224#0" expanded="false" />
+            <element signature="e#34252#34392#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        <state relative-caret-position="238">
+          <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#734#749#0" expanded="true" />
@@ -1482,13 +1586,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/obsio/factory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="35" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="53" column="4" lean-forward="false" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+        <state relative-caret-position="248">
+          <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
           <folding>
-            <element signature="e#762#771#0" expanded="true" />
-            <element signature="e#1358#1576#1" expanded="false" />
+            <element signature="e#761#798#0" expanded="true" />
+            <element signature="e#969#2920#1" expanded="false" />
           </folding>
         </state>
       </provider>
