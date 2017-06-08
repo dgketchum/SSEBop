@@ -18,7 +18,9 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # ------------------------------------------------------------------------------
-#
+""" This file contains one high-level function that reads a Landsat metadata file (.MTL)
+
+"""
 from __future__ import print_function
 try:
     import StringIO
@@ -56,10 +58,13 @@ class MTLParseError(Exception):
 
 
 def parsemeta(metadataloc):
-    """Parses the metadata.
+    """Parses the metadata from a Landsat image bundle.
+    
     Arguments:
         metadataloc: a filename or a directory.
+        
     Returns metadata dictionary
+    
     """
 
     # filename or directory? if several fit, use first one and warn
