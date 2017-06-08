@@ -14,10 +14,12 @@
 # limitations under the License.
 # =============================================================================================
 from __future__ import print_function
+from future.standard_library import hooks
 
-import os
+with hooks():
+    from urllib.parse import urlunparse, urlencode
+
 from datetime import datetime
-from urllib.parse import ParseResult, urlunparse, urlencode
 import numpy as np
 from netCDF4 import Dataset
 from xlrd import xldate
@@ -25,7 +27,54 @@ from xlrd import xldate
 from metio.misc import BBox
 
 
-class GridMet(object):
+class Thredds(object):
+    def __init__(self, start=None, end=None, date=None, bbox=None):
+
+        self.service = 'thredds.northwestknowledge.net:8080'
+        self.scheme = 'http'
+        self.start = start
+        self.end = end
+        self.date = date
+        self.bbox = bbox
+
+    def _time(self):
+
+        if self.start and self.end:
+            s = datetime.strftime(self.start, '%Y-%m-%dT00:00:00Z')
+            e = datetime.strftime(self.end, '%Y-%m-%dT00:00:00Z')
+            return s, e
+        if self.date:
+            d = datetime.strftime(self.date, '%Y-%m-%dT00:00:00Z')
+            return d, d
+
+
+class TopoWX(Thredds):
+    """ TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
+
+    Available variables: [ 'tmmn', 'tmmx']
+    
+    ----------
+    Observation elements to access. Currently available elements:
+    - 'tmmn' : daily minimum air temperature [K]
+    - 'tmmx' : daily maximum air temperature [K]
+
+    :param start: datetime object start of period of data
+    :param end: datetime object end of period of data
+    :param variables: List  of available variables. At lease one. 
+    :param date: single-day datetime date object
+    :param bbox: metio.misc.BBox object representing spatial bounds, default to conterminous US
+    :return: numpy.ndarray
+    
+    """
+
+    def __init__(self):
+        Thredds.__init__(self, start=None, end=None, date=None, bbox=None)
+
+        if self.start:
+            pass
+
+
+class GridMet(Thredds):
     """ U of I Gridmet, return as numpy array per met variable in daily stack unless modified.
     
     Available variables: ['bi', 'elev', 'erc', 'fm100', fm1000', 'pdsi', 'pet', 'pr', 'rmax', 'rmin', 'sph', 'srad',
@@ -66,13 +115,9 @@ class GridMet(object):
     
     """
 
-    def __init__(self, variables, start=None, end=None, date=None, bbox=None, **kwargs):
-
+    def __init__(self, variables, **kwargs):
+        Thredds.__init__(self, start=None, end=None, date=None, bbox=None)
         self.requested_variables = variables
-        self.start = start
-        self.end = end
-        self.date = date
-        self.bbox = bbox
 
         self.available = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
                           'th', 'tmmn', 'tmmx', 'pet', 'vs', 'erc', 'bi',
@@ -83,7 +128,7 @@ class GridMet(object):
 
         self.variables = []
         if self.requested_variables:
-            [setattr(self, var, True) for var in self.requested_variables if var in self.available]
+            [setattr(self, var, None) for var in self.requested_variables if var in self.available]
             [self.variables.append(var) for var in self.requested_variables if var in self.available]
             [Warning('Variable {} is not available'.
                      format(var)) for var in self.requested_variables if var not in self.available]
@@ -98,18 +143,12 @@ class GridMet(object):
     def get_data(self):
 
         for var in self.variables:
-            self._build_url(var)
+            url = self._build_url(var)
+            dataset = Dataset(url)
+            dataset.close()
+            setattr(self, var, dataset)
 
-
-    def _time(self):
-
-        if self.start and self.end:
-            s = datetime.strftime(self.start, '%Y-%m-%dT00:00:00Z')
-            e = datetime.strftime(self.end, '%Y-%m-%dT00:00:00Z')
-            return s, e
-        if self.date:
-            d = datetime.strftime(self.date, '%Y-%m-%dT00:00:00Z')
-            return d, d
+        return None
 
     def _build_query_str(self, var):
 
@@ -154,38 +193,14 @@ class GridMet(object):
     def _build_url(self, var):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
-        url = urlunparse(['http', 'thredds.northwestknowledge.net:8080',
+        url = urlunparse([self.scheme, self.service,
                           '/thredds/ncss/MET/{0}/{0}_{1}.nc'.format(var, self.start.year),
                           '', self._build_query_str(var), ''])
         if var == 'elev':
-            url = urlunparse(['http', 'thredds.northwestknowledge.net:8080',
+            url = urlunparse([self.scheme, self.service,
                               '/thredds/ncss/MET/{0}/metdata_elevationdata.nc'.format(var, self.start.year),
                               '', self._build_query_str(var), ''])
 
         return url
-
-
-        # nc = Dataset(site)
-        # print(nc.variables.keys())
-        #
-        # date_tup = (day.year, day.month, day.day)
-        # excel_date = xldate.xldate_from_date_tuple(date_tup, 0)
-        # print('excel date from datetime: {}'.format(excel_date))
-        #
-        # time_arr = nc.variables['day'][:]
-        # date_index = np.argmin(np.abs(time_arr - excel_date))
-        #
-        # # find indices of lat lon bounds in nc file
-        # lats = nc.variables['lat'][:]
-        # lons = nc.variables['lon'][:]
-        # lat_lower = np.argmin(np.abs(lats - lat_bound[1]))
-        # lat_upper = np.argmin(np.abs(lats - lat_bound[0]))
-        # lon_lower = np.argmin(np.abs(lons - lon_bound[0]))
-        # lon_upper = np.argmin(np.abs(lons - lon_bound[1]))
-        #
-        # subset = nc.variables['potential_evapotranspiration'][date_index, :, :]  # lat_lower:lat_upper, lon_lower:lon_upper]
-        # nc.close()
-        # print('variable of type {} has shape {}'.format(type(subset), subset.shape))
-
 
 # ========================= EOF ====================================================================

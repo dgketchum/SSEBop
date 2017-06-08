@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/metio/misc.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/cna372.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/cna372.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/metio/netcdf_example.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/misc.py" afterPath="$PROJECT_DIR$/metio/misc.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/mtl.py" afterPath="$PROJECT_DIR$/sat_image/mtl.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_metio.py" afterPath="$PROJECT_DIR$/tests/test_metio.py" />
     </list>
@@ -26,9 +26,17 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
               <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-              <folding>
-                <element signature="e#128#137#0" expanded="true" />
-              </folding>
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="misc.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/metio/misc.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -36,11 +44,11 @@
       <file leaf-file-name="test_metio.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+            <state relative-caret-position="369">
+              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#734#749#0" expanded="true" />
+                <element signature="e#733#748#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,23 +57,117 @@
       <file leaf-file-name="thredds.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+            <state relative-caret-position="340">
+              <caret line="35" column="26" lean-forward="true" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
               <folding>
-                <element signature="e#761#798#0" expanded="true" />
-                <element signature="e#969#2920#1" expanded="false" />
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#1354#1652#0" expanded="false" />
+                <element signature="e#1394#1539#0" expanded="false" />
+                <element signature="e#1574#1652#0" expanded="false" />
+                <element signature="e#1682#2501#0" expanded="false" />
+                <element signature="e#1682#2360#1" expanded="false" />
+                <element signature="e#2394#2501#0" expanded="false" />
+                <element signature="e#2532#8327#0" expanded="false" />
+                <element signature="e#2532#4537#1" expanded="false" />
+                <element signature="e#4592#5689#0" expanded="false" />
+                <element signature="e#4730#4892#0" expanded="false" />
+                <element signature="e#5048#5390#0" expanded="false" />
+                <element signature="e#5250#5390#1" expanded="false" />
+                <element signature="e#5724#5913#0" expanded="false" />
+                <element signature="e#5763#5892#0" expanded="false" />
+                <element signature="e#5961#7725#0" expanded="false" />
+                <element signature="e#5970#6744#0" expanded="false" />
+                <element signature="e#6781#7244#0" expanded="false" />
+                <element signature="e#6790#7152#0" expanded="false" />
+                <element signature="e#7281#7615#0" expanded="false" />
+                <element signature="e#7290#7615#0" expanded="false" />
+                <element signature="e#7767#8325#0" expanded="false" />
+                <element signature="e#7865#8045#0" expanded="false" />
+                <element signature="e#8085#8305#0" expanded="false" />
+                <element signature="e#8102#8304#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="factory.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/obsio/factory.py">
+      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sat_image/image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="35" selection-end-column="38" />
+            <state relative-caret-position="357">
+              <caret line="333" column="0" lean-forward="true" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#968#4765#0" expanded="false" />
+                <element signature="e#968#1217#1" expanded="false" />
+                <element signature="e#1256#3736#0" expanded="false" />
+                <element signature="e#1256#1427#1" expanded="false" />
+                <element signature="e#3792#4177#0" expanded="false" />
+                <element signature="e#3792#4005#1" expanded="false" />
+                <element signature="e#4244#4455#0" expanded="false" />
+                <element signature="e#4509#4765#0" expanded="false" />
+                <element signature="e#4802#8304#0" expanded="false" />
+                <element signature="e#5371#5805#0" expanded="false" />
+                <element signature="e#5869#6376#0" expanded="false" />
+                <element signature="e#6420#6718#0" expanded="false" />
+                <element signature="e#6750#7356#0" expanded="false" />
+                <element signature="e#6750#7045#1" expanded="false" />
+                <element signature="e#7414#7788#0" expanded="false" />
+                <element signature="e#7414#7650#1" expanded="false" />
+                <element signature="e#7818#8043#0" expanded="false" />
+                <element signature="e#7818#7895#1" expanded="false" />
+                <element signature="e#8073#8304#0" expanded="false" />
+                <element signature="e#8073#8144#1" expanded="false" />
+                <element signature="e#8341#12024#0" expanded="false" />
+                <element signature="e#8374#8758#0" expanded="false" />
+                <element signature="e#8798#9231#0" expanded="false" />
+                <element signature="e#9309#9987#0" expanded="false" />
+                <element signature="e#10031#10361#0" expanded="false" />
+                <element signature="e#10393#11077#0" expanded="false" />
+                <element signature="e#11135#11509#0" expanded="false" />
+                <element signature="e#11135#11371#1" expanded="false" />
+                <element signature="e#11539#11764#0" expanded="false" />
+                <element signature="e#11539#11616#1" expanded="false" />
+                <element signature="e#11794#12024#0" expanded="false" />
+                <element signature="e#11794#11864#1" expanded="false" />
+                <element signature="e#12061#18053#0" expanded="false" />
+                <element signature="e#12094#12180#0" expanded="false" />
+                <element signature="e#12243#13982#0" expanded="false" />
+                <element signature="e#12243#13328#1" expanded="false" />
+                <element signature="e#14025#15856#0" expanded="false" />
+                <element signature="e#14025#15236#1" expanded="false" />
+                <element signature="e#15896#16896#0" expanded="false" />
+                <element signature="e#15896#16656#1" expanded="false" />
+                <element signature="e#16928#17535#0" expanded="false" />
+                <element signature="e#16928#17223#1" expanded="false" />
+                <element signature="e#17565#17790#0" expanded="false" />
+                <element signature="e#17565#17642#1" expanded="false" />
+                <element signature="e#17820#18051#0" expanded="false" />
+                <element signature="e#17820#17891#1" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_meteo.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="50" column="72" lean-forward="false" selection-start-line="50" selection-start-column="69" selection-end-line="50" selection-end-column="72" />
+              <folding>
+                <element signature="e#733#770#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="netcdf_example.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/metio/netcdf_example.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#762#799#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,7 +185,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>os.path.join(input</find>
       <find>os.path.join(inpu</find>
       <find>os.path.join(inp</find>
       <find>os.path.join(in</find>
@@ -113,6 +214,7 @@
       <find>self.l7</find>
       <find>3</find>
       <find>)</find>
+      <find>hori</find>
     </findStrings>
     <replaceStrings>
       <replace>band</replace>
@@ -183,18 +285,19 @@
         <option value="$PROJECT_DIR$/tests/test_image.py" />
         <option value="$PROJECT_DIR$/sat_image/fmask.py" />
         <option value="$PROJECT_DIR$/tests/test_fmask.py" />
-        <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/meteo/get_gridded.py" />
         <option value="$PROJECT_DIR$/obsio/providers/acis.py" />
         <option value="$PROJECT_DIR$/meteo/get_meteo.py" />
         <option value="$PROJECT_DIR$/meteo/noaa_api.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/tests/data/local/token_file.txt" />
-        <option value="$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py" />
         <option value="$PROJECT_DIR$/sat_image/mtl.py" />
-        <option value="$PROJECT_DIR$/metio/misc.py" />
         <option value="$PROJECT_DIR$/tests/test_metio.py" />
+        <option value="$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py" />
+        <option value="$PROJECT_DIR$/metio/netcdf_example.py" />
+        <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/metio/thredds.py" />
+        <option value="$PROJECT_DIR$/metio/misc.py" />
       </list>
     </option>
   </component>
@@ -212,12 +315,36 @@
             <id />
           </State>
           <State>
+            <id>Buildout</id>
+          </State>
+          <State>
+            <id>HTML</id>
+          </State>
+          <State>
+            <id>Ignore</id>
+          </State>
+          <State>
+            <id>Internationalization issues</id>
+          </State>
+          <State>
+            <id>JSON</id>
+          </State>
+          <State>
             <id>Python</id>
+          </State>
+          <State>
+            <id>RegExp</id>
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+          <State>
+            <id>XML</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>PyCompatibilityInspection</id>
+            <id>SpellCheckingInspection</id>
           </State>
         </selected-state>
       </profile-state>
@@ -348,10 +475,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/obsio/factory.py&#10;/data01/PycharmProjects/ssebop/tests/data/local/token_file.txt&#10;/data01/PycharmProjects/ssebop/obsio/providers/acis.py&#10;true&#10;/data01/PycharmProjects/ssebop/obsio/util/misc.py" />
+    <property name="settings.editor.splitter.proportion" value="0.25440314" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -380,22 +508,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_metio.TestGridMet">
-    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.netcdf_example">
     <configuration default="false" name="get_gridded" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -460,6 +573,24 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_metio.TestGridMet&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="netcdf_example" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/metio" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/metio/netcdf_example.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -538,19 +669,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
-      <item index="1" class="java.lang.String" itemvalue="Python.get_gridded" />
-      <item index="2" class="java.lang.String" itemvalue="Python.get_meteo" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet" />
+      <item index="0" class="java.lang.String" itemvalue="Python.get_gridded" />
+      <item index="1" class="java.lang.String" itemvalue="Python.get_meteo" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet" />
+      <item index="4" class="java.lang.String" itemvalue="Python.netcdf_example" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python.get_meteo" />
-        <item index="3" class="java.lang.String" itemvalue="Python.get_gridded" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL7.test_get_potential_cloud_layer" />
+        <item index="0" class="java.lang.String" itemvalue="Python.netcdf_example" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python.get_meteo" />
+        <item index="4" class="java.lang.String" itemvalue="Python.get_gridded" />
       </list>
     </recent_temporary>
   </component>
@@ -564,20 +695,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added ordered dict of point extract to test, how to actually use it?">
-      <created>1494968976302</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1494968976302</updated>
-    </task>
-    <task id="LOCAL-00015" summary="added ordered dict of point extract to test, how to actually use it?">
-      <created>1494969937139</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1494969937139</updated>
     </task>
     <task id="LOCAL-00016" summary="bug rasaterio 'w' not including crs">
       <created>1495032294467</created>
@@ -908,39 +1025,53 @@
       <option name="project" value="LOCAL" />
       <updated>1496875398087</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="working on gridmet class documentation, private methods">
+      <created>1496935899853</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1496935899854</updated>
+    </task>
+    <task id="LOCAL-00064" summary="pass url build test">
+      <created>1496946491067</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1496946491068</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 19m 15s.xml">
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 12m 03s.xml">
       <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 19m 32s.xml">
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 13m 20s.xml">
       <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 20m 14s.xml">
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 15m 48s.xml">
       <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 26m 03s.xml">
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 17m 34s.xml">
       <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 26m 27s.xml">
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 22m 44s.xml">
       <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 30m 13s.xml">
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 23m 08s.xml">
       <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 08h 30m 28s.xml">
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 23m 26s.xml">
       <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_metio_py - 2017.06.07 at 15h 54m 24s.xml">
-      <configuration name="Unittests in test_metio.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 23m 58s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_metio_py - 2017.06.07 at 15h 54m 44s.xml">
-      <configuration name="Unittests in test_metio.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 24m 54s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_metio_py - 2017.06.07 at 15h 56m 41s.xml">
-      <configuration name="Unittests in test_metio.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet - 2017.06.08 at 12h 41m 38s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -954,19 +1085,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14085546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4563536" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47071823" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3756906" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25958702" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45856354" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5140118" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1005,8 +1135,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="replacing functions with rio cloudmask funcs" />
-    <MESSAGE value="implementing functions from rio cloudmask" />
     <MESSAGE value="fmask working for LC8" />
     <MESSAGE value="splitting tests; one set of images for test_image, another set for test_fmask" />
     <MESSAGE value="brightness temp todo" />
@@ -1030,7 +1158,9 @@
     <MESSAGE value="stuck on certification error for NOAA" />
     <MESSAGE value="thredds.py for gridmet" />
     <MESSAGE value="working on gridmet class" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on gridmet class" />
+    <MESSAGE value="working on gridmet class documentation, private methods" />
+    <MESSAGE value="pass url build test" />
+    <option name="LAST_COMMIT_MESSAGE" value="pass url build test" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1049,18 +1179,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="325" />
+      <option name="time" value="335" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../utils/utils/ras_point_index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../utils/utils/clip_by_polygon.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1282,13 +1405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="497" column="0" lean-forward="true" selection-start-line="497" selection-start-column="0" selection-end-line="497" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/requests/packages/urllib3/connectionpool.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1317,23 +1433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="32" lean-forward="true" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metio/noaa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-          <folding>
-            <element signature="e#128#137#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="76" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -1366,16 +1465,8 @@
         <state relative-caret-position="-289">
           <caret line="73" column="86" lean-forward="true" selection-start-line="73" selection-start-column="86" selection-end-line="73" selection-end-column="86" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metio/misc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1575,34 +1666,150 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#749#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/obsio/factory.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="35" selection-end-column="38" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="50" column="72" lean-forward="false" selection-start-line="50" selection-start-column="69" selection-end-line="50" selection-end-column="72" />
+          <folding>
+            <element signature="e#733#770#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="333" column="0" lean-forward="true" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#968#4765#0" expanded="false" />
+            <element signature="e#968#1217#1" expanded="false" />
+            <element signature="e#1256#3736#0" expanded="false" />
+            <element signature="e#1256#1427#1" expanded="false" />
+            <element signature="e#3792#4177#0" expanded="false" />
+            <element signature="e#3792#4005#1" expanded="false" />
+            <element signature="e#4244#4455#0" expanded="false" />
+            <element signature="e#4509#4765#0" expanded="false" />
+            <element signature="e#4802#8304#0" expanded="false" />
+            <element signature="e#5371#5805#0" expanded="false" />
+            <element signature="e#5869#6376#0" expanded="false" />
+            <element signature="e#6420#6718#0" expanded="false" />
+            <element signature="e#6750#7356#0" expanded="false" />
+            <element signature="e#6750#7045#1" expanded="false" />
+            <element signature="e#7414#7788#0" expanded="false" />
+            <element signature="e#7414#7650#1" expanded="false" />
+            <element signature="e#7818#8043#0" expanded="false" />
+            <element signature="e#7818#7895#1" expanded="false" />
+            <element signature="e#8073#8304#0" expanded="false" />
+            <element signature="e#8073#8144#1" expanded="false" />
+            <element signature="e#8341#12024#0" expanded="false" />
+            <element signature="e#8374#8758#0" expanded="false" />
+            <element signature="e#8798#9231#0" expanded="false" />
+            <element signature="e#9309#9987#0" expanded="false" />
+            <element signature="e#10031#10361#0" expanded="false" />
+            <element signature="e#10393#11077#0" expanded="false" />
+            <element signature="e#11135#11509#0" expanded="false" />
+            <element signature="e#11135#11371#1" expanded="false" />
+            <element signature="e#11539#11764#0" expanded="false" />
+            <element signature="e#11539#11616#1" expanded="false" />
+            <element signature="e#11794#12024#0" expanded="false" />
+            <element signature="e#11794#11864#1" expanded="false" />
+            <element signature="e#12061#18053#0" expanded="false" />
+            <element signature="e#12094#12180#0" expanded="false" />
+            <element signature="e#12243#13982#0" expanded="false" />
+            <element signature="e#12243#13328#1" expanded="false" />
+            <element signature="e#14025#15856#0" expanded="false" />
+            <element signature="e#14025#15236#1" expanded="false" />
+            <element signature="e#15896#16896#0" expanded="false" />
+            <element signature="e#15896#16656#1" expanded="false" />
+            <element signature="e#16928#17535#0" expanded="false" />
+            <element signature="e#16928#17223#1" expanded="false" />
+            <element signature="e#17565#17790#0" expanded="false" />
+            <element signature="e#17565#17642#1" expanded="false" />
+            <element signature="e#17820#18051#0" expanded="false" />
+            <element signature="e#17820#17891#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#733#748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/noaa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/netcdf_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#799#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/misc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        <state relative-caret-position="340">
+          <caret line="35" column="26" lean-forward="true" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
           <folding>
-            <element signature="e#761#798#0" expanded="true" />
-            <element signature="e#969#2920#1" expanded="false" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1354#1652#0" expanded="false" />
+            <element signature="e#1394#1539#0" expanded="false" />
+            <element signature="e#1574#1652#0" expanded="false" />
+            <element signature="e#1682#2501#0" expanded="false" />
+            <element signature="e#1682#2360#1" expanded="false" />
+            <element signature="e#2394#2501#0" expanded="false" />
+            <element signature="e#2532#8327#0" expanded="false" />
+            <element signature="e#2532#4537#1" expanded="false" />
+            <element signature="e#4592#5689#0" expanded="false" />
+            <element signature="e#4730#4892#0" expanded="false" />
+            <element signature="e#5048#5390#0" expanded="false" />
+            <element signature="e#5250#5390#1" expanded="false" />
+            <element signature="e#5724#5913#0" expanded="false" />
+            <element signature="e#5763#5892#0" expanded="false" />
+            <element signature="e#5961#7725#0" expanded="false" />
+            <element signature="e#5970#6744#0" expanded="false" />
+            <element signature="e#6781#7244#0" expanded="false" />
+            <element signature="e#6790#7152#0" expanded="false" />
+            <element signature="e#7281#7615#0" expanded="false" />
+            <element signature="e#7290#7615#0" expanded="false" />
+            <element signature="e#7767#8325#0" expanded="false" />
+            <element signature="e#7865#8045#0" expanded="false" />
+            <element signature="e#8085#8305#0" expanded="false" />
+            <element signature="e#8102#8304#0" expanded="false" />
           </folding>
         </state>
       </provider>
