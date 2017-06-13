@@ -15,6 +15,7 @@
 # =============================================================================================
 
 from netCDF4 import Dataset, num2date
+from pydap.client import open_url
 import numpy as np
 
 # Montana bounds (lat, lon)
@@ -38,14 +39,20 @@ def ganymed():
     return None
 
 
-def get_bounds_rectangle(lats, lons):
-    site = 'https://cida.usgs.gov/thredds/ncss/topowx?var=tmax&var=tmin&disableLLSubset=on&disableProjSubset=on&horizStride=1&time_start=12015-01-01T12%3A00%3A00Z&time_end=2015-12-31T12%3A00%3A00Z&timeStride=1&addLatLon=true'
+def get_bounds_rectangle():
+    site = 'https://cida.usgs.gov/thredds/ncss/topowx?var=tmax&var=tmin&disableLLSubset=on&disableProjSubset=on&horizStride=1&time_start=2015-01-01T12%3A00%3A00Z&time_end=2015-12-31T12%3A00%3A00Z&timeStride=1&addLatLon=true'
     nc = Dataset(site)
     print(nc)
 
 
-if __name__ == '__main__':
-    ganymed()
+def get_bounds_rectangle_dap():
+    site = 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET/pet/pet_2011.nc?lon[0:1:1385],lat[0:1:584],day[0:1:364],potential_evapotranspiration[0:1:0][0:1:0][0:1:0]'
+    nc = open_url(site)
+    print(list(nc.keys()))
 
+
+if __name__ == '__main__':
+    # ganymed()
+    get_bounds_rectangle_dap()
 
 # ========================= EOF ====================================================================

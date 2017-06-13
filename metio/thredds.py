@@ -20,9 +20,8 @@ with hooks():
     from urllib.parse import urlunparse, urlencode
 
 from datetime import datetime
-import numpy as np
-from netCDF4 import Dataset
-from xlrd import xldate
+# from netCDF4 import Dataset
+from pydap.client import open_url
 
 from metio.misc import BBox
 
@@ -143,10 +142,10 @@ class GridMet(Thredds):
     def get_data(self):
 
         for var in self.variables:
+            base = 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET/pet/pet_2011.nc?lon[0:1:1385],lat[0:1:584],day[0:1:364],potential_evapotranspiration[0:1:0][0:1:0][0:1:0]'
             url = self._build_url(var)
-            dataset = Dataset(url)
-            dataset.close()
-            setattr(self, var, dataset)
+            set = open_url(base)
+            setattr(self, var, set)
 
         return None
 
