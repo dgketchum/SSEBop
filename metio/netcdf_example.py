@@ -40,7 +40,7 @@ def ganymed():
 
 
 def get_bounds_rectangle():
-    site = 'https://cida.usgs.gov/thredds/ncss/topowx?var=tmax&var=tmin&disableLLSubset=on&disableProjSubset=on&horizStride=1&time_start=2015-01-01T12%3A00%3A00Z&time_end=2015-12-31T12%3A00%3A00Z&timeStride=1&addLatLon=true'
+    site = 'http://thredds.northwestknowledge.net:8080/thredds/ncss/MET/pet/pet_2016.nc?var=potential_evapotranspiration&horizStride=1&time_start=2016-01-01T00%3A00%3A00Z&time_end=2016-01-02T00%3A00%3A00Z&timeStride=1&addLatLon=true&accept=netcdf4'
     nc = Dataset(site)
     print(nc)
 
@@ -53,6 +53,6 @@ def get_bounds_rectangle_dap():
 
 if __name__ == '__main__':
     # ganymed()
-    get_bounds_rectangle_dap()
+    get_bounds_rectangle()
 
 # ========================= EOF ====================================================================

@@ -18,11 +18,24 @@ from future.standard_library import hooks
 
 with hooks():
     import urllib.parse as parse
+
 from datetime import datetime
+from netCDF4 import Dataset
+
 from metio.misc import BBox
 from metio.thredds import GridMet
+from metio.thredds import OpenDap
 
-from netCDF4 import Dataset
+
+class TestOpenDap(unittest.TestCase):
+    def setUp(self):
+        self.start = datetime(2011, 1, 1)
+        self.end = datetime(2011, 12, 31)
+
+    def test_dates(self):
+        op = OpenDap(start=self.start, end=self.end)
+        self.assertEqual(op.start_doy, 0)
+        self.assertEqual(op.end_doy, 364)
 
 
 class TestGridMet(unittest.TestCase):
@@ -38,20 +51,28 @@ class TestGridMet(unittest.TestCase):
 
         self.start = datetime(2011, 1, 1)
         self.end = datetime(2011, 12, 31)
-        self.gridmet = GridMet(self.vars, start=self.start, end=self.end,
-                               bbox=self.bbox)
 
     def test_instantiate(self):
         self.assertIsInstance(self.gridmet, GridMet)
 
     def test_url_query(self):
-        url = self.gridmet._build_url('pet')
+        gridmet = GridMet(self.vars, start=self.start, end=self.end,
+                          bbox=self.bbox)
+        url = gridmet._build_url('pet')
         code_parse, test_parse = parse.urlparse(url).query, parse.urlparse(self.test_url_str).query
         code_d, test_d = parse.parse_qs(code_parse), parse.parse_qs(test_parse)
         self.assertEqual(code_d, test_d)
 
-    def test_get_data(self):
-        self.gridmet.get_data()
+    def test_get_data_date(self):
+        gridmet = GridMet(self.vars, date=self.start,
+                          bbox=self.bbox)
+        gridmet.get_data()
+        self.assertIsInstance(self.gridmet.get_data(), Dataset)
+
+    def test_get_data_date_range(self):
+        gridmet = GridMet(self.vars, start=self.start, end=self.end,
+                          bbox=self.bbox)
+        gridmet.get_data()
         self.assertIsInstance(self.gridmet.get_data(), Dataset)
 
 
