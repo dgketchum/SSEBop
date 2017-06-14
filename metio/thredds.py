@@ -20,13 +20,16 @@ with hooks():
     from urllib.parse import urlunparse, urlencode
 
 from datetime import datetime
-# from netCDF4 import Dataset
-from pydap.client import open_url
+from netCDF4 import Dataset
 
 from metio.misc import BBox
 
 
 class Thredds(object):
+    """  Unidata's Thematic Real-time Environmental Distributed Data Services (THREDDS)
+    
+    """
+
     def __init__(self, start=None, end=None, date=None, bbox=None):
 
         self.service = 'thredds.northwestknowledge.net:8080'
@@ -47,7 +50,28 @@ class Thredds(object):
             return d, d
 
 
-class TopoWX(Thredds):
+class OpenDap(object):
+    """ OpenDap: Open-source Project for a Network Data Access Protocol
+    
+        " is a data transport architecture and protocol widely used by earth scientists. 
+        The protocol is based on HTTP and the current specification is OPeNDAP 2.0 draft"
+        
+    """
+
+    def __init__(self, start=None, end=None, date=None):
+
+        self.start = start
+        self.end = end
+        self.date = date
+
+        # doy must be zero-indexed for OpenDap
+        for attr in ('start', 'end', 'date'):
+            if getattr(self, attr):
+                val = getattr(self, attr)
+                setattr(self, '{}_doy'.format(attr), val.timetuple().tm_yday - 1)
+
+
+class TopoWX(Thredds, OpenDap):
     """ TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
 
     Available variables: [ 'tmmn', 'tmmx']
@@ -68,12 +92,13 @@ class TopoWX(Thredds):
 
     def __init__(self):
         Thredds.__init__(self, start=None, end=None, date=None, bbox=None)
+        OpenDap.__init__(self, start=None, end=None, date=None)
 
         if self.start:
             pass
 
 
-class GridMet(Thredds):
+class GridMet(Thredds, OpenDap):
     """ U of I Gridmet, return as numpy array per met variable in daily stack unless modified.
     
     Available variables: ['bi', 'elev', 'erc', 'fm100', fm1000', 'pdsi', 'pet', 'pr', 'rmax', 'rmin', 'sph', 'srad',
@@ -116,6 +141,7 @@ class GridMet(Thredds):
 
     def __init__(self, variables, **kwargs):
         Thredds.__init__(self, start=None, end=None, date=None, bbox=None)
+        OpenDap.__init__(self, start=None, end=None, date=None)
         self.requested_variables = variables
 
         self.available = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
@@ -142,10 +168,11 @@ class GridMet(Thredds):
     def get_data(self):
 
         for var in self.variables:
-            base = 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET/pet/pet_2011.nc?lon[0:1:1385],lat[0:1:584],day[0:1:364],potential_evapotranspiration[0:1:0][0:1:0][0:1:0]'
+            # 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET/pet/{}_{}.nc'
+            url_test = 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET/pet/pet_2016.nc'
             url = self._build_url(var)
-            set = open_url(base)
-            setattr(self, var, set)
+            subset = Dataset(url, 'r')
+            setattr(self, var, subset)
 
         return None
 
@@ -193,11 +220,11 @@ class GridMet(Thredds):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
         url = urlunparse([self.scheme, self.service,
-                          '/thredds/ncss/MET/{0}/{0}_{1}.nc'.format(var, self.start.year),
+                          '/thredds/dodsC/MET/{0}/{0}_{1}.nc'.format(var, self.date.year),
                           '', self._build_query_str(var), ''])
         if var == 'elev':
             url = urlunparse([self.scheme, self.service,
-                              '/thredds/ncss/MET/{0}/metdata_elevationdata.nc'.format(var, self.start.year),
+                              '/thredds/dodsC/MET/{0}/metdata_elevationdata.nc'.format(var, self.date.year),
                               '', self._build_query_str(var), ''])
 
         return url
