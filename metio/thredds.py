@@ -17,10 +17,12 @@ from __future__ import print_function
 from future.standard_library import hooks
 
 with hooks():
-    from urllib.parse import urlunparse, urlencode
+    from urllib.parse import urlunparse
 
+import numpy as np
 from datetime import datetime
 from netCDF4 import Dataset
+from xlrd import xldate
 
 from metio.misc import BBox
 
@@ -136,6 +138,8 @@ class GridMet(Thredds, OpenDap):
 
     note: NetCDF dates are in xl '1900' format, i.e., number of days since 1899-12-31 23:59
           xlrd.xldate handles this for the time being
+          
+    note: Careful with data management, each year of CONUS data is about 1.2 GB
     
     """
 
@@ -148,6 +152,23 @@ class GridMet(Thredds, OpenDap):
                           'th', 'tmmn', 'tmmx', 'pet', 'vs', 'erc', 'bi',
                           'fm100', 'pdsi']
 
+        self.kwords = {'bi': 'burning_index_g',
+                       'elev': '',
+                       'erc': 'energy_release_component-g',
+                       'fm100': 'dead_fuel_moisture_100hr',
+                       'fm1000': 'dead_fuel_moisture_1000hr',
+                       'pdsi': 'palmer_drought_severity_index',
+                       'pet': 'potential_evapotranspiration',
+                       'pr': 'precipitation_amount',
+                       'rmax': 'relative_humidity',
+                       'rmin': 'relative_humidity',
+                       'sph': 'specific_humidity',
+                       'srad': 'surface_downwelling_shortwave_flux_in_air',
+                       'th': 'wind_from_direction',
+                       'tmmn': 'air_temperature',
+                       'tmmx': 'air_temperature',
+                       'vs': 'wind_speed', }
+
         for key, val in kwargs.items():
             setattr(self, key, val)
 
@@ -158,6 +179,11 @@ class GridMet(Thredds, OpenDap):
             [Warning('Variable {} is not available'.
                      format(var)) for var in self.requested_variables if var not in self.available]
 
+        if self.start:
+            self.year = self.start.year
+        else:
+            self.year = self.date.year
+
         if not self.start and not self.date:
             raise ValueError('Must include a start and end, or a date.')
         if self.start and self.end and self.date:
@@ -167,66 +193,66 @@ class GridMet(Thredds, OpenDap):
 
     def get_data(self):
 
+        first = True
         for var in self.variables:
-            # 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET/pet/{}_{}.nc'
-            url_test = 'http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET/pet/pet_2016.nc'
+
             url = self._build_url(var)
             subset = Dataset(url, 'r')
-            setattr(self, var, subset)
 
+            if first:
+                date_index = self._get_date_index(subset.variables['day'])
+                lat_l, lat_h, lon_l, lon_h = self._bounds(subset.variables['lat'][:], subset.variables['lon'][:])
+            if self.date:
+                data = subset.variables[self.kwords[var]][date_index, lon_l:lon_h, lat_l:lat_h]
+            else:
+                data = subset.variables[self.kwords[var]][date_index[0]:date_index[1], lon_l:lon_h, lat_l:lat_h]
+
+            setattr(self, var, data)
+
+        subset.close()
         return None
-
-    def _build_query_str(self, var):
-
-        kwords = {'bi': 'burning_index_g',
-                  'elev': '',
-                  'erc': 'energy_release_component-g',
-                  'fm100': 'dead_fuel_moisture_100hr',
-                  'fm1000': 'dead_fuel_moisture_1000hr',
-                  'pdsi': 'palmer_drought_severity_index',
-                  'pet': 'potential_evapotranspiration',
-                  'pr': 'precipitation_amount',
-                  'rmax': 'relative_humidity',
-                  'rmin': 'relative_humidity',
-                  'sph': 'specific_humidity',
-                  'srad': 'surface_downwelling_shortwave_flux_in_air',
-                  'th': 'wind_from_direction',
-                  'tmmn': 'air_temperature',
-                  'tmmx': 'air_temperature',
-                  'vs': 'wind_speed', }
-
-        if self.start:
-            params = {'west': [self.bbox.west_str], 'north': [self.bbox.north_str],
-                      'east': [self.bbox.east_str], 'south': [self.bbox.south_str],
-                      'timeStride': ['1'], 'horizStride': ['1'],
-                      'accept': ['netcdf4'], 'time_start': [self._time()[0]],
-                      'time_end': [self._time()[1]], 'var': kwords[var]}
-            # check if None value works in query, join conditionals into one statement todo
-        elif self.date:
-            params = {'west': [self.bbox.west_str], 'north': [self.bbox.north_str],
-                      'east': [self.bbox.east_str], 'south': [self.bbox.south_str],
-                      'timeStride': ['1'], 'horizStride': ['1'],
-                      'accept': ['netcdf4'], 'time': [self._time()[0]],
-                      'var': kwords[var]}
-
-        else:
-            params = None
-
-        query = urlencode(params, doseq=True)
-
-        return query
 
     def _build_url(self, var):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
         url = urlunparse([self.scheme, self.service,
-                          '/thredds/dodsC/MET/{0}/{0}_{1}.nc'.format(var, self.date.year),
-                          '', self._build_query_str(var), ''])
+                          '/thredds/dodsC/MET/{0}/{0}_{1}.nc'.format(var, self.year),
+                          '', '', ''])
         if var == 'elev':
             url = urlunparse([self.scheme, self.service,
-                              '/thredds/dodsC/MET/{0}/metdata_elevationdata.nc'.format(var, self.date.year),
-                              '', self._build_query_str(var), ''])
+                              '/thredds/dodsC/MET/{0}/metdata_elevationdata.nc'.format(var, self.year),
+                              '', '', ''])
 
         return url
+
+    def _get_date_index(self, time_arr):
+
+        if self.start:
+
+            start_date_tup = (self.start.year, self.start.month, self.start.day)
+            start_excel_date = xldate.xldate_from_date_tuple(start_date_tup, 0)
+
+            end_date_tup = (self.end.year, self.end.month, self.end.day)
+            end_excel_date = xldate.xldate_from_date_tuple(end_date_tup, 0)
+
+            start, end = np.argmin(np.abs(time_arr - start_excel_date)), np.argmin(np.abs(time_arr - end_excel_date))
+            return start, end
+
+        else:
+
+            date_tup = (self.date.year, self.date.month, self.date.day)
+            excel_date = xldate.xldate_from_date_tuple(date_tup, 0)
+            date_index = np.argmin(np.abs(time_arr - excel_date))
+            return date_index
+
+    def _bounds(self, lats, lons):
+
+        # find indices of lat lon bounds in nc file
+        lat_lower = np.argmin(np.abs(lats - self.bbox.south))
+        lat_upper = np.argmin(np.abs(lats - self.bbox.north))
+        lon_lower = np.argmin(np.abs(lons - self.bbox.west))
+        lon_upper = np.argmin(np.abs(lons - self.bbox.east))
+
+        return lat_lower, lat_upper, lon_lower, lon_upper
 
 # ========================= EOF ====================================================================

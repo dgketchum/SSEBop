@@ -14,17 +14,11 @@
 # limitations under the License.
 # ===============================================================================
 import unittest
-from future.standard_library import hooks
-
-with hooks():
-    import urllib.parse as parse
 
 from datetime import datetime
-from netCDF4 import Dataset
 
 from metio.misc import BBox
-from metio.thredds import GridMet
-from metio.thredds import OpenDap
+from metio.thredds import OpenDap, GridMet
 
 
 class TestOpenDap(unittest.TestCase):
@@ -50,30 +44,24 @@ class TestGridMet(unittest.TestCase):
                             'time_end=2011-12-31T00%3A00%3A00Z&timeStride=1&accept=netcdf4'
 
         self.start = datetime(2011, 1, 1)
-        self.end = datetime(2011, 12, 31)
+        self.date = datetime(2011, 4, 1)
+        self.end = datetime(2011, 10, 31)
 
     def test_instantiate(self):
-        self.assertIsInstance(self.gridmet, GridMet)
-
-    def test_url_query(self):
         gridmet = GridMet(self.vars, start=self.start, end=self.end,
                           bbox=self.bbox)
-        url = gridmet._build_url('pet')
-        code_parse, test_parse = parse.urlparse(url).query, parse.urlparse(self.test_url_str).query
-        code_d, test_d = parse.parse_qs(code_parse), parse.parse_qs(test_parse)
-        self.assertEqual(code_d, test_d)
+        self.assertIsInstance(gridmet, GridMet)
 
     def test_get_data_date(self):
-        gridmet = GridMet(self.vars, date=self.start,
+        gridmet = GridMet(self.vars, date=self.date,
                           bbox=self.bbox)
         gridmet.get_data()
-        self.assertIsInstance(self.gridmet.get_data(), Dataset)
+        self.assertEqual(1, 2)
 
     def test_get_data_date_range(self):
         gridmet = GridMet(self.vars, start=self.start, end=self.end,
                           bbox=self.bbox)
         gridmet.get_data()
-        self.assertIsInstance(self.gridmet.get_data(), Dataset)
 
 
 if __name__ == '__main__':
