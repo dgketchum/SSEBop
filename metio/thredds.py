@@ -23,6 +23,7 @@ import numpy as np
 from datetime import datetime
 from netCDF4 import Dataset
 from xlrd import xldate
+from xarray import open_dataset
 
 from metio.misc import BBox
 
@@ -197,6 +198,7 @@ class GridMet(Thredds, OpenDap):
         for var in self.variables:
 
             url = self._build_url(var)
+            xray = open_dataset(url)
             subset = Dataset(url, 'r')
 
             if first:
