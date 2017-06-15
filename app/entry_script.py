@@ -16,7 +16,9 @@
 
 import os
 
-from app.config import Config
+from app.config import Config, paths
+from app.cli import welcome
+from core.ssebop import SSEBopModel
 
 
 def run_ssebop(cfg_path):
@@ -33,7 +35,8 @@ def run_ssebop(cfg_path):
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
-    config_path = None
+    root = os.path.join(home, 'PycharmProjects', 'ssebop')
+    config_path = os.path.join(root, 'tests/ssebop_config_test.yml')
     run_ssebop(config_path)
 
 # ========================= EOF ====================================================================

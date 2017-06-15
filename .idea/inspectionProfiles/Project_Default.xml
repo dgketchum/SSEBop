@@ -14,7 +14,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="8">
+          <list size="9">
             <item index="0" class="java.lang.String" itemvalue="yaml" />
             <item index="1" class="java.lang.String" itemvalue="netCDF4" />
             <item index="2" class="java.lang.String" itemvalue="future" />
@@ -23,6 +23,7 @@
             <item index="5" class="java.lang.String" itemvalue="requests" />
             <item index="6" class="java.lang.String" itemvalue="xlrd" />
             <item index="7" class="java.lang.String" itemvalue="setuptools-yaml" />
+            <item index="8" class="java.lang.String" itemvalue="xarray" />
           </list>
         </value>
       </option>
