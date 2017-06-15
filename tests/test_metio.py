@@ -17,7 +17,7 @@ import unittest
 
 from datetime import datetime
 
-from xarray import DataArray
+from xarray import Dataset
 
 from metio.misc import BBox
 from metio.thredds import GridMet
@@ -47,13 +47,17 @@ class TestGridMet(unittest.TestCase):
         gridmet = GridMet(self.vars, date=self.date,
                           bbox=self.bbox)
         gridmet.get_data()
-        self.assertIsInstance(gridmet.pet, DataArray)
+        self.assertIsInstance(gridmet.pet, Dataset)
+        self.assertEqual(gridmet.pet.dims['lon'], 322)
+        self.assertEqual(gridmet.pet.dims['time'], 1)
 
     def test_get_data_date_range(self):
         gridmet = GridMet(self.vars, start=self.start, end=self.end,
                           bbox=self.bbox)
         gridmet.get_data()
-
+        self.assertIsInstance(gridmet.pet, Dataset)
+        self.assertEqual(gridmet.pet.dims['lon'], 322)
+        self.assertEqual(gridmet.pet.dims['time'], 214)
 
 if __name__ == '__main__':
     unittest.main()
