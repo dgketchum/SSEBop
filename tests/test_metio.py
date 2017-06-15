@@ -17,19 +17,10 @@ import unittest
 
 from datetime import datetime
 
+from xarray import DataArray
+
 from metio.misc import BBox
-from metio.thredds import OpenDap, GridMet
-
-
-class TestOpenDap(unittest.TestCase):
-    def setUp(self):
-        self.start = datetime(2011, 1, 1)
-        self.end = datetime(2011, 12, 31)
-
-    def test_dates(self):
-        op = OpenDap(start=self.start, end=self.end)
-        self.assertEqual(op.start_doy, 0)
-        self.assertEqual(op.end_doy, 364)
+from metio.thredds import GridMet
 
 
 class TestGridMet(unittest.TestCase):
@@ -56,7 +47,7 @@ class TestGridMet(unittest.TestCase):
         gridmet = GridMet(self.vars, date=self.date,
                           bbox=self.bbox)
         gridmet.get_data()
-        self.assertEqual(1, 2)
+        self.assertIsInstance(gridmet.pet, DataArray)
 
     def test_get_data_date_range(self):
         gridmet = GridMet(self.vars, start=self.start, end=self.end,

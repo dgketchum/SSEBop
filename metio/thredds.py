@@ -21,9 +21,10 @@ with hooks():
 
 import numpy as np
 from datetime import datetime
-from netCDF4 import Dataset
+# from netCDF4 import Dataset
 from xlrd import xldate
-from xarray import open_dataset
+from xarray import open_dataset, decode_cf, DataArray
+from pandas import DatetimeIndex
 
 from metio.misc import BBox
 
@@ -32,6 +33,10 @@ class Thredds(object):
     """  Unidata's Thematic Real-time Environmental Distributed Data Services (THREDDS)
     
     """
+
+    start_doy = None
+    end_doy = None
+    date_doy = None
 
     def __init__(self, start=None, end=None, date=None, bbox=None):
 
@@ -42,39 +47,15 @@ class Thredds(object):
         self.date = date
         self.bbox = bbox
 
-    def _time(self):
-
-        if self.start and self.end:
-            s = datetime.strftime(self.start, '%Y-%m-%dT00:00:00Z')
-            e = datetime.strftime(self.end, '%Y-%m-%dT00:00:00Z')
-            return s, e
-        if self.date:
-            d = datetime.strftime(self.date, '%Y-%m-%dT00:00:00Z')
-            return d, d
-
-
-class OpenDap(object):
-    """ OpenDap: Open-source Project for a Network Data Access Protocol
-    
-        " is a data transport architecture and protocol widely used by earth scientists. 
-        The protocol is based on HTTP and the current specification is OPeNDAP 2.0 draft"
-        
-    """
-
-    def __init__(self, start=None, end=None, date=None):
-
-        self.start = start
-        self.end = end
-        self.date = date
-
-        # doy must be zero-indexed for OpenDap
+        # day of year; doy
+        # doy must be zero-indexed
         for attr in ('start', 'end', 'date'):
             if getattr(self, attr):
                 val = getattr(self, attr)
                 setattr(self, '{}_doy'.format(attr), val.timetuple().tm_yday - 1)
 
 
-class TopoWX(Thredds, OpenDap):
+class TopoWX(Thredds):
     """ TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
 
     Available variables: [ 'tmmn', 'tmmx']
@@ -95,13 +76,12 @@ class TopoWX(Thredds, OpenDap):
 
     def __init__(self):
         Thredds.__init__(self, start=None, end=None, date=None, bbox=None)
-        OpenDap.__init__(self, start=None, end=None, date=None)
 
         if self.start:
             pass
 
 
-class GridMet(Thredds, OpenDap):
+class GridMet(Thredds):
     """ U of I Gridmet, return as numpy array per met variable in daily stack unless modified.
     
     Available variables: ['bi', 'elev', 'erc', 'fm100', fm1000', 'pdsi', 'pet', 'pr', 'rmax', 'rmin', 'sph', 'srad',
@@ -140,13 +120,10 @@ class GridMet(Thredds, OpenDap):
     note: NetCDF dates are in xl '1900' format, i.e., number of days since 1899-12-31 23:59
           xlrd.xldate handles this for the time being
           
-    note: Careful with data management, each year of CONUS data is about 1.2 GB
-    
     """
 
     def __init__(self, variables, **kwargs):
         Thredds.__init__(self, start=None, end=None, date=None, bbox=None)
-        OpenDap.__init__(self, start=None, end=None, date=None)
         self.requested_variables = variables
 
         self.available = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
@@ -173,6 +150,8 @@ class GridMet(Thredds, OpenDap):
         for key, val in kwargs.items():
             setattr(self, key, val)
 
+        self.dates_fmt = {'day': 'days since 1900-01-01'}
+
         self.variables = []
         if self.requested_variables:
             [setattr(self, var, None) for var in self.requested_variables if var in self.available]
@@ -197,11 +176,31 @@ class GridMet(Thredds, OpenDap):
         for var in self.variables:
             url = self._build_url(var)
             xray = open_dataset(url)
-            # nc = Dataset(url)
-            dates = self._get_date_index(xray['day'])
-            # lat_lower, lat_upper, lon_lower, lon_upper = self._bounds(xray['lat'], xray['lon'])
-            subset = xray.loc[dict(day=slice(dates[0], dates[1]), lat=slice(self.bbox.south, self.bbox.north),
-                                   lon=slice(self.bbox.west, self.bbox.east))]
+            xldates = [int(x) for x in xray['day']]
+            dates = [xldate.xldate_as_datetime(date, 0) for date in xldates]
+            date_index = DatetimeIndex(dates)
+
+            if self.date:
+                subset = xray.loc[dict(day=slice(self.date_doy),
+                                       lat=slice(self.bbox.north, self.bbox.south),
+                                       lon=slice(self.bbox.west, self.bbox.east))]
+                subset.rename({'day': 'time'}, inplace=True)
+                subset = DataArray(subset[self.kwords[var]],
+                                   coords=(dict(time=date_index, lat=subset['lat'], lon=subset['lon'])),
+                                   name=var)
+            elif self.start:
+                subset = xray.loc[dict(day=slice(self.start_doy, self.end_doy),
+                                       lat=slice(self.bbox.north, self.bbox.south),
+                                       lon=slice(self.bbox.west, self.bbox.east))]
+                subset.rename({'day': 'time'}, inplace=True)
+                subset = DataArray(subset[self.kwords[var]],
+                                   coords=(dict(time=date_index, lat=subset['lat'], lon=subset['lon'])),
+                                   name=var)
+
+            else:
+                raise ValueError('Must havve start or date parameter filled.')
+
+            setattr(self, var, subset)
 
         return None
 
@@ -217,36 +216,5 @@ class GridMet(Thredds, OpenDap):
                               '', '', ''])
 
         return url
-
-    def _get_date_index(self, time_arr):
-
-        if self.start:
-
-            start_date_tup = (self.start.year, self.start.month, self.start.day)
-            start_excel_date = xldate.xldate_from_date_tuple(start_date_tup, 0)
-
-            end_date_tup = (self.end.year, self.end.month, self.end.day)
-            end_excel_date = xldate.xldate_from_date_tuple(end_date_tup, 0)
-
-            start, end = np.argmin(np.abs(time_arr - start_excel_date)), np.argmin(np.abs(time_arr - end_excel_date))
-
-            return start, end
-
-        else:
-
-            date_tup = (self.date.year, self.date.month, self.date.day)
-            excel_date = xldate.xldate_from_date_tuple(date_tup, 0)
-            date_index = np.argmin(np.abs(time_arr - excel_date))
-            return date_index
-
-    def _bounds(self, lats, lons):
-
-        # find indices of lat lon bounds in nc file
-        lat_lower = np.argmin(np.abs(lats - self.bbox.south))
-        lat_upper = np.argmin(np.abs(lats - self.bbox.north))
-        lon_lower = np.argmin(np.abs(lons - self.bbox.west))
-        lon_upper = np.argmin(np.abs(lons - self.bbox.east))
-
-        return lat_lower, lat_upper, lon_lower, lon_upper
 
 # ========================= EOF ====================================================================

@@ -18,11 +18,6 @@ class BBox(object):
         self.east = east_lon
         self.north = north_lat
 
-        self.west_str = str(self.west)
-        self.south_str = str(self.south)
-        self.east_str = str(self.east)
-        self.north_str = str(self.north)
-
     def remove_outbnds_df(self, df):
         mask_bnds = ((df.latitude >= self.south) &
                      (df.latitude <= self.north) &
