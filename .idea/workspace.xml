@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_metio.py" afterPath="$PROJECT_DIR$/tests/test_metio.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +20,8 @@
       <file leaf-file-name="thredds.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+            <state relative-caret-position="423">
+              <caret line="202" column="38" lean-forward="false" selection-start-line="202" selection-start-column="38" selection-end-line="202" selection-end-column="38" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#761#798#0" expanded="true" />
@@ -39,8 +40,8 @@
       <file leaf-file-name="test_metio.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="60" column="18" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
+            <state relative-caret-position="369">
+              <caret line="46" column="40" lean-forward="true" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#733#748#0" expanded="true" />
@@ -503,13 +504,6 @@
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
     </task>
-    <task id="LOCAL-00020" summary="function raster x, y point to array row, col">
-      <created>1495045859369</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1495045859369</updated>
-    </task>
     <task id="LOCAL-00021" summary="function raster x, y point to array row, col">
       <created>1495051174649</created>
       <option name="number" value="00021" />
@@ -846,27 +840,34 @@
       <option name="project" value="LOCAL" />
       <updated>1497480957996</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="going to implement xarray">
+      <created>1497481751783</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1497481751784</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_metio_TestGridMet_test_get_data_date_range - 2017.06.14 at 17h 08m 22s.xml">
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet_test_get_data_date_range - 2017.06.15 at 07h 25m 30s.xml">
       <configuration name="Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_metio_py - 2017.06.14 at 16h 20m 09s.xml">
-      <configuration name="Unittests in test_metio.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet_test_get_data_date_range - 2017.06.15 at 07h 57m 14s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_metio_py - 2017.06.14 at 16h 20m 48s.xml">
-      <configuration name="Unittests in test_metio.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet_test_get_data_date_range - 2017.06.15 at 07h 57m 36s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_metio_py - 2017.06.14 at 16h 22m 07s.xml">
-      <configuration name="Unittests in test_metio.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet_test_get_data_date_range - 2017.06.15 at 07h 58m 16s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_metio_py - 2017.06.14 at 16h 22m 51s.xml">
-      <configuration name="Unittests in test_metio.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet_test_get_data_date_range - 2017.06.15 at 07h 59m 33s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_metio_py - 2017.06.14 at 16h 24m 41s.xml">
-      <configuration name="Unittests in test_metio.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestGridMet_test_get_data_date_range - 2017.06.15 at 08h 13m 02s.xml">
+      <configuration name="Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_test_metio_py - 2017.06.14 at 16h 25m 43s.xml">
       <configuration name="Unittests in test_metio.py" configurationId="tests" />
@@ -892,17 +893,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14306785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46755162" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29723758" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46755162" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5855457" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2780236" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -942,7 +944,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fixed brightness problem in LT5 and LE7 image objects" />
     <MESSAGE value="broke up fmax in variability_prob" />
     <MESSAGE value="getting better counts from fmask for LT5" />
     <MESSAGE value="added saturation check for mod_ndvi/ndsi in variability_prob" />
@@ -967,7 +968,8 @@
     <MESSAGE value="switched to pydap in gridmet class" />
     <MESSAGE value="rebuilding gridmet url query to get whole datasets; no more subsetting" />
     <MESSAGE value="rebuilding gridmet url query to get whole datasets; subsetting with our own functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="rebuilding gridmet url query to get whole datasets; subsetting with our own functions" />
+    <MESSAGE value="going to implement xarray" />
+    <option name="LAST_COMMIT_MESSAGE" value="going to implement xarray" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -990,8 +992,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/metio/thredds.py</url>
-          <line>201</line>
-          <option name="timeStamp" value="375" />
+          <line>205</line>
+          <option name="timeStamp" value="378" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1001,7 +1003,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="376" />
+      <option name="time" value="381" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1272,7 +1274,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1280,9 +1281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="777">
           <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding>
-            <element signature="e#762#799#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1308,14 +1306,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-481">
           <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="60" column="18" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
+        <state relative-caret-position="369">
+          <caret line="46" column="40" lean-forward="true" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#733#748#0" expanded="true" />
@@ -1325,8 +1322,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+        <state relative-caret-position="423">
+          <caret line="202" column="38" lean-forward="false" selection-start-line="202" selection-start-column="38" selection-end-line="202" selection-end-column="38" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#798#0" expanded="true" />

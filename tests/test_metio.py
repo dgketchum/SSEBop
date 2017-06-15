@@ -43,7 +43,7 @@ class TestGridMet(unittest.TestCase):
                             '&horizStride=1&time_start=2011-01-01T00%3A00%3A00Z&' \
                             'time_end=2011-12-31T00%3A00%3A00Z&timeStride=1&accept=netcdf4'
 
-        self.start = datetime(2011, 1, 1)
+        self.start = datetime(2011, 4, 1)
         self.date = datetime(2011, 4, 1)
         self.end = datetime(2011, 10, 31)
 
