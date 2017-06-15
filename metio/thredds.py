@@ -21,7 +21,8 @@ with hooks():
 
 from xlrd.xldate import xldate_from_date_tuple
 from xarray import open_dataset
-from pandas import date_range, Timestamp
+from pandas import date_range
+# from datetime import timedelta
 
 from metio.misc import BBox
 
@@ -31,10 +32,6 @@ class Thredds(object):
     
     """
 
-    start_doy = None
-    end_doy = None
-    date_doy = None
-
     def __init__(self, start=None, end=None, date=None, bbox=None):
 
         self.service = 'thredds.northwestknowledge.net:8080'
@@ -42,14 +39,8 @@ class Thredds(object):
         self.start = start
         self.end = end
         self.date = date
-        self.bbox = bbox
 
-        # day of year; doy
-        # doy must be zero-indexed
-        for attr in ('start', 'end', 'date'):
-            if getattr(self, attr):
-                val = getattr(self, attr)
-                setattr(self, '{}_doy'.format(attr), val.timetuple().tm_yday - 1)
+        self.bbox = bbox
 
 
 class TopoWX(Thredds):
@@ -120,7 +111,7 @@ class GridMet(Thredds):
     """
 
     def __init__(self, variables, **kwargs):
-        Thredds.__init__(self, start=None, end=None, date=None, bbox=None)
+        Thredds.__init__(self, start=None, end=None, bbox=None)
         self.requested_variables = variables
 
         self.available = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
@@ -147,7 +138,9 @@ class GridMet(Thredds):
         for key, val in kwargs.items():
             setattr(self, key, val)
 
-        self.dates_fmt = {'day': 'days since 1900-01-01'}
+        if self.date:
+            self.start = self.date
+            self.end = self.date
 
         self.variables = []
         if self.requested_variables:
@@ -156,15 +149,8 @@ class GridMet(Thredds):
             [Warning('Variable {} is not available'.
                      format(var)) for var in self.requested_variables if var not in self.available]
 
-        if self.start:
-            self.year = self.start.year
-        else:
-            self.year = self.date.year
+        self.year = self.start.year
 
-        if not self.start and not self.date:
-            raise ValueError('Must include a start and end, or a date.')
-        if self.start and self.end and self.date:
-            raise ValueError('Must include a start and end, or a date.')
         if not self.bbox:
             self.bbox = BBox()
 
@@ -203,23 +189,14 @@ class GridMet(Thredds):
         return url
 
     def _dtime_to_xldate(self):
-        if self.start:
-            s_sup, e_sup = self.start.timetuple(), self.end.timetuple()
-            s_tup, e_tup = (s_sup[0], s_sup[1], s_sup[2]), (e_sup[0], e_sup[1], e_sup[2])
-            sxl, exl = xldate_from_date_tuple(s_tup, 0), xldate_from_date_tuple(e_tup, 0)
-            return sxl, exl
-        else:
-            d_sup = self.date.timetuple()
-            d_tup = (d_sup[0], d_sup[1], d_sup[2])
-            dxl = xldate_from_date_tuple(d_tup, 0)
-            return dxl, None
+        s_sup, e_sup = self.start.timetuple(), self.end.timetuple()
+        s_tup, e_tup = (s_sup[0], s_sup[1], s_sup[2]), (e_sup[0], e_sup[1], e_sup[2])
+        sxl, exl = xldate_from_date_tuple(s_tup, 0), xldate_from_date_tuple(e_tup, 0)
+        return sxl, exl
 
     def _date_index(self):
 
-        if self.start:
-            date_ind = date_range(self.start, self.end, freq='d')
-        else:
-            date_ind = Timestamp(self.date)
+        date_ind = date_range(self.start, self.end, freq='d')
 
         return date_ind
 
