@@ -194,24 +194,15 @@ class GridMet(Thredds, OpenDap):
 
     def get_data(self):
 
-        first = True
         for var in self.variables:
-
             url = self._build_url(var)
             xray = open_dataset(url)
-            subset = Dataset(url, 'r')
+            # nc = Dataset(url)
+            dates = self._get_date_index(xray['day'])
+            # lat_lower, lat_upper, lon_lower, lon_upper = self._bounds(xray['lat'], xray['lon'])
+            subset = xray.loc[dict(day=slice(dates[0], dates[1]), lat=slice(self.bbox.south, self.bbox.north),
+                                   lon=slice(self.bbox.west, self.bbox.east))]
 
-            if first:
-                date_index = self._get_date_index(subset.variables['day'])
-                lat_l, lat_h, lon_l, lon_h = self._bounds(subset.variables['lat'][:], subset.variables['lon'][:])
-            if self.date:
-                data = subset.variables[self.kwords[var]][date_index, lon_l:lon_h, lat_l:lat_h]
-            else:
-                data = subset.variables[self.kwords[var]][date_index[0]:date_index[1], lon_l:lon_h, lat_l:lat_h]
-
-            setattr(self, var, data)
-
-        subset.close()
         return None
 
     def _build_url(self, var):
@@ -238,6 +229,7 @@ class GridMet(Thredds, OpenDap):
             end_excel_date = xldate.xldate_from_date_tuple(end_date_tup, 0)
 
             start, end = np.argmin(np.abs(time_arr - start_excel_date)), np.argmin(np.abs(time_arr - end_excel_date))
+
             return start, end
 
         else:
