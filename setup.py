@@ -15,8 +15,6 @@
 # =============================================================================================
 
 
-import os
-
 from setuptools import setup
 
 # os.environ['TRAVIS_CI'] = 'True'
@@ -26,9 +24,9 @@ tag = '0.0.1'
 setup(name='ssebop',
       version=tag,
       description='The Operational Simplified Surface Energy Balance',
-      setup_requires=[''],
-      install_requires=['Click', 'numpy==1.12.1', 'requests', 'netCDF4', 'xlrd', 'future'],
-      py_modules=[],
+      setup_requires=[],
+      install_requires=['Click', 'numpy==1.12.1', 'requests', 'netCDF4', 'xlrd', 'future', 'pyyaml'],
+      py_modules=['ssebop'],
       license='Apache',
       entry_points='''
         [console_scripts]

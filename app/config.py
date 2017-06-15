@@ -20,7 +20,8 @@ import os
 import sys
 from datetime import datetime
 
-import yaml
+import pandas
+# import yaml
 
 from app.paths import paths
 
