@@ -15,50 +15,40 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="thredds.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metio/thredds.py">
+      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="-5">
+              <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#761#798#0" expanded="true" />
-                <element signature="e#1484#2162#1" expanded="false" />
-                <element signature="e#2334#7821#0" expanded="false" />
-                <element signature="e#2334#4345#1" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SSEBop_Landsat_OverpassETa.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="497" column="54" lean-forward="true" selection-start-line="497" selection-start-column="54" selection-end-line="497" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/ssebop.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="42" column="43" lean-forward="true" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cli.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/cli.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="73" column="29" lean-forward="true" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
+            <state relative-caret-position="442">
+              <caret line="140" column="0" lean-forward="true" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
-                <element signature="e#1360#1669#1" expanded="false" />
-                <element signature="e#2072#2297#1" expanded="false" />
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#740#777#0" expanded="true" />
+                <element signature="e#887#1337#0" expanded="false" />
+                <element signature="e#1386#2848#0" expanded="false" />
+                <element signature="e#2869#3273#0" expanded="false" />
+                <element signature="e#3309#3895#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -76,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>os.path.join(i</find>
       <find>os.path.join(</find>
       <find>p</find>
       <find>pa</find>
@@ -106,6 +95,7 @@
       <find>start</find>
       <find>e_</find>
       <find>doy</find>
+      <find>yaml</find>
     </findStrings>
     <replaceStrings>
       <replace>self.b2_reflct</replace>
@@ -165,12 +155,9 @@
         <option value="$PROJECT_DIR$/ssebop/utils/clip_by_polygon.py" />
         <option value="$PROJECT_DIR$/ssebop/ssebop.py" />
         <option value="$PROJECT_DIR$/app/generic_runner.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/ssebopconfig.yml" />
         <option value="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
         <option value="$PROJECT_DIR$/app/paths.py" />
-        <option value="$PROJECT_DIR$/app/config.py" />
-        <option value="$PROJECT_DIR$/app/cli.py" />
         <option value="$PROJECT_DIR$/tests/test_ssebop.py" />
         <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/tests/test_image.py" />
@@ -189,6 +176,9 @@
         <option value="$PROJECT_DIR$/metio/misc.py" />
         <option value="$PROJECT_DIR$/metio/thredds.py" />
         <option value="$PROJECT_DIR$/tests/test_metio.py" />
+        <option value="$PROJECT_DIR$/app/cli.py" />
+        <option value="$PROJECT_DIR$/app/config.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
       </list>
     </option>
   </component>
@@ -368,22 +358,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_metio.py">
-    <configuration default="false" name="Unittests for tests.test_metio.TestGridMet.test_get_data" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_metio.TestGridMet.test_get_data&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.setup">
     <configuration default="false" name="Unittests for tests.test_metio.TestGridMet.test_get_data_date" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -442,6 +417,24 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_metio.TestGridMet.test_get_data_date_range&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/setup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -520,19 +513,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data_date" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestThredds.test_years" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data_date" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestThredds.test_years" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" />
+      <item index="4" class="java.lang.String" itemvalue="Python.setup" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data_date" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestThredds.test_years" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data" />
+        <item index="0" class="java.lang.String" itemvalue="Python.setup" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data_date_range" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_get_data_date" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestThredds.test_years" />
       </list>
     </recent_temporary>
   </component>
@@ -549,48 +542,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00024" summary="bring in rio test results">
-      <created>1495122691287</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1495122691287</updated>
-    </task>
-    <task id="LOCAL-00025" summary="refactor landsat5 and 7 into one class">
-      <created>1495132039296</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1495132039296</updated>
-    </task>
-    <task id="LOCAL-00026" summary="reflectance method to Landsat8 obj">
-      <created>1495139918459</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1495139918459</updated>
-    </task>
-    <task id="LOCAL-00027" summary="handle missing k1 constant band 6 vcid LE7">
-      <created>1495144559163</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1495144559163</updated>
-    </task>
-    <task id="LOCAL-00028" summary="add class method save to LandsatImage, add temperature scales to LandsatImage(num)">
-      <created>1495204781812</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1495204781812</updated>
-    </task>
-    <task id="LOCAL-00029" summary="reconcile ex_atm_irrad with fmask.exe">
-      <created>1495220623014</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1495220623015</updated>
     </task>
     <task id="LOCAL-00030" summary="enforce thermal band exatmirrad with np.nan">
       <created>1495221903300</created>
@@ -893,7 +844,49 @@
       <option name="project" value="LOCAL" />
       <updated>1497558938070</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="thredds gridmet functioning, tested">
+      <created>1497559330033</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1497559330033</updated>
+    </task>
+    <task id="LOCAL-00074" summary="testing api, yaml problem">
+      <created>1497561111044</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1497561111044</updated>
+    </task>
+    <task id="LOCAL-00075" summary="testing api, yaml problem">
+      <created>1497561208378</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1497561208378</updated>
+    </task>
+    <task id="LOCAL-00076" summary="testing api, yaml problem">
+      <created>1497561241743</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1497561241743</updated>
+    </task>
+    <task id="LOCAL-00077" summary="testing api, yaml problem">
+      <created>1497561264779</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1497561264779</updated>
+    </task>
+    <task id="LOCAL-00078" summary="trying with setuptools-yaml">
+      <created>1497561507046</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1497561507046</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -990,9 +983,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="added green and red saturation test to potential cloud layer" />
-    <MESSAGE value="added tests to fmask and image objects" />
-    <MESSAGE value="combo count test to l8" />
     <MESSAGE value="to cli test, import errors, not found installed packages in env eg yaml" />
     <MESSAGE value="unexpected keywork argument 'help'" />
     <MESSAGE value="setting up config" />
@@ -1015,7 +1005,10 @@
     <MESSAGE value="erasing xarray incompatible cruft" />
     <MESSAGE value="slicing xarray" />
     <MESSAGE value="gridmet passing new tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="gridmet passing new tests" />
+    <MESSAGE value="thredds gridmet functioning, tested" />
+    <MESSAGE value="testing api, yaml problem" />
+    <MESSAGE value="trying with setuptools-yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying with setuptools-yaml" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1044,7 +1037,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="420" />
+      <option name="time" value="421" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1114,13 +1107,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ssebopconfig.yml" />
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="35" column="12" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1139,13 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="32" column="19" lean-forward="true" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-753">
-          <caret line="50" column="9" lean-forward="true" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1350,6 +1329,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1619">
+          <caret line="620" column="50" lean-forward="false" selection-start-line="620" selection-start-column="50" selection-end-line="620" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1364,18 +1351,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+    <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="42" column="43" lean-forward="true" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="289">
+          <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/cli.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="73" column="29" lean-forward="true" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
+        <state relative-caret-position="986">
+          <caret line="80" column="35" lean-forward="false" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
           <folding>
             <element signature="e#1360#1669#1" expanded="false" />
             <element signature="e#2072#2297#1" expanded="false" />
@@ -1383,11 +1372,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
+    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="497" column="54" lean-forward="true" selection-start-line="497" selection-start-column="54" selection-end-line="497" selection-end-column="54" />
+        <state relative-caret-position="-5">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="140" column="0" lean-forward="true" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#740#777#0" expanded="true" />
+            <element signature="e#887#1337#0" expanded="false" />
+            <element signature="e#1386#2848#0" expanded="false" />
+            <element signature="e#2869#3273#0" expanded="false" />
+            <element signature="e#3309#3895#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
