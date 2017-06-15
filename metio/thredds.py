@@ -19,12 +19,9 @@ from future.standard_library import hooks
 with hooks():
     from urllib.parse import urlunparse
 
-import numpy as np
-from datetime import datetime
-# from netCDF4 import Dataset
-from xlrd import xldate
-from xarray import open_dataset, decode_cf, DataArray
-from pandas import DatetimeIndex
+from xlrd.xldate import xldate_from_date_tuple
+from xarray import open_dataset
+from pandas import date_range, Timestamp
 
 from metio.misc import BBox
 
@@ -174,31 +171,19 @@ class GridMet(Thredds):
     def get_data(self):
 
         for var in self.variables:
+
             url = self._build_url(var)
             xray = open_dataset(url)
-            xldates = [int(x) for x in xray['day']]
-            dates = [xldate.xldate_as_datetime(date, 0) for date in xldates]
-            date_index = DatetimeIndex(dates)
 
-            if self.date:
-                subset = xray.loc[dict(day=slice(self.date_doy),
-                                       lat=slice(self.bbox.north, self.bbox.south),
-                                       lon=slice(self.bbox.west, self.bbox.east))]
-                subset.rename({'day': 'time'}, inplace=True)
-                subset = DataArray(subset[self.kwords[var]],
-                                   coords=(dict(time=date_index, lat=subset['lat'], lon=subset['lon'])),
-                                   name=var)
-            elif self.start:
-                subset = xray.loc[dict(day=slice(self.start_doy, self.end_doy),
-                                       lat=slice(self.bbox.north, self.bbox.south),
-                                       lon=slice(self.bbox.west, self.bbox.east))]
-                subset.rename({'day': 'time'}, inplace=True)
-                subset = DataArray(subset[self.kwords[var]],
-                                   coords=(dict(time=date_index, lat=subset['lat'], lon=subset['lon'])),
-                                   name=var)
+            start_xl, end_xl = self._dtime_to_xldate()
 
-            else:
-                raise ValueError('Must havve start or date parameter filled.')
+            subset = xray.loc[dict(day=slice(start_xl, end_xl),
+                                   lat=slice(self.bbox.north, self.bbox.south),
+                                   lon=slice(self.bbox.west, self.bbox.east))]
+
+            subset.rename({'day': 'time'}, inplace=True)
+            date_ind = self._date_index()
+            subset['time'] = date_ind
 
             setattr(self, var, subset)
 
@@ -216,5 +201,27 @@ class GridMet(Thredds):
                               '', '', ''])
 
         return url
+
+    def _dtime_to_xldate(self):
+        if self.start:
+            s_sup, e_sup = self.start.timetuple(), self.end.timetuple()
+            s_tup, e_tup = (s_sup[0], s_sup[1], s_sup[2]), (e_sup[0], e_sup[1], e_sup[2])
+            sxl, exl = xldate_from_date_tuple(s_tup, 0), xldate_from_date_tuple(e_tup, 0)
+            return sxl, exl
+        else:
+            d_sup = self.date.timetuple()
+            d_tup = (d_sup[0], d_sup[1], d_sup[2])
+            dxl = xldate_from_date_tuple(d_tup, 0)
+            return dxl, None
+
+    def _date_index(self):
+
+        if self.start:
+            date_ind = date_range(self.start, self.end, freq='d')
+        else:
+            date_ind = Timestamp(self.date)
+
+        return date_ind
+
 
 # ========================= EOF ====================================================================
