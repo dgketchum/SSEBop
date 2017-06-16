@@ -16,8 +16,10 @@
 
 from __future__ import print_function
 
+import numpy as np
+
 from app.paths import paths, PathsNotSetExecption
-from sat_image.image import Landsat5
+from sat_image.image import Landsat5, Landsat7, Landsat8
 
 
 class SSEBopModel(object):
@@ -52,6 +54,16 @@ class SSEBopModel(object):
         self._k_factor = runspec.k_factor
         self._satellite = runspec.satellite
 
+        print('Instantiating image...')
+        if self._satellite == 'LT5':
+            self.img = Landsat5(paths.image)
+        elif self._satellite == 'LE7':
+            self.img = Landsat7(paths.image)
+        elif self._satellite == 'LC8':
+            self.img = Landsat8(paths.image)
+        else:
+            raise ValueError('Must choose a valid satellite in config.')
+
         print('----------- CONFIGURATION --------------')
         for attr in ('date_range', 'satellite', 'k_factor'):
             print('{:<20s}{}'.format(attr, getattr(self, '_{}'.format(attr))))
@@ -63,9 +75,14 @@ class SSEBopModel(object):
         :return: 
         """
 
-        lt5 = Landsat5(self._cfg.image_directory)
+        albedo = self.img.albedo()
+        emissivity = self._emissivity_ndvi()
 
-        print('You had better start working on this.')
+    def _emissivity_ndvi(self):
+
+        ndvi = self.img.ndvi()
+        bound_ndvi = np.where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, np.nan)
+
 
     @staticmethod
     def _info(msg):

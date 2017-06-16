@@ -4,9 +4,8 @@
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/paths.py" afterPath="$PROJECT_DIR$/app/paths.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ssebop_config_test.yml" afterPath="$PROJECT_DIR$/tests/ssebop_config_test.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/image.py" afterPath="$PROJECT_DIR$/sat_image/image.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,53 +16,110 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="entry_script.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/entry_script.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#762#771#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/ssebop.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-              <folding>
-                <element signature="e#762#799#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ssebop_config_test.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="paths.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/paths.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="76" column="23" lean-forward="true" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5435103">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="151">
+                  <caret line="60" column="28" lean-forward="false" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="false" />
+                    <element signature="e#762#799#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="image.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="476">
+                  <caret line="202" column="35" lean-forward="false" selection-start-line="202" selection-start-column="35" selection-end-line="202" selection-end-column="35" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="false" />
+                    <element signature="e#881#885#0" expanded="false" />
+                    <element signature="e#929#933#0" expanded="false" />
+                    <element signature="e#968#4765#0" expanded="false" />
+                    <element signature="e#968#1217#1" expanded="false" />
+                    <element signature="e#1256#3736#0" expanded="false" />
+                    <element signature="e#1256#1427#1" expanded="false" />
+                    <element signature="e#1667#1704#0" expanded="false" />
+                    <element signature="e#1986#2128#0" expanded="false" />
+                    <element signature="e#2039#2128#0" expanded="false" />
+                    <element signature="e#2322#3485#0" expanded="false" />
+                    <element signature="e#2794#3037#0" expanded="false" />
+                    <element signature="e#3162#3485#0" expanded="false" />
+                    <element signature="e#3792#4177#0" expanded="false" />
+                    <element signature="e#3792#4005#1" expanded="false" />
+                    <element signature="e#4244#4455#0" expanded="false" />
+                    <element signature="e#4309#4424#0" expanded="false" />
+                    <element signature="e#4509#4765#0" expanded="false" />
+                    <element signature="e#4835#5331#0" expanded="false" />
+                    <element signature="e#5083#5164#0" expanded="false" />
+                    <element signature="e#5175#5202#0" expanded="false" />
+                    <element signature="e#5371#5805#0" expanded="false" />
+                    <element signature="e#5869#6376#0" expanded="false" />
+                    <element signature="e#6420#6718#0" expanded="false" />
+                    <element signature="e#7632#8006#0" expanded="false" />
+                    <element signature="e#7632#7868#1" expanded="false" />
+                    <element signature="e#8036#8261#0" expanded="false" />
+                    <element signature="e#8036#8113#1" expanded="false" />
+                    <element signature="e#8291#8522#0" expanded="false" />
+                    <element signature="e#8291#8362#1" expanded="false" />
+                    <element signature="e#8592#8976#0" expanded="false" />
+                    <element signature="e#8839#8931#0" expanded="false" />
+                    <element signature="e#9016#9449#0" expanded="false" />
+                    <element signature="e#9527#10205#0" expanded="false" />
+                    <element signature="e#9679#9736#0" expanded="false" />
+                    <element signature="e#10249#10579#0" expanded="false" />
+                    <element signature="e#11025#11168#0" expanded="false" />
+                    <element signature="e#11353#11727#0" expanded="false" />
+                    <element signature="e#11353#11589#1" expanded="false" />
+                    <element signature="e#11757#11982#0" expanded="false" />
+                    <element signature="e#11757#11834#1" expanded="false" />
+                    <element signature="e#12012#12242#0" expanded="false" />
+                    <element signature="e#12012#12082#1" expanded="false" />
+                    <element signature="e#12279#18271#0" expanded="false" />
+                    <element signature="e#12312#12398#0" expanded="false" />
+                    <element signature="e#12461#14200#0" expanded="false" />
+                    <element signature="e#12461#13546#1" expanded="false" />
+                    <element signature="e#14243#16074#0" expanded="false" />
+                    <element signature="e#14243#15454#1" expanded="false" />
+                    <element signature="e#15847#15978#0" expanded="false" />
+                    <element signature="e#15864#15977#0" expanded="false" />
+                    <element signature="e#16114#17114#0" expanded="false" />
+                    <element signature="e#16114#16874#1" expanded="false" />
+                    <element signature="e#17146#17753#0" expanded="false" />
+                    <element signature="e#17146#17441#1" expanded="false" />
+                    <element signature="e#17483#17626#0" expanded="false" />
+                    <element signature="e#17783#18008#0" expanded="false" />
+                    <element signature="e#17783#17860#1" expanded="false" />
+                    <element signature="e#18038#18269#0" expanded="false" />
+                    <element signature="e#18038#18109#1" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="SSEBop_Landsat_OverpassETa.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="437">
+                  <caret line="560" column="44" lean-forward="true" selection-start-line="560" selection-start-column="44" selection-end-line="560" selection-end-column="44" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -165,7 +221,6 @@
         <option value="$PROJECT_DIR$/ssebop/ssebop.py" />
         <option value="$PROJECT_DIR$/app/generic_runner.py" />
         <option value="$PROJECT_DIR$/ssebopconfig.yml" />
-        <option value="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
         <option value="$PROJECT_DIR$/tests/test_ssebop.py" />
         <option value="$PROJECT_DIR$/tests/test_image.py" />
         <option value="$PROJECT_DIR$/sat_image/fmask.py" />
@@ -177,7 +232,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/tests/data/local/token_file.txt" />
         <option value="$PROJECT_DIR$/sat_image/mtl.py" />
-        <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/metio/netcdf_example.py" />
         <option value="$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py" />
         <option value="$PROJECT_DIR$/metio/misc.py" />
@@ -188,9 +242,11 @@
         <option value="$PROJECT_DIR$/app/config.py" />
         <option value="$PROJECT_DIR$/tests/test_suite.py" />
         <option value="$PROJECT_DIR$/app/entry_script.py" />
-        <option value="$PROJECT_DIR$/app/paths.py" />
-        <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/tests/ssebop_config_test.yml" />
+        <option value="$PROJECT_DIR$/app/paths.py" />
+        <option value="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
+        <option value="$PROJECT_DIR$/core/ssebop.py" />
+        <option value="$PROJECT_DIR$/sat_image/image.py" />
       </list>
     </option>
   </component>
@@ -308,9 +364,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/anaconda2/envs/ssebenv/bin/python3.6" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Recharge" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/obsio/factory.py&#10;/data01/PycharmProjects/ssebop/tests/data/local/token_file.txt&#10;/data01/PycharmProjects/ssebop/SSEBop_Landsat_OverpassETa.py&#10;/data01/PycharmProjects/ssebop/obsio/providers/acis.py&#10;true&#10;/data01/PycharmProjects/ssebop/obsio/util/misc.py" />
     <property name="settings.editor.splitter.proportion" value="0.25440314" />
   </component>
@@ -526,13 +582,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00033" summary="move on to test fmask functions">
-      <created>1495573511688</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1495573511688</updated>
     </task>
     <task id="LOCAL-00034" summary="move on to test fmask functions">
       <created>1495574890150</created>
@@ -870,7 +919,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497568813451</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="paths.py Paths.input_path is strangely not joining the two input params">
+      <created>1497633499014</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1497633499015</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -921,14 +977,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14528024" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51843655" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29723758" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51843655" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5656342" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49041298" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -937,6 +992,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -967,7 +1023,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="setting up config" />
     <MESSAGE value="setting up configure_run" />
     <MESSAGE value="failing on paths.py self.results_root is RunSpec object, not str" />
     <MESSAGE value="failing on paths.py self.results_root is RunSpec object not str" />
@@ -992,7 +1047,8 @@
     <MESSAGE value="trying with setuptools-yaml" />
     <MESSAGE value="initial commit" />
     <MESSAGE value="building entry script" />
-    <option name="LAST_COMMIT_MESSAGE" value="building entry script" />
+    <MESSAGE value="paths.py Paths.input_path is strangely not joining the two input params" />
+    <option name="LAST_COMMIT_MESSAGE" value="paths.py Paths.input_path is strangely not joining the two input params" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1013,16 +1069,6 @@
           <line>69</line>
           <option name="timeStamp" value="349" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/core/ssebop.py</url>
-          <line>36</line>
-          <option name="timeStamp" value="433" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/core/ssebop.py</url>
-          <line>38</line>
-          <option name="timeStamp" value="434" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1031,7 +1077,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="435" />
+      <option name="time" value="442" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1169,13 +1215,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="333" column="0" lean-forward="true" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/dapenv/lib/python3.5/site-packages/pydap/client.py" />
     <entry file="file://$USER_HOME$/anaconda2/envs/dapenv/lib/python3.5/site-packages/pydap/handlers/dap.py" />
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/pydap/client.py">
@@ -1287,9 +1326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1305,10 +1341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="55" column="19" lean-forward="true" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#887#1337#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1317,35 +1349,6 @@
         <state relative-caret-position="101">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7679">
-          <caret line="620" column="50" lean-forward="false" selection-start-line="620" selection-start-column="50" selection-end-line="620" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding>
-            <element signature="e#762#799#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1359,9 +1362,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/paths.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="76" column="23" lean-forward="true" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
+        <state relative-caret-position="931">
+          <caret line="72" column="42" lean-forward="true" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#771#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="560" column="44" lean-forward="true" selection-start-line="560" selection-start-column="44" selection-end-line="560" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="60" column="28" lean-forward="false" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#799#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="202" column="35" lean-forward="false" selection-start-line="202" selection-start-column="35" selection-end-line="202" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#881#885#0" expanded="false" />
+            <element signature="e#929#933#0" expanded="false" />
+            <element signature="e#968#4765#0" expanded="false" />
+            <element signature="e#968#1217#1" expanded="false" />
+            <element signature="e#1256#3736#0" expanded="false" />
+            <element signature="e#1256#1427#1" expanded="false" />
+            <element signature="e#1667#1704#0" expanded="false" />
+            <element signature="e#1986#2128#0" expanded="false" />
+            <element signature="e#2039#2128#0" expanded="false" />
+            <element signature="e#2322#3485#0" expanded="false" />
+            <element signature="e#2794#3037#0" expanded="false" />
+            <element signature="e#3162#3485#0" expanded="false" />
+            <element signature="e#3792#4177#0" expanded="false" />
+            <element signature="e#3792#4005#1" expanded="false" />
+            <element signature="e#4244#4455#0" expanded="false" />
+            <element signature="e#4309#4424#0" expanded="false" />
+            <element signature="e#4509#4765#0" expanded="false" />
+            <element signature="e#4835#5331#0" expanded="false" />
+            <element signature="e#5083#5164#0" expanded="false" />
+            <element signature="e#5175#5202#0" expanded="false" />
+            <element signature="e#5371#5805#0" expanded="false" />
+            <element signature="e#5869#6376#0" expanded="false" />
+            <element signature="e#6420#6718#0" expanded="false" />
+            <element signature="e#7632#8006#0" expanded="false" />
+            <element signature="e#7632#7868#1" expanded="false" />
+            <element signature="e#8036#8261#0" expanded="false" />
+            <element signature="e#8036#8113#1" expanded="false" />
+            <element signature="e#8291#8522#0" expanded="false" />
+            <element signature="e#8291#8362#1" expanded="false" />
+            <element signature="e#8592#8976#0" expanded="false" />
+            <element signature="e#8839#8931#0" expanded="false" />
+            <element signature="e#9016#9449#0" expanded="false" />
+            <element signature="e#9527#10205#0" expanded="false" />
+            <element signature="e#9679#9736#0" expanded="false" />
+            <element signature="e#10249#10579#0" expanded="false" />
+            <element signature="e#11025#11168#0" expanded="false" />
+            <element signature="e#11353#11727#0" expanded="false" />
+            <element signature="e#11353#11589#1" expanded="false" />
+            <element signature="e#11757#11982#0" expanded="false" />
+            <element signature="e#11757#11834#1" expanded="false" />
+            <element signature="e#12012#12242#0" expanded="false" />
+            <element signature="e#12012#12082#1" expanded="false" />
+            <element signature="e#12279#18271#0" expanded="false" />
+            <element signature="e#12312#12398#0" expanded="false" />
+            <element signature="e#12461#14200#0" expanded="false" />
+            <element signature="e#12461#13546#1" expanded="false" />
+            <element signature="e#14243#16074#0" expanded="false" />
+            <element signature="e#14243#15454#1" expanded="false" />
+            <element signature="e#15847#15978#0" expanded="false" />
+            <element signature="e#15864#15977#0" expanded="false" />
+            <element signature="e#16114#17114#0" expanded="false" />
+            <element signature="e#16114#16874#1" expanded="false" />
+            <element signature="e#17146#17753#0" expanded="false" />
+            <element signature="e#17146#17441#1" expanded="false" />
+            <element signature="e#17483#17626#0" expanded="false" />
+            <element signature="e#17783#18008#0" expanded="false" />
+            <element signature="e#17783#17860#1" expanded="false" />
+            <element signature="e#18038#18269#0" expanded="false" />
+            <element signature="e#18038#18109#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
