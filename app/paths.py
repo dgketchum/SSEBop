@@ -52,6 +52,9 @@ class Paths:
     def set_mask_path(self, path):
         self.mask = self.input_path(path)
 
+    def set_image_path(self, path):
+        self.image = self.input_path(path)
+
     def input_path(self, path):
         return os.path.join(self.ssebop_input_root, path)
 

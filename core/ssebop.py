@@ -17,6 +17,7 @@
 from __future__ import print_function
 
 from app.paths import paths, PathsNotSetExecption
+from sat_image.image import Landsat5
 
 
 class SSEBopModel(object):
@@ -35,6 +36,7 @@ class SSEBopModel(object):
 
         paths.set_polygons_path(cfg.polygons)
         paths.set_mask_path(cfg.mask)
+        paths.set_image_path(cfg.image_directory)
 
         if cfg.verify_paths:
             paths.verify()
@@ -60,6 +62,9 @@ class SSEBopModel(object):
         """ Run the SSEBop algorithm.
         :return: 
         """
+
+        lt5 = Landsat5(self._cfg.image_directory)
+
         print('You had better start working on this.')
 
     @staticmethod
