@@ -181,10 +181,6 @@ class GridMet(Thredds):
         url = urlunparse([self.scheme, self.service,
                           '/thredds/dodsC/MET/{0}/{0}_{1}.nc'.format(var, self.year),
                           '', '', ''])
-        if var == 'elev':
-            url = urlunparse([self.scheme, self.service,
-                              '/thredds/dodsC/MET/{0}/metdata_elevationdata.nc'.format(var, self.year),
-                              '', '', ''])
 
         return url
 

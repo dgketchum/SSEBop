@@ -173,7 +173,10 @@ class Landsat5(LandsatImage):
             raise ValueError('{} is not a valid temperature scale'.format(temp_scale))
 
     def reflectance(self, band):
-
+        """ 
+        :param band: An optical band, i.e. 1-5, 7
+        :return: At satellite reflectance, [-]
+        """
         if band == 6:
             raise ValueError('LT5 reflectance must be other than  band 6')
 
@@ -187,11 +190,15 @@ class Landsat5(LandsatImage):
         """Finds broad-band surface reflectance (albedo)
         
         Smith (2010),  “The heat budget of the earth’s surface deduced from space”
+        LT5 toa reflectance bands 1, 3, 4, 5, 7
+        # normalized i.e. 0.356 + 0.130 + 0.373 + 0.085 + 0.07 = 1.014
+        
         Should have option for Liang, 2000; 
         
-        LT5 toa reflectance bands 1, 3, 4, 5, 7
+        Tasumi (2008), "At-Surface Reflectance and Albedo from Satellite for
+                        Operational Calculation of Land Surface Energy Balance"
+                        
         
-        # normalized i.e. 0.356 + 0.130 + 0.373 + 0.085 + 0.07 = 1.014
         :return albedo array of floats
         """
         if model == 'smith':
@@ -239,7 +246,7 @@ class Landsat7(LandsatImage):
 
         if self.satellite != 'LE7':
             raise ValueError('Must init Landsat7 object with Landsat5 data, not {}'.format(self.satellite))
-        # https://landsat.usgs.gov/esun
+        # https://landsat.usgs.gov/esun; Landsat 7 Handbook
         self.ex_atm_irrad = (1970.0, 1842.0, 1547.0, 1044.0,
                              255.700, np.nan, 82.06, 1369.00)
 
@@ -281,7 +288,10 @@ class Landsat7(LandsatImage):
             raise ValueError('{} is not a valid temperature scale'.format(temp_scale))
 
     def reflectance(self, band):
-
+        """ 
+        :param band: An optical band, i.e. 1-5, 7
+        :return: At satellite reflectance, [-]
+        """
         if band in ['b6_vcid_1', 'b6_vcid_2']:
             raise ValueError('LE7 reflectance must not be b6_vcid_1 or b6_vcid_2')
 
