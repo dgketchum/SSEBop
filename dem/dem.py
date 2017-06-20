@@ -19,13 +19,12 @@ with hooks():
     from urllib.parse import urlunparse
 
 import os
-import numpy as np
 import requests
 from rasterio.io import MemoryFile
 from rasterio.crs import CRS
 from rasterio import open
-
 from xarray import open_dataset
+from dem.collect import tiles as tls
 
 
 class Dem(object):
@@ -55,17 +54,9 @@ class Dem(object):
     def gibs(self):
 
         bb = self.bbox
-        z = 10
-        x, y = self.deg2num((bb.north + bb.south) / 2, (bb.west + bb.east) / 2, z)
+        tiles = tls(10, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
-        url = 'https://tile.mapzen.com/mapzen/terrain/v1/geotiff/{z}/{x}/{y}.tif?api_key={key}'.format(
-            x=x, y=y, z=z, key=api_key)
 
-        req = requests.get(url, verify=False)
-        with MemoryFile(req.content) as memfile:
-            with memfile.open() as dataset:
-                arr = dataset.read()
-                geo = dataset.profile
         return arr, geo
 
     @staticmethod
@@ -77,22 +68,6 @@ class Dem(object):
         with open(output_filename, 'w', **geometry) as dst:
             dst.write(array)
         return None
-
-    @staticmethod
-    def deg2num(lat_deg, lon_deg, zoom):
-        lat_rad = np.radians(lat_deg)
-        n = 2.0 ** zoom
-        xtile = int((lon_deg + 180.0) / 360.0 * n)
-        ytile = int((1.0 - np.log(np.tan(lat_rad) + (1 / np.cos(lat_rad))) / np.pi) / 2.0 * n)
-        return xtile, ytile
-
-    @staticmethod
-    def num2deg(xtile, ytile, zoom):
-        n = 2.0 ** zoom
-        lon_deg = xtile / n * 360.0 - 180.0
-        lat_rad = np.arctan(np.sinh(np.pi * (1 - 2 * ytile / n)))
-        lat_deg = np.degrees(lat_rad)
-        return lat_deg, lon_deg
 
 
 if __name__ == '__main__':
