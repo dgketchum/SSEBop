@@ -16,18 +16,22 @@
 
 import unittest
 
+import os
+
 from dem.dem import Dem
 from metio.misc import BBox
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.bbox = BBox(west_lon=-116.4, east_lon=-103.0,
-                         south_lat=44.3, north_lat=49.1)
-        self.dem = Dem(self.bbox).gibs()
+        self.bbox = BBox(west_lon=-116.5, east_lon=-111.0,
+                         south_lat=44.3, north_lat=47.)
+        self.dem = Dem(self.bbox)
 
     def test_gibs(self):
         self.assertIsInstance(self.dem, Dem)
+        array, geo = self.dem.gibs()
+        self.dem.save(array, geo, os.path.join(os.path.expanduser('~'), 'images', 'sandbox', 'dem.tif'))
         self.assertEqual(True, False)
 
 
