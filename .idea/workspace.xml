@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ssebop.iml" afterPath="$PROJECT_DIR$/.idea/ssebop.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dem/collect.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dem/dem_xml.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_dem.py" afterPath="$PROJECT_DIR$/tests/test_dem.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,17 +30,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dem.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dem/dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="79" column="19" lean-forward="true" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="19" />
+            <state relative-caret-position="576">
+              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#1052#1139#1" expanded="false" />
-                <element signature="e#2326#2596#0" expanded="false" />
-                <element signature="e#2665#2892#0" expanded="false" />
-                <element signature="e#2957#3152#0" expanded="false" />
+                <element signature="e#1069#1156#1" expanded="false" />
+                <element signature="e#1949#2219#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collect.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dem/collect.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#762#771#0" expanded="true" />
+                <element signature="e#1062#1463#0" expanded="false" />
+                <element signature="e#1511#2053#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -67,14 +77,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Python Unit Test" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pa</find>
       <find>path.j</find>
       <find>path.bu</find>
       <find>path.b</find>
@@ -104,9 +113,9 @@
       <find>yaml</find>
       <find>CONFI</find>
       <find>math</find>
+      <find>'''</find>
     </findStrings>
     <replaceStrings>
-      <replace>b2_reflct</replace>
       <replace>self.b5_reflct</replace>
       <replace>b5_reflct</replace>
       <replace>b4_reflct</replace>
@@ -136,6 +145,7 @@
       <replace>date</replace>
       <replace>d_</replace>
       <replace>np</replace>
+      <replace>&quot;&quot;&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -192,6 +202,7 @@
         <option value="$PROJECT_DIR$/metio/gdal_xml" />
         <option value="$PROJECT_DIR$/metio/misc.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
+        <option value="$PROJECT_DIR$/dem/collect.py" />
         <option value="$PROJECT_DIR$/dem/dem.py" />
       </list>
     </option>
@@ -560,13 +571,6 @@
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
     </task>
-    <task id="LOCAL-00038" summary="implementing functions from rio cloudmask">
-      <created>1495657279137</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1495657279137</updated>
-    </task>
     <task id="LOCAL-00039" summary="implementing functions from rio cloudmask">
       <created>1495663021925</created>
       <option name="number" value="00039" />
@@ -903,7 +907,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497973505897</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="added save method">
+      <created>1497982941956</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1497982941956</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -956,7 +967,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29723758" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36504424" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42330384" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1000,7 +1011,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="moved ndvi and ndsi methods to image.LandsatImage" />
     <MESSAGE value="adding meteo package" />
     <MESSAGE value="stuck on certification error for NOAA" />
     <MESSAGE value="thredds.py for gridmet" />
@@ -1025,7 +1035,8 @@
     <MESSAGE value="adding DEM class" />
     <MESSAGE value="wmts tile to deg and inverse static methods" />
     <MESSAGE value="mapzen service with bytesIO and scipy.misc.imread" />
-    <option name="LAST_COMMIT_MESSAGE" value="mapzen service with bytesIO and scipy.misc.imread" />
+    <MESSAGE value="added save method" />
+    <option name="LAST_COMMIT_MESSAGE" value="added save method" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1054,7 +1065,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="473" />
+      <option name="time" value="474" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1063,13 +1074,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Landsat578/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="54" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ssebopconfig.yml" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1446,14 +1450,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dem/dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="79" column="19" lean-forward="true" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="19" />
+        <state relative-caret-position="576">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1052#1139#1" expanded="false" />
-            <element signature="e#2326#2596#0" expanded="false" />
-            <element signature="e#2665#2892#0" expanded="false" />
-            <element signature="e#2957#3152#0" expanded="false" />
+            <element signature="e#1069#1156#1" expanded="false" />
+            <element signature="e#1949#2219#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dem/collect.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#771#0" expanded="true" />
+            <element signature="e#1062#1463#0" expanded="false" />
+            <element signature="e#1511#2053#0" expanded="false" />
           </folding>
         </state>
       </provider>
