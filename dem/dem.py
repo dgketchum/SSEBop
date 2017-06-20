@@ -24,7 +24,7 @@ from rasterio.io import MemoryFile
 from rasterio.crs import CRS
 from rasterio import open
 from xarray import open_dataset
-from dem.collect import tiles as tls
+from dem.collect import tiles, download
 
 
 class Dem(object):
@@ -54,10 +54,11 @@ class Dem(object):
     def gibs(self):
 
         bb = self.bbox
-        tiles = tls(10, bb.south, bb.west, bb.north, bb.east)
+        tls = tiles(10, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
+        data = download(tls, api_key)
 
-        return arr, geo
+        return None
 
     @staticmethod
     def save(array, geometry, output_filename, crs=None):
