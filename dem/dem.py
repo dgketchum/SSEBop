@@ -20,8 +20,9 @@ with hooks():
 
 import os
 import numpy as np
+import requests
+from io import BytesIO
 from scipy.misc import imread
-import xml.etree.ElementTree as ETree
 from owslib.wms import WebMapService
 
 from xarray import open_dataset
@@ -61,15 +62,14 @@ class Dem(object):
     def gibs(self):
 
         bb = self.bbox
-        wms = WebMapService('https://webmap.ornl.gov/ogcbroker/wms?', version='1.1.1')
-        dem = wms.getmap(layers='10008_2',
-                         srs='EPSG:4326',
-                         bbox=(bb.west, bb.south, bb.east, bb.north),
-                         size=(300, 250),
-                         format='image/gtiff',
-                         transparent=True, timeout=60)
-        arr = imread(dem, mode='F')
-        return arr
+        z = 12
+        x, y = self.deg2num((bb.north + bb.south) / 2, (bb.west + bb.east) / 2, 12)
+        api_key = 'mapzen-JmKu1BF'
+        url = 'https://tile.mapzen.com/mapzen/terrain/v1/geotiff/{z}/{x}/{y}.tif?api_key={key}'.format(
+            x=x, y=y, z=z, key=api_key)
+        req = requests.get(url, verify=False)
+        img_arr = imread(BytesIO(req.content))
+        return img_arr
 
     @staticmethod
     def deg2num(lat_deg, lon_deg, zoom):

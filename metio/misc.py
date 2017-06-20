@@ -4,8 +4,6 @@ with hooks():
     from urllib.parse import urlunparse
 
 import os
-import xml.etree.ElementTree as et
-from xarray import open_dataset
 
 
 class BBox(object):
