@@ -20,6 +20,7 @@ import os
 
 from dem.dem import Dem
 from metio.misc import BBox
+from dem.collect import tiles as tls
 
 
 class MyTestCase(unittest.TestCase):
@@ -27,6 +28,12 @@ class MyTestCase(unittest.TestCase):
         self.bbox = BBox(west_lon=-116.5, east_lon=-111.0,
                          south_lat=44.3, north_lat=47.)
         self.dem = Dem(self.bbox)
+        self.zoom = 10
+
+    def test_tiles(self):
+        bb = self.bbox
+        tiles = tls(self.zoom, bb.south, bb.east, bb.north, bb.west)
+        self.assertEqual(tiles[0], (10, 180, 360))
 
     def test_gibs(self):
         self.assertIsInstance(self.dem, Dem)

@@ -16,8 +16,10 @@
 
 import os
 import tempfile
-from numpy import pi, log, tan, product
+from numpy import pi, log, tan
+from itertools import product
 from rasterio.merge import merge
+from rasterio import open
 from requests import get
 
 # four formats are available, let's use GeoTIFF
@@ -53,37 +55,32 @@ def tiles(zoom, lat1, lon1, lat2, lon2):
 
     # generate a list of tiles
     xs, ys = range(xmin, xmax + 1), range(ymin, ymax + 1)
-    tiles = [(zoom, x, y) for (y, x) in product(ys, xs)]
+    tile_list = [(zoom, x, y) for (y, x) in product(ys, xs)]
 
-    return tiles
+    return tile_list
 
 
-def download(tiles, api_key, verbose=True):
+def download(tiles, api_key):
     """ Download list of tiles to a temporary directory and return its name.
     """
     directory = tempfile.mkdtemp(prefix='collected-')
 
-    try:
-        files = []
+    files = []
 
-        for (z, x, y) in tiles:
-            response = get(TILE_URL.format(z=z, x=x, y=y, k=api_key))
+    for (z, x, y) in tiles:
+        url = TILE_URL.format(z=z, x=x, y=y, k=api_key)
+        req = get(url, verify=False)
+        file_name = os.path.join(directory, '{}_{}_{}'.format(z, x, y))
+        first = True
+        with open(file_name, 'wb') as dataset:
+            if first:
+                geo = dataset.profile
+                first = False
+            dataset.write(req.content)
+            files.append(file_name)
 
-            with io.open(join(directory, '{}-{}-{}.tif'.format(z, x, y)), 'wb') as file:
-                file.write(response.read())
-                files.append(file.name)
 
-        temp_tif = join(directory, 'temp.tif')
-        subprocess.check_call(['gdal_merge.py', '-o', temp_tif] + files)
 
-        else:
-        if verbose:
-            print('Moving', directory, 'to', output_path, '...', file=sys.stderr)
-        shutil.move(directory, output_path)
-
-finally:
-if merge_geotiff:
-    shutil.rmtree(directory)
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
