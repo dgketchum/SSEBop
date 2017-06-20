@@ -20,7 +20,7 @@ import os
 
 from dem.dem import Dem
 from metio.misc import BBox
-from dem.collect import tiles as tls
+from dem.collect import tiles, download
 
 
 class MyTestCase(unittest.TestCase):
@@ -29,11 +29,18 @@ class MyTestCase(unittest.TestCase):
                          south_lat=44.3, north_lat=47.)
         self.dem = Dem(self.bbox)
         self.zoom = 10
+        self.api_key = 'mapzen-JmKu1BF'
 
     def test_tiles(self):
         bb = self.bbox
-        tiles = tls(self.zoom, bb.south, bb.east, bb.north, bb.west)
-        self.assertEqual(tiles[0], (10, 180, 360))
+        tls = tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
+        self.assertEqual(tls[0], (10, 180, 360))
+
+    def test_downlaod(self):
+        bb = self.bbox
+        tls = tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
+        arr, geo = download(tls, self.api_key)
+        self.assertEqual(arr.shape, (1, 10, 10))
 
     def test_gibs(self):
         self.assertIsInstance(self.dem, Dem)

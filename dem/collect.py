@@ -18,6 +18,7 @@ import os
 import tempfile
 from numpy import pi, log, tan
 from itertools import product
+from rasterio.io import MemoryFile
 from rasterio.merge import merge
 from rasterio import open
 from requests import get
@@ -63,24 +64,20 @@ def tiles(zoom, lat1, lon1, lat2, lon2):
 def download(tiles, api_key):
     """ Download list of tiles to a temporary directory and return its name.
     """
-    directory = tempfile.mkdtemp(prefix='collected-')
 
-    files = []
+    raster_readers = []
 
     for (z, x, y) in tiles:
         url = TILE_URL.format(z=z, x=x, y=y, k=api_key)
         req = get(url, verify=False)
-        file_name = os.path.join(directory, '{}_{}_{}'.format(z, x, y))
-        first = True
-        with open(file_name, 'wb') as dataset:
-            if first:
-                geo = dataset.profile
-                first = False
-            dataset.write(req.content)
-            files.append(file_name)
 
+        with MemoryFile(req.content) as memfile:
+            with memfile.open() as dataset:
+                raster_readers.append(dataset.read)
 
+    array, transform = merge(raster_readers, blah)
 
+    return array, transform
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')

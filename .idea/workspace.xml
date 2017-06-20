@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dem/collect.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dem/dem_xml.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/collect.py" afterPath="$PROJECT_DIR$/dem/collect.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_dem.py" afterPath="$PROJECT_DIR$/tests/test_dem.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,12 +32,12 @@
       <file leaf-file-name="dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dem/dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state relative-caret-position="680">
+              <caret line="57" column="34" lean-forward="true" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#1069#1156#1" expanded="false" />
-                <element signature="e#1949#2219#0" expanded="false" />
+                <element signature="e#1072#1159#1" expanded="false" />
+                <element signature="e#1985#2255#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -47,13 +46,11 @@
       <file leaf-file-name="collect.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dem/collect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+            <state relative-caret-position="678">
+              <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#762#771#0" expanded="true" />
-                <element signature="e#1062#1463#0" expanded="false" />
-                <element signature="e#1511#2053#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -62,8 +59,8 @@
       <file leaf-file-name="test_dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="408">
+              <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#749#0" expanded="true" />
@@ -201,9 +198,9 @@
         <option value="$PROJECT_DIR$/metio/thredds.py" />
         <option value="$PROJECT_DIR$/metio/gdal_xml" />
         <option value="$PROJECT_DIR$/metio/misc.py" />
+        <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
         <option value="$PROJECT_DIR$/dem/collect.py" />
-        <option value="$PROJECT_DIR$/dem/dem.py" />
       </list>
     </option>
   </component>
@@ -383,37 +380,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_dem.py">
-    <configuration default="false" name="Unittests in test_fmask.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_fmask.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests in test_app.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_app.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_dem.MyTestCase.test_downlaod">
     <configuration default="false" name="entry_script" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -463,6 +430,36 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_dem.MyTestCase.test_tiles" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_dem.MyTestCase.test_tiles&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_dem.MyTestCase.test_downlaod" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_dem.MyTestCase.test_downlaod&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -541,19 +538,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_app.py" />
-      <item index="2" class="java.lang.String" itemvalue="Python.entry_script" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
-      <item index="4" class="java.lang.String" itemvalue="Python.dem" />
+      <item index="0" class="java.lang.String" itemvalue="Python.entry_script" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python.dem" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_tiles" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_downlaod" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python.dem" />
-        <item index="2" class="java.lang.String" itemvalue="Python.entry_script" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_app.py" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_downlaod" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_tiles" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python.dem" />
+        <item index="4" class="java.lang.String" itemvalue="Python.entry_script" />
       </list>
     </recent_temporary>
   </component>
@@ -570,20 +567,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00039" summary="implementing functions from rio cloudmask">
-      <created>1495663021925</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1495663021925</updated>
-    </task>
-    <task id="LOCAL-00040" summary="fmask working for LC8">
-      <created>1496337170223</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1496337170223</updated>
     </task>
     <task id="LOCAL-00041" summary="splitting tests; one set of images for test_image, another set for test_fmask">
       <created>1496349624390</created>
@@ -914,39 +897,53 @@
       <option name="project" value="LOCAL" />
       <updated>1497982941956</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="moving geotiff stuff to collect.py">
+      <created>1497987144305</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1497987144305</updated>
+    </task>
+    <task id="LOCAL-00089" summary="iterate through tiles and create file list to iterate over, going to wreck this and try and create a list of RasterReader objects">
+      <created>1497995661137</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1497995661137</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 05m 05s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_downlaod - 2017.06.20 at 16h 01m 00s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 05m 28s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_downlaod - 2017.06.20 at 16h 02m 55s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 06m 09s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 17m 27s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 06m 56s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 17m 38s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 07m 08s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 19m 25s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 07m 31s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 20m 18s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 08m 03s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 24m 00s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 08m 30s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 24m 07s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 10m 38s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 26m 09s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.06.20 at 12h 17m 33s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 58m 00s.xml">
+      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -967,11 +964,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29723758" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42330384" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35914454" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52359885" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48230088" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1011,8 +1008,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="adding meteo package" />
-    <MESSAGE value="stuck on certification error for NOAA" />
     <MESSAGE value="thredds.py for gridmet" />
     <MESSAGE value="working on gridmet class" />
     <MESSAGE value="working on gridmet class documentation, private methods" />
@@ -1036,7 +1031,9 @@
     <MESSAGE value="wmts tile to deg and inverse static methods" />
     <MESSAGE value="mapzen service with bytesIO and scipy.misc.imread" />
     <MESSAGE value="added save method" />
-    <option name="LAST_COMMIT_MESSAGE" value="added save method" />
+    <MESSAGE value="moving geotiff stuff to collect.py" />
+    <MESSAGE value="iterate through tiles and create file list to iterate over, going to wreck this and try and create a list of RasterReader objects" />
+    <option name="LAST_COMMIT_MESSAGE" value="iterate through tiles and create file list to iterate over, going to wreck this and try and create a list of RasterReader objects" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1065,7 +1062,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="474" />
+      <option name="time" value="478" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1437,10 +1434,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dem/dem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="57" column="34" lean-forward="true" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1072#1159#1" expanded="false" />
+            <element signature="e#1985#2255#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        <state relative-caret-position="408">
+          <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#734#749#0" expanded="true" />
@@ -1448,27 +1457,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dem/dem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1069#1156#1" expanded="false" />
-            <element signature="e#1949#2219#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dem/collect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        <state relative-caret-position="678">
+          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#771#0" expanded="true" />
-            <element signature="e#1062#1463#0" expanded="false" />
-            <element signature="e#1511#2053#0" expanded="false" />
           </folding>
         </state>
       </provider>
