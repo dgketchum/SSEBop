@@ -19,6 +19,7 @@ with hooks():
     from urllib.parse import urlunparse
 
 import os
+import numpy as np
 from scipy.misc import imread
 import xml.etree.ElementTree as ETree
 from owslib.wms import WebMapService
@@ -69,6 +70,22 @@ class Dem(object):
                          transparent=True, timeout=60)
         arr = imread(dem, mode='F')
         return arr
+
+    @staticmethod
+    def deg2num(lat_deg, lon_deg, zoom):
+        lat_rad = np.radians(lat_deg)
+        n = 2.0 ** zoom
+        xtile = int((lon_deg + 180.0) / 360.0 * n)
+        ytile = int((1.0 - np.log(np.tan(lat_rad) + (1 / np.cos(lat_rad))) / np.pi) / 2.0 * n)
+        return xtile, ytile
+
+    @staticmethod
+    def num2deg(xtile, ytile, zoom):
+        n = 2.0 ** zoom
+        lon_deg = xtile / n * 360.0 - 180.0
+        lat_rad = np.arctan(np.sinh(np.pi * (1 - 2 * ytile / n)))
+        lat_deg = np.degrees(lat_rad)
+        return lat_deg, lon_deg
 
 
 if __name__ == '__main__':
