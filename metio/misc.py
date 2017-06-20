@@ -4,6 +4,7 @@ with hooks():
     from urllib.parse import urlunparse
 
 import os
+import xml.etree.ElementTree as et
 from xarray import open_dataset
 
 
@@ -31,38 +32,6 @@ class BBox(object):
         df = df[mask_bnds].copy()
 
         return df
-
-
-class Dem(object):
-    """ Digital Elevation Model and Dertivatives
-    
-    :param BBox, bounding box
-    """
-
-    def __init__(self, bbox=None):
-        self.bbox = bbox
-
-    def thredds_dem(self, elevation=None, slope=None, aspect=None):
-        service = 'thredds.northwestknowledge.net:8080'
-        scheme = 'http'
-
-        url = urlunparse([scheme, service,
-                          '/thredds/dodsC/MET/elev/metdata_elevationdata.nc',
-                          '', '', ''])
-
-        xray = open_dataset(url)
-
-        subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
-                               lon=slice(self.bbox.west, self.bbox.east))]
-
-        if aspect:
-            pass
-
-        if slope:
-            pass
-
-        if elevation:
-            return subset
 
 
 if __name__ == '__main__':
