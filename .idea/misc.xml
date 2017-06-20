@@ -67,7 +67,7 @@
       <textMaps />
     </LinkMapSettings>
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.5.3 (~/anaconda2/envs/imagenv/bin/python3.5)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.5.0 (~/anaconda2/envs/sandbox/bin/python3.5)" project-jdk-type="Python SDK" />
   <component name="PythonCompatibilityInspectionAdvertiser">
     <option name="version" value="2" />
   </component>
