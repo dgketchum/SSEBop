@@ -15,12 +15,10 @@
 # =============================================================================================
 
 import os
-import tempfile
 from numpy import pi, log, tan, cos
 from itertools import product
 from rasterio.io import MemoryFile
 from rasterio.merge import merge
-from rasterio import open
 from requests import get
 
 # four formats are available, let's use GeoTIFF
