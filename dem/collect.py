@@ -15,11 +15,14 @@
 # =============================================================================================
 
 import os
+from io import BytesIO, StringIO
 from numpy import pi, log, tan, cos
 from itertools import product
 from rasterio.io import MemoryFile
+from rasterio import open as rasopen
 from rasterio.merge import merge
 from requests import get
+from tempfile import mkdtemp
 
 # four formats are available, let's use GeoTIFF
 TILE_URL = 'https://tile.mapzen.com/mapzen/terrain/v1/geotiff/{z}/{x}/{y}.tif?api_key={k}'
@@ -59,29 +62,26 @@ def tiles(zoom, lat1, lon1, lat2, lon2):
     return tile_list
 
 
-def download(tiles, api_key, lat, zoom):
+def download(tiles, api_key):
     """ Open Rasterio.DatasetReader objects for each tile, merge, return np.array.
     """
 
-    raster_readers = []
+    temp_dir = mkdtemp(prefix='collected-')
+
+    files = []
 
     for (z, x, y) in tiles:
 
         url = TILE_URL.format(z=z, x=x, y=y, k=api_key)
-        req = get(url, verify=False)
+        req = get(url, verify=False, stream=True)
 
-        first = True
+        temp_path = os.path.join(temp_dir, '{}-{}-{}.tif'.format(z, x, y))
+        with open(temp_path, 'w') as f:
+            f.write(req.text)
+            files.append(temp_path)
 
-        with MemoryFile(req.content) as memfile:
-
-            with memfile.open() as dataset:
-                raster_readers.append(dataset)
-
-                if first:
-                    geo = dataset.profile
-                    setattr(geo, 'res', ground_resolution(lat, zoom))
-                    first = False
-
+    reader = rasopen(files[0], 'r')
+    raster_readers = [rasopen(f) for f in files[:2]]
     array, transform = merge(raster_readers)
 
     return array, transform

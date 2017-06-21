@@ -39,7 +39,7 @@ class DemTestCase(unittest.TestCase):
     def test_downlaod(self):
         bb = self.bbox
         tls = tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
-        arr, geo = download(tls, self.api_key, bb.north, self.zoom)
+        arr, geo = download(tls, self.api_key)
         self.assertEqual(arr.shape, (1, 10, 10))
 
     def test_gibs(self):
