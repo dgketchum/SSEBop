@@ -19,8 +19,8 @@ import unittest
 import os
 
 from dem.dem import Dem
-from metio.misc import BBox
-from dem.collect import tiles, download
+from metio.misc import BBox, RasterBounds
+from dem.collect import tiles, get_dem
 
 
 class DemTestCase(unittest.TestCase):
@@ -37,9 +37,13 @@ class DemTestCase(unittest.TestCase):
         self.assertEqual(tls[0], (10, 180, 360))
 
     def test_downlaod(self):
-        bb = self.bbox
+        home = os.path.expanduser('~')
+        tif = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image',
+                           'LT05_L1TP_040028_20060706_20160909_01_T1_B5.TIF')
+        bb = RasterBounds(tif)
         tls = tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
-        arr, geo = download(tls, self.api_key)
+        arr, geo = get_dem(tls, self.api_key)
+        self.dem.save(arr, geo, '/data01/images/sandbox/merged_dem.tif')
         self.assertEqual(arr.shape, (1, 10, 10))
 
     def test_gibs(self):

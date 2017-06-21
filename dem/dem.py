@@ -22,7 +22,7 @@ import os
 from rasterio.crs import CRS
 from rasterio import open
 from xarray import open_dataset
-from dem.collect import tiles, download
+from dem.collect import tiles, get_dem
 
 
 class Dem(object):
@@ -54,7 +54,7 @@ class Dem(object):
         bb = self.bbox
         tls = tiles(zoom, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
-        data = download(tls, api_key)
+        data = get_dem(tls, api_key)
 
         return data
 

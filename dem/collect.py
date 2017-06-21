@@ -62,7 +62,7 @@ def tiles(zoom, lat1, lon1, lat2, lon2):
     return tile_list
 
 
-def download(tiles, api_key):
+def get_dem(tiles, api_key):
     """ Open Rasterio.DatasetReader objects for each tile, merge, return np.array.
     """
 
@@ -76,15 +76,21 @@ def download(tiles, api_key):
         req = get(url, verify=False, stream=True)
 
         temp_path = os.path.join(temp_dir, '{}-{}-{}.tif'.format(z, x, y))
-        with open(temp_path, 'w') as f:
-            f.write(req.text)
+        with open(temp_path, 'wb') as f:
+            f.write(req.content)
             files.append(temp_path)
 
-    reader = rasopen(files[0], 'r')
-    raster_readers = [rasopen(f) for f in files[:2]]
+    raster_readers = [rasopen(f) for f in files]
     array, transform = merge(raster_readers)
 
-    return array, transform
+    with rasopen(files[0], 'r') as f:
+        profile = f.profile
+
+    profile['transform'] = transform
+    profile['height'] = array.shape[1]
+    profile['width'] = array.shape[2]
+
+    return array, profile
 
 
 def ground_resolution(lat, zoom):
