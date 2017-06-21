@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="working on collect.py download()">
+    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/collect.py" afterPath="$PROJECT_DIR$/dem/collect.py" />
@@ -33,22 +33,22 @@
       <file leaf-file-name="dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dem/dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state relative-caret-position="627">
+              <caret line="60" column="17" lean-forward="true" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#1072#1159#1" expanded="false" />
-                <element signature="e#1993#2263#0" expanded="false" />
+                <element signature="e#1021#1108#1" expanded="false" />
+                <element signature="e#1970#2240#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="collect.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="collect.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dem/collect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="67" column="23" lean-forward="false" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+            <state relative-caret-position="423">
+              <caret line="84" column="33" lean-forward="true" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#762#771#0" expanded="true" />
@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_dem.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="36" column="48" lean-forward="true" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#749#0" expanded="true" />
@@ -199,9 +199,10 @@
         <option value="$PROJECT_DIR$/metio/thredds.py" />
         <option value="$PROJECT_DIR$/metio/gdal_xml" />
         <option value="$PROJECT_DIR$/metio/misc.py" />
-        <option value="$PROJECT_DIR$/dem/dem.py" />
-        <option value="$PROJECT_DIR$/dem/collect.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
+        <option value="$PROJECT_DIR$/dem/collect.py" />
+        <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/merge.py" />
+        <option value="$PROJECT_DIR$/dem/dem.py" />
       </list>
     </option>
   </component>
@@ -381,25 +382,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_dem.MyTestCase.test_downlaod">
-    <configuration default="false" name="entry_script" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/entry_script.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_dem.DemTestCase.test_downlaod">
     <configuration default="false" name="Unittests in test_dem.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -460,6 +443,21 @@
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_dem.MyTestCase.test_downlaod&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_dem.DemTestCase.test_downlaod" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_dem.DemTestCase.test_downlaod&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -539,19 +537,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.entry_script" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
-      <item index="2" class="java.lang.String" itemvalue="Python.dem" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_tiles" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_downlaod" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
+      <item index="1" class="java.lang.String" itemvalue="Python.dem" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_tiles" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_downlaod" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_downlaod" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_downlaod" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_tiles" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
-        <item index="3" class="java.lang.String" itemvalue="Python.dem" />
-        <item index="4" class="java.lang.String" itemvalue="Python.entry_script" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_downlaod" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_downlaod" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MyTestCase.test_tiles" />
+        <item index="4" class="java.lang.String" itemvalue="Python.dem" />
       </list>
     </recent_temporary>
   </component>
@@ -568,13 +566,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00042" summary="brightness temp todo">
-      <created>1496352625969</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1496352625969</updated>
     </task>
     <task id="LOCAL-00043" summary="added combo mask, only LC8 working so far">
       <created>1496415323591</created>
@@ -912,12 +903,31 @@
       <option name="project" value="LOCAL" />
       <updated>1497996235073</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="added ground_resolution func">
+      <created>1498059905372</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1498059905373</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_downlaod - 2017.06.21 at 09h 21m 04s.xml">
-      <configuration name="Unittests for tests.test_dem.MyTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.21 at 10h 20m 28s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.21 at 10h 21m 30s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.21 at 10h 23m 00s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.21 at 10h 34m 14s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.21 at 10h 35m 49s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_downlaod - 2017.06.21 at 09h 23m 59s.xml">
       <configuration name="Unittests for tests.test_dem.MyTestCase.test_downlaod" configurationId="tests" />
@@ -928,23 +938,11 @@
     <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_downlaod - 2017.06.21 at 09h 43m 54s.xml">
       <configuration name="Unittests for tests.test_dem.MyTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 19m 25s.xml">
-      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
+    <history-entry file="Unittests_in_test_dem_py - 2017.06.21 at 09h 45m 38s.xml">
+      <configuration name="Unittests in test_dem.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 20m 18s.xml">
-      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 24m 00s.xml">
-      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 24m 07s.xml">
-      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 26m 09s.xml">
-      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_MyTestCase_test_tiles - 2017.06.20 at 15h 58m 00s.xml">
-      <configuration name="Unittests for tests.test_dem.MyTestCase.test_tiles" configurationId="tests" />
+    <history-entry file="Unittests_in_test_dem_py - 2017.06.21 at 09h 46m 27s.xml">
+      <configuration name="Unittests in test_dem.py" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -964,12 +962,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35914454" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48893806" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29723758" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48820058" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47123894" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1009,7 +1007,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="working on gridmet class" />
     <MESSAGE value="working on gridmet class documentation, private methods" />
     <MESSAGE value="pass url build test" />
     <MESSAGE value="created thredds parent class" />
@@ -1034,7 +1031,8 @@
     <MESSAGE value="moving geotiff stuff to collect.py" />
     <MESSAGE value="iterate through tiles and create file list to iterate over, going to wreck this and try and create a list of RasterReader objects" />
     <MESSAGE value="working on collect.py download()" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on collect.py download()" />
+    <MESSAGE value="added ground_resolution func" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ground_resolution func" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1056,16 +1054,6 @@
           <option name="timeStamp" value="349" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/dem/collect.py</url>
-          <line>84</line>
-          <option name="timeStamp" value="479" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/dem/collect.py</url>
-          <line>80</line>
-          <option name="timeStamp" value="480" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_dem.py</url>
           <line>42</line>
           <option name="timeStamp" value="481" />
@@ -1078,7 +1066,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="482" />
+      <option name="time" value="485" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1087,28 +1075,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="424" column="69" lean-forward="false" selection-start-line="424" selection-start-column="69" selection-end-line="424" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="45" column="66" lean-forward="true" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/imagenv/lib/python3.5/site-packages/requests/packages/urllib3/connectionpool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="851" column="0" lean-forward="false" selection-start-line="851" selection-start-column="0" selection-end-line="851" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/meteo/get_gridded.py" />
     <entry file="file://$PROJECT_DIR$/meteo/get_meteo.py" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
@@ -1220,6 +1186,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="31" column="25" lean-forward="false" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1357,29 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dem/dem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1072#1159#1" expanded="false" />
-            <element signature="e#1993#2263#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dem/collect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="67" column="23" lean-forward="false" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/unittest/loader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -1396,13 +1342,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/rasterio/_io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2589">
+          <caret line="321" column="6" lean-forward="false" selection-start-line="321" selection-start-column="6" selection-end-line="321" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/rasterio/_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="764" column="18" lean-forward="false" selection-start-line="764" selection-start-column="18" selection-end-line="764" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="36" column="48" lean-forward="true" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#734#749#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dem/dem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="60" column="17" lean-forward="true" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1021#1108#1" expanded="false" />
+            <element signature="e#1970#2240#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/merge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret line="128" column="9" lean-forward="false" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+          <folding>
+            <element signature="e#62#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dem/collect.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="84" column="33" lean-forward="true" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#771#0" expanded="true" />
           </folding>
         </state>
       </provider>
