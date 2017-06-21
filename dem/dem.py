@@ -54,7 +54,7 @@ class Dem(object):
         bb = self.bbox
         tls = tiles(zoom, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
-        data = download(tls, api_key, bb.north, zoom)
+        data = download(tls, api_key)
 
         return data
 
