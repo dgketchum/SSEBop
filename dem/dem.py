@@ -51,14 +51,14 @@ class Dem(object):
 
         return subset
 
-    def gibs(self):
+    def gibs(self, zoom):
 
         bb = self.bbox
-        tls = tiles(10, bb.south, bb.west, bb.north, bb.east)
+        tls = tiles(zoom, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
         data = download(tls, api_key)
 
-        return None
+        return data
 
     @staticmethod
     def save(array, geometry, output_filename, crs=None):
