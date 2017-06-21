@@ -44,7 +44,7 @@ class DemTestCase(unittest.TestCase):
 
     def test_gibs(self):
         self.assertIsInstance(self.dem, Dem)
-        array, geo = self.dem.gibs(zoom=self.zoom)
+        array, geo = self.dem.mapzen_tiled_dem(zoom=self.zoom)
         self.dem.save(array, geo, os.path.join(os.path.expanduser('~'), 'images', 'sandbox', 'dem.tif'))
         self.assertEqual(True, False)
 

@@ -19,8 +19,6 @@ with hooks():
     from urllib.parse import urlunparse
 
 import os
-import requests
-from rasterio.io import MemoryFile
 from rasterio.crs import CRS
 from rasterio import open
 from xarray import open_dataset
@@ -51,12 +49,12 @@ class Dem(object):
 
         return subset
 
-    def gibs(self, zoom):
+    def mapzen_tiled_dem(self, zoom):
 
         bb = self.bbox
         tls = tiles(zoom, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
-        data = download(tls, api_key)
+        data = download(tls, api_key, bb.north, zoom)
 
         return data
 

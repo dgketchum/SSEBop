@@ -62,22 +62,26 @@ def tiles(zoom, lat1, lon1, lat2, lon2):
 
 
 def download(tiles, api_key, lat, zoom):
-    """ Download list of tiles to a temporary directory and return its name.
+    """ Open Rasterio.DatasetReader objects for each tile, merge, return np.array.
     """
 
     raster_readers = []
 
     for (z, x, y) in tiles:
+
         url = TILE_URL.format(z=z, x=x, y=y, k=api_key)
         req = get(url, verify=False)
+
         first = True
+
         with MemoryFile(req.content) as memfile:
+
             with memfile.open() as dataset:
-                raster_readers.append(dataset.read)
+                raster_readers.append(dataset)
 
                 if first:
                     geo = dataset.profile
-                    geo['res'] = ground_resolution(lat, zoom)
+                    setattr(geo, 'res', ground_resolution(lat, zoom))
                     first = False
 
     array, transform = merge(raster_readers)
