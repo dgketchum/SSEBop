@@ -15,12 +15,12 @@
 # =============================================================================================
 
 import os
-from numpy import pi, log, tan, zeros
+import shutil
+from numpy import pi, log, tan
 from itertools import product
 from rasterio import open as rasopen
 from rasterio.merge import merge
-from rasterio.warp import reproject
-from rasterio.enums import Resampling
+from rasterio.mask import mask
 from requests import get
 from tempfile import mkdtemp
 
@@ -62,9 +62,10 @@ def find_tiles(zoom, lat1, lon1, lat2, lon2):
     return tile_list
 
 
-def get_dem(tiles, key, warp_param=None, bounds=None):
+def get_dem(tiles, key, warp_param=None, clip_feature=None):
     """ Open Rasterio.DatasetReader objects for each tile, merge, return np.array.
     
+    :param clip_feature: Shapeley Polygon object
     :param tiles: list of 3-tuples with (zoom, x, y) see https://msdn.microsoft.com/en-us/library/bb259689.aspx
     :param key: Mapzen free api key from  https://mapzen.com/documentation/overview/api-keys/
     :param warp_param: rasterio profile/meta object, get this from the satellite image object
@@ -84,7 +85,7 @@ def get_dem(tiles, key, warp_param=None, bounds=None):
             files.append(temp_path)
 
     raster_readers = [rasopen(f) for f in files]
-    array, transform = merge(raster_readers, bounds=bounds)
+    array, transform = merge(raster_readers)
 
     with rasopen(files[0], 'r') as f:
         profile = f.profile
@@ -94,15 +95,15 @@ def get_dem(tiles, key, warp_param=None, bounds=None):
     profile['width'] = array.shape[2]
 
     if warp_param:
-        conforming_array = zeros(array.shape, dtype=float)
-        reproject(source=array, destination=conforming_array,
-                  src_transform=transform, src_crs=profile['crs'],
-                  dst_transform=warp_param['transform'],
-                  dst_crs=warp_param['crs'],
-                  resampling=Resampling.cubic)
+        temp_path = os.path.join(temp_dir, 'dem_reproj.tif')
+        features = [clip_feature]
+        with rasopen(temp_path, 'w', **profile) as src:
+            out_arr, out_trans = mask(src, features, crop=True,
+                                      all_touched=True)
+        shutil.rmtree(temp_dir)
+        return out_arr, out_trans
 
-        return conforming_array, warp_param
-
+    shutil.rmtree(temp_dir)
     return array, profile
 
 
