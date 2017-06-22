@@ -24,7 +24,7 @@ from xarray import open_dataset
 from pandas import date_range
 # from datetime import timedelta
 
-from metio.misc import BBox
+from metio.misc import GeoBounds
 
 
 class Thredds(object):
@@ -152,7 +152,7 @@ class GridMet(Thredds):
         self.year = self.start.year
 
         if not self.bbox:
-            self.bbox = BBox()
+            self.bbox = GeoBounds()
 
     def get_data(self):
 

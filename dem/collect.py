@@ -62,16 +62,15 @@ def tiles(zoom, lat1, lon1, lat2, lon2):
     return tile_list
 
 
-def get_dem(tiles, api_key):
+def get_dem(tiles, api_key, warp, bounds):
     """ Open Rasterio.DatasetReader objects for each tile, merge, return np.array.
     """
 
-    temp_dir = mkdtemp(prefix='collected-')
-
+    # temp_dir = mkdtemp(prefix='collected-')
+    temp_dir = '/data01/images/sandbox'
     files = []
 
     for (z, x, y) in tiles:
-
         url = TILE_URL.format(z=z, x=x, y=y, k=api_key)
         req = get(url, verify=False, stream=True)
 
@@ -81,7 +80,7 @@ def get_dem(tiles, api_key):
             files.append(temp_path)
 
     raster_readers = [rasopen(f) for f in files]
-    array, transform = merge(raster_readers)
+    array, transform = merge(raster_readers, bounds=bounds)
 
     with rasopen(files[0], 'r') as f:
         profile = f.profile
@@ -92,15 +91,6 @@ def get_dem(tiles, api_key):
 
     return array, profile
 
-
-def ground_resolution(lat, zoom):
-    """ Get tile resolution.
-    :param lat: Float
-    :param zoom: Int
-    :return: ground resolution of tile pixels.
-    """
-    res = (cos(lat * pi / 180.) * 2 * pi * 6378137) / (256 * 2 ** zoom)
-    return res
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')

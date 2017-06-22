@@ -49,12 +49,12 @@ class Dem(object):
 
         return subset
 
-    def mapzen_tiled_dem(self, zoom):
+    def mapzen_tiled_dem(self, zoom, warp=None):
 
         bb = self.bbox
         tls = tiles(zoom, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
-        data = get_dem(tls, api_key)
+        data = get_dem(tls, api_key, warp, self.bbox.as_tuple())
 
         return data
 
