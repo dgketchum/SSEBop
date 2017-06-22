@@ -31,6 +31,10 @@ class LandsatImageTestCase(unittest.TestCase):
         dist_au = landsat.earth_sun_dist
         self.assertAlmostEqual(dist_au, 1.01387, delta=0.01)
 
+    def test_mask_poly(self):
+        landsat = LandsatImage(self.dir_name_LT5)
+        shape = landsat.get_extent_polygon()
+
 
 class Landsat5TestCase(unittest.TestCase):
     def setUp(self):
@@ -243,6 +247,7 @@ class Landsat8TestCase(unittest.TestCase):
         b3, b6 = l8.reflectance(3)[self.cell], l8.reflectance(6)[self.cell]
         ndsi_exp = (b3 - b6) / (b3 + b6)
         self.assertEqual(ndsi, ndsi_exp)
+
 
 if __name__ == '__main__':
     unittest.main()
