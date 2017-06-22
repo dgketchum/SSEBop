@@ -15,12 +15,11 @@
 # =============================================================================================
 
 import os
-from io import BytesIO, StringIO
-from numpy import pi, log, tan, cos
+from numpy import pi, log, tan, zeros
 from itertools import product
-from rasterio.io import MemoryFile
 from rasterio import open as rasopen
 from rasterio.merge import merge
+from rasterio.warp import reproject
 from requests import get
 from tempfile import mkdtemp
 
@@ -44,7 +43,7 @@ def mercator(lat, lon, zoom):
     return zoom, x3, y3
 
 
-def tiles(zoom, lat1, lon1, lat2, lon2):
+def find_tiles(zoom, lat1, lon1, lat2, lon2):
     """ Convert geographic bounds into a list of tile coordinates at given zoom.
     """
     # convert to geographic bounding box
@@ -62,16 +61,20 @@ def tiles(zoom, lat1, lon1, lat2, lon2):
     return tile_list
 
 
-def get_dem(tiles, api_key, warp, bounds):
+def get_dem(tiles, key, warp_param=None, bounds=None):
     """ Open Rasterio.DatasetReader objects for each tile, merge, return np.array.
+    
+    :param tiles: list of 3-tuples with (zoom, x, y) see https://msdn.microsoft.com/en-us/library/bb259689.aspx
+    :param key: Mapzen free api key from  https://mapzen.com/documentation/overview/api-keys/
+    :param warp_param: rasterio profile/meta object, get this from the satellite image object
+    :param bounds: geographic bounds of output, west, south, east, north
     """
 
-    # temp_dir = mkdtemp(prefix='collected-')
-    temp_dir = '/data01/images/sandbox'
+    temp_dir = mkdtemp(prefix='collected-')
     files = []
 
     for (z, x, y) in tiles:
-        url = TILE_URL.format(z=z, x=x, y=y, k=api_key)
+        url = TILE_URL.format(z=z, x=x, y=y, k=key)
         req = get(url, verify=False, stream=True)
 
         temp_path = os.path.join(temp_dir, '{}-{}-{}.tif'.format(z, x, y))
@@ -88,6 +91,15 @@ def get_dem(tiles, api_key, warp, bounds):
     profile['transform'] = transform
     profile['height'] = array.shape[1]
     profile['width'] = array.shape[2]
+
+    if warp_param:
+        conforming_array = zeros(array.shape, dtype=float)
+        reproject(array, conforming_array,
+                  src_transform=transform, src_crs=profile['crs'],
+                  dst_transform=warp_param['transform'], dst_crs=warp_param['crs'],
+                  resampling=2)
+
+        return conforming_array, warp_param
 
     return array, profile
 

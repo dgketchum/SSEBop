@@ -20,7 +20,8 @@ import os
 
 from dem.dem import Dem
 from metio.misc import GeoBounds, RasterBounds
-from dem.collect import tiles, get_dem
+from dem.collect import find_tiles, get_dem
+from sat_image.image import Landsat5
 
 
 class DemTestCase(unittest.TestCase):
@@ -33,21 +34,23 @@ class DemTestCase(unittest.TestCase):
 
     def test_tiles(self):
         bb = self.bbox
-        tls = tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
+        tls = find_tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
         self.assertEqual(tls[0], (10, 180, 360))
 
     def test_downlaod(self):
         home = os.path.expanduser('~')
-        tif = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image',
-                           'LT05_L1TP_040028_20060706_20160909_01_T1_B5.TIF')
+        tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
+        tif = os.path.join(tif_dir, 'LT05_L1TP_040028_20060706_20160909_01_T1_B5.TIF')
+
         bb = RasterBounds(tif)
-        tls = tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
+        tls = find_tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
         bb_exp = [45.037, -111.489, 46.983, -114.726]
         bb_found = [bb.south, bb.east, bb.north, bb.west]
         for val, exp in zip(bb_exp, bb_found):
             self.assertAlmostEqual(val, exp, delta=0.01)
 
-        arr, geo = get_dem(tls, self.api_key)
+        image = Landsat5(tif_dir)
+        arr, geo = get_dem(tls, self.api_key, warp_param=image.rasterio_geometry)
         self.dem.save(arr, geo, '/data01/images/sandbox/merged_dem.tif')
         self.assertEqual(arr.shape, (1, 10, 10))
 

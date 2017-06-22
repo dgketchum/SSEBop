@@ -10,11 +10,15 @@ class BBox(object):
         self.north = None
         self.south = None
 
-    def as_tuple(self):
-        """ Left, bottom, right, top
+    def as_tuple(self, order='wsen'):
+        """ Find 4-tuple of extent
+        :param order: order of cardinal directions
         :return: 4-Tuple
         """
-        return self.west, self.south, self.east, self.north
+        if order == 'wsen':
+            return self.west, self.south, self.east, self.north
+        elif order == 'swne':
+            return self.south, self.west, self.north, self.east
 
 
 class GeoBounds(BBox):
@@ -40,6 +44,7 @@ class RasterBounds(BBox):
     :param raster
     
     """
+
     def __init__(self, raster, latlon=True):
         BBox.__init__(self)
         with rasopen(raster, 'r') as src:
