@@ -22,7 +22,7 @@ import os
 from rasterio.crs import CRS
 from rasterio import open
 from xarray import open_dataset
-from dem.collect import tiles, get_dem
+from dem.collect import find_tiles, get_dem
 
 
 class Dem(object):
@@ -52,7 +52,7 @@ class Dem(object):
     def mapzen_tiled_dem(self, zoom, warp=None):
 
         bb = self.bbox
-        tls = tiles(zoom, bb.south, bb.west, bb.north, bb.east)
+        tls = find_tiles(zoom, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
         data = get_dem(tls, api_key, warp, self.bbox.as_tuple())
 
