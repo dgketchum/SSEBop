@@ -14,6 +14,7 @@
 # limitations under the License.
 # =============================================================================================
 from __future__ import print_function
+
 from future.standard_library import hooks
 
 with hooks():
@@ -24,7 +25,7 @@ from xarray import open_dataset
 from pandas import date_range
 # from datetime import timedelta
 
-from metio.misc import GeoBounds
+from bbox.bounds import GeoBounds
 
 
 class Thredds(object):

@@ -16,6 +16,7 @@
 
 import os
 import rasterio
+from rasterio import features
 import numpy as np
 from sat_image import mtl
 
