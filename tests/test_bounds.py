@@ -16,7 +16,7 @@
 
 import unittest
 
-from bbox.bounds import GeoBounds, RasterBounds
+from bounds.bounds import GeoBounds, RasterBounds
 
 
 class BoundsTestCase(unittest.TestCase):

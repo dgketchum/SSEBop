@@ -32,8 +32,9 @@ class LandsatImageTestCase(unittest.TestCase):
         self.assertAlmostEqual(dist_au, 1.01387, delta=0.01)
 
     def test_mask_poly(self):
-        landsat = LandsatImage(self.dir_name_LT5)
-        shape = landsat.get_extent_polygon()
+        landsat = LandsatImage('/data01/images/LT5/image_test/full_image')
+        shape = landsat.get_tile_geometry(output_filename='/data01/images/sandbox/lst_shape2.shp')
+        self.assertEqual(True, False)
 
 
 class Landsat5TestCase(unittest.TestCase):

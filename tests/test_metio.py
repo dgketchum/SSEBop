@@ -18,7 +18,7 @@ from datetime import datetime
 
 from xarray import Dataset
 
-from bbox.bounds import GeoBounds
+from bounds.bounds import GeoBounds
 from metio.thredds import GridMet
 
 
