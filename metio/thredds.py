@@ -25,7 +25,7 @@ from xarray import open_dataset
 from pandas import date_range
 # from datetime import timedelta
 
-from bbox.bounds import GeoBounds
+from bounds.bounds import GeoBounds
 
 
 class Thredds(object):
@@ -58,7 +58,7 @@ class TopoWX(Thredds):
     :param end: datetime object end of period of data
     :param variables: List  of available variables. At lease one. 
     :param date: single-day datetime date object
-    :param bbox: metio.misc.BBox object representing spatial bounds, default to conterminous US
+    :param bounds: metio.misc.BBox object representing spatial bounds, default to conterminous US
     :return: numpy.ndarray
     
     """

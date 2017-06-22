@@ -1,12 +1,7 @@
-import os
-import shutil
+
 from pyproj import Proj
 from rasterio import open as rasopen
 from rasterio.crs import CRS
-from shapely.geometry import Polygon, mapping
-import fiona
-from fiona.crs import from_epsg
-from tempfile import mkdtemp
 
 
 class BBox(object):
@@ -25,32 +20,8 @@ class BBox(object):
             return self.west, self.south, self.east, self.north
         elif order == 'swne':
             return self.south, self.west, self.north, self.east
-
-    def as_feature_geo(self, profile):
-
-        temp_dir = mkdtemp()
-        temp = os.path.join(temp_dir, 'shape.shp')
-
-        points = [(self.north, self.west), (self.south, self.west),
-                  (self.south, self.east), (self.north, self.east),
-                  (self.north, self.west)]
-
-        polygon = Polygon(points)
-
-        schema = {'geometry': 'Polygon',
-                  'properties': {'id': 'int'}}
-
-        crs = from_epsg(profile['crs']['init'].split(':')[1])
-
-        with fiona.open(temp, 'w', 'ESRI Shapefile', schema=schema, crs=crs) as shp:
-            shp.write({
-                'geometry': mapping(polygon),
-                'properties': {'id': 1}})
-        with fiona.open(temp, 'r') as src:
-            features = [f['geometry'] for f in src]
-
-        shutil.rmtree(temp_dir)
-        return features
+        elif order == 'nsew':
+            return self.north, self.south, self.east, self.west
 
 
 class GeoBounds(BBox):
@@ -77,16 +48,18 @@ class RasterBounds(BBox):
     
     """
 
-    def __init__(self, raster, latlon=True):
+    def __init__(self, raster=None, affine=None, profile=None, latlon=True):
         BBox.__init__(self)
-        with rasopen(raster, 'r') as src:
-            aff_transform = src.transform
-            profile = src.profile
 
-            col, row = 0, 0
-            w, n = aff_transform * (col, row)
-            col, row = profile['width'], profile['height']
-            e, s = aff_transform * (col, row)
+        if raster:
+            with rasopen(raster, 'r') as src:
+                affine = src.transform
+                profile = src.profile
+
+        col, row = 0, 0
+        w, n = affine * (col, row)
+        col, row = profile['width'], profile['height']
+        e, s = affine * (col, row)
 
         if latlon and profile['crs'] != CRS({'init': 'epsg:4326'}):
             in_proj = Proj(init=profile['crs']['init'])
@@ -95,6 +68,9 @@ class RasterBounds(BBox):
 
         else:
             self.north, self.west, self.south, self.east = n, w, s, e
+
+    def get_nwse_tuple(self):
+        return self.north, self.west, self.south, self.east
 
 
 if __name__ == '__main__':

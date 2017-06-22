@@ -15,9 +15,16 @@
 # =============================================================================================
 
 import os
-import rasterio
-from rasterio import features
-import numpy as np
+import shutil
+from rasterio import open as rasopen
+from numpy import where, pi, cos, nan, inf, true_divide, errstate, log, nan_to_num
+from numpy import float32, sin, deg2rad
+from shapely.geometry import Polygon, mapping
+from fiona import open as fiopen
+from fiona.crs import from_epsg
+from tempfile import mkdtemp
+
+from bounds.bounds import RasterBounds
 from sat_image import mtl
 
 
@@ -55,30 +62,25 @@ class LandsatImage(object):
         self.mtl = mtl.parsemeta(obj)
         self.meta_header = list(self.mtl)[0]
         self.super_dict = self.mtl[self.meta_header]
-
         for key, val in self.super_dict.items():
             for sub_key, sub_val in val.items():
                 # print(sub_key.lower(), sub_val)
                 setattr(self, sub_key.lower(), sub_val)
         self.satellite = self.landsat_scene_id[:3]
+
         # create numpy nd_array objects for each band
         self.band_list = []
         for i, tif in enumerate(self.tif_list):
-            with rasterio.open(os.path.join(self.obj, tif)) as src:
+            with rasopen(os.path.join(self.obj, tif)) as src:
                 dn_array = src.read(1)
+                transform = src.transform
+                profile = src.profile
             # set all lower case attributes
             tif = tif.lower()
             front_ind = tif.index('b')
             end_ind = tif.index('.tif')
             att_string = tif[front_ind: end_ind]
-            count_att_string = '{}_counts'.format(att_string)
             setattr(self, att_string, dn_array)
-
-            setattr(self, count_att_string,
-                    {'zero': np.count_nonzero(dn_array == 0),
-                     'non_zero': np.count_nonzero(dn_array > 0),
-                     'nan': np.count_nonzero(np.isnan(dn_array)),
-                     'non_nan': np.count_nonzero(~np.isnan(dn_array))})
 
             self.band_list.append(att_string)
             self.band_count = i + 1
@@ -88,12 +90,15 @@ class LandsatImage(object):
                 rasterio_str = 'rasterio_geometry'.format(att_string)
                 meta = src.meta.copy()
                 setattr(self, rasterio_str, meta)
-                self.shape = dn_array.shape
-                self.mask = np.where(dn_array > 0, True, False)
+                bounds = RasterBounds(affine=transform,
+                                      profile=profile,
+                                      latlon=False)
+                self.north, self.west, self.south, self.east = bounds.get_nwse_tuple()
+                self.coords = bounds.as_tuple('nsew')
 
         self.solar_zenith = 90. - self.sun_elevation
-        self.solar_zenith_rad = self.solar_zenith * np.pi / 180
-        self.sun_elevation_rad = self.sun_elevation * np.pi / 180
+        self.solar_zenith_rad = self.solar_zenith * pi / 180
+        self.sun_elevation_rad = self.sun_elevation * pi / 180
         self.earth_sun_dist = self.earth_sun_d(self.date_acquired)
 
     @staticmethod
@@ -105,24 +110,65 @@ class LandsatImage(object):
         :return float(distance from sun to earth in astronomical units)
         """
         doy = int(dtime.strftime('%j'))
-        rad_term = 0.9856 * (doy - 4) * np.pi / 180
-        distance_au = 1 - 0.01672 * np.cos(rad_term)
+        rad_term = 0.9856 * (doy - 4) * pi / 180
+        distance_au = 1 - 0.01672 * cos(rad_term)
         return distance_au
 
     @staticmethod
     def _divide_zero(a, b, replace=0):
-        with np.errstate(divide='ignore', invalid='ignore'):
-            c = np.true_divide(a, b)
-            c[c == np.inf] = replace
-            c = np.nan_to_num(c)
+        with errstate(divide='ignore', invalid='ignore'):
+            c = true_divide(a, b)
+            c[c == inf] = replace
+            c = nan_to_num(c)
             return c
-        return potential_cloud
 
-    def save(self, array, output_filename):
+    def get_tile_geometry(self, output_filename=None):
+
+        if not output_filename:
+            temp_dir = mkdtemp()
+            temp = os.path.join(temp_dir, 'shape.shp')
+        else:
+            temp = output_filename
+
+        # corners = {'ul': (self.corner_ul_projection_x_product,
+        #                   self.corner_ul_projection_y_product),
+        #            'll': (self.corner_ll_projection_x_product,
+        #                   self.corner_ll_projection_y_product),
+        #            'lr': (self.corner_lr_projection_x_product,
+        #                   self.corner_lr_projection_y_product),
+        #            'ur': (self.corner_ur_projection_x_product,
+        #                   self.corner_ur_projection_y_product)}
+        points = [(self.west, self.north), (self.west, self.south),
+                  (self.east, self.south), (self.east, self.north),
+                  (self.west, self.north)]
+
+        polygon = Polygon(points)
+
+        schema = {'geometry': 'Polygon',
+                  'properties': {'id': 'int'}}
+
+        crs = from_epsg(int(self.rasterio_geometry['crs']['init'].split(':')[1]))
+
+        with fiopen(temp, 'w', 'ESRI Shapefile', schema=schema, crs=crs) as shp:
+            shp.write({
+                'geometry': mapping(polygon),
+                'properties': {'id': 1}})
+
+        with fiopen(temp, 'r') as src:
+            features = [f['geometry'] for f in src]
+
+        try:
+            shutil.rmtree(temp_dir)
+        except UnboundLocalError:
+            pass
+
+        return features
+
+    def save_array(self, array, output_filename):
         geometry = self.rasterio_geometry
         array = array.reshape(1, array.shape[0], array.shape[1])
         geometry['dtype'] = array.dtype
-        with rasterio.open(output_filename, 'w', **geometry) as dst:
+        with rasopen(output_filename, 'w', **geometry) as dst:
             dst.write(array)
         return None
 
@@ -136,10 +182,10 @@ class Landsat5(LandsatImage):
 
         # https://landsat.usgs.gov/esun
         self.ex_atm_irrad = (1958.0, 1827.0, 1551.0,
-                             1036.0, 214.9, np.nan, 80.65)
+                             1036.0, 214.9, nan, 80.65)
 
         # old values from fmask.exe
-        # self.ex_atm_irrad = (1983.0, 1796.0, 1536.0, 1031.0, 220.0, np.nan, 83.44)
+        # self.ex_atm_irrad = (1983.0, 1796.0, 1536.0, 1031.0, 220.0, nan, 83.44)
 
         self.k1, self.k2 = 607.76, 1260.56
 
@@ -159,7 +205,7 @@ class Landsat5(LandsatImage):
             raise ValueError('LT5 brightness must be band 6')
 
         rad = self.radiance(band)
-        brightness = self.k2 / (np.log((self.k1 / rad) + 1))
+        brightness = self.k2 / (log((self.k1 / rad) + 1))
 
         if temp_scale == 'K':
             return brightness
@@ -183,7 +229,7 @@ class Landsat5(LandsatImage):
 
         rad = self.radiance(band)
         esun = self.ex_atm_irrad[band - 1]
-        toa_reflect = (np.pi * rad * self.earth_sun_dist ** 2) / (esun * np.cos(self.solar_zenith_rad))
+        toa_reflect = (pi * rad * self.earth_sun_dist ** 2) / (esun * cos(self.solar_zenith_rad))
 
         return toa_reflect
 
@@ -218,7 +264,7 @@ class Landsat5(LandsatImage):
         :return: boolean array
         """
         dn = getattr(self, 'b{}'.format(band))
-        mask = np.where((dn == value) & (self.mask > 0), True, False)
+        mask = where((dn == value) & (self.mask > 0), True, False)
 
         return mask
 
@@ -227,7 +273,7 @@ class Landsat5(LandsatImage):
         :return: NDVI
         """
         red, nir = self.reflectance(3), self.reflectance(4)
-        ndvi = self._divide_zero((nir - red), (nir + red), np.nan)
+        ndvi = self._divide_zero((nir - red), (nir + red), nan)
 
         return ndvi
 
@@ -236,7 +282,7 @@ class Landsat5(LandsatImage):
         :return: NDSI
         """
         green, swir1 = self.reflectance(2), self.reflectance(5)
-        ndsi = self._divide_zero((green - swir1), (green + swir1), np.nan)
+        ndsi = self._divide_zero((green - swir1), (green + swir1), nan)
 
         return ndsi
 
@@ -249,7 +295,7 @@ class Landsat7(LandsatImage):
             raise ValueError('Must init Landsat7 object with Landsat5 data, not {}'.format(self.satellite))
         # https://landsat.usgs.gov/esun; Landsat 7 Handbook
         self.ex_atm_irrad = (1970.0, 1842.0, 1547.0, 1044.0,
-                             255.700, np.nan, 82.06, 1369.00)
+                             255.700, nan, 82.06, 1369.00)
 
         self.k1, self.k2 = 666.09, 1282.71
 
@@ -274,7 +320,7 @@ class Landsat7(LandsatImage):
             band_gain = '6_vcid_2'
 
         rad = self.radiance(band_gain)
-        brightness = self.k2 / (np.log((self.k1 / rad) + 1))
+        brightness = self.k2 / (log((self.k1 / rad) + 1))
 
         if temp_scale == 'K':
             return brightness
@@ -298,7 +344,7 @@ class Landsat7(LandsatImage):
 
         rad = self.radiance(band)
         esun = self.ex_atm_irrad[band - 1]
-        toa_reflect = (np.pi * rad * self.earth_sun_dist ** 2) / (esun * np.cos(self.solar_zenith_rad))
+        toa_reflect = (pi * rad * self.earth_sun_dist ** 2) / (esun * cos(self.solar_zenith_rad))
         return toa_reflect
 
     def albedo(self):
@@ -325,7 +371,7 @@ class Landsat7(LandsatImage):
         :return: boolean array
         """
         dn = getattr(self, 'b{}'.format(band))
-        mask = np.where((dn == value) & (self.mask > 0), True, False)
+        mask = where((dn == value) & (self.mask > 0), True, False)
 
         return mask
 
@@ -334,7 +380,7 @@ class Landsat7(LandsatImage):
         :return: NDVI
         """
         red, nir = self.reflectance(3), self.reflectance(4)
-        ndvi = self._divide_zero((nir - red), (nir + red), np.nan)
+        ndvi = self._divide_zero((nir - red), (nir + red), nan)
 
         return ndvi
 
@@ -343,7 +389,7 @@ class Landsat7(LandsatImage):
         :return NDSI
         """
         green, swir1 = self.reflectance(2), self.reflectance(5)
-        ndsi = self._divide_zero((green - swir1), (green + swir1), np.nan)
+        ndsi = self._divide_zero((green - swir1), (green + swir1), nan)
 
         return ndsi
 
@@ -358,7 +404,7 @@ class Landsat8(LandsatImage):
         """Calculate brightness temperature of Landsat 8
     as outlined here: http://landsat.usgs.gov/Landsat8_Using_Product.php
 
-    T = K2 / np.log((K1 / L)  + 1)
+    T = K2 / log((K1 / L)  + 1)
 
     and
 
@@ -390,7 +436,7 @@ class Landsat8(LandsatImage):
         k1 = getattr(self, 'k1_constant_band_{}'.format(band))
         k2 = getattr(self, 'k2_constant_band_{}'.format(band))
         rad = self.radiance(band)
-        brightness = k2 / np.log((k1 / rad) + 1)
+        brightness = k2 / log((k1 / rad) + 1)
 
         if temp_scale == 'K':
             return brightness
@@ -447,7 +493,7 @@ class Landsat8(LandsatImage):
             raise ValueError("Sun elevation must be non-negative "
                              "(sun must be above horizon for entire scene)")
 
-        rf = ((mr * dn.astype(np.float32)) + ar) / np.sin(np.deg2rad(elev))
+        rf = ((mr * dn.astype(float32)) + ar) / sin(deg2rad(elev))
 
         return rf
 
@@ -474,7 +520,7 @@ class Landsat8(LandsatImage):
         ml = getattr(self, 'radiance_mult_band_{}'.format(band))
         al = getattr(self, 'radiance_add_band_{}'.format(band))
         dn = getattr(self, 'b{}'.format(band))
-        rs = ml * dn.astype(np.float32) + al
+        rs = ml * dn.astype(float32) + al
 
         return rs
 
@@ -499,7 +545,7 @@ class Landsat8(LandsatImage):
         :return: NDVI
         """
         red, nir = self.reflectance(4), self.reflectance(5)
-        ndvi = self._divide_zero((nir - red), (nir + red), np.nan)
+        ndvi = self._divide_zero((nir - red), (nir + red), nan)
 
         return ndvi
 
@@ -508,7 +554,7 @@ class Landsat8(LandsatImage):
         :return: NDSI
         """
         green, swir1 = self.reflectance(3), self.reflectance(6)
-        ndsi = self._divide_zero((green - swir1), (green + swir1), np.nan)
+        ndsi = self._divide_zero((green - swir1), (green + swir1), nan)
 
         return ndsi
 

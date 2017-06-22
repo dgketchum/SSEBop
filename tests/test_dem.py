@@ -17,7 +17,7 @@
 import os
 import unittest
 
-from bbox.bounds import GeoBounds, RasterBounds
+from bounds.bounds import GeoBounds, RasterBounds
 from dem.collect import find_tiles, get_dem
 from dem.dem import Dem
 from sat_image.image import Landsat5
