@@ -20,6 +20,7 @@ from itertools import product
 from rasterio import open as rasopen
 from rasterio.merge import merge
 from rasterio.warp import reproject
+from rasterio.enums import Resampling
 from requests import get
 from tempfile import mkdtemp
 
@@ -94,10 +95,11 @@ def get_dem(tiles, key, warp_param=None, bounds=None):
 
     if warp_param:
         conforming_array = zeros(array.shape, dtype=float)
-        reproject(array, conforming_array,
+        reproject(source=array, destination=conforming_array,
                   src_transform=transform, src_crs=profile['crs'],
-                  dst_transform=warp_param['transform'], dst_crs=warp_param['crs'],
-                  resampling=2)
+                  dst_transform=warp_param['transform'],
+                  dst_crs=warp_param['crs'],
+                  resampling=Resampling.cubic)
 
         return conforming_array, warp_param
 

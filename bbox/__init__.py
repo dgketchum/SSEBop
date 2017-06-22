@@ -14,16 +14,9 @@
 # limitations under the License.
 # =============================================================================================
 
-import requests
-import urllib3
-import ssl
+import os
 
-url = 'https://tile.mapzen.com'
-query = '/mapzen/terrain/v1/geotiff/10/180/360.tif?api_key=mapzen-JmKu1BF'
-
-# r = http.request('GET', url)
-
-req = requests.get(url, context=ssl._create_unverified_context())
-
+if __name__ == '__main__':
+    home = os.path.expanduser('~')
 
 # ========================= EOF ====================================================================

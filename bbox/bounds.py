@@ -12,7 +12,7 @@ class BBox(object):
 
     def as_tuple(self, order='wsen'):
         """ Find 4-tuple of extent
-        :param order: order of cardinal directions
+        :param order: order of cardinal directions, default='wsen'
         :return: 4-Tuple
         """
         if order == 'wsen':

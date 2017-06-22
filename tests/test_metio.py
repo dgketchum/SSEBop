@@ -14,12 +14,11 @@
 # limitations under the License.
 # ===============================================================================
 import unittest
-
 from datetime import datetime
 
 from xarray import Dataset
 
-from metio.misc import GeoBounds
+from bbox.bounds import GeoBounds
 from metio.thredds import GridMet
 
 

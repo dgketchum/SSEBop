@@ -14,13 +14,12 @@
 # limitations under the License.
 # ===============================================================================
 
+import os
 import unittest
 
-import os
-
-from dem.dem import Dem
-from metio.misc import GeoBounds, RasterBounds
+from bbox.bounds import GeoBounds, RasterBounds
 from dem.collect import find_tiles, get_dem
+from dem.dem import Dem
 from sat_image.image import Landsat5
 
 
@@ -29,7 +28,7 @@ class DemTestCase(unittest.TestCase):
         self.bbox = GeoBounds(west_lon=-116.5, east_lon=-111.0,
                               south_lat=44.3, north_lat=47.)
         self.dem = Dem(self.bbox)
-        self.zoom = 7
+        self.zoom = 10
         self.api_key = 'mapzen-JmKu1BF'
 
     def test_tiles(self):

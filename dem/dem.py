@@ -54,9 +54,9 @@ class Dem(object):
         bb = self.bbox
         tls = find_tiles(zoom, bb.south, bb.west, bb.north, bb.east)
         api_key = 'mapzen-JmKu1BF'
-        data = get_dem(tls, api_key, warp, self.bbox.as_tuple())
+        arr, geo = get_dem(tls, api_key, warp, self.bbox.as_tuple())
 
-        return data
+        return arr, geo
 
     @staticmethod
     def save(array, geometry, output_filename, crs=None):
