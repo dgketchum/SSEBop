@@ -19,14 +19,14 @@ from datetime import datetime
 
 from xarray import Dataset
 
-from metio.misc import BBox
+from metio.misc import GeoBounds
 from metio.thredds import GridMet
 
 
 class TestGridMet(unittest.TestCase):
     def setUp(self):
-        self.bbox = BBox(west_lon=-116.4, east_lon=-103.0,
-                         south_lat=44.3, north_lat=49.1)
+        self.bbox = GeoBounds(west_lon=-116.4, east_lon=-103.0,
+                              south_lat=44.3, north_lat=49.1)
 
         self.vars = ['pr', 'pet', 'not_a_var']
         self.test_url_str = 'http://thredds.northwestknowledge.net:8080/thredds/ncss/MET/pet/pet_2011.nc?' \

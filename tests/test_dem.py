@@ -19,14 +19,14 @@ import unittest
 import os
 
 from dem.dem import Dem
-from metio.misc import BBox, RasterBounds
+from metio.misc import GeoBounds, RasterBounds
 from dem.collect import tiles, get_dem
 
 
 class DemTestCase(unittest.TestCase):
     def setUp(self):
-        self.bbox = BBox(west_lon=-116.5, east_lon=-111.0,
-                         south_lat=44.3, north_lat=47.)
+        self.bbox = GeoBounds(west_lon=-116.5, east_lon=-111.0,
+                              south_lat=44.3, north_lat=47.)
         self.dem = Dem(self.bbox)
         self.zoom = 7
         self.api_key = 'mapzen-JmKu1BF'
@@ -42,6 +42,11 @@ class DemTestCase(unittest.TestCase):
                            'LT05_L1TP_040028_20060706_20160909_01_T1_B5.TIF')
         bb = RasterBounds(tif)
         tls = tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
+        bb_exp = [45.037, -111.489, 46.983, -114.726]
+        bb_found = [bb.south, bb.east, bb.north, bb.west]
+        for val, exp in zip(bb_exp, bb_found):
+            self.assertAlmostEqual(val, exp, delta=0.01)
+
         arr, geo = get_dem(tls, self.api_key)
         self.dem.save(arr, geo, '/data01/images/sandbox/merged_dem.tif')
         self.assertEqual(arr.shape, (1, 10, 10))
