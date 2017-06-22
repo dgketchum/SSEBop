@@ -1,6 +1,12 @@
+import os
+import shutil
 from pyproj import Proj
 from rasterio import open as rasopen
 from rasterio.crs import CRS
+from shapely.geometry import Polygon, mapping
+import fiona
+from fiona.crs import from_epsg
+from tempfile import mkdtemp
 
 
 class BBox(object):
@@ -19,6 +25,32 @@ class BBox(object):
             return self.west, self.south, self.east, self.north
         elif order == 'swne':
             return self.south, self.west, self.north, self.east
+
+    def as_feature_geo(self, profile):
+
+        temp_dir = mkdtemp()
+        temp = os.path.join(temp_dir, 'shape.shp')
+
+        points = [(self.north, self.west), (self.south, self.west),
+                  (self.south, self.east), (self.north, self.east),
+                  (self.north, self.west)]
+
+        polygon = Polygon(points)
+
+        schema = {'geometry': 'Polygon',
+                  'properties': {'id': 'int'}}
+
+        crs = from_epsg(profile['crs']['init'].split(':')[1])
+
+        with fiona.open(temp, 'w', 'ESRI Shapefile', schema=schema, crs=crs) as shp:
+            shp.write({
+                'geometry': mapping(polygon),
+                'properties': {'id': 1}})
+        with fiona.open(temp, 'r') as src:
+            features = [f['geometry'] for f in src]
+
+        shutil.rmtree(temp_dir)
+        return features
 
 
 class GeoBounds(BBox):
