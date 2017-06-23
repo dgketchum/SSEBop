@@ -18,8 +18,7 @@ import os
 import unittest
 
 from bounds.bounds import GeoBounds, RasterBounds
-from dem.collect import find_tiles, get_dem
-from dem.dem import Dem
+from dem.dem import Dem, MapzenDem
 from sat_image.image import Landsat5
 
 
@@ -27,29 +26,27 @@ class DemTestCase(unittest.TestCase):
     def setUp(self):
         self.bbox = GeoBounds(west_lon=-116.5, east_lon=-111.0,
                               south_lat=44.3, north_lat=47.)
-        self.dem = Dem(self.bbox)
-        self.zoom = 10
         self.api_key = 'mapzen-JmKu1BF'
 
     def test_tiles(self):
-        bb = self.bbox
-        tls = find_tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
+        dem = MapzenDem(zoom=10, bounds=self.bbox)
+        tls = dem.find_tiles()
         self.assertEqual(tls[0], (10, 180, 360))
 
     def test_downlaod(self):
-
         home = os.path.expanduser('~')
         tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
         tif = os.path.join(tif_dir, 'LT05_L1TP_040028_20060706_20160909_01_T1_B5.TIF')
 
         bb = RasterBounds(tif)
-        tls = find_tiles(self.zoom, bb.south, bb.east, bb.north, bb.west)
+        l5 = Landsat5(tif_dir)
+        polygon = l5.get_tile_geometry()
+        profile = l5.rasterio_geometry
 
-        profile = Landsat5(tif_dir).rasterio_geometry
-        polygon = bb.as_feature_geo(profile)
+        dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile, clip_object=polygon,
+                        api_key=self.api_key)
 
-        arr, geo = get_dem(tls, self.api_key, clip_feature=polygon,
-                           output_filepath='/data01/images/sandbox/merged_dem.tif')
+        arr = dem.get_conforming_dem(out_file='/data01/images/sandbox/merged_dem.tif')
 
         self.assertEqual(arr.shape, (1, 10, 10))
 

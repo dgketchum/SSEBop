@@ -48,18 +48,18 @@ class RasterBounds(BBox):
     
     """
 
-    def __init__(self, raster=None, affine=None, profile=None, latlon=True):
+    def __init__(self, raster=None, affine_transform=None, profile=None, latlon=True):
         BBox.__init__(self)
 
         if raster:
             with rasopen(raster, 'r') as src:
-                affine = src.transform
+                affine_transform = src.transform
                 profile = src.profile
 
         col, row = 0, 0
-        w, n = affine * (col, row)
+        w, n = affine_transform * (col, row)
         col, row = profile['width'], profile['height']
-        e, s = affine * (col, row)
+        e, s = affine_transform * (col, row)
 
         if latlon and profile['crs'] != CRS({'init': 'epsg:4326'}):
             in_proj = Proj(init=profile['crs']['init'])
