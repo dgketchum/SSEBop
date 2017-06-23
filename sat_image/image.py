@@ -122,7 +122,7 @@ class LandsatImage(object):
             c = nan_to_num(c)
             return c
 
-    def get_tile_geometry(self, output_filename=None):
+    def get_tile_geometry(self, output_filename=None, geographic_coords=False):
 
         if not output_filename:
             temp_dir = mkdtemp()
@@ -138,9 +138,14 @@ class LandsatImage(object):
         #                   self.corner_lr_projection_y_product),
         #            'ur': (self.corner_ur_projection_x_product,
         #                   self.corner_ur_projection_y_product)}
-        points = [(self.west, self.north), (self.west, self.south),
-                  (self.east, self.south), (self.east, self.north),
-                  (self.west, self.north)]
+        if geographic_coords:
+            points = [(self.north, self.west), (self.south, self.west),
+                      (self.south, self.east), (self.north, self.east),
+                      (self.north, self.west)]
+        else:
+            points = [(self.west, self.north), (self.west, self.south),
+                      (self.east, self.south), (self.east, self.north),
+                      (self.west, self.north)]
 
         polygon = Polygon(points)
 
@@ -154,15 +159,19 @@ class LandsatImage(object):
                 'geometry': mapping(polygon),
                 'properties': {'id': 1}})
 
+        if output_filename:
+            return None
+
         with fiopen(temp, 'r') as src:
             features = [f['geometry'] for f in src]
+            if not output_filename:
 
-        try:
-            shutil.rmtree(temp_dir)
-        except UnboundLocalError:
-            pass
+                try:
+                    shutil.rmtree(temp_dir)
+                except UnboundLocalError:
+                    pass
 
-        return features
+                return features
 
     def save_array(self, array, output_filename):
         geometry = self.rasterio_geometry
