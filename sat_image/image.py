@@ -19,7 +19,7 @@ import shutil
 from rasterio import open as rasopen
 from numpy import where, pi, cos, nan, inf, true_divide, errstate, log, nan_to_num
 from numpy import float32, sin, deg2rad
-from shapely.geometry import Polygon, mapping
+from shapely.geometry import Polygon, mapping, box
 from fiona import open as fiopen
 from fiona.crs import from_epsg
 from tempfile import mkdtemp
@@ -90,7 +90,7 @@ class LandsatImage(object):
                 rasterio_str = 'rasterio_geometry'.format(att_string)
                 meta = src.meta.copy()
                 setattr(self, rasterio_str, meta)
-                bounds = RasterBounds(affine=transform,
+                bounds = RasterBounds(affine_transform=transform,
                                       profile=profile,
                                       latlon=False)
                 self.north, self.west, self.south, self.east = bounds.get_nwse_tuple()

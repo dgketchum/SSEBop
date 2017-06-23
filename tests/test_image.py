@@ -33,7 +33,7 @@ class LandsatImageTestCase(unittest.TestCase):
 
     def test_mask_poly(self):
         landsat = LandsatImage('/data01/images/LT5/image_test/full_image')
-        shape = landsat.get_tile_geometry(output_filename='/data01/images/sandbox/lst_shape2.shp')
+        shape = landsat.get_box_geo(output_filename='/data01/images/sandbox/lst_shape2.shp')
         self.assertEqual(True, False)
 
 
