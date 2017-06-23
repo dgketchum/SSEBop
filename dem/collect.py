@@ -62,17 +62,20 @@ def find_tiles(zoom, lat1, lon1, lat2, lon2):
     return tile_list
 
 
-def get_dem(tiles, key, warp_param=None, clip_feature=None):
-    """ Open Rasterio.DatasetReader objects for each tile, merge, return np.array.
+def get_dem(tiles, key, clip_feature=None, output_filepath=None):
+    """ Open Rasterio.DatasetReader objects for each tile, merge.
     
+    :param output_filepath: Str filepath to save dem.
     :param clip_feature: Shapeley Polygon object
     :param tiles: list of 3-tuples with (zoom, x, y) see https://msdn.microsoft.com/en-us/library/bb259689.aspx
     :param key: Mapzen free api key from  https://mapzen.com/documentation/overview/api-keys/
-    :param warp_param: rasterio profile/meta object, get this from the satellite image object
-    :param bounds: geographic bounds of output, west, south, east, north
     """
 
-    temp_dir = mkdtemp(prefix='collected-')
+    if not output_filepath:
+        temp_dir = mkdtemp(prefix='collected-')
+    else:
+        temp_dir = output_filepath
+
     files = []
 
     for (z, x, y) in tiles:
@@ -94,17 +97,24 @@ def get_dem(tiles, key, warp_param=None, clip_feature=None):
     profile['height'] = array.shape[1]
     profile['width'] = array.shape[2]
 
-    if warp_param:
+    if clip_feature:
         temp_path = os.path.join(temp_dir, 'dem_reproj.tif')
         features = [clip_feature]
-        with rasopen(temp_path, 'w', **profile) as src:
+        with rasopen(temp_path, 'w') as src:
             out_arr, out_trans = mask(src, features, crop=True,
                                       all_touched=True)
-        shutil.rmtree(temp_dir)
-        return out_arr, out_trans
-
-    shutil.rmtree(temp_dir)
-    return array, profile
+            out_prof = src.meta.copy()
+            out_prof.update({'driver': 'GTiff',
+                             'height': out_arr.shape[1],
+                             'width': out_arr.shape[2],
+                             'transform': out_trans})
+        if output_filepath:
+            with rasopen(output_filepath, 'w', **out_prof) as dst:
+                dst.write(out_arr)
+            return None
+        else:
+            shutil.rmtree(temp_dir)
+            return out_arr, out_trans
 
 
 if __name__ == '__main__':

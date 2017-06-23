@@ -48,9 +48,9 @@ class DemTestCase(unittest.TestCase):
         profile = Landsat5(tif_dir).rasterio_geometry
         polygon = bb.as_feature_geo(profile)
 
-        arr, geo = get_dem(tls, self.api_key, warp_param=profile, clip_feature=polygon)
+        arr, geo = get_dem(tls, self.api_key, clip_feature=polygon,
+                           output_filepath='/data01/images/sandbox/merged_dem.tif')
 
-        self.dem.save(arr, geo, '/data01/images/sandbox/merged_dem.tif')
         self.assertEqual(arr.shape, (1, 10, 10))
 
     def test_gibs(self):
