@@ -43,7 +43,7 @@ class DemTestCase(unittest.TestCase):
         polygon = l5.get_tile_geometry()
         profile = l5.rasterio_geometry
 
-        dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile, clip_object=polygon,
+        dem = MapzenDem(zoom=7, bounds=bb, target_profile=profile, clip_object=polygon,
                         api_key=self.api_key)
 
         arr = dem.get_conforming_dem(out_file='/data01/images/sandbox/merged_dem.tif')

@@ -1,4 +1,3 @@
-
 from pyproj import Proj
 from rasterio import open as rasopen
 from rasterio.crs import CRS
@@ -22,6 +21,13 @@ class BBox(object):
             return self.south, self.west, self.north, self.east
         elif order == 'nsew':
             return self.north, self.south, self.east, self.west
+
+    def to_web_mercator(self):
+        in_proj = Proj({'init': 'epsg:3857'})
+        w, n = in_proj(self.west, self.north)
+        e, s = in_proj(self.east, self.south)
+
+        return w, s, e, n
 
 
 class GeoBounds(BBox):
