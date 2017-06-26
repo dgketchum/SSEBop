@@ -140,10 +140,11 @@ class MapzenDem(Dem):
         return tile_list
 
     def get_tiles(self):
-        url = '{}{}'.format(self.url, self.base_gtiff)
+
+        base_url = '{}{}'.format(self.url, self.base_gtiff)
 
         for (z, x, y) in self.find_tiles():
-            url = url.format(z=z, x=x, y=y, k=self.key)
+            url = base_url.format(z=z, x=x, y=y, k=self.key)
             req = get(url, verify=False, stream=True)
 
             temp_path = os.path.join(self.temp_dir, '{}-{}-{}.tif'.format(z, x, y))
@@ -155,7 +156,8 @@ class MapzenDem(Dem):
         raster_readers = [rasopen(f) for f in self.files]
         reproj_bounds = self.bbox.to_web_mercator()
         setattr(self, 'web_mercator_bounds', reproj_bounds)
-        array, transform = merge(raster_readers)
+        array, transform = merge(raster_readers, bounds=reproj_bounds,
+                                 res=30)
         setattr(self, 'merged_array', array)
         setattr(self, 'merged_transform', transform)
 
@@ -163,7 +165,6 @@ class MapzenDem(Dem):
             setattr(self, 'merged_profile', f.profile)
         self.merged_profile.update({'height': array.shape[1], 'width': array.shape[2],
                                     'transform': transform})
-        self.none = None
 
     def reproject_tiles(self):
 
