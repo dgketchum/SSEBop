@@ -22,7 +22,7 @@ with hooks():
 import os
 import copy
 import shutil
-from numpy import pi, log, tan, empty, float32
+from numpy import pi, log, tan, empty, float32, arctan, rad2deg
 from itertools import product
 from rasterio import open as rasopen
 from rasterio.merge import merge
@@ -105,9 +105,15 @@ class MapzenDem(Dem):
         shutil.rmtree(self.temp_dir)
         return dem
 
-    def get_slope(self, out_file=None):
+    def get_slope(self, out_file=None, mode='percent'):
         dem = self.get_conforming_dem()
         slope = gaussian_gradient_magnitude(dem, 5, mode='nearest')
+        if mode == 'percent':
+            pass
+        if mode == 'fraction':
+            slope = slope / 100
+        if slope == 'degrees':
+            slope = rad2deg(arctan(slope / 100))
         if out_file:
             self.save(slope, self.target_profile, out_file)
 
