@@ -38,12 +38,12 @@ class DemTestCase(unittest.TestCase):
         tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
         tif = os.path.join(tif_dir, 'LT05_L1TP_040028_20060706_20160909_01_T1_B5.TIF')
 
-        bb = RasterBounds(tif)
         l5 = Landsat5(tif_dir)
+        bb = RasterBounds(tif)
         polygon = l5.get_tile_geometry()
         profile = l5.rasterio_geometry
 
-        dem = MapzenDem(zoom=7, bounds=bb, target_profile=profile, clip_object=polygon,
+        dem = MapzenDem(zoom=8, bounds=bb, target_profile=profile, clip_object=polygon,
                         api_key=self.api_key)
 
         arr = dem.get_conforming_dem(out_file='/data01/images/sandbox/merged_dem.tif')

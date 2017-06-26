@@ -154,43 +154,50 @@ class MapzenDem(Dem):
     def merge_tiles(self):
         raster_readers = [rasopen(f) for f in self.files]
         reproj_bounds = self.bbox.to_web_mercator()
-        array, transform = merge(raster_readers, bounds=reproj_bounds,
-                                 res=None)
+        setattr(self, 'web_mercator_bounds', reproj_bounds)
+        array, transform = merge(raster_readers)
         setattr(self, 'merged_array', array)
         setattr(self, 'merged_transform', transform)
 
         with rasopen(self.files[0], 'r') as f:
             setattr(self, 'merged_profile', f.profile)
+        self.merged_profile.update({'height': array.shape[1], 'width': array.shape[2],
+                                    'transform': transform})
+        self.none = None
 
     def reproject_tiles(self):
 
-        bb = self.bbox.as_tuple()
-
         reproj_path = os.path.join(self.temp_dir, 'tiled_reproj.tif')
-        setattr(self, 'reproject', reproj_path)
-
         self.target_profile['dtype'] = float32
+        bb = self.web_mercator_bounds
+        bounds = (bb[0], bb[1],
+                  bb[2], bb[3])
+        profile = self.target_profile
+        dst_affine, dst_width, dst_height = calculate_default_transform(self.merged_profile['crs'],
+                                                                        self.target_profile['crs'],
+                                                                        self.merged_profile['width'],
+                                                                        self.merged_profile['height'],
+                                                                        *bounds)
 
-        with rasopen(reproj_path, 'w', **self.target_profile) as dst:
-            dst_affine, dst_width, dst_height = calculate_default_transform(self.target_profile['crs'],
-                                                                            self.target_profile['crs'],
-                                                                            self.target_profile['width'],
-                                                                            self.target_profile['height'],
-                                                                            left=bb[0], bottom=bb[1],
-                                                                            right=bb[2], top=bb[3])
-            dst_array = empty((dst_height, dst_width), dtype=float32)
+        profile.update({'crs': self.target_profile['crs'],
+                        'transform': dst_affine,
+                        'width': dst_width,
+                        'height': dst_height})
+
+        with rasopen(reproj_path, 'w', **profile) as dst:
+            dst_array = empty((1, dst_height, dst_width), dtype=float32)
 
             reproject(self.merged_array, dst_array, src_transform=self.merged_transform,
                       src_crs=self.merged_profile['crs'], dst_crs=self.target_profile['crs'],
                       dst_transform=dst_affine, resampling=Resampling.cubic,
                       num_threads=2)
 
-            dst.write(dst_array.reshape(1, dst_array.shape[0], dst_array.shape[1]))
+            dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
 
-            with rasopen('/data01/images/sandbox/reproj.tif', 'w', **self.target_profile) as dest:
-                dst.write(dst_array.reshape(1, dst_array.shape[0], dst_array.shape[1]))
+            with rasopen('/data01/images/sandbox/reproj.tif', 'w', **profile) as dest:
+                dest.write(dst_array)
 
-        return None
+            return None
 
     def mask_dem(self):
         temp_path = os.path.join(self.temp_dir, 'masked_dem.tif')
