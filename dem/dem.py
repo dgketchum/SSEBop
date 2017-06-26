@@ -199,9 +199,6 @@ class MapzenDem(Dem):
 
             dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
 
-            # with rasopen('/data01/images/sandbox/reproj.tif', 'w', **profile) as dest:
-            #     dest.write(dst_array)
-
     def mask_dem(self):
 
         temp_path = os.path.join(self.temp_dir, 'masked_dem.tif')
@@ -218,9 +215,6 @@ class MapzenDem(Dem):
         with rasopen(temp_path, 'w', **out_meta) as dst:
             dst.write(out_arr)
 
-        with rasopen('/data01/images/sandbox/masked.tif', 'w', **out_meta) as dest:
-            dest.write(out_arr)
-
         setattr(self, 'mask', temp_path)
 
     def resample(self):
@@ -228,29 +222,32 @@ class MapzenDem(Dem):
         temp_path = os.path.join(self.temp_dir, 'resample.tif')
 
         with rasopen(self.mask, 'r') as src:
-            array = src.read
+            array = src.read(1)
+            profile = src.profile
             res = src.res
             target_res = self.target_profile['transform'].a
-            res_coeff = target_res / res
+            res_coeff = res[0] / target_res
 
-            new_array = empty(shape=(array.shape[0], round(array.shape[1] * res_coeff),
-                                     round(array.shape[2] * res_coeff)))
+            new_array = empty(shape=(1, round(array.shape[0] * res_coeff),
+                                     round(array.shape[1] * res_coeff)))
             aff = src.transform
             new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
 
-            reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
-                      dst_crs=src.crs, resampling=Resampling.bilinear)
+            profile['transform'] = new_affine
+            profile['width'] = self.target_profile['width']
+            profile['height'] = self.target_profile['height']
 
-            with rasopen(temp_path, 'w', transform=new_affine, crs=src.crs, height=self.target_profile['height'],
-                         width=self.target_profile['width']) as dst:
+            with rasopen(temp_path, 'w', **profile) as dst:
                 dst.write(new_array)
 
-            with rasopen('/data01/images/sandbox/resample.tif', 'w', transform=new_affine, crs=src.crs,
-                         height=self.target_profile['height'],
-                         width=self.target_profile['width']) as dst:
+            with rasopen('/data01/images/sandbox/resample.tif', 'w', **profile) as dst:
+                reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
+                          dst_crs=src.crs, resampling=Resampling.bilinear)
+
                 dst.write(new_array)
 
             return None
+
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
