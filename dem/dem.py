@@ -31,6 +31,7 @@ from rasterio.mask import mask
 from rasterio.warp import reproject, Resampling, calculate_default_transform
 from rasterio.crs import CRS
 from requests import get
+from scipy.ndimage import gaussian_gradient_magnitude
 from tempfile import mkdtemp
 from xarray import open_dataset
 
@@ -96,16 +97,21 @@ class MapzenDem(Dem):
         self.merge_tiles()
         self.reproject_tiles()
         self.mask_dem()
-        self.resample()
-
-        with rasopen(self.mask_path, 'r') as src:
-            dem = src.read()
+        dem = self.resample()
 
         if out_file:
             self.save(dem, self.target_profile, out_file)
 
         shutil.rmtree(self.temp_dir)
         return dem
+
+    def get_slope(self, out_file=None):
+        dem = self.get_conforming_dem()
+        slope = gaussian_gradient_magnitude(dem, 5, mode='nearest')
+        if out_file:
+            self.save(slope, self.target_profile, out_file)
+
+        return slope
 
     @staticmethod
     def mercator(lat, lon, zoom):
@@ -160,6 +166,7 @@ class MapzenDem(Dem):
         reproj_bounds = self.bbox.to_web_mercator()
         setattr(self, 'web_mercator_bounds', reproj_bounds)
         array, transform = merge(raster_readers, bounds=reproj_bounds)
+        del raster_readers
         setattr(self, 'merged_array', array)
         setattr(self, 'merged_transform', transform)
 
@@ -167,6 +174,8 @@ class MapzenDem(Dem):
             setattr(self, 'merged_profile', f.profile)
         self.merged_profile.update({'height': array.shape[1], 'width': array.shape[2],
                                     'transform': transform})
+
+        delattr(self, 'files')
 
     def reproject_tiles(self):
 
@@ -199,6 +208,8 @@ class MapzenDem(Dem):
 
             dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
 
+        delattr(self, 'merged_array')
+
     def mask_dem(self):
 
         temp_path = os.path.join(self.temp_dir, 'masked_dem.tif')
@@ -216,6 +227,7 @@ class MapzenDem(Dem):
             dst.write(out_arr)
 
         setattr(self, 'mask', temp_path)
+        delattr(self, 'reprojection')
 
     def resample(self):
 
@@ -228,26 +240,30 @@ class MapzenDem(Dem):
             target_res = self.target_profile['transform'].a
             res_coeff = res[0] / target_res
 
-            new_array = empty(shape=(1, round(array.shape[0] * res_coeff),
-                                     round(array.shape[1] * res_coeff)))
+            new_array = empty(shape=(1, round(array.shape[0] * res_coeff - 2),
+                                     round(array.shape[1] * res_coeff)), dtype=float32)
             aff = src.transform
             new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
 
-            profile['transform'] = new_affine
+            profile['transform'] = self.target_profile['transform']
             profile['width'] = self.target_profile['width']
             profile['height'] = self.target_profile['height']
+            profile['dtype'] = new_array.dtype
+
+            # with rasopen(temp_path, 'w', **profile) as dst:
+            #     dst.write(new_array)
+
+            delattr(self, 'mask')
 
             with rasopen(temp_path, 'w', **profile) as dst:
-                dst.write(new_array)
-
-            with rasopen('/data01/images/sandbox/resample.tif', 'w', **profile) as dst:
                 reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
                           dst_crs=src.crs, resampling=Resampling.bilinear)
 
                 dst.write(new_array)
 
-            return None
+            return new_array
 
+            # add no-data values TODO
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
