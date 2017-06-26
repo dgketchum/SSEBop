@@ -156,8 +156,7 @@ class MapzenDem(Dem):
         raster_readers = [rasopen(f) for f in self.files]
         reproj_bounds = self.bbox.to_web_mercator()
         setattr(self, 'web_mercator_bounds', reproj_bounds)
-        array, transform = merge(raster_readers, bounds=reproj_bounds,
-                                 res=30)
+        array, transform = merge(raster_readers, bounds=reproj_bounds)
         setattr(self, 'merged_array', array)
         setattr(self, 'merged_transform', transform)
 

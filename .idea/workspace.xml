@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dem/merge_ned_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dem/merge_problem.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_dem.py" afterPath="$PROJECT_DIR$/tests/test_dem.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,8 +32,8 @@
       <file leaf-file-name="dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dem/dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="185" column="46" lean-forward="true" selection-start-line="185" selection-start-column="46" selection-end-line="185" selection-end-column="46" />
+            <state relative-caret-position="644">
+              <caret line="216" column="45" lean-forward="true" selection-start-line="216" selection-start-column="45" selection-end-line="216" selection-end-column="45" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#1397#1670#0" expanded="false" />
@@ -127,8 +124,8 @@
       <file leaf-file-name="test_dem.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="471">
+              <caret line="45" column="30" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#743#0" expanded="true" />
@@ -272,8 +269,8 @@
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py" />
         <option value="$PROJECT_DIR$/dem/merge_problem.py" />
         <option value="$PROJECT_DIR$/dem/merge_ned_test.py" />
-        <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
+        <option value="$PROJECT_DIR$/dem/dem.py" />
       </list>
     </option>
   </component>
@@ -598,13 +595,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00058" summary="moved ndvi and ndsi methods to image.LandsatImage">
-      <created>1496850567749</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1496850567749</updated>
     </task>
     <task id="LOCAL-00059" summary="adding meteo package">
       <created>1496857240612</created>
@@ -942,16 +932,17 @@
       <option name="project" value="LOCAL" />
       <updated>1498501568116</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="memory error on get_default_transform">
+      <created>1498503360680</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1498503360745</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 11h 38m 08s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 11h 38m 40s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 11h 42m 00s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
@@ -976,6 +967,12 @@
     <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 12h 55m 25s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 12h 56m 33s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 12h 57m 18s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -993,7 +990,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06563422" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23820059" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33038348" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29723758" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1039,7 +1036,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="building entry script" />
     <MESSAGE value="paths.py Paths.input_path is strangely not joining the two input params" />
     <MESSAGE value="add tasumi algorithm" />
     <MESSAGE value="adding DEM class" />
@@ -1064,7 +1060,8 @@
     <MESSAGE value="reproject geometry is good but zeros" />
     <MESSAGE value="going to try fro gdal_merge" />
     <MESSAGE value="debugging same bounds for all mapzen tiles" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugging same bounds for all mapzen tiles" />
+    <MESSAGE value="memory error on get_default_transform" />
+    <option name="LAST_COMMIT_MESSAGE" value="memory error on get_default_transform" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1094,11 +1091,6 @@
           <url>file://$PROJECT_DIR$/tests/test_image.py</url>
           <line>46</line>
           <option name="timeStamp" value="576" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/dem/dem.py</url>
-          <line>200</line>
-          <option name="timeStamp" value="628" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1467,17 +1459,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="e#922#1053#1" expanded="false" />
-            <element signature="e#1341#1421#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/unittest/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -1526,10 +1507,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#922#1053#1" expanded="false" />
+            <element signature="e#1341#1421#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dem/dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="185" column="46" lean-forward="true" selection-start-line="185" selection-start-column="46" selection-end-line="185" selection-end-column="46" />
+        <state relative-caret-position="644">
+          <caret line="216" column="45" lean-forward="true" selection-start-line="216" selection-start-column="45" selection-end-line="216" selection-end-column="45" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#1397#1670#0" expanded="false" />
@@ -1542,8 +1534,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="471">
+          <caret line="45" column="30" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#734#743#0" expanded="true" />
