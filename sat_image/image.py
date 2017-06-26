@@ -70,9 +70,10 @@ class LandsatImage(object):
 
         # create numpy nd_array objects for each band
         self.band_list = []
+        self.tif_dict = {}
         for i, tif in enumerate(self.tif_list):
-            with rasopen(os.path.join(self.obj, tif)) as src:
-                dn_array = src.read(1)
+            raster = os.path.join(self.obj, tif)
+            with rasopen(raster) as src:
                 transform = src.transform
                 profile = src.profile
             # set all lower case attributes
@@ -80,16 +81,15 @@ class LandsatImage(object):
             front_ind = tif.index('b')
             end_ind = tif.index('.tif')
             att_string = tif[front_ind: end_ind]
-            setattr(self, att_string, dn_array)
 
             self.band_list.append(att_string)
+            self.tif_dict[att_string] = raster
             self.band_count = i + 1
 
             if i == 0:
                 # get rasterio metadata/geospatial reference for one tif
-                rasterio_str = 'rasterio_geometry'.format(att_string)
                 meta = src.meta.copy()
-                setattr(self, rasterio_str, meta)
+                setattr(self, 'rasterio_geometry', meta)
                 bounds = RasterBounds(affine_transform=transform,
                                       profile=profile,
                                       latlon=False)
@@ -100,6 +100,11 @@ class LandsatImage(object):
         self.solar_zenith_rad = self.solar_zenith * pi / 180
         self.sun_elevation_rad = self.sun_elevation * pi / 180
         self.earth_sun_dist = self.earth_sun_d(self.date_acquired)
+
+    def _get_band(self, band_str):
+        path = self.tif_dict[band_str]
+        with rasopen(path) as src:
+            return src.read(1)
 
     @staticmethod
     def earth_sun_d(dtime):
@@ -203,7 +208,7 @@ class Landsat5(LandsatImage):
         qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band))
         l_min = getattr(self, 'radiance_minimum_band_{}'.format(band))
         l_max = getattr(self, 'radiance_maximum_band_{}'.format(band))
-        qcal = getattr(self, 'b{}'.format(band))
+        qcal = self._get_band('b{}'.format(band))
         rad = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
 
         return rad
@@ -272,7 +277,7 @@ class Landsat5(LandsatImage):
         :param value: Maximum (saturated) value, i.e. 255 for 8-bit data, type: int
         :return: boolean array
         """
-        dn = getattr(self, 'b{}'.format(band))
+        dn = self._get_band('b{}'.format(band))
         mask = where((dn == value) & (self.mask > 0), True, False)
 
         return mask
@@ -313,7 +318,7 @@ class Landsat7(LandsatImage):
         qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band))
         l_min = getattr(self, 'radiance_minimum_band_{}'.format(band))
         l_max = getattr(self, 'radiance_maximum_band_{}'.format(band))
-        qcal = getattr(self, 'b{}'.format(band))
+        qcal = self._get_band('b{}'.format(band))
         rad = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
         return rad
 
@@ -379,7 +384,7 @@ class Landsat7(LandsatImage):
         :param value: Maximum (saturated) value, i.e. 255 for 8-bit data, type: int
         :return: boolean array
         """
-        dn = getattr(self, 'b{}'.format(band))
+        dn = self._get_band('b{}'.format(band))
         mask = where((dn == value) & (self.mask > 0), True, False)
 
         return mask
@@ -528,7 +533,7 @@ class Landsat8(LandsatImage):
     """
         ml = getattr(self, 'radiance_mult_band_{}'.format(band))
         al = getattr(self, 'radiance_add_band_{}'.format(band))
-        dn = getattr(self, 'b{}'.format(band))
+        dn = self._get_band('b{}'.format(band))
         rs = ml * dn.astype(float32) + al
 
         return rs
