@@ -4,7 +4,6 @@
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bounds/bounds.py" afterPath="$PROJECT_DIR$/bounds/bounds.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_dem.py" afterPath="$PROJECT_DIR$/tests/test_dem.py" />
     </list>
@@ -21,8 +20,8 @@
       <file leaf-file-name="bounds.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="412">
+              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
                 <element signature="e#922#1053#1" expanded="false" />
                 <element signature="e#1341#1421#1" expanded="false" />
@@ -34,19 +33,92 @@
       <file leaf-file-name="dem.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dem/dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="163" column="0" lean-forward="true" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+            <state relative-caret-position="538">
+              <caret line="167" column="30" lean-forward="true" selection-start-line="167" selection-start-column="30" selection-end-line="167" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#1397#1670#0" expanded="false" />
                 <element signature="e#1699#2352#0" expanded="false" />
                 <element signature="e#1699#1786#1" expanded="false" />
-                <element signature="e#2950#3265#0" expanded="false" />
                 <element signature="e#3327#3764#0" expanded="false" />
                 <element signature="e#3800#4525#0" expanded="false" />
                 <element signature="e#4560#4973#0" expanded="false" />
-                <element signature="e#5010#5426#0" expanded="false" />
-                <element signature="e#7051#7691#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="801">
+              <caret line="159" column="41" lean-forward="true" selection-start-line="159" selection-start-column="41" selection-end-line="159" selection-end-column="41" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#1205#1209#0" expanded="false" />
+                <element signature="e#1253#1257#0" expanded="false" />
+                <element signature="e#1292#1541#1" expanded="false" />
+                <element signature="e#1580#1751#1" expanded="false" />
+                <element signature="e#1991#2028#0" expanded="false" />
+                <element signature="e#2309#2451#0" expanded="false" />
+                <element signature="e#4018#4397#0" expanded="false" />
+                <element signature="e#4018#4231#1" expanded="false" />
+                <element signature="e#4464#4632#0" expanded="false" />
+                <element signature="e#4526#4632#0" expanded="false" />
+                <element signature="e#4893#4949#0" expanded="false" />
+                <element signature="e#6642#6892#0" expanded="false" />
+                <element signature="e#6929#10937#0" expanded="false" />
+                <element signature="e#6962#7452#0" expanded="false" />
+                <element signature="e#7210#7288#0" expanded="false" />
+                <element signature="e#7299#7326#0" expanded="false" />
+                <element signature="e#7492#7926#0" expanded="false" />
+                <element signature="e#7990#8494#0" expanded="false" />
+                <element signature="e#8537#8951#0" expanded="false" />
+                <element signature="e#8537#8650#1" expanded="false" />
+                <element signature="e#8998#9998#0" expanded="false" />
+                <element signature="e#8998#9562#1" expanded="false" />
+                <element signature="e#9604#9894#0" expanded="false" />
+                <element signature="e#9636#9783#0" expanded="false" />
+                <element signature="e#10056#10427#0" expanded="false" />
+                <element signature="e#10056#10292#1" expanded="false" />
+                <element signature="e#10457#10679#0" expanded="false" />
+                <element signature="e#10457#10534#1" expanded="false" />
+                <element signature="e#10709#10937#0" expanded="false" />
+                <element signature="e#10709#10780#1" expanded="false" />
+                <element signature="e#10974#14777#0" expanded="false" />
+                <element signature="e#11007#11408#0" expanded="false" />
+                <element signature="e#11274#11363#0" expanded="false" />
+                <element signature="e#11448#11881#0" expanded="false" />
+                <element signature="e#11959#12634#0" expanded="false" />
+                <element signature="e#12111#12168#0" expanded="false" />
+                <element signature="e#12677#13123#0" expanded="false" />
+                <element signature="e#12677#12790#1" expanded="false" />
+                <element signature="e#13155#13839#0" expanded="false" />
+                <element signature="e#13155#13528#1" expanded="false" />
+                <element signature="e#13569#13712#0" expanded="false" />
+                <element signature="e#13897#14268#0" expanded="false" />
+                <element signature="e#13897#14133#1" expanded="false" />
+                <element signature="e#14298#14520#0" expanded="false" />
+                <element signature="e#14298#14375#1" expanded="false" />
+                <element signature="e#14550#14777#0" expanded="false" />
+                <element signature="e#14550#14620#1" expanded="false" />
+                <element signature="e#14814#20782#0" expanded="false" />
+                <element signature="e#14847#14933#0" expanded="false" />
+                <element signature="e#14996#16729#0" expanded="false" />
+                <element signature="e#14996#16078#1" expanded="false" />
+                <element signature="e#16772#18594#0" expanded="false" />
+                <element signature="e#16772#17983#1" expanded="false" />
+                <element signature="e#18376#18507#0" expanded="false" />
+                <element signature="e#18393#18506#0" expanded="false" />
+                <element signature="e#18634#19631#0" expanded="false" />
+                <element signature="e#18634#19394#1" expanded="false" />
+                <element signature="e#19663#20270#0" expanded="false" />
+                <element signature="e#19663#19958#1" expanded="false" />
+                <element signature="e#20000#20143#0" expanded="false" />
+                <element signature="e#20300#20522#0" expanded="false" />
+                <element signature="e#20300#20377#1" expanded="false" />
+                <element signature="e#20552#20780#0" expanded="false" />
+                <element signature="e#20552#20623#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -55,8 +127,8 @@
       <file leaf-file-name="test_dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+            <state relative-caret-position="420">
+              <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#743#0" expanded="true" />
@@ -77,7 +149,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>paths.</find>
       <find>paths</find>
       <find>ci</find>
       <find>c</find>
@@ -107,6 +178,7 @@
       <find>projection</find>
       <find>ur</find>
       <find>AttributeError: 'dict' object has no attribute '__geo_interface__'</find>
+      <find>write</find>
     </findStrings>
     <replaceStrings>
       <replace>b5_reflct</replace>
@@ -151,7 +223,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/convert_to_std_domain.py" />
         <option value="$PROJECT_DIR$/tests/test_unit.py" />
         <option value="$PROJECT_DIR$/clip_by_polygon.py" />
         <option value="$PROJECT_DIR$/throwaway.py" />
@@ -199,8 +270,9 @@
         <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/dem/sand.py" />
         <option value="$PROJECT_DIR$/dem/collect.py" />
-        <option value="$PROJECT_DIR$/tests/test_dem.py" />
         <option value="$PROJECT_DIR$/bounds/bounds.py" />
+        <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py" />
+        <option value="$PROJECT_DIR$/tests/test_dem.py" />
         <option value="$PROJECT_DIR$/dem/dem.py" />
       </list>
     </option>
@@ -281,34 +353,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bounds" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -537,13 +581,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00055" summary="setting up configure_run">
-      <created>1496788271969</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1496788271969</updated>
     </task>
     <task id="LOCAL-00056" summary="failing on paths.py self.results_root is RunSpec object not str">
       <created>1496790622720</created>
@@ -881,38 +918,45 @@
       <option name="project" value="LOCAL" />
       <updated>1498241540517</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="reproject geometry is good but zeros">
+      <created>1498253876159</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1498253876159</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 14m 32s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 09h 42m 51s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 17m 06s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 09h 43m 05s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 18m 40s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 09h 49m 21s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 18m 51s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 10h 04m 55s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 19m 58s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 10h 54m 25s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 20m 47s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 10h 54m 34s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 21m 02s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 10h 55m 16s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 21m 35s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 10h 56m 04s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 23m 58s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 10h 56m 25s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.23 at 15h 24m 49s.xml">
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 11h 00m 06s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
     </history-entry>
   </component>
@@ -932,14 +976,14 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06563422" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23820059" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29723758" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30752212" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29719764" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74705017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5339233" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -978,7 +1022,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="testing api, yaml problem" />
     <MESSAGE value="trying with setuptools-yaml" />
     <MESSAGE value="initial commit" />
     <MESSAGE value="building entry script" />
@@ -1003,7 +1046,8 @@
     <MESSAGE value="landsat object mask shape working" />
     <MESSAGE value="working on collect get_dem masking procedure" />
     <MESSAGE value="exposed all tile-based dem to MapzenDem" />
-    <option name="LAST_COMMIT_MESSAGE" value="exposed all tile-based dem to MapzenDem" />
+    <MESSAGE value="reproject geometry is good but zeros" />
+    <option name="LAST_COMMIT_MESSAGE" value="reproject geometry is good but zeros" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1036,8 +1080,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/dem/dem.py</url>
-          <line>193</line>
-          <option name="timeStamp" value="622" />
+          <line>199</line>
+          <option name="timeStamp" value="628" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dem/dem.py</url>
+          <line>165</line>
+          <option name="timeStamp" value="639" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1047,7 +1096,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="623" />
+      <option name="time" value="640" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1056,27 +1105,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/cli.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="81" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="52" column="30" lean-forward="true" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_suite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/data/local/token_file.txt" />
     <entry file="file://$PROJECT_DIR$/app/config.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1176,20 +1204,6 @@
         <state relative-caret-position="293">
           <caret line="600" column="0" lean-forward="false" selection-start-line="600" selection-start-column="0" selection-end-line="600" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/rasterio/_io.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2589">
-          <caret line="321" column="6" lean-forward="false" selection-start-line="321" selection-start-column="6" selection-end-line="321" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1322,23 +1336,88 @@
             <element signature="e#1397#1670#0" expanded="false" />
             <element signature="e#1699#2352#0" expanded="false" />
             <element signature="e#1699#1786#1" expanded="false" />
-            <element signature="e#2950#3265#0" expanded="false" />
             <element signature="e#3327#3764#0" expanded="false" />
             <element signature="e#3800#4525#0" expanded="false" />
             <element signature="e#4560#4973#0" expanded="false" />
-            <element signature="e#5010#5426#0" expanded="false" />
-            <element signature="e#7051#7691#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26197">
+          <caret line="1577" column="0" lean-forward="false" selection-start-line="1577" selection-start-column="0" selection-end-line="1577" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/merge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="135" column="0" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/warp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="349" column="0" lean-forward="false" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="743">
+          <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/transform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/tempfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5796">
+          <caret line="768" column="0" lean-forward="true" selection-start-line="768" selection-start-column="0" selection-end-line="768" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="185" column="30" lean-forward="true" selection-start-line="185" selection-start-column="30" selection-end-line="185" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/rasterio/_io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10115">
+          <caret line="612" column="9" lean-forward="true" selection-start-line="612" selection-start-column="9" selection-end-line="612" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="272" column="32" lean-forward="false" selection-start-line="272" selection-start-column="32" selection-end-line="272" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state relative-caret-position="801">
+          <caret line="159" column="41" lean-forward="true" selection-start-line="159" selection-start-column="41" selection-end-line="159" selection-end-column="41" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
             <element signature="e#1205#1209#0" expanded="false" />
             <element signature="e#1253#1257#0" expanded="false" />
             <element signature="e#1292#1541#1" expanded="false" />
@@ -1349,7 +1428,6 @@
             <element signature="e#4018#4231#1" expanded="false" />
             <element signature="e#4464#4632#0" expanded="false" />
             <element signature="e#4526#4632#0" expanded="false" />
-            <element signature="e#4723#6582#0" expanded="false" />
             <element signature="e#4893#4949#0" expanded="false" />
             <element signature="e#6642#6892#0" expanded="false" />
             <element signature="e#6929#10937#0" expanded="false" />
@@ -1408,53 +1486,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26197">
-          <caret line="1577" column="0" lean-forward="false" selection-start-line="1577" selection-start-column="0" selection-end-line="1577" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#922#1053#1" expanded="false" />
-            <element signature="e#1341#1421#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/merge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="135" column="0" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/warp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="349" column="0" lean-forward="false" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        <state relative-caret-position="420">
+          <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#734#743#0" expanded="true" />
@@ -1462,29 +1497,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/transform.py">
+    <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="412">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#922#1053#1" expanded="false" />
+            <element signature="e#1341#1421#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/unittest/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dem/dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="163" column="0" lean-forward="true" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+        <state relative-caret-position="538">
+          <caret line="167" column="30" lean-forward="true" selection-start-line="167" selection-start-column="30" selection-end-line="167" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#1397#1670#0" expanded="false" />
             <element signature="e#1699#2352#0" expanded="false" />
             <element signature="e#1699#1786#1" expanded="false" />
-            <element signature="e#2950#3265#0" expanded="false" />
             <element signature="e#3327#3764#0" expanded="false" />
             <element signature="e#3800#4525#0" expanded="false" />
             <element signature="e#4560#4973#0" expanded="false" />
-            <element signature="e#5010#5426#0" expanded="false" />
-            <element signature="e#7051#7691#0" expanded="false" />
           </folding>
         </state>
       </provider>
