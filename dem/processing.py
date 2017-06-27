@@ -53,26 +53,13 @@ Created on Wed Jun 18 14:19:04 2014
 @author: mpu
 """
 
-import warnings
 import gc
 import numpy as np
 
 import os
 import numba
-
-# from reader.gdal_reader import GdalReader
-# from utils import mk_dx_dy_from_geotif_layer, get_fn
-# 
-# try:
-#     from cyfuncs import cyutils
-# 
-#     CYTHON = True
-# except:
-#     CYTHON = False
-#     warnings.warn("Cython functions are not compiled. UCA calculation will be,"
-#                   " slow. Consider compiling cython functions using: "
-#                   "python setup.py build_ext --inplace", RuntimeWarning)
-# CYTHON = False
+import scipy.ndimage as spndi
+from rasterio import open as rasopen
 
 # A test aspect ration between dx and dy coordinates
 TEST_DIV = 1 / 1.1  # 0.001
@@ -167,6 +154,9 @@ class DEMProcessor(object):
         """
         """
         # %%
+        self.profile = profile
+        if len(data.shape) == 3:
+            data = np.reshape(data, (data.shape[1], data.shape[2]))
 
         self.data = data
         try:  # if masked array
@@ -178,218 +168,9 @@ class DEMProcessor(object):
                                            mask=(np.isnan(self.data))
                                                 | (self.data < -9998))
 
-        self.dx = profile['transform'].a
-        self.dy = profile['transform'].a
-
-    # def get_fn(self, name=None):
-    #     return get_fn(self.elev, name)
-    # 
-    # def get_full_fn(self, name, rootpath='.'):
-    #     return os.path.join(rootpath, name, self.get_fn(name))
-    # 
-    # def save_array(self, array, name=None, partname=None, rootpath='.',
-    #                raw=False, as_int=True):
-    #     """
-    #     Standard array saving routine
-    #     Parameters
-    #     -----------
-    #     array : array
-    #         Array to save to file
-    #     name : str, optional
-    #         Default 'array.tif'. Filename of array to save. Over-writes
-    #         partname.
-    #     partname : str, optional
-    #         Part of the filename to save (with the coordinates appended)
-    #     rootpath : str, optional
-    #         Default '.'. Which directory to save file
-    #     raw : bool, optional
-    #         Default False. If true will save a .npz of the array. If false,
-    #         will save a geotiff
-    #     as_int : bool, optional
-    #         Default True. If true will save array as an integer array (
-    #         excellent compression). If false will save as float array.
-    #     """
-    #     if name is None and partname is not None:
-    #         fnl_file = self.get_full_fn(partname, rootpath)
-    #         tmp_file = os.path.join(rootpath, partname,
-    #                                 self.get_fn(partname + '_tmp'))
-    #     elif name is not None:
-    #         fnl_file = name
-    #         tmp_file = fnl_file + '_tmp.tiff'
-    #     else:
-    #         fnl_file = 'array.tif'
-    #     if not raw:
-    #         s_file = self.elev.clone_traits()
-    #         s_file.raster_data = np.ma.masked_array(array)
-    #         count = 10
-    #         while count > 0 and (s_file.raster_data.mask.sum() > 0 \
-    #                                      or np.isnan(s_file.raster_data).sum() > 0):
-    #             s_file.inpaint()
-    #             count -= 1
-    # 
-    #         s_file.export_to_geotiff(tmp_file)
-    # 
-    #         if as_int:
-    #             cmd = "gdalwarp -multi -wm 2000 -co BIGTIFF=YES -of GTiff -co compress=lzw -ot Int16 -co TILED=YES -wo OPTIMIZE_SIZE=YES -r near -t_srs %s %s %s" \
-    #                   % (self.save_projection, tmp_file, fnl_file)
-    #         else:
-    #             cmd = "gdalwarp -multi -wm 2000 -co BIGTIFF=YES -of GTiff -co compress=lzw -co TILED=YES -wo OPTIMIZE_SIZE=YES -r near -t_srs %s %s %s" \
-    #                   % (self.save_projection, tmp_file, fnl_file)
-    #         print("<<" * 4, cmd, ">>" * 4)
-    #         subprocess.call(cmd)
-    #         os.remove(tmp_file)
-    #     else:
-    #         np.savez_compressed(fnl_file, array)
-    # 
-    # def save_uca(self, rootpath, raw=False, as_int=False):
-    #     """ Saves the upstream contributing area to a file
-    #     """
-    #     self.save_array(self.uca, None, 'uca', rootpath, raw, as_int=as_int)
-    # 
-    # def save_twi(self, rootpath, raw=False, as_int=True):
-    #     """ Saves the topographic wetness index to a file
-    #     """
-    #     self.twi = np.ma.masked_array(self.twi, mask=self.twi <= 0,
-    #                                   fill_value=-9999)
-    #     #  self.twi = self.twi.filled()
-    #     self.twi[self.flats] = 0
-    #     self.twi.mask[self.flats] = True
-    #     # self.twi = self.flats
-    #     self.save_array(self.twi, None, 'twi', rootpath, raw, as_int=as_int)
-    # 
-    # def save_slope(self, rootpath, raw=False, as_int=False):
-    #     """ Saves the magnitude of the slope to a file
-    #     """
-    #     self.save_array(self.mag, None, 'mag', rootpath, raw, as_int=as_int)
-    # 
-    # def save_direction(self, rootpath, raw=False, as_int=False):
-    #     """ Saves the direction of the slope to a file
-    #     """
-    #     self.save_array(self.direction, None, 'ang', rootpath, raw, as_int=as_int)
-    # 
-    # def save_outputs(self, rootpath='.', raw=False):
-    #     """Saves TWI, UCA, magnitude and direction of slope to files.
-    #     """
-    #     self.save_twi(rootpath, raw)
-    #     self.save_uca(rootpath, raw)
-    #     self.save_slope(rootpath, raw)
-    #     self.save_direction(rootpath, raw)
-    # 
-    # def load_array(self, fn, name):
-    #     """
-    #     Can only load files that were saved in the 'raw' format.
-    #     Loads previously computed field 'name' from file
-    #     Valid names are 'mag', 'direction', 'uca', 'twi'
-    #     """
-    # 
-    #     if os.path.exists(fn + '.npz'):
-    #         array = np.load(fn + '.npz')
-    #         try:
-    #             setattr(self, name, array['arr_0'])
-    #         except Exception as e:
-    #             print(e)
-    #         finally:
-    #             array.close()
-    # 
-    #     else:
-    #         raise RuntimeError("File %s does not exist." % (fn + '.npz'))
-    # 
-    # def load_direction(self, fn):
-    #     """Loads pre-computed slope direction from file
-    #     """
-    #     self.load_array(fn, 'direction')
-    # 
-    # def load_uca(self, fn):
-    #     """Loads pre-computed uca from file
-    #     """
-    #     self.load_array(fn, 'uca')
-
-    # def _get_chunk_edges(self, NN, chunk_size, chunk_overlap):
-    #     """
-    #     Given the size of the array, calculate and array that gives the
-    #     edges of chunks of nominal size, with specified overlap
-    #     Parameters
-    #     ----------
-    #     NN : int
-    #         Size of array
-    #     chunk_size : int
-    #         Nominal size of chunks (chunk_size < NN)
-    #     chunk_overlap : int
-    #         Number of pixels chunks will overlap
-    #     Returns
-    #     -------
-    #     start_id : array
-    #         The starting id of a chunk. start_id[i] gives the starting id of
-    #         the i'th chunk
-    #     end_id : array
-    #         The ending id of a chunk. end_id[i] gives the ending id of
-    #         the i'th chunk
-    #     """
-    #     left_edge = np.arange(0, NN - chunk_overlap, chunk_size)
-    #     left_edge[1:] -= chunk_overlap
-    #     right_edge = np.arange(0, NN - chunk_overlap, chunk_size)
-    #     right_edge[:-1] = right_edge[1:] + chunk_overlap
-    #     right_edge[-1] = NN
-    #     right_edge = np.minimum(right_edge, NN)
-    #     # return left_edge, right_edge
-
-    # def _assign_chunk(self, data, arr1, arr2, te, be, le, re, ovr, add=False):
-    #     """
-    #     Assign data from a chunk to the full array. The data in overlap regions
-    #     will not be assigned to the full array
-    #     Parameters
-    #     -----------
-    #     data : array
-    #         Unused array (except for shape) that has size of full tile
-    #     arr1 : array
-    #         Full size array to which data will be assigned
-    #     arr2 : array
-    #         Chunk-sized array from which data will be assigned
-    #     te : int
-    #         Top edge id
-    #     be : int
-    #         Bottom edge id
-    #     le : int
-    #         Left edge id
-    #     re : int
-    #         Right edge id
-    #     ovr : int
-    #         The number of pixels in the overlap
-    #     add : bool, optional
-    #         Default False. If true, the data in arr2 will be added to arr1,
-    #         otherwise data in arr2 will overwrite data in arr1
-    #     """
-    #     if te == 0:
-    #         i1 = 0
-    #     else:
-    #         i1 = ovr
-    #     if be == data.shape[0]:
-    #         i2 = 0
-    #         i2b = None
-    #     else:
-    #         i2 = -ovr
-    #         i2b = -ovr
-    #     if le == 0:
-    #         j1 = 0
-    #     else:
-    #         j1 = ovr
-    #     if re == data.shape[1]:
-    #         j2 = 0
-    #         j2b = None
-    #     else:
-    #         j2 = -ovr
-    #         j2b = -ovr
-    #     if add:
-    #         arr1[te + i1:be + i2, le + j1:re + j2] += arr2[i1:i2b, j1:j2b]
-    #     else:
-    #         arr1[te + i1:be + i2, le + j1:re + j2] = arr2[i1:i2b, j1:j2b]
-
-    # def find_flats(self):
-    #     flats = self._find_flats_edges(self.data, self.dx, self.dy,
-    #                                    self.mag, self.direction)
-    #     self.direction[flats] = FLAT_ID
-    #     self.mag[flats] = FLAT_ID
-    #     self.flats = flats
+        shp = np.array(self.data.shape) - 1
+        self.dx = np.ones((data.shape[0] - 1)) / (shp[1])
+        self.dy = np.ones((data.shape[0] - 1)) / (shp[0])
 
     def calc_slopes_directions(self, plotflag=False):
         """
@@ -398,60 +179,50 @@ class DEMProcessor(object):
         """
         # %% Calculate the slopes and directions based on the 8 sections from
         # Tarboton http://www.neng.usu.edu/cee/faculty/dtarb/96wr03137.pdf
-        if self.data.shape[0] <= self.chunk_size_slp_dir and \
-                        self.data.shape[1] <= self.chunk_size_slp_dir:
-            print
-            "starting slope/direction calculation"
-            self.mag, self.direction = self._slopes_directions(
-                self.data, self.dx, self.dy, 'tarboton')
-            # Find the flat regions. This is mostly simple (look for mag < 0),
-            # but the downstream pixel at the edge of a flat will have a
-            # calcuable angle which will not be accurate. We have to also find
-            # these edges and set their magnitude to -1 (that is, the flat_id)
 
-            self.find_flats()
-        else:
-            self.direction = np.ones(self.data.shape) * FLAT_ID_INT
-            self.mag = np.ones_like(self.direction) * FLAT_ID_INT
-            self.flats = np.zeros(self.data.shape, bool)
-            top_edge, bottom_edge = \
-                self._get_chunk_edges(self.data.shape[0],
-                                      self.chunk_size_slp_dir,
-                                      self.chunk_overlap_slp_dir)
-            left_edge, right_edge = \
-                self._get_chunk_edges(self.data.shape[1],
-                                      self.chunk_size_slp_dir,
-                                      self.chunk_overlap_slp_dir)
-            ovr = self.chunk_overlap_slp_dir
-            count = 1
-            for te, be in zip(top_edge, bottom_edge):
-                for le, re in zip(left_edge, right_edge):
-                    print
-                    "starting slope/direction calculation for chunk", \
-                    count, "[%d:%d, %d:%d]" % (te, be, le, re)
-                    count += 1
-                    mag, direction = \
-                        self._slopes_directions(self.data[te:be, le:re],
-                                                self.dx[te:be - 1],
-                                                self.dy[te:be - 1])
+        self.direction = np.ones(self.data.shape) * FLAT_ID_INT
+        self.mag = np.ones_like(self.direction) * FLAT_ID_INT
+        self.flats = np.zeros(self.data.shape, bool)
+        top_edge, bottom_edge = self._get_chunk_edges(self.data.shape[0],
+                                                      self.chunk_size_slp_dir,
+                                                      self.chunk_overlap_slp_dir)
+        left_edge, right_edge = self._get_chunk_edges(self.data.shape[1],
+                                                      self.chunk_size_slp_dir,
+                                                      self.chunk_overlap_slp_dir)
+        ovr = self.chunk_overlap_slp_dir
+        count = 1
+        for te, be in zip(top_edge, bottom_edge):
+            for le, re in zip(left_edge, right_edge):
+                print('starting slope/direction calculation for chunk', count, "[%d:%d, %d:%d]" % (te, be, le, re))
+                count += 1
+                mag, direction = self._slopes_directions(self.data[te:be, le:re],
+                                                         self.dx[te:be - 1],
+                                                         self.dy[te:be - 1])
 
-                    flats = self._find_flats_edges(self.data[te:be, le:re],
-                                                   self.dx[te:be - 1],
-                                                   self.dy[te:be - 1], mag,
-                                                   direction)
-                    direction[flats] = FLAT_ID
-                    mag[flats] = FLAT_ID
-                    self._assign_chunk(self.data, self.mag, mag,
-                                       te, be, le, re, ovr)
-                    self._assign_chunk(self.data, self.direction, direction,
-                                       te, be, le, re, ovr)
-                    self._assign_chunk(self.data, self.flats, flats,
-                                       te, be, le, re, ovr)
+                flats = self._find_flats_edges(self.data[te:be, le:re],
+                                               self.dx[te:be - 1],
+                                               self.dy[te:be - 1], mag,
+                                               direction)
+                direction[flats] = FLAT_ID
+                mag[flats] = FLAT_ID
+                self._assign_chunk(self.data, self.mag, mag,
+                                   te, be, le, re, ovr)
+                self._assign_chunk(self.data, self.direction, direction,
+                                   te, be, le, re, ovr)
+                self._assign_chunk(self.data, self.flats, flats,
+                                   te, be, le, re, ovr)
 
         if plotflag:
             self._plot_debug_slopes_directions()
 
-        gc.collect()  # Just in case
+        gc.collect()
+
+        with rasopen('/data01/images/sandbox/slope_proc.tif', 'w', **self.profile) as dst:
+            dst.write(mag)
+
+        with rasopen('/data01/images/sandbox/slope_proc.tif', 'w', **self.profile) as dst:
+            dst.write(direction)
+
         return self.mag, self.direction
 
     def _slopes_directions(self, data, dx, dy, method='tarboton'):
@@ -459,18 +230,9 @@ class DEMProcessor(object):
         """
         # %%
         if method == 'tarboton':
-            return self.tarboton_slopes_directions(data, dx, dy)
+            return self._tarboton_slopes_directions(data, dx, dy)
         elif method == 'central':
             return self._central_slopes_directions(data, dx, dy)
-
-    def tarboton_slopes_directions(self, data, dx, dy):
-        """
-        Calculate the slopes and directions based on the 8 sections from
-        Tarboton http://www.neng.usu.edu/cee/faculty/dtarb/96wr03137.pdf
-        """
-
-        return self._tarboton_slopes_directions(data, dx, dy,
-                                                self.facets, self.ang_adj)
 
     def _central_slopes_directions(self, data, dx, dy):
         """
@@ -491,7 +253,7 @@ class DEMProcessor(object):
         return mag, direction
 
     @numba.jit
-    def _tarboton_slopes_directions(self, data, dx, dy, facets, ang_adj):
+    def _tarboton_slopes_directions(self, data, dx, dy):
         """
         Calculate the slopes and directions based on the 8 sections from
         Tarboton http://www.neng.usu.edu/cee/faculty/dtarb/96wr03137.pdf
@@ -503,9 +265,9 @@ class DEMProcessor(object):
 
         slc0 = [slice(1, -1), slice(1, -1)]
         for ind in range(8):
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(1 + e1[0], shp[0] + e1[0]),
                     slice(1 + e1[1], shp[1] + e1[1])]
             slc2 = [slice(1 + e2[0], shp[0] + e2[0]),
@@ -539,9 +301,9 @@ class DEMProcessor(object):
         # left edge
         slc0 = [slice(1, -1), slice(0, 1)]
         for ind in [0, 1, 6, 7]:
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(1 + e1[0], shp[0] + e1[0]), slice(e1[1], 1 + e1[1])]
             slc2 = [slice(1 + e2[0], shp[0] + e2[0]), slice(e2[1], 1 + e2[1])]
             d1, d2, theta = self._get_d1_d2(dx, dy, ind, e1, e2, shp)
@@ -550,9 +312,9 @@ class DEMProcessor(object):
         # right edge
         slc0 = [slice(1, -1), slice(-1, None)]
         for ind in [2, 3, 4, 5]:
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(1 + e1[0], shp[0] + e1[0]),
                     slice(shp[1] + e1[1], shp[1] + 1 + e1[1])]
             slc2 = [slice(1 + e2[0], shp[0] + e2[0]),
@@ -563,9 +325,9 @@ class DEMProcessor(object):
         # top edge
         slc0 = [slice(0, 1), slice(1, -1)]
         for ind in [4, 5, 6, 7]:
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(e1[0], 1 + e1[0]), slice(1 + e1[1], shp[1] + e1[1])]
             slc2 = [slice(e2[0], 1 + e2[0]), slice(1 + e2[1], shp[1] + e2[1])]
             d1, d2, theta = self._get_d1_d2(dx, dy, ind, e1, e2, shp, 'top')
@@ -574,9 +336,9 @@ class DEMProcessor(object):
         # bottom edge
         slc0 = [slice(-1, None), slice(1, -1)]
         for ind in [0, 1, 2, 3]:
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(shp[0] + e1[0], shp[0] + 1 + e1[0]),
                     slice(1 + e1[1], shp[1] + e1[1])]
             slc2 = [slice(shp[0] + e2[0], shp[0] + 1 + e2[0]),
@@ -587,9 +349,9 @@ class DEMProcessor(object):
         # top-left corner
         slc0 = [slice(0, 1), slice(0, 1)]
         for ind in [6, 7]:
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(e1[0], 1 + e1[0]), slice(e1[1], 1 + e1[1])]
             slc2 = [slice(e2[0], 1 + e2[0]), slice(e2[1], 1 + e2[1])]
             d1, d2, theta = self._get_d1_d2(dx, dy, ind, e1, e2, shp, 'top')
@@ -598,9 +360,9 @@ class DEMProcessor(object):
         # top-right corner
         slc0 = [slice(0, 1), slice(-1, None)]
         for ind in [4, 5]:
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(e1[0], 1 + e1[0]),
                     slice(shp[1] + e1[1], shp[1] + 1 + e1[1])]
             slc2 = [slice(e2[0], 1 + e2[0]),
@@ -611,9 +373,9 @@ class DEMProcessor(object):
         # bottom-left corner
         slc0 = [slice(-1, None), slice(0, 1)]
         for ind in [0, 1]:
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(shp[0] + e1[0], shp[0] + 1 + e1[0]),
                     slice(e1[1], 1 + e1[1])]
             slc2 = [slice(shp[0] + e2[0], shp[0] + 1 + e2[0]),
@@ -624,9 +386,9 @@ class DEMProcessor(object):
         # bottom-right corner
         slc0 = [slice(-1, None), slice(-1, None)]
         for ind in [3, 4]:
-            e1 = facets[ind][1]
-            e2 = facets[ind][2]
-            ang = ang_adj[ind]
+            e1 = self.facets[ind][1]
+            e2 = self.facets[ind][2]
+            ang = self.ang_adj[ind]
             slc1 = [slice(shp[0] + e1[0], shp[0] + 1 + e1[0]),
                     slice(shp[1] + e1[1], shp[1] + 1 + e1[1])]
             slc2 = [slice(shp[0] + e2[0], shp[0] + 1 + e2[0]),
@@ -681,14 +443,14 @@ class DEMProcessor(object):
         """
         if not topbot:
             if ind in [0, 3, 4, 7]:
-                d1 = dx[slice((e2[0] + 1) / 2, shp[0] + (e2[0] - 1) / 2)]
-                d2 = dy[slice((e2[0] + 1) / 2, shp[0] + (e2[0] - 1) / 2)]
+                d1 = dx[slice(int((e2[0] + 1) / 2), int(shp[0] + (e2[0] - 1) / 2))]
+                d2 = dy[slice(int((e2[0] + 1) / 2), int(shp[0] + (e2[0] - 1) / 2))]
                 if d1.size == 0:
                     d1 = np.array([dx[0]])
                     d2 = np.array([dy[0]])
             else:
-                d2 = dx[slice((e1[0] + 1) / 2, shp[0] + (e1[0] - 1) / 2)]
-                d1 = dy[slice((e1[0] + 1) / 2, shp[0] + (e1[0] - 1) / 2)]
+                d2 = dx[slice(int((e1[0] + 1) / 2), int(shp[0] + (e1[0] - 1) / 2))]
+                d1 = dy[slice(int((e1[0] + 1) / 2), int(shp[0] + (e1[0] - 1) / 2))]
                 if d1.size == 0:
                     d2 = dx[0]
                     d1 = dy[0]
@@ -707,6 +469,163 @@ class DEMProcessor(object):
 
         return d1.reshape(d1.size, 1), d2.reshape(d2.size, 1), theta.reshape(theta.size, 1)
 
+    @staticmethod
+    def _get_chunk_edges(NN, chunk_size, chunk_overlap):
+        """
+        Given the size of the array, calculate and array that gives the
+        edges of chunks of nominal size, with specified overlap
+        Parameters
+        ----------
+        NN : int
+            Size of array
+        chunk_size : int
+            Nominal size of chunks (chunk_size < NN)
+        chunk_overlap : int
+            Number of pixels chunks will overlap
+        Returns
+        -------
+        start_id : array
+            The starting id of a chunk. start_id[i] gives the starting id of
+            the i'th chunk
+        end_id : array
+            The ending id of a chunk. end_id[i] gives the ending id of
+            the i'th chunk
+        """
+        left_edge = np.arange(0, NN - chunk_overlap, chunk_size)
+        left_edge[1:] -= chunk_overlap
+        right_edge = np.arange(0, NN - chunk_overlap, chunk_size)
+        right_edge[:-1] = right_edge[1:] + chunk_overlap
+        right_edge[-1] = NN
+        right_edge = np.minimum(right_edge, NN)
+        return left_edge, right_edge
+
+    @staticmethod
+    def _assign_chunk(data, arr1, arr2, te, be, le, re, ovr, add=False):
+        """
+        Assign data from a chunk to the full array. The data in overlap regions
+        will not be assigned to the full array
+        Parameters
+        -----------
+        data : array
+            Unused array (except for shape) that has size of full tile
+        arr1 : array
+            Full size array to which data will be assigned
+        arr2 : array
+            Chunk-sized array from which data will be assigned
+        te : int
+            Top edge id
+        be : int
+            Bottom edge id
+        le : int
+            Left edge id
+        re : int
+            Right edge id
+        ovr : int
+            The number of pixels in the overlap
+        add : bool, optional
+            Default False. If true, the data in arr2 will be added to arr1,
+            otherwise data in arr2 will overwrite data in arr1
+        """
+        if te == 0:
+            i1 = 0
+        else:
+            i1 = ovr
+        if be == data.shape[0]:
+            i2 = 0
+            i2b = None
+        else:
+            i2 = -ovr
+            i2b = -ovr
+        if le == 0:
+            j1 = 0
+        else:
+            j1 = ovr
+        if re == data.shape[1]:
+            j2 = 0
+            j2b = None
+        else:
+            j2 = -ovr
+            j2b = -ovr
+        if add:
+            arr1[te + i1:be + i2, le + j1:re + j2] += arr2[i1:i2b, j1:j2b]
+        else:
+            arr1[te + i1:be + i2, le + j1:re + j2] = arr2[i1:i2b, j1:j2b]
+
+    def _find_flats_edges(self, data, dX, dY, mag, direction):
+        """
+        Extend flats 1 square downstream
+        Flats on the downstream side of the flat might find a valid angle,
+        but that doesn't mean that it's a correct angle. We have to find
+        these and then set them equal to a flat
+        """
+
+        flats = mag == FLAT_ID_INT
+        assigned, n_flats = spndi.label(flats, FLATS_KERNEL3)
+        # Perhaps the code below will be faster?
+        #        edges = ndimage.convolve(flats, FLATS_KERNEL1) - flats
+        #        edges = ndimage.convolve(edges, FLATS_KERNEL1) & flats
+        #        assigned, n_flats = spndi.label(edges, FLATS_KERNEL3)
+        nn, mm = flats.shape
+        flat_ids, flat_coords, flat_labelsf = self._get_flat_ids(assigned)
+        for ii in range(n_flats):
+            ids_flats = flat_ids[flat_coords[ii]:flat_coords[ii + 1]]
+            elev_flat = data.ravel()[flat_ids[flat_coords[ii]]]
+            if elev_flat is np.ma.masked:
+                continue
+            j = ids_flats % mm
+            i = ids_flats // mm
+            for iii in [-1, 0, 1]:
+                for jjj in [-1, 0, 1]:
+                    i_2 = i + iii
+                    j_2 = j + jjj
+
+                    ids_tmp = (i_2 >= 0) & (j_2 >= 0) & (i_2 < nn) & (j_2 < mm)
+                    ids_tmp2 = data[i_2[ids_tmp], j_2[ids_tmp]] == elev_flat
+                    flats[i_2[ids_tmp][ids_tmp2], j_2[ids_tmp][ids_tmp2]] \
+                        += FLATS_KERNEL3[iii + 1, jjj + 1]
+
+        return flats
+
+    @staticmethod
+    def _get_flat_ids(assigned):
+        """
+        This is a helper function to recover the coordinates of regions that have
+        been labeled within an image. This function efficiently computes the
+        coordinate of all regions and returns the information in a memory-efficient
+        manner.
+        Parameters
+        -----------
+        assigned : ndarray[ndim=2, dtype=int]
+            The labeled image. For example, the result of calling
+            scipy.ndimage.label on a binary image
+        Returns
+        --------
+        I : ndarray[ndim=1, dtype=int]
+            Array of 1d coordinate indices of all regions in the image
+        region_ids : ndarray[shape=[n_features + 1], dtype=int]
+            Indexing array used to separate the coordinates of the different
+            regions. For example, region k has xy coordinates of
+            xy[region_ids[k]:region_ids[k+1], :]
+        labels : ndarray[ndim=1, dtype=int]
+            The labels of the regions in the image corresponding to the coordinates
+            For example, assigned.ravel()[I[k]] == labels[k]
+        """
+        # MPU optimization:
+        # Let's segment the regions and store in a sparse format
+        # First, let's use where once to find all the information we want
+        ids_labels = np.arange(len(assigned.ravel()), dtype=int)
+        I = ids_labels[assigned.ravel().astype(bool)]
+        labels = assigned.ravel()[I]
+        # Now sort these arrays by the label to figure out where to segment
+        sort_id = np.argsort(labels)
+        labels = labels[sort_id]
+        I = I[sort_id]
+        # this should be of size n_features-1
+        region_ids = np.where(labels[1:] - labels[:-1] > 0)[0] + 1
+        # This should be of size n_features + 1
+        region_ids = np.concatenate(([0], region_ids, [len(labels)]))
+
+        return [I, region_ids, labels]
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
