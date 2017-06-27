@@ -22,7 +22,7 @@ with hooks():
 import os
 import copy
 import shutil
-from numpy import pi, log, tan, empty, float32, arctan, rad2deg
+from numpy import pi, log, tan, empty, float32, arctan, rad2deg, gradient, arctan2, where
 from itertools import product
 from rasterio import open as rasopen
 from rasterio.merge import merge
@@ -31,10 +31,9 @@ from rasterio.mask import mask
 from rasterio.warp import reproject, Resampling, calculate_default_transform
 from rasterio.crs import CRS
 from requests import get
+from scipy.ndimage import gaussian_gradient_magnitude
 from tempfile import mkdtemp
 from xarray import open_dataset
-
-from dem.processing import DEMProcessor
 
 
 class Dem(object):
@@ -75,8 +74,6 @@ class SubsetDem(Dem):
         subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
                                lon=slice(self.bbox.west, self.bbox.east))]
 
-        xray.close()
-
         return subset
 
 
@@ -108,24 +105,36 @@ class MapzenDem(Dem):
         shutil.rmtree(self.temp_dir)
         return dem
 
-    def terrain(self, out_file=None, aspect_mode='radians', slope_mode='percent'):
+    def get_slope(self, out_file=None, mode='percent'):
         dem = self.dem()
-        dem_proc = DEMProcessor(dem, self.target_profile)
-        slope, aspect = dem_proc.calc_slopes_directions()
-
-        if slope_mode == 'percent':
+        slope = gaussian_gradient_magnitude(dem, 5, mode='nearest')
+        if mode == 'percent':
             pass
-        if slope_mode == 'fraction':
+        if mode == 'fraction':
             slope = slope / 100
         if slope == 'degrees':
             slope = rad2deg(arctan(slope / 100))
-        if aspect_mode == 'radians':
-            pass
-        if aspect_mode == 'degrees':
-            aspect = rad2deg(aspect)
         if out_file:
-            self.save(aspect, self.target_profile, out_file)
             self.save(slope, self.target_profile, out_file)
+
+        return slope
+
+    def get_aspect(self, out_file=None, mode='degrees'):
+        dem = self.dem()
+        x, y = gradient(dem)
+        if mode == 'radians':
+            aspect = arctan2(y, -x)
+        if mode == 'degrees':
+            aspect = rad2deg(arctan2(y, -x))
+
+        aspect = where(aspect < 0.0, 90.0 - aspect, aspect)
+        aspect = where(aspect > 90.0, 360.0 - aspect + 90.0, aspect)
+        apsect = where((90.0 <= aspect) & (aspect >= 0.0), 90.0 - aspect, aspect)
+
+        if out_file:
+            self.save(apsect, self.target_profile, out_file)
+
+        return aspect
 
     @staticmethod
     def mercator(lat, lon, zoom):
@@ -278,6 +287,7 @@ class MapzenDem(Dem):
             return new_array
 
             # add no-data values TODO
+
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
