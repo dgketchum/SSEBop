@@ -35,6 +35,8 @@ from scipy.ndimage import gaussian_gradient_magnitude
 from tempfile import mkdtemp
 from xarray import open_dataset
 
+from dem.processing import DEMProcessor
+
 
 class Dem(object):
     def __init__(self):
@@ -73,6 +75,8 @@ class SubsetDem(Dem):
 
         subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
                                lon=slice(self.bbox.west, self.bbox.east))]
+
+        xray.close()
 
         return subset
 
@@ -118,6 +122,11 @@ class MapzenDem(Dem):
             self.save(slope, self.target_profile, out_file)
 
         return slope
+
+    def get_aspect(self, out_file=None, mode='degrees'):
+        dem = self.get_conforming_dem()
+        proc = DEMProcessor(dem, self.target_profile)
+        proc.calc_slopes_directions()
 
     @staticmethod
     def mercator(lat, lon, zoom):
