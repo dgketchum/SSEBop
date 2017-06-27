@@ -111,10 +111,7 @@ class DEMProcessor(object):
 
     direction = None  # Direction of slope in radians
     mag = None  # magnitude of slopes m/m
-    uca = None  # upstream contributing area
-    twi = None  # topographic wetness index
     elev = None  # elevation data
-    A = None  # connectivity matrix
 
     # Gives the quadrant used for determining the d_infty mag/direction
     section = None  # save for debugging purposes, not useful output otherwise
@@ -123,14 +120,9 @@ class DEMProcessor(object):
     done = None  # Marks if edges are done
 
     plotflag = False  # Debug plots
-    # Use uniform values for dx/dy or obtain from geotiff
-    dx_dy_from_file = True
-    file_name = None  # Elevation data filename
 
     dx = None  # delta x
     dy = None  # delta y
-
-    flats = None  # Boolean array indicating location of flats
 
     uca_saturation_limit = 32  # units of area
     twi_min_slope = 1e-3  # Used for TWI max limiting
