@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dem/processing.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/processing.py" afterPath="$PROJECT_DIR$/dem/processing.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_dem.py" afterPath="$PROJECT_DIR$/tests/test_dem.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +22,7 @@
       <file leaf-file-name="bounds.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
+            <state relative-caret-position="0">
               <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
                 <element signature="e#922#1053#1" expanded="false" />
@@ -33,21 +35,25 @@
       <file leaf-file-name="dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dem/dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="128" column="37" lean-forward="true" selection-start-line="128" selection-start-column="37" selection-end-line="128" selection-end-column="37" />
+            <state relative-caret-position="474">
+              <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#1469#1473#0" expanded="false" />
-                <element signature="e#1559#1832#0" expanded="false" />
-                <element signature="e#1861#2536#0" expanded="false" />
-                <element signature="e#1861#1948#1" expanded="false" />
-                <element signature="e#2687#3075#0" expanded="false" />
-                <element signature="e#4109#4546#0" expanded="false" />
-                <element signature="e#4582#5307#0" expanded="false" />
-                <element signature="e#5343#5766#0" expanded="false" />
-                <element signature="e#5803#6443#0" expanded="false" />
-                <element signature="e#6485#8004#0" expanded="false" />
-                <element signature="e#8039#8697#0" expanded="false" />
+                <element signature="e#1387#1778#0" expanded="false" />
+                <element signature="e#1415#1419#0" expanded="false" />
+                <element signature="e#1505#1778#0" expanded="false" />
+                <element signature="e#1807#2482#0" expanded="false" />
+                <element signature="e#1807#1894#1" expanded="false" />
+                <element signature="e#2633#3021#0" expanded="false" />
+                <element signature="e#3065#3330#0" expanded="false" />
+                <element signature="e#3423#4028#0" expanded="false" />
+                <element signature="e#4090#4527#0" expanded="false" />
+                <element signature="e#4563#5288#0" expanded="false" />
+                <element signature="e#5324#5747#0" expanded="false" />
+                <element signature="e#5784#6424#0" expanded="false" />
+                <element signature="e#6466#7985#0" expanded="false" />
+                <element signature="e#8020#8678#0" expanded="false" />
+                <element signature="e#8713#10032#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -56,37 +62,31 @@
       <file leaf-file-name="processing.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dem/processing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="87" column="71" lean-forward="true" selection-start-line="87" selection-start-column="71" selection-end-line="87" selection-end-column="71" />
+            <state relative-caret-position="1292">
+              <caret line="263" column="32" lean-forward="false" selection-start-line="263" selection-start-column="28" selection-end-line="263" selection-end-column="32" />
               <folding>
                 <element signature="e#24#2742#1" expanded="false" />
-                <element signature="e#2744#2759#0" expanded="true" />
-                <element signature="e#3241#3257#0" expanded="false" />
-                <element signature="e#3651#3726#0" expanded="false" />
-                <element signature="e#3947#4136#1" expanded="false" />
-                <element signature="e#4241#4274#0" expanded="false" />
-                <element signature="e#6056#6125#0" expanded="false" />
-                <element signature="e#6230#6300#0" expanded="false" />
-                <element signature="e#6368#6659#0" expanded="false" />
-                <element signature="e#6757#6895#0" expanded="false" />
-                <element signature="e#6902#6925#0" expanded="false" />
-                <element signature="e#7573#7603#0" expanded="false" />
-                <element signature="e#15769#15884#1" expanded="false" />
-                <element signature="e#15893#15962#0" expanded="false" />
-                <element signature="e#16184#16702#0" expanded="false" />
-                <element signature="e#16374#16440#0" expanded="false" />
-                <element signature="e#16729#18741#0" expanded="false" />
-                <element signature="e#17495#18741#0" expanded="false" />
-                <element signature="e#17557#18741#0" expanded="false" />
-                <element signature="e#17583#17697#1" expanded="false" />
-                <marker date="1498580496888" expanded="false" signature="28672:29002" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1498580496888" expanded="false" signature="29025:29589" ph="..." />
-                <marker date="1498580496888" expanded="false" signature="29061:29328" ph="..." />
-                <marker date="1498580496888" expanded="false" signature="29242:29328" ph="..." />
-                <marker date="1498580496888" expanded="false" signature="29346:29589" ph="..." />
-                <marker date="1498580496888" expanded="false" signature="29527:29589" ph="..." />
-                <marker date="1498580496888" expanded="false" signature="29619:29749" ph="..." />
-                <marker date="1498580496888" expanded="false" signature="29779:29913" ph="..." />
+                <element signature="e#2744#2753#0" expanded="true" />
+                <element signature="e#3553#3742#1" expanded="false" />
+                <element signature="e#3847#3880#0" expanded="false" />
+                <element signature="e#5340#5409#0" expanded="false" />
+                <element signature="e#5514#5584#0" expanded="false" />
+                <element signature="e#5652#5943#0" expanded="false" />
+                <element signature="e#6041#6179#0" expanded="false" />
+                <element signature="e#6186#6209#0" expanded="false" />
+                <element signature="e#6319#7061#0" expanded="false" />
+                <element signature="e#10093#10659#0" expanded="false" />
+                <element signature="e#18111#19130#0" expanded="false" />
+                <element signature="e#19217#20627#0" expanded="false" />
+                <element signature="e#20712#21721#0" expanded="false" />
+                <element signature="e#20712#21381#1" expanded="false" />
+                <element signature="e#21822#23256#0" expanded="false" />
+                <element signature="e#21822#22663#1" expanded="false" />
+                <element signature="e#23329#24771#0" expanded="false" />
+                <element signature="e#23329#23581#1" expanded="false" />
+                <element signature="e#24832#26657#0" expanded="false" />
+                <element signature="e#24832#25894#1" expanded="false" />
+                <marker date="1498588951541" expanded="false" signature="19217:19547" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
               </folding>
             </state>
           </provider>
@@ -169,14 +169,14 @@
       <file leaf-file-name="test_dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+            <state relative-caret-position="658">
+              <caret line="73" column="37" lean-forward="true" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#743#0" expanded="true" />
                 <element signature="e#952#1108#0" expanded="false" />
                 <element signature="e#1144#1266#0" expanded="false" />
-                <element signature="e#2597#2839#0" expanded="false" />
+                <element signature="e#2594#2836#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -194,10 +194,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>l5</find>
-      <find>l8</find>
-      <find>ndvi</find>
-      <find>self.l7</find>
       <find>3</find>
       <find>)</find>
       <find>hori</find>
@@ -221,13 +217,15 @@
       <find>open</find>
       <find>dX</find>
       <find>mk_dx_dy_from_geotif_layer</find>
-      <find>_get_d1_d2</find>
       <find>_calc_direction(data</find>
       <find>dY</find>
+      <find>_get_d1_d2</find>
+      <find>_get_flat_ids</find>
+      <find>facets</find>
+      <find>ang_adj</find>
+      <find>data</find>
     </findStrings>
     <replaceStrings>
-      <replace>b3_reflct</replace>
-      <replace>self.b1_reflct</replace>
       <replace>self.b7_reflct</replace>
       <replace>rflct</replace>
       <replace>LT5</replace>
@@ -256,6 +254,8 @@
       <replace>self._get_d1_d2</replace>
       <replace>self._calc_direction(self, data</replace>
       <replace>dy</replace>
+      <replace>self.facets</replace>
+      <replace>self.ang_adj</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -337,28 +337,13 @@
             <id />
           </State>
           <State>
-            <id>Buildout</id>
-          </State>
-          <State>
-            <id>HTML</id>
-          </State>
-          <State>
-            <id>Ignore</id>
-          </State>
-          <State>
-            <id>Internationalization issues</id>
-          </State>
-          <State>
             <id>JSON</id>
           </State>
           <State>
             <id>Python</id>
           </State>
           <State>
-            <id>RegExp</id>
-          </State>
-          <State>
-            <id>Spelling</id>
+            <id>RELAX NG</id>
           </State>
           <State>
             <id>XML</id>
@@ -366,7 +351,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>SpellCheckingInspection</id>
+            <id>PyCompatibilityInspection</id>
           </State>
         </selected-state>
       </profile-state>
@@ -423,7 +408,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/anaconda2/envs/sandbox/bin/python3.5" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/obsio/factory.py&#10;/data01/PycharmProjects/ssebop/tests/data/local/token_file.txt&#10;/data01/PycharmProjects/ssebop/SSEBop_Landsat_OverpassETa.py&#10;/data01/PycharmProjects/ssebop/obsio/providers/acis.py&#10;true&#10;/data01/PycharmProjects/ssebop/obsio/util/misc.py" />
@@ -457,7 +442,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_dem.DemTestCase.test_slope">
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_dem.DemTestCase.test_terrain">
     <configuration default="false" name="Unittests for tests.test_dem.DemTestCase.test_downlaod" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -524,7 +509,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for tests.test_dem.DemTestCase.test_slope" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests for tests.test_dem.DemTestCase.test_terrain" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -535,7 +520,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_dem.DemTestCase.test_slope&quot;" />
+      <option name="_new_target" value="&quot;tests.test_dem.DemTestCase.test_terrain&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -619,11 +604,11 @@
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_tiles" />
       <item index="2" class="java.lang.String" itemvalue="Python.merge_problem" />
       <item index="3" class="java.lang.String" itemvalue="Python.merge_ned_test" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_slope" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_terrain" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_slope" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_terrain" />
         <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_downlaod" />
         <item index="2" class="java.lang.String" itemvalue="Python.merge_problem" />
         <item index="3" class="java.lang.String" itemvalue="Python.merge_ned_test" />
@@ -644,20 +629,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00064" summary="pass url build test">
-      <created>1496946491067</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1496946491068</updated>
-    </task>
-    <task id="LOCAL-00065" summary="created thredds parent class">
-      <created>1496958988800</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1496958988800</updated>
     </task>
     <task id="LOCAL-00066" summary="switched to pydap in gridmet class">
       <created>1497386233417</created>
@@ -988,39 +959,53 @@
       <option name="project" value="LOCAL" />
       <updated>1498518866130</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="dem processes.py slope and aspect numba-enabled functions, initial commit">
+      <created>1498580525952</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1498580525953</updated>
+    </task>
+    <task id="LOCAL-00114" summary="combined slope and aspect functions to be implemented with tarboton">
+      <created>1498581018493</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1498581018493</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 15h 27m 17s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 16m 25s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 15h 29m 35s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 18m 48s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 15h 32m 28s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 19m 36s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 15h 37m 06s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 20m 32s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 15h 44m 07s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 26m 03s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 15h 57m 30s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 36m 46s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 16h 21m 07s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 37m 10s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_downlaod - 2017.06.26 at 16h 25m 19s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_downlaod" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 37m 57s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_slope - 2017.06.26 at 16h 58m 50s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_slope" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 39m 00s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_slope - 2017.06.26 at 17h 01m 36s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_slope" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_terrain - 2017.06.27 at 12h 43m 04s.xml">
+      <configuration name="Unittests for tests.test_dem.DemTestCase.test_terrain" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -1036,15 +1021,16 @@
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19616519" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19616519" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43952802" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44542772" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29690948" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2961326" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44690266" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38938054" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5339233" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1054,7 +1040,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1085,8 +1070,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="mapzen service with bytesIO and scipy.misc.imread" />
-    <MESSAGE value="added save method" />
     <MESSAGE value="moving geotiff stuff to collect.py" />
     <MESSAGE value="iterate through tiles and create file list to iterate over, going to wreck this and try and create a list of RasterReader objects" />
     <MESSAGE value="working on collect.py download()" />
@@ -1110,7 +1093,9 @@
     <MESSAGE value="resample function" />
     <MESSAGE value="must clear /tmp" />
     <MESSAGE value="get_slope initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="get_slope initial commit" />
+    <MESSAGE value="dem processes.py slope and aspect numba-enabled functions, initial commit" />
+    <MESSAGE value="combined slope and aspect functions to be implemented with tarboton" />
+    <option name="LAST_COMMIT_MESSAGE" value="combined slope and aspect functions to be implemented with tarboton" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1136,6 +1121,11 @@
           <line>46</line>
           <option name="timeStamp" value="576" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dem/processing.py</url>
+          <line>529</line>
+          <option name="timeStamp" value="684" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1144,7 +1134,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="667" />
+      <option name="time" value="685" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1153,13 +1143,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/paths.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="931">
-          <caret line="72" column="42" lean-forward="true" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/entry_script.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1350,17 +1333,21 @@
           <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1469#1473#0" expanded="false" />
-            <element signature="e#1559#1832#0" expanded="false" />
-            <element signature="e#1861#2536#0" expanded="false" />
-            <element signature="e#1861#1948#1" expanded="false" />
-            <element signature="e#2687#3075#0" expanded="false" />
-            <element signature="e#4109#4546#0" expanded="false" />
-            <element signature="e#4582#5307#0" expanded="false" />
-            <element signature="e#5343#5766#0" expanded="false" />
-            <element signature="e#5803#6443#0" expanded="false" />
-            <element signature="e#6485#8004#0" expanded="false" />
-            <element signature="e#8039#8697#0" expanded="false" />
+            <element signature="e#1387#1778#0" expanded="false" />
+            <element signature="e#1415#1419#0" expanded="false" />
+            <element signature="e#1505#1778#0" expanded="false" />
+            <element signature="e#1807#2482#0" expanded="false" />
+            <element signature="e#1807#1894#1" expanded="false" />
+            <element signature="e#2633#3021#0" expanded="false" />
+            <element signature="e#3065#3330#0" expanded="false" />
+            <element signature="e#3423#4028#0" expanded="false" />
+            <element signature="e#4090#4527#0" expanded="false" />
+            <element signature="e#4563#5288#0" expanded="false" />
+            <element signature="e#5324#5747#0" expanded="false" />
+            <element signature="e#5784#6424#0" expanded="false" />
+            <element signature="e#6466#7985#0" expanded="false" />
+            <element signature="e#8020#8678#0" expanded="false" />
+            <element signature="e#8713#10032#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1439,7 +1426,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
+        <state relative-caret-position="0">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
             <element signature="e#922#1053#1" expanded="false" />
@@ -1536,72 +1523,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+        <state relative-caret-position="658">
+          <caret line="73" column="37" lean-forward="true" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#734#743#0" expanded="true" />
             <element signature="e#952#1108#0" expanded="false" />
             <element signature="e#1144#1266#0" expanded="false" />
-            <element signature="e#2597#2839#0" expanded="false" />
+            <element signature="e#2594#2836#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="1111" column="8" lean-forward="false" selection-start-line="1111" selection-start-column="8" selection-end-line="1111" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dem/dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="128" column="37" lean-forward="true" selection-start-line="128" selection-start-column="37" selection-end-line="128" selection-end-column="37" />
+        <state relative-caret-position="474">
+          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1469#1473#0" expanded="false" />
-            <element signature="e#1559#1832#0" expanded="false" />
-            <element signature="e#1861#2536#0" expanded="false" />
-            <element signature="e#1861#1948#1" expanded="false" />
-            <element signature="e#2687#3075#0" expanded="false" />
-            <element signature="e#4109#4546#0" expanded="false" />
-            <element signature="e#4582#5307#0" expanded="false" />
-            <element signature="e#5343#5766#0" expanded="false" />
-            <element signature="e#5803#6443#0" expanded="false" />
-            <element signature="e#6485#8004#0" expanded="false" />
-            <element signature="e#8039#8697#0" expanded="false" />
+            <element signature="e#1387#1778#0" expanded="false" />
+            <element signature="e#1415#1419#0" expanded="false" />
+            <element signature="e#1505#1778#0" expanded="false" />
+            <element signature="e#1807#2482#0" expanded="false" />
+            <element signature="e#1807#1894#1" expanded="false" />
+            <element signature="e#2633#3021#0" expanded="false" />
+            <element signature="e#3065#3330#0" expanded="false" />
+            <element signature="e#3423#4028#0" expanded="false" />
+            <element signature="e#4090#4527#0" expanded="false" />
+            <element signature="e#4563#5288#0" expanded="false" />
+            <element signature="e#5324#5747#0" expanded="false" />
+            <element signature="e#5784#6424#0" expanded="false" />
+            <element signature="e#6466#7985#0" expanded="false" />
+            <element signature="e#8020#8678#0" expanded="false" />
+            <element signature="e#8713#10032#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dem/processing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="87" column="71" lean-forward="true" selection-start-line="87" selection-start-column="71" selection-end-line="87" selection-end-column="71" />
+        <state relative-caret-position="1292">
+          <caret line="263" column="32" lean-forward="false" selection-start-line="263" selection-start-column="28" selection-end-line="263" selection-end-column="32" />
           <folding>
             <element signature="e#24#2742#1" expanded="false" />
-            <element signature="e#2744#2759#0" expanded="true" />
-            <element signature="e#3241#3257#0" expanded="false" />
-            <element signature="e#3651#3726#0" expanded="false" />
-            <element signature="e#3947#4136#1" expanded="false" />
-            <element signature="e#4241#4274#0" expanded="false" />
-            <element signature="e#6056#6125#0" expanded="false" />
-            <element signature="e#6230#6300#0" expanded="false" />
-            <element signature="e#6368#6659#0" expanded="false" />
-            <element signature="e#6757#6895#0" expanded="false" />
-            <element signature="e#6902#6925#0" expanded="false" />
-            <element signature="e#7573#7603#0" expanded="false" />
-            <element signature="e#15769#15884#1" expanded="false" />
-            <element signature="e#15893#15962#0" expanded="false" />
-            <element signature="e#16184#16702#0" expanded="false" />
-            <element signature="e#16374#16440#0" expanded="false" />
-            <element signature="e#16729#18741#0" expanded="false" />
-            <element signature="e#17495#18741#0" expanded="false" />
-            <element signature="e#17557#18741#0" expanded="false" />
-            <element signature="e#17583#17697#1" expanded="false" />
-            <marker date="1498580496888" expanded="false" signature="28672:29002" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1498580496888" expanded="false" signature="29025:29589" ph="..." />
-            <marker date="1498580496888" expanded="false" signature="29061:29328" ph="..." />
-            <marker date="1498580496888" expanded="false" signature="29242:29328" ph="..." />
-            <marker date="1498580496888" expanded="false" signature="29346:29589" ph="..." />
-            <marker date="1498580496888" expanded="false" signature="29527:29589" ph="..." />
-            <marker date="1498580496888" expanded="false" signature="29619:29749" ph="..." />
-            <marker date="1498580496888" expanded="false" signature="29779:29913" ph="..." />
+            <element signature="e#2744#2753#0" expanded="true" />
+            <element signature="e#3553#3742#1" expanded="false" />
+            <element signature="e#3847#3880#0" expanded="false" />
+            <element signature="e#5340#5409#0" expanded="false" />
+            <element signature="e#5514#5584#0" expanded="false" />
+            <element signature="e#5652#5943#0" expanded="false" />
+            <element signature="e#6041#6179#0" expanded="false" />
+            <element signature="e#6186#6209#0" expanded="false" />
+            <element signature="e#6319#7061#0" expanded="false" />
+            <element signature="e#10093#10659#0" expanded="false" />
+            <element signature="e#18111#19130#0" expanded="false" />
+            <element signature="e#19217#20627#0" expanded="false" />
+            <element signature="e#20712#21721#0" expanded="false" />
+            <element signature="e#20712#21381#1" expanded="false" />
+            <element signature="e#21822#23256#0" expanded="false" />
+            <element signature="e#21822#22663#1" expanded="false" />
+            <element signature="e#23329#24771#0" expanded="false" />
+            <element signature="e#23329#23581#1" expanded="false" />
+            <element signature="e#24832#26657#0" expanded="false" />
+            <element signature="e#24832#25894#1" expanded="false" />
+            <marker date="1498588951541" expanded="false" signature="19217:19547" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
           </folding>
         </state>
       </provider>

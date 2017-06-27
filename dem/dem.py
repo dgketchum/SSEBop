@@ -22,7 +22,7 @@ with hooks():
 import os
 import copy
 import shutil
-from numpy import pi, log, tan, empty, float32, arctan, rad2deg, deg2rad
+from numpy import pi, log, tan, empty, float32, arctan, rad2deg
 from itertools import product
 from rasterio import open as rasopen
 from rasterio.merge import merge
@@ -31,7 +31,6 @@ from rasterio.mask import mask
 from rasterio.warp import reproject, Resampling, calculate_default_transform
 from rasterio.crs import CRS
 from requests import get
-from scipy.ndimage import gaussian_gradient_magnitude
 from tempfile import mkdtemp
 from xarray import open_dataset
 
@@ -96,7 +95,7 @@ class MapzenDem(Dem):
         self.temp_dir = mkdtemp(prefix='collected-')
         self.files = []
 
-    def get_conforming_dem(self, out_file=None):
+    def dem(self, out_file=None):
         self.get_tiles()
         self.merge_tiles()
         self.reproject_tiles()
@@ -110,9 +109,9 @@ class MapzenDem(Dem):
         return dem
 
     def terrain(self, out_file=None, aspect_mode='radians', slope_mode='percent'):
-        dem = self.get_conforming_dem()
-        proc = DEMProcessor(dem, self.target_profile)
-        slope, aspect = proc.calc_slopes_directions()
+        dem = self.dem()
+        dem_proc = DEMProcessor(dem, self.target_profile)
+        slope, aspect = dem_proc.calc_slopes_directions()
 
         if slope_mode == 'percent':
             pass

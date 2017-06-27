@@ -46,11 +46,11 @@ class DemTestCase(unittest.TestCase):
         dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile, clip_object=polygon,
                         api_key=self.api_key)
 
-        arr = dem.get_conforming_dem(out_file='/data01/images/sandbox/merged_dem.tif')
+        arr = dem.dem(out_file='/data01/images/sandbox/merged_dem.tif')
 
         self.assertEqual(arr.shape, (1, 7429, 8163))
 
-    def test_slope(self):
+    def test_terrain(self):
         home = os.path.expanduser('~')
         tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
         tif = os.path.join(tif_dir, 'LT05_L1TP_040028_20060706_20160909_01_T1_B5.TIF')
@@ -63,9 +63,9 @@ class DemTestCase(unittest.TestCase):
         dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile, clip_object=polygon,
                         api_key=self.api_key)
 
-        arr = dem.get_slope(out_file='/data01/images/sandbox/slope.tif')
+        slope, aspect = dem.terrain(out_file='/data01/images/sandbox/slope.tif')
 
-        self.assertEqual(arr.shape, (1, 7429, 8163))
+        self.assertEqual(slope.shape, (1, 7429, 8163))
 
     def test_gibs(self):
         self.assertIsInstance(self.dem, Dem)
