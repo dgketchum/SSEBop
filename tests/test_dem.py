@@ -63,9 +63,11 @@ class DemTestCase(unittest.TestCase):
         dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile, clip_object=polygon,
                         api_key=self.api_key)
 
-        slope, aspect = dem.terrain(out_file='/data01/images/sandbox/slope.tif')
+        slope = dem.get_slope(out_file='/data01/images/sandbox/slope.tif')
+        aspect = dem.get_aspect(out_file='/data01/images/sandbox/aspect.tif', mode='degrees')
 
         self.assertEqual(slope.shape, (1, 7429, 8163))
+        self.assertEqual(aspect.shape, (1, 7429, 8163))
 
     def test_gibs(self):
         self.assertIsInstance(self.dem, Dem)
