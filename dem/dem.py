@@ -22,7 +22,7 @@ with hooks():
 import os
 import copy
 import shutil
-from numpy import pi, log, tan, empty, float32, arctan, rad2deg
+from numpy import pi, log, tan, empty, float32, arctan, rad2deg, deg2rad
 from itertools import product
 from rasterio import open as rasopen
 from rasterio.merge import merge
@@ -109,24 +109,24 @@ class MapzenDem(Dem):
         shutil.rmtree(self.temp_dir)
         return dem
 
-    def get_slope(self, out_file=None, mode='percent'):
+    def terrain(self, out_file=None, aspect_mode='radians', slope_mode='percent'):
         dem = self.get_conforming_dem()
-        slope = gaussian_gradient_magnitude(dem, 5, mode='nearest')
-        if mode == 'percent':
+        proc = DEMProcessor(dem, self.target_profile)
+        slope, aspect = proc.calc_slopes_directions()
+
+        if slope_mode == 'percent':
             pass
-        if mode == 'fraction':
+        if slope_mode == 'fraction':
             slope = slope / 100
         if slope == 'degrees':
             slope = rad2deg(arctan(slope / 100))
+        if aspect_mode == 'radians':
+            pass
+        if aspect_mode == 'degrees':
+            aspect = rad2deg(aspect)
         if out_file:
+            self.save(aspect, self.target_profile, out_file)
             self.save(slope, self.target_profile, out_file)
-
-        return slope
-
-    def get_aspect(self, out_file=None, mode='degrees'):
-        dem = self.get_conforming_dem()
-        proc = DEMProcessor(dem, self.target_profile)
-        proc.calc_slopes_directions()
 
     @staticmethod
     def mercator(lat, lon, zoom):
