@@ -21,8 +21,8 @@ with hooks():
 
 import os
 import copy
-import shutil
-from numpy import pi, log, tan, empty, float32, arctan, rad2deg, gradient, arctan2, where
+from numpy import pi, log, tan, empty, float32, arctan, rad2deg, gradient
+from numpy import arctan2, reshape, where
 from itertools import product
 from rasterio import open as rasopen
 from rasterio.merge import merge
@@ -42,7 +42,10 @@ class Dem(object):
 
     @staticmethod
     def save(array, geometry, output_filename, crs=None):
-        array = array.reshape(1, array.shape[1], array.shape[2])
+        try:
+            array = array.reshape(1, array.shape[1], array.shape[2])
+        except IndexError:
+            array = array.reshape(1, array.shape[0], array.shape[1])
         geometry['dtype'] = array.dtype
         if crs:
             geometry['crs'] = CRS({'init': crs})
@@ -92,48 +95,53 @@ class MapzenDem(Dem):
         self.temp_dir = mkdtemp(prefix='collected-')
         self.files = []
 
-    def dem(self, out_file=None):
+    def terrain(self, out_file=None, attribute='elevation', mode=None):
         self.get_tiles()
         self.merge_tiles()
         self.reproject_tiles()
         self.mask_dem()
         dem = self.resample()
 
-        if out_file:
-            self.save(dem, self.target_profile, out_file)
+        if attribute == 'elevation':
+            if out_file:
+                self.save(dem, self.target_profile, out_file)
 
-        shutil.rmtree(self.temp_dir)
-        return dem
+            return dem
 
-    def get_slope(self, out_file=None, mode='percent'):
-        dem = self.dem()
+        elif attribute == 'slope':
+            slope = self.get_slope(dem, mode=mode)
+            if out_file:
+                self.save(slope, self.target_profile, out_file)
+            else:
+                return slope
+
+        elif attribute == 'aspect':
+            aspect = self.get_aspect(dem)
+            aspect = where(aspect > 2 * pi, 0, aspect)
+            if out_file:
+                self.save(aspect, self.target_profile, out_file)
+
+            return aspect
+
+        else:
+            raise ValueError('Must choose attribute from '"elevation"', '"slope"', or '"aspect'.")
+
+    @staticmethod
+    def get_slope(dem, mode='percent'):
         slope = gaussian_gradient_magnitude(dem, 5, mode='nearest')
         if mode == 'percent':
             pass
         if mode == 'fraction':
             slope = slope / 100
-        if slope == 'degrees':
+        if mode == 'degrees':
             slope = rad2deg(arctan(slope / 100))
-        if out_file:
-            self.save(slope, self.target_profile, out_file)
 
         return slope
 
-    def get_aspect(self, out_file=None, mode='degrees'):
-        dem = self.dem()
-        x, y = gradient(dem)
-        if mode == 'radians':
-            aspect = arctan2(y, -x)
-        if mode == 'degrees':
-            aspect = rad2deg(arctan2(y, -x))
-
-        aspect = where(aspect < 0.0, 90.0 - aspect, aspect)
-        aspect = where(aspect > 90.0, 360.0 - aspect + 90.0, aspect)
-        apsect = where((90.0 <= aspect) & (aspect >= 0.0), 90.0 - aspect, aspect)
-
-        if out_file:
-            self.save(apsect, self.target_profile, out_file)
-
+    @staticmethod
+    def get_aspect(dem):
+        x, y = gradient(reshape(dem, (dem.shape[1], dem.shape[2])))
+        aspect = arctan2(y, -x)
         return aspect
 
     @staticmethod
@@ -197,8 +205,6 @@ class MapzenDem(Dem):
             setattr(self, 'merged_profile', f.profile)
         self.merged_profile.update({'height': array.shape[1], 'width': array.shape[2],
                                     'transform': transform})
-
-        delattr(self, 'files')
 
     def reproject_tiles(self):
 
