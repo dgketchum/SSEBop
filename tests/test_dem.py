@@ -18,11 +18,15 @@ import os
 import unittest
 
 from bounds.bounds import GeoBounds, RasterBounds
-from dem.dem import Dem, MapzenDem
+from dem.dem import MapzenDem, ThreddsDem
 from sat_image.image import Landsat5
 
 
-class DemTestCase(unittest.TestCase):
+class ThreddsDemTestCase(unittest.TestCase):
+    def setUp(self):
+
+
+class MapzenDemTestCase(unittest.TestCase):
     def setUp(self):
         self.bbox = GeoBounds(west_lon=-116.5, east_lon=-111.0,
                               south_lat=44.3, north_lat=47.)
@@ -83,12 +87,6 @@ class DemTestCase(unittest.TestCase):
         aspect = dem.terrain(attribute='aspect', out_file='/data01/images/sandbox/aspect.tif')
 
         self.assertEqual(aspect.shape, (7429, 8163))
-
-    def test_gibs(self):
-        self.assertIsInstance(self.dem, Dem)
-        array, geo = self.dem.mapzen_tiled_dem(zoom=self.zoom)
-        self.dem.save(array, geo, os.path.join(os.path.expanduser('~'), 'images', 'sandbox', 'dem.tif'))
-        self.assertEqual(True, False)
 
 
 if __name__ == '__main__':

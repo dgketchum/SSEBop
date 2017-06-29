@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="aspect and slope working">
+    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
@@ -20,140 +20,23 @@
       <file leaf-file-name="dem.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dem/dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="192" column="44" lean-forward="true" selection-start-line="192" selection-start-column="44" selection-end-line="192" selection-end-column="44" />
+            <state relative-caret-position="442">
+              <caret line="59" column="20" lean-forward="false" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#1466#1470#0" expanded="false" />
-                <element signature="e#1556#1942#0" expanded="false" />
-                <element signature="e#1971#2624#0" expanded="false" />
-                <element signature="e#1971#2058#1" expanded="false" />
-                <element signature="e#2775#3163#0" expanded="false" />
-                <element signature="e#3245#4110#0" expanded="false" />
-                <element signature="e#3424#3522#0" expanded="false" />
-                <element signature="e#3571#3745#0" expanded="false" />
-                <element signature="e#4178#4448#0" expanded="false" />
-                <element signature="e#4501#4614#0" expanded="false" />
-                <element signature="e#4676#5113#0" expanded="false" />
-                <element signature="e#5149#5874#0" expanded="false" />
-                <element signature="e#5910#6333#0" expanded="false" />
-                <element signature="e#6370#6978#0" expanded="false" />
-                <element signature="e#7020#8539#0" expanded="false" />
-                <element signature="e#8574#9232#0" expanded="false" />
-                <element signature="e#9267#10586#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SSEBop_Landsat_OverpassETa.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#1256#1268#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="thredds.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metio/thredds.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="201" column="0" lean-forward="true" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-              <folding>
-                <element signature="e#1106#1463#0" expanded="false" />
-                <element signature="e#1493#2314#0" expanded="false" />
-                <element signature="e#2345#7607#0" expanded="false" />
-                <element signature="e#2345#4356#1" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_metio.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-56">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding>
-                <element signature="e#733#748#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sat_image/image.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="410" column="29" lean-forward="false" selection-start-line="410" selection-start-column="29" selection-end-line="410" selection-end-column="29" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#1205#1209#0" expanded="false" />
-                <element signature="e#1253#1257#0" expanded="false" />
-                <element signature="e#1292#6985#0" expanded="false" />
-                <element signature="e#1292#1541#1" expanded="false" />
-                <element signature="e#1580#3914#0" expanded="false" />
-                <element signature="e#1580#1751#1" expanded="false" />
-                <element signature="e#1991#2028#0" expanded="false" />
-                <element signature="e#2309#2451#0" expanded="false" />
-                <element signature="e#4111#4490#0" expanded="false" />
-                <element signature="e#4111#4324#1" expanded="false" />
-                <element signature="e#4557#4725#0" expanded="false" />
-                <element signature="e#4619#4725#0" expanded="false" />
-                <element signature="e#4816#6675#0" expanded="false" />
-                <element signature="e#4986#5042#0" expanded="false" />
-                <element signature="e#6735#6985#0" expanded="false" />
-                <element signature="e#7022#11032#0" expanded="false" />
-                <element signature="e#7055#7545#0" expanded="false" />
-                <element signature="e#7585#8020#0" expanded="false" />
-                <element signature="e#8084#8588#0" expanded="false" />
-                <element signature="e#8631#9045#0" expanded="false" />
-                <element signature="e#8631#8744#1" expanded="false" />
-                <element signature="e#9092#10092#0" expanded="false" />
-                <element signature="e#9092#9656#1" expanded="false" />
-                <element signature="e#10150#10522#0" expanded="false" />
-                <element signature="e#10150#10386#1" expanded="false" />
-                <element signature="e#10552#10774#0" expanded="false" />
-                <element signature="e#10552#10629#1" expanded="false" />
-                <element signature="e#10804#11032#0" expanded="false" />
-                <element signature="e#10804#10875#1" expanded="false" />
-                <element signature="e#11069#14874#0" expanded="false" />
-                <element signature="e#11102#11503#0" expanded="false" />
-                <element signature="e#11369#11458#0" expanded="false" />
-                <element signature="e#11543#11977#0" expanded="false" />
-                <element signature="e#12055#12730#0" expanded="false" />
-                <element signature="e#12773#13219#0" expanded="false" />
-                <element signature="e#12773#12886#1" expanded="false" />
-                <element signature="e#13251#13935#0" expanded="false" />
-                <element signature="e#13251#13624#1" expanded="false" />
-                <element signature="e#13665#13808#0" expanded="false" />
-                <element signature="e#13993#14365#0" expanded="false" />
-                <element signature="e#13993#14229#1" expanded="false" />
-                <element signature="e#14395#14617#0" expanded="false" />
-                <element signature="e#14395#14472#1" expanded="false" />
-                <element signature="e#14647#14874#0" expanded="false" />
-                <element signature="e#14647#14717#1" expanded="false" />
-                <element signature="e#14911#20880#0" expanded="false" />
-                <element signature="e#14944#15030#0" expanded="false" />
-                <element signature="e#15093#16826#0" expanded="false" />
-                <element signature="e#15093#16175#1" expanded="false" />
-                <element signature="e#16869#18691#0" expanded="false" />
-                <element signature="e#16869#18080#1" expanded="false" />
-                <element signature="e#18473#18604#0" expanded="false" />
-                <element signature="e#18490#18603#0" expanded="false" />
-                <element signature="e#18731#19729#0" expanded="false" />
-                <element signature="e#18731#19491#1" expanded="false" />
-                <element signature="e#19761#20368#0" expanded="false" />
-                <element signature="e#19761#20056#1" expanded="false" />
-                <element signature="e#20098#20241#0" expanded="false" />
-                <element signature="e#20398#20620#0" expanded="false" />
-                <element signature="e#20398#20475#1" expanded="false" />
-                <element signature="e#20650#20878#0" expanded="false" />
-                <element signature="e#20650#20721#1" expanded="false" />
+                <element signature="e#2958#3346#0" expanded="false" />
+                <element signature="e#3607#3705#0" expanded="false" />
+                <element signature="e#3754#3928#0" expanded="false" />
+                <element signature="e#4361#4631#0" expanded="false" />
+                <element signature="e#4684#4797#0" expanded="false" />
+                <element signature="e#4859#5296#0" expanded="false" />
+                <element signature="e#5332#6057#0" expanded="false" />
+                <element signature="e#6093#6516#0" expanded="false" />
+                <element signature="e#6553#7161#0" expanded="false" />
+                <element signature="e#7203#8722#0" expanded="false" />
+                <element signature="e#8757#9415#0" expanded="false" />
+                <element signature="e#9450#10769#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -162,27 +45,13 @@
       <file leaf-file-name="test_dem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+            <state relative-caret-position="340">
+              <caret line="34" column="25" lean-forward="false" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#734#743#0" expanded="true" />
-                <element signature="e#952#1108#0" expanded="false" />
-                <element signature="e#1144#1266#0" expanded="false" />
-                <element signature="e#1300#1909#0" expanded="false" />
-                <element signature="e#3272#3514#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="e#1251#1298#0" expanded="true" />
+                <element signature="e#2026#2653#0" expanded="false" />
+                <element signature="e#2690#3318#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -380,56 +249,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/anaconda2/envs/sandbox/bin/python3.5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/obsio/factory.py&#10;/data01/PycharmProjects/ssebop/tests/data/local/token_file.txt&#10;/data01/PycharmProjects/ssebop/SSEBop_Landsat_OverpassETa.py&#10;/data01/PycharmProjects/ssebop/obsio/providers/acis.py&#10;true&#10;/data01/PycharmProjects/ssebop/obsio/util/misc.py" />
     <property name="settings.editor.splitter.proportion" value="0.25440314" />
   </component>
@@ -461,8 +289,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_metio.py">
-    <configuration default="false" name="Unittests for tests.test_dem.DemTestCase.test_downlaod" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in test_dem.py">
+    <configuration default="false" name="Unittests for tests.test_dem.MapzenDemTestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -473,29 +301,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_dem.DemTestCase.test_downlaod&quot;" />
+      <option name="_new_target" value="&quot;tests.test_dem.MapzenDemTestCase&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="merge_problem" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dem" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dem/merge_problem.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_dem.DemTestCase.test_slope" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests for tests.test_dem.MapzenDemTestCase.test_slope" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -506,11 +316,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_dem.DemTestCase.test_slope&quot;" />
+      <option name="_new_target" value="&quot;tests.test_dem.MapzenDemTestCase.test_slope&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for tests.test_dem.DemTestCase.test_aspect" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests for tests.test_dem.MapzenDemTestCase.test_aspect" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -521,7 +331,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_dem.DemTestCase.test_aspect&quot;" />
+      <option name="_new_target" value="&quot;tests.test_dem.MapzenDemTestCase.test_aspect&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -537,6 +347,21 @@
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_metio.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in test_dem.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_dem.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
@@ -616,19 +441,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_downlaod" />
-      <item index="1" class="java.lang.String" itemvalue="Python.merge_problem" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_slope" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_aspect" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase.test_slope" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase.test_aspect" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_aspect" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_slope" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.DemTestCase.test_downlaod" />
-        <item index="4" class="java.lang.String" itemvalue="Python.merge_problem" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase.test_aspect" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase.test_slope" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase" />
       </list>
     </recent_temporary>
   </component>
@@ -645,13 +470,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00068" summary="rebuilding gridmet url query to get whole datasets; subsetting with our own functions">
-      <created>1497480957996</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1497480957996</updated>
     </task>
     <task id="LOCAL-00069" summary="going to implement xarray">
       <created>1497481751783</created>
@@ -989,13 +807,17 @@
       <option name="project" value="LOCAL" />
       <updated>1498594204855</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="aspect and slope working">
+      <created>1498603540970</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1498603540970</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_aspect - 2017.06.27 at 15h 02m 25s.xml">
-      <configuration name="Unittests for tests.test_dem.DemTestCase.test_aspect" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_aspect - 2017.06.27 at 15h 03m 32s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_aspect" configurationId="tests" />
     </history-entry>
@@ -1017,6 +839,9 @@
     <history-entry file="Unittests_for_tests_test_dem_DemTestCase_test_slope - 2017.06.27 at 16h 10m 00s.xml">
       <configuration name="Unittests for tests.test_dem.DemTestCase.test_slope" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_test_dem_py - 2017.06.28 at 08h 30m 20s.xml">
+      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    </history-entry>
     <history-entry file="Unittests_in_test_metio_py - 2017.06.27 at 16h 37m 33s.xml">
       <configuration name="Unittests in test_metio.py" configurationId="tests" />
     </history-entry>
@@ -1037,16 +862,16 @@
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19911504" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.117256634" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44837758" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3060472" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46755162" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.70501477" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1086,7 +911,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="download, check for last iteration of for loop to pass open list of datasets to merge" />
     <MESSAGE value="saving rasters as temp files, then reading in open DatasetReaders" />
     <MESSAGE value="add rasterbounds class" />
     <MESSAGE value="added parent bbox class" />
@@ -1111,7 +935,8 @@
     <MESSAGE value="added aspect to dem class" />
     <MESSAGE value="aspect asaving dem for some reason" />
     <MESSAGE value="aspect and slope working" />
-    <option name="LAST_COMMIT_MESSAGE" value="aspect and slope working" />
+    <MESSAGE value="start on conformal thredds dem" />
+    <option name="LAST_COMMIT_MESSAGE" value="start on conformal thredds dem" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1311,22 +1136,18 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#1466#1470#0" expanded="false" />
-            <element signature="e#1556#1942#0" expanded="false" />
-            <element signature="e#1971#2624#0" expanded="false" />
-            <element signature="e#1971#2058#1" expanded="false" />
-            <element signature="e#2775#3163#0" expanded="false" />
-            <element signature="e#3245#4110#0" expanded="false" />
-            <element signature="e#3424#3522#0" expanded="false" />
-            <element signature="e#3571#3745#0" expanded="false" />
-            <element signature="e#4178#4448#0" expanded="false" />
-            <element signature="e#4501#4614#0" expanded="false" />
-            <element signature="e#4676#5113#0" expanded="false" />
-            <element signature="e#5149#5874#0" expanded="false" />
-            <element signature="e#5910#6333#0" expanded="false" />
-            <element signature="e#6370#6978#0" expanded="false" />
-            <element signature="e#7020#8539#0" expanded="false" />
-            <element signature="e#8574#9232#0" expanded="false" />
-            <element signature="e#9267#10586#0" expanded="false" />
+            <element signature="e#2958#3346#0" expanded="false" />
+            <element signature="e#3607#3705#0" expanded="false" />
+            <element signature="e#3754#3928#0" expanded="false" />
+            <element signature="e#4361#4631#0" expanded="false" />
+            <element signature="e#4684#4797#0" expanded="false" />
+            <element signature="e#4859#5296#0" expanded="false" />
+            <element signature="e#5332#6057#0" expanded="false" />
+            <element signature="e#6093#6516#0" expanded="false" />
+            <element signature="e#6553#7161#0" expanded="false" />
+            <element signature="e#7203#8722#0" expanded="false" />
+            <element signature="e#8757#9415#0" expanded="false" />
+            <element signature="e#9450#10769#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1429,71 +1250,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="410" column="29" lean-forward="false" selection-start-line="410" selection-start-column="29" selection-end-line="410" selection-end-column="29" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1205#1209#0" expanded="false" />
-            <element signature="e#1253#1257#0" expanded="false" />
-            <element signature="e#1292#6985#0" expanded="false" />
-            <element signature="e#1292#1541#1" expanded="false" />
-            <element signature="e#1580#3914#0" expanded="false" />
-            <element signature="e#1580#1751#1" expanded="false" />
-            <element signature="e#1991#2028#0" expanded="false" />
-            <element signature="e#2309#2451#0" expanded="false" />
-            <element signature="e#4111#4490#0" expanded="false" />
-            <element signature="e#4111#4324#1" expanded="false" />
-            <element signature="e#4557#4725#0" expanded="false" />
-            <element signature="e#4619#4725#0" expanded="false" />
-            <element signature="e#4816#6675#0" expanded="false" />
-            <element signature="e#4986#5042#0" expanded="false" />
-            <element signature="e#6735#6985#0" expanded="false" />
-            <element signature="e#7022#11032#0" expanded="false" />
-            <element signature="e#7055#7545#0" expanded="false" />
-            <element signature="e#7585#8020#0" expanded="false" />
-            <element signature="e#8084#8588#0" expanded="false" />
-            <element signature="e#8631#9045#0" expanded="false" />
-            <element signature="e#8631#8744#1" expanded="false" />
-            <element signature="e#9092#10092#0" expanded="false" />
-            <element signature="e#9092#9656#1" expanded="false" />
-            <element signature="e#10150#10522#0" expanded="false" />
-            <element signature="e#10150#10386#1" expanded="false" />
-            <element signature="e#10552#10774#0" expanded="false" />
-            <element signature="e#10552#10629#1" expanded="false" />
-            <element signature="e#10804#11032#0" expanded="false" />
-            <element signature="e#10804#10875#1" expanded="false" />
-            <element signature="e#11069#14874#0" expanded="false" />
-            <element signature="e#11102#11503#0" expanded="false" />
-            <element signature="e#11369#11458#0" expanded="false" />
-            <element signature="e#11543#11977#0" expanded="false" />
-            <element signature="e#12055#12730#0" expanded="false" />
-            <element signature="e#12773#13219#0" expanded="false" />
-            <element signature="e#12773#12886#1" expanded="false" />
-            <element signature="e#13251#13935#0" expanded="false" />
-            <element signature="e#13251#13624#1" expanded="false" />
-            <element signature="e#13665#13808#0" expanded="false" />
-            <element signature="e#13993#14365#0" expanded="false" />
-            <element signature="e#13993#14229#1" expanded="false" />
-            <element signature="e#14395#14617#0" expanded="false" />
-            <element signature="e#14395#14472#1" expanded="false" />
-            <element signature="e#14647#14874#0" expanded="false" />
-            <element signature="e#14647#14717#1" expanded="false" />
-            <element signature="e#14911#20880#0" expanded="false" />
-            <element signature="e#14944#15030#0" expanded="false" />
-            <element signature="e#15093#16826#0" expanded="false" />
-            <element signature="e#15093#16175#1" expanded="false" />
-            <element signature="e#16869#18691#0" expanded="false" />
-            <element signature="e#16869#18080#1" expanded="false" />
-            <element signature="e#18473#18604#0" expanded="false" />
-            <element signature="e#18490#18603#0" expanded="false" />
-            <element signature="e#18731#19729#0" expanded="false" />
-            <element signature="e#18731#19491#1" expanded="false" />
-            <element signature="e#19761#20368#0" expanded="false" />
-            <element signature="e#19761#20056#1" expanded="false" />
-            <element signature="e#20098#20241#0" expanded="false" />
-            <element signature="e#20398#20620#0" expanded="false" />
-            <element signature="e#20398#20475#1" expanded="false" />
-            <element signature="e#20650#20878#0" expanded="false" />
-            <element signature="e#20650#20721#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1501,9 +1257,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#1251#1298#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1514,51 +1267,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#743#0" expanded="true" />
-            <element signature="e#952#1108#0" expanded="false" />
-            <element signature="e#1144#1266#0" expanded="false" />
-            <element signature="e#1300#1909#0" expanded="false" />
-            <element signature="e#3272#3514#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-56">
+        <state relative-caret-position="255">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#733#748#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
-          <caret line="201" column="0" lean-forward="true" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding>
-            <element signature="e#1106#1463#0" expanded="false" />
-            <element signature="e#1493#2314#0" expanded="false" />
-            <element signature="e#2345#7607#0" expanded="false" />
-            <element signature="e#2345#4356#1" expanded="false" />
-          </folding>
+          <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#1256#1268#0" expanded="true" />
-          </folding>
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1566,36 +1292,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="29">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="34" column="25" lean-forward="false" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
           <folding>
-            <element signature="e#922#1053#1" expanded="false" />
-            <element signature="e#1341#1421#1" expanded="false" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#743#0" expanded="true" />
+            <element signature="e#2026#2653#0" expanded="false" />
+            <element signature="e#2690#3318#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dem/dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="192" column="44" lean-forward="true" selection-start-line="192" selection-start-column="44" selection-end-line="192" selection-end-column="44" />
+        <state relative-caret-position="442">
+          <caret line="59" column="20" lean-forward="false" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#1466#1470#0" expanded="false" />
-            <element signature="e#1556#1942#0" expanded="false" />
-            <element signature="e#1971#2624#0" expanded="false" />
-            <element signature="e#1971#2058#1" expanded="false" />
-            <element signature="e#2775#3163#0" expanded="false" />
-            <element signature="e#3245#4110#0" expanded="false" />
-            <element signature="e#3424#3522#0" expanded="false" />
-            <element signature="e#3571#3745#0" expanded="false" />
-            <element signature="e#4178#4448#0" expanded="false" />
-            <element signature="e#4501#4614#0" expanded="false" />
-            <element signature="e#4676#5113#0" expanded="false" />
-            <element signature="e#5149#5874#0" expanded="false" />
-            <element signature="e#5910#6333#0" expanded="false" />
-            <element signature="e#6370#6978#0" expanded="false" />
-            <element signature="e#7020#8539#0" expanded="false" />
-            <element signature="e#8574#9232#0" expanded="false" />
-            <element signature="e#9267#10586#0" expanded="false" />
+            <element signature="e#2958#3346#0" expanded="false" />
+            <element signature="e#3607#3705#0" expanded="false" />
+            <element signature="e#3754#3928#0" expanded="false" />
+            <element signature="e#4361#4631#0" expanded="false" />
+            <element signature="e#4684#4797#0" expanded="false" />
+            <element signature="e#4859#5296#0" expanded="false" />
+            <element signature="e#5332#6057#0" expanded="false" />
+            <element signature="e#6093#6516#0" expanded="false" />
+            <element signature="e#6553#7161#0" expanded="false" />
+            <element signature="e#7203#8722#0" expanded="false" />
+            <element signature="e#8757#9415#0" expanded="false" />
+            <element signature="e#9450#10769#0" expanded="false" />
           </folding>
         </state>
       </provider>
