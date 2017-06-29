@@ -54,8 +54,13 @@ class Dem(object):
         return None
 
 
-class SubsetDem(Dem):
-    """ Digital Elevation Model and Dertivatives
+class ThreddsDem(Dem):
+    """ Digital Elevation Model and Dertivatives from Gridmet
+    
+    4 km resolution.
+    
+    This is usefull because it matches the resolution and grid geometry
+    of the Gridmet meteorological datasets.
     
     :param BBox, bounding box
     """
@@ -76,6 +81,8 @@ class SubsetDem(Dem):
 
         subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
                                lon=slice(self.bbox.west, self.bbox.east))]
+
+        xray.close()
 
         return subset
 
