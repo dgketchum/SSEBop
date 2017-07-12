@@ -24,6 +24,7 @@ from sat_image.image import Landsat5
 
 class ThreddsDemTestCase(unittest.TestCase):
     def setUp(self):
+        pass
 
 
 class MapzenDemTestCase(unittest.TestCase):

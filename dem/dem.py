@@ -88,7 +88,7 @@ class ThreddsDem(Dem):
 
 
 class MapzenDem(Dem):
-    def __init__(self, zoom=None, target_profile=None, bounds=None, clip_object=None,
+    def __init__(self, target_profile, bounds, zoom=None, clip_object=None,
                  api_key=None):
         Dem.__init__(self)
 
@@ -300,9 +300,5 @@ class MapzenDem(Dem):
             return new_array
 
             # add no-data values TODO
-
-
-if __name__ == '__main__':
-    home = os.path.expanduser('~')
 
 # ========================= EOF ====================================================================
