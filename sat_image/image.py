@@ -89,10 +89,12 @@ class LandsatImage(object):
             if i == 0:
                 # get rasterio metadata/geospatial reference for one tif
                 meta = src.meta.copy()
-                setattr(self, 'rasterio_geometry', meta)
+                self.rasterio_geometry = meta
+                self.profile = profile
                 bounds = RasterBounds(affine_transform=transform,
                                       profile=profile,
                                       latlon=False)
+                self.bounds = bounds
                 self.north, self.west, self.south, self.east = bounds.get_nwse_tuple()
                 self.coords = bounds.as_tuple('nsew')
 

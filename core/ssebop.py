@@ -20,6 +20,8 @@ import numpy as np
 
 from app.paths import paths, PathsNotSetExecption
 from sat_image.image import Landsat5, Landsat7, Landsat8
+from dem.dem import MapzenDem
+from bounds.bounds import RasterBounds
 
 
 class SSEBopModel(object):
@@ -31,6 +33,9 @@ class SSEBopModel(object):
 
     def __init__(self, cfg):
 
+        self.image = None
+        self.dem = None
+        self.bounds = None
         if not paths.is_set():
             raise PathsNotSetExecption
 
@@ -54,16 +59,6 @@ class SSEBopModel(object):
         self._k_factor = runspec.k_factor
         self._satellite = runspec.satellite
 
-        print('Instantiating image...')
-        if self._satellite == 'LT5':
-            self.img = Landsat5(paths.image)
-        elif self._satellite == 'LE7':
-            self.img = Landsat7(paths.image)
-        elif self._satellite == 'LC8':
-            self.img = Landsat8(paths.image)
-        else:
-            raise ValueError('Must choose a valid satellite in config.')
-
         print('----------- CONFIGURATION --------------')
         for attr in ('date_range', 'satellite', 'k_factor'):
             print('{:<20s}{}'.format(attr, getattr(self, '_{}'.format(attr))))
@@ -74,15 +69,28 @@ class SSEBopModel(object):
         """ Run the SSEBop algorithm.
         :return: 
         """
+        print('Instantiating image...')
+        if self._satellite == 'LT5':
+            self.image = Landsat5(paths.image)
+        elif self._satellite == 'LE7':
+            self.image = Landsat7(paths.image)
+        elif self._satellite == 'LC8':
+            self.image = Landsat8(paths.image)
+        else:
+            raise ValueError('Must choose a valid satellite in config.')
 
-        albedo = self.img.albedo()
+        self.dem = MapzenDem(bounds=self.image.bounds,
+                             target_profile=self.image.rasterio_geometry, zoom=8)
+
+        albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
+        net_rad = self._net_radiation(albedo)
 
     def _emissivity_ndvi(self):
 
-        ndvi = self.img.ndvi()
+        ndvi = self.image.ndvi()
         bound_ndvi = np.where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, np.nan)
-
+        return bound_ndvi
 
     @staticmethod
     def _info(msg):
