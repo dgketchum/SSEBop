@@ -53,6 +53,8 @@ class LandsatImage(object):
         if os.path.isdir(obj):
             self.isdir = True
 
+        self.date_acquired = None
+
         self.file_list = os.listdir(obj)
         self.tif_list = [x for x in os.listdir(obj) if x.endswith('.TIF')]
         self.tif_list.sort()
