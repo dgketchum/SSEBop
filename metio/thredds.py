@@ -33,7 +33,7 @@ class Thredds(object):
     
     """
 
-    def __init__(self, start=None, end=None, date=None, bbox=None):
+    def __init__(self, start=None, end=None, date=None, bounds=None):
 
         self.service = 'thredds.northwestknowledge.net:8080'
         self.scheme = 'http'
@@ -41,7 +41,7 @@ class Thredds(object):
         self.end = end
         self.date = date
 
-        self.bbox = bbox
+        self.bbox = bounds
 
 
 class TopoWX(Thredds):
@@ -64,7 +64,7 @@ class TopoWX(Thredds):
     """
 
     def __init__(self):
-        Thredds.__init__(self, start=None, end=None, date=None, bbox=None)
+        Thredds.__init__(self, start=None, end=None, date=None, bounds=None)
 
         if self.start:
             pass
@@ -112,7 +112,7 @@ class GridMet(Thredds):
     """
 
     def __init__(self, variables, **kwargs):
-        Thredds.__init__(self, start=None, end=None, bbox=None)
+        Thredds.__init__(self, start=None, end=None, bounds=None)
         self.requested_variables = variables
 
         self.available = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
@@ -155,7 +155,7 @@ class GridMet(Thredds):
         if not self.bbox:
             self.bbox = GeoBounds()
 
-    def get_data(self):
+    def get_data_subset(self):
 
         for var in self.variables:
 

@@ -19,9 +19,9 @@ from __future__ import print_function
 import numpy as np
 
 from app.paths import paths, PathsNotSetExecption
-from sat_image.image import Landsat5, Landsat7, Landsat8
 from dem.dem import MapzenDem
-from bounds.bounds import RasterBounds
+from sat_image.image import Landsat5, Landsat7, Landsat8
+from metio.thredds import GridMet
 
 
 class SSEBopModel(object):
@@ -36,6 +36,8 @@ class SSEBopModel(object):
         self.image = None
         self.dem = None
         self.bounds = None
+        self.met_variables = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
+                              'th', 'tmmn', 'tmmx', 'pet', 'vs', ]
         if not paths.is_set():
             raise PathsNotSetExecption
 
@@ -79,15 +81,21 @@ class SSEBopModel(object):
         else:
             raise ValueError('Must choose a valid satellite in config.')
 
-        self.dem = MapzenDem(bounds=self.image.bounds,
-                             target_profile=self.image.rasterio_geometry, zoom=8)
+        clip_shape = self.image.get_tile_geometry()
+
+        dem = MapzenDem(bounds=self.image.bounds, clip_object=clip_shape,
+                        target_profile=self.image.rasterio_geometry, zoom=8)
+        elevation = dem.terrain(attribute='elevation')
+
+        gridmet = GridMet(self.met_variables, date=self.image.date_acquired,
+                          bounds=self.image.bounds)
+        met_data = gridmet.get_data_subset(conform=True)
 
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
         net_rad = self._net_radiation(albedo)
 
     def _emissivity_ndvi(self):
-
         ndvi = self.image.ndvi()
         bound_ndvi = np.where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, np.nan)
         return bound_ndvi

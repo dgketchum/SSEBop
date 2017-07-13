@@ -45,7 +45,7 @@ class TestGridMet(unittest.TestCase):
     def test_get_data_date(self):
         gridmet = GridMet(self.vars, date=self.date,
                           bbox=self.bbox)
-        gridmet.get_data()
+        gridmet.get_data_subset()
         self.assertIsInstance(gridmet.pet, Dataset)
         self.assertEqual(gridmet.pet.dims['lon'], 322)
         self.assertEqual(gridmet.pet.dims['time'], 1)
@@ -53,7 +53,7 @@ class TestGridMet(unittest.TestCase):
     def test_get_data_date_range(self):
         gridmet = GridMet(self.vars, start=self.start, end=self.end,
                           bbox=self.bbox)
-        gridmet.get_data()
+        gridmet.get_data_subset()
         self.assertIsInstance(gridmet.pet, Dataset)
         self.assertEqual(gridmet.pet.dims['lon'], 322)
         self.assertEqual(gridmet.pet.dims['time'], 214)
