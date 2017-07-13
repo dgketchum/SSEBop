@@ -89,7 +89,7 @@ class SSEBopModel(object):
 
         gridmet = GridMet(self.met_variables, date=self.image.date_acquired,
                           bounds=self.image.bounds)
-        met_data = gridmet.get_data_subset(conform=True)
+        met_data = gridmet.get_data_subset(grid_conform=True)
 
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()

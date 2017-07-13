@@ -14,12 +14,13 @@
 # limitations under the License.
 # ===============================================================================
 import unittest
+import os
 from datetime import datetime
-
 from xarray import Dataset
 
 from bounds.bounds import GeoBounds
 from metio.thredds import GridMet
+from sat_image.image import Landsat5
 
 
 class TestGridMet(unittest.TestCase):
@@ -36,6 +37,8 @@ class TestGridMet(unittest.TestCase):
         self.start = datetime(2011, 4, 1)
         self.date = datetime(2011, 4, 1)
         self.end = datetime(2011, 10, 31)
+
+        self.dir_name_LT5 = 'tests/data/image_test/lt5_image'
 
     def test_instantiate(self):
         gridmet = GridMet(self.vars, start=self.start, end=self.end,
@@ -57,6 +60,15 @@ class TestGridMet(unittest.TestCase):
         self.assertIsInstance(gridmet.pet, Dataset)
         self.assertEqual(gridmet.pet.dims['lon'], 322)
         self.assertEqual(gridmet.pet.dims['time'], 214)
+
+    def test_conforming_array(self):
+        home = os.path.expanduser('~')
+        tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
+        l5 = Landsat5(tif_dir)
+        profile = l5.profile
+        gridmet = GridMet(self.vars, date=self.date, bbox=self.bbox, target_profile=profile)
+        gridmet.get_data_subset(grid_conform=True)
+        self.assertEqual(gridmet.shape, (1, 1, 1))
 
 if __name__ == '__main__':
     unittest.main()
