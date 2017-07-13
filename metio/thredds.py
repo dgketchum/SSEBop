@@ -20,10 +20,19 @@ from future.standard_library import hooks
 with hooks():
     from urllib.parse import urlunparse
 
+import os
+import copy
+from tempfile import mkdtemp
+from numpy import empty, float32
+from rasterio import open as rasopen
+from rasterio.crs import CRS
+from rasterio.transform import Affine
+from rasterio.mask import mask
+from rasterio.warp import reproject, Resampling
+from rasterio.warp import calculate_default_transform as cdt
 from xlrd.xldate import xldate_from_date_tuple
 from xarray import open_dataset
 from pandas import date_range
-# from datetime import timedelta
 
 from bounds.bounds import GeoBounds
 
@@ -33,14 +42,14 @@ class Thredds(object):
     
     """
 
-    def __init__(self, start=None, end=None, date=None, bounds=None):
-
+    def __init__(self, start=None, end=None, date=None, bounds=None, target_profile=None):
         self.service = 'thredds.northwestknowledge.net:8080'
         self.scheme = 'http'
         self.start = start
         self.end = end
         self.date = date
 
+        self.target_profile = target_profile
         self.bbox = bounds
 
 
@@ -112,9 +121,14 @@ class GridMet(Thredds):
     """
 
     def __init__(self, variables, **kwargs):
-        Thredds.__init__(self, start=None, end=None, bounds=None)
-        self.requested_variables = variables
+        Thredds.__init__(self)
 
+        for key, val in kwargs.items():
+            setattr(self, key, val)
+
+        self.temp_dir = mkdtemp()
+
+        self.requested_variables = variables
         self.available = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
                           'th', 'tmmn', 'tmmx', 'pet', 'vs', 'erc', 'bi',
                           'fm100', 'pdsi']
@@ -136,9 +150,6 @@ class GridMet(Thredds):
                        'tmmx': 'air_temperature',
                        'vs': 'wind_speed', }
 
-        for key, val in kwargs.items():
-            setattr(self, key, val)
-
         if self.date:
             self.start = self.date
             self.end = self.date
@@ -155,7 +166,7 @@ class GridMet(Thredds):
         if not self.bbox:
             self.bbox = GeoBounds()
 
-    def get_data_subset(self):
+    def get_data_subset(self, grid_conform=False):
 
         for var in self.variables:
 
@@ -171,10 +182,106 @@ class GridMet(Thredds):
             subset.rename({'day': 'time'}, inplace=True)
             date_ind = self._date_index()
             subset['time'] = date_ind
-
+            setattr(self, 'width', subset.dims['lon'])
+            setattr(self, 'height', subset.dims['lat'])
             setattr(self, var, subset)
+            if grid_conform:
+                array = self.conform()
+                setattr(self, var, array)
 
         return None
+
+    def conform(self):
+        self.reproject()
+        self.mask()
+        self.resample()
+        result = self.resample
+        return result
+
+    def reproject(self):
+
+        reproj_path = os.path.join(self.temp_dir, 'tiled_reproj.tif')
+        setattr(self, 'reprojection', reproj_path)
+
+        profile = copy.deepcopy(self.target_profile)
+        profile['dtype'] = float32
+        bb = self.bbox.as_tuple()
+        bounds = (bb[0], bb[1],
+                  bb[2], bb[3])
+        dst_affine, dst_width, dst_height = cdt(CRS({'init': 'epsg:4326'}),
+                                                profile['crs'],
+                                                self.width,
+                                                self.height,
+                                                *bounds)
+
+        profile.update({'crs': profile['crs'],
+                        'transform': dst_affine,
+                        'width': dst_width,
+                        'height': dst_height})
+
+        with rasopen(reproj_path, 'w', **profile) as dst:
+            dst_array = empty((1, dst_height, dst_width), dtype=float32)
+
+            reproject(self.merged_array, dst_array, src_transform=self.merged_transform,
+                      src_crs=self.merged_profile['crs'], dst_crs=self.target_profile['crs'],
+                      dst_transform=dst_affine, resampling=Resampling.cubic,
+                      num_threads=2)
+
+            dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
+
+        delattr(self, 'merged_array')
+
+    def mask(self):
+
+        temp_path = os.path.join(self.temp_dir, 'masked_dem.tif')
+
+        with rasopen(self.reprojection) as src:
+            out_arr, out_trans = mask(src, self.clip_feature, crop=True,
+                                      all_touched=True)
+            out_meta = src.meta.copy()
+            out_meta.update({'driver': 'GTiff',
+                             'height': out_arr.shape[1],
+                             'width': out_arr.shape[2],
+                             'transform': out_trans})
+
+        with rasopen(temp_path, 'w', **out_meta) as dst:
+            dst.write(out_arr)
+
+        setattr(self, 'mask', temp_path)
+        delattr(self, 'reprojection')
+
+    def resample(self):
+
+        temp_path = os.path.join(self.temp_dir, 'resample.tif')
+
+        with rasopen(self.mask, 'r') as src:
+            array = src.read(1)
+            profile = src.profile
+            res = src.res
+            target_res = self.target_profile['transform'].a
+            res_coeff = res[0] / target_res
+
+            new_array = empty(shape=(1, round(array.shape[0] * res_coeff - 2),
+                                     round(array.shape[1] * res_coeff)), dtype=float32)
+            aff = src.transform
+            new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
+
+            profile['transform'] = self.target_profile['transform']
+            profile['width'] = self.target_profile['width']
+            profile['height'] = self.target_profile['height']
+            profile['dtype'] = new_array.dtype
+
+            delattr(self, 'mask')
+
+            with rasopen(temp_path, 'w', **profile) as dst:
+                reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
+                          dst_crs=src.crs, resampling=Resampling.bilinear)
+
+                dst.write(new_array)
+
+            return new_array
+
+            # add no-data values TODO
 
     def _build_url(self, var):
 
@@ -196,6 +303,5 @@ class GridMet(Thredds):
         date_ind = date_range(self.start, self.end, freq='d')
 
         return date_ind
-
 
 # ========================= EOF ====================================================================
