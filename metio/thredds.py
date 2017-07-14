@@ -184,23 +184,31 @@ class GridMet(Thredds):
             subset['time'] = date_ind
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
-            setattr(self, var, subset)
-            if grid_conform:
-                array = self.conform()
-                setattr(self, var, array)
-
+            if not grid_conform:
+                setattr(self, var, subset)
+            else:
+                array = subset[self.kwords[var]].values
+                affine = self.get_source_affine(subset, array)
+                conformed_array = self.conform(array)
+                setattr(self, var, conformed_array)
         return None
 
-    def conform(self):
-        self.reproject()
+    def get_source_affine(self, subset):
+        lat_min, lat_max = min(subset.lat.values), max(subset.lat.values)
+        pix_height = (lat_max - lat_min) / self.height
+
+    def conform(self, subset):
+        self.reproject(subset)
         self.mask()
         self.resample()
         result = self.resample
         return result
 
-    def reproject(self):
+    def reproject(self, subset):
 
-        reproj_path = os.path.join(self.temp_dir, 'tiled_reproj.tif')
+        home = os.path.expanduser('~')
+        reproj_path = os.path.join(home, 'images', 'sandbox', 'tiled_reproj.tif')
+        # reproj_path = os.path.join(self.temp_dir, 'tiled_reproj.tif')
         setattr(self, 'reprojection', reproj_path)
 
         profile = copy.deepcopy(self.target_profile)
@@ -210,8 +218,8 @@ class GridMet(Thredds):
                   bb[2], bb[3])
         dst_affine, dst_width, dst_height = cdt(CRS({'init': 'epsg:4326'}),
                                                 profile['crs'],
-                                                self.width,
-                                                self.height,
+                                                subset.shape[1],
+                                                subset.shape[2],
                                                 *bounds)
 
         profile.update({'crs': profile['crs'],
@@ -222,8 +230,8 @@ class GridMet(Thredds):
         with rasopen(reproj_path, 'w', **profile) as dst:
             dst_array = empty((1, dst_height, dst_width), dtype=float32)
 
-            reproject(self.merged_array, dst_array, src_transform=self.merged_transform,
-                      src_crs=self.merged_profile['crs'], dst_crs=self.target_profile['crs'],
+            reproject(subset, dst_array, src_transform=profile['transform'],
+                      src_crs=CRS({'init': 'epsg:4326'}), dst_crs=self.target_profile['crs'],
                       dst_transform=dst_affine, resampling=Resampling.cubic,
                       num_threads=2)
 
