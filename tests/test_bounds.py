@@ -17,6 +17,7 @@
 import unittest
 
 from bounds.bounds import GeoBounds, RasterBounds
+from sat_image.image import Landsat5
 
 
 class BoundsTestCase(unittest.TestCase):
@@ -24,6 +25,7 @@ class BoundsTestCase(unittest.TestCase):
         self.bbox = GeoBounds(west_lon=-116.5, east_lon=-111.0,
                               south_lat=44.3, north_lat=47.)
         self.img = 'tests/data/image_test/lt5_image/LT05_040028_B1.TIF'
+        self.dir = 'tests/data/image_test/lt5_image/'
 
     def test_geobounds(self):
         bb = self.bbox
@@ -34,6 +36,15 @@ class BoundsTestCase(unittest.TestCase):
 
     def test_rasterbounds(self):
         bb = RasterBounds(self.img)
+        bb_exp = [45.691, -112.427, 45.883, -112.713]
+        bb_found = [bb.south, bb.east, bb.north, bb.west]
+        for val, exp in zip(bb_exp, bb_found):
+            self.assertAlmostEqual(val, exp, delta=0.01)
+
+    def test_image_bounds(self):
+        l5 = Landsat5(self.dir)
+        bb = RasterBounds(affine_transform=l5.transform,
+                          profile=l5.profile)
         bb_exp = [45.691, -112.427, 45.883, -112.713]
         bb_found = [bb.south, bb.east, bb.north, bb.west]
         for val, exp in zip(bb_exp, bb_found):

@@ -51,7 +51,7 @@ class MapzenDemTestCase(unittest.TestCase):
         dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile, clip_object=polygon,
                         api_key=self.api_key)
 
-        arr = dem.terrain(out_file='/data01/images/sandbox/merged_dem.tif')
+        arr = dem.terrain(out_file='/data01/images/sandbox/merged_dem_2.tif')
 
         self.assertEqual(arr.shape, (1, 7429, 8163))
 

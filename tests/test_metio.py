@@ -18,7 +18,7 @@ import os
 from datetime import datetime
 from xarray import Dataset
 
-from bounds.bounds import GeoBounds
+from bounds.bounds import GeoBounds, RasterBounds
 from metio.thredds import GridMet
 from sat_image.image import Landsat5
 
@@ -65,8 +65,10 @@ class TestGridMet(unittest.TestCase):
         home = os.path.expanduser('~')
         tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
         l5 = Landsat5(tif_dir)
-        profile = l5.profile
-        gridmet = GridMet(self.vars, date=self.date, bbox=self.bbox, target_profile=profile)
+        polygon = l5.get_tile_geometry()
+        bounds = RasterBounds(affine_transform=l5.transform, profile=l5.profile)
+        gridmet = GridMet(self.vars, date=self.date, bbox=bounds,
+                          target_profile=l5.profile, clip_feature=polygon)
         gridmet.get_data_subset(grid_conform=True)
         self.assertEqual(gridmet.shape, (1, 1, 1))
 

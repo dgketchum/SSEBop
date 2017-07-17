@@ -93,6 +93,7 @@ class LandsatImage(object):
                 meta = src.meta.copy()
                 self.rasterio_geometry = meta
                 self.profile = profile
+                self.transform = src.transform
                 bounds = RasterBounds(affine_transform=transform,
                                       profile=profile,
                                       latlon=False)
