@@ -286,9 +286,6 @@ class MapzenDem(Dem):
             profile['height'] = self.target_profile['height']
             profile['dtype'] = new_array.dtype
 
-            # with rasopen(temp_path, 'w', **profile) as dst:
-            #     dst.write(new_array)
-
             delattr(self, 'mask')
 
             with rasopen(temp_path, 'w', **profile) as dst:

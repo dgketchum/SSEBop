@@ -27,7 +27,6 @@ from numpy import empty, float32
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 from rasterio.transform import Affine
-from rasterio.mask import mask
 from rasterio.warp import reproject, Resampling
 from rasterio.warp import calculate_default_transform as cdt
 from xlrd.xldate import xldate_from_date_tuple
@@ -188,28 +187,23 @@ class GridMet(Thredds):
                 setattr(self, var, subset)
             else:
                 array = subset[self.kwords[var]].values
-                affine = self.get_source_affine(subset, array)
-                conformed_array = self.conform(array)
+                conformed_array = self.conform(array, var)
                 setattr(self, var, conformed_array)
+
         return None
 
-    def get_source_affine(self, subset):
-        lat_min, lat_max = min(subset.lat.values), max(subset.lat.values)
-        pix_height = (lat_max - lat_min) / self.height
-
-    def conform(self, subset):
-        self.reproject(subset)
-        self.mask()
-        self.resample()
-        result = self.resample
+    def conform(self, subset, var):
+        self.project(subset, var)
+        result = self.resample()
         return result
 
-    def reproject(self, subset):
+    def project(self, subset, var):
 
-        home = os.path.expanduser('~')
-        reproj_path = os.path.join(home, 'images', 'sandbox', 'tiled_reproj.tif')
-        # reproj_path = os.path.join(self.temp_dir, 'tiled_reproj.tif')
-        setattr(self, 'reprojection', reproj_path)
+        # home = os.path.expanduser('~')
+        # temp_path = os.path.join(home, 'images', 'sandbox', 'project_met_{}.tif'.format(var))
+
+        proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
+        setattr(self, 'projection', proj_path)
 
         profile = copy.deepcopy(self.target_profile)
         profile['dtype'] = float32
@@ -227,42 +221,14 @@ class GridMet(Thredds):
                         'width': dst_width,
                         'height': dst_height})
 
-        with rasopen(reproj_path, 'w', **profile) as dst:
-            dst_array = empty((1, dst_height, dst_width), dtype=float32)
-
-            reproject(subset, dst_array, src_transform=profile['transform'],
-                      src_crs=CRS({'init': 'epsg:4326'}), dst_crs=self.target_profile['crs'],
-                      dst_transform=dst_affine, resampling=Resampling.cubic,
-                      num_threads=2)
-
-            dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
-
-        delattr(self, 'merged_array')
-
-    def mask(self):
-
-        temp_path = os.path.join(self.temp_dir, 'masked_dem.tif')
-
-        with rasopen(self.reprojection) as src:
-            out_arr, out_trans = mask(src, self.clip_feature, crop=True,
-                                      all_touched=True)
-            out_meta = src.meta.copy()
-            out_meta.update({'driver': 'GTiff',
-                             'height': out_arr.shape[1],
-                             'width': out_arr.shape[2],
-                             'transform': out_trans})
-
-        with rasopen(temp_path, 'w', **out_meta) as dst:
-            dst.write(out_arr)
-
-        setattr(self, 'mask', temp_path)
-        delattr(self, 'reprojection')
+        with rasopen(proj_path, 'w', **profile) as dst:
+            dst.write(subset)
 
     def resample(self):
 
         temp_path = os.path.join(self.temp_dir, 'resample.tif')
 
-        with rasopen(self.mask, 'r') as src:
+        with rasopen(self.projection, 'r') as src:
             array = src.read(1)
             profile = src.profile
             res = src.res
@@ -279,11 +245,10 @@ class GridMet(Thredds):
             profile['height'] = self.target_profile['height']
             profile['dtype'] = new_array.dtype
 
-            delattr(self, 'mask')
-
             with rasopen(temp_path, 'w', **profile) as dst:
-                reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
-                          dst_crs=src.crs, resampling=Resampling.bilinear)
+                reproject(array, new_array, src_transform=aff,
+                          dst_transform=new_affine, src_crs=src.crs,
+                          dst_crs=src.crs, resampling=Resampling.cubic)
 
                 dst.write(new_array)
 
