@@ -22,8 +22,9 @@ with hooks():
 
 import os
 import copy
+from datetime import datetime, timedelta
 from tempfile import mkdtemp
-from numpy import empty, float32
+from numpy import empty, float32, datetime64
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 from rasterio.transform import Affine
@@ -42,8 +43,6 @@ class Thredds(object):
     """
 
     def __init__(self, start=None, end=None, date=None, bounds=None, target_profile=None):
-        self.service = 'thredds.northwestknowledge.net:8080'
-        self.scheme = 'http'
         self.start = start
         self.end = end
         self.date = date
@@ -123,6 +122,11 @@ class Thredds(object):
         sxl, exl = xldate_from_date_tuple(s_tup, 0), xldate_from_date_tuple(e_tup, 0)
         return sxl, exl
 
+    @staticmethod
+    def _dtime_to_datetime64(dtime):
+        dtnumpy = datetime64(dtime).astype(datetime)
+        return dtnumpy
+
 
 class TopoWX(Thredds):
     # """ TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
@@ -149,12 +153,15 @@ class TopoWX(Thredds):
         for key, val in kwargs.items():
             setattr(self, key, val)
 
+        self.service = 'cida.usgs.gov'
+        self.scheme = 'https'
         self.variables = ['tmin', 'tmax']
 
-        if self.start:
-            self.year = self.start.year
-        else:
-            self.year = self.date.year
+        if self.date:
+            self.start = self.date
+            self.end = self.date
+
+        self.year = self.start.year
 
     def get_data_subset(self, grid_conform=False):
 
@@ -163,12 +170,15 @@ class TopoWX(Thredds):
             url = self._build_url(var)
             xray = open_dataset(url)
 
-            start_xl, end_xl = self._dtime_to_xldate()
+            start, end = self._dtime_to_datetime64(self.start), self._dtime_to_datetime64(self.end)
 
-            subset = xray.loc[dict(day=slice(start_xl, end_xl),
+            if self.date:
+                end = end + timedelta(days=1)
+
+            subset = xray.loc[dict(time=slice(start, end),
                                    lat=slice(self.bbox.north, self.bbox.south),
                                    lon=slice(self.bbox.west, self.bbox.east))]
-            subset.rename({'day': 'time'}, inplace=True)
+
             date_ind = self._date_index()
             subset['time'] = date_ind
             setattr(self, 'width', subset.dims['lon'])
@@ -186,7 +196,8 @@ class TopoWX(Thredds):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
         url = urlunparse([self.scheme, self.service,
-                          '/thredds/dodsC/topowx.nc'.format(var),
+                          '/thredds/dodsC/topowx?crs,lat[0:1:3249],tmax[0:1:0][0:1:0][0:1:0],time[0:1:24836],'
+                          'tmin[0:1:0][0:1:0][0:1:0]'.format(var, self.year),
                           '', '', ''])
 
         return url
@@ -238,6 +249,9 @@ class GridMet(Thredds):
 
         for key, val in kwargs.items():
             setattr(self, key, val)
+
+        self.service = 'thredds.northwestknowledge.net:8080'
+        self.scheme = 'http'
 
         self.temp_dir = mkdtemp()
 
