@@ -21,7 +21,7 @@ import numpy as np
 from app.paths import paths, PathsNotSetExecption
 from dem.dem import MapzenDem
 from sat_image.image import Landsat5, Landsat7, Landsat8
-from metio.thredds import GridMet
+from metio.thredds import TopoWX
 
 
 class SSEBopModel(object):
@@ -74,10 +74,13 @@ class SSEBopModel(object):
         print('Instantiating image...')
         if self._satellite == 'LT5':
             self.image = Landsat5(paths.image)
+
         elif self._satellite == 'LE7':
             self.image = Landsat7(paths.image)
+
         elif self._satellite == 'LC8':
             self.image = Landsat8(paths.image)
+
         else:
             raise ValueError('Must choose a valid satellite in config.')
 
@@ -87,13 +90,12 @@ class SSEBopModel(object):
                         target_profile=self.image.rasterio_geometry, zoom=8)
         elevation = dem.terrain(attribute='elevation')
 
-        gridmet = GridMet(self.met_variables, date=self.image.date_acquired,
-                          bounds=self.image.bounds)
-        met_data = gridmet.get_data_subset(grid_conform=True)
+        topowx = TopoWX(date=self.date, bbox=self.image.bounds, target_profile=self.image.profile,
+                        clip_feature=self.image.get_tile_geometry())
+        met_data = topowx.get_data_subset(grid_conform=True)
 
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
-        net_rad = self._net_radiation(albedo)
 
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()

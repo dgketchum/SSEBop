@@ -37,6 +37,7 @@ class TestGridMet(unittest.TestCase):
         self.start = datetime(2011, 4, 1)
         self.date = datetime(2011, 4, 1)
         self.end = datetime(2011, 10, 31)
+        self.image_shape = (1, 7431, 8161)
 
         self.dir_name_LT5 = 'tests/data/image_test/lt5_image'
 
@@ -70,7 +71,7 @@ class TestGridMet(unittest.TestCase):
         gridmet = GridMet(self.vars, date=self.date, bbox=bounds,
                           target_profile=l5.profile, clip_feature=polygon)
         gridmet.get_data_subset(grid_conform=True)
-        self.assertEqual(gridmet.shape, (1, 1, 1))
+        self.assertEqual(gridmet.pr.shape, self.image_shape)
 
 
 class TestTopoWX(unittest.TestCase):
@@ -78,6 +79,7 @@ class TestTopoWX(unittest.TestCase):
         self.start = datetime(2011, 4, 1)
         self.date = datetime(2011, 4, 1)
         self.end = datetime(2011, 10, 31)
+        self.image_shape = (1, 7431, 8161)
 
         self.dir_name_LT5 = 'tests/data/image_test/lt5_image'
 
@@ -90,7 +92,9 @@ class TestTopoWX(unittest.TestCase):
         topowx = TopoWX(date=self.date, bbox=bounds, target_profile=l5.profile,
                         clip_feature=polygon)
         topowx.get_data_subset(grid_conform=True)
-        self.assertEqual(topowx.shape, (1, 1, 1))
+        self.assertEqual(topowx.tmin.shape, self.image_shape)
+        self.assertEqual(topowx.tmax.shape, self.image_shape)
+
 
 if __name__ == '__main__':
     unittest.main()
