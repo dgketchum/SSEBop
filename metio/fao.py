@@ -26,40 +26,40 @@ STEFAN_BOLTZMANN_CONSTANT = 0.000000004903  #
 """Stefan Boltzmann constant [MJ K-4 m-2 day-1]"""
 
 
-def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
+def avp_from_tmin(tmin):
     """
-    Estimate net outgoing longwave radiation.
+    Estimate actual vapour pressure (*ea*) from minimum temperature.
 
-    This is the net longwave energy (net energy flux) leaving the
-    earth's surface. It is proportional to the absolute temperature of
-    the surface raised to the fourth power according to the Stefan-Boltzmann
-    law. However, water vapour, clouds, carbon dioxide and dust are absorbers
-    and emitters of longwave radiation. This function corrects the Stefan-
-    Boltzmann law for humidity (using actual vapor pressure) and cloudiness
-    (using solar radiation and clear sky radiation). The concentrations of all
-    other absorbers are assumed to be constant.
+    This method is to be used where humidity data are lacking or are of
+    questionable quality. The method assumes that the dewpoint temperature
+    is approximately equal to the minimum temperature (*tmin*), i.e. the
+    air is saturated with water vapour at *tmin*.
 
-    The output can be converted to equivalent evaporation [mm day-1] using
-    ``energy2evap()``.
+    **Note**: This assumption may not hold in arid/semi-arid areas.
+    In these areas it may be better to subtract 2 deg C from the
+    minimum temperature (see Annex 6 in FAO paper).
 
-    Based on FAO equation 39 in Allen et al (1998).
+    Based on equation 48 in Allen et al (1998).
 
-    :param tmin: Absolute daily minimum temperature [degrees Kelvin]
-    :param tmax: Absolute daily maximum temperature [degrees Kelvin]
-    :param sol_rad: Solar radiation [MJ m-2 day-1]. If necessary this can be
-        estimated using ``sol+rad()``.
-    :param cs_rad: Clear sky radiation [MJ m-2 day-1]. Can be estimated using
-        ``cs_rad()``.
-    :param avp: Actual vapour pressure [kPa]. Can be estimated using functions
-        with names beginning with 'avp_from'.
-    :return: Net outgoing longwave radiation [MJ m-2 day-1]
+    :param tmin: Daily minimum temperature [deg C]
+    :return: Actual vapour pressure [kPa]
     :rtype: float
     """
-    tmp1 = (STEFAN_BOLTZMANN_CONSTANT *
-            ((math.pow(tmax, 4) + math.pow(tmin, 4)) / 2))
-    tmp2 = (0.34 - (0.14 * math.sqrt(avp)))
-    tmp3 = 1.35 * (sol_rad / cs_rad) - 0.35
-    return tmp1 * tmp2 * tmp3
+    return 0.611 * math.exp((17.27 * tmin) / (tmin + 237.3))
+
+
+def sol_dec(day_of_year):
+    """
+    Calculate solar declination from day of the year.
+
+    Based on FAO equation 24 in Allen et al (1998).
+
+    :param day_of_year: Day of year integer between 1 and 365 or 366).
+    :return: solar declination [radians]
+    :rtype: float
+    """
+    _check_doy(day_of_year)
+    return 0.409 * math.sin(((2.0 * math.pi / 365.0) * day_of_year - 1.39))
 
 
 def sunset_hour_angle(latitude, sol_dec):
@@ -87,35 +87,6 @@ def sunset_hour_angle(latitude, sol_dec):
     # part-3-calculating-solar-angles/
     # Domain of acos is -1 <= x <= 1 radians (this is not mentioned in FAO-56!)
     return math.acos(min(max(cos_sha, -1.0), 1.0))
-
-
-def sol_dec(day_of_year):
-    """
-    Calculate solar declination from day of the year.
-
-    Based on FAO equation 24 in Allen et al (1998).
-
-    :param day_of_year: Day of year integer between 1 and 365 or 366).
-    :return: solar declination [radians]
-    :rtype: float
-    """
-    _check_doy(day_of_year)
-    return 0.409 * math.sin(((2.0 * math.pi / 365.0) * day_of_year - 1.39))
-
-
-def inv_rel_dist_earth_sun(day_of_year):
-    """
-    Calculate the inverse relative distance between earth and sun from
-    day of the year.
-
-    Based on FAO equation 23 in Allen et al (1998).
-
-    :param day_of_year: Day of the year [1 to 366]
-    :return: Inverse relative distance between earth and the sun
-    :rtype: float
-    """
-    _check_doy(day_of_year)
-    return 1 + (0.033 * math.cos((2.0 * math.pi / 365.0) * day_of_year))
 
 
 def et_rad(latitude, sol_dec, sha, ird):
@@ -152,6 +123,117 @@ def et_rad(latitude, sol_dec, sha, ird):
     return tmp1 * SOLAR_CONSTANT * ird * (tmp2 + tmp3)
 
 
+def cs_rad(altitude, et_rad):
+    """
+    Estimate clear sky radiation from altitude and extraterrestrial radiation.
+
+    Based on equation 37 in Allen et al (1998) which is recommended when
+    calibrated Angstrom values are not available.
+
+    :param altitude: Elevation above sea level [m]
+    :param et_rad: Extraterrestrial radiation [MJ m-2 day-1]. Can be
+        estimated using ``et_rad()``.
+    :return: Clear sky radiation [MJ m-2 day-1]
+    :rtype: float
+    """
+    return (0.00002 * altitude + 0.75) * et_rad
+
+
+def inv_rel_dist_earth_sun(day_of_year):
+    """
+    Calculate the inverse relative distance between earth and sun from
+    day of the year.
+
+    Based on FAO equation 23 in Allen et al (1998).
+
+    :param day_of_year: Day of the year [1 to 366]
+    :return: Inverse relative distance between earth and the sun
+    :rtype: float
+    """
+    _check_doy(day_of_year)
+    return 1 + (0.033 * math.cos((2.0 * math.pi / 365.0) * day_of_year))
+
+
+def sol_rad_from_t(et_rad, cs_rad, tmin, tmax, coastal):
+    """
+    Estimate incoming solar (or shortwave) radiation, *Rs*, (radiation hitting
+    a horizontal plane after scattering by the atmosphere) from min and max
+    temperature together with an empirical adjustment coefficient for
+    'interior' and 'coastal' regions.
+
+    The formula is based on equation 50 in Allen et al (1998) which is the
+    Hargreaves radiation formula (Hargreaves and Samani, 1982, 1985). This
+    method should be used only when solar radiation or sunshine hours data are
+    not available. It is only recommended for locations where it is not
+    possible to use radiation data from a regional station (either because
+    climate conditions are heterogeneous or data are lacking).
+
+    **NOTE**: this method is not suitable for island locations due to the
+    moderating effects of the surrounding water.
+
+    :param et_rad: Extraterrestrial radiation [MJ m-2 day-1]. Can be
+        estimated using ``et_rad()``.
+    :param cs_rad: Clear sky radiation [MJ m-2 day-1]. Can be estimated
+        using ``cs_rad()``.
+    :param tmin: Daily minimum temperature [deg C].
+    :param tmax: Daily maximum temperature [deg C].
+    :param coastal: ``True`` if site is a coastal location, situated on or
+        adjacent to coast of a large land mass and where air masses are
+        influenced by a nearby water body, ``False`` if interior location
+        where land mass dominates and air masses are not strongly influenced
+        by a large water body.
+    :return: Incoming solar (or shortwave) radiation (Rs) [MJ m-2 day-1].
+    :rtype: float
+    """
+    # Determine value of adjustment coefficient [deg C-0.5] for
+    # coastal/interior locations
+    if coastal:
+        adj = 0.19
+    else:
+        adj = 0.16
+
+    sol_rad = adj * math.sqrt(tmax - tmin) * et_rad
+
+    # The solar radiation value is constrained by the clear sky radiation
+    return min(sol_rad, cs_rad)
+
+
+def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
+    """
+    Estimate net outgoing longwave radiation.
+
+    This is the net longwave energy (net energy flux) leaving the
+    earth's surface. It is proportional to the absolute temperature of
+    the surface raised to the fourth power according to the Stefan-Boltzmann
+    law. However, water vapour, clouds, carbon dioxide and dust are absorbers
+    and emitters of longwave radiation. This function corrects the Stefan-
+    Boltzmann law for humidity (using actual vapor pressure) and cloudiness
+    (using solar radiation and clear sky radiation). The concentrations of all
+    other absorbers are assumed to be constant.
+
+    The output can be converted to equivalent evaporation [mm day-1] using
+    ``energy2evap()``.
+
+    Based on FAO equation 39 in Allen et al (1998).
+
+    :param tmin: Absolute daily minimum temperature [degrees Kelvin]
+    :param tmax: Absolute daily maximum temperature [degrees Kelvin]
+    :param sol_rad: Solar radiation [MJ m-2 day-1]. If necessary this can be
+        estimated using ``sol+rad()``.
+    :param cs_rad: Clear sky radiation [MJ m-2 day-1]. Can be estimated using
+        ``cs_rad()``.
+    :param avp: Actual vapour pressure [kPa]. Can be estimated using functions
+        with names beginning with 'avp_from'.
+    :return: Net outgoing longwave radiation [MJ m-2 day-1]
+    :rtype: float
+    """
+    tmp1 = (STEFAN_BOLTZMANN_CONSTANT *
+            ((math.pow(tmax, 4) + math.pow(tmin, 4)) / 2))
+    tmp2 = (0.34 - (0.14 * math.sqrt(avp)))
+    tmp3 = 1.35 * (sol_rad / cs_rad) - 0.35
+    return tmp1 * tmp2 * tmp3
+
+
 # =====================================================================
 
 
@@ -169,28 +251,6 @@ def atm_pressure(altitude):
     """
     tmp = (293.0 - (0.0065 * altitude)) / 293.0
     return math.pow(tmp, 5.26) * 101.3
-
-
-def avp_from_tmin(tmin):
-    """
-    Estimate actual vapour pressure (*ea*) from minimum temperature.
-
-    This method is to be used where humidity data are lacking or are of
-    questionable quality. The method assumes that the dewpoint temperature
-    is approximately equal to the minimum temperature (*tmin*), i.e. the
-    air is saturated with water vapour at *tmin*.
-
-    **Note**: This assumption may not hold in arid/semi-arid areas.
-    In these areas it may be better to subtract 2 deg C from the
-    minimum temperature (see Annex 6 in FAO paper).
-
-    Based on equation 48 in Allen et al (1998).
-
-    :param tmin: Daily minimum temperature [deg C]
-    :return: Actual vapour pressure [kPa]
-    :rtype: float
-    """
-    return 0.611 * math.exp((17.27 * tmin) / (tmin + 237.3))
 
 
 def avp_from_rhmin_rhmax(svp_tmin, svp_tmax, rh_min, rh_max):
@@ -641,50 +701,6 @@ def sol_rad_from_sun_hours(daylight_hours, sunshine_hours, et_rad):
     # 0.5 and 0.25 are default values of regression constants (Angstrom values)
     # recommended by FAO when calibrated values are unavailable.
     return (0.5 * sunshine_hours / daylight_hours + 0.25) * et_rad
-
-
-def sol_rad_from_t(et_rad, cs_rad, tmin, tmax, coastal):
-    """
-    Estimate incoming solar (or shortwave) radiation, *Rs*, (radiation hitting
-    a horizontal plane after scattering by the atmosphere) from min and max
-    temperature together with an empirical adjustment coefficient for
-    'interior' and 'coastal' regions.
-
-    The formula is based on equation 50 in Allen et al (1998) which is the
-    Hargreaves radiation formula (Hargreaves and Samani, 1982, 1985). This
-    method should be used only when solar radiation or sunshine hours data are
-    not available. It is only recommended for locations where it is not
-    possible to use radiation data from a regional station (either because
-    climate conditions are heterogeneous or data are lacking).
-
-    **NOTE**: this method is not suitable for island locations due to the
-    moderating effects of the surrounding water.
-
-    :param et_rad: Extraterrestrial radiation [MJ m-2 day-1]. Can be
-        estimated using ``et_rad()``.
-    :param cs_rad: Clear sky radiation [MJ m-2 day-1]. Can be estimated
-        using ``cs_rad()``.
-    :param tmin: Daily minimum temperature [deg C].
-    :param tmax: Daily maximum temperature [deg C].
-    :param coastal: ``True`` if site is a coastal location, situated on or
-        adjacent to coast of a large land mass and where air masses are
-        influenced by a nearby water body, ``False`` if interior location
-        where land mass dominates and air masses are not strongly influenced
-        by a large water body.
-    :return: Incoming solar (or shortwave) radiation (Rs) [MJ m-2 day-1].
-    :rtype: float
-    """
-    # Determine value of adjustment coefficient [deg C-0.5] for
-    # coastal/interior locations
-    if coastal:
-        adj = 0.19
-    else:
-        adj = 0.16
-
-    sol_rad = adj * math.sqrt(tmax - tmin) * et_rad
-
-    # The solar radiation value is constrained by the clear sky radiation
-    return min(sol_rad, cs_rad)
 
 
 def sol_rad_island(et_rad):
