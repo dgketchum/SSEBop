@@ -24,7 +24,7 @@ import os
 import copy
 from datetime import datetime, timedelta
 from tempfile import mkdtemp
-from numpy import empty, float32, datetime64
+from numpy import empty, float32, datetime64, timedelta64, argmin, abs
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 from rasterio.transform import Affine
@@ -123,8 +123,8 @@ class Thredds(object):
         return sxl, exl
 
     @staticmethod
-    def _dtime_to_datetime64(dtime):
-        dtnumpy = datetime64(dtime).astype(datetime)
+    def _dtime_to_dtime64(dtime):
+        dtnumpy = datetime64(dtime).astype(datetime64)
         return dtnumpy
 
 
@@ -170,14 +170,26 @@ class TopoWX(Thredds):
             url = self._build_url(var)
             xray = open_dataset(url)
 
-            start, end = self._dtime_to_datetime64(self.start), self._dtime_to_datetime64(self.end)
+            start, end = self._dtime_to_dtime64(self.start), self._dtime_to_dtime64(self.end)
 
             if self.date:
-                end = end + timedelta(days=1)
+                end = end + timedelta64(1, 'D')
+
+            # find index and value of bounds
+            # 1/100 degree adds a small buffer for this 3.7 km res data
+            north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 0.01)))
+            south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 0.01)))
+            west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 0.01)))
+            east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 0.01)))
+
+            north_val = xray.lat.values[north_ind]
+            south_val = xray.lat.values[south_ind]
+            west_val = xray.lon.values[west_ind]
+            east_val = xray.lon.values[east_ind]
 
             subset = xray.loc[dict(time=slice(start, end),
-                                   lat=slice(self.bbox.north, self.bbox.south),
-                                   lon=slice(self.bbox.west, self.bbox.east))]
+                                   lat=slice(north_val, south_val),
+                                   lon=slice(west_val, east_val))]
 
             date_ind = self._date_index()
             subset['time'] = date_ind
@@ -196,8 +208,8 @@ class TopoWX(Thredds):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
         url = urlunparse([self.scheme, self.service,
-                          '/thredds/dodsC/topowx?crs,lat[0:1:3249],tmax[0:1:0][0:1:0][0:1:0],time[0:1:24836],'
-                          'tmin[0:1:0][0:1:0][0:1:0]'.format(var, self.year),
+                          '/thredds/dodsC/topowx?crs,lat[0:1:3249],lon[0:1:6999],tmax[0:1:0][0:1:0][0:1:0],'
+                          'time[0:1:24836],tmin[0:1:0][0:1:0][0:1:0]'.format(var, self.year),
                           '', '', ''])
 
         return url
