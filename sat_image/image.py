@@ -545,7 +545,7 @@ class Landsat8(LandsatImage):
 
     def albedo(self):
         """Smith (2010), finds broad-band surface reflectance (albedo)
-        Should have option for Liang, 2000; 
+        Should have option for Liang, 2000; Tasumi, 2008;
         
         LC8 toa reflectance bands 2, 4, 5, 6, 7
         

@@ -80,19 +80,19 @@ class Thredds(object):
             dst.write(subset)
 
     def _resample(self, var):
-        # home = os.path.expanduser('~')
-        # temp_path = os.path.join(home, 'images', 'sandbox', 'resample_twx_{}.tif'.format(var))
-        temp_path = os.path.join(self.temp_dir, 'resample.tif')
+        home = os.path.expanduser('~')
+        temp_path = os.path.join(home, 'images', 'sandbox', 'resample_twx_{}.tif'.format(var))
+        # temp_path = os.path.join(self.temp_dir, 'resample.tif')
 
         with rasopen(self.projection, 'r') as src:
-            array = src.read(1)
+            arr = src.read(1)
             profile = src.profile
             res = src.res
             target_res = self.target_profile['transform'].a
             res_coeff = res[0] / target_res
 
-            new_array = empty(shape=(1, round(array.shape[0] * res_coeff - 2),
-                                     round(array.shape[1] * res_coeff)), dtype=float32)
+            new_array = empty(shape=(1, self.target_profile['height'],
+                                     self.target_profile['width']), dtype=float32)
             aff = src.transform
             new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
 
@@ -102,7 +102,7 @@ class Thredds(object):
             profile['dtype'] = new_array.dtype
 
             with rasopen(temp_path, 'w', **profile) as dst:
-                reproject(array, new_array, src_transform=aff,
+                reproject(arr, new_array, src_transform=aff,
                           dst_transform=new_affine, src_crs=src.crs,
                           dst_crs=src.crs, resampling=Resampling.cubic)
 
@@ -348,9 +348,11 @@ class GridMet(Thredds):
                 subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
                                        lon=slice(self.bbox.west, self.bbox.east))]
                 arr = subset.elevation.values
-                conformed_array = self.conform(arr, var)
-                setattr(self, var, conformed_array)
-
+                if grid_conform:
+                    conformed_array = self.conform(arr, var)
+                    setattr(self, var, conformed_array)
+                else:
+                    setattr(self, var, subset)
         return None
 
     def _build_url(self, var):
