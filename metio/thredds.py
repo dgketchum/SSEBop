@@ -22,9 +22,8 @@ with hooks():
 
 import os
 import copy
-from datetime import datetime, timedelta
 from tempfile import mkdtemp
-from numpy import empty, float32, datetime64, timedelta64, argmin, abs
+from numpy import empty, float32, datetime64, timedelta64, argmin, abs, array
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 from rasterio.transform import Affine
@@ -51,6 +50,8 @@ class Thredds(object):
         self.bbox = bounds
 
     def conform(self, subset, var):
+        if subset.dtype != float32:
+            subset = array(subset, dtype=float32)
         self._project(subset)
         result = self._resample(var)
         return result
@@ -79,9 +80,9 @@ class Thredds(object):
             dst.write(subset)
 
     def _resample(self, var):
-        home = os.path.expanduser('~')
-        temp_path = os.path.join(home, 'images', 'sandbox', 'resample_met_{}.tif'.format(var))
-        # temp_path = os.path.join(self.temp_dir, 'resample.tif')
+        # home = os.path.expanduser('~')
+        # temp_path = os.path.join(home, 'images', 'sandbox', 'resample_twx_{}.tif'.format(var))
+        temp_path = os.path.join(self.temp_dir, 'resample.tif')
 
         with rasopen(self.projection, 'r') as src:
             array = src.read(1)
@@ -129,26 +130,28 @@ class Thredds(object):
 
 
 class TopoWX(Thredds):
-    # """ TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
-    #
-    # Available variables: [ 'tmmn', 'tmmx']
-    #
-    # ----------
-    # Observation elements to access. Currently available elements:
-    # - 'tmmn' : daily minimum air temperature [K]
-    # - 'tmmx' : daily maximum air temperature [K]
-    #
-    # :param start: datetime object start of period of data
-    # :param end: datetime object end of period of data
-    # :param variables: List  of available variables. At lease one.
-    # :param date: single-day datetime date object
-    # :param bounds: metio.misc.BBox object representing spatial bounds, default to conterminous US
-    # :return: numpy.ndarray
-    #
-    # """
+    """ TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
+
+    Available variables: [ 'tmmn', 'tmmx']
+
+    ----------
+    Observation elements to access. Currently available elements:
+    - 'tmmn' : daily minimum air temperature [K]
+    - 'tmmx' : daily maximum air temperature [K]
+
+    :param start: datetime object start of period of data
+    :param end: datetime object end of period of data
+    :param variables: List  of available variables. At lease one.
+    :param date: single-day datetime date object
+    :param bounds: metio.misc.BBox object representing spatial bounds, default to conterminous US
+    :return: numpy.ndarray
+
+    """
 
     def __init__(self, **kwargs):
         Thredds.__init__(self)
+
+        self.temp_dir = mkdtemp()
 
         for key, val in kwargs.items():
             setattr(self, key, val)
@@ -176,7 +179,7 @@ class TopoWX(Thredds):
                 end = end + timedelta64(1, 'D')
 
             # find index and value of bounds
-            # 1/100 degree adds a small buffer for this 3.7 km res data
+            # 1/100 degree adds a small buffer for this 800 m res data
             north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 0.01)))
             south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 0.01)))
             west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 0.01)))
@@ -197,9 +200,17 @@ class TopoWX(Thredds):
             setattr(self, 'height', subset.dims['lat'])
 
             if not grid_conform:
-                setattr(self, var, subset.values)
+                setattr(self, var, subset)
+
             else:
-                conformed_array = self.conform(subset, var)
+                if var == 'tmin':
+                    arr = subset.tmin.values
+                elif var == 'tmax':
+                    arr = subset.tmax.values
+                else:
+                    arr = None
+
+                conformed_array = self.conform(arr, var)
                 setattr(self, var, conformed_array)
 
         return None
@@ -208,53 +219,53 @@ class TopoWX(Thredds):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
         url = urlunparse([self.scheme, self.service,
-                          '/thredds/dodsC/topowx?crs,lat[0:1:3249],lon[0:1:6999],tmax[0:1:0][0:1:0][0:1:0],'
-                          'time[0:1:24836],tmin[0:1:0][0:1:0][0:1:0]'.format(var, self.year),
+                          '/thredds/dodsC/topowx?crs,lat[0:1:3249],lon[0:1:6999],tmax,'
+                          'time[0:1:24836],tmin'.format(var, self.year),
                           '', '', ''])
 
         return url
 
 
 class GridMet(Thredds):
-    # """ U of I Gridmet, return as numpy array per met variable in daily stack unless modified.
-    #
-    # Available variables: ['bi', 'elev', 'erc', 'fm100', fm1000', 'pdsi', 'pet', 'pr', 'rmax', 'rmin', 'sph', 'srad',
-    #                       'th', 'tmmn', 'tmmx', 'vs']
-    #     ----------
-    #     Observation elements to access. Currently available elements:
-    #     - 'bi' : burning index [-]
-    #     - 'elev' : elevation above sea level [m]
-    #     - 'erc' : energy release component [-]
-    #     - 'fm100' : 100-hour dead fuel moisture [%]
-    #     - 'fm1000' : 1000-hour dead fuel moisture [%]
-    #     - 'pdsi' : Palmer Drough Severity Index [-]
-    #     - 'pet' : daily reference potential evapotranspiration [mm]
-    #     - 'pr' : daily accumulated precipitation [mm]
-    #     - 'rmax' : daily maximum relative humidity [%]
-    #     - 'rmin' : daily minimum relative humidity [%]
-    #     - 'sph' : daily mean specific humidity [kg/kg]
-    #     - 'srad' : daily maximum relative humidity [%]
-    #     - 'prcp' : daily total precipitation [mm]
-    #     - 'srad' : daily mean downward shortwave radiation at surface [W m-2]
-    #     - 'th' : daily mean wind direction clockwise from North [degrees]
-    #     - 'tmmn' : daily minimum air temperature [K]
-    #     - 'tmmx' : daily maximum air temperature [K]
-    #     - 'vs' : daily mean wind speed [m -s]
-    #
-    # :param start: datetime object start of period of data
-    # :param end: datetime object end of period of data
-    # :param variables: List  of available variables. At lease one.
-    # :param date: single-day datetime date object
-    # :param bbox: metio.misc.BBox object representing spatial bounds, default to conterminous US
-    # :return: numpy.ndarray
-    #
-    # Must have either start and end, or date.
-    # Must have at least one valid variable. Invalid variables will be excluded gracefully.
-    #
-    # note: NetCDF dates are in xl '1900' format, i.e., number of days since 1899-12-31 23:59
-    #       xlrd.xldate handles this for the time being
-    #
-    # """
+    """ U of I Gridmet, return as numpy array per met variable in daily stack unless modified.
+
+    Available variables: ['bi', 'elev', 'erc', 'fm100', fm1000', 'pdsi', 'pet', 'pr', 'rmax', 'rmin', 'sph', 'srad',
+                          'th', 'tmmn', 'tmmx', 'vs']
+        ----------
+        Observation elements to access. Currently available elements:
+        - 'bi' : burning index [-]
+        - 'elev' : elevation above sea level [m]
+        - 'erc' : energy release component [-]
+        - 'fm100' : 100-hour dead fuel moisture [%]
+        - 'fm1000' : 1000-hour dead fuel moisture [%]
+        - 'pdsi' : Palmer Drough Severity Index [-]
+        - 'pet' : daily reference potential evapotranspiration [mm]
+        - 'pr' : daily accumulated precipitation [mm]
+        - 'rmax' : daily maximum relative humidity [%]
+        - 'rmin' : daily minimum relative humidity [%]
+        - 'sph' : daily mean specific humidity [kg/kg]
+        - 'srad' : daily maximum relative humidity [%]
+        - 'prcp' : daily total precipitation [mm]
+        - 'srad' : daily mean downward shortwave radiation at surface [W m-2]
+        - 'th' : daily mean wind direction clockwise from North [degrees]
+        - 'tmmn' : daily minimum air temperature [K]
+        - 'tmmx' : daily maximum air temperature [K]
+        - 'vs' : daily mean wind speed [m -s]
+
+    :param start: datetime object start of period of data
+    :param end: datetime object end of period of data
+    :param variables: List  of available variables. At lease one.
+    :param date: single-day datetime date object
+    :param bbox: metio.misc.BBox object representing spatial bounds, default to conterminous US
+    :return: numpy.ndarray
+
+    Must have either start and end, or date.
+    Must have at least one valid variable. Invalid variables will be excluded gracefully.
+
+    note: NetCDF dates are in xl '1900' format, i.e., number of days since 1899-12-31 23:59
+          xlrd.xldate handles this for the time being
+
+    """
 
     def __init__(self, variables, **kwargs):
         Thredds.__init__(self)
