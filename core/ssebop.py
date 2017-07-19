@@ -22,6 +22,8 @@ from app.paths import paths, PathsNotSetExecption
 from dem.dem import MapzenDem
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from metio.thredds import TopoWX
+from metio.fao import avp_from_tmin, net_out_lw_rad, sunset_hour_angle
+from metio.fao import sol_dec, inv_rel_dist_earth_sun, et_rad
 
 
 class SSEBopModel(object):
@@ -97,10 +99,16 @@ class SSEBopModel(object):
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
 
+        net_rad = self._net_radiation(topowx.tmin)
+
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()
         bound_ndvi = np.where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, np.nan)
         return bound_ndvi
+
+    def _net_radiation(self, tmin):
+        avp = avp_from_tmin(tmin)
+
 
     @staticmethod
     def _info(msg):
