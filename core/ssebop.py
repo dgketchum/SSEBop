@@ -76,10 +76,8 @@ class SSEBopModel(object):
         print('Instantiating image...')
         if self._satellite == 'LT5':
             self.image = Landsat5(paths.image)
-
         elif self._satellite == 'LE7':
             self.image = Landsat7(paths.image)
-
         elif self._satellite == 'LC8':
             self.image = Landsat8(paths.image)
 
@@ -92,22 +90,24 @@ class SSEBopModel(object):
                         target_profile=self.image.rasterio_geometry, zoom=8)
         elevation = dem.terrain(attribute='elevation')
 
-        topowx = TopoWX(date=self.date, bbox=self.image.bounds, target_profile=self.image.profile,
+        topowx = TopoWX(date=self.date, bbox=self.image.bounds,
+                        target_profile=self.image.profile,
                         clip_feature=self.image.get_tile_geometry())
         met_data = topowx.get_data_subset(grid_conform=True)
 
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
 
-        net_rad = self._net_radiation(topowx.tmin)
+        net_rad = self._net_radiation(topowx.tmin, self.image.doy)
 
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()
         bound_ndvi = np.where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, np.nan)
         return bound_ndvi
 
-    def _net_radiation(self, tmin):
+    def _net_radiation(self, tmin, doy):
         avp = avp_from_tmin(tmin)
+        return None
 
 
     @staticmethod

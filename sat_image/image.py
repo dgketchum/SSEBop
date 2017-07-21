@@ -19,10 +19,11 @@ import shutil
 from rasterio import open as rasopen
 from numpy import where, pi, cos, nan, inf, true_divide, errstate, log, nan_to_num
 from numpy import float32, sin, deg2rad
-from shapely.geometry import Polygon, mapping, box
+from shapely.geometry import Polygon, mapping
 from fiona import open as fiopen
 from fiona.crs import from_epsg
 from tempfile import mkdtemp
+from datetime import datetime
 
 from bounds.bounds import RasterBounds
 from sat_image import mtl
@@ -105,6 +106,10 @@ class LandsatImage(object):
         self.solar_zenith_rad = self.solar_zenith * pi / 180
         self.sun_elevation_rad = self.sun_elevation * pi / 180
         self.earth_sun_dist = self.earth_sun_d(self.date_acquired)
+
+        dtime = datetime.strptime(str(self.date_acquired), '%Y-%m-%d')
+        julian_day = dtime.strftime('%j')
+        self.doy = int(julian_day)
 
     def _get_band(self, band_str):
         path = self.tif_dict[band_str]
