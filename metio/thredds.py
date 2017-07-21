@@ -46,6 +46,8 @@ class Thredds(object):
         self.end = end
         self.date = date
 
+        self.src_bounds_wsen = None
+
         self.target_profile = target_profile
         self.bbox = bounds
 
@@ -58,7 +60,7 @@ class Thredds(object):
 
     def _project(self, subset, var):
         home = os.path.expanduser('~')
-        proj_path = os.path.join(home, 'images', 'sandbox', 'proj_twx_aff_{}.tif'.format(var))
+        proj_path = os.path.join(home, 'images', 'sandbox', 'thredds', 'proj_twx_bnd_{}.tif'.format(var))
 
         # proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
         setattr(self, 'projection', proj_path)
@@ -66,8 +68,13 @@ class Thredds(object):
         profile = copy.deepcopy(self.target_profile)
         profile['dtype'] = float32
         bb = self.bbox.as_tuple()
-        bounds = (bb[0], bb[1],
-                  bb[2], bb[3])
+
+        if self.src_bounds_wsen:
+            bounds = self.src_bounds_wsen
+        else:
+            bounds = (bb[0], bb[1],
+                      bb[2], bb[3])
+
         dst_affine, dst_width, dst_height = cdt(CRS({'init': 'epsg:4326'}),
                                                 profile['crs'],
                                                 subset.shape[1],
@@ -92,11 +99,11 @@ class Thredds(object):
             target_res = self.target_profile['transform'].a
             res_coeff = res[0] / target_res
 
-            # new_array = empty(shape=(1, self.target_profile['height'],
-            #                          self.target_profile['width']), dtype=float32)
+            new_array = empty(shape=(1, self.target_profile['height'],
+                                     self.target_profile['width']), dtype=float32)
 
-            new_array = empty(shape=(1, round(arr.shape[0] * res_coeff - 2),
-                                     round(arr.shape[1] * res_coeff)), dtype=float32)
+            # new_array = empty(shape=(1, round(arr.shape[0] * res_coeff - 2),
+            #                          round(arr.shape[1] * res_coeff)), dtype=float32)
             aff = src.transform
             new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
 
@@ -194,14 +201,15 @@ class TopoWX(Thredds):
             west_val = xray.lon.values[west_ind]
             east_val = xray.lon.values[east_ind]
 
+            setattr(self, 'src_bounds_wsen', (west_val, south_val,
+                                              east_val, north_val))
+
             subset = xray.loc[dict(time=slice(start, end),
                                    lat=slice(north_val, south_val),
                                    lon=slice(west_val, east_val))]
 
             date_ind = self._date_index()
             subset['time'] = date_ind
-            setattr(self, 'width', subset.dims['lon'])
-            setattr(self, 'height', subset.dims['lat'])
 
             if not grid_conform:
                 setattr(self, var, subset)
