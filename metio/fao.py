@@ -22,7 +22,7 @@ from ._check import (
 SOLAR_CONSTANT = 0.0820
 
 # Stefan Boltzmann constant [MJ K-4 m-2 day-1]
-STEFAN_BOLTZMANN_CONSTANT = 0.000000004903  #
+STEFAN_BOLTZMANN_CONSTANT = 0.000000004903
 """Stefan Boltzmann constant [MJ K-4 m-2 day-1]"""
 
 

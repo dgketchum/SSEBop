@@ -52,12 +52,15 @@ class Thredds(object):
     def conform(self, subset, var):
         if subset.dtype != float32:
             subset = array(subset, dtype=float32)
-        self._project(subset)
+        self._project(subset, var)
         result = self._resample(var)
         return result
 
-    def _project(self, subset):
-        proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
+    def _project(self, subset, var):
+        home = os.path.expanduser('~')
+        proj_path = os.path.join(home, 'images', 'sandbox', 'proj_twx_aff_{}.tif'.format(var))
+
+        # proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
         setattr(self, 'projection', proj_path)
 
         profile = copy.deepcopy(self.target_profile)
@@ -80,9 +83,7 @@ class Thredds(object):
             dst.write(subset)
 
     def _resample(self, var):
-        home = os.path.expanduser('~')
-        temp_path = os.path.join(home, 'images', 'sandbox', 'resample_twx_{}.tif'.format(var))
-        # temp_path = os.path.join(self.temp_dir, 'resample.tif')
+        temp_path = os.path.join(self.temp_dir, 'resample.tif')
 
         with rasopen(self.projection, 'r') as src:
             arr = src.read(1)
@@ -91,8 +92,11 @@ class Thredds(object):
             target_res = self.target_profile['transform'].a
             res_coeff = res[0] / target_res
 
-            new_array = empty(shape=(1, self.target_profile['height'],
-                                     self.target_profile['width']), dtype=float32)
+            # new_array = empty(shape=(1, self.target_profile['height'],
+            #                          self.target_profile['width']), dtype=float32)
+
+            new_array = empty(shape=(1, round(arr.shape[0] * res_coeff - 2),
+                                     round(arr.shape[1] * res_coeff)), dtype=float32)
             aff = src.transform
             new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
 
