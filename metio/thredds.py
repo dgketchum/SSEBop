@@ -27,6 +27,7 @@ from numpy import empty, float32, datetime64, timedelta64, argmin, abs, array
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 from rasterio.transform import Affine
+from rasterio.mask import mask
 from rasterio.warp import reproject, Resampling
 from rasterio.warp import calculate_default_transform as cdt
 from xlrd.xldate import xldate_from_date_tuple
@@ -55,14 +56,12 @@ class Thredds(object):
         if subset.dtype != float32:
             subset = array(subset, dtype=float32)
         self._project(subset, var)
-        result = self._resample(var)
+        result = self._reproject(var)
         return result
 
     def _project(self, subset, var):
-        home = os.path.expanduser('~')
-        proj_path = os.path.join(home, 'images', 'sandbox', 'thredds', 'proj_twx_bnd_{}.tif'.format(var))
 
-        # proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
+        proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
         setattr(self, 'projection', proj_path)
 
         profile = copy.deepcopy(self.target_profile)
@@ -76,12 +75,13 @@ class Thredds(object):
                       bb[2], bb[3])
 
         dst_affine, dst_width, dst_height = cdt(CRS({'init': 'epsg:4326'}),
-                                                profile['crs'],
+                                                CRS({'init': 'epsg:4326'}),
                                                 subset.shape[1],
                                                 subset.shape[2],
-                                                *bounds)
+                                                *bounds,
+                                                )
 
-        profile.update({'crs': profile['crs'],
+        profile.update({'crs': CRS({'init': 'epsg:4326'}),
                         'transform': dst_affine,
                         'width': dst_width,
                         'height': dst_height})
@@ -89,21 +89,72 @@ class Thredds(object):
         with rasopen(proj_path, 'w', **profile) as dst:
             dst.write(subset)
 
-    def _resample(self, var):
-        temp_path = os.path.join(self.temp_dir, 'resample.tif')
+    def _reproject(self, var):
+
+        reproj_path = os.path.join(self.temp_dir, 'reproj.tif')
+        setattr(self, 'reprojection', reproj_path)
 
         with rasopen(self.projection, 'r') as src:
-            arr = src.read(1)
+            src_profile = src.profile
+            src_bounds = src.bounds
+            src_array = src.read(1)
+
+        dst_profile = copy.deepcopy(self.target_profile)
+        dst_profile['dtype'] = float32
+        bounds = src_bounds
+        dst_affine, dst_width, dst_height = cdt(src_profile['crs'],
+                                                dst_profile['crs'],
+                                                src_profile['width'],
+                                                src_profile['height'],
+                                                *bounds)
+
+        dst_profile.update({'crs': dst_profile['crs'],
+                            'transform': dst_affine,
+                            'width': dst_width,
+                            'height': dst_height})
+
+        with rasopen(reproj_path, 'w', **dst_profile) as dst:
+            dst_array = empty((1, dst_height, dst_width), dtype=float32)
+
+            reproject(src_array, dst_array, src_transform=src_profile['transform'],
+                      src_crs=src_profile['crs'], dst_crs=self.target_profile['crs'],
+                      dst_transform=dst_affine, resampling=Resampling.cubic,
+                      num_threads=2)
+
+            dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
+
+    def mask_dem(self):
+
+        temp_path = os.path.join(self.temp_dir, 'masked_dem.tif')
+
+        with rasopen(self.reprojection) as src:
+            out_arr, out_trans = mask(src, self.clip_feature, crop=True,
+                                      all_touched=True)
+            out_meta = src.meta.copy()
+            out_meta.update({'driver': 'GTiff',
+                             'height': out_arr.shape[1],
+                             'width': out_arr.shape[2],
+                             'transform': out_trans})
+
+        with rasopen(temp_path, 'w', **out_meta) as dst:
+            dst.write(out_arr)
+
+        setattr(self, 'mask', temp_path)
+        delattr(self, 'reprojection')
+
+    def resample(self):
+
+        temp_path = os.path.join(self.temp_dir, 'resample.tif')
+
+        with rasopen(self.mask, 'r') as src:
+            array = src.read(1)
             profile = src.profile
             res = src.res
             target_res = self.target_profile['transform'].a
             res_coeff = res[0] / target_res
 
-            new_array = empty(shape=(1, self.target_profile['height'],
-                                     self.target_profile['width']), dtype=float32)
-
-            # new_array = empty(shape=(1, round(arr.shape[0] * res_coeff - 2),
-            #                          round(arr.shape[1] * res_coeff)), dtype=float32)
+            new_array = empty(shape=(1, round(array.shape[0] * res_coeff - 2),
+                                     round(array.shape[1] * res_coeff)), dtype=float32)
             aff = src.transform
             new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
 
@@ -112,10 +163,11 @@ class Thredds(object):
             profile['height'] = self.target_profile['height']
             profile['dtype'] = new_array.dtype
 
+            delattr(self, 'mask')
+
             with rasopen(temp_path, 'w', **profile) as dst:
-                reproject(arr, new_array, src_transform=aff,
-                          dst_transform=new_affine, src_crs=src.crs,
-                          dst_crs=src.crs, resampling=Resampling.cubic)
+                reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
+                          dst_crs=src.crs, resampling=Resampling.bilinear)
 
                 dst.write(new_array)
 
@@ -191,10 +243,10 @@ class TopoWX(Thredds):
 
             # find index and value of bounds
             # 1/100 degree adds a small buffer for this 800 m res data
-            north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 0.01)))
-            south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 0.01)))
-            west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 0.01)))
-            east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 0.01)))
+            north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 1.)))
+            south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 1.)))
+            west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 1.)))
+            east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 1.)))
 
             north_val = xray.lat.values[north_ind]
             south_val = xray.lat.values[south_ind]
