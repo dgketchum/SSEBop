@@ -56,7 +56,9 @@ class Thredds(object):
         if subset.dtype != float32:
             subset = array(subset, dtype=float32)
         self._project(subset, var)
-        result = self._reproject(var)
+        self._reproject(var)
+        self._mask(var)
+        result = self._resample(var)
         return result
 
     def _project(self, subset, var):
@@ -123,9 +125,9 @@ class Thredds(object):
 
             dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
 
-    def mask_dem(self):
+    def _mask(self, var):
 
-        temp_path = os.path.join(self.temp_dir, 'masked_dem.tif')
+        mask_path = os.path.join(self.temp_dir, 'masked_dem.tif')
 
         with rasopen(self.reprojection) as src:
             out_arr, out_trans = mask(src, self.clip_feature, crop=True,
@@ -136,15 +138,18 @@ class Thredds(object):
                              'width': out_arr.shape[2],
                              'transform': out_trans})
 
-        with rasopen(temp_path, 'w', **out_meta) as dst:
+        with rasopen(mask_path, 'w', **out_meta) as dst:
             dst.write(out_arr)
 
-        setattr(self, 'mask', temp_path)
+        setattr(self, 'mask', mask_path)
         delattr(self, 'reprojection')
 
-    def resample(self):
+    def _resample(self, var):
 
-        temp_path = os.path.join(self.temp_dir, 'resample.tif')
+        # home = os.path.expanduser('~')
+        # resample_path = os.path.join(home, 'images', 'sandbox', 'thredds', 'resamp_twx_{}.tif'.format(var))
+
+        resample_path = os.path.join(self.temp_dir, 'resample.tif')
 
         with rasopen(self.mask, 'r') as src:
             array = src.read(1)
@@ -165,15 +170,13 @@ class Thredds(object):
 
             delattr(self, 'mask')
 
-            with rasopen(temp_path, 'w', **profile) as dst:
+            with rasopen(resample_path, 'w', **profile) as dst:
                 reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
                           dst_crs=src.crs, resampling=Resampling.bilinear)
 
                 dst.write(new_array)
 
             return new_array
-
-            # add no-data values TODO
 
     def _date_index(self):
         date_ind = date_range(self.start, self.end, freq='d')

@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_metio.py" afterPath="$PROJECT_DIR$/tests/test_metio.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,27 +19,30 @@
       <file leaf-file-name="thredds.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="721">
+            <state relative-caret-position="323">
               <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#761#798#0" expanded="true" />
                 <element signature="e#1446#1542#1" expanded="false" />
                 <element signature="e#1643#1819#0" expanded="false" />
-                <element signature="e#1865#2037#0" expanded="false" />
-                <element signature="e#2085#3151#0" expanded="false" />
-                <element signature="e#6616#6694#0" expanded="false" />
-                <element signature="e#6736#6991#0" expanded="false" />
-                <element signature="e#7053#7122#0" expanded="false" />
-                <element signature="e#7152#7823#1" expanded="false" />
-                <element signature="e#7867#8241#0" expanded="false" />
-                <element signature="e#8303#10054#0" expanded="false" />
-                <element signature="e#10096#10441#0" expanded="false" />
-                <element signature="e#10472#16640#0" expanded="false" />
-                <element signature="e#10472#12451#1" expanded="false" />
-                <element signature="e#12506#14450#0" expanded="false" />
-                <element signature="e#14512#16081#0" expanded="false" />
-                <element signature="e#16123#16638#0" expanded="false" />
+                <element signature="e#1865#2089#0" expanded="false" />
+                <element signature="e#2137#3203#0" expanded="false" />
+                <element signature="e#3245#4686#0" expanded="false" />
+                <element signature="e#4723#5381#0" expanded="false" />
+                <element signature="e#5422#6760#0" expanded="false" />
+                <element signature="e#6797#6875#0" expanded="false" />
+                <element signature="e#6917#7172#0" expanded="false" />
+                <element signature="e#7234#7303#0" expanded="false" />
+                <element signature="e#7333#8004#1" expanded="false" />
+                <element signature="e#8048#8422#0" expanded="false" />
+                <element signature="e#8484#10235#0" expanded="false" />
+                <element signature="e#10277#10622#0" expanded="false" />
+                <element signature="e#10653#16821#0" expanded="false" />
+                <element signature="e#10653#12632#1" expanded="false" />
+                <element signature="e#12687#14631#0" expanded="false" />
+                <element signature="e#14693#16262#0" expanded="false" />
+                <element signature="e#16304#16819#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -554,13 +556,6 @@
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
     </task>
-    <task id="LOCAL-00084" summary="adding DEM class">
-      <created>1497896215486</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1497896215487</updated>
-    </task>
     <task id="LOCAL-00085" summary="wmts tile to deg and inverse static methods">
       <created>1497968486230</created>
       <option name="number" value="00085" />
@@ -897,13 +892,17 @@
       <option name="project" value="LOCAL" />
       <updated>1500667977787</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="reproject finally working in thredds">
+      <created>1501008071062</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1501008071062</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 01m 59s.xml">
-      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 06m 43s.xml">
       <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
     </history-entry>
@@ -931,6 +930,9 @@
     <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 34m 33s.xml">
       <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 45m 52s.xml">
+      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -953,7 +955,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45648968" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37536874" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41519174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -975,7 +977,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="going to try fro gdal_merge" />
     <MESSAGE value="debugging same bounds for all mapzen tiles" />
     <MESSAGE value="memory error on get_default_transform" />
     <MESSAGE value="fixed merge: remove res=30 was causing memerror" />
@@ -1000,7 +1001,8 @@
     <MESSAGE value="topowx class functional" />
     <MESSAGE value="arrange fao 56 equations" />
     <MESSAGE value="implement project, reproject, resample" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement project, reproject, resample" />
+    <MESSAGE value="reproject finally working in thredds" />
+    <option name="LAST_COMMIT_MESSAGE" value="reproject finally working in thredds" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1029,7 +1031,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="869" />
+      <option name="time" value="872" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1372,27 +1374,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="721">
+        <state relative-caret-position="323">
           <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#761#798#0" expanded="true" />
             <element signature="e#1446#1542#1" expanded="false" />
             <element signature="e#1643#1819#0" expanded="false" />
-            <element signature="e#1865#2037#0" expanded="false" />
-            <element signature="e#2085#3151#0" expanded="false" />
-            <element signature="e#6616#6694#0" expanded="false" />
-            <element signature="e#6736#6991#0" expanded="false" />
-            <element signature="e#7053#7122#0" expanded="false" />
-            <element signature="e#7152#7823#1" expanded="false" />
-            <element signature="e#7867#8241#0" expanded="false" />
-            <element signature="e#8303#10054#0" expanded="false" />
-            <element signature="e#10096#10441#0" expanded="false" />
-            <element signature="e#10472#16640#0" expanded="false" />
-            <element signature="e#10472#12451#1" expanded="false" />
-            <element signature="e#12506#14450#0" expanded="false" />
-            <element signature="e#14512#16081#0" expanded="false" />
-            <element signature="e#16123#16638#0" expanded="false" />
+            <element signature="e#1865#2089#0" expanded="false" />
+            <element signature="e#2137#3203#0" expanded="false" />
+            <element signature="e#3245#4686#0" expanded="false" />
+            <element signature="e#4723#5381#0" expanded="false" />
+            <element signature="e#5422#6760#0" expanded="false" />
+            <element signature="e#6797#6875#0" expanded="false" />
+            <element signature="e#6917#7172#0" expanded="false" />
+            <element signature="e#7234#7303#0" expanded="false" />
+            <element signature="e#7333#8004#1" expanded="false" />
+            <element signature="e#8048#8422#0" expanded="false" />
+            <element signature="e#8484#10235#0" expanded="false" />
+            <element signature="e#10277#10622#0" expanded="false" />
+            <element signature="e#10653#16821#0" expanded="false" />
+            <element signature="e#10653#12632#1" expanded="false" />
+            <element signature="e#12687#14631#0" expanded="false" />
+            <element signature="e#14693#16262#0" expanded="false" />
+            <element signature="e#16304#16819#0" expanded="false" />
           </folding>
         </state>
       </provider>
