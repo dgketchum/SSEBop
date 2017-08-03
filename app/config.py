@@ -49,7 +49,7 @@ polygons: None
 mask: None
 '''
 
-DATETIME_FMT = '%m/%d/%Y'
+DATETIME_FMT = '%Y%m%d'
 
 
 class RunSpec:
@@ -65,25 +65,30 @@ class RunSpec:
     start_date = None
     end_date = None
 
+    mask = None
+    polygons = None
     satellite = None
     k_factor = None
     verify_paths = None
-    mask = None
-    polygons = None
 
     def __init__(self, obj):
         self._obj = obj
-        attrs = ('path', 'row',
-                 'api_key',
+        attrs = ('path', 'row', 'root',
+                 'api_key', 'year',
+                 'single_date',
                  'start_date', 'end_date',
                  'mask', 'polygons',
                  'satellite',
-                 'k_factor', 'dem_folder',
-                 'tmax_folder', 'dt_folder',
-                 'eto_folder', 'verify_paths',)
+                 'k_factor', 'verify_paths',)
 
         for attr in attrs:
             setattr(self, attr, self._obj.get(attr))
+
+        if self.year:
+            self.start_date, self.end_date = datetime(self.year, 4, 1), datetime(self.year, 10, 31)
+
+        if self.single_date:
+            self.start_date, self.end_date = self.single_date, self.single_date
 
     @property
     def save_dates(self):
@@ -93,17 +98,8 @@ class RunSpec:
 
     @property
     def date_range(self):
-        obj = self._obj
-        if 'start_year' in obj:
-            return (datetime(obj['start_year'],
-                             obj['start_month'],
-                             obj['start_day']),
-                    datetime(obj['end_year'],
-                             obj['end_month'],
-                             obj['end_day']))
-        else:
-            return (datetime.strptime(obj['start_date'], DATETIME_FMT),
-                    datetime.strptime(obj['end_date'], DATETIME_FMT))
+        return (datetime.strptime(self.start_date, DATETIME_FMT),
+                datetime.strptime(self.end_date, DATETIME_FMT))
 
 
 class Config:

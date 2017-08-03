@@ -29,7 +29,6 @@ class PathsNotSetExecption(BaseException):
 
 class Paths:
     ssebop_root = None
-    image_directory = None
     mask = None
     polygons = None
 
