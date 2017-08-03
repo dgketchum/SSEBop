@@ -25,22 +25,28 @@ import yaml
 from app.paths import paths
 
 DEFAULT_CFG = '''
+
+path: 40
+row: 28
+root: /path/to/parent_directory
 input_root: /path/to/inputs
 output_root: /path/to/output
 
-api_key: 'please_set_from_Mapzen'
+api_key: 'set your Mapzen API Key'
 
 satellite: LT5
+year: None
 single_date: False
-start_date: 12/1/2013
-end_date: 12/31/2013
+start_date: 4/1/2010
+end_date: 11/1/2010
 k_factor: 1.25
 verify_paths: True
 
 # Add the path relative to /input_root/
 # They will be joined to input_root.
-polygons: /path/to/please_set_me.shp
-mask: /path/to/mask/please_set_me.tif
+# Parameters mask and polygon are optional, put None if None
+polygons: None
+mask: None
 '''
 
 DATETIME_FMT = '%m/%d/%Y'
@@ -48,17 +54,22 @@ DATETIME_FMT = '%m/%d/%Y'
 
 class RunSpec:
     _obj = None
+
+    root = None
     input_root = None
     output_root = None
     api_key = None
+
+    year = None
     single_date = False
     start_date = None
     end_date = None
-    mask = None
-    polygons = None
+
     satellite = None
     k_factor = None
     verify_paths = None
+    mask = None
+    polygons = None
 
     def __init__(self, obj):
         self._obj = obj
