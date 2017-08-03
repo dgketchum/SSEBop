@@ -1,10 +1,14 @@
 
-input_root: /data01/images/ssebop_data/
-output_root: /data01/images/ssebop_data/results/
+path: 40
+row: 28
+root: /data01/images/ssebop_data/
+input_root: None
+output_root: None
 
 api_key: 'mapzen-JmKu1BF'
 
 satellite: LT5
+year: None
 single_date: False
 start_date: 4/1/2010
 end_date: 11/1/2010
@@ -14,10 +18,6 @@ verify_paths: True
 # Add the path relative to /input_root/
 # They will be joined to input_root.
 # mask and polygon are optional, put None if None
-image_directory: images/LT5_2010
-polygons: blah
-mask: blah
-dem_folder: /DEM
-tmax_folder: /Tmax
-dt_folder: /DT
-eto_folder: /ETo
+polygons: None
+mask: None
+
