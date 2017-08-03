@@ -10,14 +10,6 @@ meteorological data.
 
 import math
 
-from ._check import (
-    check_day_hours as _check_day_hours,
-    check_doy as _check_doy,
-    check_latitude_rad as _check_latitude_rad,
-    check_sol_dec_rad as _check_sol_dec_rad,
-    check_sunset_hour_angle_rad as _check_sunset_hour_angle_rad,
-)
-
 #: Solar constant [ MJ m-2 min-1]
 SOLAR_CONSTANT = 0.0820
 
@@ -58,7 +50,6 @@ def sol_dec(day_of_year):
     :return: solar declination [radians]
     :rtype: float
     """
-    _check_doy(day_of_year)
     return 0.409 * math.sin(((2.0 * math.pi / 365.0) * day_of_year - 1.39))
 
 
@@ -77,8 +68,6 @@ def sunset_hour_angle(latitude, sol_dec):
     :return: Sunset hour angle [radians].
     :rtype: float
     """
-    _check_latitude_rad(latitude)
-    _check_sol_dec_rad(sol_dec)
 
     cos_sha = -math.tan(latitude) * math.tan(sol_dec)
     # If tmp is >= 1 there is no sunset, i.e. 24 hours of daylight
@@ -113,9 +102,6 @@ def et_rad(latitude, sol_dec, sha, ird):
     :return: Daily extraterrestrial radiation [MJ m-2 day-1]
     :rtype: float
     """
-    _check_latitude_rad(latitude)
-    _check_sol_dec_rad(sol_dec)
-    _check_sunset_hour_angle_rad(sha)
 
     tmp1 = (24.0 * 60.0) / math.pi
     tmp2 = sha * math.sin(latitude) * math.sin(sol_dec)
@@ -150,7 +136,6 @@ def inv_rel_dist_earth_sun(day_of_year):
     :return: Inverse relative distance between earth and the sun
     :rtype: float
     """
-    _check_doy(day_of_year)
     return 1 + (0.033 * math.cos((2.0 * math.pi / 365.0) * day_of_year))
 
 
@@ -395,7 +380,6 @@ def daylight_hours(sha):
     :return: Daylight hours.
     :rtype: float
     """
-    _check_sunset_hour_angle_rad(sha)
     return (24.0 / math.pi) * sha
 
 
@@ -695,8 +679,6 @@ def sol_rad_from_sun_hours(daylight_hours, sunshine_hours, et_rad):
     :return: Incoming solar (or shortwave) radiation [MJ m-2 day-1]
     :rtype: float
     """
-    _check_day_hours(sunshine_hours, 'sun_hours')
-    _check_day_hours(daylight_hours, 'daylight_hours')
 
     # 0.5 and 0.25 are default values of regression constants (Angstrom values)
     # recommended by FAO when calibrated values are unavailable.

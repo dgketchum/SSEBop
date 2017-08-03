@@ -2,7 +2,10 @@
 input_root: /data01/images/ssebop_data/
 output_root: /data01/images/ssebop_data/results/
 
+api_key: 'mapzen-JmKu1BF'
+
 satellite: LT5
+single_date: False
 start_date: 4/1/2010
 end_date: 11/1/2010
 k_factor: 1.25

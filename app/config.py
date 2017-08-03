@@ -28,7 +28,10 @@ DEFAULT_CFG = '''
 input_root: /path/to/inputs
 output_root: /path/to/output
 
+api_key: 'please_set_from_Mapzen'
+
 satellite: LT5
+single_date: False
 start_date: 12/1/2013
 end_date: 12/31/2013
 k_factor: 1.25
@@ -36,13 +39,8 @@ verify_paths: True
 
 # Add the path relative to /input_root/
 # They will be joined to input_root.
-image_directory: /path/to/landsat_scene
 polygons: /path/to/please_set_me.shp
 mask: /path/to/mask/please_set_me.tif
-dem_folder: /path/to/dem
-tmax_folder: /path/to/tmax
-dt_folder: /path/to/dt
-eto_folder: /path/to/eto
 '''
 
 DATETIME_FMT = '%m/%d/%Y'
@@ -52,22 +50,19 @@ class RunSpec:
     _obj = None
     input_root = None
     output_root = None
+    api_key = None
+    single_date = False
     start_date = None
     end_date = None
     mask = None
     polygons = None
     satellite = None
-    image_directory = None
     k_factor = None
-    dem_folder = None
-    tmax_folder = None
-    dt_folder = None
-    eto_folder = None
     verify_paths = None
 
     def __init__(self, obj):
         self._obj = obj
-        attrs = ('input_root', 'output_root',
+        attrs = ('input_root', 'output_root', 'api_key',
                  'start_date', 'end_date',
                  'mask', 'polygons',
                  'satellite', 'image_directory',
