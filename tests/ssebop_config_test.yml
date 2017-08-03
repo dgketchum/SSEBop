@@ -17,7 +17,7 @@ verify_paths: True
 
 # Add the path relative to /input_root/
 # They will be joined to input_root.
-# mask and polygon are optional, put None if None
+# Parameters mask and polygon are optional, put None if None
 polygons: None
 mask: None
 
