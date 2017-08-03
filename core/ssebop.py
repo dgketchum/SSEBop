@@ -22,6 +22,7 @@ from app.paths import paths, PathsNotSetExecption
 from dem.dem import MapzenDem
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from metio.thredds import TopoWX
+from bounds.bounds import RasterBounds
 from metio.fao import avp_from_tmin, net_out_lw_rad, sunset_hour_angle
 from metio.fao import sol_dec, inv_rel_dist_earth_sun, et_rad
 
@@ -63,6 +64,8 @@ class SSEBopModel(object):
         self._k_factor = runspec.k_factor
         self._satellite = runspec.satellite
 
+        self._api_key = runspec.api_key
+
         print('----------- CONFIGURATION --------------')
         for attr in ('date_range', 'satellite', 'k_factor'):
             print('{:<20s}{}'.format(attr, getattr(self, '_{}'.format(attr))))
@@ -86,13 +89,19 @@ class SSEBopModel(object):
 
         clip_shape = self.image.get_tile_geometry()
 
-        dem = MapzenDem(bounds=self.image.bounds, clip_object=clip_shape,
-                        target_profile=self.image.rasterio_geometry, zoom=8)
+        bounds = RasterBounds(affine_transform=self.image.transform,
+                              profile=self.image.profile, latlon=True)
+
+        dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
+                        target_profile=self.image.rasterio_geometry, zoom=8,
+                        api_key=self._cfg.api_key)
+
         elevation = dem.terrain(attribute='elevation')
 
         topowx = TopoWX(date=self.date, bbox=self.image.bounds,
                         target_profile=self.image.profile,
                         clip_feature=self.image.get_tile_geometry())
+
         met_data = topowx.get_data_subset(grid_conform=True)
 
         albedo = self.image.albedo()

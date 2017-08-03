@@ -4,7 +4,12 @@
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config.py" afterPath="$PROJECT_DIR$/app/config.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/fao.py" afterPath="$PROJECT_DIR$/metio/fao.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ssebop_config_test.yml" afterPath="$PROJECT_DIR$/tests/ssebop_config_test.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_dem.py" afterPath="$PROJECT_DIR$/tests/test_dem.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,84 +21,51 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="thredds.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/metio/thredds.py">
+      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+            <state relative-caret-position="1661">
+              <caret line="112" column="32" lean-forward="true" selection-start-line="112" selection-start-column="32" selection-end-line="112" selection-end-column="32" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#761#798#0" expanded="true" />
-                <element signature="e#1446#1542#1" expanded="false" />
-                <element signature="e#1643#1819#0" expanded="false" />
-                <element signature="e#1865#2089#0" expanded="false" />
-                <element signature="e#2137#3203#0" expanded="false" />
-                <element signature="e#3245#4686#0" expanded="false" />
-                <element signature="e#4723#5381#0" expanded="false" />
-                <element signature="e#5422#6760#0" expanded="false" />
-                <element signature="e#6797#6875#0" expanded="false" />
-                <element signature="e#6917#7172#0" expanded="false" />
-                <element signature="e#7234#7303#0" expanded="false" />
-                <element signature="e#7333#8004#1" expanded="false" />
-                <element signature="e#8048#8422#0" expanded="false" />
-                <element signature="e#8484#10235#0" expanded="false" />
-                <element signature="e#10277#10622#0" expanded="false" />
-                <element signature="e#10653#16821#0" expanded="false" />
-                <element signature="e#10653#12632#1" expanded="false" />
-                <element signature="e#12687#14631#0" expanded="false" />
-                <element signature="e#14693#16262#0" expanded="false" />
-                <element signature="e#16304#16819#0" expanded="false" />
+                <element signature="e#762#799#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bounds.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
-              <caret line="77" column="22" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="22" />
+            <state relative-caret-position="731">
+              <caret line="63" column="23" lean-forward="true" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#740#777#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="entry_script.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/entry_script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#762#771#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ssebop_config_test.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dem.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dem/dem.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="298" selection-end-column="37" />
-              <folding>
-                <element signature="e#1438#1942#0" expanded="false" />
-                <element signature="e#1972#2807#0" expanded="false" />
-                <element signature="e#2948#3336#0" expanded="false" />
-                <element signature="e#3418#4283#0" expanded="false" />
-                <element signature="e#4351#4621#0" expanded="false" />
-                <element signature="e#4674#4787#0" expanded="false" />
-                <element signature="e#4849#5286#0" expanded="false" />
-                <element signature="e#5322#6047#0" expanded="false" />
-                <element signature="e#6083#6506#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_metio.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="91" column="48" lean-forward="false" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#990#3256#0" expanded="false" />
-                <element signature="e#1015#1825#0" expanded="false" />
-                <element signature="e#1225#1593#0" expanded="false" />
-                <element signature="e#1867#2017#0" expanded="false" />
-                <element signature="e#2061#2342#0" expanded="false" />
-                <element signature="e#2392#2691#0" expanded="false" />
-                <element signature="e#2738#3256#0" expanded="false" />
-                <element signature="e#3325#3547#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -203,11 +175,8 @@
         <option value="$PROJECT_DIR$/../MT_Rsense/obsgrid/get_meteo.py" />
         <option value="$PROJECT_DIR$/app/cli.py" />
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/app/config.py" />
         <option value="$PROJECT_DIR$/tests/test_suite.py" />
         <option value="$PROJECT_DIR$/app/entry_script.py" />
-        <option value="$PROJECT_DIR$/tests/ssebop_config_test.yml" />
-        <option value="$PROJECT_DIR$/app/paths.py" />
         <option value="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
         <option value="$PROJECT_DIR$/metio/gdal_xml" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/merge.py" />
@@ -229,12 +198,15 @@
         <option value="$PROJECT_DIR$/tests/test_bounds.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
         <option value="$PROJECT_DIR$/metio/sandbox.py" />
-        <option value="$PROJECT_DIR$/metio/fao.py" />
-        <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/tests/test_metio.py" />
-        <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/metio/thredds.py" />
+        <option value="$PROJECT_DIR$/metio/fao.py" />
+        <option value="$PROJECT_DIR$/dem/dem.py" />
+        <option value="$PROJECT_DIR$/app/paths.py" />
+        <option value="$PROJECT_DIR$/core/ssebop.py" />
+        <option value="$PROJECT_DIR$/tests/ssebop_config_test.yml" />
+        <option value="$PROJECT_DIR$/app/config.py" />
       </list>
     </option>
   </component>
@@ -291,7 +263,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -304,36 +275,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bounds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -371,7 +315,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_metio.TestTopoWX.test_conforming_array">
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_dem.MapzenDemTestCase.test_dem">
     <configuration default="false" name="Unittests for tests.test_metio.TestGridMet.test_conforming_array" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -402,24 +346,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="sandbox" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/metio" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/metio/sandbox.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="Unittests in test_metio.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -435,7 +361,25 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for tests.test_metio.TestTopoWX" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="entry_script" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/entry_script.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_dem.MapzenDemTestCase.test_dem" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -446,7 +390,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_metio.TestTopoWX&quot;" />
+      <option name="_new_target" value="&quot;tests.test_dem.MapzenDemTestCase.test_dem&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -528,17 +472,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_conforming_array" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestTopoWX.test_conforming_array" />
-      <item index="2" class="java.lang.String" itemvalue="Python.sandbox" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestTopoWX" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python.entry_script" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase.test_dem" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestTopoWX.test_conforming_array" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_conforming_array" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestTopoWX" />
-        <item index="4" class="java.lang.String" itemvalue="Python.sandbox" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase.test_dem" />
+        <item index="1" class="java.lang.String" itemvalue="Python.entry_script" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestTopoWX.test_conforming_array" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestGridMet.test_conforming_array" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_metio.py" />
       </list>
     </recent_temporary>
   </component>
@@ -555,13 +499,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00085" summary="wmts tile to deg and inverse static methods">
-      <created>1497968486230</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1497968486230</updated>
     </task>
     <task id="LOCAL-00086" summary="mapzen service with bytesIO and scipy.misc.imread">
       <created>1497973505897</created>
@@ -899,12 +836,19 @@
       <option name="project" value="LOCAL" />
       <updated>1501008071062</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="resample working on thredds">
+      <created>1501008461261</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1501008461261</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 06m 43s.xml">
-      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MapzenDemTestCase_test_dem - 2017.08.03 at 11h 43m 43s.xml">
+      <configuration name="Unittests for tests.test_dem.MapzenDemTestCase.test_dem" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 19m 33s.xml">
       <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
@@ -947,16 +891,16 @@
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16076696" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16076696" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41076696" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49115044" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37536874" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48377582" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41519174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -977,7 +921,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="debugging same bounds for all mapzen tiles" />
     <MESSAGE value="memory error on get_default_transform" />
     <MESSAGE value="fixed merge: remove res=30 was causing memerror" />
     <MESSAGE value="resample function" />
@@ -1002,7 +945,8 @@
     <MESSAGE value="arrange fao 56 equations" />
     <MESSAGE value="implement project, reproject, resample" />
     <MESSAGE value="reproject finally working in thredds" />
-    <option name="LAST_COMMIT_MESSAGE" value="reproject finally working in thredds" />
+    <MESSAGE value="resample working on thredds" />
+    <option name="LAST_COMMIT_MESSAGE" value="resample working on thredds" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1023,6 +967,11 @@
           <line>69</line>
           <option name="timeStamp" value="349" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/core/ssebop.py</url>
+          <line>100</line>
+          <option name="timeStamp" value="872" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1031,7 +980,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="872" />
+      <option name="time" value="885" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1041,13 +990,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/rasterio/_features.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/shapely/geometry/polygon.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -1217,34 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="40" column="13" lean-forward="true" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/cli.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/paths.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_image.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1268,31 +1182,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metio/fao.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/data/image_test/lt5_image/LT05_L1TP_040028_20060706_20160909_01_T1_MTL.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
           <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="109" column="19" lean-forward="false" selection-start-line="109" selection-start-column="19" selection-end-line="109" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1314,25 +1207,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="281" column="0" lean-forward="false" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="91" column="48" lean-forward="false" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#990#3256#0" expanded="false" />
-            <element signature="e#1015#1825#0" expanded="false" />
-            <element signature="e#1225#1593#0" expanded="false" />
-            <element signature="e#1867#2017#0" expanded="false" />
-            <element signature="e#2061#2342#0" expanded="false" />
-            <element signature="e#2392#2691#0" expanded="false" />
-            <element signature="e#2738#3256#0" expanded="false" />
-            <element signature="e#3325#3547#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1340,9 +1214,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="292" column="4" lean-forward="true" selection-start-line="292" selection-start-column="4" selection-end-line="292" selection-end-column="4" />
-          <folding>
-            <element signature="e#5702#8941#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1350,55 +1221,108 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="658">
           <caret line="77" column="22" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/thredds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="696">
+          <caret line="234" column="8" lean-forward="false" selection-start-line="234" selection-start-column="8" selection-end-line="234" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="93" column="30" lean-forward="false" selection-start-line="93" selection-start-column="15" selection-end-line="93" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/cli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/fao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#346#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/paths.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding>
+            <element signature="e#740#777#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="59" column="19" lean-forward="true" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dem/dem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="298" selection-end-column="37" />
+        <state relative-caret-position="357">
+          <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
           <folding>
+            <element signature="n#!!doc" expanded="false" />
             <element signature="e#1438#1942#0" expanded="false" />
             <element signature="e#1972#2807#0" expanded="false" />
-            <element signature="e#2948#3336#0" expanded="false" />
-            <element signature="e#3418#4283#0" expanded="false" />
-            <element signature="e#4351#4621#0" expanded="false" />
-            <element signature="e#4674#4787#0" expanded="false" />
-            <element signature="e#4849#5286#0" expanded="false" />
-            <element signature="e#5322#6047#0" expanded="false" />
-            <element signature="e#6083#6506#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metio/thredds.py">
+    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+        <state relative-caret-position="136">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#761#798#0" expanded="true" />
-            <element signature="e#1446#1542#1" expanded="false" />
-            <element signature="e#1643#1819#0" expanded="false" />
-            <element signature="e#1865#2089#0" expanded="false" />
-            <element signature="e#2137#3203#0" expanded="false" />
-            <element signature="e#3245#4686#0" expanded="false" />
-            <element signature="e#4723#5381#0" expanded="false" />
-            <element signature="e#5422#6760#0" expanded="false" />
-            <element signature="e#6797#6875#0" expanded="false" />
-            <element signature="e#6917#7172#0" expanded="false" />
-            <element signature="e#7234#7303#0" expanded="false" />
-            <element signature="e#7333#8004#1" expanded="false" />
-            <element signature="e#8048#8422#0" expanded="false" />
-            <element signature="e#8484#10235#0" expanded="false" />
-            <element signature="e#10277#10622#0" expanded="false" />
-            <element signature="e#10653#16821#0" expanded="false" />
-            <element signature="e#10653#12632#1" expanded="false" />
-            <element signature="e#12687#14631#0" expanded="false" />
-            <element signature="e#14693#16262#0" expanded="false" />
-            <element signature="e#16304#16819#0" expanded="false" />
+            <element signature="e#762#771#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1661">
+          <caret line="112" column="32" lean-forward="true" selection-start-line="112" selection-start-column="32" selection-end-line="112" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#799#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="63" column="23" lean-forward="true" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#740#777#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

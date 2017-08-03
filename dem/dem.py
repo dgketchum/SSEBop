@@ -111,13 +111,17 @@ class MapzenDem(Dem):
 
         if attribute == 'elevation':
             if out_file:
+                if len(dem.shape) > 2:
+                    dem = reshape(1, dem.shape[0], dem.shape[1])
                 self.save(dem, self.target_profile, out_file)
-
-            return dem
+            else:
+                return dem
 
         elif attribute == 'slope':
             slope = self.get_slope(dem, mode=mode)
             if out_file:
+                if len(slope.shape) > 2:
+                    slope = reshape(1, dem.shape[0], dem.shape[1])
                 self.save(slope, self.target_profile, out_file)
             else:
                 return slope
@@ -126,9 +130,11 @@ class MapzenDem(Dem):
             aspect = self.get_aspect(dem)
             aspect = where(aspect > 2 * pi, 0, aspect)
             if out_file:
+                if len(aspect.shape) > 2:
+                    aspect = reshape(1, dem.shape[0], dem.shape[1])
                 self.save(aspect, self.target_profile, out_file)
-
-            return aspect
+            else:
+                return aspect
 
         else:
             raise ValueError('Must choose attribute from '"elevation"', '"slope"', or '"aspect'.")
@@ -193,6 +199,8 @@ class MapzenDem(Dem):
         for (z, x, y) in self.find_tiles():
             url = base_url.format(z=z, x=x, y=y, k=self.key)
             req = get(url, verify=False, stream=True)
+            if req.status_code != 200:
+                raise ValueError('Bad response from Mapzen API request.')
 
             temp_path = os.path.join(self.temp_dir, '{}-{}-{}.tif'.format(z, x, y))
             with open(temp_path, 'wb') as f:
@@ -200,7 +208,7 @@ class MapzenDem(Dem):
                 self.files.append(temp_path)
 
     def merge_tiles(self):
-        raster_readers = [rasopen(f) for f in self.files]
+        raster_readers = [rasopen(f, 'r') for f in self.files]
         reproj_bounds = self.bbox.to_web_mercator()
         setattr(self, 'web_mercator_bounds', reproj_bounds)
         array, transform = merge(raster_readers, bounds=reproj_bounds)
