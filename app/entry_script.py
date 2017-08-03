@@ -24,7 +24,7 @@ from core.ssebop import SSEBopModel
 def run_ssebop(cfg_path):
     cfg = Config(cfg_path)
     for runspec in cfg.runspecs:
-        paths.build(runspec.input_root, runspec.output_root)
+        paths.build(runspec.root)
 
         welcome()
 
