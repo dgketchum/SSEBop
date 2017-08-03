@@ -2,22 +2,22 @@
 path: 40
 row: 28
 root: /data01/images/ssebop_analysis
-input_root: None
-output_root: None
+input_root:
+output_root:
 
 api_key: 'mapzen-JmKu1BF'
 
 satellite: LT5
-year: None
-single_date: True
-start_date: None
-end_date: None
+year:
+# Date format; string 'YYYYMMDD'
+single_date: '20060706'
+start_date:
+end_date:
 k_factor: 1.25
 verify_paths: True
 
 # Add the path relative to /input_root/
 # They will be joined to input_root.
-# Parameters mask and polygon are optional, put None if None
-polygons: None
-mask: None
-
+# Parameters mask and polygon are optional
+polygons:
+mask:
