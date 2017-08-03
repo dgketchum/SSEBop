@@ -28,51 +28,28 @@ class PathsNotSetExecption(BaseException):
 
 
 class Paths:
-    ssebop_input_root = None
-    ssebop_output_root = None
-    dem_root = None
+    ssebop_root = None
+    image_directory = None
+    mask = None
+    polygons = None
 
     def __init__(self):
         self._is_set = False
         self.config = os.path.join(os.path.expanduser('~'), 'ssebop_CONFIG.yml')
 
-    def build(self, input_root, output_root=None):
+    def build(self, parent_root):
         self._is_set = True
-        self.ssebop_input_root = input_root
-        if output_root is None:
-            output_root = input_root
-
-        self.ssebop_output_root = output_root
-
-        now = datetime.now()
-        tag = now.strftime('%Y%m%d_%H_%M')
-
-        self.results_root = os.path.join(self.ssebop_output_root, tag)
+        self.ssebop_root = parent_root
 
     def set_mask_path(self, path):
-        self.mask = self.input_path(path)
+        self.mask = path
 
-    def set_image_path(self, path):
-        self.image = self.input_path(path)
-
-    def input_path(self, path):
-        return os.path.join(self.ssebop_input_root, path)
-
-    def set_polygons_path(self, p):
-        self.polygons = self.input_path(p)
+    def set_polygons_path(self, path):
+        self.polygons = path
 
     def verify(self):
-        attrs = ('ssebop_input_root',
-                 'ssebop_output_root',)
-
-        nonfound = []
-        for attr in attrs:
-            v = getattr(self, attr)
-            if not os.path.exists(v):
-                print('NOT FOUND {}: {}'.format(attr, v))
-                nonfound.append((attr, v))
-
-        if nonfound:
+        if not os.path.exists(self.ssebop_root):
+            print('NOT FOUND {}'.format(self.ssebop_root))
             sys.exit(1)
 
     def is_set(self):

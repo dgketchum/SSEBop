@@ -31,6 +31,7 @@ class SSEBopModel(object):
     _date_range = None
     _k_factor = None
     _satellite = None
+    _api_key = None
 
     _is_configured = False
 
@@ -48,13 +49,11 @@ class SSEBopModel(object):
 
         paths.set_polygons_path(cfg.polygons)
         paths.set_mask_path(cfg.mask)
-        paths.set_image_path(cfg.image_directory)
 
         if cfg.verify_paths:
             paths.verify()
 
         self._info('Constructing/Initializing SSEBop...')
-        # self._constants = set_constants()
 
     def configure_run(self, runspec):
 
@@ -71,6 +70,9 @@ class SSEBopModel(object):
             print('{:<20s}{}'.format(attr, getattr(self, '_{}'.format(attr))))
         print('----------- ------------- --------------')
         self._is_configured = True
+
+    def data_check(self):
+        pass
 
     def run(self):
         """ Run the SSEBop algorithm.
@@ -107,7 +109,7 @@ class SSEBopModel(object):
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
 
-        net_rad = self._net_radiation(topowx.tmin, self.image.doy)
+        # net_rad = self._net_radiation(topowx.tmin, self.image.doy)
 
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()

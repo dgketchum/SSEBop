@@ -42,7 +42,7 @@ end_date: 11/1/2010
 k_factor: 1.25
 verify_paths: True
 
-# Add the path relative to /input_root/
+# Add the path relative to /input_root/ or /root/
 # They will be joined to input_root.
 # Parameters mask and polygon are optional, put None if None
 polygons: None
@@ -55,9 +55,9 @@ DATETIME_FMT = '%m/%d/%Y'
 class RunSpec:
     _obj = None
 
+    path, row = None, None
+
     root = None
-    input_root = None
-    output_root = None
     api_key = None
 
     year = None
@@ -73,10 +73,11 @@ class RunSpec:
 
     def __init__(self, obj):
         self._obj = obj
-        attrs = ('input_root', 'output_root', 'api_key',
+        attrs = ('path', 'row',
+                 'api_key',
                  'start_date', 'end_date',
                  'mask', 'polygons',
-                 'satellite', 'image_directory',
+                 'satellite',
                  'k_factor', 'dem_folder',
                  'tmax_folder', 'dt_folder',
                  'eto_folder', 'verify_paths',)
