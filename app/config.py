@@ -76,9 +76,10 @@ class RunSpec:
         self._obj = obj
 
         attrs = ('path', 'row', 'root',
-                 'api_key', 'year', 'single_date',
+                 'api_key',
                  'mask', 'polygons',
                  'satellite',
+                 'start_date', 'end_date',
                  'k_factor', 'verify_paths',)
 
         time_attrs = ('start_date', 'end_date')
@@ -86,13 +87,12 @@ class RunSpec:
         for attr in attrs:
 
             if attr in time_attrs:
-                dt_str = self._obj.get(attr)
+                dt_str = str(self._obj.get(attr))
                 dt = datetime.strptime(dt_str, DATETIME_FMT)
-                setattr(self, dt_str, dt)
+                setattr(self, attr, dt)
 
             else:
                 setattr(self, attr, self._obj.get(attr))
-
 
     @property
     def save_dates(self):
