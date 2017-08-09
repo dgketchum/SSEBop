@@ -60,6 +60,7 @@ class SSEBopModel(object):
         self._info('Configuring SSEBop run')
 
         self._date_range = runspec.date_range
+        self._image_list = runspec.image_list
         self._k_factor = runspec.k_factor
         self._satellite = runspec.satellite
 

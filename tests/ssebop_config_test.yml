@@ -1,18 +1,16 @@
 
 path: 40
 row: 28
-root: /data01/images/ssebop_analysis
+root: /data01/images/sandbox/ssebop_analysis
 input_root:
 output_root:
 
 api_key: 'mapzen-JmKu1BF'
 
 satellite: LT5
-year:
 # Date format; string 'YYYYMMDD'
-single_date: '20060706'
-start_date:
-end_date:
+start_date: 20060701
+end_date: 20060718
 k_factor: 1.25
 verify_paths: True
 

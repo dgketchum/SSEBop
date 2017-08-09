@@ -19,6 +19,7 @@ from __future__ import print_function
 import os
 import sys
 from datetime import datetime
+from landsat.download_composer import download_landsat
 
 import yaml
 
@@ -73,22 +74,25 @@ class RunSpec:
 
     def __init__(self, obj):
         self._obj = obj
+
         attrs = ('path', 'row', 'root',
-                 'api_key', 'year',
-                 'single_date',
-                 'start_date', 'end_date',
+                 'api_key', 'year', 'single_date',
                  'mask', 'polygons',
                  'satellite',
                  'k_factor', 'verify_paths',)
 
+        time_attrs = ('start_date', 'end_date')
+
         for attr in attrs:
-            setattr(self, attr, self._obj.get(attr))
 
-        if self.year:
-            self.start_date, self.end_date = datetime(self.year, 4, 1), datetime(self.year, 10, 31)
+            if attr in time_attrs:
+                dt_str = self._obj.get(attr)
+                dt = datetime.strptime(dt_str, DATETIME_FMT)
+                setattr(self, dt_str, dt)
 
-        if self.single_date:
-            self.start_date, self.end_date = self.single_date, self.single_date
+            else:
+                setattr(self, attr, self._obj.get(attr))
+
 
     @property
     def save_dates(self):
@@ -98,8 +102,15 @@ class RunSpec:
 
     @property
     def date_range(self):
-        return (datetime.strptime(self.start_date, DATETIME_FMT),
-                datetime.strptime(self.end_date, DATETIME_FMT))
+        return (self.start_date,
+                self.end_date)
+
+    @property
+    def image_list(self):
+        for sat in ['LT5', 'LE7', 'LC8']:
+            download_landsat((self.start_date, self.end_date), satellite=sat,
+                             path_row_list=[(self.path, self.row)],
+                             dry_run=True)
 
 
 class Config:
