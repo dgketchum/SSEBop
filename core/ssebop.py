@@ -54,17 +54,15 @@ class SSEBopModel(object):
         self.image_list = self.cfg.image_list
         self.k_factor = self.cfg.k_factor
         self.satellite = self.cfg.satellite
+        self.usgs_creds = self.cfg.ussgs_creds
 
         self.api_key = self.cfg.api_key
 
         paths.set_polygons_path(cfg.polygons)
         paths.set_mask_path(cfg.mask)
-        paths.set_image_path(cfg.image_directory)
 
         if cfg.verify_paths:
             paths.verify()
-
-        self.image_list = self.cfg.image_list
 
         paths.configure_project_dirs(cfg=cfg)
 
@@ -76,7 +74,7 @@ class SSEBopModel(object):
 
         print('----------- CONFIGURATION --------------')
         for attr in ('date_range', 'satellite', 'k_factor'):
-            print('{:<20s}{}'.format(attr, getattr(self, '_{}'.format(attr))))
+            print('{:<20s}{}'.format(attr, getattr(self, '{}'.format(attr))))
         print('----------- ------------- --------------')
         self._is_configured = True
 
@@ -131,7 +129,6 @@ class SSEBopModel(object):
     def _net_radiation(self, tmin, doy):
         avp = avp_from_tmin(tmin)
         return None
-
 
     @staticmethod
     def _info(msg):

@@ -76,7 +76,7 @@ class RunSpec:
         self._obj = obj
 
         attrs = ('path', 'row', 'root',
-                 'api_key',
+                 'api_key', 'usgs_creds',
                  'mask', 'polygons',
                  'satellite',
                  'start_date', 'end_date',
@@ -112,9 +112,13 @@ class RunSpec:
             images = down((self.start_date, self.end_date), satellite=sat,
                           path_row_list=[(self.path, self.row)],
                           dry_run=True)
-            super_list.append(images)
-        flat_list = [item for sublist in super_list for item in sublist]
-        return flat_list
+            if images:
+                super_list.append(images)
+        try:
+            flat_list = [item for sublist in super_list for item in sublist]
+            return flat_list
+        except TypeError:
+            return super_list
 
 
 class Config:
