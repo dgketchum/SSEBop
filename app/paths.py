@@ -20,6 +20,7 @@ import os
 import sys
 
 from datetime import datetime
+from dateutil.rrule import rrule, YEARLY
 
 
 class PathsNotSetExecption(BaseException):
@@ -47,9 +48,34 @@ class Paths:
         self.polygons = path
 
     def verify(self):
+
         if not os.path.exists(self.ssebop_root):
             print('NOT FOUND {}'.format(self.ssebop_root))
             sys.exit(1)
+
+        if self.polygons:
+            if not os.path.exists(self.ssebop_root):
+                print('NOT FOUND {}'.format(self.ssebop_root))
+                sys.exit(1)
+
+        if self.mask:
+            if not os.path.exists(self.ssebop_root):
+                print('NOT FOUND {}'.format(self.ssebop_root))
+                sys.exit(1)
+
+    def configure_project_dirs(self, cfg, image_dir=None):
+        if image_dir:
+            pass
+        else:
+            p, r = str(cfg.path).zfill(3), str(cfg.row).zfill(3)
+            path_row_dir = os.path.join(self.ssebop_root, '{}_{}'.format(p, r))
+            if not os.path.exists(path_row_dir):
+                os.mkdir(path_row_dir)
+            start, end = cfg.start, cfg.end
+            for dt in rrule(YEARLY, dtstart=start, until=end):
+                year_dir = os.path.join(path_row_dir, str(dt))
+                if not os.path.exists(year_dir):
+                    os.mkdir(year_dir)
 
     def is_set(self):
         return self._is_set

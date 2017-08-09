@@ -108,9 +108,9 @@ class RunSpec:
     @property
     def image_list(self):
         for sat in ['LT5', 'LE7', 'LC8']:
-            download_landsat((self.start_date, self.end_date), satellite=sat,
-                             path_row_list=[(self.path, self.row)],
-                             dry_run=True)
+            images = download_landsat((self.start_date, self.end_date), satellite=sat,
+                                      path_row_list=[(self.path, self.row)],
+                                      dry_run=True)
 
 
 class Config:

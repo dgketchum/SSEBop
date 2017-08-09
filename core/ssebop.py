@@ -53,6 +53,8 @@ class SSEBopModel(object):
         if cfg.verify_paths:
             paths.verify()
 
+        paths.configure_project_dirs()
+
         self._info('Constructing/Initializing SSEBop...')
 
     def configure_run(self, runspec):
