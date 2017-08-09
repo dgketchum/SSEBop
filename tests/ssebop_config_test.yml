@@ -6,8 +6,9 @@ input_root:
 output_root:
 
 api_key: 'mapzen-JmKu1BF'
+usgs_creds: /data01/usgs.txt
 
-satellite: LT5
+satellite:
 # Date format; string 'YYYYMMDD'
 start_date: 20060701
 end_date: 20060718

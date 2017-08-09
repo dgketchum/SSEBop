@@ -19,7 +19,7 @@ from __future__ import print_function
 import os
 import sys
 from datetime import datetime
-from landsat.download_composer import download_landsat
+from landsat.download_composer import download_landsat as down
 
 import yaml
 
@@ -107,10 +107,14 @@ class RunSpec:
 
     @property
     def image_list(self):
+        super_list = []
         for sat in ['LT5', 'LE7', 'LC8']:
-            images = download_landsat((self.start_date, self.end_date), satellite=sat,
-                                      path_row_list=[(self.path, self.row)],
-                                      dry_run=True)
+            images = down((self.start_date, self.end_date), satellite=sat,
+                          path_row_list=[(self.path, self.row)],
+                          dry_run=True)
+            super_list.append(images)
+        flat_list = [item for sublist in super_list for item in sublist]
+        return flat_list
 
 
 class Config:

@@ -18,6 +18,8 @@ from __future__ import print_function
 
 import numpy as np
 
+from landsat.usgs_download import down_usgs_by_list as down
+
 from app.paths import paths, PathsNotSetExecption
 from dem.dem import MapzenDem
 from sat_image.image import Landsat5, Landsat7, Landsat8
@@ -40,33 +42,37 @@ class SSEBopModel(object):
         self.image = None
         self.dem = None
         self.bounds = None
+
         self.met_variables = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
                               'th', 'tmmn', 'tmmx', 'pet', 'vs', ]
         if not paths.is_set():
             raise PathsNotSetExecption
 
-        self._cfg = cfg
+        self.cfg = cfg
+
+        self.date_range = self.cfg.date_range
+        self.image_list = self.cfg.image_list
+        self.k_factor = self.cfg.k_factor
+        self.satellite = self.cfg.satellite
+
+        self.api_key = self.cfg.api_key
 
         paths.set_polygons_path(cfg.polygons)
         paths.set_mask_path(cfg.mask)
+        paths.set_image_path(cfg.image_directory)
 
         if cfg.verify_paths:
             paths.verify()
 
-        paths.configure_project_dirs()
+        self.image_list = self.cfg.image_list
+
+        paths.configure_project_dirs(cfg=cfg)
 
         self._info('Constructing/Initializing SSEBop...')
 
-    def configure_run(self, runspec):
+    def configure_run(self):
 
         self._info('Configuring SSEBop run')
-
-        self._date_range = runspec.date_range
-        self._image_list = runspec.image_list
-        self._k_factor = runspec.k_factor
-        self._satellite = runspec.satellite
-
-        self._api_key = runspec.api_key
 
         print('----------- CONFIGURATION --------------')
         for attr in ('date_range', 'satellite', 'k_factor'):
@@ -75,7 +81,10 @@ class SSEBopModel(object):
         self._is_configured = True
 
     def data_check(self):
-        pass
+        for image in self.image_list:
+            image_exists, path = paths.configure_project_dirs(self.cfg, image_dir=image)
+            if not image_exists:
+                down([image], path, self.usgs_creds)
 
     def run(self):
         """ Run the SSEBop algorithm.
@@ -99,7 +108,7 @@ class SSEBopModel(object):
 
         dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
                         target_profile=self.image.rasterio_geometry, zoom=8,
-                        api_key=self._cfg.api_key)
+                        api_key=self.cfg.api_key)
 
         elevation = dem.terrain(attribute='elevation')
 

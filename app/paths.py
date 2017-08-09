@@ -64,18 +64,26 @@ class Paths:
                 sys.exit(1)
 
     def configure_project_dirs(self, cfg, image_dir=None):
+
+        p, r = str(cfg.path).zfill(3), str(cfg.row).zfill(3)
+        path_row_dir = os.path.join(self.ssebop_root, '{}_{}'.format(p, r))
+
+        if not os.path.exists(path_row_dir):
+            os.mkdir(path_row_dir)
+        start, end = cfg.start, cfg.end
+
+        for dt in rrule(YEARLY, dtstart=start, until=end):
+            year_dir = os.path.join(path_row_dir, str(dt))
+            if not os.path.exists(year_dir):
+                os.mkdir(year_dir)
+
         if image_dir:
-            pass
-        else:
-            p, r = str(cfg.path).zfill(3), str(cfg.row).zfill(3)
-            path_row_dir = os.path.join(self.ssebop_root, '{}_{}'.format(p, r))
-            if not os.path.exists(path_row_dir):
-                os.mkdir(path_row_dir)
-            start, end = cfg.start, cfg.end
-            for dt in rrule(YEARLY, dtstart=start, until=end):
-                year_dir = os.path.join(path_row_dir, str(dt))
-                if not os.path.exists(year_dir):
-                    os.mkdir(year_dir)
+            image_path = os.path.join(year_dir, image_dir)
+            if len(os.listdir(image_path)) > 2:
+                return True, None
+            else:
+                os.mkdir(image_path)
+                return False, image_path
 
     def is_set(self):
         return self._is_set
