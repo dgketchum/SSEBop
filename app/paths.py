@@ -19,7 +19,6 @@ from __future__ import print_function
 import os
 import sys
 
-from datetime import datetime
 from dateutil.rrule import rrule, YEARLY
 
 
@@ -81,10 +80,12 @@ class Paths:
             image_path = os.path.join(year_dir, image_dir)
             if os.path.exists(image_path):
                 if len(os.listdir(image_path)) > 2:
-                    return True, None
+                    return True, year_dir
+                else:
+                    return False, year_dir
+
             else:
-                os.mkdir(image_path)
-                return False, image_path
+                return False, year_dir
 
     def is_set(self):
         return self._is_set

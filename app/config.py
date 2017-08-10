@@ -60,6 +60,7 @@ class RunSpec:
 
     root = None
     api_key = None
+    usgs_creds = None
 
     year = None
     single_date = False

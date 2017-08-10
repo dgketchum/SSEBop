@@ -54,7 +54,7 @@ class SSEBopModel(object):
         self.image_list = self.cfg.image_list
         self.k_factor = self.cfg.k_factor
         self.satellite = self.cfg.satellite
-        self.usgs_creds = self.cfg.ussgs_creds
+        self.usgs_creds = self.cfg.usgs_creds
 
         self.api_key = self.cfg.api_key
 
