@@ -16,6 +16,7 @@
 
 from __future__ import print_function
 
+import os
 import numpy as np
 
 from landsat.usgs_download import down_usgs_by_list as down
@@ -52,6 +53,7 @@ class SSEBopModel(object):
 
         self.date_range = self.cfg.date_range
         self.image_list = self.cfg.image_list
+        self.image_paths = []
         self.k_factor = self.cfg.k_factor
         self.satellite = self.cfg.satellite
         self.usgs_creds = self.cfg.usgs_creds
@@ -83,21 +85,21 @@ class SSEBopModel(object):
             image_exists, path = paths.configure_project_dirs(self.cfg, image_dir=image)
             if not image_exists:
                 down([image], path, self.usgs_creds)
+            self.image_paths.append(os.path.join(path, image))
 
     def run(self):
         """ Run the SSEBop algorithm.
         :return: 
         """
         print('Instantiating image...')
-        if self._satellite == 'LT5':
-            self.image = Landsat5(paths.image)
-        elif self._satellite == 'LE7':
-            self.image = Landsat7(paths.image)
-        elif self._satellite == 'LC8':
-            self.image = Landsat8(paths.image)
-
-        else:
-            raise ValueError('Must choose a valid satellite in config.')
+        for image in self.image_paths:
+            sat = os.path.basename(os.path.normpath(image))[:3]
+            if sat == 'LT5':
+                self.image = Landsat5(image)
+            elif sat == 'LE7':
+                self.image = Landsat7(image)
+            elif sat == 'LC8':
+                self.image = Landsat8(image)
 
         clip_shape = self.image.get_tile_geometry()
 
@@ -110,7 +112,7 @@ class SSEBopModel(object):
 
         elevation = dem.terrain(attribute='elevation')
 
-        topowx = TopoWX(date=self.date, bbox=self.image.bounds,
+        topowx = TopoWX(date=self.image.date, bbox=self.image.bounds,
                         target_profile=self.image.profile,
                         clip_feature=self.image.get_tile_geometry())
 
@@ -119,7 +121,7 @@ class SSEBopModel(object):
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
 
-        # net_rad = self._net_radiation(topowx.tmin, self.image.doy)
+        net_rad = self._net_radiation(topowx.tmin, self.image.doy)
 
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()
