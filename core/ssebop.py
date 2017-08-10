@@ -19,6 +19,8 @@ from __future__ import print_function
 import os
 import numpy as np
 
+from rasterio import open as rasopen
+
 from landsat.usgs_download import down_usgs_by_list as down
 
 from app.paths import paths, PathsNotSetExecption
@@ -53,7 +55,9 @@ class SSEBopModel(object):
 
         self.date_range = self.cfg.date_range
         self.image_list = self.cfg.image_list
-        self.image_paths = []
+
+        self.image_data = {}
+
         self.k_factor = self.cfg.k_factor
         self.satellite = self.cfg.satellite
         self.usgs_creds = self.cfg.usgs_creds
@@ -81,38 +85,45 @@ class SSEBopModel(object):
         self._is_configured = True
 
     def data_check(self):
+
         for image in self.image_list:
+
+            self.image_data[image] = {}
+            sat = os.path.basename(os.path.normpath(image))[:3]
+            self.image_data[image]['sat'] = sat
+
             image_exists, path = paths.configure_project_dirs(self.cfg, image_dir=image)
+
             if not image_exists:
                 down([image], path, self.usgs_creds)
-            self.image_paths.append(os.path.join(path, image))
+
+            self.image_data[image]['dir'] = (os.path.join(path, image))
+
+            dem_file = '{}_dem.tif'.format(image)
+            if dem_file in os.listdir(self.image_data[image]['dir']):
+                self.image_data[image]['dem'] = dem_file
+                self.image_data[image]['dem_exists'] = True
+            else:
+                self.image_data[image]['dem'] = None
+                self.image_data[image]['dem_exists'] = False
 
     def run(self):
         """ Run the SSEBop algorithm.
         :return: 
         """
         print('Instantiating image...')
-        for image in self.image_paths:
-            sat = os.path.basename(os.path.normpath(image))[:3]
+        for image, dct in self.image_data.items():
+            sat = dct['sat']
             if sat == 'LT5':
-                self.image = Landsat5(image)
+                self.image = Landsat5(dct['dir'])
             elif sat == 'LE7':
-                self.image = Landsat7(image)
+                self.image = Landsat7(dct['dir'])
             elif sat == 'LC8':
-                self.image = Landsat8(image)
+                self.image = Landsat8(dct['dir'])
 
-        clip_shape = self.image.get_tile_geometry()
+        elevation = self._get_elevation(image)
 
-        bounds = RasterBounds(affine_transform=self.image.transform,
-                              profile=self.image.profile, latlon=True)
-
-        dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
-                        target_profile=self.image.rasterio_geometry, zoom=8,
-                        api_key=self.cfg.api_key)
-
-        elevation = dem.terrain(attribute='elevation')
-
-        topowx = TopoWX(date=self.image.date, bbox=self.image.bounds,
+        topowx = TopoWX(date=self.image.date_acquired, bbox=self.image.bounds,
                         target_profile=self.image.profile,
                         clip_feature=self.image.get_tile_geometry())
 
@@ -122,6 +133,27 @@ class SSEBopModel(object):
         emissivity = self._emissivity_ndvi()
 
         net_rad = self._net_radiation(topowx.tmin, self.image.doy)
+
+    def _get_temps(self, image):
+        if self.image_data[image]['temp_exists']:
+            with rasopen(self.image_data[image]['temp']) as src:
+                temp = src.read()
+                return temp
+
+    def _get_elevation(self, image):
+        if self.image_data[image]['dem_exists']:
+            with rasopen(self.image_data[image]['dem']) as src:
+                elevation = src.read()
+                return elevation
+        else:
+            clip_shape = self.image.get_tile_geometry()
+            bounds = RasterBounds(affine_transform=self.image.transform,
+                                  profile=self.image.profile, latlon=True)
+            dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
+                            target_profile=self.image.rasterio_geometry, zoom=8,
+                            api_key=self.cfg.api_key)
+            elevation = dem.terrain(attribute='elevation')
+            return elevation
 
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()
