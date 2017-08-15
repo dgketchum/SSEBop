@@ -42,7 +42,8 @@ class Thredds(object):
     
     """
 
-    def __init__(self, start=None, end=None, date=None, bounds=None, target_profile=None):
+    def __init__(self, start=None, end=None, date=None, bounds=None, target_profile=None,
+                 out_file=None):
         self.start = start
         self.end = end
         self.date = date
@@ -193,6 +194,19 @@ class Thredds(object):
     def _dtime_to_dtime64(dtime):
         dtnumpy = datetime64(dtime).astype(datetime64)
         return dtnumpy
+
+    @staticmethod
+    def save(arr, geometry, output_filename, crs=None):
+        try:
+            arr = arr.reshape(1, arr.shape[1], arr.shape[2])
+        except IndexError:
+            arr = arr.reshape(1, arr.shape[0], arr.shape[1])
+        geometry['dtype'] = arr.dtype
+        if crs:
+            geometry['crs'] = CRS({'init': crs})
+        with rasopen(output_filename, 'w', **geometry) as dst:
+            dst.write(arr)
+        return None
 
 
 class TopoWX(Thredds):
@@ -420,6 +434,7 @@ class GridMet(Thredds):
                     setattr(self, var, conformed_array)
                 else:
                     setattr(self, var, subset)
+
         return None
 
     def _build_url(self, var):
