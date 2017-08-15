@@ -86,26 +86,33 @@ class SSEBopModel(object):
 
     def data_check(self):
 
-        for image in self.image_list:
+        image_exists, path = paths.configure_project_dirs(self.cfg, image_dir=image)
 
-            self.image_data[image] = {}
-            sat = os.path.basename(os.path.normpath(image))[:3]
-            self.image_data[image]['sat'] = sat
+        if not image_exists:
+            down([image], path, self.usgs_creds)
 
-            image_exists, path = paths.configure_project_dirs(self.cfg, image_dir=image)
+        directory = (os.path.join(path, image))
+        setattr(self.image_data, 'dir', directory)
 
-            if not image_exists:
-                down([image], path, self.usgs_creds)
+        dem_file = '{}_dem.tif'.format(image)
+        if dem_file not in os.listdir(self.image_data.dir):
+            clip_shape = self.image.get_tile_geometry()
+            bounds = RasterBounds(affine_transform=self.image.transform,
+                                  profile=self.image.profile, latlon=True)
+            dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
+                            target_profile=self.image.rasterio_geometry, zoom=8,
+                            api_key=self.cfg.api_key)
+            out_file = os.path.join(self.image_data.dir, dem_file)
+            dem.terrain(attribute='elevation', out_file=out_file)
+            return None
 
-            self.image_data[image]['dir'] = (os.path.join(path, image))
-
-            dem_file = '{}_dem.tif'.format(image)
-            if dem_file in os.listdir(self.image_data[image]['dir']):
-                self.image_data[image]['dem'] = dem_file
-                self.image_data[image]['dem_exists'] = True
-            else:
-                self.image_data[image]['dem'] = None
-                self.image_data[image]['dem_exists'] = False
+        tmax_file = '{}_tmax.tif'.format(image)
+        if tmax_file not in os.listdir(self.image_data[image]['dir']):
+            topowx = TopoWX(date=self.image.date_acquired, bbox=self.image.bounds,
+                            target_profile=self.image.profile,
+                            clip_feature=self.image.get_tile_geometry())
+            met_data = topowx.get_data_subset(grid_conform=True)
+            return met_data.tmax
 
     def run(self):
         """ Run the SSEBop algorithm.
@@ -121,39 +128,29 @@ class SSEBopModel(object):
             elif sat == 'LC8':
                 self.image = Landsat8(dct['dir'])
 
-        elevation = self._get_elevation(image)
+            self.data_check()
 
-        topowx = TopoWX(date=self.image.date_acquired, bbox=self.image.bounds,
-                        target_profile=self.image.profile,
-                        clip_feature=self.image.get_tile_geometry())
+            elevation = self._get_elevation(image)
+            tmax = self._get_temps(self.image)
 
-        met_data = topowx.get_data_subset(grid_conform=True)
+            albedo = self.image.albedo()
+            emissivity = self._emissivity_ndvi()
 
-        albedo = self.image.albedo()
-        emissivity = self._emissivity_ndvi()
-
-        net_rad = self._net_radiation(topowx.tmin, self.image.doy)
+            net_rad = self._net_radiation(topowx.tmin, self.image.doy)
 
     def _get_temps(self, image):
-        if self.image_data[image]['temp_exists']:
-            with rasopen(self.image_data[image]['temp']) as src:
+
+        if self.image_data[image]['tmax_exists']:
+            with rasopen(self.image_data[image]['tmax']) as src:
                 temp = src.read()
                 return temp
 
     def _get_elevation(self, image):
+
         if self.image_data[image]['dem_exists']:
             with rasopen(self.image_data[image]['dem']) as src:
                 elevation = src.read()
                 return elevation
-        else:
-            clip_shape = self.image.get_tile_geometry()
-            bounds = RasterBounds(affine_transform=self.image.transform,
-                                  profile=self.image.profile, latlon=True)
-            dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
-                            target_profile=self.image.rasterio_geometry, zoom=8,
-                            api_key=self.cfg.api_key)
-            elevation = dem.terrain(attribute='elevation')
-            return elevation
 
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()
