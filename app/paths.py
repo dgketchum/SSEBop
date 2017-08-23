@@ -71,8 +71,13 @@ class Paths:
             os.mkdir(path_row_dir)
         start, end = cfg.start_date, cfg.end_date
 
+        if cfg.satellite:
+            pr_sat_dir = os.path.join(path_row_dir, cfg.satellite)
+            if not os.path.exists(pr_sat_dir):
+                os.mkdir(pr_sat_dir)
+
         for dt in rrule(YEARLY, dtstart=start, until=end):
-            year_dir = os.path.join(path_row_dir, str(dt.year))
+            year_dir = os.path.join(pr_sat_dir, str(dt.year))
             if not os.path.exists(year_dir):
                 os.mkdir(year_dir)
 
