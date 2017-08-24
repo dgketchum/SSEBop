@@ -54,6 +54,10 @@ class SSEBopModel(object):
         self.cfg = cfg
 
         self.date_range = self.cfg.date_range
+        self.image_list = self.cfg.image_list
+
+        self.image_data = {}
+
         self.k_factor = self.cfg.k_factor
         self.satellite = self.cfg.satellite
         self.usgs_creds = self.cfg.usgs_creds
