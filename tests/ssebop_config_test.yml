@@ -8,10 +8,10 @@ output_root:
 api_key: 'mapzen-JmKu1BF'
 usgs_creds: /data01/images/usgs.txt
 
-satellite:
+satellite: LT5
 # Date format; string 'YYYYMMDD'
 start_date: 20060701
-end_date: 20060718
+end_date: 20060731
 k_factor: 1.25
 verify_paths: True
 

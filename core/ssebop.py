@@ -33,36 +33,21 @@ from metio.fao import sol_dec, inv_rel_dist_earth_sun, et_rad
 
 
 class SSEBopModel(object):
-    _date_range = None
-    _k_factor = None
+
     _satellite = None
-    _api_key = None
 
     _is_configured = False
 
-    def __init__(self, cfg):
+    def __init__(self, cfg, runspec):
 
         self.image = None
         self.dem = None
         self.bounds = None
 
-        self.met_variables = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
-                              'th', 'tmmn', 'tmmx', 'pet', 'vs', ]
         if not paths.is_set():
             raise PathsNotSetExecption
 
-        self.cfg = cfg
-
-        self.date_range = self.cfg.date_range
-        self.image_list = self.cfg.image_list
-
-        self.image_data = {}
-
-        self.k_factor = self.cfg.k_factor
-        self.satellite = self.cfg.satellite
-        self.usgs_creds = self.cfg.usgs_creds
-
-        self.api_key = self.cfg.api_key
+        self.satellite = runspec.satellite
 
         paths.set_polygons_path(cfg.polygons)
         paths.set_mask_path(cfg.mask)
@@ -70,7 +55,7 @@ class SSEBopModel(object):
         if cfg.verify_paths:
             paths.verify()
 
-        paths.configure_project_dirs(cfg=cfg)
+        image_exists = paths.configure_project_dirs(cfg, runspec)
 
         self._info('Constructing/Initializing SSEBop...')
 
@@ -85,8 +70,6 @@ class SSEBopModel(object):
         self._is_configured = True
 
     def data_check(self):
-
-        image_exists, path = paths.configure_project_dirs(self.cfg, image_dir=image)
 
         if not image_exists:
             down([image], path, self.usgs_creds)
