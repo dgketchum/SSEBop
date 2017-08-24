@@ -102,7 +102,8 @@ class MapzenDem(Dem):
         self.temp_dir = mkdtemp(prefix='collected-')
         self.files = []
 
-    def terrain(self, out_file=None, attribute='elevation', mode=None):
+    def terrain(self, out_file=None, attribute='elevation',
+                mode=None, save_and_return=False):
         self.get_tiles()
         self.merge_tiles()
         self.reproject_tiles()
@@ -111,9 +112,10 @@ class MapzenDem(Dem):
 
         if attribute == 'elevation':
             if out_file:
-                if len(dem.shape) > 2:
-                    dem = reshape(1, dem.shape[0], dem.shape[1])
                 self.save(dem, self.target_profile, out_file)
+            elif save_and_return:
+                self.save(dem, self.target_profile, out_file)
+                return dem
             else:
                 return dem
 
@@ -123,6 +125,11 @@ class MapzenDem(Dem):
                 if len(slope.shape) > 2:
                     slope = reshape(1, dem.shape[0], dem.shape[1])
                 self.save(slope, self.target_profile, out_file)
+            elif save_and_return:
+                if len(slope.shape) > 2:
+                    slope = reshape(1, dem.shape[0], dem.shape[1])
+                self.save(slope, self.target_profile, out_file)
+                return slope
             else:
                 return slope
 
@@ -133,6 +140,11 @@ class MapzenDem(Dem):
                 if len(aspect.shape) > 2:
                     aspect = reshape(1, dem.shape[0], dem.shape[1])
                 self.save(aspect, self.target_profile, out_file)
+            elif save_and_return:
+                if len(aspect.shape) > 2:
+                    aspect = reshape(1, dem.shape[0], dem.shape[1])
+                self.save(aspect, self.target_profile, out_file)
+                return aspect
             else:
                 return aspect
 

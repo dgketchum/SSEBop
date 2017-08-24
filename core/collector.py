@@ -16,38 +16,62 @@
 
 import os
 
+from rasterio import open as rasopen
+
 from metio.thredds import TopoWX
 from bounds.bounds import RasterBounds
 from dem.dem import MapzenDem
 
 
-def anc_data_check(model_run):
-    dem_file = '{}_dem.tif'.format(model_run.image_id)
-    if dem_file not in os.listdir(model_run.image_dir):
-        clip_shape = model_run.image.get_tile_geometry()
+def anc_data_check_dem(model_geo):
+    dem_file = '{}_dem.tif'.format(model_geo.image_id)
 
-        bounds = RasterBounds(affine_transform=model_run.image.transform,
-                              profile=model_run.image.profile, latlon=True)
+    if dem_file not in os.listdir(model_geo.image_dir):
+
+        print('Downloading dem for {}...'.format(model_geo.image_id))
+        clip_shape = model_geo.clip
+
+        bounds = RasterBounds(affine_transform=model_geo.transform,
+                              profile=model_geo.profile, latlon=True)
 
         dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
-                        target_profile=model_run.image.rasterio_geometry, zoom=8,
-                        api_key=model_run.cfg.api_key)
+                        target_profile=model_geo.geometry, zoom=8,
+                        api_key=model_geo.api_key)
 
-        out_file = os.path.join(model_run.image_dir, dem_file)
+        out_file = os.path.join(model_geo.image_dir, dem_file)
 
-        dem.terrain(attribute='elevation', out_file=out_file)
+        dem = dem.terrain(attribute='elevation', out_file=out_file,
+                          save_and_return=True)
 
-        return None
+        return dem
 
-    tmax_file = '{}_tmax.tif'.format(model_run.image)
-    if tmax_file not in os.listdir(model_run.image_dir):
-        topowx = TopoWX(date=model_run.image_date, bbox=model_run.image.bounds,
-                        target_profile=model_run.image.profile,
-                        clip_feature=model_run.image.get_tile_geometry())
+    else:
+        print('Found dem for {}...'.format(model_geo.image_id))
+        image_file = os.path.join(model_geo.image_dir, dem_file)
+        with rasopen(image_file, 'r') as src:
+            dem = src.read()
 
-        met_data = topowx.get_data_subset(grid_conform=True)
+        return dem
+
+
+def anc_data_check_tmax(model_geo):
+    tmax_file_name = '{}_tmax.tif'.format(model_geo.image_id)
+    tmax_file = os.path.join(model_geo.image_dir, tmax_file_name)
+
+    if tmax_file_name not in os.listdir(model_geo.image_dir):
+        topowx = TopoWX(date=model_geo.date, bbox=model_geo.bounds,
+                        target_profile=model_geo.profile,
+                        clip_feature=model_geo.clip, out_file=tmax_file)
+
+        met_data = topowx.get_data_subset(grid_conform=True, out_file=tmax_file)
 
         return met_data.tmax
+
+    else:
+
+        with rasopen(tmax_file, 'r') as src:
+            tmax = src.read()
+            return tmax
 
 
 if __name__ == '__main__':

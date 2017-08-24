@@ -138,8 +138,12 @@ class Config:
 class RunSpec(object):
     def __init__(self, image, cfg):
         self.image_id = image
-        attrs = ('path', 'row', 'root',
-                 'satellite')
+        attrs = ('path', 'row',
+                 'satellite', 'api_key',
+                 'usgs_creds', 'verify_paths',
+                 'k_factor', 'root',
+                 'mask', 'polygons',
+                 'start_date', 'end_date',)
 
         for attr in attrs:
             cfg_attr = getattr(cfg, attr)

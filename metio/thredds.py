@@ -42,8 +42,9 @@ class Thredds(object):
     
     """
 
-    def __init__(self, start=None, end=None, date=None, bounds=None, target_profile=None,
-                 out_file=None):
+    def __init__(self, start=None, end=None, date=None,
+                 bounds=None, target_profile=None,
+                 ):
         self.start = start
         self.end = end
         self.date = date
@@ -53,16 +54,18 @@ class Thredds(object):
         self.target_profile = target_profile
         self.bbox = bounds
 
-    def conform(self, subset, var):
+    def conform(self, subset, var, out_file=None):
         if subset.dtype != float32:
             subset = array(subset, dtype=float32)
         self._project(subset, var)
         self._reproject(var)
         self._mask(var)
         result = self._resample(var)
+        if out_file:
+            pass
         return result
 
-    def _project(self, subset, var):
+    def _project(self, subset):
 
         proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
         setattr(self, 'projection', proj_path)
@@ -92,7 +95,7 @@ class Thredds(object):
         with rasopen(proj_path, 'w', **profile) as dst:
             dst.write(subset)
 
-    def _reproject(self, var):
+    def _reproject(self):
 
         reproj_path = os.path.join(self.temp_dir, 'reproj.tif')
         setattr(self, 'reprojection', reproj_path)
@@ -126,7 +129,7 @@ class Thredds(object):
 
             dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
 
-    def _mask(self, var):
+    def _mask(self):
 
         mask_path = os.path.join(self.temp_dir, 'masked_dem.tif')
 
@@ -145,7 +148,7 @@ class Thredds(object):
         setattr(self, 'mask', mask_path)
         delattr(self, 'reprojection')
 
-    def _resample(self, var):
+    def _resample(self):
 
         # home = os.path.expanduser('~')
         # resample_path = os.path.join(home, 'images', 'sandbox', 'thredds', 'resamp_twx_{}.tif'.format(var))
@@ -246,62 +249,66 @@ class TopoWX(Thredds):
 
         self.year = self.start.year
 
-    def get_data_subset(self, grid_conform=False):
+    def get_data_subset(self, grid_conform=False, var='tmax',
+                        out_file=None):
 
-        for var in self.variables:
+        if var not in self.variables:
+            raise TypeError('Must choose from "tmax" or "tmin"..')
 
-            url = self._build_url(var)
-            xray = open_dataset(url)
+        url = self._build_url(var)
+        xray = open_dataset(url)
 
-            start, end = self._dtime_to_dtime64(self.start), self._dtime_to_dtime64(self.end)
+        start = self._dtime_to_dtime64(self.start)
+        end = self._dtime_to_dtime64(self.end)
 
-            if self.date:
-                end = end + timedelta64(1, 'D')
+        if self.date:
+            end = end + timedelta64(1, 'D')
 
-            # find index and value of bounds
-            # 1/100 degree adds a small buffer for this 800 m res data
-            north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 1.)))
-            south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 1.)))
-            west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 1.)))
-            east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 1.)))
+        # find index and value of bounds
+        # 1/100 degree adds a small buffer for this 800 m res data
+        north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 1.)))
+        south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 1.)))
+        west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 1.)))
+        east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 1.)))
 
-            north_val = xray.lat.values[north_ind]
-            south_val = xray.lat.values[south_ind]
-            west_val = xray.lon.values[west_ind]
-            east_val = xray.lon.values[east_ind]
+        north_val = xray.lat.values[north_ind]
+        south_val = xray.lat.values[south_ind]
+        west_val = xray.lon.values[west_ind]
+        east_val = xray.lon.values[east_ind]
 
-            setattr(self, 'src_bounds_wsen', (west_val, south_val,
-                                              east_val, north_val))
+        setattr(self, 'src_bounds_wsen', (west_val, south_val,
+                                          east_val, north_val))
 
-            subset = xray.loc[dict(time=slice(start, end),
-                                   lat=slice(north_val, south_val),
-                                   lon=slice(west_val, east_val))]
+        subset = xray.loc[dict(time=slice(start, end),
+                               lat=slice(north_val, south_val),
+                               lon=slice(west_val, east_val))]
 
-            date_ind = self._date_index()
-            subset['time'] = date_ind
+        xray = None
 
-            if not grid_conform:
-                setattr(self, var, subset)
+        date_ind = self._date_index()
+        subset['time'] = date_ind
 
+        if not grid_conform:
+            setattr(self, var, subset)
+
+        else:
+            if var == 'tmin':
+                arr = subset.tmin.values
+            elif var == 'tmax':
+                arr = subset.tmax.values
             else:
-                if var == 'tmin':
-                    arr = subset.tmin.values
-                elif var == 'tmax':
-                    arr = subset.tmax.values
-                else:
-                    arr = None
+                arr = None
 
-                conformed_array = self.conform(arr, var)
-                setattr(self, var, conformed_array)
+            conformed_array = self.conform(arr, var, out_file=out_file)
 
-        return None
+        return conformed_array
 
     def _build_url(self, var):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
         url = urlunparse([self.scheme, self.service,
-                          '/thredds/dodsC/topowx?crs,lat[0:1:3249],lon[0:1:6999],tmax,'
-                          'time[0:1:24836],tmin'.format(var, self.year),
+                          '/thredds/dodsC/topowx?crs,lat[0:1:3249],lon[0:1:6999],{},'
+                          'time'.format(var),
                           '', '', ''])
 
         return url

@@ -24,7 +24,7 @@ from rasterio import open as rasopen
 from app.paths import paths, PathsNotSetExecption
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from landsat.usgs_download import down_usgs_by_list as down
-from core.collector import anc_data_check
+from core.collector import anc_data_check_dem, anc_data_check_tmax
 
 from metio.fao import avp_from_tmin, net_out_lw_rad, sunset_hour_angle
 from metio.fao import sol_dec, inv_rel_dist_earth_sun, et_rad
@@ -34,15 +34,12 @@ class SSEBopModel(object):
     _satellite = None
     _is_configured = False
 
-    def __init__(self, cfg, runspec):
+    def __init__(self, runspec):
 
         self.image = None
         self.dem = None
         self.bounds = None
         self.image_exists = None
-
-        self.cfg = cfg
-        self.runspec = runspec
 
         self.image_dir = runspec.image_dir
         self.image_date = runspec.image_date
@@ -51,19 +48,20 @@ class SSEBopModel(object):
         self.row = runspec.row
         self.image_id = runspec.image_id
 
-        self.k_factor = cfg.k_factor
-        self.usgs_creds = cfg.usgs_creds
+        self.k_factor = runspec.k_factor
+        self.usgs_creds = runspec.usgs_creds
+        self.api_key = runspec.api_key
 
         if not paths.is_set():
             raise PathsNotSetExecption
 
-        paths.set_polygons_path(cfg.polygons)
-        paths.set_mask_path(cfg.mask)
+        paths.set_polygons_path(runspec.polygons)
+        paths.set_mask_path(runspec.mask)
 
-        if cfg.verify_paths:
+        if runspec.verify_paths:
             paths.verify()
 
-        self.image_exists = paths.configure_project_dirs(cfg, runspec)
+        self.image_exists = paths.configure_project_dirs(runspec)
 
         self._info('Constructing/Initializing SSEBop...')
 
@@ -83,42 +81,33 @@ class SSEBopModel(object):
         """ Run the SSEBop algorithm.
         :return: 
         """
+
         if not self.image_exists:
             self.down_image()
 
         print('Instantiating image...')
 
-        sat = self.satellite
-        if sat == 'LT5':
-            self.image = Landsat5(self.image_dir)
-        elif sat == 'LE7':
-            self.image = Landsat7(self.image_dir)
-        elif sat == 'LC8':
-            self.image = Landsat8(self.image_dir)
+        mapping = {'LT5': Landsat5, 'LE7': Landsat7, 'LC8': Landsat8}
+        try:
+            cls = mapping[self.satellite]
+            self.image = cls(self.image_dir)
+        except KeyError:
+            print('Invalid satellite key: "{}". available key = {}'.format
+                  (self.satellite,
+                   ','.join(mapping.keys())))
 
-        anc_data_check(self)
+        image_geo = SSEBopGeo(self.image_id, self.image_dir, self.image.get_tile_geometry(),
+                              self.image.transform, self.image.profile,
+                              self.image.rasterio_geometry,
+                              self.image.bounds, self.api_key, self.image_date)
 
-        elevation = self._get_elevation(image)
-        tmax = self._get_temps(self.image)
+        dem = anc_data_check_dem(image_geo)
+        tmax = anc_data_check_tmax(image_geo)
 
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
 
         net_rad = self._net_radiation(topowx.tmin, self.image.doy)
-
-    def _get_temps(self, image):
-
-        if self.image_data[image]['tmax_exists']:
-            with rasopen(self.image_data[image]['tmax']) as src:
-                temp = src.read()
-                return temp
-
-    def _get_elevation(self, image):
-
-        if self.image_data[image]['dem_exists']:
-            with rasopen(self.image_data[image]['dem']) as src:
-                elevation = src.read()
-                return elevation
 
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()
@@ -140,8 +129,21 @@ class SSEBopModel(object):
         print('%%%%%%%%%%%%%%%% {}'.format(msg))
 
     def down_image(self):
-        if not self.image_exists:
-            down([self.image_id], output_dir=self.image_dir,
-                 usgs_creds_txt=self.usgs_creds)
+        down([self.image_id], output_dir=self.image_dir,
+             usgs_creds_txt=self.usgs_creds)
+
+
+class SSEBopGeo:
+    def __init__(self, image_id, image_dir, clip, transform,
+                 profile, geometry, bounds, api_key, date):
+        self.image_id = image_id
+        self.image_dir = image_dir
+        self.clip = clip
+        self.transform = transform
+        self.profile = profile
+        self.geometry = geometry
+        self.bounds = bounds
+        self.api_key = api_key
+        self.date = date
 
 # ========================= EOF ====================================================================
