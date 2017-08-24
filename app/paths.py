@@ -62,7 +62,7 @@ class Paths:
                 print('NOT FOUND {}'.format(self.ssebop_root))
                 sys.exit(1)
 
-    def configure_project_dirs(self, cfg, image_dir=None):
+    def configure_project_dirs(self, cfg, runspec):
 
         p, r = str(cfg.path).zfill(3), str(cfg.row).zfill(3)
         path_row_dir = os.path.join(self.ssebop_root, '{}_{}'.format(p, r))
@@ -76,16 +76,16 @@ class Paths:
             if not os.path.exists(year_dir):
                 os.mkdir(year_dir)
 
-        if image_dir:
-            image_path = os.path.join(year_dir, image_dir)
-            if os.path.exists(image_path):
-                if len(os.listdir(image_path)) > 2:
-                    return True, year_dir
-                else:
-                    return False, year_dir
-
+        image_path = runspec.image_dir
+        if os.path.exists(image_path):
+            if len(os.listdir(image_path)) > 2:
+                return True
             else:
-                return False, year_dir
+                return False
+
+        else:
+            os.mkdir(image_path)
+            return False
 
     def is_set(self):
         return self._is_set

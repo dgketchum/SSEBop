@@ -51,34 +51,7 @@ mask: None
 '''
 
 DATETIME_FMT = '%Y%m%d'
-
-
-class RunSpec:
-    _obj = None
-
-    path, row = None, None
-
-    root = None
-    api_key = None
-    usgs_creds = None
-
-    mask = None
-    polygons = None
-    satellite = None
-    k_factor = None
-    verify_paths = None
-
-    def __init__(self, obj):
-        self._obj = obj
-
-        attrs = ('path', 'row', 'root',
-                 'api_key', 'usgs_creds',
-                 'mask', 'polygons',
-                 'satellite',
-                 'k_factor', 'verify_paths',)
-
-        for attr in attrs:
-            setattr(self, attr, self._obj.get(attr))
+JULIAN_FMT = '%Y%j'
 
 
 class Config:
@@ -88,16 +61,21 @@ class Config:
 
     root = None
     api_key = None
-    runspec = None
+    runspecs = None
     satellite = None
-    start = None
-    end = None
+    start_date = None
+    end_date = None
     usgs_creds = None
     k_factor = None
     verify_paths = None
 
     def __init__(self, path=None):
         self.load(path=path)
+
+        p, r = str(self.path).zfill(3), str(self.row).zfill(3)
+        self.path_row_dir = os.path.join(self.root, '{}_{}'.format(p, r))
+
+        self.set_runspecs()
 
     def load(self, path=None):
         if path is None:
@@ -118,29 +96,57 @@ class Config:
             attrs = ('path', 'row', 'root',
                      'api_key', 'usgs_creds',
                      'mask', 'polygons',
+                     'start_date', 'end_date',
                      'satellite',
                      'k_factor', 'verify_paths',)
 
+            time_attrs = ('start_date', 'end_date')
+
             for attr in attrs:
-                setattr(self, attr, self._obj.get(attr))
+
+                if attr in time_attrs:
+                    dt_str = str(self._obj.get(attr))
+                    dt = datetime.strptime(dt_str, DATETIME_FMT)
+                    setattr(self, attr, dt)
+
+                else:
+                    setattr(self, attr, self._obj.get(attr))
 
     def set_runspecs(self):
 
-        self.runspec = [RunSpec(doc) for doc in yaml.load_all(rfile)][0]
-        rfile.close()
+        images = self.get_image_list()
+
+        self.runspecs = [RunSpec(image, self) for image in images]
+
+    def get_image_list(self):
 
         super_list = []
-        for sat in ['LT5', 'LE7', 'LC8']:
-            images = down((self.start_date, self.end_date), satellite=sat,
-                          path_row_list=[(self.path, self.row)],
-                          dry_run=True)
-            if images:
-                super_list.append(images)
-        try:
-            flat_list = [item for sublist in super_list for item in sublist]
-            return flat_list
-        except TypeError:
-            return super_list
+        images = down((self.start_date, self.end_date), satellite=self.satellite,
+                      path_row_list=[(self.path, self.row)],
+                      dry_run=True)
+        if images:
+            super_list.append(images)
+            try:
+                flat_list = [item for sublist in super_list for item in sublist]
+                return flat_list
+            except TypeError:
+                return super_list
+        else:
+            raise AttributeError('No images for this time-frame and satellite....')
+
+
+class RunSpec(object):
+    def __init__(self, image, cfg):
+        self.image_id = image
+        attrs = ('path', 'row', 'root',
+                 'satellite')
+
+        for attr in attrs:
+            cfg_attr = getattr(cfg, attr)
+            setattr(self, attr, cfg_attr)
+
+        self.image_date = date = datetime.strptime(image[9:16], JULIAN_FMT)
+        self.image_dir = os.path.join(cfg.path_row_dir, str(date.year), image)
 
 
 def check_config(path=None):
