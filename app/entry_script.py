@@ -30,7 +30,6 @@ def run_ssebop(cfg_path):
 
         sseb = SSEBopModel(cfg, runspec)
         sseb.configure_run()
-        sseb.data_check()
         sseb.run()
 
 

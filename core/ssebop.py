@@ -21,21 +21,17 @@ import numpy as np
 
 from rasterio import open as rasopen
 
-from landsat.usgs_download import down_usgs_by_list as down
-
 from app.paths import paths, PathsNotSetExecption
-from dem.dem import MapzenDem
 from sat_image.image import Landsat5, Landsat7, Landsat8
-from metio.thredds import TopoWX
-from bounds.bounds import RasterBounds
+from landsat.usgs_download import down_usgs_by_list as down
+from core.collector import data_check
+
 from metio.fao import avp_from_tmin, net_out_lw_rad, sunset_hour_angle
 from metio.fao import sol_dec, inv_rel_dist_earth_sun, et_rad
 
 
 class SSEBopModel(object):
-
     _satellite = None
-
     _is_configured = False
 
     def __init__(self, cfg, runspec):
@@ -43,11 +39,20 @@ class SSEBopModel(object):
         self.image = None
         self.dem = None
         self.bounds = None
+        self.image_exists = None
+
+        self.image_dir = runspec.image_dir
+        self.image_date = runspec.image_date
+        self.satellite = runspec.satellite
+        self.path = runspec.path
+        self.row = runspec.row
+        self.image_id = runspec.image_id
+
+        self.k_factor = cfg.k_factor
+        self.usgs_creds = cfg.usgs_creds
 
         if not paths.is_set():
             raise PathsNotSetExecption
-
-        self.satellite = runspec.satellite
 
         paths.set_polygons_path(cfg.polygons)
         paths.set_mask_path(cfg.mask)
@@ -55,71 +60,48 @@ class SSEBopModel(object):
         if cfg.verify_paths:
             paths.verify()
 
-        image_exists = paths.configure_project_dirs(cfg, runspec)
+        self.image_exists = paths.configure_project_dirs(cfg, runspec)
 
         self._info('Constructing/Initializing SSEBop...')
 
     def configure_run(self):
 
-        self._info('Configuring SSEBop run')
+        self._info('Configuring SSEBop run, checking data...')
+
+        data_check()
 
         print('----------- CONFIGURATION --------------')
-        for attr in ('date_range', 'satellite', 'k_factor'):
+        for attr in ('image_date', 'satellite', 'k_factor',
+                     'path', 'row', 'image_id', 'image_exists'):
             print('{:<20s}{}'.format(attr, getattr(self, '{}'.format(attr))))
         print('----------- ------------- --------------')
+
         self._is_configured = True
-
-    def data_check(self):
-
-        if not image_exists:
-            down([image], path, self.usgs_creds)
-
-        directory = (os.path.join(path, image))
-        setattr(self.image_data, 'dir', directory)
-
-        dem_file = '{}_dem.tif'.format(image)
-        if dem_file not in os.listdir(self.image_data.dir):
-            clip_shape = self.image.get_tile_geometry()
-            bounds = RasterBounds(affine_transform=self.image.transform,
-                                  profile=self.image.profile, latlon=True)
-            dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
-                            target_profile=self.image.rasterio_geometry, zoom=8,
-                            api_key=self.cfg.api_key)
-            out_file = os.path.join(self.image_data.dir, dem_file)
-            dem.terrain(attribute='elevation', out_file=out_file)
-            return None
-
-        tmax_file = '{}_tmax.tif'.format(image)
-        if tmax_file not in os.listdir(self.image_data[image]['dir']):
-            topowx = TopoWX(date=self.image.date_acquired, bbox=self.image.bounds,
-                            target_profile=self.image.profile,
-                            clip_feature=self.image.get_tile_geometry())
-            met_data = topowx.get_data_subset(grid_conform=True)
-            return met_data.tmax
 
     def run(self):
         """ Run the SSEBop algorithm.
         :return: 
         """
+        if not self.image_exists:
+            self.down_image()
+
         print('Instantiating image...')
-        for image, dct in self.image_data.items():
-            sat = dct['sat']
-            if sat == 'LT5':
-                self.image = Landsat5(dct['dir'])
-            elif sat == 'LE7':
-                self.image = Landsat7(dct['dir'])
-            elif sat == 'LC8':
-                self.image = Landsat8(dct['dir'])
 
-            self.data_check()
+        sat = self.satellite
+        if sat == 'LT5':
+            self.image = Landsat5(self.image_dir)
+        elif sat == 'LE7':
+            self.image = Landsat7(self.image_dir)
+        elif sat == 'LC8':
+            self.image = Landsat8(self.image_dir)
 
-            elevation = self._get_elevation(image)
-            tmax = self._get_temps(self.image)
+        elevation = self._get_elevation(image)
+        tmax = self._get_temps(self.image)
 
-            albedo = self.image.albedo()
-            emissivity = self._emissivity_ndvi()
+        albedo = self.image.albedo()
+        emissivity = self._emissivity_ndvi()
 
-            net_rad = self._net_radiation(topowx.tmin, self.image.doy)
+        net_rad = self._net_radiation(topowx.tmin, self.image.doy)
 
     def _get_temps(self, image):
 
@@ -153,5 +135,10 @@ class SSEBopModel(object):
     @staticmethod
     def _debug(msg):
         print('%%%%%%%%%%%%%%%% {}'.format(msg))
+
+    def down_image(self):
+        if not self.image_exists:
+            down([self.image_id], output_dir=self.image_dir,
+                 usgs_creds_txt=self.usgs_creds)
 
 # ========================= EOF ====================================================================
