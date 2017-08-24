@@ -62,14 +62,14 @@ class Paths:
                 print('NOT FOUND {}'.format(self.ssebop_root))
                 sys.exit(1)
 
-    def configure_project_dirs(self, cfg, runspec):
+    def configure_project_dirs(self, runspec):
 
-        p, r = str(cfg.path).zfill(3), str(cfg.row).zfill(3)
+        p, r = str(runspec.path).zfill(3), str(runspec.row).zfill(3)
         path_row_dir = os.path.join(self.ssebop_root, '{}_{}'.format(p, r))
 
         if not os.path.exists(path_row_dir):
             os.mkdir(path_row_dir)
-        start, end = cfg.start_date, cfg.end_date
+        start, end = runspec.start_date, runspec.end_date
 
         for dt in rrule(YEARLY, dtstart=start, until=end):
             year_dir = os.path.join(path_row_dir, str(dt.year))

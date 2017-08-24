@@ -28,7 +28,7 @@ def run_ssebop(cfg_path):
 
         welcome()
 
-        sseb = SSEBopModel(cfg, runspec)
+        sseb = SSEBopModel(runspec)
         sseb.configure_run()
         sseb.run()
 
