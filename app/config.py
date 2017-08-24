@@ -62,11 +62,6 @@ class RunSpec:
     api_key = None
     usgs_creds = None
 
-    year = None
-    single_date = False
-    start_date = None
-    end_date = None
-
     mask = None
     polygons = None
     satellite = None
@@ -80,34 +75,60 @@ class RunSpec:
                  'api_key', 'usgs_creds',
                  'mask', 'polygons',
                  'satellite',
-                 'start_date', 'end_date',
                  'k_factor', 'verify_paths',)
 
-        time_attrs = ('start_date', 'end_date')
-
         for attr in attrs:
+            setattr(self, attr, self._obj.get(attr))
 
-            if attr in time_attrs:
-                dt_str = str(self._obj.get(attr))
-                dt = datetime.strptime(dt_str, DATETIME_FMT)
-                setattr(self, attr, dt)
 
-            else:
+class Config:
+    _obj = None
+
+    path, row = None, None
+
+    root = None
+    api_key = None
+    runspec = None
+    satellite = None
+    start = None
+    end = None
+    usgs_creds = None
+    k_factor = None
+    verify_paths = None
+
+    def __init__(self, path=None):
+        self.load(path=path)
+
+    def load(self, path=None):
+        if path is None:
+            path = paths.config
+
+        if isinstance(path, str):
+            check_config(path)
+            rfile = path
+        else:
+            rfile = path
+
+        with open(rfile, 'r') as stream:
+            try:
+                self._obj = yaml.load(stream)
+            except yaml.YAMLError as exc:
+                print(exc)
+
+            attrs = ('path', 'row', 'root',
+                     'api_key', 'usgs_creds',
+                     'mask', 'polygons',
+                     'satellite',
+                     'k_factor', 'verify_paths',)
+
+            for attr in attrs:
                 setattr(self, attr, self._obj.get(attr))
 
-    @property
-    def save_dates(self):
-        sd = self._obj.get('save_dates')
-        if sd:
-            return [datetime.strptime(s, DATETIME_FMT) for s in sd]
+    def set_runspecs(self):
 
-    @property
-    def date_range(self):
-        return (self.start_date,
-                self.end_date)
+        self.runspec = [RunSpec(doc) for doc in yaml.load_all(rfile)][0]
+        rfile.close()
 
-    @property
-    def image_list(self):
         super_list = []
         for sat in ['LT5', 'LE7', 'LC8']:
             images = down((self.start_date, self.end_date), satellite=sat,
@@ -120,26 +141,6 @@ class RunSpec:
             return flat_list
         except TypeError:
             return super_list
-
-
-class Config:
-    runspecs = None
-
-    def __init__(self, path=None):
-        self.load(path=path)
-
-    def load(self, path=None):
-        if path is None:
-            path = paths.config
-
-        if isinstance(path, str):
-            check_config(path)
-            rfile = open(path, 'r')
-        else:
-            rfile = path
-
-        self.runspecs = [RunSpec(doc) for doc in yaml.load_all(rfile)]
-        rfile.close()
 
 
 def check_config(path=None):
