@@ -24,7 +24,7 @@ from rasterio import open as rasopen
 from app.paths import paths, PathsNotSetExecption
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from landsat.usgs_download import down_usgs_by_list as down
-from core.collector import data_check
+from core.collector import anc_data_check
 
 from metio.fao import avp_from_tmin, net_out_lw_rad, sunset_hour_angle
 from metio.fao import sol_dec, inv_rel_dist_earth_sun, et_rad
@@ -40,6 +40,9 @@ class SSEBopModel(object):
         self.dem = None
         self.bounds = None
         self.image_exists = None
+
+        self.cfg = cfg
+        self.runspec = runspec
 
         self.image_dir = runspec.image_dir
         self.image_date = runspec.image_date
@@ -68,8 +71,6 @@ class SSEBopModel(object):
 
         self._info('Configuring SSEBop run, checking data...')
 
-        data_check()
-
         print('----------- CONFIGURATION --------------')
         for attr in ('image_date', 'satellite', 'k_factor',
                      'path', 'row', 'image_id', 'image_exists'):
@@ -94,6 +95,8 @@ class SSEBopModel(object):
             self.image = Landsat7(self.image_dir)
         elif sat == 'LC8':
             self.image = Landsat8(self.image_dir)
+
+        anc_data_check(self)
 
         elevation = self._get_elevation(image)
         tmax = self._get_temps(self.image)

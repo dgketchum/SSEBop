@@ -21,30 +21,32 @@ from bounds.bounds import RasterBounds
 from dem.dem import MapzenDem
 
 
-def data_check(cfg, runspec):
-    if not runspec.image_exists:
-        down([runspec.image_id], output_dir=runspec.image_dir,
-             usgs_creds_txt=cfg.usgs_creds)
+def anc_data_check(model_run):
+    dem_file = '{}_dem.tif'.format(model_run.image_id)
+    if dem_file not in os.listdir(model_run.image_dir):
+        clip_shape = model_run.image.get_tile_geometry()
 
-    dem_file = '{}_dem.tif'.format(runspec.image_id)
+        bounds = RasterBounds(affine_transform=model_run.image.transform,
+                              profile=model_run.image.profile, latlon=True)
 
-    if dem_file not in os.listdir(runspec.image_dir):
-        clip_shape = self.image.get_tile_geometry()
-        bounds = RasterBounds(affine_transform=self.image.transform,
-                              profile=self.image.profile, latlon=True)
         dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
-                        target_profile=self.image.rasterio_geometry, zoom=8,
-                        api_key=self.cfg.api_key)
-        out_file = os.path.join(self.image_data.dir, dem_file)
+                        target_profile=model_run.image.rasterio_geometry, zoom=8,
+                        api_key=model_run.cfg.api_key)
+
+        out_file = os.path.join(model_run.image_dir, dem_file)
+
         dem.terrain(attribute='elevation', out_file=out_file)
+
         return None
 
-    tmax_file = '{}_tmax.tif'.format(image)
-    if tmax_file not in os.listdir(self.image_data[image]['dir']):
-        topowx = TopoWX(date=self.image.date_acquired, bbox=self.image.bounds,
-                        target_profile=self.image.profile,
-                        clip_feature=self.image.get_tile_geometry())
+    tmax_file = '{}_tmax.tif'.format(model_run.image)
+    if tmax_file not in os.listdir(model_run.image_dir):
+        topowx = TopoWX(date=model_run.image_date, bbox=model_run.image.bounds,
+                        target_profile=model_run.image.profile,
+                        clip_feature=model_run.image.get_tile_geometry())
+
         met_data = topowx.get_data_subset(grid_conform=True)
+
         return met_data.tmax
 
 
