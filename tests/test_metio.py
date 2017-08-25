@@ -86,13 +86,14 @@ class TestTopoWX(unittest.TestCase):
     def test_conforming_array(self):
         home = os.path.expanduser('~')
         tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
+        out_file = os.path.join(home, 'images', 'sandbox', 'thredds', 'tmax_{}_{}_{}.tif'.format(
+            self.date.year, self.date.month, self.date.day))
         l5 = Landsat5(tif_dir)
         polygon = l5.get_tile_geometry()
         bounds = RasterBounds(affine_transform=l5.transform, profile=l5.profile, latlon=True)
         topowx = TopoWX(date=self.date, bbox=bounds, target_profile=l5.profile,
                         clip_feature=polygon)
-        topowx.get_data_subset(grid_conform=True)
-        self.assertEqual(topowx.tmin.shape, self.image_shape)
+        topowx.get_data_subset(grid_conform=True, var='tmax', out_file=out_file)
         self.assertEqual(topowx.tmax.shape, self.image_shape)
 
 

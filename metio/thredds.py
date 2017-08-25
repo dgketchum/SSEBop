@@ -54,15 +54,15 @@ class Thredds(object):
         self.target_profile = target_profile
         self.bbox = bounds
 
-    def conform(self, subset, var, out_file=None):
+    def conform(self, subset, out_file=None):
         if subset.dtype != float32:
             subset = array(subset, dtype=float32)
-        self._project(subset, var)
-        self._reproject(var)
-        self._mask(var)
-        result = self._resample(var)
+        self._project(subset)
+        self._reproject()
+        self._mask()
+        result = self._resample()
         if out_file:
-            pass
+            self.save(result, self.target_profile, output_filename=out_file)
         return result
 
     def _project(self, subset):
@@ -283,8 +283,6 @@ class TopoWX(Thredds):
                                lat=slice(north_val, south_val),
                                lon=slice(west_val, east_val))]
 
-        xray = None
-
         date_ind = self._date_index()
         subset['time'] = date_ind
 
@@ -299,7 +297,7 @@ class TopoWX(Thredds):
             else:
                 arr = None
 
-            conformed_array = self.conform(arr, var, out_file=out_file)
+            conformed_array = self.conform(arr, out_file=out_file)
 
         return conformed_array
 
@@ -426,7 +424,7 @@ class GridMet(Thredds):
                     setattr(self, var, subset)
                 else:
                     arr = subset[self.kwords[var]].values
-                    conformed_array = self.conform(arr, var)
+                    conformed_array = self.conform(arr)
                     setattr(self, var, conformed_array)
 
             else:
@@ -437,7 +435,7 @@ class GridMet(Thredds):
                                        lon=slice(self.bbox.west, self.bbox.east))]
                 arr = subset.elevation.values
                 if grid_conform:
-                    conformed_array = self.conform(arr, var)
+                    conformed_array = self.conform(arr)
                     setattr(self, var, conformed_array)
                 else:
                     setattr(self, var, subset)

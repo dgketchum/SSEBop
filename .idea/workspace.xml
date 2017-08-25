@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/metio/topowx_issue.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metio/topowx_issue.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config.py" afterPath="$PROJECT_DIR$/app/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/entry_script.py" afterPath="$PROJECT_DIR$/app/entry_script.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/paths.py" afterPath="$PROJECT_DIR$/app/paths.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/collector.py" afterPath="$PROJECT_DIR$/core/collector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_metio.py" afterPath="$PROJECT_DIR$/tests/test_metio.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +20,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1698">
-              <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+            <state relative-caret-position="327">
+              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#762#799#0" expanded="true" />
@@ -41,11 +38,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="102" column="53" lean-forward="true" selection-start-line="102" selection-start-column="53" selection-end-line="102" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="collector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="60" column="61" lean-forward="true" selection-start-line="60" selection-start-column="61" selection-end-line="60" selection-end-column="61" />
+            <state relative-caret-position="644">
+              <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#762#771#0" expanded="true" />
@@ -57,21 +64,19 @@
       <file leaf-file-name="thredds.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="967">
-              <caret line="310" column="43" lean-forward="true" selection-start-line="310" selection-start-column="43" selection-end-line="310" selection-end-column="43" />
+            <state relative-caret-position="344">
+              <caret line="278" column="0" lean-forward="false" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#1446#1542#1" expanded="false" />
-                <element signature="e#1679#1855#0" expanded="false" />
-                <element signature="e#2221#3287#0" expanded="false" />
-                <element signature="e#3324#4765#0" expanded="false" />
-                <element signature="e#4797#5455#0" expanded="false" />
-                <element signature="e#5491#6829#0" expanded="false" />
-                <element signature="e#6986#7241#0" expanded="false" />
-                <element signature="e#7303#7372#0" expanded="false" />
-                <element signature="e#7852#8523#1" expanded="false" />
-                <element signature="e#11143#17312#0" expanded="false" />
-                <element signature="e#11143#13122#1" expanded="false" />
+                <element signature="e#3365#4806#0" expanded="false" />
+                <element signature="e#4838#5496#0" expanded="false" />
+                <element signature="e#5532#6870#0" expanded="false" />
+                <element signature="e#7027#7282#0" expanded="false" />
+                <element signature="e#7344#7413#0" expanded="false" />
+                <element signature="e#7893#8564#1" expanded="false" />
+                <element signature="e#11158#17317#0" expanded="false" />
+                <element signature="e#11158#13137#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -80,21 +85,9 @@
       <file leaf-file-name="test_metio.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="590">
+              <caret line="92" column="28" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="topowx_issue.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/metio/topowx_issue.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="37" column="32" lean-forward="true" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -111,7 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rad</find>
       <find>profile</find>
       <find>bounds</find>
       <find>self.key</find>
@@ -141,6 +133,7 @@
       <find>get_</find>
       <find>var</find>
       <find>self.bbox.</find>
+      <find>src_bounds_wsen</find>
     </findStrings>
     <replaceStrings>
       <replace>l8</replace>
@@ -215,8 +208,6 @@
         <option value="$PROJECT_DIR$/tests/test_bounds.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
         <option value="$PROJECT_DIR$/metio/sandbox.py" />
-        <option value="$PROJECT_DIR$/sat_image/image.py" />
-        <option value="$PROJECT_DIR$/tests/test_metio.py" />
         <option value="$PROJECT_DIR$/metio/fao.py" />
         <option value="$PROJECT_DIR$/download/sample_script.py" />
         <option value="$PROJECT_DIR$/download/download_composer.py" />
@@ -231,10 +222,12 @@
         <option value="$PROJECT_DIR$/app/entry_script.py" />
         <option value="$PROJECT_DIR$/app/config.py" />
         <option value="$PROJECT_DIR$/dem/dem.py" />
+        <option value="$PROJECT_DIR$/metio/topowx_issue.py" />
+        <option value="$PROJECT_DIR$/tests/test_metio.py" />
+        <option value="$PROJECT_DIR$/metio/thredds.py" />
+        <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/core/collector.py" />
-        <option value="$PROJECT_DIR$/metio/thredds.py" />
-        <option value="$PROJECT_DIR$/metio/topowx_issue.py" />
       </list>
     </option>
   </component>
@@ -399,7 +392,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.topowx_issue">
+  <component name="RunManager" selected="Python.entry_script">
     <configuration default="false" name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -565,9 +558,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.topowx_issue" />
+        <item index="0" class="java.lang.String" itemvalue="Python.entry_script" />
         <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_metio.TestTopoWX.test_conforming_array" />
-        <item index="2" class="java.lang.String" itemvalue="Python.entry_script" />
+        <item index="2" class="java.lang.String" itemvalue="Python.topowx_issue" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_dem.py" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_dem.MapzenDemTestCase.test_dem" />
       </list>
@@ -586,13 +579,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00105" summary="going to try fro gdal_merge">
-      <created>1498497895687</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1498497895691</updated>
     </task>
     <task id="LOCAL-00106" summary="debugging same bounds for all mapzen tiles">
       <created>1498501568108</created>
@@ -930,25 +916,17 @@
       <option name="project" value="LOCAL" />
       <updated>1503598451997</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="record of topowx issue script, remove time array index from url in Thredds.TopoWx!!1">
+      <created>1503615723789</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1503615723789</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 33m 24s.xml">
-      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 34m 17s.xml">
-      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 34m 33s.xml">
-      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.07.25 at 12h 45m 52s.xml">
-      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 14h 22m 17s.xml">
-      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 14h 22m 32s.xml">
       <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
     </history-entry>
@@ -961,8 +939,23 @@
     <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 15h 21m 39s.xml">
       <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_dem_py - 2017.08.24 at 13h 31m 01s.xml">
-      <configuration name="Unittests in test_dem.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 17h 11m 38s.xml">
+      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 17h 12m 35s.xml">
+      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 17h 12m 42s.xml">
+      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 17h 16m 00s.xml">
+      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 17h 17m 17s.xml">
+      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_metio_TestTopoWX_test_conforming_array - 2017.08.24 at 17h 17m 50s.xml">
+      <configuration name="Unittests for tests.test_metio.TestTopoWX.test_conforming_array" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -976,9 +969,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13495575" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13495575" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -987,7 +979,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.49705014" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46681416" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47345132" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41519174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1034,7 +1026,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="resample met data" />
     <MESSAGE value="build out topowx, put common methods in Thredds parent" />
     <MESSAGE value="slice time in topowx xarray" />
     <MESSAGE value="slice time in topowx xarray works" />
@@ -1059,7 +1050,8 @@
     <MESSAGE value="modify check project paths to handle ssebop one image at a time" />
     <MESSAGE value="moving data check to collector.py, function call to configure run" />
     <MESSAGE value="ancillary data check to collector.py, function call after ssebop image instantiation" />
-    <option name="LAST_COMMIT_MESSAGE" value="ancillary data check to collector.py, function call after ssebop image instantiation" />
+    <MESSAGE value="record of topowx issue script, remove time array index from url in Thredds.TopoWx!!1" />
+    <option name="LAST_COMMIT_MESSAGE" value="record of topowx issue script, remove time array index from url in Thredds.TopoWx!!1" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1092,33 +1084,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/core/collector.py</url>
-          <line>73</line>
+          <line>74</line>
           <option name="timeStamp" value="1046" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/core/collector.py</url>
-          <line>67</line>
+          <line>68</line>
           <option name="timeStamp" value="1047" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/metio/thredds.py</url>
-          <line>63</line>
-          <option name="timeStamp" value="1048" />
+          <url>file://$PROJECT_DIR$/core/ssebop.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="1060" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/metio/thredds.py</url>
-          <line>288</line>
-          <option name="timeStamp" value="1055" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/metio/topowx_issue.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="1057" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/metio/topowx_issue.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="1058" />
+          <url>file://$PROJECT_DIR$/tests/test_metio.py</url>
+          <line>93</line>
+          <option name="timeStamp" value="1066" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1128,7 +1110,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1059" />
+      <option name="time" value="1068" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1336,14 +1318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="420" column="0" lean-forward="false" selection-start-line="420" selection-start-column="0" selection-end-line="422" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/cli.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
@@ -1422,14 +1396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="48" column="49" lean-forward="true" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dem/dem.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-115">
@@ -1441,10 +1407,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/metio/topowx_issue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="37" column="32" lean-forward="false" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="92" column="28" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="102" column="53" lean-forward="true" selection-start-line="102" selection-start-column="53" selection-end-line="102" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="41" column="30" lean-forward="true" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/thredds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="278" column="0" lean-forward="false" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1446#1542#1" expanded="false" />
+            <element signature="e#3365#4806#0" expanded="false" />
+            <element signature="e#4838#5496#0" expanded="false" />
+            <element signature="e#5532#6870#0" expanded="false" />
+            <element signature="e#7027#7282#0" expanded="false" />
+            <element signature="e#7344#7413#0" expanded="false" />
+            <element signature="e#7893#8564#1" expanded="false" />
+            <element signature="e#11158#17317#0" expanded="false" />
+            <element signature="e#11158#13137#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="60" column="61" lean-forward="true" selection-start-line="60" selection-start-column="61" selection-end-line="60" selection-end-column="61" />
+        <state relative-caret-position="644">
+          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#771#0" expanded="true" />
@@ -1452,18 +1469,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_metio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/ssebop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1698">
-          <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        <state relative-caret-position="327">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#799#0" expanded="true" />
@@ -1472,37 +1481,6 @@
             <element signature="e#3935#3980#0" expanded="false" />
             <element signature="e#4028#4152#0" expanded="false" />
             <element signature="e#4201#4241#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metio/thredds.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="967">
-          <caret line="310" column="43" lean-forward="true" selection-start-line="310" selection-start-column="43" selection-end-line="310" selection-end-column="43" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1446#1542#1" expanded="false" />
-            <element signature="e#1679#1855#0" expanded="false" />
-            <element signature="e#2221#3287#0" expanded="false" />
-            <element signature="e#3324#4765#0" expanded="false" />
-            <element signature="e#4797#5455#0" expanded="false" />
-            <element signature="e#5491#6829#0" expanded="false" />
-            <element signature="e#6986#7241#0" expanded="false" />
-            <element signature="e#7303#7372#0" expanded="false" />
-            <element signature="e#7852#8523#1" expanded="false" />
-            <element signature="e#11143#17312#0" expanded="false" />
-            <element signature="e#11143#13122#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metio/topowx_issue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="37" column="32" lean-forward="true" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
