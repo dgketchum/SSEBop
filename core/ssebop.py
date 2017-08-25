@@ -143,6 +143,7 @@ class SSEBopGeo:
         self.profile = profile
         self.geometry = geometry
         self.bounds = bounds
+        # add utm and latlon bounds to RasterBounds TODO
         self.api_key = api_key
         self.date = date
 
