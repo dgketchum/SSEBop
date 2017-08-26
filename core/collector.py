@@ -59,7 +59,8 @@ def anc_data_check_tmax(model_geo):
     tmax_file = os.path.join(model_geo.image_dir, tmax_file_name)
 
     if tmax_file_name not in os.listdir(model_geo.image_dir):
-        bounds = RasterBounds(affine_transform=model_geo.transform, profile=model_geo.profile, latlon=True)
+        bounds = RasterBounds(affine_transform=model_geo.transform,
+                              profile=model_geo.profile, latlon=True)
         topowx = TopoWX(date=model_geo.date, bbox=bounds,
                         target_profile=model_geo.profile,
                         clip_feature=model_geo.clip, out_file=tmax_file)

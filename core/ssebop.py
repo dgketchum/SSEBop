@@ -96,7 +96,8 @@ class SSEBopModel(object):
                   (self.satellite,
                    ','.join(mapping.keys())))
 
-        image_geo = SSEBopGeo(self.image_id, self.image_dir, self.image.get_tile_geometry(),
+        image_geo = SSEBopGeo(self.image_id, self.image_dir,
+                              self.image.get_tile_geometry(),
                               self.image.transform, self.image.profile,
                               self.image.rasterio_geometry,
                               self.image.bounds, self.api_key, self.image_date)
