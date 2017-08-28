@@ -24,10 +24,9 @@ from rasterio import open as rasopen
 from app.paths import paths, PathsNotSetExecption
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from landsat.usgs_download import down_usgs_by_list as down
-from core.collector import anc_data_check_dem, anc_data_check_tmax
+from core.collector import anc_data_check_dem, anc_data_check_temp
 
-from metio.fao import avp_from_tmin, net_out_lw_rad, sunset_hour_angle
-from metio.fao import sol_dec, inv_rel_dist_earth_sun, et_rad
+from metio.fao import net_lw_radiation
 
 
 class SSEBopModel(object):
@@ -102,22 +101,21 @@ class SSEBopModel(object):
                               self.image.rasterio_geometry,
                               self.image.bounds, self.api_key, self.image_date)
 
+        doy = self.image.doy
         dem = anc_data_check_dem(image_geo)
-        tmax = anc_data_check_tmax(image_geo)
+        tmin = anc_data_check_temp(image_geo, variable='tmin')
+        tmax = anc_data_check_temp(image_geo, variable='tmax')
+        center_lat = self.image.scene_center_coords[0]
+        net_rad = net_lw_radiation(tmin, tmax, doy, dem, center_lat)
 
         albedo = self.image.albedo()
         emissivity = self._emissivity_ndvi()
 
-        net_rad = self._net_radiation(topowx.tmin, self.image.doy)
 
     def _emissivity_ndvi(self):
         ndvi = self.image.ndvi()
         bound_ndvi = np.where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, np.nan)
         return bound_ndvi
-
-    def _net_radiation(self, tmin, doy):
-        avp = avp_from_tmin(tmin)
-        return None
 
     @staticmethod
     def _info(msg):

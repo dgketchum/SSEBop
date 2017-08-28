@@ -18,7 +18,7 @@ import os
 import shutil
 from rasterio import open as rasopen
 from numpy import where, pi, cos, nan, inf, true_divide, errstate, log, nan_to_num
-from numpy import float32, sin, deg2rad
+from numpy import float32, sin, deg2rad, array
 from shapely.geometry import Polygon, mapping
 from fiona import open as fiopen
 from fiona.crs import from_epsg
@@ -110,11 +110,25 @@ class LandsatImage(object):
         dtime = datetime.strptime(str(self.date_acquired), '%Y-%m-%d')
         julian_day = dtime.strftime('%j')
         self.doy = int(julian_day)
+        self.scene_center_coords = self._scene_centroid()
 
     def _get_band(self, band_str):
         path = self.tif_dict[band_str]
         with rasopen(path) as src:
             return src.read(1)
+
+    def _scene_centroid(self):
+        """ Compute image center coordinates
+        :return: Tuple of image center in lat, lon
+        """
+        ul_lat = self.corner_ul_lat_product
+        ll_lat = self.corner_ll_lat_product
+        ul_lon = self.corner_ul_lon_product
+        ur_lon = self.corner_ur_lon_product
+        lat = (ul_lat + ll_lat) / 2.
+        lon = (ul_lon + ur_lon) / 2.
+
+        return lat, lon
 
     @staticmethod
     def earth_sun_d(dtime):
@@ -221,7 +235,7 @@ class Landsat5(LandsatImage):
         qcal = self._get_band('b{}'.format(band))
         rad = ((l_max - l_min) / (qcal_max - qcal_min)) * (qcal - qcal_min) + l_min
 
-        return rad
+        return rad.astype(float32)
 
     def brightness_temp(self, band, temp_scale='K'):
 
@@ -544,9 +558,9 @@ class Landsat8(LandsatImage):
         ml = getattr(self, 'radiance_mult_band_{}'.format(band))
         al = getattr(self, 'radiance_add_band_{}'.format(band))
         dn = self._get_band('b{}'.format(band))
-        rs = ml * dn.astype(float32) + al
+        rad = ml * dn.astype(float32) + al
 
-        return rs
+        return rad
 
     def albedo(self):
         """Smith (2010), finds broad-band surface reflectance (albedo)

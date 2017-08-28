@@ -18,6 +18,24 @@ STEFAN_BOLTZMANN_CONSTANT = 0.000000004903
 """Stefan Boltzmann constant [MJ K-4 m-2 day-1]"""
 
 
+# ============== AGREGATED EQUATIONS ===========================
+
+
+def net_lw_radiation(tmin, tmax, doy, dem, lat):
+    avp = avp_from_tmin(tmin)
+    inv_esun_dist = inv_rel_dist_earth_sun(doy)
+    sol_decl = sol_dec(doy)
+    sunset_hr_ang = sunset_hour_angle(lat, sol_decl)
+    ext_rad = et_rad(lat, sol_decl, sunset_hr_ang, inv_esun_dist)
+    clear_sky_rad = cs_rad(dem, ext_rad)
+    solar_rad = sol_rad_from_t(ext_rad, clear_sky_rad, tmin, tmax, coastal=False)
+    lw_rad = net_out_lw_rad(tmin, tmax, solar_rad, clear_sky_rad, avp)
+    return lw_rad
+
+
+# =============== CONSTITUENT EQUATIONS =======================
+
+
 def avp_from_tmin(tmin):
     """
     Estimate actual vapour pressure (*ea*) from minimum temperature.

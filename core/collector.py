@@ -54,26 +54,34 @@ def anc_data_check_dem(model_geo):
         return dem
 
 
-def anc_data_check_tmax(model_geo):
-    tmax_file_name = '{}_tmax.tif'.format(model_geo.image_id)
-    tmax_file = os.path.join(model_geo.image_dir, tmax_file_name)
+def anc_data_check_temp(model_geo, variable='tmax'):
+    if variable == 'tmax':
 
-    if tmax_file_name not in os.listdir(model_geo.image_dir):
+        temp_file_name = '{}_tmax.tif'.format(model_geo.image_id)
+        temp_file = os.path.join(model_geo.image_dir, temp_file_name)
+
+    elif variable == 'tmin':
+
+        temp_file_name = '{}_tmin.tif'.format(model_geo.image_id)
+        temp_file = os.path.join(model_geo.image_dir, temp_file_name)
+
+    if temp_file_name not in os.listdir(model_geo.image_dir):
         bounds = RasterBounds(affine_transform=model_geo.transform,
                               profile=model_geo.profile, latlon=True)
         topowx = TopoWX(date=model_geo.date, bbox=bounds,
                         target_profile=model_geo.profile,
-                        clip_feature=model_geo.clip, out_file=tmax_file)
+                        clip_feature=model_geo.clip, out_file=temp_file)
 
-        tmax = topowx.get_data_subset(grid_conform=True, out_file=tmax_file)
+        temp = topowx.get_data_subset(grid_conform=True, var=variable,
+                                      out_file=temp_file)
 
-        return tmax
+        return temp
 
     else:
 
-        with rasopen(tmax_file, 'r') as src:
-            tmax = src.read()
-            return tmax
+        with rasopen(temp_file, 'r') as src:
+            temp = src.read()
+            return temp
 
 
 if __name__ == '__main__':
