@@ -306,12 +306,16 @@ class Landsat5(LandsatImage):
 
         return mask
 
-    def ndvi(self):
+    def ndvi(self, emissivity_bound=False):
         """ Normalized difference vegetation index.
         :return: NDVI
         """
         red, nir = self.reflectance(3), self.reflectance(4)
         ndvi = self._divide_zero((nir - red), (nir + red), nan)
+
+        if emissivity_bound:
+            bound_ndvi = np.where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, np.nan)
+            return bound_ndvi
 
         return ndvi
 
@@ -413,12 +417,16 @@ class Landsat7(LandsatImage):
 
         return mask
 
-    def ndvi(self):
+    def ndvi(self, emissivity_bound=False):
         """ Normalized difference vegetation index.
         :return: NDVI
         """
         red, nir = self.reflectance(3), self.reflectance(4)
         ndvi = self._divide_zero((nir - red), (nir + red), nan)
+
+        if emissivity_bound:
+            bound_ndvi = where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, nan)
+            return bound_ndvi
 
         return ndvi
 
@@ -578,12 +586,16 @@ class Landsat8(LandsatImage):
 
         return alb
 
-    def ndvi(self):
+    def ndvi(self, emissivity_bound=False):
         """ Normalized difference vegetation index.
         :return: NDVI
         """
         red, nir = self.reflectance(4), self.reflectance(5)
         ndvi = self._divide_zero((nir - red), (nir + red), nan)
+
+        if emissivity_bound:
+            bound_ndvi = where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, nan)
+            return bound_ndvi
 
         return ndvi
 
