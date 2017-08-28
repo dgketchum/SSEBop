@@ -26,7 +26,13 @@ GAS_CONSTANT = 287.
 TEST_CANOPY_RESISTANCE = 110.
 """ Senay (2013; p. 583) [s m-1]"""
 
+
 # ============== AGREGATED EQUATIONS ===========================
+
+
+def difference_temp(rn, rho, cp, rah):
+    dt = (rn * rah) / (rho * cp)
+    return dt
 
 
 def get_net_radiation(tmin, tmax, doy, elevation, lat, albedo):
@@ -60,6 +66,10 @@ def net_sw_radiation(elevation, albedo, doy, lat):
 
 
 # =============== CONSTITUENT EQUATIONS =======================
+
+
+def canopy_resistance():
+    return TEST_CANOPY_RESISTANCE
 
 
 def air_specific_heat():
@@ -235,6 +245,17 @@ def sol_rad_from_t(et_rad, cs_rad, tmin, tmax, coastal):
     return min(sol_rad, cs_rad)
 
 
+def air_density(tmax, tmin, elevation):
+    mean_temp = daily_mean_t(tmin, tmax)
+    p = atm_pressure(elevation)
+    virt_temp = 1.01 * (mean_temp + 273)
+    rho = 3.486 * (p / virt_temp)
+    return rho
+
+
+# =====================================================================
+
+
 def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
     """
     Estimate net outgoing longwave radiation.
@@ -269,17 +290,6 @@ def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
     tmp2 = (0.34 - (0.14 * math.sqrt(avp)))
     tmp3 = 1.35 * (sol_rad / cs_rad) - 0.35
     return tmp1 * tmp2 * tmp3
-
-
-# =====================================================================
-
-
-def air_density(tmax, tmin, elevation):
-    mean_temp = daily_mean_t(tmin, tmax)
-    p = atm_pressure(elevation)
-    virt_temp = 1.01 * (mean_temp + 273)
-    rho = 3.486 * (p / virt_temp)
-    return rho
 
 
 def atm_pressure(altitude):
