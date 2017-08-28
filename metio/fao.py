@@ -17,11 +17,17 @@ SOLAR_CONSTANT = 0.0820
 STEFAN_BOLTZMANN_CONSTANT = 0.000000004903
 """Stefan Boltzmann constant [MJ K-4 m-2 day-1]"""
 
+SPECIFIC_HEAT_AIR = 1.013
+""" Specific heat of air at constant temperature [KJ kg-1 degC-1]"""
+
+GAS_CONSTANT = 287.
+""" 287 J kg-1 K--1"""
+
 
 # ============== AGREGATED EQUATIONS ===========================
 
 
-def net_radiation(tmin, tmax, doy, elevation, lat, albedo):
+def get_net_radiation(tmin, tmax, doy, elevation, lat, albedo):
     net_lw = net_lw_radiation(tmin, tmax, doy, elevation, lat)
     net_sw = net_sw_radiation(elevation, albedo, doy, lat)
 
@@ -52,6 +58,14 @@ def net_sw_radiation(elevation, albedo, doy, lat):
 
 
 # =============== CONSTITUENT EQUATIONS =======================
+
+
+def air_specific_heat():
+    return SPECIFIC_HEAT_AIR
+
+
+def gas_constant():
+    return GAS_CONSTANT
 
 
 def avp_from_tmin(tmin):
@@ -256,6 +270,14 @@ def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
 
 
 # =====================================================================
+
+
+def air_density(tmax, tmin, elevation):
+    mean_temp = daily_mean_t(tmin, tmax)
+    p = atm_pressure(elevation)
+    virt_temp = 1.01 * (mean_temp + 273)
+    rho = 3.486 * (p / virt_temp)
+    return rho
 
 
 def atm_pressure(altitude):

@@ -22,7 +22,7 @@ from app.paths import paths, PathsNotSetExecption
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from landsat.usgs_download import down_usgs_by_list as down
 from core.collector import anc_data_check_dem, anc_data_check_temp
-from metio.fao import net_radiation
+from metio.fao import get_net_radiation, air_density, air_specific_heat
 
 
 class SSEBopModel(object):
@@ -42,6 +42,8 @@ class SSEBopModel(object):
         self.path = runspec.path
         self.row = runspec.row
         self.image_id = runspec.image_id
+
+        self.image_geo = None
 
         self.k_factor = runspec.k_factor
         self.usgs_creds = runspec.usgs_creds
@@ -91,22 +93,26 @@ class SSEBopModel(object):
                   (self.satellite,
                    ','.join(mapping.keys())))
 
-        image_geo = SSEBopGeo(self.image_id, self.image_dir,
-                              self.image.get_tile_geometry(),
-                              self.image.transform, self.image.profile,
-                              self.image.rasterio_geometry,
-                              self.image.bounds, self.api_key, self.image_date)
-
-        doy = self.image.doy
-        dem = anc_data_check_dem(image_geo)
-        tmin = anc_data_check_temp(image_geo, variable='tmin')
-        tmax = anc_data_check_temp(image_geo, variable='tmax')
-        center_lat = self.image.scene_center_coords[0]
-        albedo = self.image.albedo()
-        net_rad = net_radiation(tmin, tmax, doy, dem, center_lat, albedo)
+        self.image_geo = SSEBopGeo(self.image_id, self.image_dir,
+                                   self.image.get_tile_geometry(),
+                                   self.image.transform, self.image.profile,
+                                   self.image.rasterio_geometry,
+                                   self.image.bounds, self.api_key, self.image_date)
 
         emissivity = self.image.ndvi(emissivity_bound=True)
 
+    def difference_temp(self):
+        doy = self.image.doy
+        dem = anc_data_check_dem(self.image_geo)
+        tmin = anc_data_check_temp(self.image_geo, variable='tmin')
+        tmax = anc_data_check_temp(self.image_geo, variable='tmax')
+        center_lat = self.image.scene_center_coords[0]
+        albedo = self.image.albedo()
+
+        net_rad = get_net_radiation(tmin, tmax, doy, dem, center_lat, albedo)
+        rho = air_density(tmax, tmin, dem)
+        cp = air_specific_heat()
+        rah =
 
     @staticmethod
     def _info(msg):
