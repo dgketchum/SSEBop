@@ -16,13 +16,12 @@
 
 from __future__ import print_function
 
-import numpy as np
-
 from app.paths import paths, PathsNotSetExecption
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from landsat.usgs_download import down_usgs_by_list as down
 from core.collector import anc_data_check_dem, anc_data_check_temp
 from metio.fao import get_net_radiation, air_density, air_specific_heat
+from metio.fao import canopy_resistance, difference_temp
 
 
 class SSEBopModel(object):
@@ -99,7 +98,9 @@ class SSEBopModel(object):
                                    self.image.rasterio_geometry,
                                    self.image.bounds, self.api_key, self.image_date)
 
-        emissivity = self.image.ndvi(emissivity_bound=True)
+        lst = self.image.lst()
+
+        dt = self.difference_temp()
 
     def difference_temp(self):
         doy = self.image.doy
@@ -112,7 +113,10 @@ class SSEBopModel(object):
         net_rad = get_net_radiation(tmin, tmax, doy, dem, center_lat, albedo)
         rho = air_density(tmax, tmin, dem)
         cp = air_specific_heat()
-        rah =
+        rah = canopy_resistance()
+
+        dt = difference_temp(net_rad, rho, cp, rah)
+        return dt
 
     @staticmethod
     def _info(msg):

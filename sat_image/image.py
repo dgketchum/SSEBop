@@ -306,18 +306,36 @@ class Landsat5(LandsatImage):
 
         return mask
 
-    def ndvi(self, emissivity_bound=False):
+    def ndvi(self):
         """ Normalized difference vegetation index.
         :return: NDVI
         """
         red, nir = self.reflectance(3), self.reflectance(4)
         ndvi = self._divide_zero((nir - red), (nir + red), nan)
 
-        if emissivity_bound:
-            bound_ndvi = np.where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, np.nan)
-            return bound_ndvi
-
         return ndvi
+
+    def emissivity(self):
+
+        ndvi = self.ndvi()
+        red = self.reflectance(3)
+        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+
+        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+        pv_emiss = 0.004 * pv + 0.986
+        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+
+        return emissivity
+
+    def land_surface_temp(self):
+        rp = 0.91
+        tau = 0.866
+        rsky = 1.32
+        epsilon = self.emissivity()
+        rc = ((self.radiance(6) - rp) / tau) - ((1 - epsilon) * rsky)
+        lst = self.k2 / (log((epsilon * self.k1 / rc) + 1))
+        return lst
 
     def ndsi(self):
         """ Normalized difference snow index.
@@ -417,18 +435,35 @@ class Landsat7(LandsatImage):
 
         return mask
 
-    def ndvi(self, emissivity_bound=False):
+    def ndvi(self):
         """ Normalized difference vegetation index.
         :return: NDVI
         """
         red, nir = self.reflectance(3), self.reflectance(4)
         ndvi = self._divide_zero((nir - red), (nir + red), nan)
 
-        if emissivity_bound:
-            bound_ndvi = where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, nan)
-            return bound_ndvi
-
         return ndvi
+
+    def emissivity(self):
+
+        ndvi = self.ndvi()
+        red = self.reflectance(3)
+        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+
+        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+        pv_emiss = 0.004 * pv + 0.986
+        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+        return emissivity
+
+    def land_surface_temp(self):
+        rp = 0.91
+        tau = 0.866
+        rsky = 1.32
+        epsilon = self.emissivity()
+        rc = ((self.radiance(6) - rp) / tau) - ((1 - epsilon) * rsky)
+        lst = self.k2 / (log((epsilon * self.k1 / rc) + 1))
+        return lst
 
     def ndsi(self):
         """ Normalized difference snow index.
@@ -586,18 +621,41 @@ class Landsat8(LandsatImage):
 
         return alb
 
-    def ndvi(self, emissivity_bound=False):
+    def ndvi(self):
         """ Normalized difference vegetation index.
         :return: NDVI
         """
         red, nir = self.reflectance(4), self.reflectance(5)
         ndvi = self._divide_zero((nir - red), (nir + red), nan)
 
-        if emissivity_bound:
-            bound_ndvi = where((ndvi >= 0.2) & (ndvi <= 0.5), ndvi, nan)
-            return bound_ndvi
-
         return ndvi
+
+    def emissivity(self):
+
+        ndvi = self.ndvi()
+        red = self.reflectance(4)
+        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+
+        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+        pv_emiss = 0.004 * pv + 0.986
+        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+        return emissivity
+
+    def land_surface_temp(self):
+
+        band = 10
+
+        k1 = getattr(self, 'k1_constant_band_{}'.format(band))
+        k2 = getattr(self, 'k2_constant_band_{}'.format(band))
+
+        rp = 0.91
+        tau = 0.866
+        rsky = 1.32
+        epsilon = self.emissivity()
+        rc = ((self.radiance(band) - rp) / tau) - ((1 - epsilon) * rsky)
+        lst = k2 / (log((epsilon * k1 / rc) + 1))
+        return lst
 
     def ndsi(self):
         """ Normalized difference snow index.
