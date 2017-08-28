@@ -21,16 +21,34 @@ STEFAN_BOLTZMANN_CONSTANT = 0.000000004903
 # ============== AGREGATED EQUATIONS ===========================
 
 
-def net_lw_radiation(tmin, tmax, doy, dem, lat):
+def net_radiation(tmin, tmax, doy, elevation, lat, albedo):
+    net_lw = net_lw_radiation(tmin, tmax, doy, elevation, lat)
+    net_sw = net_sw_radiation(elevation, albedo, doy, lat)
+
+    net_radiat = net_sw - net_lw
+    return net_radiat
+
+
+def net_lw_radiation(tmin, tmax, doy, elevation, lat):
     avp = avp_from_tmin(tmin)
     inv_esun_dist = inv_rel_dist_earth_sun(doy)
     sol_decl = sol_dec(doy)
     sunset_hr_ang = sunset_hour_angle(lat, sol_decl)
     ext_rad = et_rad(lat, sol_decl, sunset_hr_ang, inv_esun_dist)
-    clear_sky_rad = cs_rad(dem, ext_rad)
+    clear_sky_rad = cs_rad(elevation, ext_rad)
     solar_rad = sol_rad_from_t(ext_rad, clear_sky_rad, tmin, tmax, coastal=False)
     lw_rad = net_out_lw_rad(tmin, tmax, solar_rad, clear_sky_rad, avp)
     return lw_rad
+
+
+def net_sw_radiation(elevation, albedo, doy, lat):
+    inv_esun_dist = inv_rel_dist_earth_sun(doy)
+    sol_decl = sol_dec(doy)
+    sunset_hr_ang = sunset_hour_angle(lat, sol_decl)
+    ext_rad = et_rad(lat, sol_decl, sunset_hr_ang, inv_esun_dist)
+    rs = (0.75 * 2e-05 * elevation) * ext_rad
+    rns = (1 - albedo) * rs
+    return rns
 
 
 # =============== CONSTITUENT EQUATIONS =======================
