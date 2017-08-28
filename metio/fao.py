@@ -23,6 +23,8 @@ SPECIFIC_HEAT_AIR = 1.013
 GAS_CONSTANT = 287.
 """ 287 J kg-1 K--1"""
 
+TEST_CANOPY_RESISTANCE = 110.
+""" Senay (2013; p. 583) [s m-1]"""
 
 # ============== AGREGATED EQUATIONS ===========================
 
