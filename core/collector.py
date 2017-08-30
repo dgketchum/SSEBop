@@ -54,7 +54,7 @@ def anc_data_check_dem(model_geo):
         return dem
 
 
-def anc_data_check_temp(model_geo, variable='tmax'):
+def data_check_temp(model_geo, variable='tmax'):
     if variable == 'tmax':
 
         temp_file_name = '{}_tmax.tif'.format(model_geo.image_id)

@@ -17,8 +17,8 @@
 import os
 import shutil
 from rasterio import open as rasopen
-from numpy import where, pi, cos, nan, inf, true_divide, errstate, log, nan_to_num
-from numpy import float32, sin, deg2rad
+from numpy import where, pi, cos, nan, inf, true_divide, errstate, log
+from numpy import float32, sin, deg2rad, array, isnan, nan_to_num
 from shapely.geometry import Polygon, mapping
 from fiona import open as fiopen
 from fiona.crs import from_epsg
@@ -76,9 +76,7 @@ class LandsatImage(object):
         self.tif_dict = {}
         for i, tif in enumerate(self.tif_list):
             raster = os.path.join(self.obj, tif)
-            with rasopen(raster) as src:
-                transform = src.transform
-                profile = src.profile
+
             # set all lower case attributes
             tif = tif.lower()
             front_ind = tif.index('b')
@@ -90,6 +88,9 @@ class LandsatImage(object):
             self.band_count = i + 1
 
             if i == 0:
+                with rasopen(raster) as src:
+                    transform = src.transform
+                    profile = src.profile
                 # get rasterio metadata/geospatial reference for one tif
                 meta = src.meta.copy()
                 self.rasterio_geometry = meta
@@ -116,7 +117,10 @@ class LandsatImage(object):
     def _get_band(self, band_str):
         path = self.tif_dict[band_str]
         with rasopen(path) as src:
-            return src.read(1)
+            arr = src.read(1)
+        arr = array(arr, dtype=float32)
+        arr[arr < 1.] = nan
+        return arr
 
     def _scene_centroid(self):
         """ Compute image center coordinates
@@ -149,7 +153,6 @@ class LandsatImage(object):
         with errstate(divide='ignore', invalid='ignore'):
             c = true_divide(a, b)
             c[c == inf] = replace
-            c = nan_to_num(c)
             return c
 
     def get_tile_geometry(self, output_filename=None, geographic_coords=False):
@@ -203,13 +206,20 @@ class LandsatImage(object):
 
                 return features
 
-    def save_array(self, array, output_filename):
+    def save_array(self, arr, output_filename):
         geometry = self.rasterio_geometry
-        array = array.reshape(1, array.shape[0], array.shape[1])
-        geometry['dtype'] = array.dtype
+        arr = arr.reshape(1, arr.shape[0], arr.shape[1])
+        geometry['dtype'] = arr.dtype
         with rasopen(output_filename, 'w', **geometry) as dst:
-            dst.write(array)
+            dst.write(arr)
         return None
+
+    def mask_by_image(self, arr):
+        image = self._get_band('b1')
+        image = array(image, dtype=float32)
+        image[image < 1.] = nan
+        arr = where(isnan(image), nan, arr)
+        return arr
 
 
 class Landsat5(LandsatImage):

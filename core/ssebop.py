@@ -16,10 +16,12 @@
 
 from __future__ import print_function
 
+from numpy import where, nanpercentile
+
 from app.paths import paths, PathsNotSetExecption
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from landsat.usgs_download import down_usgs_by_list as down
-from core.collector import anc_data_check_dem, anc_data_check_temp
+from core.collector import anc_data_check_dem, data_check_temp
 from metio.fao import get_net_radiation, air_density, air_specific_heat
 from metio.fao import canopy_resistance, difference_temp
 
@@ -98,14 +100,25 @@ class SSEBopModel(object):
                                    self.image.rasterio_geometry,
                                    self.image.bounds, self.api_key, self.image_date)
 
-        ts = self.image.land_surface_temp()
         dt = self.difference_temp()
+        ts = self.image.land_surface_temp()
+        cold = self.cold_reference()
+        x = None
+
+    def cold_reference(self):
+        ndvi = self.image.ndvi()
+        loc = where(ndvi == nanpercentile(ndvi, 99.9))
+        ind = loc[0][0], loc[1][0]
+        test = ndvi[ind]
+        tmax = data_check_temp(self.image_geo, variable='tmax')
+        # get ts at ind location and tmax, compute c, then tc
+        return tmax
 
     def difference_temp(self):
         doy = self.image.doy
         dem = anc_data_check_dem(self.image_geo)
-        tmin = anc_data_check_temp(self.image_geo, variable='tmin')
-        tmax = anc_data_check_temp(self.image_geo, variable='tmax')
+        tmin = data_check_temp(self.image_geo, variable='tmin')
+        tmax = data_check_temp(self.image_geo, variable='tmax')
         center_lat = self.image.scene_coords_rad[0]
         albedo = self.image.albedo()
 
@@ -116,6 +129,7 @@ class SSEBopModel(object):
         rah = canopy_resistance()
 
         dt = difference_temp(rn=net_rad, rho=rho, cp=cp, rah=rah)
+        dt = self.image.mask_by_image(arr=dt)
         return dt
 
     @staticmethod
