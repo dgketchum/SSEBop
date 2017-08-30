@@ -107,15 +107,16 @@ class SSEBopModel(object):
         dem = anc_data_check_dem(self.image_geo)
         tmin = anc_data_check_temp(self.image_geo, variable='tmin')
         tmax = anc_data_check_temp(self.image_geo, variable='tmax')
-        center_lat = self.image.scene_center_coords[0]
+        center_lat = self.image.scene_coords_rad[0]
         albedo = self.image.albedo()
 
-        net_rad = get_net_radiation(tmin, tmax, doy, dem, center_lat, albedo)
-        rho = air_density(tmax, tmin, dem)
+        net_rad = get_net_radiation(tmin=tmin, tmax=tmax, doy=doy,
+                                    elevation=dem, lat=center_lat, albedo=albedo)
+        rho = air_density(tmin=tmin, tmax=tmax, elevation=dem)
         cp = air_specific_heat()
         rah = canopy_resistance()
 
-        dt = difference_temp(net_rad, rho, cp, rah)
+        dt = difference_temp(rn=net_rad, rho=rho, cp=cp, rah=rah)
         return dt
 
     @staticmethod
