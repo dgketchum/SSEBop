@@ -16,7 +16,127 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< Updated upstream
       <file leaf-file-name="image.py" pinned="false" current-in-tab="true">
+=======
+      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="429">
+              <caret line="112" column="24" lean-forward="false" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#762#799#0" expanded="true" />
+                <element signature="e#1285#2131#0" expanded="false" />
+                <element signature="e#2171#2581#0" expanded="false" />
+                <element signature="e#2610#2669#1" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fao.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/metio/fao.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="311" column="0" lean-forward="true" selection-start-line="311" selection-start-column="0" selection-end-line="311" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#346#1" expanded="false" />
+                <element signature="e#944#986#0" expanded="false" />
+                <element signature="e#1841#2162#0" expanded="false" />
+                <element signature="e#2260#2289#0" expanded="false" />
+                <element signature="e#2321#2345#0" expanded="false" />
+                <element signature="e#2372#2391#0" expanded="false" />
+                <element signature="e#2423#3121#1" expanded="false" />
+                <element signature="e#3210#3525#0" expanded="false" />
+                <element signature="e#3210#3459#1" expanded="false" />
+                <element signature="e#3574#4456#0" expanded="false" />
+                <element signature="e#3574#4042#1" expanded="false" />
+                <element signature="e#4092#4154#0" expanded="false" />
+                <element signature="e#4504#5728#0" expanded="false" />
+                <element signature="e#4504#5523#1" expanded="false" />
+                <element signature="e#5765#6252#0" expanded="false" />
+                <element signature="e#5765#6204#1" expanded="false" />
+                <element signature="e#6300#6654#0" expanded="false" />
+                <element signature="e#6300#6591#1" expanded="false" />
+                <element signature="e#6718#8609#0" expanded="false" />
+                <element signature="e#6718#8289#1" expanded="false" />
+                <element signature="e#8294#8353#0" expanded="false" />
+                <element signature="e#8656#8814#0" expanded="false" />
+                <element signature="e#8949#10287#1" expanded="false" />
+                <element signature="e#10548#10987#0" expanded="false" />
+                <element signature="e#10548#10903#1" expanded="false" />
+                <element signature="e#11056#11756#0" expanded="false" />
+                <element signature="e#11056#11647#1" expanded="false" />
+                <element signature="e#11801#12285#0" expanded="false" />
+                <element signature="e#11801#12246#1" expanded="false" />
+                <element signature="e#12342#13022#0" expanded="false" />
+                <element signature="e#12342#12961#1" expanded="false" />
+                <element signature="e#13054#13643#0" expanded="false" />
+                <element signature="e#13054#13586#1" expanded="false" />
+                <element signature="e#13707#14784#0" expanded="false" />
+                <element signature="e#13707#14734#1" expanded="false" />
+                <element signature="e#14821#15308#0" expanded="false" />
+                <element signature="e#14821#15260#1" expanded="false" />
+                <element signature="e#15345#15641#0" expanded="false" />
+                <element signature="e#15345#15610#1" expanded="false" />
+                <element signature="e#15673#15965#0" expanded="false" />
+                <element signature="e#15673#15936#1" expanded="false" />
+                <element signature="e#15990#16487#0" expanded="false" />
+                <element signature="e#15990#16389#1" expanded="false" />
+                <element signature="e#16519#17037#0" expanded="false" />
+                <element signature="e#16519#17011#1" expanded="false" />
+                <element signature="e#17122#18731#0" expanded="false" />
+                <element signature="e#17122#18521#1" expanded="false" />
+                <element signature="e#18781#19945#0" expanded="false" />
+                <element signature="e#18781#19707#1" expanded="false" />
+                <element signature="e#19712#19783#0" expanded="false" />
+                <element signature="e#19978#20534#0" expanded="false" />
+                <element signature="e#19978#20479#1" expanded="false" />
+                <element signature="e#20597#21299#0" expanded="false" />
+                <element signature="e#20597#21251#1" expanded="false" />
+                <element signature="e#21362#22097#0" expanded="false" />
+                <element signature="e#21362#22050#1" expanded="false" />
+                <element signature="e#22146#23309#0" expanded="false" />
+                <element signature="e#22146#23275#1" expanded="false" />
+                <element signature="e#23351#24079#0" expanded="false" />
+                <element signature="e#23351#24046#1" expanded="false" />
+                <element signature="e#24113#24578#0" expanded="false" />
+                <element signature="e#24113#24545#1" expanded="false" />
+                <element signature="e#24642#25748#0" expanded="false" />
+                <element signature="e#24642#25356#1" expanded="false" />
+                <element signature="e#25614#25713#0" expanded="false" />
+                <element signature="e#25786#26405#0" expanded="false" />
+                <element signature="e#25786#26376#1" expanded="false" />
+                <element signature="e#26480#27734#0" expanded="false" />
+                <element signature="e#26480#27521#1" expanded="false" />
+                <element signature="e#27527#27602#0" expanded="false" />
+                <element signature="e#27769#28516#0" expanded="false" />
+                <element signature="e#27769#28484#1" expanded="false" />
+                <element signature="e#28542#28829#0" expanded="false" />
+                <element signature="e#28542#28778#1" expanded="false" />
+                <element signature="e#28862#29315#0" expanded="false" />
+                <element signature="e#28862#29267#1" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fao_test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/fao_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1504106657786" expanded="true" signature="1219:1373" ph="..." />
+                <marker date="1504106657786" expanded="true" signature="1240:1241" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
+>>>>>>> Stashed changes
         <entry file="file://$PROJECT_DIR$/sat_image/image.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="544">
@@ -134,11 +254,357 @@
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
     </task>
+<<<<<<< Updated upstream
+=======
+    <task id="LOCAL-00115" summary="going to wreck processing">
+      <created>1498589110213</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1498589110213</updated>
+    </task>
+    <task id="LOCAL-00116" summary="added aspect to dem class">
+      <created>1498594204855</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1498594204855</updated>
+    </task>
+    <task id="LOCAL-00117" summary="aspect and slope working">
+      <created>1498603540970</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1498603540970</updated>
+    </task>
+    <task id="LOCAL-00118" summary="start on conformal thredds dem">
+      <created>1498749234532</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1498749234532</updated>
+    </task>
+    <task id="LOCAL-00119" summary="put dem and image in ssebopmodel.run">
+      <created>1499895693018</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1499895693019</updated>
+    </task>
+    <task id="LOCAL-00120" summary="put dem and image in ssebopmodel.run">
+      <created>1499964764439</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1499964764440</updated>
+    </task>
+    <task id="LOCAL-00121" summary="conform thredds GridMet object">
+      <created>1499964812540</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1499964812540</updated>
+    </task>
+    <task id="LOCAL-00122" summary="build ncd profile to have source info to reproject, etc.">
+      <created>1499984697174</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1499984697174</updated>
+    </task>
+    <task id="LOCAL-00123" summary="get source affine">
+      <created>1500057036930</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1500057036930</updated>
+    </task>
+    <task id="LOCAL-00124" summary="get source affine">
+      <created>1500329963193</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1500329963194</updated>
+    </task>
+    <task id="LOCAL-00125" summary="resample met data">
+      <created>1500329986692</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1500329986693</updated>
+    </task>
+    <task id="LOCAL-00126" summary="build out topowx, put common methods in Thredds parent">
+      <created>1500403024157</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1500403024158</updated>
+    </task>
+    <task id="LOCAL-00127" summary="slice time in topowx xarray">
+      <created>1500419119300</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1500419119301</updated>
+    </task>
+    <task id="LOCAL-00128" summary="slice time in topowx xarray works">
+      <created>1500476642741</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1500476642741</updated>
+    </task>
+    <task id="LOCAL-00129" summary="topowx class functional">
+      <created>1500479488426</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1500479488426</updated>
+    </task>
+    <task id="LOCAL-00130" summary="arrange fao 56 equations">
+      <created>1500485196518</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1500485196518</updated>
+    </task>
+    <task id="LOCAL-00131" summary="arrange fao 56 equations">
+      <created>1500487115002</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1500487115002</updated>
+    </task>
+    <task id="LOCAL-00132" summary="implement project, reproject, resample">
+      <created>1500667977787</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1500667977787</updated>
+    </task>
+    <task id="LOCAL-00133" summary="reproject finally working in thredds">
+      <created>1501008071062</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1501008071062</updated>
+    </task>
+    <task id="LOCAL-00134" summary="resample working on thredds">
+      <created>1501008461261</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1501008461261</updated>
+    </task>
+    <task id="LOCAL-00135" summary="going for season or single date on one path/row parent directory">
+      <created>1501784675017</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1501784675018</updated>
+    </task>
+    <task id="LOCAL-00136" summary="going for season or single date on one path/row parent directory">
+      <created>1501784828132</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1501784828132</updated>
+    </task>
+    <task id="LOCAL-00137" summary="bring in landsat image downloader, remember to develop in seperate project">
+      <created>1501785669129</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1501785669129</updated>
+    </task>
+    <task id="LOCAL-00138" summary="bring in landsat image downloader, remember to develop in seperate project">
+      <created>1501785766317</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1501785766317</updated>
+    </task>
+    <task id="LOCAL-00139" summary="reconfig config yaml">
+      <created>1501801451947</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1501801451947</updated>
+    </task>
+    <task id="LOCAL-00140" summary="attribute error on ssebop run instantiate image">
+      <created>1501803864798</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1501803864798</updated>
+    </task>
+    <task id="LOCAL-00141" summary="model only has start and end dates now">
+      <created>1502300827280</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1502300827281</updated>
+    </task>
+    <task id="LOCAL-00142" summary="start and end dates to int in config yml">
+      <created>1502308287980</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1502308287980</updated>
+    </task>
+    <task id="LOCAL-00143" summary="adding configure_project_dirs to paths.py">
+      <created>1502310662296</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1502310662296</updated>
+    </task>
+    <task id="LOCAL-00144" summary="satellite spec optional, usgs creds to config yml">
+      <created>1502312484431</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1502312484431</updated>
+    </task>
+    <task id="LOCAL-00145" summary="satellite spec optional, usgs creds to config yml">
+      <created>1502312564032</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1502312564032</updated>
+    </task>
+    <task id="LOCAL-00146" summary=" s">
+      <created>1502316312020</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1502316312020</updated>
+    </task>
+    <task id="LOCAL-00147" summary="topowx needs date from image.date">
+      <created>1502394077909</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1502394077909</updated>
+    </task>
+    <task id="LOCAL-00148" summary="move topowx temp fetch to separate private method">
+      <created>1502408425090</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1502408425091</updated>
+    </task>
+    <task id="LOCAL-00149" summary="move image list to config function, make each runspec correspond to an image, rather than config file, for-loop over runspecs for multi-image run, move data collector/checker out of ssebop algorithm">
+      <created>1503586591834</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1503586591835</updated>
+    </task>
+    <task id="LOCAL-00150" summary="load general config attrs into Config object">
+      <created>1503589317486</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1503589317486</updated>
+    </task>
+    <task id="LOCAL-00151" summary="modify check project paths to handle ssebop one image at a time">
+      <created>1503596176845</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1503596176846</updated>
+    </task>
+    <task id="LOCAL-00152" summary="moving data check to collector.py, function call to configure run">
+      <created>1503597983284</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1503597983284</updated>
+    </task>
+    <task id="LOCAL-00153" summary="ancillary data check to collector.py, function call after ssebop image instantiation">
+      <created>1503598451997</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1503598451997</updated>
+    </task>
+    <task id="LOCAL-00154" summary="record of topowx issue script, remove time array index from url in Thredds.TopoWx!!1">
+      <created>1503615723789</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1503615723789</updated>
+    </task>
+    <task id="LOCAL-00155" summary="moved topowx and dem functionality to anc_data_check">
+      <created>1503619300595</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1503619300596</updated>
+    </task>
+    <task id="LOCAL-00156" summary="running out of memory during calculation of albedo!">
+      <created>1503772941620</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1503772941620</updated>
+    </task>
+    <task id="LOCAL-00157" summary="moved longwave radiation equations to fao.py">
+      <created>1503949418364</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1503949418364</updated>
+    </task>
+    <task id="LOCAL-00158" summary="moved longwave radiation equations to fao.py">
+      <created>1503950157322</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1503950157322</updated>
+    </task>
+    <task id="LOCAL-00159" summary="looking for information on rah calculation">
+      <created>1503951818252</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1503951818252</updated>
+    </task>
+    <task id="LOCAL-00160" summary="looking for information on rah calculation">
+      <created>1503959241271</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1503959241272</updated>
+    </task>
+    <task id="LOCAL-00161" summary="add emissivity and lst calculations to image class">
+      <created>1503964392710</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1503964392710</updated>
+    </task>
+    <task id="LOCAL-00162" summary="negative dt?">
+      <created>1503966716191</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1503966716191</updated>
+    </task>
+    <task id="LOCAL-00163" summary="working through fao tests">
+      <created>1504106659394</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1504106659394</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
+>>>>>>> Stashed changes
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25368732" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -163,6 +629,42 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+<<<<<<< Updated upstream
+=======
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/PyETo" />
+    </ignored-roots>
+    <MESSAGE value="resample working on thredds" />
+    <MESSAGE value="going for season or single date on one path/row parent directory" />
+    <MESSAGE value="bring in landsat image downloader, remember to develop in seperate project" />
+    <MESSAGE value="reconfig config yaml" />
+    <MESSAGE value="attribute error on ssebop run instantiate image" />
+    <MESSAGE value="model only has start and end dates now" />
+    <MESSAGE value="start and end dates to int in config yml" />
+    <MESSAGE value="adding configure_project_dirs to paths.py" />
+    <MESSAGE value="satellite spec optional, usgs creds to config yml" />
+    <MESSAGE value=" s" />
+    <MESSAGE value="topowx needs date from image.date" />
+    <MESSAGE value="move topowx temp fetch to separate private method" />
+    <MESSAGE value="move image list to config function, make each runspec correspond to an image, rather than config file, for-loop over runspecs for multi-image run, move data collector/checker out of ssebop algorithm" />
+    <MESSAGE value="load general config attrs into Config object" />
+    <MESSAGE value="modify check project paths to handle ssebop one image at a time" />
+    <MESSAGE value="moving data check to collector.py, function call to configure run" />
+    <MESSAGE value="ancillary data check to collector.py, function call after ssebop image instantiation" />
+    <MESSAGE value="record of topowx issue script, remove time array index from url in Thredds.TopoWx!!1" />
+    <MESSAGE value="moved topowx and dem functionality to anc_data_check" />
+    <MESSAGE value="running out of memory during calculation of albedo!" />
+    <MESSAGE value="moved longwave radiation equations to fao.py" />
+    <MESSAGE value="looking for information on rah calculation" />
+    <MESSAGE value="add emissivity and lst calculations to image class" />
+    <MESSAGE value="negative dt?" />
+    <MESSAGE value="working through fao tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="working through fao tests" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+>>>>>>> Stashed changes
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -181,7 +683,34 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+<<<<<<< Updated upstream
             <marker date="1494595464739" expanded="true" signature="3975:4844" ph="..." />
+=======
+            <marker date="1504106657786" expanded="true" signature="1219:1373" ph="..." />
+            <marker date="1504106657786" expanded="true" signature="1240:1241" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1734">
+          <caret line="82" column="95" lean-forward="false" selection-start-line="82" selection-start-column="95" selection-end-line="82" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="112" column="24" lean-forward="false" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#799#0" expanded="true" />
+            <element signature="e#1285#2131#0" expanded="false" />
+            <element signature="e#2171#2581#0" expanded="false" />
+            <element signature="e#2610#2669#1" expanded="false" />
+>>>>>>> Stashed changes
           </folding>
         </state>
       </provider>
