@@ -37,35 +37,49 @@ TEST_CANOPY_RESISTANCE = 110.
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.doy = 80
+        self.doy = 246
+        self.elevation = 1800
+        self.tmin = 19.1
+        self.tmax = 25.1
+        self.latitude = -0.35
+        self.albedo = 0.23
 
     def tearDown(self):
         pass
 
+    def test_atm_pressure(self):
+        p = fao.atm_pressure(self.elevation)
+        self.assertAlmostEqual(p, 81.8, delta=0.05)
+
     def test_avp_from_tmin(self):
-        self.assertEqual(True, False)
+        avp = fao.avp_from_tmin(self.tmin)
+        self.assertAlmostEqual(avp, 2.21, delta=0.05)
 
-    def test_sol_dec(self):
-        self.assertEqual(True, False)
-
-    def test_sunset_hour_angle(self):
-        self.assertEqual(True, False)
+    def test_eq_et_rad(self):
+        ird = fao.inv_rel_dist_earth_sun(day_of_year=187)
+        sol_dec = fao.sol_dec(day_of_year=187)
+        sha = fao.sunset_hour_angle(latitude=0.785, sol_dec=sol_dec)
+        ext_rad = fao.et_rad(latitude=0.785, sol_dec=sol_dec, sha=sha, ird=ird)
+        self.assertAlmostEqual(41.37, ext_rad, delta=0.1)
 
     def test_et_rad(self):
-        self.assertEqual(True, False)
+        ird = fao.inv_rel_dist_earth_sun(self.doy)
+        self.assertAlmostEqual(ird, 0.985, delta=0.001)
+        sol_dec = fao.sol_dec(self.doy)
+        self.assertAlmostEqual(sol_dec, 0.120, delta=0.001)
+        sha = fao.sunset_hour_angle(self.latitude, sol_dec)
+        self.assertAlmostEqual(sha, 1.527, delta=0.001)
+        ext_rad = fao.et_rad(self.latitude, sol_dec, sha, ird)
+        self.assertAlmostEqual(ext_rad, 32.2, delta=0.1)
 
-    def test_cs_rad(self):
-        self.assertEqual(True, False)
+    def test_net_longwave(self):
+        nl = fao.net_lw_radiation(self.tmin, self.tmax, self.doy, self.elevation,
+                                  self.latitude)
+        self.assertAlmostEqual(nl, 1.59, delta=0.05)
 
-    def test_inv_rel_dist_earth_sun(self):
-        self.assertEqual(True, False)
-
-    def test_sol_rad_from_t(self):
-        self.assertEqual(True, False)
-
-    def test_air_density(self):
-        self.assertEqual(True, False)
-
+    def test_net_shortwave(self):
+        sw = fao.net_sw_radiation(self.elevation, self.albedo, self.doy, self.latitude)
+        self.assertAlmostEqual(sw, 19.47, delta=0.015)
 
 if __name__ == '__main__':
     unittest.main()

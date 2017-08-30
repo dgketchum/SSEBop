@@ -8,7 +8,7 @@ meteorological data.
 :license: BSD 3-Clause, see LICENSE.txt for more details.
 """
 
-from numpy import exp, sin, pi, tan, arccos, cos, sqrt, power, log, minimum
+from numpy import exp, sin, pi, tan, arccos, cos, sqrt, power, log, minimum, maximum
 
 #: Solar constant [ MJ m-2 min-1]
 SOLAR_CONSTANT = 0.0820
@@ -17,13 +17,15 @@ SOLAR_CONSTANT = 0.0820
 STEFAN_BOLTZMANN_CONSTANT = 0.000000004903
 """Stefan Boltzmann constant [MJ K-4 m-2 day-1]"""
 
-SPECIFIC_HEAT_AIR = 1.013
+SPECIFIC_HEAT_AIR_KJ = 1.013
+SPECIFIC_HEAT_AIR_MJ = 0.001013
 """ Specific heat of air at constant temperature [KJ kg-1 degC-1]"""
 
 GAS_CONSTANT = 287.
 """ 287 J kg-1 K--1"""
 
-TEST_CANOPY_RESISTANCE = 110.
+TEST_CANOPY_RESISTANCE_SECOND = 110.
+TEST_CANOPY_RESISTANCE_DAY = 0.001273
 """ Senay (2013; p. 583) [s m-1]"""
 
 
@@ -51,7 +53,8 @@ def net_lw_radiation(tmin, tmax, doy, elevation, lat):
     ext_rad = et_rad(lat, sol_decl, sunset_hr_ang, inv_esun_dist)
     clear_sky_rad = cs_rad(elevation, ext_rad)
     solar_rad = sol_rad_from_t(ext_rad, clear_sky_rad, tmin, tmax, coastal=False)
-    lw_rad = net_out_lw_rad(tmin, tmax, solar_rad, clear_sky_rad, avp)
+    tmin_k, tmax_k = tmin + 273.16, tmax + 273.16
+    lw_rad = net_out_lw_rad(tmin_k=tmin_k, tmax_k=tmax_k, sol_rad=solar_rad, cs_rad=clear_sky_rad, avp=avp)
     return lw_rad
 
 
@@ -60,7 +63,7 @@ def net_sw_radiation(elevation, albedo, doy, lat):
     sol_decl = sol_dec(doy)
     sunset_hr_ang = sunset_hour_angle(latitude=lat, sol_dec=sol_decl)
     ext_rad = et_rad(latitude=lat, sol_dec=sol_decl, sha=sunset_hr_ang, ird=inv_esun_dist)
-    rs = (0.75 * 2e-05 * elevation) * ext_rad
+    rs = (0.75 + (2e-05 * elevation)) * ext_rad
     rns = (1 - albedo) * rs
     return rns
 
@@ -69,11 +72,11 @@ def net_sw_radiation(elevation, albedo, doy, lat):
 
 
 def canopy_resistance():
-    return TEST_CANOPY_RESISTANCE
+    return TEST_CANOPY_RESISTANCE_DAY
 
 
 def air_specific_heat():
-    return SPECIFIC_HEAT_AIR
+    return SPECIFIC_HEAT_AIR_MJ
 
 
 def gas_constant():
@@ -137,7 +140,7 @@ def sunset_hour_angle(latitude, sol_dec):
     # See http://www.itacanet.org/the-sun-as-a-source-of-energy/
     # part-3-calculating-solar-angles/
     # Domain of arccos is -1 <= x <= 1 radians (this is not mentioned in FAO-56!)
-    return arccos(min(max(cos_sha, -1.0), 1.0))
+    return arccos(minimum(maximum(cos_sha, -1.0), 1.0))
 
 
 def et_rad(latitude, sol_dec, sha, ird):
@@ -254,10 +257,26 @@ def air_density(tmax, tmin, elevation):
     return rho
 
 
+def atm_pressure(altitude):
+    """
+    Estimate atmospheric pressure from altitude.
+
+    Calculated using a simplification of the ideal gas law, assuming 20 degrees
+    Celsius for a standard atmosphere. Based on equation 7, page 62 in Allen
+    et al (1998).
+
+    :param altitude: Elevation/altitude above sea level [m]
+    :return: atmospheric pressure [kPa]
+    :rtype: float
+    """
+    tmp = (293.0 - (0.0065 * altitude)) / 293.0
+    return power(tmp, 5.26) * 101.3
+
+
 # =====================================================================
 
 
-def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
+def net_out_lw_rad(tmin_k, tmax_k, sol_rad, cs_rad, avp):
     """
     Estimate net outgoing longwave radiation.
 
@@ -275,8 +294,8 @@ def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
 
     Based on FAO equation 39 in Allen et al (1998).
 
-    :param tmin: Absolute daily minimum temperature [degrees Kelvin]
-    :param tmax: Absolute daily maximum temperature [degrees Kelvin]
+    :param tmin_k: Absolute daily minimum temperature [degrees Kelvin]
+    :param tmax_k: Absolute daily maximum temperature [degrees Kelvin]
     :param sol_rad: Solar radiation [MJ m-2 day-1]. If necessary this can be
         estimated using ``sol+rad()``.
     :param cs_rad: Clear sky radiation [MJ m-2 day-1]. Can be estimated using
@@ -287,27 +306,11 @@ def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
     :rtype: float
     """
     tmp1 = (STEFAN_BOLTZMANN_CONSTANT *
-            ((power(tmax, 4) + power(tmin, 4)) / 2))
+            ((power(tmax_k, 4) + power(tmin_k, 4)) / 2))
     tmp2 = (0.34 - (0.14 * sqrt(avp)))
     tmp3 = 1.35 * (sol_rad / cs_rad) - 0.35
     lw_rad = tmp1 * tmp2 * tmp3
     return lw_rad
-
-
-def atm_pressure(altitude):
-    """
-    Estimate atmospheric pressure from altitude.
-
-    Calculated using a simplification of the ideal gas law, assuming 20 degrees
-    Celsius for a standard atmosphere. Based on equation 7, page 62 in Allen
-    et al (1998).
-
-    :param altitude: Elevation/altitude above sea level [m]
-    :return: atmospheric pressure [kPa]
-    :rtype: float
-    """
-    tmp = (293.0 - (0.0065 * altitude)) / 293.0
-    return power(tmp, 5.26) * 101.3
 
 
 def avp_from_rhmin_rhmax(svp_tmin, svp_tmax, rh_min, rh_max):

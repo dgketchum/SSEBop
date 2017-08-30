@@ -100,8 +100,7 @@ class SSEBopModel(object):
 
         ts = self.image.land_surface_temp()
         dt = self.difference_temp()
-        x = 0
-        
+
     def difference_temp(self):
         doy = self.image.doy
         dem = anc_data_check_dem(self.image_geo)
