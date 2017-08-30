@@ -18,7 +18,7 @@ import os
 import shutil
 from rasterio import open as rasopen
 from numpy import where, pi, cos, nan, inf, true_divide, errstate, log, nan_to_num
-from numpy import float32, sin, deg2rad, array
+from numpy import float32, sin, deg2rad
 from shapely.geometry import Polygon, mapping
 from fiona import open as fiopen
 from fiona.crs import from_epsg
@@ -110,7 +110,8 @@ class LandsatImage(object):
         dtime = datetime.strptime(str(self.date_acquired), '%Y-%m-%d')
         julian_day = dtime.strftime('%j')
         self.doy = int(julian_day)
-        self.scene_center_coords = self._scene_centroid()
+        self.scene_coords_deg = self._scene_centroid()
+        self.scene_coords_rad = deg2rad(self.scene_coords_deg[0]), deg2rad(self.scene_coords_deg[1])
 
     def _get_band(self, band_str):
         path = self.tif_dict[band_str]

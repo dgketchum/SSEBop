@@ -36,8 +36,8 @@ def difference_temp(rn, rho, cp, rah):
 
 
 def get_net_radiation(tmin, tmax, doy, elevation, lat, albedo):
-    net_lw = net_lw_radiation(tmin, tmax, doy, elevation, lat)
-    net_sw = net_sw_radiation(elevation, albedo, doy, lat)
+    net_lw = net_lw_radiation(tmin=tmin, tmax=tmax, doy=doy, elevation=elevation, lat=lat)
+    net_sw = net_sw_radiation(elevation=elevation, albedo=albedo, doy=doy, lat=lat)
 
     net_radiat = net_sw - net_lw
     return net_radiat
@@ -58,8 +58,8 @@ def net_lw_radiation(tmin, tmax, doy, elevation, lat):
 def net_sw_radiation(elevation, albedo, doy, lat):
     inv_esun_dist = inv_rel_dist_earth_sun(doy)
     sol_decl = sol_dec(doy)
-    sunset_hr_ang = sunset_hour_angle(lat, sol_decl)
-    ext_rad = et_rad(lat, sol_decl, sunset_hr_ang, inv_esun_dist)
+    sunset_hr_ang = sunset_hour_angle(latitude=lat, sol_dec=sol_decl)
+    ext_rad = et_rad(latitude=lat, sol_dec=sol_decl, sha=sunset_hr_ang, ird=inv_esun_dist)
     rs = (0.75 * 2e-05 * elevation) * ext_rad
     rns = (1 - albedo) * rs
     return rns
@@ -168,7 +168,8 @@ def et_rad(latitude, sol_dec, sha, ird):
     tmp1 = (24.0 * 60.0) / pi
     tmp2 = sha * sin(latitude) * sin(sol_dec)
     tmp3 = cos(latitude) * cos(sol_dec) * sin(sha)
-    return tmp1 * SOLAR_CONSTANT * ird * (tmp2 + tmp3)
+    ext_rad = tmp1 * SOLAR_CONSTANT * ird * (tmp2 + tmp3)
+    return ext_rad
 
 
 def cs_rad(altitude, et_rad):
@@ -289,7 +290,8 @@ def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
             ((power(tmax, 4) + power(tmin, 4)) / 2))
     tmp2 = (0.34 - (0.14 * sqrt(avp)))
     tmp3 = 1.35 * (sol_rad / cs_rad) - 0.35
-    return tmp1 * tmp2 * tmp3
+    lw_rad = tmp1 * tmp2 * tmp3
+    return lw_rad
 
 
 def atm_pressure(altitude):
