@@ -46,37 +46,6 @@ class Fmask(object):
         self.mask = image.mask()
         self.sat = image.satellite
 
-        if self.sat in ['LE7', 'LT5']:
-
-            self.blue = image.reflectance(1)
-            self.green = image.reflectance(2)
-            self.red = image.reflectance(3)
-            self.nir = image.reflectance(4)
-            self.swir1 = image.reflectance(5)
-            self.tirs1 = image.brightness_temp(6, temp_scale='C')
-            self.meantir = np.mean(self.tirs1)
-            self.swir2 = image.reflectance(7)
-
-            self.blue_saturated = image.saturation_mask(1)
-            self.green_saturated = image.saturation_mask(2)
-            self.red_saturated = image.saturation_mask(3)
-
-        elif self.sat == 'LC8':
-
-            self.blue = image.reflectance(2)
-            self.green = image.reflectance(3)
-            self.red = image.reflectance(4)
-            self.nir = image.reflectance(5)
-            self.swir1 = image.reflectance(6)
-            self.swir2 = image.reflectance(7)
-            self.cirrus = image.reflectance(9)
-            self.tirs1 = image.brightness_temp(10, 'C')
-            self.tirs2 = image.brightness_temp(11, 'C')
-
-
-        else:
-            raise ValueError('Must provide satellite image from LT5, LE7, LC8')
-
         for attr, code in zip(['code_null', 'code_clear', 'code_cloud',
                                'code_shadow', 'code_snow', 'code_water'],
                               range(6)):
@@ -84,6 +53,95 @@ class Fmask(object):
 
         self.ndvi = image.ndvi()
         self.ndsi = image.ndsi()
+
+    def _get_band(self, band='blue', saturation_mask=False):
+
+        if self.sat in ['LE7', 'LT5']:
+
+            mapping = {'blue': 1,
+                       'green': 2,
+                       'red': 3,
+                       'nir': 4,
+                       'swir1': 5,
+                       'tirs1': 6,
+                       'swir2': 7}
+            try:
+                if band == 'tirs1':
+                    band_number = mapping[band]
+                    return image.brightness_temp(band_number, temp_scale='C')
+                else:
+                    band_number = mapping[band]
+                    return image.reflectance(band_number)
+
+            except KeyError:
+                print('Invalid band key: "{}". available key = {}'.format
+                      (self.satellite,
+                       ','.join(mapping.keys())))
+
+        elif self.sat == 'LC8':
+
+            if saturation_mask:
+                raise Warning('Saturation mask should only be applied to LT5 and LE7')
+
+            mapping = {'blue': 2,
+                       'green': 3,
+                       'red': 4,
+                       'nir': 5,
+                       'swir1': 6,
+                       'swir2': 7,
+                       'tirs1': 10,
+                       'tirs2': 11}
+            33
+
+            try:
+                if band in ['tirs1', 'tirs2']:
+                    band_number = mapping[band]
+                    return image.brightness_temp(band_number, temp_scale='C')
+
+                else:
+                    band_number = mapping[band]
+                    return image.reflectance(band_number)
+
+            except KeyError:
+                print('Invalid band key: "{}". available key = {}'.format
+                      (self.satellite,
+                       ','.join(mapping.keys())))
+
+        else:
+            raise ValueError('Must provide satellite image from LT5, LE7, LC8')
+
+    # def _get_band(self, band='blue'):
+    #
+    #     if self.sat in ['LE7', 'LT5']:
+    #
+    #         self.blue = image.reflectance(1)
+    #         self.green = image.reflectance(2)
+    #         self.red = image.reflectance(3)
+    #         self.nir = image.reflectance(4)
+    #         self.swir1 = image.reflectance(5)
+    #         self.tirs1 = image.brightness_temp(6, temp_scale='C')
+    #         self.meantir = np.mean(self.tirs1)
+    #         self.swir2 = image.reflectance(7)
+    #
+    #         self.blue_saturated = image.saturation_mask(1)
+    #         self.green_saturated = image.saturation_mask(2)
+    #         self.red_saturated = image.saturation_mask(3)
+    #
+    #     elif self.sat == 'LC8':
+    #
+    #         self.blue = image.reflectance(2)
+    #         self.green = image.reflectance(3)
+    #         self.red = image.reflectance(4)
+    #         self.nir = image.reflectance(5)
+    #         self.swir1 = image.reflectance(6)
+    #         self.swir2 = image.reflectance(7)
+    #         self.cirrus = image.reflectance(9)
+    #         self.tirs1 = image.brightness_temp(10, 'C')
+    #         self.tirs2 = image.brightness_temp(11, 'C')
+    #
+    #
+    #     else:
+    #         raise ValueError('Must provide satellite image from LT5, LE7, LC8')
 
     def basic_test(self):
         """Fundamental test to identify Potential Cloud Pixels (PCPs)
