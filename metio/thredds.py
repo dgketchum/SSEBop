@@ -250,7 +250,7 @@ class TopoWX(Thredds):
         self.year = self.start.year
 
     def get_data_subset(self, grid_conform=False, var='tmax',
-                        out_file=None):
+                        out_file=None, temp_units_out='C'):
 
         if var not in self.variables:
             raise TypeError('Must choose from "tmax" or "tmin"..')
@@ -298,6 +298,9 @@ class TopoWX(Thredds):
                 arr = None
 
             conformed_array = self.conform(arr, out_file=out_file)
+
+        if temp_units_out == 'K':
+            conformed_array += 273.15
 
         return conformed_array
 
