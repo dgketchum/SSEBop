@@ -33,12 +33,12 @@ class FmaskTestCaseL5(unittest.TestCase):
     def test_get_potential_cloud_layer(self):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
-        cloud, shadow, water = f.cloud_mask()
+        cloud, shadow, water = f.cloud_mask(max_filter=(10, 10))
         c_ct, s_ct = count_nonzero(cloud), count_nonzero(shadow)
         w_ct = count_nonzero(water)
-        self.assertEqual(c_ct, 217570)
+        self.assertEqual(c_ct, 229040)
         self.assertEqual(s_ct, 37570)
-        self.assertEqual(w_ct, 1456)
+        self.assertEqual(w_ct, 9423)
 
 
 class FmaskTestCaseL7(unittest.TestCase):
@@ -52,18 +52,15 @@ class FmaskTestCaseL7(unittest.TestCase):
     def test_get_potential_cloud_layer(self):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
-        cloud, shadow, water = f.cloud_mask()
-        combo = f.cloud_mask(combined=True)
-        c_ct, s_ct = count_nonzero(cloud), count_nonzero(shadow)
-        w_ct = count_nonzero(water)
-        # self.assertEqual(c_ct, 128564)
-        # self.assertEqual(s_ct, 117770)
-        # self.assertEqual(w_ct, 1456)
-        home = os.path.expanduser('~')
-        outdir = os.path.join(home, 'images', 'sandbox')
-        f.save_array(cloud, os.path.join(outdir, 'cloud_mask.tif'))
-        f.save_array(shadow, os.path.join(outdir, 'shadow_mask.tif'))
-        f.save_array(water, os.path.join(outdir, 'water_mask.tif'))
+        combo = f.cloud_mask(combined=True, min_filter=(3, 3), max_filter=(40, 40))
+        c_ct = count_nonzero(combo)
+        self.assertEqual(c_ct, 259748)
+        # home = os.path.expanduser('~')
+        # outdir = os.path.join(home, 'images', 'sandbox')
+        # f.save_array(cloud, os.path.join(outdir, 'cloud_mask.tif'))
+        # f.save_array(shadow, os.path.join(outdir, 'shadow_mask.tif'))
+        # f.save_array(water, os.path.join(outdir, 'water_mask.tif'))
+        # f.save_array(combo, os.path.join(outdir, 'combo_mask.tif'))
 
 
 class FmaskTestCaseL8(unittest.TestCase):
@@ -81,12 +78,8 @@ class FmaskTestCaseL8(unittest.TestCase):
         self.assertIsInstance(f, Fmask)
         cloud, shadow, water = f.cloud_mask()
         combo = f.cloud_mask(combined=True)
-        c_ct, s_ct = count_nonzero(cloud), count_nonzero(shadow)
         w_ct, combo_ct = count_nonzero(water), count_nonzero(combo)
-        self.assertEqual(c_ct, 21086)
-        self.assertEqual(s_ct, 9395)
-        self.assertEqual(w_ct, 14431)
-        self.assertEqual(combo_ct, 145184)
+        self.assertEqual(combo_ct, 228758)
 
 
 if __name__ == '__main__':

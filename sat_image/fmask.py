@@ -43,8 +43,7 @@ class Fmask(object):
     def __init__(self, image):
 
         self.image = image
-        self.shape = image.b1.shape
-        self.mask = image.mask
+        self.mask = image.mask()
         self.sat = image.satellite
 
         if self.sat in ['LE7', 'LT5']:
@@ -496,7 +495,8 @@ class Fmask(object):
         """
         return (self.ndsi > 0.15) & (self.tirs1 < 9.85) & (self.nir > 0.11) & (self.green > 0.1)
 
-    def cloud_mask(self, min_filter=(3, 3), max_filter=(10, 10), combined=False):
+    def cloud_mask(self, min_filter=(3, 3), max_filter=(40, 40), combined=False,
+                   cloud_value=0, output_file=None):
         """Calculate the potential cloud layer from source data
         *This is the high level function which ties together all
         the equations for generating potential clouds*
@@ -539,12 +539,15 @@ class Fmask(object):
         bp = self.brightness_prob()
         water_cloud_prob = (wtp * bp) + cirrus_prob
         wthreshold = 0.5
+        wtp = None
 
         # Clouds over land
         tlow, thigh = self.temp_land(pcps, water)
         ltp = self.land_temp_prob(tlow, thigh)
         vp = self.variability_prob(whiteness)
+        whiteness = None
         land_cloud_prob = (ltp * vp) + cirrus_prob
+        vp = None
         lthreshold = self.land_threshold(land_cloud_prob, pcps, water)
 
         # logger.info("Calculate potential clouds")
@@ -552,6 +555,10 @@ class Fmask(object):
             pcps, water, tlow,
             land_cloud_prob, lthreshold,
             water_cloud_prob, wthreshold)
+        pcps = None
+        water_cloud_prob = None
+        land_cloud_prob = None
+
 
         # Ignoring snow for now as it exhibits many false positives and negatives
         # when used as a binary mask
@@ -601,10 +608,33 @@ class Fmask(object):
         # with rasterio.open(outfile, 'w', **georeference) as dst:
         #     dst.write(array)
         # mystery test
-        if combined:
-            return pcloud | pshadow | water
 
-        return pcloud, pshadow, water
+        if cloud_value == 0:
+
+            if combined:
+                combo = pcloud | pshadow | water
+                if output_file:
+                    self.save_array(combo, outfile=output_file)
+                    return None
+                else:
+                    return combo
+
+            return pcloud, pshadow, water
+
+        elif cloud_value == 1:
+
+            if combined:
+                combo = pcloud | pshadow | water
+                if output_file:
+                    self.save_array(combo, outfile=output_file)
+                    return None
+                else:
+                    return combo
+
+            return pcloud, pshadow, water
+
+        else:
+            raise ValueError('Cloud/shadow/water areas must be 0 or 1.')
 
     def save_array(self, array, outfile):
         georeference = self.image.rasterio_geometry

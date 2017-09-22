@@ -18,7 +18,7 @@ import os
 import shutil
 from rasterio import open as rasopen
 from numpy import where, pi, cos, nan, inf, true_divide, errstate, log
-from numpy import float32, sin, deg2rad, array, isnan, nan_to_num
+from numpy import float32, sin, deg2rad, array, isnan
 from shapely.geometry import Polygon, mapping
 from fiona import open as fiopen
 from fiona.crs import from_epsg
@@ -221,6 +221,13 @@ class LandsatImage(object):
         arr = where(isnan(image), nan, arr)
         return arr
 
+    def mask(self):
+        image = self._get_band('b1')
+        image = array(image, dtype=float32)
+        image[image < 1.] = nan
+        arr = where(isnan(image), 0, 1)
+        return arr
+
 
 class Landsat5(LandsatImage):
     def __init__(self, obj):
@@ -313,7 +320,8 @@ class Landsat5(LandsatImage):
         :return: boolean array
         """
         dn = self._get_band('b{}'.format(band))
-        mask = where((dn == value) & (self.mask > 0), True, False)
+        mask = self.mask()
+        mask = where((dn == value) & (mask > 0), True, False)
 
         return mask
 
@@ -442,7 +450,7 @@ class Landsat7(LandsatImage):
         :return: boolean array
         """
         dn = self._get_band('b{}'.format(band))
-        mask = where((dn == value) & (self.mask > 0), True, False)
+        mask = where((dn == value) & (self.mask() > 0), True, False)
 
         return mask
 
@@ -577,7 +585,7 @@ class Landsat8(LandsatImage):
             raise ValueError('Landsat 8 reflectance should OLI band (i.e. bands 1-8)')
 
         elev = getattr(self, 'sun_elevation')
-        dn = getattr(self, 'b{}'.format(band))
+        dn = self._get_band('b{}'.format(band))
         mr = getattr(self, 'reflectance_mult_band_{}'.format(band))
         ar = getattr(self, 'reflectance_add_band_{}'.format(band))
 

@@ -16,12 +16,13 @@
 
 from __future__ import print_function
 
-from numpy import where, nanpercentile
+from numpy import where, nanpercentile, nan, count_nonzero, isnan
+from numpy import nanmean, nanstd
 
 from app.paths import paths, PathsNotSetExecption
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from landsat.usgs_download import down_usgs_by_list as down
-from core.collector import anc_data_check_dem, data_check_temp
+from core.collector import data_check
 from metio.fao import get_net_radiation, air_density, air_specific_heat
 from metio.fao import canopy_resistance, difference_temp
 
@@ -38,6 +39,7 @@ class SSEBopModel(object):
         self.image_exists = None
 
         self.image_dir = runspec.image_dir
+        self.parent_dir = runspec.parent_dir
         self.image_date = runspec.image_date
         self.satellite = runspec.satellite
         self.path = runspec.path
@@ -102,23 +104,62 @@ class SSEBopModel(object):
 
         dt = self.difference_temp()
         ts = self.image.land_surface_temp()
-        cold = self.cold_reference()
+        cold = self.cold_reference(ts)
         x = None
 
-    def cold_reference(self):
+    def cold_reference(self, ts):
+
         ndvi = self.image.ndvi()
+        tmax = data_check(self.image_geo, variable='tmax')
+
+        if len(tmax.shape) > 2:
+            tmax = tmax.reshape(tmax.shape[1], tmax.shape[2])
+
         loc = where(ndvi == nanpercentile(ndvi, 99.9))
+        temps = []
+        for j, k in zip(loc[0], loc[1]):
+            temps.append(tmax[j, k])
         ind = loc[0][0], loc[1][0]
-        test = ndvi[ind]
-        tmax = data_check_temp(self.image_geo, variable='tmax')
-        # get ts at ind location and tmax, compute c, then tc
-        return tmax
+
+        ta = tmax[ind]
+        t_corr_orig = ts / ta
+        t_corr_mean = nanmean(t_corr_orig)
+        t_diff = ts - ta
+        ta = None
+
+        t_corr = where((ndvi >= 0.7) & (ndvi <= 1.0), t_corr_orig, nan)
+        ndvi = None
+        t_corr_orig = None
+
+        t_corr = where(ts > 270., t_corr, nan)
+        ts = None
+
+        t_corr = where((t_diff > 0) & (t_diff < 30), t_corr, nan)
+        t_diff = None
+
+        fmask = data_check(self.image_geo, variable='fmask',
+                           sat_image=self.image, fmask_cloud_val=0)
+
+        t_corr = where(fmask == 1, t_corr, nan)
+
+        test_count = count_nonzero(~isnan(t_corr))
+
+        if test_count < 50:
+            raise Warning('Count of clear pixels in {} is insufficient'
+                          ' to perform analysis.'.format(self.image_id))
+        print('You have {} pixels for your temperature '
+              'correction scheme.'.format(test_count))
+
+        t_corr_std = nanstd(t_corr)
+        c = t_corr_mean - 2 * t_corr_std
+
+        return c
 
     def difference_temp(self):
         doy = self.image.doy
-        dem = anc_data_check_dem(self.image_geo)
-        tmin = data_check_temp(self.image_geo, variable='tmin')
-        tmax = data_check_temp(self.image_geo, variable='tmax')
+        dem = data_check(self.image_geo, variable='dem')
+        tmin = data_check(self.image_geo, variable='tmin')
+        tmax = data_check(self.image_geo, variable='tmax')
         center_lat = self.image.scene_coords_rad[0]
         albedo = self.image.albedo()
 
@@ -143,7 +184,7 @@ class SSEBopModel(object):
         print('%%%%%%%%%%%%%%%% {}'.format(msg))
 
     def down_image(self):
-        down([self.image_id], output_dir=self.image_dir,
+        down([self.image_id], output_dir=self.parent_dir,
              usgs_creds_txt=self.usgs_creds)
 
 

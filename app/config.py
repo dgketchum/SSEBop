@@ -150,7 +150,8 @@ class RunSpec(object):
             setattr(self, attr, cfg_attr)
 
         self.image_date = date = datetime.strptime(image[9:16], JULIAN_FMT)
-        self.image_dir = os.path.join(cfg.path_row_dir, str(date.year), image)
+        self.parent_dir = os.path.join(cfg.path_row_dir, str(date.year))
+        self.image_dir = os.path.join(self.parent_dir, image)
 
 
 def check_config(path=None):

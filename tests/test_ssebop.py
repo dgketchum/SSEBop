@@ -20,6 +20,9 @@ from app.config import Config
 from app.paths import paths
 
 from core.ssebop import SSEBopModel
+from core.ssebop import SSEBopGeo
+
+from sat_image.image import Landsat5
 
 
 class SSEBopModelTestCase(unittest.TestCase):
@@ -32,18 +35,34 @@ class SSEBopModelTestCase(unittest.TestCase):
 
     def test_runspecs(self):
         for runspec in self.cfg.runspecs:
-            paths.build(runspec.input_root, runspec.output_root)
+            paths.build(runspec.root)
             self.assertEqual(runspec.k_factor, 1.25)
 
     def test_instantiate_ssebop(self):
         for runspec in self.cfg.runspecs:
-            paths.build(runspec.input_root, runspec.output_root)
+            paths.build(runspec.root)
             sseb = SSEBopModel(runspec)
             self.assertIsInstance(sseb, SSEBopModel)
-            sseb.configure_run(runspec)
+            sseb.configure_run()
             self.assertTrue(sseb._is_configured, True)
-            self.assertEqual(sseb._satellite, 'LT5')
-            self.assertEqual(runspec.date_range, sseb._date_range)
+            self.assertEqual(runspec.satellite, sseb.satellite)
+
+    def test_image_geo(self):
+        for runspec in self.cfg.runspecs:
+            paths.build(runspec.root)
+
+            sseb = SSEBopModel(runspec)
+            setattr(sseb, 'image', Landsat5(sseb.image_dir))
+            image_geo = SSEBopGeo(sseb.image_id, sseb.image_dir,
+                                  sseb.image.get_tile_geometry(),
+                                  sseb.image.transform, sseb.image.profile,
+                                  sseb.image.rasterio_geometry,
+                                  sseb.image.bounds, sseb.api_key, sseb.image_date)
+
+            self.assertIsInstance(image_geo, SSEBopGeo)
+            self.assertIsInstance(image_geo.image_dir, str)
+
+
 
 if __name__ == '__main__':
     unittest.main()
