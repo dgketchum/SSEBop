@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_collector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config.py" afterPath="$PROJECT_DIR$/app/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/collector.py" afterPath="$PROJECT_DIR$/core/collector.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/fmask.py" afterPath="$PROJECT_DIR$/sat_image/fmask.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/image.py" afterPath="$PROJECT_DIR$/sat_image/image.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ssebop_config_test.yml" afterPath="$PROJECT_DIR$/tests/ssebop_config_test.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_fmask.py" afterPath="$PROJECT_DIR$/tests/test_fmask.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_ssebop.py" afterPath="$PROJECT_DIR$/tests/test_ssebop.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,10 +19,9 @@
       <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="139" column="24" lean-forward="false" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
+            <state relative-caret-position="2363">
+              <caret line="151" column="0" lean-forward="false" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
               <folding>
-                <element signature="n#!!doc" expanded="false" />
                 <element signature="e#762#799#0" expanded="true" />
                 <element signature="e#2288#2698#0" expanded="false" />
                 <element signature="e#2727#2786#1" expanded="false" />
@@ -41,89 +32,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="collector.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/collector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="57" column="60" lean-forward="true" selection-start-line="57" selection-start-column="60" selection-end-line="57" selection-end-column="60" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#762#771#0" expanded="true" />
-                <element signature="e#3310#3342#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#761#1250#1" expanded="false" />
                 <element signature="e#1362#1484#1" expanded="false" />
-                <element signature="e#3104#3669#1" expanded="false" />
-                <element signature="e#4030#4580#0" expanded="false" />
-                <element signature="e#4030#4203#1" expanded="false" />
-                <element signature="e#4620#5047#0" expanded="false" />
-                <element signature="e#4620#4933#1" expanded="false" />
-                <element signature="e#5081#5637#0" expanded="false" />
-                <element signature="e#5081#5558#1" expanded="false" />
-                <element signature="e#5675#6194#0" expanded="false" />
-                <element signature="e#5675#6119#1" expanded="false" />
-                <element signature="e#6231#6541#0" expanded="false" />
-                <element signature="e#6231#6474#1" expanded="false" />
-                <element signature="e#6577#7019#0" expanded="false" />
-                <element signature="e#6577#6786#1" expanded="false" />
-                <element signature="e#7067#7948#0" expanded="false" />
-                <element signature="e#7067#7645#1" expanded="false" />
-                <element signature="e#7820#7893#0" expanded="false" />
-                <element signature="e#7984#8362#1" expanded="false" />
-                <element signature="e#8777#9275#0" expanded="false" />
-                <element signature="e#8777#9144#1" expanded="false" />
-                <element signature="e#9327#9639#1" expanded="false" />
-                <element signature="e#9849#10636#0" expanded="false" />
-                <element signature="e#9849#10258#1" expanded="false" />
-                <element signature="e#10689#11228#0" expanded="false" />
-                <element signature="e#10689#11120#1" expanded="false" />
-                <element signature="e#11281#12294#0" expanded="false" />
-                <element signature="e#11281#11647#1" expanded="false" />
-                <element signature="e#11700#12128#0" expanded="false" />
-                <element signature="e#11700#11736#0" expanded="false" />
-                <element signature="e#12364#13125#0" expanded="false" />
-                <element signature="e#12364#12765#1" expanded="false" />
-                <element signature="e#13292#14659#0" expanded="false" />
-                <element signature="e#13292#14095#1" expanded="false" />
-                <element signature="e#14104#14138#0" expanded="false" />
-                <element signature="e#14466#14600#0" expanded="false" />
-                <element signature="e#14720#15101#1" expanded="false" />
-                <element signature="e#15211#15652#0" expanded="false" />
-                <element signature="e#15211#15555#1" expanded="false" />
-                <element signature="e#15796#20647#0" expanded="false" />
-                <element signature="e#15796#16729#1" expanded="false" />
-                <element signature="e#17898#17971#0" expanded="false" />
-                <element signature="e#18236#18301#0" expanded="false" />
-                <element signature="e#18462#18479#0" expanded="false" />
-                <element signature="e#19153#19176#0" expanded="false" />
-                <element signature="e#19435#19507#0" expanded="false" />
-                <element signature="e#20699#20982#0" expanded="false" />
-                <element signature="e#21057#21345#0" expanded="false" />
-                <element signature="e#21057#21221#1" expanded="false" />
-                <element signature="e#21412#21623#0" expanded="false" />
-                <element signature="e#21477#21592#0" expanded="false" />
-                <element signature="e#21673#21725#0" expanded="false" />
+                <element signature="e#3664#4229#1" expanded="false" />
+                <marker date="1506108797543" expanded="false" signature="17095:18028" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+                <marker date="1506108797543" expanded="false" signature="19209:19478" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="19547:19736" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="19773:19855" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="20464:20549" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="20746:21204" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="21999:22291" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="22357:22654" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="22366:22530" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+                <marker date="1506108797543" expanded="false" signature="22712:22932" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="22773:22901" ph="..." />
+                <marker date="1506108797543" expanded="false" signature="22973:23034" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_fmask.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sat_image/image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-90">
-              <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+            <state relative-caret-position="867">
+              <caret line="77" column="48" lean-forward="false" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#762#771#0" expanded="true" />
@@ -200,29 +150,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_ssebop.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="62" column="59" lean-forward="true" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#734#749#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ssebop_config_test.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -235,13 +162,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dem</find>
-      <find>max_temp</find>
-      <find>image</find>
-      <find>DATETIME_FMT</find>
-      <find>image.</find>
-      <find>get_</find>
-      <find>var</find>
       <find>self.bbox.</find>
       <find>src_bounds_wsen</find>
       <find>return rad</find>
@@ -265,12 +185,15 @@
       <find>self</find>
       <find>self.image</find>
       <find>image_dir</find>
+      <find>self.blue_saturated</find>
+      <find>self.tirs1</find>
+      <find>saturated</find>
+      <find>green_sat</find>
+      <find>red_satura</find>
+      <find>image</find>
+      <find>self.cirrus</find>
     </findStrings>
     <replaceStrings>
-      <replace>6</replace>
-      <replace>[</replace>
-      <replace>]</replace>
-      <replace>end</replace>
       <replace>date</replace>
       <replace>d_</replace>
       <replace>np</replace>
@@ -292,11 +215,15 @@
       <replace>image</replace>
       <replace>max_temp</replace>
       <replace>tmax</replace>
-      <replace>self.image</replace>
       <replace>arccos</replace>
       <replace>self.assertAlmostEqual</replace>
       <replace>file_name</replace>
       <replace>sseb</replace>
+      <replace>self._get_band('blue', saturation_mask=True)</replace>
+      <replace>self._get_band('green', saturation_mask=True)</replace>
+      <replace>self._get_band('swir1')</replace>
+      <replace>self.image</replace>
+      <replace>self._get_band('cirrus')</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -356,14 +283,14 @@
         <option value="$PROJECT_DIR$/tests/fao_test.py" />
         <option value="$PROJECT_DIR$/metio/fao.py" />
         <option value="$PROJECT_DIR$/tests/test_fmask.py" />
-        <option value="$PROJECT_DIR$/sat_image/fmask.py" />
         <option value="$PROJECT_DIR$/tests/test_collector.py" />
         <option value="$PROJECT_DIR$/app/config.py" />
         <option value="$PROJECT_DIR$/core/collector.py" />
-        <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/tests/test_ssebop.py" />
         <option value="$PROJECT_DIR$/tests/ssebop_config_test.yml" />
         <option value="$PROJECT_DIR$/sat_image/image.py" />
+        <option value="$PROJECT_DIR$/core/ssebop.py" />
+        <option value="$PROJECT_DIR$/sat_image/fmask.py" />
       </list>
     </option>
   </component>
@@ -461,8 +388,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -500,7 +427,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.entry_script">
+  <component name="RunManager" selected="Python tests.Unittests in test_fmask.py">
     <configuration default="false" name="entry_script" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -663,10 +590,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.entry_script" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python.entry_script" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer" />
       </list>
     </recent_temporary>
@@ -684,20 +611,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00117" summary="aspect and slope working">
-      <created>1498603540970</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1498603540970</updated>
-    </task>
-    <task id="LOCAL-00118" summary="start on conformal thredds dem">
-      <created>1498749234532</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1498749234532</updated>
     </task>
     <task id="LOCAL-00119" summary="put dem and image in ssebopmodel.run">
       <created>1499895693018</created>
@@ -1028,22 +941,24 @@
       <option name="project" value="LOCAL" />
       <updated>1504136326796</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="working on memory management, moved dem and fmask to data check, fixed a file manage error,">
+      <created>1506100720128</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1506100720128</updated>
+    </task>
+    <task id="LOCAL-00167" summary="moving fmask init band loading to a get call">
+      <created>1506106792406</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1506106792406</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_image_geo - 2017.09.21 at 16h 16m 29s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_image_geo - 2017.09.21 at 16h 26m 20s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_image_geo - 2017.09.21 at 16h 28m 10s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_image_geo - 2017.09.21 at 16h 33m 46s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_image_geo - 2017.09.21 at 16h 35m 19s.xml">
       <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" configurationId="tests" />
     </history-entry>
@@ -1062,6 +977,18 @@
     <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_instantiate_ssebop - 2017.09.21 at 16h 23m 50s.xml">
       <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 13h 29m 46s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 13h 30m 25s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 13h 32m 32s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 13h 33m 19s.xml">
+      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1079,12 +1006,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13864307" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4859882" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60331494" sideWeight="0.49705014" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4918879" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40929204" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5973451" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1094,7 +1022,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1132,8 +1059,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="bring in landsat image downloader, remember to develop in seperate project" />
-    <MESSAGE value="reconfig config yaml" />
     <MESSAGE value="attribute error on ssebop run instantiate image" />
     <MESSAGE value="model only has start and end dates now" />
     <MESSAGE value="start and end dates to int in config yml" />
@@ -1157,7 +1082,9 @@
     <MESSAGE value="untrack workspace.xml" />
     <MESSAGE value="fixed fao problems, dt layer working" />
     <MESSAGE value="started tc finder function" />
-    <option name="LAST_COMMIT_MESSAGE" value="started tc finder function" />
+    <MESSAGE value="working on memory management, moved dem and fmask to data check, fixed a file manage error," />
+    <MESSAGE value="moving fmask init band loading to a get call" />
+    <option name="LAST_COMMIT_MESSAGE" value="moving fmask init band loading to a get call" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1208,11 +1135,6 @@
           <line>155</line>
           <option name="timeStamp" value="1108" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sat_image/fmask.py</url>
-          <line>111</line>
-          <option name="timeStamp" value="1146" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1221,7 +1143,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1147" />
+      <option name="time" value="1149" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1440,13 +1362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="45" column="62" lean-forward="true" selection-start-line="45" selection-start-column="62" selection-end-line="45" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_collector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1480,7 +1395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1488,81 +1402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1598">
           <caret line="207" column="56" lean-forward="false" selection-start-line="207" selection-start-column="56" selection-end-line="207" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#346#1" expanded="false" />
-            <element signature="e#2557#2576#0" expanded="false" />
-            <element signature="e#2608#3362#0" expanded="false" />
-            <element signature="e#2608#3306#1" expanded="false" />
-            <element signature="e#3395#3710#0" expanded="false" />
-            <element signature="e#3395#3644#1" expanded="false" />
-            <element signature="e#3759#4649#0" expanded="false" />
-            <element signature="e#3759#4227#1" expanded="false" />
-            <element signature="e#4277#4339#0" expanded="false" />
-            <element signature="e#4697#5921#0" expanded="false" />
-            <element signature="e#4697#5716#1" expanded="false" />
-            <element signature="e#5958#6445#0" expanded="false" />
-            <element signature="e#5958#6397#1" expanded="false" />
-            <element signature="e#6493#6847#0" expanded="false" />
-            <element signature="e#6493#6784#1" expanded="false" />
-            <element signature="e#6911#8802#0" expanded="false" />
-            <element signature="e#6911#8482#1" expanded="false" />
-            <element signature="e#8487#8546#0" expanded="false" />
-            <element signature="e#8849#9007#0" expanded="false" />
-            <element signature="e#9042#9481#0" expanded="false" />
-            <element signature="e#9620#11192#0" expanded="false" />
-            <element signature="e#9620#10962#1" expanded="false" />
-            <element signature="e#11261#11961#0" expanded="false" />
-            <element signature="e#11261#11852#1" expanded="false" />
-            <element signature="e#12006#12490#0" expanded="false" />
-            <element signature="e#12006#12451#1" expanded="false" />
-            <element signature="e#12547#13227#0" expanded="false" />
-            <element signature="e#12547#13166#1" expanded="false" />
-            <element signature="e#13259#13848#0" expanded="false" />
-            <element signature="e#13259#13791#1" expanded="false" />
-            <element signature="e#13912#14989#0" expanded="false" />
-            <element signature="e#13912#14939#1" expanded="false" />
-            <element signature="e#15026#15513#0" expanded="false" />
-            <element signature="e#15026#15465#1" expanded="false" />
-            <element signature="e#15550#15846#0" expanded="false" />
-            <element signature="e#15550#15815#1" expanded="false" />
-            <element signature="e#15878#16170#0" expanded="false" />
-            <element signature="e#15878#16141#1" expanded="false" />
-            <element signature="e#16195#16692#0" expanded="false" />
-            <element signature="e#16195#16594#1" expanded="false" />
-            <element signature="e#16724#17242#0" expanded="false" />
-            <element signature="e#16724#17216#1" expanded="false" />
-            <element signature="e#17327#18936#0" expanded="false" />
-            <element signature="e#17327#18726#1" expanded="false" />
-            <element signature="e#18986#20150#0" expanded="false" />
-            <element signature="e#18986#19912#1" expanded="false" />
-            <element signature="e#19917#19988#0" expanded="false" />
-            <element signature="e#20183#20739#0" expanded="false" />
-            <element signature="e#20183#20684#1" expanded="false" />
-            <element signature="e#20802#21504#0" expanded="false" />
-            <element signature="e#20802#21456#1" expanded="false" />
-            <element signature="e#21567#22302#0" expanded="false" />
-            <element signature="e#21567#22255#1" expanded="false" />
-            <element signature="e#22351#23514#0" expanded="false" />
-            <element signature="e#22351#23480#1" expanded="false" />
-            <element signature="e#23556#24284#0" expanded="false" />
-            <element signature="e#23556#24251#1" expanded="false" />
-            <element signature="e#24318#24783#0" expanded="false" />
-            <element signature="e#24318#24750#1" expanded="false" />
-            <element signature="e#24847#25953#0" expanded="false" />
-            <element signature="e#24847#25561#1" expanded="false" />
-            <element signature="e#25819#25918#0" expanded="false" />
-            <element signature="e#25991#26610#0" expanded="false" />
-            <element signature="e#25991#26581#1" expanded="false" />
-            <element signature="e#26685#27939#0" expanded="false" />
-            <element signature="e#26685#27726#1" expanded="false" />
-            <element signature="e#27732#27807#0" expanded="false" />
-            <element signature="e#27974#28721#0" expanded="false" />
-            <element signature="e#27974#28689#1" expanded="false" />
-            <element signature="e#28747#29034#0" expanded="false" />
-            <element signature="e#28747#28983#1" expanded="false" />
-            <element signature="e#29067#29520#0" expanded="false" />
-            <element signature="e#29067#29472#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1587,8 +1426,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="62" column="59" lean-forward="true" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
+        <state relative-caret-position="816">
+          <caret line="62" column="59" lean-forward="false" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#734#749#0" expanded="true" />
@@ -1600,7 +1439,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1608,105 +1446,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="e#5579#6006#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="139" column="24" lean-forward="false" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#799#0" expanded="true" />
-            <element signature="e#2288#2698#0" expanded="false" />
-            <element signature="e#2727#2786#1" expanded="false" />
-            <element signature="e#5965#6089#0" expanded="false" />
-            <element signature="e#6138#6178#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="57" column="60" lean-forward="true" selection-start-line="57" selection-start-column="60" selection-end-line="57" selection-end-column="60" />
+        <state relative-caret-position="714">
+          <caret line="56" column="60" lean-forward="false" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#771#0" expanded="true" />
-            <element signature="e#3310#3342#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#761#1250#1" expanded="false" />
-            <element signature="e#1362#1484#1" expanded="false" />
-            <element signature="e#3104#3669#1" expanded="false" />
-            <element signature="e#4030#4580#0" expanded="false" />
-            <element signature="e#4030#4203#1" expanded="false" />
-            <element signature="e#4620#5047#0" expanded="false" />
-            <element signature="e#4620#4933#1" expanded="false" />
-            <element signature="e#5081#5637#0" expanded="false" />
-            <element signature="e#5081#5558#1" expanded="false" />
-            <element signature="e#5675#6194#0" expanded="false" />
-            <element signature="e#5675#6119#1" expanded="false" />
-            <element signature="e#6231#6541#0" expanded="false" />
-            <element signature="e#6231#6474#1" expanded="false" />
-            <element signature="e#6577#7019#0" expanded="false" />
-            <element signature="e#6577#6786#1" expanded="false" />
-            <element signature="e#7067#7948#0" expanded="false" />
-            <element signature="e#7067#7645#1" expanded="false" />
-            <element signature="e#7820#7893#0" expanded="false" />
-            <element signature="e#7984#8362#1" expanded="false" />
-            <element signature="e#8777#9275#0" expanded="false" />
-            <element signature="e#8777#9144#1" expanded="false" />
-            <element signature="e#9327#9639#1" expanded="false" />
-            <element signature="e#9849#10636#0" expanded="false" />
-            <element signature="e#9849#10258#1" expanded="false" />
-            <element signature="e#10689#11228#0" expanded="false" />
-            <element signature="e#10689#11120#1" expanded="false" />
-            <element signature="e#11281#12294#0" expanded="false" />
-            <element signature="e#11281#11647#1" expanded="false" />
-            <element signature="e#11700#12128#0" expanded="false" />
-            <element signature="e#11700#11736#0" expanded="false" />
-            <element signature="e#12364#13125#0" expanded="false" />
-            <element signature="e#12364#12765#1" expanded="false" />
-            <element signature="e#13292#14659#0" expanded="false" />
-            <element signature="e#13292#14095#1" expanded="false" />
-            <element signature="e#14104#14138#0" expanded="false" />
-            <element signature="e#14466#14600#0" expanded="false" />
-            <element signature="e#14720#15101#1" expanded="false" />
-            <element signature="e#15211#15652#0" expanded="false" />
-            <element signature="e#15211#15555#1" expanded="false" />
-            <element signature="e#15796#20647#0" expanded="false" />
-            <element signature="e#15796#16729#1" expanded="false" />
-            <element signature="e#17898#17971#0" expanded="false" />
-            <element signature="e#18236#18301#0" expanded="false" />
-            <element signature="e#18462#18479#0" expanded="false" />
-            <element signature="e#19153#19176#0" expanded="false" />
-            <element signature="e#19435#19507#0" expanded="false" />
-            <element signature="e#20699#20982#0" expanded="false" />
-            <element signature="e#21057#21345#0" expanded="false" />
-            <element signature="e#21057#21221#1" expanded="false" />
-            <element signature="e#21412#21623#0" expanded="false" />
-            <element signature="e#21477#21592#0" expanded="false" />
-            <element signature="e#21673#21725#0" expanded="false" />
+            <element signature="e#3309#3341#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+        <state relative-caret-position="867">
+          <caret line="77" column="48" lean-forward="false" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#771#0" expanded="true" />
@@ -1778,6 +1536,53 @@
             <element signature="e#23792#24165#0" expanded="false" />
             <element signature="e#24195#24423#0" expanded="false" />
             <element signature="e#24195#24266#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2363">
+          <caret line="151" column="0" lean-forward="false" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+          <folding>
+            <element signature="e#762#799#0" expanded="true" />
+            <element signature="e#2288#2698#0" expanded="false" />
+            <element signature="e#2727#2786#1" expanded="false" />
+            <element signature="e#5965#6089#0" expanded="false" />
+            <element signature="e#6138#6178#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#761#1250#1" expanded="false" />
+            <element signature="e#1362#1484#1" expanded="false" />
+            <element signature="e#3664#4229#1" expanded="false" />
+            <marker date="1506108797543" expanded="false" signature="17095:18028" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1506108797543" expanded="false" signature="19209:19478" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="19547:19736" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="19773:19855" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="20464:20549" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="20746:21204" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="21999:22291" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="22357:22654" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="22366:22530" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1506108797543" expanded="false" signature="22712:22932" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="22773:22901" ph="..." />
+            <marker date="1506108797543" expanded="false" signature="22973:23034" ph="..." />
           </folding>
         </state>
       </provider>
