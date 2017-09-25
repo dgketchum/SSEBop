@@ -110,11 +110,10 @@ class SSEBopModel(object):
 
         ndvi = self.image.ndvi()
         tmax = data_check(self.image_geo, variable='tmax', temp_units='K')
-
         if len(tmax.shape) > 2:
             tmax = tmax.reshape(tmax.shape[1], tmax.shape[2])
 
-        loc = where(ndvi == nanpercentile(ndvi, 99.9))
+        loc = where(ndvi > 0.7)
         temps = []
         for j, k in zip(loc[0], loc[1]):
             temps.append(tmax[j, k])

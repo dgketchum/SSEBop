@@ -297,10 +297,10 @@ class TopoWX(Thredds):
             else:
                 arr = None
 
-            conformed_array = self.conform(arr, out_file=out_file)
+            if temp_units_out == 'K':
+                arr += 273.15
 
-        if temp_units_out == 'K':
-            conformed_array += 273.15
+            conformed_array = self.conform(arr, out_file=out_file)
 
         return conformed_array
 

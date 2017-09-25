@@ -520,8 +520,8 @@ class Fmask(object):
         return (self.ndsi > 0.15) & (self._get_band('tirs1') < 9.85) & (self._get_band('nir') > 0.11) & (
         self._get_band('green') > 0.1)
 
-    def cloud_mask(self, min_filter=(3, 3), max_filter=(40, 40), combined=False,
-                   cloud_value=0, output_file=None):
+    def cloud_mask(self, min_filter=(3, 3), max_filter=(40, 40),
+                   combined=False, clear_value=0, output_file=None):
         """Calculate the potential cloud layer from source data
         *This is the high level function which ties together all
         the equations for generating potential clouds*
@@ -633,29 +633,29 @@ class Fmask(object):
         #     dst.write(array)
         # mystery test
 
-        if cloud_value == 0:
+        if clear_value == 0:
 
             if combined:
                 combo = pcloud | pshadow | water
                 if output_file:
                     self.save_array(combo, outfile=output_file)
-                    return None
+                    return combo
                 else:
                     return combo
 
             return pcloud, pshadow, water
 
-        elif cloud_value == 1:
+        elif clear_value == 1:
 
             if combined:
                 combo = pcloud | pshadow | water
                 if output_file:
-                    self.save_array(combo, outfile=output_file)
-                    return None
+                    self.save_array(~combo, outfile=output_file)
+                    return ~combo
                 else:
-                    return combo
+                    return ~combo
 
-            return pcloud, pshadow, water
+            return ~pcloud, ~pshadow, ~water
 
         else:
             raise ValueError('Cloud/shadow/water areas must be 0 or 1.')

@@ -52,7 +52,7 @@ class FmaskTestCaseL7(unittest.TestCase):
     def test_get_potential_cloud_layer(self):
         f = Fmask(self.image)
         self.assertIsInstance(f, Fmask)
-        combo = f.cloud_mask(combined=True, min_filter=(3, 3), max_filter=(40, 40))
+        combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40), combined=True)
         c_ct = count_nonzero(combo)
         self.assertEqual(c_ct, 259748)
         # home = os.path.expanduser('~')

@@ -74,8 +74,7 @@ def data_check(model_geo, variable='tmax', sat_image=None,
                 raise Exception('If calling fmask, must provide a Landsat image object')
 
             f = Fmask(sat_image)
-            combo = f.cloud_mask(combined=True, min_filter=(3, 3),
-                                 max_filter=(40, 40), cloud_value=fmask_cloud_val,
+            combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40), combined=True, clear_value=fmask_cloud_val,
                                  output_file=file_path)
             var = combo
 
