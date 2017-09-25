@@ -136,7 +136,7 @@ class SSEBopModel(object):
         t_diff = None
 
         fmask = data_check(self.image_geo, variable='fmask',
-                           sat_image=self.image, fmask_cloud_val=0)
+                           sat_image=self.image, fmask_clear_val=1)
 
         t_corr = where(fmask == 1, t_corr, nan)
 
@@ -149,7 +149,7 @@ class SSEBopModel(object):
               'correction scheme.'.format(test_count))
 
         t_corr_std = nanstd(t_corr)
-        c = t_corr_mean - 2 * t_corr_std
+        c = t_corr_mean - (2 * t_corr_std)
 
         return c
 
