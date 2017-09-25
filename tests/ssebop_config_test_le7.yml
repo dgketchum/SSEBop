@@ -1,7 +1,7 @@
 
 path: 41
 row: 25
-root: /data01/images/sandbox/ssebop_analysis
+root: /data01/PycharmProjects/ssebop/tests/data/ssebop_test/le7
 input_root:
 output_root:
 

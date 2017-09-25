@@ -1,7 +1,7 @@
 
 path: 38
 row: 27
-root: /data01/images/sandbox/ssebop_analysis
+root: /data01/PycharmProjects/ssebop/tests/data/ssebop_test/lc8
 output_root:
 
 api_key: 'mapzen-JmKu1BF'
