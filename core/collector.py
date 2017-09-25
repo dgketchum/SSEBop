@@ -25,7 +25,7 @@ from sat_image.fmask import Fmask
 
 
 def data_check(model_geo, variable='tmax', sat_image=None,
-               fmask_cloud_val=1, temp_units='C'):
+               fmask_clear_val=1, temp_units='C'):
     if variable == 'tmax':
         file_name = '{}_tmax.tif'.format(model_geo.image_id)
         file_path = os.path.join(model_geo.image_dir, file_name)
@@ -74,7 +74,8 @@ def data_check(model_geo, variable='tmax', sat_image=None,
                 raise Exception('If calling fmask, must provide a Landsat image object')
 
             f = Fmask(sat_image)
-            combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40), combined=True, clear_value=fmask_cloud_val,
+            combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40),
+                                 combined=True, clear_value=fmask_clear_val,
                                  output_file=file_path)
             var = combo
 

@@ -38,8 +38,10 @@ def difference_temp(rn, rho, cp, rah):
 
 
 def get_net_radiation(tmin, tmax, doy, elevation, lat, albedo):
-    net_lw = net_lw_radiation(tmin=tmin, tmax=tmax, doy=doy, elevation=elevation, lat=lat)
-    net_sw = net_sw_radiation(elevation=elevation, albedo=albedo, doy=doy, lat=lat)
+    net_lw = net_lw_radiation(tmin=tmin, tmax=tmax, doy=doy,
+                              elevation=elevation, lat=lat)
+    net_sw = net_sw_radiation(elevation=elevation, albedo=albedo,
+                              doy=doy, lat=lat)
 
     net_radiat = net_sw - net_lw
     return net_radiat
@@ -52,9 +54,12 @@ def net_lw_radiation(tmin, tmax, doy, elevation, lat):
     sunset_hr_ang = sunset_hour_angle(lat, sol_decl)
     ext_rad = et_rad(lat, sol_decl, sunset_hr_ang, inv_esun_dist)
     clear_sky_rad = cs_rad(elevation, ext_rad)
-    solar_rad = sol_rad_from_t(ext_rad, clear_sky_rad, tmin, tmax, coastal=False)
+    solar_rad = sol_rad_from_t(ext_rad, clear_sky_rad, tmin, tmax,
+                               coastal=False)
     tmin_k, tmax_k = tmin + 273.16, tmax + 273.16
-    lw_rad = net_out_lw_rad(tmin_k=tmin_k, tmax_k=tmax_k, sol_rad=solar_rad, cs_rad=clear_sky_rad, avp=avp)
+    lw_rad = net_out_lw_rad(tmin_k=tmin_k, tmax_k=tmax_k,
+                            sol_rad=solar_rad, cs_rad=clear_sky_rad,
+                            avp=avp)
     return lw_rad
 
 
@@ -62,7 +67,8 @@ def net_sw_radiation(elevation, albedo, doy, lat):
     inv_esun_dist = inv_rel_dist_earth_sun(doy)
     sol_decl = sol_dec(doy)
     sunset_hr_ang = sunset_hour_angle(latitude=lat, sol_dec=sol_decl)
-    ext_rad = et_rad(latitude=lat, sol_dec=sol_decl, sha=sunset_hr_ang, ird=inv_esun_dist)
+    ext_rad = et_rad(latitude=lat, sol_dec=sol_decl, sha=sunset_hr_ang,
+                     ird=inv_esun_dist)
     rs = (0.75 + (2e-05 * elevation)) * ext_rad
     rns = (1 - albedo) * rs
     return rns
@@ -188,7 +194,8 @@ def cs_rad(altitude, et_rad):
     :return: Clear sky radiation [MJ m-2 day-1]
     :rtype: float
     """
-    return (0.00002 * altitude + 0.75) * et_rad
+    clear_sky_rad = (0.00002 * altitude + 0.75) * et_rad
+    return clear_sky_rad
 
 
 def inv_rel_dist_earth_sun(day_of_year):
@@ -413,22 +420,6 @@ def avp_from_twet_tdry(twet, tdry, svp_twet, psy_const):
     :rtype: float
     """
     return svp_twet - (psy_const * (tdry - twet))
-
-
-def cs_rad(altitude, et_rad):
-    """
-    Estimate clear sky radiation from altitude and extraterrestrial radiation.
-
-    Based on equation 37 in Allen et al (1998) which is recommended when
-    calibrated Angstrom values are not available.
-
-    :param altitude: Elevation above sea level [m]
-    :param et_rad: Extraterrestrial radiation [MJ m-2 day-1]. Can be
-        estimated using ``et_rad()``.
-    :return: Clear sky radiation [MJ m-2 day-1]
-    :rtype: float
-    """
-    return (0.00002 * altitude + 0.75) * et_rad
 
 
 def daily_mean_t(tmin, tmax):

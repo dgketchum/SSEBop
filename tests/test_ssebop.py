@@ -71,8 +71,15 @@ class SSEBopModelTestCaseLC8(unittest.TestCase):
             sseb.configure_run()
             ts = sseb.image.land_surface_temp()
             c = sseb.c_factor(ts)
-            self.assertEqual(c, 1)
+            self.assertEqual(c, 1.05873032846)
 
+    def test_difference_temp(self):
+        for runspec in self.cfg.runspecs:
+            paths.build(runspec.root)
+            sseb = SSEBopModel(runspec)
+            sseb.configure_run()
+            dt = sseb.difference_temp()
+            self.assertEqual(dt, 300)
 if __name__ == '__main__':
     unittest.main()
 

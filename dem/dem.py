@@ -113,11 +113,8 @@ class MapzenDem(Dem):
         if attribute == 'elevation':
             if out_file:
                 self.save(dem, self.target_profile, out_file)
-            elif save_and_return:
-                self.save(dem, self.target_profile, out_file)
-                return dem
-            else:
-                return dem
+                if save_and_return:
+                    return dem
 
         elif attribute == 'slope':
             slope = self.get_slope(dem, mode=mode)
@@ -125,11 +122,8 @@ class MapzenDem(Dem):
                 if len(slope.shape) > 2:
                     slope = reshape(1, dem.shape[0], dem.shape[1])
                 self.save(slope, self.target_profile, out_file)
-            elif save_and_return:
-                if len(slope.shape) > 2:
-                    slope = reshape(1, dem.shape[0], dem.shape[1])
-                self.save(slope, self.target_profile, out_file)
-                return slope
+                if save_and_return:
+                    return slope
             else:
                 return slope
 
@@ -140,11 +134,8 @@ class MapzenDem(Dem):
                 if len(aspect.shape) > 2:
                     aspect = reshape(1, dem.shape[0], dem.shape[1])
                 self.save(aspect, self.target_profile, out_file)
-            elif save_and_return:
-                if len(aspect.shape) > 2:
-                    aspect = reshape(1, dem.shape[0], dem.shape[1])
-                self.save(aspect, self.target_profile, out_file)
-                return aspect
+                if save_and_return:
+                    return aspect
             else:
                 return aspect
 
