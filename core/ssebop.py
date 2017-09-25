@@ -75,13 +75,6 @@ class SSEBopModel(object):
             print('{:<20s}{}'.format(attr, getattr(self, '{}'.format(attr))))
         print('----------- ------------- --------------')
 
-        self._is_configured = True
-
-    def run(self):
-        """ Run the SSEBop algorithm.
-        :return: 
-        """
-
         if not self.image_exists:
             self.down_image()
 
@@ -95,6 +88,7 @@ class SSEBopModel(object):
             print('Invalid satellite key: "{}". available key = {}'.format
                   (self.satellite,
                    ','.join(mapping.keys())))
+        self._is_configured = True
 
         self.image_geo = SSEBopGeo(self.image_id, self.image_dir,
                                    self.image.get_tile_geometry(),
@@ -102,15 +96,20 @@ class SSEBopModel(object):
                                    self.image.rasterio_geometry,
                                    self.image.bounds, self.api_key, self.image_date)
 
+    def run(self):
+        """ Run the SSEBop algorithm.
+        :return: 
+        """
+
         dt = self.difference_temp()
         ts = self.image.land_surface_temp()
-        cold = self.cold_reference(ts)
+        cold = self.c_factor(ts)
         x = None
 
-    def cold_reference(self, ts):
+    def c_factor(self, ts):
 
         ndvi = self.image.ndvi()
-        tmax = data_check(self.image_geo, variable='tmax')
+        tmax = data_check(self.image_geo, variable='tmax', temp_units='K')
 
         if len(tmax.shape) > 2:
             tmax = tmax.reshape(tmax.shape[1], tmax.shape[2])
@@ -164,7 +163,8 @@ class SSEBopModel(object):
         albedo = self.image.albedo()
 
         net_rad = get_net_radiation(tmin=tmin, tmax=tmax, doy=doy,
-                                    elevation=dem, lat=center_lat, albedo=albedo)
+                                    elevation=dem, lat=center_lat,
+                                    albedo=albedo)
         rho = air_density(tmin=tmin, tmax=tmax, elevation=dem)
         cp = air_specific_heat()
         rah = canopy_resistance()

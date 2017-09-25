@@ -1,0 +1,22 @@
+
+path: 41
+row: 25
+root: /data01/images/sandbox/ssebop_analysis
+input_root:
+output_root:
+
+api_key: 'mapzen-JmKu1BF'
+usgs_creds: /data01/images/usgs.txt
+
+satellite: LE7
+# Date format; string 'YYYYMMDD'
+start_date: 20000815
+end_date: 20000831
+k_factor: 1.25
+verify_paths: True
+
+# Add the path relative to /input_root/
+# They will be joined to input_root.
+# Parameters mask and polygon are optional
+polygons:
+mask:

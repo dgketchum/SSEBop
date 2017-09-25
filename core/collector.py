@@ -25,7 +25,7 @@ from sat_image.fmask import Fmask
 
 
 def data_check(model_geo, variable='tmax', sat_image=None,
-               fmask_cloud_val=1):
+               fmask_cloud_val=1, temp_units='C'):
     if variable == 'tmax':
         file_name = '{}_tmax.tif'.format(model_geo.image_id)
         file_path = os.path.join(model_geo.image_dir, file_name)
@@ -54,7 +54,8 @@ def data_check(model_geo, variable='tmax', sat_image=None,
                             clip_feature=model_geo.clip, out_file=file_path)
 
             var = topowx.get_data_subset(grid_conform=True, var=variable,
-                                         out_file=file_path)
+                                         out_file=file_path,
+                                         temp_units_out=temp_units)
 
         elif variable == 'dem':
             print('Downloading new {}.....'.format(variable))
