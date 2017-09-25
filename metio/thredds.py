@@ -180,7 +180,10 @@ class Thredds(object):
 
                 dst.write(new_array)
 
-            return new_array
+            with rasopen(resample_path, 'r') as src:
+                arr = src.read()
+
+            return arr
 
     def _date_index(self):
         date_ind = date_range(self.start, self.end, freq='d')
@@ -302,7 +305,7 @@ class TopoWX(Thredds):
 
             conformed_array = self.conform(arr, out_file=out_file)
 
-        return conformed_array
+            return conformed_array
 
     def _build_url(self, var):
 
