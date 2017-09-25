@@ -22,12 +22,12 @@ from app.paths import paths
 from core.ssebop import SSEBopModel
 from core.ssebop import SSEBopGeo
 
-from sat_image.image import Landsat5
+from sat_image.image import Landsat8
 
 
-class SSEBopModelTestCase(unittest.TestCase):
+class SSEBopModelTestCaseLC8(unittest.TestCase):
     def setUp(self):
-        self.config_path = 'tests/ssebop_config_test.yml'
+        self.config_path = 'tests/ssebop_config_test_lc8.yml'
         self.cfg = Config(self.config_path)
 
     def test_config(self):
@@ -52,17 +52,26 @@ class SSEBopModelTestCase(unittest.TestCase):
             paths.build(runspec.root)
 
             sseb = SSEBopModel(runspec)
-            setattr(sseb, 'image', Landsat5(sseb.image_dir))
+            setattr(sseb, 'image', Landsat8(sseb.image_dir))
             image_geo = SSEBopGeo(sseb.image_id, sseb.image_dir,
                                   sseb.image.get_tile_geometry(),
-                                  sseb.image.transform, sseb.image.profile,
+                                  sseb.image.transform,
+                                  sseb.image.profile,
                                   sseb.image.rasterio_geometry,
-                                  sseb.image.bounds, sseb.api_key, sseb.image_date)
+                                  sseb.image.bounds,
+                                  sseb.api_key, sseb.image_date)
 
             self.assertIsInstance(image_geo, SSEBopGeo)
             self.assertIsInstance(image_geo.image_dir, str)
 
-
+    def test_cold_pix(self):
+        for runspec in self.cfg.runspecs:
+            paths.build(runspec.root)
+            sseb = SSEBopModel(runspec)
+            sseb.configure_run()
+            ts = sseb.image.land_surface_temp()
+            c = sseb.c_factor(ts)
+            self.assertEqual(c, 1)
 
 if __name__ == '__main__':
     unittest.main()

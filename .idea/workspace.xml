@@ -2,8 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B1.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B10.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B11.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B2.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B3.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B4.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B5.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B6.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B7.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B8.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B9.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_BQA.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_dem.tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_fmask.tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_tmax.tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_tmin.tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B1.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B2.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B3.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B4.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B5.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B6_VCID_1.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B6_VCID_2.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B7.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B8.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_BQA.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B1.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B2.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B3.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B4.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B5.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B6.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B7.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_BQA.TIF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_ANG.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_GCP.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_MTL.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_ANG.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_GCP.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_MTL.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_VER.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/ssebop_config_test_le7.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/ssebop_config_test.yml" afterPath="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/fmask.py" afterPath="$PROJECT_DIR$/sat_image/fmask.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/entry_script.py" afterPath="$PROJECT_DIR$/app/entry_script.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/collector.py" afterPath="$PROJECT_DIR$/core/collector.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_ssebop.py" afterPath="$PROJECT_DIR$/tests/test_ssebop.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,133 +66,48 @@
       <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2363">
-              <caret line="151" column="0" lean-forward="false" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
-              <folding>
-                <element signature="e#762#799#0" expanded="true" />
-                <element signature="e#2288#2698#0" expanded="false" />
-                <element signature="e#2727#2786#1" expanded="false" />
-                <element signature="e#5965#6089#0" expanded="false" />
-                <element signature="e#6138#6178#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fmask.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="440">
+              <caret line="186" column="10" lean-forward="true" selection-start-line="186" selection-start-column="10" selection-end-line="186" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#761#1250#1" expanded="false" />
-                <element signature="e#1362#1484#1" expanded="false" />
-                <element signature="e#3664#4229#1" expanded="false" />
-                <marker date="1506108797543" expanded="false" signature="17095:18028" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1506108797543" expanded="false" signature="19209:19478" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="19547:19736" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="19773:19855" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="20464:20549" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="20746:21204" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="21999:22291" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="22357:22654" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="22366:22530" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1506108797543" expanded="false" signature="22712:22932" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="22773:22901" ph="..." />
-                <marker date="1506108797543" expanded="false" signature="22973:23034" ph="..." />
+                <element signature="e#762#799#0" expanded="true" />
+                <element signature="e#3545#3604#1" expanded="false" />
+                <element signature="e#6004#6128#0" expanded="false" />
+                <element signature="e#6177#6217#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_fmask.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+      <file leaf-file-name="ssebop_config_test_lt5.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <file leaf-file-name="test_ssebop.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="77" column="48" lean-forward="false" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
+            <state relative-caret-position="624">
+              <caret line="70" column="32" lean-forward="true" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#762#771#0" expanded="true" />
-                <element signature="e#1232#1236#0" expanded="false" />
-                <element signature="e#1280#1284#0" expanded="false" />
-                <element signature="e#1319#1568#1" expanded="false" />
-                <element signature="e#1607#1778#1" expanded="false" />
-                <element signature="e#2424#2513#0" expanded="false" />
-                <element signature="e#4674#5048#0" expanded="false" />
-                <element signature="e#4674#4773#1" expanded="false" />
-                <element signature="e#5104#5483#0" expanded="false" />
-                <element signature="e#5104#5317#1" expanded="false" />
-                <element signature="e#5550#5688#0" expanded="false" />
-                <element signature="e#5779#7638#0" expanded="false" />
-                <element signature="e#5949#6005#0" expanded="false" />
-                <element signature="e#7696#7934#0" expanded="false" />
-                <element signature="e#7978#8145#0" expanded="false" />
-                <element signature="e#8175#8338#0" expanded="false" />
-                <element signature="e#8408#8898#0" expanded="false" />
-                <element signature="e#8656#8734#0" expanded="false" />
-                <element signature="e#8745#8772#0" expanded="false" />
-                <element signature="e#8938#9389#0" expanded="false" />
-                <element signature="e#9453#9957#0" expanded="false" />
-                <element signature="e#10000#10414#0" expanded="false" />
-                <element signature="e#10000#10113#1" expanded="false" />
-                <element signature="e#10461#11461#0" expanded="false" />
-                <element signature="e#10461#11025#1" expanded="false" />
-                <element signature="e#11067#11357#0" expanded="false" />
-                <element signature="e#11099#11246#0" expanded="false" />
-                <element signature="e#11519#11913#0" expanded="false" />
-                <element signature="e#11519#11755#1" expanded="false" />
-                <element signature="e#11943#12165#0" expanded="false" />
-                <element signature="e#11943#12020#1" expanded="false" />
-                <element signature="e#12202#12554#0" expanded="false" />
-                <element signature="e#12597#12831#0" expanded="false" />
-                <element signature="e#12861#13089#0" expanded="false" />
-                <element signature="e#12861#12932#1" expanded="false" />
-                <element signature="e#13159#13560#0" expanded="false" />
-                <element signature="e#13426#13515#0" expanded="false" />
-                <element signature="e#13600#14034#0" expanded="false" />
-                <element signature="e#14112#14787#0" expanded="false" />
-                <element signature="e#14264#14321#0" expanded="false" />
-                <element signature="e#14830#15276#0" expanded="false" />
-                <element signature="e#14830#14943#1" expanded="false" />
-                <element signature="e#15308#15992#0" expanded="false" />
-                <element signature="e#15308#15681#1" expanded="false" />
-                <element signature="e#15722#15865#0" expanded="false" />
-                <element signature="e#16050#16424#0" expanded="false" />
-                <element signature="e#16050#16286#1" expanded="false" />
-                <element signature="e#16454#16676#0" expanded="false" />
-                <element signature="e#16454#16531#1" expanded="false" />
-                <element signature="e#16713#17064#0" expanded="false" />
-                <element signature="e#17107#17341#0" expanded="false" />
-                <element signature="e#17371#17598#0" expanded="false" />
-                <element signature="e#17371#17441#1" expanded="false" />
-                <element signature="e#17668#17754#0" expanded="false" />
-                <element signature="e#17817#19550#0" expanded="false" />
-                <element signature="e#17817#18899#1" expanded="false" />
-                <element signature="e#19593#21416#0" expanded="false" />
-                <element signature="e#19593#20804#1" expanded="false" />
-                <element signature="e#21456#22456#0" expanded="false" />
-                <element signature="e#21456#22216#1" expanded="false" />
-                <element signature="e#22488#23108#0" expanded="false" />
-                <element signature="e#22488#22796#1" expanded="false" />
-                <element signature="e#22838#22981#0" expanded="false" />
-                <element signature="e#23138#23360#0" expanded="false" />
-                <element signature="e#23138#23215#1" expanded="false" />
-                <element signature="e#23397#23748#0" expanded="false" />
-                <element signature="e#23792#24165#0" expanded="false" />
-                <element signature="e#24195#24423#0" expanded="false" />
-                <element signature="e#24195#24266#1" expanded="false" />
+                <element signature="e#734#749#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="entry_script.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/entry_script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -155,8 +117,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Python Unit Test" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -240,10 +202,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/cli.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/tests/test_suite.py" />
-        <option value="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" />
         <option value="$PROJECT_DIR$/metio/gdal_xml" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/merge.py" />
         <option value="$PROJECT_DIR$/dem/sandbox.py" />
@@ -268,16 +226,13 @@
         <option value="$PROJECT_DIR$/download/download_composer.py" />
         <option value="$PROJECT_DIR$/download/usgs_download.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/web_tools.py" />
-        <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/download_composer.py" />
         <option value="$PROJECT_DIR$/tests/test_paths.py" />
         <option value="$PROJECT_DIR$/tests/test_down.py" />
         <option value="$PROJECT_DIR$/app/paths.py" />
-        <option value="$PROJECT_DIR$/app/entry_script.py" />
         <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/metio/topowx_issue.py" />
         <option value="$PROJECT_DIR$/tests/test_metio.py" />
-        <option value="$PROJECT_DIR$/metio/thredds.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/tests/fao_test.py" />
@@ -285,12 +240,19 @@
         <option value="$PROJECT_DIR$/tests/test_fmask.py" />
         <option value="$PROJECT_DIR$/tests/test_collector.py" />
         <option value="$PROJECT_DIR$/app/config.py" />
-        <option value="$PROJECT_DIR$/core/collector.py" />
-        <option value="$PROJECT_DIR$/tests/test_ssebop.py" />
         <option value="$PROJECT_DIR$/tests/ssebop_config_test.yml" />
         <option value="$PROJECT_DIR$/sat_image/image.py" />
-        <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/sat_image/fmask.py" />
+        <option value="$PROJECT_DIR$/metio/thredds.py" />
+        <option value="$PROJECT_DIR$/core/collector.py" />
+        <option value="$PROJECT_DIR$/tests/test_ssebop.py" />
+        <option value="$PROJECT_DIR$/core/ssebop.py" />
+        <option value="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
+        <option value="$PROJECT_DIR$/tests/ssebop_config_test_le7.yml" />
+        <option value="$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml" />
+        <option value="$PROJECT_DIR$/app/entry_script.py" />
+        <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py" />
+        <option value="$PROJECT_DIR$/../utils/utils/clip_by_polygon.py" />
       </list>
     </option>
   </component>
@@ -346,6 +308,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -382,37 +345,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../utils/utils/clip_by_polygon.py" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/obsio/factory.py&#10;/data01/PycharmProjects/ssebop/tests/data/local/token_file.txt&#10;/data01/PycharmProjects/ssebop/SSEBop_Landsat_OverpassETa.py&#10;/data01/PycharmProjects/ssebop/obsio/providers/acis.py&#10;true&#10;/data01/PycharmProjects/ssebop/obsio/util/misc.py" />
     <property name="settings.editor.splitter.proportion" value="0.25440314" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/core/pyeto" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/../MT_Rsense/obsgrid" />
-      <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/ssebop/utils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000" />
       <recent name="$PROJECT_DIR$/metio" />
       <recent name="$PROJECT_DIR$/core" />
       <recent name="$PROJECT_DIR$/bbox" />
       <recent name="$PROJECT_DIR$/dem" />
-      <recent name="$PROJECT_DIR$/../utils" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -427,7 +415,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_fmask.py">
+  <component name="RunManager" selected="Python.clip_by_polygon">
     <configuration default="false" name="entry_script" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -446,6 +434,21 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
     <configuration default="false" name="Unittests in test_fmask.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -461,49 +464,40 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="clip_by_polygon" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../utils/utils" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../utils/utils/clip_by_polygon.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="usgs_download" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_ssebop.SSEBopModelTestCase.test_image_geo&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -583,18 +577,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.entry_script" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python.clip_by_polygon" />
+      <item index="4" class="java.lang.String" itemvalue="Python.usgs_download" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python.entry_script" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_fmask.FmaskTestCaseL5.test_get_potential_cloud_layer" />
+        <item index="0" class="java.lang.String" itemvalue="Python.clip_by_polygon" />
+        <item index="1" class="java.lang.String" itemvalue="Python.usgs_download" />
+        <item index="2" class="java.lang.String" itemvalue="Python.entry_script" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_fmask.py" />
       </list>
     </recent_temporary>
   </component>
@@ -611,20 +605,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00119" summary="put dem and image in ssebopmodel.run">
-      <created>1499895693018</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1499895693019</updated>
-    </task>
-    <task id="LOCAL-00120" summary="put dem and image in ssebopmodel.run">
-      <created>1499964764439</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1499964764440</updated>
     </task>
     <task id="LOCAL-00121" summary="conform thredds GridMet object">
       <created>1499964812540</created>
@@ -955,38 +935,52 @@
       <option name="project" value="LOCAL" />
       <updated>1506106792406</updated>
     </task>
-    <option name="localTasksCounter" value="168" />
+    <task id="LOCAL-00168" summary="finished moving fmask init band loading to a get call">
+      <created>1506109094310</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1506109094310</updated>
+    </task>
+    <task id="LOCAL-00169" summary="added Kelvin option to Thredds Topowx output">
+      <created>1506115145027</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1506115145027</updated>
+    </task>
+    <option name="localTasksCounter" value="170" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_image_geo - 2017.09.21 at 16h 35m 19s.xml">
+    <history-entry file="Unittests_for_tests_test_fmask_FmaskTestCaseL5 - 2017.09.22 at 15h 56m 22s.xml">
+      <configuration name="Unittests for tests.test_fmask.FmaskTestCaseL5" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase - 2017.09.22 at 13h 45m 16s.xml">
+      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCaseLC8_test_cold_pix - 2017.09.22 at 15h 11m 18s.xml">
+      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCaseLC8_test_cold_pix - 2017.09.22 at 15h 22m 55s.xml">
+      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCaseLC8_test_cold_pix - 2017.09.22 at 15h 48m 47s.xml">
+      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCaseLC8_test_cold_pix - 2017.09.22 at 15h 58m 15s.xml">
+      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCaseLC8_test_cold_pix - 2017.09.22 at 16h 37m 53s.xml">
+      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCaseLC8_test_cold_pix - 2017.09.22 at 16h 40m 31s.xml">
+      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCaseLC8.test_cold_pix" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_image_geo - 2017.09.22 at 13h 46m 00s.xml">
       <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_image_geo - 2017.09.22 at 10h 47m 13s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_image_geo" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_instantiate_ssebop - 2017.09.21 at 16h 20m 15s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_instantiate_ssebop - 2017.09.21 at 16h 21m 47s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_instantiate_ssebop - 2017.09.21 at 16h 23m 05s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_ssebop_SSEBopModelTestCase_test_instantiate_ssebop - 2017.09.21 at 16h 23m 50s.xml">
-      <configuration name="Unittests for tests.test_ssebop.SSEBopModelTestCase.test_instantiate_ssebop" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 13h 29m 46s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 13h 30m 25s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 13h 32m 32s.xml">
-      <configuration name="Unittests in test_fmask.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 13h 33m 19s.xml">
+    <history-entry file="Unittests_in_test_fmask_py - 2017.09.22 at 15h 56m 30s.xml">
       <configuration name="Unittests in test_fmask.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -1001,20 +995,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13864307" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21902655" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4859882" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47640118" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60331494" sideWeight="0.49705014" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40929204" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4520649" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5973451" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52359885" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1022,8 +1014,31 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44764012" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60331494" sideWeight="0.49705014" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18215339" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46238938" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5973451" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -1059,8 +1074,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="attribute error on ssebop run instantiate image" />
-    <MESSAGE value="model only has start and end dates now" />
     <MESSAGE value="start and end dates to int in config yml" />
     <MESSAGE value="adding configure_project_dirs to paths.py" />
     <MESSAGE value="satellite spec optional, usgs creds to config yml" />
@@ -1084,7 +1097,9 @@
     <MESSAGE value="started tc finder function" />
     <MESSAGE value="working on memory management, moved dem and fmask to data check, fixed a file manage error," />
     <MESSAGE value="moving fmask init band loading to a get call" />
-    <option name="LAST_COMMIT_MESSAGE" value="moving fmask init band loading to a get call" />
+    <MESSAGE value="finished moving fmask init band loading to a get call" />
+    <MESSAGE value="added Kelvin option to Thredds Topowx output" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Kelvin option to Thredds Topowx output" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1106,11 +1121,6 @@
           <option name="timeStamp" value="349" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/metio/thredds.py</url>
-          <line>201</line>
-          <option name="timeStamp" value="983" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_metio.py</url>
           <line>93</line>
           <option name="timeStamp" value="1066" />
@@ -1126,14 +1136,29 @@
           <option name="timeStamp" value="1096" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/core/ssebop.py</url>
-          <line>107</line>
-          <option name="timeStamp" value="1103" />
+          <url>file://$PROJECT_DIR$/tests/test_ssebop.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="1165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/core/ssebop.py</url>
-          <line>155</line>
-          <option name="timeStamp" value="1108" />
+          <url>file://$PROJECT_DIR$/sat_image/fmask.py</url>
+          <line>685</line>
+          <option name="timeStamp" value="1173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/test_ssebop.py</url>
+          <line>72</line>
+          <option name="timeStamp" value="1174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="1186" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="1187" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1143,7 +1168,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1149" />
+      <option name="time" value="1188" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1153,43 +1178,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../METRIC_NASA/METRIC/function_bank.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="393" column="0" lean-forward="true" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PyETo/pyeto/fao.py" />
-    <entry file="file://$PROJECT_DIR$/bounds/conform.py" />
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/transform.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/unittest/suite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/affine/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="139" column="22" lean-forward="false" selection-start-line="139" selection-start-column="15" selection-end-line="139" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_bounds.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="692">
@@ -1263,19 +1251,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#743#0" expanded="false" />
-            <element signature="e#4996#7829#0" expanded="false" />
-            <element signature="e#7879#10993#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1391,80 +1366,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metio/fao.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="207" column="56" lean-forward="false" selection-start-line="207" selection-start-column="56" selection-end-line="207" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test.yml" />
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="258" column="0" lean-forward="false" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+        <state relative-caret-position="454">
+          <caret line="301" column="0" lean-forward="false" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="26" column="61" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="61" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1446#1542#1" expanded="false" />
-            <element signature="e#3365#4806#0" expanded="false" />
-            <element signature="e#4838#5496#0" expanded="false" />
-            <element signature="e#5532#6870#0" expanded="false" />
-            <element signature="e#7027#7282#0" expanded="false" />
-            <element signature="e#7344#7413#0" expanded="false" />
-            <element signature="e#7893#8564#1" expanded="false" />
-            <element signature="e#11158#17317#0" expanded="false" />
-            <element signature="e#11158#13137#1" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="62" column="59" lean-forward="false" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#749#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="56" column="60" lean-forward="false" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
-            <element signature="e#3309#3341#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="293">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sat_image/image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="77" column="48" lean-forward="false" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
+        <state relative-caret-position="426">
+          <caret line="365" column="19" lean-forward="true" selection-start-line="365" selection-start-column="19" selection-end-line="365" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#771#0" expanded="true" />
@@ -1540,49 +1477,229 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_fmask.py">
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/numpy/lib/type_check.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="293">
+          <caret line="363" column="0" lean-forward="false" selection-start-line="363" selection-start-column="0" selection-end-line="363" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="685" column="0" lean-forward="false" selection-start-line="685" selection-start-column="0" selection-end-line="685" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#761#1250#1" expanded="false" />
+            <element signature="e#1362#1484#1" expanded="false" />
+            <element signature="e#3640#4205#1" expanded="false" />
+            <element signature="e#17068#18001#1" expanded="false" />
+            <element signature="e#19182#19255#0" expanded="false" />
+            <element signature="e#19520#19585#0" expanded="false" />
+            <element signature="e#19746#19763#0" expanded="false" />
+            <element signature="e#20437#20460#0" expanded="false" />
+            <element signature="e#20719#20791#0" expanded="false" />
+            <element signature="e#21981#22264#0" expanded="false" />
+            <element signature="e#22339#22627#0" expanded="false" />
+            <element signature="e#22339#22503#1" expanded="false" />
+            <element signature="e#22955#23007#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_brightemp_B10.TIF">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MT_Rsense/utils/raster_tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="54" column="43" lean-forward="true" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/fao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#346#1" expanded="false" />
+            <element signature="e#2557#2576#0" expanded="false" />
+            <element signature="e#2608#3362#0" expanded="false" />
+            <element signature="e#2608#3306#1" expanded="false" />
+            <element signature="e#3395#3710#0" expanded="false" />
+            <element signature="e#3395#3644#1" expanded="false" />
+            <element signature="e#3759#4649#0" expanded="false" />
+            <element signature="e#3759#4227#1" expanded="false" />
+            <element signature="e#4277#4339#0" expanded="false" />
+            <element signature="e#4697#5921#0" expanded="false" />
+            <element signature="e#4697#5716#1" expanded="false" />
+            <element signature="e#5958#6445#0" expanded="false" />
+            <element signature="e#5958#6397#1" expanded="false" />
+            <element signature="e#6493#6847#0" expanded="false" />
+            <element signature="e#6493#6784#1" expanded="false" />
+            <element signature="e#6911#8802#0" expanded="false" />
+            <element signature="e#6911#8482#1" expanded="false" />
+            <element signature="e#8487#8546#0" expanded="false" />
+            <element signature="e#8849#9007#0" expanded="false" />
+            <element signature="e#9042#9481#0" expanded="false" />
+            <element signature="e#9620#11192#0" expanded="false" />
+            <element signature="e#9620#10962#1" expanded="false" />
+            <element signature="e#11261#11961#0" expanded="false" />
+            <element signature="e#11261#11852#1" expanded="false" />
+            <element signature="e#12006#12490#0" expanded="false" />
+            <element signature="e#12006#12451#1" expanded="false" />
+            <element signature="e#12547#13227#0" expanded="false" />
+            <element signature="e#12547#13166#1" expanded="false" />
+            <element signature="e#13259#13848#0" expanded="false" />
+            <element signature="e#13259#13791#1" expanded="false" />
+            <element signature="e#13912#14989#0" expanded="false" />
+            <element signature="e#13912#14939#1" expanded="false" />
+            <element signature="e#15026#15465#1" expanded="false" />
+            <element signature="e#15550#15846#0" expanded="false" />
+            <element signature="e#15550#15815#1" expanded="false" />
+            <element signature="e#15878#16170#0" expanded="false" />
+            <element signature="e#15878#16141#1" expanded="false" />
+            <element signature="e#16195#16692#0" expanded="false" />
+            <element signature="e#16195#16594#1" expanded="false" />
+            <element signature="e#16724#17242#0" expanded="false" />
+            <element signature="e#16724#17216#1" expanded="false" />
+            <element signature="e#17327#18936#0" expanded="false" />
+            <element signature="e#17327#18726#1" expanded="false" />
+            <element signature="e#18986#20150#0" expanded="false" />
+            <element signature="e#18986#19912#1" expanded="false" />
+            <element signature="e#19917#19988#0" expanded="false" />
+            <element signature="e#20183#20739#0" expanded="false" />
+            <element signature="e#20183#20684#1" expanded="false" />
+            <element signature="e#20802#21504#0" expanded="false" />
+            <element signature="e#20802#21456#1" expanded="false" />
+            <element signature="e#21567#22302#0" expanded="false" />
+            <element signature="e#21567#22255#1" expanded="false" />
+            <element signature="e#22351#23514#0" expanded="false" />
+            <element signature="e#22351#23480#1" expanded="false" />
+            <element signature="e#23556#24284#0" expanded="false" />
+            <element signature="e#23556#24251#1" expanded="false" />
+            <element signature="e#24318#24783#0" expanded="false" />
+            <element signature="e#24318#24750#1" expanded="false" />
+            <element signature="e#24847#25953#0" expanded="false" />
+            <element signature="e#24847#25561#1" expanded="false" />
+            <element signature="e#25819#25918#0" expanded="false" />
+            <element signature="e#25991#26610#0" expanded="false" />
+            <element signature="e#25991#26581#1" expanded="false" />
+            <element signature="e#26685#27939#0" expanded="false" />
+            <element signature="e#26685#27726#1" expanded="false" />
+            <element signature="e#27732#27807#0" expanded="false" />
+            <element signature="e#27974#28721#0" expanded="false" />
+            <element signature="e#27974#28689#1" expanded="false" />
+            <element signature="e#28747#29034#0" expanded="false" />
+            <element signature="e#28747#28983#1" expanded="false" />
+            <element signature="e#29067#29520#0" expanded="false" />
+            <element signature="e#29067#29472#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test_le7.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/ssebop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="151" column="0" lean-forward="false" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+        <state relative-caret-position="440">
+          <caret line="186" column="10" lean-forward="true" selection-start-line="186" selection-start-column="10" selection-end-line="186" selection-end-column="10" />
           <folding>
+            <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#799#0" expanded="true" />
-            <element signature="e#2288#2698#0" expanded="false" />
-            <element signature="e#2727#2786#1" expanded="false" />
-            <element signature="e#5965#6089#0" expanded="false" />
-            <element signature="e#6138#6178#0" expanded="false" />
+            <element signature="e#3545#3604#1" expanded="false" />
+            <element signature="e#6004#6128#0" expanded="false" />
+            <element signature="e#6177#6217#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/fmask.py">
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="726">
+          <caret line="223" column="9" lean-forward="false" selection-start-line="223" selection-start-column="9" selection-end-line="223" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#761#1250#1" expanded="false" />
-            <element signature="e#1362#1484#1" expanded="false" />
-            <element signature="e#3664#4229#1" expanded="false" />
-            <marker date="1506108797543" expanded="false" signature="17095:18028" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1506108797543" expanded="false" signature="19209:19478" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="19547:19736" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="19773:19855" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="20464:20549" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="20746:21204" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="21999:22291" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="22357:22654" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="22366:22530" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1506108797543" expanded="false" signature="22712:22932" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="22773:22901" ph="..." />
-            <marker date="1506108797543" expanded="false" signature="22973:23034" ph="..." />
+            <element signature="e#92#101#0" expanded="true" />
+            <element signature="e#461#465#0" expanded="false" />
+            <element signature="e#512#516#0" expanded="false" />
+            <element signature="e#561#565#0" expanded="false" />
+            <element signature="e#1616#1710#0" expanded="false" />
+            <element signature="e#1757#1847#0" expanded="false" />
+            <element signature="e#2367#2586#0" expanded="false" />
+            <element signature="e#2402#2586#0" expanded="false" />
+            <element signature="e#2635#3165#0" expanded="false" />
+            <element signature="e#2673#2720#0" expanded="false" />
+            <element signature="e#2765#2853#0" expanded="false" />
+            <element signature="e#2898#3048#0" expanded="false" />
+            <element signature="e#2937#3048#0" expanded="false" />
+            <element signature="e#3225#4920#0" expanded="false" />
+            <element signature="e#3385#3504#0" expanded="false" />
+            <element signature="e#3837#4839#0" expanded="false" />
+            <element signature="e#4007#4839#0" expanded="false" />
+            <element signature="e#4125#4613#0" expanded="false" />
+            <element signature="e#4176#4554#0" expanded="false" />
+            <element signature="e#4352#4554#0" expanded="false" />
+            <element signature="e#4663#4839#0" expanded="false" />
+            <element signature="e#4996#5527#0" expanded="false" />
+            <element signature="e#5140#5501#0" expanded="false" />
+            <element signature="e#5637#6490#0" expanded="false" />
+            <element signature="e#5637#6064#1" expanded="false" />
+            <element signature="e#6304#6459#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../utils/utils/clip_by_polygon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#762#771#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="70" column="32" lean-forward="true" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#749#0" expanded="true" />
           </folding>
         </state>
       </provider>
