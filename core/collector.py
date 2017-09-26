@@ -44,7 +44,7 @@ def data_check(model_geo, variable, sat_image=None,
         if variable == 'fmask':
             var = fetch_fmask(sat_image, fmask_clear_val, file_path)
         if variable == 'pet':
-            var = fetch_gridmet(model_geo, 'pet')
+            var = fetch_gridmet(model_geo, 'pet', file_path)
 
         return var
 
@@ -55,12 +55,13 @@ def data_check(model_geo, variable, sat_image=None,
             return var
 
 
-def fetch_gridmet(model_geo, variable='pet'):
-    gridmet = GridMet([variable], date=model_geo.date, bbox=model_geo.bounds,
+def fetch_gridmet(model_geo, variable='pet', file_path=None):
+    gridmet = GridMet([variable], date=model_geo.date,
+                      bbox=model_geo.bounds,
                       target_profile=model_geo.profile,
-                      clip_feature=model_geo.geometry)
+                      clip_feature=model_geo.clip_geo)
 
-    var = gridmet.get_data_subset(grid_conform=True)
+    var = gridmet.get_data_subset(grid_conform=True, out_filename=file_path)
 
     return var
 
@@ -69,7 +70,7 @@ def fetch_temp(model_geo, variable='tmax', temp_units='C', file_path=None):
     print('Downloading new {}.....'.format(variable))
     topowx = TopoWX(date=model_geo.date, bbox=model_geo.bounds,
                     target_profile=model_geo.profile,
-                    clip_feature=model_geo.clip, out_file=file_path)
+                    clip_feature=model_geo.clip_geo, out_file=file_path)
 
     var = topowx.get_data_subset(grid_conform=True, var=variable,
                                  out_file=file_path,
@@ -78,10 +79,8 @@ def fetch_temp(model_geo, variable='tmax', temp_units='C', file_path=None):
 
 
 def fetch_dem(model_geo, file_path=None):
-    clip_shape = model_geo.clip
-
-    dem = MapzenDem(bounds=model_geo.bounds, clip_object=clip_shape,
-                    target_profile=model_geo.geometry, zoom=8,
+    dem = MapzenDem(bounds=model_geo.bounds, clip_object=model_geo.clip_geo,
+                    target_profile=model_geo.profile, zoom=8,
                     api_key=model_geo.api_key)
 
     var = dem.terrain(attribute='elevation', out_file=file_path,
