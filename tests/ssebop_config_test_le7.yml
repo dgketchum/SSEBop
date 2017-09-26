@@ -10,7 +10,7 @@ usgs_creds: /data01/images/usgs.txt
 
 satellite: LE7
 # Date format; string 'YYYYMMDD'
-start_date: 20000815
+start_date: 20000820
 end_date: 20000831
 k_factor: 1.25
 verify_paths: True

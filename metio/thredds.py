@@ -24,6 +24,7 @@ import os
 import copy
 from tempfile import mkdtemp
 from numpy import empty, float32, datetime64, timedelta64, argmin, abs, array
+from numpy import floor, ceil
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 from rasterio.transform import Affine
@@ -418,8 +419,11 @@ class GridMet(Thredds):
                 start_xl, end_xl = self._dtime_to_xldate()
 
                 subset = xray.loc[dict(day=slice(start_xl, end_xl),
-                                       lat=slice(self.bbox.north, self.bbox.south),
-                                       lon=slice(self.bbox.west, self.bbox.east))]
+                                       lat=slice(ceil(self.bbox.north),
+                                                 floor(self.bbox.south)),
+                                       lon=slice(floor(self.bbox.west),
+                                                 ceil(self.bbox.east)))]
+
                 subset.rename({'day': 'time'}, inplace=True)
                 date_ind = self._date_index()
                 subset['time'] = date_ind
