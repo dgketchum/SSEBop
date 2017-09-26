@@ -131,7 +131,7 @@ class Thredds(object):
 
     def _mask(self):
 
-        mask_path = os.path.join(self.temp_dir, 'masked_dem.tif')
+        mask_path = os.path.join(self.temp_dir, 'masked.tif')
 
         with rasopen(self.reprojection) as src:
             out_arr, out_trans = mask(src, self.clip_feature, crop=True,
@@ -407,7 +407,7 @@ class GridMet(Thredds):
         if not self.bbox:
             self.bbox = GeoBounds()
 
-    def get_data_subset(self, grid_conform=False):
+    def get_data_subset(self, grid_conform=False, out_filename=None):
 
         for var in self.variables:
 
@@ -429,8 +429,8 @@ class GridMet(Thredds):
                     setattr(self, var, subset)
                 else:
                     arr = subset[self.kwords[var]].values
-                    conformed_array = self.conform(arr)
-                    setattr(self, var, conformed_array)
+                    conformed_array = self.conform(arr, out_file=out_filename)
+                    return conformed_array
 
             else:
 
@@ -440,8 +440,8 @@ class GridMet(Thredds):
                                        lon=slice(self.bbox.west, self.bbox.east))]
                 arr = subset.elevation.values
                 if grid_conform:
-                    conformed_array = self.conform(arr)
-                    setattr(self, var, conformed_array)
+                    conformed_array = self.conform(arr, out_file=out_filename)
+                    return conformed_array
                 else:
                     setattr(self, var, subset)
 
