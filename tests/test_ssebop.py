@@ -64,7 +64,7 @@ class SSEBopModelTestCaseLC8(unittest.TestCase):
             self.assertIsInstance(image_geo, SSEBopGeo)
             self.assertIsInstance(image_geo.image_dir, str)
 
-    def test_cold_pix(self):
+    def test_c_factor(self):
         for runspec in self.cfg.runspecs:
             paths.build(runspec.root)
             sseb = SSEBopModel(runspec)
@@ -80,6 +80,8 @@ class SSEBopModelTestCaseLC8(unittest.TestCase):
             sseb.configure_run()
             dt = sseb.difference_temp()
             self.assertEqual(dt, 300)
+
+
 if __name__ == '__main__':
     unittest.main()
 

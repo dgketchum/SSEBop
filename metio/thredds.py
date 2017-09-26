@@ -336,7 +336,6 @@ class GridMet(Thredds):
         - 'rmax' : daily maximum relative humidity [%]
         - 'rmin' : daily minimum relative humidity [%]
         - 'sph' : daily mean specific humidity [kg/kg]
-        - 'srad' : daily maximum relative humidity [%]
         - 'prcp' : daily total precipitation [mm]
         - 'srad' : daily mean downward shortwave radiation at surface [W m-2]
         - 'th' : daily mean wind direction clockwise from North [degrees]
