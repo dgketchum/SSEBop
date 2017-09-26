@@ -334,9 +334,27 @@ class Landsat5(LandsatImage):
 
         return ndvi
 
+    def lai(self):
+        """
+        Leaf area index (LAI), or the surface area of leaves to surface area ground.
+        Trezza and Allen, 2014
+        :param ndvi: normalized difference vegetation index [-]
+        :return: LAI [-]
+        """
+        ndvi = self.ndvi()
+        lai = 7.0 * (ndvi ** 3)
+        lai = where(lai > 6., 6., lai)
+        return lai
+
     def emissivity(self):
 
         ndvi = self.ndvi()
+        lai = self.lai()
+        # Tasumi et al., 2003
+        # narrow-band emissivity
+
+
+        # Sobrino et el., 2004
         red = self.reflectance(3)
         bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
         bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
@@ -348,6 +366,10 @@ class Landsat5(LandsatImage):
         return emissivity
 
     def land_surface_temp(self):
+        """
+        Mean values from Allen (2007)
+        :return: 
+        """
         rp = 0.91
         tau = 0.866
         rsky = 1.32

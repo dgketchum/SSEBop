@@ -112,6 +112,9 @@ class Landsat5TestCase(unittest.TestCase):
         ndsi_exp = (b2 - b5) / (b2 + b5)
         self.assertEqual(ndsi, ndsi_exp)
 
+    def test_lst(self):
+        ts = self.l5.land_surface_temp()
+        self.l5.save_array(ts, '/data01/images/sandbox/image_testing/{}_ts.tif'.format(self.l5.landsat_scene_id))
 
 class Landsat7TestCase(unittest.TestCase):
     def setUp(self):
