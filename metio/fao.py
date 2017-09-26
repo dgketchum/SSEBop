@@ -32,11 +32,6 @@ TEST_CANOPY_RESISTANCE_DAY = 0.001273
 # ============== AGREGATED EQUATIONS ===========================
 
 
-def difference_temp(rn, rho, cp, rah):
-    dt = (rn * rah) / (rho * cp)
-    return dt
-
-
 def get_net_radiation(tmin, tmax, doy, elevation, lat, albedo):
     net_lw = net_lw_radiation(tmin=tmin, tmax=tmax, doy=doy,
                               elevation=elevation, lat=lat)
@@ -56,10 +51,8 @@ def net_lw_radiation(tmin, tmax, doy, elevation, lat):
     clear_sky_rad = cs_rad(elevation, ext_rad)
     solar_rad = sol_rad_from_t(ext_rad, clear_sky_rad, tmin, tmax,
                                coastal=False)
-    tmin_k, tmax_k = tmin + 273.16, tmax + 273.16
-    lw_rad = net_out_lw_rad(tmin_k=tmin_k, tmax_k=tmax_k,
-                            sol_rad=solar_rad, cs_rad=clear_sky_rad,
-                            avp=avp)
+    lw_rad = net_out_lw_rad(tmin=tmin, tmax=tmax, sol_rad=solar_rad,
+                            cs_rad=clear_sky_rad, avp=avp)
     return lw_rad
 
 
@@ -108,7 +101,9 @@ def avp_from_tmin(tmin):
     :return: Actual vapour pressure [kPa]
     :rtype: float
     """
-    return 0.611 * exp((17.27 * tmin) / (tmin + 237.3))
+    t_min_c = tmin - 273.15
+    avp = 0.611 * exp((17.27 * t_min_c) / (t_min_c + 237.3))
+    return avp
 
 
 def sol_dec(day_of_year):
@@ -283,7 +278,7 @@ def atm_pressure(altitude):
 # =====================================================================
 
 
-def net_out_lw_rad(tmin_k, tmax_k, sol_rad, cs_rad, avp):
+def net_out_lw_rad(tmin, tmax, sol_rad, cs_rad, avp):
     """
     Estimate net outgoing longwave radiation.
 
@@ -301,8 +296,8 @@ def net_out_lw_rad(tmin_k, tmax_k, sol_rad, cs_rad, avp):
 
     Based on FAO equation 39 in Allen et al (1998).
 
-    :param tmin_k: Absolute daily minimum temperature [degrees Kelvin]
-    :param tmax_k: Absolute daily maximum temperature [degrees Kelvin]
+    :param tmin: Absolute daily minimum temperature [degrees Kelvin]
+    :param tmax: Absolute daily maximum temperature [degrees Kelvin]
     :param sol_rad: Solar radiation [MJ m-2 day-1]. If necessary this can be
         estimated using ``sol+rad()``.
     :param cs_rad: Clear sky radiation [MJ m-2 day-1]. Can be estimated using
@@ -313,7 +308,7 @@ def net_out_lw_rad(tmin_k, tmax_k, sol_rad, cs_rad, avp):
     :rtype: float
     """
     tmp1 = (STEFAN_BOLTZMANN_CONSTANT *
-            ((power(tmax_k, 4) + power(tmin_k, 4)) / 2))
+            ((power(tmax, 4) + power(tmin, 4)) / 2))
     tmp2 = (0.34 - (0.14 * sqrt(avp)))
     tmp3 = 1.35 * (sol_rad / cs_rad) - 0.35
     lw_rad = tmp1 * tmp2 * tmp3
