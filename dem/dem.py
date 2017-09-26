@@ -41,7 +41,7 @@ class Dem(object):
         pass
 
     @staticmethod
-    def save(array, geometry, output_filename, crs=None):
+    def save(array, geometry, output_filename, crs=None, return_array=False):
         try:
             array = array.reshape(1, array.shape[1], array.shape[2])
         except IndexError:
@@ -51,7 +51,12 @@ class Dem(object):
             geometry['crs'] = CRS({'init': crs})
         with rasopen(output_filename, 'w', **geometry) as dst:
             dst.write(array)
-        return None
+        if return_array:
+            with rasopen(output_filename, 'r') as src:
+                arr = src.read()
+            return arr
+        else:
+            return None
 
 
 class ThreddsDem(Dem):
@@ -112,18 +117,22 @@ class MapzenDem(Dem):
 
         if attribute == 'elevation':
             if out_file:
-                self.save(dem, self.target_profile, out_file)
+                arr = self.save(dem, self.target_profile, out_file,
+                                return_array=True)
                 if save_and_return:
-                    return dem
+                    return arr
+            else:
+                return dem
 
         elif attribute == 'slope':
             slope = self.get_slope(dem, mode=mode)
             if out_file:
                 if len(slope.shape) > 2:
                     slope = reshape(1, dem.shape[0], dem.shape[1])
-                self.save(slope, self.target_profile, out_file)
+                arr = self.save(slope, self.target_profile, out_file,
+                                return_array=True)
                 if save_and_return:
-                    return slope
+                    return arr
             else:
                 return slope
 
@@ -133,9 +142,10 @@ class MapzenDem(Dem):
             if out_file:
                 if len(aspect.shape) > 2:
                     aspect = reshape(1, dem.shape[0], dem.shape[1])
-                self.save(aspect, self.target_profile, out_file)
+                arr = self.save(aspect, self.target_profile, out_file,
+                                return_array=True)
                 if save_and_return:
-                    return aspect
+                    return arr
             else:
                 return aspect
 
