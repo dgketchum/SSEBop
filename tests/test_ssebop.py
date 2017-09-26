@@ -53,13 +53,8 @@ class SSEBopModelTestCaseLC8(unittest.TestCase):
 
             sseb = SSEBopModel(runspec)
             setattr(sseb, 'image', Landsat8(sseb.image_dir))
-            image_geo = SSEBopGeo(sseb.image_id, sseb.image_dir,
-                                  sseb.image.get_tile_geometry(),
-                                  sseb.image.transform,
-                                  sseb.image.profile,
-                                  sseb.image.rasterio_geometry,
-                                  sseb.image.bounds,
-                                  sseb.api_key, sseb.image_date)
+            image_geo = SSEBopGeo(sseb.image_id, sseb.image_dir, sseb.image.get_tile_geometry(), sseb.image.transform,
+                                  sseb.image.profile, sseb.image.rasterio_geometry, sseb.image.bounds, sseb.api_key)
 
             self.assertIsInstance(image_geo, SSEBopGeo)
             self.assertIsInstance(image_geo.image_dir, str)

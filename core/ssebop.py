@@ -95,12 +95,13 @@ class SSEBopModel(object):
                    ','.join(mapping.keys())))
         self._is_configured = True
 
-        self.image_geo = SSEBopGeo(self.image_id, self.image_dir,
-                                   self.image.get_tile_geometry(),
-                                   self.image.transform, self.image.profile,
-                                   self.image.rasterio_geometry,
-                                   self.api_key,
-                                   self.image_date)
+        self.image_geo = SSEBopGeo(image_id=self.image_id,
+                                   image_dir=self.image_dir,
+                                   transform=self.image.transform,
+                                   profile=self.image.profile,
+                                   clip_geo=self.image.get_tile_geometry(),
+                                   api_key=self.api_key,
+                                   date=self.image_date)
 
     def run(self):
         """ Run the SSEBop algorithm.
@@ -114,7 +115,11 @@ class SSEBopModel(object):
         tc = c * ta
         th = tc + dt
         etrf = (th - ts) / dt
-        pet = None
+        pet = data_check(self.image_geo, variable='pet')
+        et = pet * etrf
+        self.save_array(et, 'et')
+
+        return None
 
     def c_factor(self, ts):
 
@@ -196,12 +201,16 @@ class SSEBopModel(object):
         down([self.image_id], output_dir=self.parent_dir,
              usgs_creds_txt=self.usgs_creds)
 
-    def save_array(self, arr, variable_name, crs=None):
+    def save_array(self, arr, variable_name, crs=None, output_path=None):
 
         geometry = self.image.rasterio_geometry
 
-        output_filename = os.path.join(self.image_dir, '{}_{}'.format(self.image_id,
-                                                                      variable_name))
+        if not output_path:
+            output_filename = os.path.join(self.image_dir, '{}_{}.tif'.format(self.image_id,
+                                                                              variable_name))
+        else:
+            output_filename = os.path.join(output_path, '{}_{}.tif'.format(self.image_id,
+                                                                           variable_name))
 
         try:
             arr = arr.reshape(1, arr.shape[1], arr.shape[2])
@@ -219,14 +228,13 @@ class SSEBopModel(object):
 
 
 class SSEBopGeo:
-    def __init__(self, image_id, image_dir, clip, transform,
-                 profile, geometry, api_key, date):
+    def __init__(self, image_id, image_dir, transform,
+                 profile, clip_geo, api_key, date):
         self.image_id = image_id
         self.image_dir = image_dir
-        self.clip = clip
         self.transform = transform
         self.profile = profile
-        self.geometry = geometry
+        self.clip_geo = clip_geo
         self.bounds = RasterBounds(affine_transform=self.transform,
                                    profile=self.profile, latlon=True)
         # add utm and latlon bounds to RasterBounds TODO
