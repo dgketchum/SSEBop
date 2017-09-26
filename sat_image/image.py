@@ -379,6 +379,8 @@ class Landsat7(LandsatImage):
         self.k1, self.k2 = 666.09, 1282.71
 
     def radiance(self, band):
+        if band == 6:
+            band = '6_vcid_1'
         qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(band))
         qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band))
         l_min = getattr(self, 'radiance_minimum_band_{}'.format(band))
