@@ -16,19 +16,20 @@
 
 import unittest
 from fiona import open as fopen
-from rasterio import open as rasopen
 
-from sat_image.image import Landsat8, Landsat5, Landsat7, LandsatImage
+from sat_image.image import Landsat8, Landsat5, Landsat7
 
 
 class TestImageLST5(unittest.TestCase):
     def setUp(self):
         self.dir_name_LT5 = 'tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01'
         self.l5 = Landsat5(self.dir_name_LT5)
+        self.point_file = 'tests/data/ssebop_test/points/041_025_CA_Let.shp'
 
-
-    def test_something(self):
-        self.assertEqual(True, False)
+    def test_surface_temps(self):
+        lst = self.l5.land_surface_temp()
+        points = raster_point_row_col(lst, self.point_file, self.l5.transform)
+        self.assertAlmostEqual(1, points)
 
 
 class TestImageLST7(unittest.TestCase):
@@ -49,25 +50,18 @@ class TestImageLST8(unittest.TestCase):
         self.assertEqual(True, False)
 
 
-def raster_point_row_col(raster, points):
-    pt_data = {}
-
+def raster_point_row_col(arr, points, affine):
+    point_data = {}
     with fopen(points, 'r') as src:
         for feature in src:
-            pt_data[feature['id']] = feature
+            pts = feature['geometry']['coordinates']
 
-    if isinstance(raster, LandsatImage):
-        a = raster.rasterio_geometry['affine']
-    if isinstance(raster, str):
-        with rasopen(raster, 'r') as src:
-            a = src.affine
-
-    for key, val in pt_data.items():
-        x, y = val['geometry']['coordinates'][0], val['geometry']['coordinates'][1]
-        col, row = ~a * (x, y)
-        val['index'] = row, col
+    for x, y in pts:
+        col, row = ~affine * (x, y)
+        arr['index'] = row, col
 
     return pt_data
+
 
 if __name__ == '__main__':
     unittest.main()
