@@ -494,17 +494,42 @@ class Landsat7(LandsatImage):
 
         return ndvi
 
-    def emissivity(self):
+    def lai(self):
+        """
+        Leaf area index (LAI), or the surface area of leaves to surface area ground.
+        Trezza and Allen, 2014
+        :param ndvi: normalized difference vegetation index [-]
+        :return: LAI [-]
+        """
+        ndvi = self.ndvi()
+        lai = 7.0 * (ndvi ** 3)
+        lai = where(lai > 6., 6., lai)
+        return lai
+
+    def emissivity(self, approach='tasumi'):
 
         ndvi = self.ndvi()
-        red = self.reflectance(3)
-        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
-        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
 
-        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
-        pv_emiss = 0.004 * pv + 0.986
-        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
-        return emissivity
+        if approach == 'tasumi':
+            lai = self.lai()
+            # Tasumi et al., 2003
+            # narrow-band emissivity
+            nb_epsilon = where((ndvi > 0) & (lai <= 3), 0.97 + 0.0033 * lai, nan)
+            nb_epsilon = where((ndvi > 0) & (lai > 3), 0.98, nb_epsilon)
+            nb_epsilon = where(ndvi <= 0, 0.99, nb_epsilon)
+            return nb_epsilon
+
+        if approach == 'sobrino':
+            # Sobrino et el., 2004
+            red = self.reflectance(3)
+            bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+            bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+
+            pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+            pv_emiss = 0.004 * pv + 0.986
+            emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+
+            return emissivity
 
     def land_surface_temp(self):
         rp = 0.91
@@ -680,17 +705,42 @@ class Landsat8(LandsatImage):
 
         return ndvi
 
-    def emissivity(self):
+    def lai(self):
+        """
+        Leaf area index (LAI), or the surface area of leaves to surface area ground.
+        Trezza and Allen, 2014
+        :param ndvi: normalized difference vegetation index [-]
+        :return: LAI [-]
+        """
+        ndvi = self.ndvi()
+        lai = 7.0 * (ndvi ** 3)
+        lai = where(lai > 6., 6., lai)
+        return lai
+
+    def emissivity(self, approach='tasumi'):
 
         ndvi = self.ndvi()
-        red = self.reflectance(4)
-        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
-        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
 
-        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
-        pv_emiss = 0.004 * pv + 0.986
-        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
-        return emissivity
+        if approach == 'tasumi':
+            lai = self.lai()
+            # Tasumi et al., 2003
+            # narrow-band emissivity
+            nb_epsilon = where((ndvi > 0) & (lai <= 3), 0.97 + 0.0033 * lai, nan)
+            nb_epsilon = where((ndvi > 0) & (lai > 3), 0.98, nb_epsilon)
+            nb_epsilon = where(ndvi <= 0, 0.99, nb_epsilon)
+            return nb_epsilon
+
+        if approach == 'sobrino':
+            # Sobrino et el., 2004
+            red = self.reflectance(3)
+            bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+            bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+
+            pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+            pv_emiss = 0.004 * pv + 0.986
+            emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+
+            return emissivity
 
     def land_surface_temp(self):
 
