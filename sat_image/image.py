@@ -346,24 +346,30 @@ class Landsat5(LandsatImage):
         lai = where(lai > 6., 6., lai)
         return lai
 
-    def emissivity(self):
+    def emissivity(self, approach='tasumi'):
 
         ndvi = self.ndvi()
-        lai = self.lai()
-        # Tasumi et al., 2003
-        # narrow-band emissivity
 
+        if approach == 'tasumi':
+            lai = self.lai()
+            # Tasumi et al., 2003
+            # narrow-band emissivity
+            nb_epsilon = where((ndvi > 0) & (lai <= 3), 0.97 + 0.0033 * lai, nan)
+            nb_epsilon = where((ndvi > 0) & (lai > 3), 0.98, nb_epsilon)
+            nb_epsilon = where(ndvi <= 0, 0.99, nb_epsilon)
+            return nb_epsilon
 
-        # Sobrino et el., 2004
-        red = self.reflectance(3)
-        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
-        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+        if approach == 'sobrino':
+            # Sobrino et el., 2004
+            red = self.reflectance(3)
+            bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+            bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
 
-        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
-        pv_emiss = 0.004 * pv + 0.986
-        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+            pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+            pv_emiss = 0.004 * pv + 0.986
+            emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
 
-        return emissivity
+            return emissivity
 
     def land_surface_temp(self):
         """
@@ -373,8 +379,9 @@ class Landsat5(LandsatImage):
         rp = 0.91
         tau = 0.866
         rsky = 1.32
-        epsilon = self.emissivity()
-        rc = ((self.radiance(6) - rp) / tau) - ((1 - epsilon) * rsky)
+        epsilon = self.emissivity(approach='tasumi')
+        radiance = self.radiance(6)
+        rc = ((radiance - rp) / tau) - ((1 - epsilon) * rsky)
         lst = self.k2 / (log((epsilon * self.k1 / rc) + 1))
         return lst
 
