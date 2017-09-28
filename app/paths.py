@@ -40,27 +40,11 @@ class Paths:
         self._is_set = True
         self.ssebop_root = parent_root
 
-    def set_mask_path(self, path):
-        self.mask = path
-
-    def set_polygons_path(self, path):
-        self.polygons = path
-
     def verify(self):
 
         if not os.path.exists(self.ssebop_root):
             print('NOT FOUND {}'.format(self.ssebop_root))
             sys.exit(1)
-
-        if self.polygons:
-            if not os.path.exists(self.ssebop_root):
-                print('NOT FOUND {}'.format(self.ssebop_root))
-                sys.exit(1)
-
-        if self.mask:
-            if not os.path.exists(self.ssebop_root):
-                print('NOT FOUND {}'.format(self.ssebop_root))
-                sys.exit(1)
 
     def configure_project_dirs(self, runspec):
 
