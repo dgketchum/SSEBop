@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config.py" afterPath="$PROJECT_DIR$/app/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/entry_script.py" afterPath="$PROJECT_DIR$/app/entry_script.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat_image/image.py" afterPath="$PROJECT_DIR$/sat_image/image.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" afterPath="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/paths.py" afterPath="$PROJECT_DIR$/app/paths.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,9 +34,9 @@
             <state relative-caret-position="1955">
               <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
               <folding>
-                <element signature="e#6059#6798#0" expanded="false" />
-                <element signature="e#6846#6970#0" expanded="false" />
-                <element signature="e#7274#8103#0" expanded="false" />
+                <element signature="e#6051#6790#0" expanded="false" />
+                <element signature="e#6838#6962#0" expanded="false" />
+                <element signature="e#7266#8095#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -56,12 +52,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="43" column="23" lean-forward="true" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+            <state relative-caret-position="182">
+              <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="paths.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/paths.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -188,7 +196,6 @@
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/download_composer.py" />
         <option value="$PROJECT_DIR$/tests/test_paths.py" />
         <option value="$PROJECT_DIR$/tests/test_down.py" />
-        <option value="$PROJECT_DIR$/app/paths.py" />
         <option value="$PROJECT_DIR$/metio/topowx_issue.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -217,6 +224,7 @@
         <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
         <option value="$PROJECT_DIR$/app/config.py" />
+        <option value="$PROJECT_DIR$/app/paths.py" />
       </list>
     </option>
   </component>
@@ -526,13 +534,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00149" summary="move image list to config function, make each runspec correspond to an image, rather than config file, for-loop over runspecs for multi-image run, move data collector/checker out of ssebop algorithm">
-      <created>1503586591834</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1503586591835</updated>
     </task>
     <task id="LOCAL-00150" summary="load general config attrs into Config object">
       <created>1503589317486</created>
@@ -870,7 +871,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506552463169</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="updating config format">
+      <created>1506609261846</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1506609261847</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -996,7 +1004,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="fixed 0 or 1 option in fmask" />
     <MESSAGE value="fixed save_and_return in dem class" />
     <MESSAGE value="separated write and read, so resample reads new .tif rather than array passed &#10;to write function" />
     <MESSAGE value="corrected avp to take K, convert to C, and do comp" />
@@ -1021,7 +1028,8 @@
     <MESSAGE value="adding point reader raster to lst tests" />
     <MESSAGE value="raster points extract working on image lst test" />
     <MESSAGE value="passing all three satellite's lst tests!" />
-    <option name="LAST_COMMIT_MESSAGE" value="passing all three satellite's lst tests!" />
+    <MESSAGE value="updating config format" />
+    <option name="LAST_COMMIT_MESSAGE" value="updating config format" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1112,13 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
           <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/paths.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="64" column="46" lean-forward="false" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -1406,9 +1407,9 @@
         <state relative-caret-position="1955">
           <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
           <folding>
-            <element signature="e#6059#6798#0" expanded="false" />
-            <element signature="e#6846#6970#0" expanded="false" />
-            <element signature="e#7274#8103#0" expanded="false" />
+            <element signature="e#6051#6790#0" expanded="false" />
+            <element signature="e#6838#6962#0" expanded="false" />
+            <element signature="e#7266#8095#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1431,9 +1432,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="43" column="23" lean-forward="true" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+        <state relative-caret-position="182">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/paths.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
