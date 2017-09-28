@@ -10,8 +10,8 @@ usgs_creds: /data01/images/usgs.txt
 
 satellite: LC8
 # Date format; string 'YYYYMMDD'
-start_date: 20140815
-end_date: 20140831
+start_date: 20140401
+end_date: 20141030
 verify_paths: True
 down_images_only: True
 

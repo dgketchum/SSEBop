@@ -60,9 +60,6 @@ class SSEBopModel(object):
         if not paths.is_set():
             raise PathsNotSetExecption
 
-        paths.set_polygons_path(runspec.polygons)
-        paths.set_mask_path(runspec.mask)
-
         if runspec.verify_paths:
             paths.verify()
 
@@ -93,6 +90,7 @@ class SSEBopModel(object):
             print('Invalid satellite key: "{}". available key = {}'.format
                   (self.satellite,
                    ','.join(mapping.keys())))
+
         self._is_configured = True
 
         self.image_geo = SSEBopGeo(image_id=self.image_id,
@@ -200,10 +198,6 @@ class SSEBopModel(object):
         print('---------------------------------------')
         print(msg)
         print('---------------------------------------')
-
-    @staticmethod
-    def _debug(msg):
-        print('%%%%%%%%%%%%%%%% {}'.format(msg))
 
     def down_image(self):
         down([self.image_id], output_dir=self.parent_dir,
