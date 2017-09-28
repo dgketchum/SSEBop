@@ -117,9 +117,15 @@ class SSEBopModel(object):
         etrf = (th - ts) / dt
         pet = data_check(self.image_geo, variable='pet')
         et = pet * etrf
-        self.save_array(ts, 'lst', output_path='/data01/images/sandbox/ssebop_testing')
-        self.save_array(et, 'et', output_path='/data01/images/sandbox/ssebop_testing')
-        self.save_array(etrf, 'etrf', output_path='/data01/images/sandbox/ssebop_testing')
+        fmask = data_check(self.image_geo, variable='fmask',
+                           sat_image=self.image, fmask_clear_val=1)
+        et_mskd = where(fmask, et, nan)
+
+        self.save_array(et_mskd, 'ssebop_et_mskd', self.image_dir)
+        self.save_array(pet, 'pet', self.image_dir)
+        self.save_array(ts, 'lst', self.image_dir)
+        self.save_array(et, 'ssebop_et', self.image_dir)
+        self.save_array(etrf, 'ssebop_etrf', self.image_dir)
 
         return None
 

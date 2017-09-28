@@ -40,14 +40,8 @@ year: None
 single_date: False
 start_date: 4/1/2010
 end_date: 11/1/2010
-k_factor: 1.25
 verify_paths: True
-
-# Add the path relative to /input_root/ or /root/
-# They will be joined to input_root.
-# Parameters mask and polygon are optional, put None if None
-polygons: None
-mask: None
+down_images_only: False
 '''
 
 DATETIME_FMT = '%Y%m%d'
@@ -66,8 +60,8 @@ class Config:
     start_date = None
     end_date = None
     usgs_creds = None
-    k_factor = None
     verify_paths = None
+    down_images_only = None
 
     def __init__(self, path=None):
         self.load(path=path)
@@ -95,10 +89,10 @@ class Config:
 
             attrs = ('path', 'row', 'root',
                      'api_key', 'usgs_creds',
-                     'mask', 'polygons',
                      'start_date', 'end_date',
                      'satellite',
-                     'k_factor', 'verify_paths',)
+                     'verify_paths',
+                     'down_images_only')
 
             time_attrs = ('start_date', 'end_date')
 
@@ -141,9 +135,9 @@ class RunSpec(object):
         attrs = ('path', 'row',
                  'satellite', 'api_key',
                  'usgs_creds', 'verify_paths',
-                 'k_factor', 'root',
-                 'mask', 'polygons',
-                 'start_date', 'end_date',)
+                 'root',
+                 'start_date', 'end_date',
+                 'down_images_only')
 
         for attr in attrs:
             cfg_attr = getattr(cfg, attr)
