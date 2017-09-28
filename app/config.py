@@ -19,7 +19,8 @@ from __future__ import print_function
 import os
 import sys
 from datetime import datetime
-from landsat.download_composer import download_landsat as down
+from landsat.download_composer import download_landsat as down_from_runspec
+from landsat.usgs_download import down_usgs_by_list as down_list
 
 import yaml
 
@@ -112,12 +113,20 @@ class Config:
 
         self.runspecs = [RunSpec(image, self) for image in images]
 
+        if self.down_images_only:
+
+            for spec in self.runspecs:
+                down_list([spec.image_id], output_dir=spec.parent_dir,
+                          usgs_creds_txt=spec.usgs_creds)
+
+            self.runspecs = None
+
     def get_image_list(self):
 
         super_list = []
-        images = down((self.start_date, self.end_date), satellite=self.satellite,
-                      path_row_list=[(self.path, self.row)],
-                      dry_run=True)
+        images = down_from_runspec((self.start_date, self.end_date), satellite=self.satellite,
+                                   path_row_list=[(self.path, self.row)],
+                                   dry_run=True)
         if images:
             super_list.append(images)
             try:
