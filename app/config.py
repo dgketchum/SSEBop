@@ -124,7 +124,8 @@ class Config:
     def get_image_list(self):
 
         super_list = []
-        images = down_from_runspec((self.start_date, self.end_date), satellite=self.satellite,
+        images = down_from_runspec((self.start_date, self.end_date),
+                                   satellite=self.satellite,
                                    path_row_list=[(self.path, self.row)],
                                    dry_run=True)
         if images:
@@ -155,6 +156,13 @@ class RunSpec(object):
         self.image_date = date = datetime.strptime(image[9:16], JULIAN_FMT)
         self.parent_dir = os.path.join(cfg.path_row_dir, str(date.year))
         self.image_dir = os.path.join(self.parent_dir, image)
+        pseudo_spec = {'path': self.path,
+                       'row': self.row,
+                       'start_date': self.start_date,
+                       'end_date': self.end_date,
+                       'image_dir': self.image_dir,
+                       'root': self.root}
+        self.image_exists = paths.configure_project_dirs(pseudo_spec)
 
 
 def check_config(path=None):

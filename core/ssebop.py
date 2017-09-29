@@ -45,6 +45,7 @@ class SSEBopModel(object):
 
         self.image_dir = runspec.image_dir
         self.parent_dir = runspec.parent_dir
+        self.image_exists = runspec.image_exists
         self.image_date = runspec.image_date
         self.satellite = runspec.satellite
         self.path = runspec.path
@@ -62,8 +63,6 @@ class SSEBopModel(object):
 
         if runspec.verify_paths:
             paths.verify()
-
-        self.image_exists = paths.configure_project_dirs(runspec)
 
         self._info('Constructing/Initializing SSEBop...')
 

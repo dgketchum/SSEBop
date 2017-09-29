@@ -46,21 +46,22 @@ class Paths:
             print('NOT FOUND {}'.format(self.ssebop_root))
             sys.exit(1)
 
-    def configure_project_dirs(self, runspec):
+    @staticmethod
+    def configure_project_dirs(spec):
 
-        p, r = str(runspec.path).zfill(3), str(runspec.row).zfill(3)
-        path_row_dir = os.path.join(self.ssebop_root, '{}_{}'.format(p, r))
+        p, r = str(spec['path']).zfill(3), str(spec['row']).zfill(3)
+        path_row_dir = os.path.join(spec['root'], '{}_{}'.format(p, r))
 
         if not os.path.exists(path_row_dir):
             os.mkdir(path_row_dir)
-        start, end = runspec.start_date, runspec.end_date
+        start, end = spec['start_date'], spec['end_date']
 
         for dt in rrule(YEARLY, dtstart=start, until=end):
             year_dir = os.path.join(path_row_dir, str(dt.year))
             if not os.path.exists(year_dir):
                 os.mkdir(year_dir)
 
-        image_path = runspec.image_dir
+        image_path = spec['image_dir']
         if os.path.exists(image_path):
             if len(os.listdir(image_path)) > 2:
                 return True
