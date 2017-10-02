@@ -19,10 +19,8 @@ import requests
 from fiona import collection
 from fiona.crs import from_epsg
 from geopy.distance import vincenty
-from decimal import Decimal as D
 from climata.hydromet import AgrimetRecentIO
 
-from numpy import sin, cos, sqrt, deg2rad, arcsin
 
 STATION_INFO_URL = 'https://www.usbr.gov/pn/agrimet/agrimetmap/usbr_map.json'
 # in km
@@ -34,13 +32,23 @@ class Agrimet(object):
         pass
 
 
-def fetch_agrimet_by_lat_lon(lat, lon):
-    station_data = load_stations()
-    station = find_closest_station(station_data, lat, lon)
-    data = AgrimetRecentIO()
+def fetch_agrimet(start, end, sat_image=None,
+                  lat=None, lon=None, station=None):
+    if station:
+        data = AgrimetRecentIO(station=station, start_date=start, end_date=end)
+    elif lat and lon:
+        station = find_closest_station(lat, lon)
+        data = AgrimetRecentIO(station=station, start_date=start, end_date=end)
+    elif sat_image:
+        centroid = sat_image.scene_coords_deg
+        lat, lon = centroid[0], centroid[1]
+        station = find_closest_station(lat, lon)
+        data = AgrimetRecentIO(station=station, start_date=start, end_date=end)
+
+    return data
 
 
-def find_closest_station(station_data, target_lat, target_lon):
+def find_closest_station(target_lat, target_lon):
     """ The two-argument inverse tangent function.
     :param station_data: 
     :param target_lat: 
@@ -48,6 +56,7 @@ def find_closest_station(station_data, target_lat, target_lon):
     :return: 
     """
     distances = {}
+    station_data = load_stations()
     for feat in station_data['features']:
         stn_crds = feat['geometry']['coordinates']
         stn_site_id = feat['properties']['siteid']
