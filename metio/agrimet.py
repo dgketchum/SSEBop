@@ -14,79 +14,93 @@
 # limitations under the License.
 # =============================================================================================
 
-import os
 import json
-from requests import get
+import requests
 from fiona import collection
 from fiona.crs import from_epsg
-from shapely.geometry import Point, mapping
+from geopy.distance import vincenty
+from decimal import Decimal as D
 from climata.hydromet import AgrimetRecentIO
 
+from numpy import sin, cos, sqrt, deg2rad, arcsin
+
 STATION_INFO_URL = 'https://www.usbr.gov/pn/agrimet/agrimetmap/usbr_map.json'
+# in km
+EARTH_RADIUS = 6371.
 
 
-def fetch_agrimet_by_lat_lon(station, lat, lon):
-    stations = load_stations()
-    data = AgrimetRecentIO(station=station)
-    for row in data:
+class Agrimet(object):
+    def __init__(self):
         pass
-    data = row
-    x = None
+
+
+def fetch_agrimet_by_lat_lon(lat, lon):
+    station_data = load_stations()
+    station = find_closest_station(station_data, lat, lon)
+    data = AgrimetRecentIO()
+
+
+def find_closest_station(station_data, target_lat, target_lon):
+    """ The two-argument inverse tangent function.
+    :param station_data: 
+    :param target_lat: 
+    :param target_lon: 
+    :return: 
+    """
+    distances = {}
+    for feat in station_data['features']:
+        stn_crds = feat['geometry']['coordinates']
+        stn_site_id = feat['properties']['siteid']
+        lat_stn, lon_stn = stn_crds[1], stn_crds[0]
+        dist = vincenty((target_lat, target_lon), (lat_stn, lon_stn)).km
+        distances[stn_site_id] = dist
+    k = min(distances, key=distances.get)
+    return k
 
 
 def load_stations():
-    r = get(STATION_INFO_URL)
+    r = requests.get(STATION_INFO_URL)
     stations = json.loads(r.text)
-    write_shp(stations, 4326, '/data01/images/vector_data/agrimet_sites.shp')
     return stations
 
 
 def write_shp(json_data, epsg, out):
-    agri_schema = {
-        'geometry': {
-            'coordinates': [
-                'float',
-                'float'
-            ],
-            'type': 'Point'
-        },
-        'id': 'str',
-        'properties': {
-            'program': 'str',
-            'url': 'str',
-            'siteid': 'str',
-            'title': 'str',
-            'state': 'str',
-            'type': 'str',
-            'region': 'str',
-            'install': 'str'
-        },
-        'type': 'str'
-    }
+    agri_schema = {'geometry': 'Point',
+                   'properties': {
+                       'program': 'str',
+                       'url': 'str',
+                       'siteid': 'str',
+                       'title': 'str',
+                       'state': 'str',
+                       'type': 'str',
+                       'region': 'str',
+                       'install': 'str'}}
+
     cord_ref = from_epsg(epsg)
     shp_driver = 'ESRI Shapefile'
 
     with collection(out, mode='w', driver=shp_driver, schema=agri_schema,
                     crs=cord_ref) as output:
         for rec in json_data['features']:
-            point = Point(rec['geometry']['coordinates'])
-            output.write({'properties': {
-                'program': rec['properties']['program'],
-                'url': rec['properties']['url'],
-                'siteid': rec['properties']['siteid'],
-                'title': rec['properties']['title'],
-                'state': rec['properties']['state'],
-                'type': rec['properties']['type'],
-                'region': rec['properties']['region'],
-                'install': rec['properties']['install']
-            },
-                'geometry': mapping(point)
-            })
+            try:
+                output.write({'geometry': {'type': 'Point',
+                                           'coordinates':
+                                               (rec['geometry']['coordinates'][0],
+                                                rec['geometry']['coordinates'][1])},
+                              'properties': {
+                                  'program': rec['properties']['program'],
+                                  'url': rec['properties']['url'],
+                                  'siteid': rec['properties']['siteid'],
+                                  'title': rec['properties']['title'],
+                                  'state': rec['properties']['state'],
+                                  'type': rec['properties']['type'],
+                                  'region': rec['properties']['region'],
+                                  'install': rec['properties']['install']}})
+            except KeyError:
+                pass
 
 
 if __name__ == '__main__':
-    statn = 'COVM'
-    fetch_agrimet_by_lat_lon(statn, 1, 2)
-
+    pass
 
 # ========================= EOF ====================================================================

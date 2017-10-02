@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csv_to_shp.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config.py" afterPath="$PROJECT_DIR$/app/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/paths.py" afterPath="$PROJECT_DIR$/app/paths.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/agrimet.py" afterPath="$PROJECT_DIR$/metio/agrimet.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" afterPath="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_agrimet.py" afterPath="$PROJECT_DIR$/tests/test_agrimet.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,11 +33,14 @@
       <file leaf-file-name="agrimet.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="763">
-              <caret line="86" column="26" lean-forward="true" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
+            <state relative-caret-position="573">
+              <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#762#771#0" expanded="true" />
+                <element signature="e#762#773#0" expanded="true" />
+                <element signature="e#1421#1563#1" expanded="false" />
+                <element signature="e#1972#2060#0" expanded="false" />
+                <element signature="e#2104#3693#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,9 +49,12 @@
       <file leaf-file-name="test_agrimet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="692">
+              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#734#749#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -189,7 +191,6 @@
         <option value="$PROJECT_DIR$/metio/fao.py" />
         <option value="$PROJECT_DIR$/tests/test_gridmet.py" />
         <option value="$PROJECT_DIR$/tests/test_topowx.py" />
-        <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
         <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/app/paths.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py" />
@@ -197,6 +198,7 @@
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
         <option value="$PROJECT_DIR$/../climata/climata/agrimet.py" />
         <option value="$PROJECT_DIR$/csv_to_shp.py" />
+        <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
         <option value="$PROJECT_DIR$/metio/agrimet.py" />
       </list>
     </option>
@@ -253,6 +255,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,10 +269,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,61 +341,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.agrimet (1)">
-    <configuration default="false" name="entry_script" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/entry_script.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ssebop" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/core" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/core/ssebop.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="agrimet" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../climata/climata" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../climata/climata/agrimet.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station">
     <configuration default="false" name="agrimet (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -380,22 +360,64 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="csv_to_shp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Unittests for tests.test_agrimet.TestAgrimet.test_find_agri_by_latlon" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/csv_to_shp.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_agrimet.TestAgrimet.test_find_agri_by_latlon&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_agrimet.TestAgrimet.test_great_circle_dist" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_agrimet.TestAgrimet.test_great_circle_dist&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_agrimet.TestAgrimet.test_loat_station_data" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_agrimet.TestAgrimet.test_loat_station_data&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_agrimet.TestAgrimet.test_find_closest_station&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -474,19 +496,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.entry_script" />
-      <item index="1" class="java.lang.String" itemvalue="Python.ssebop" />
-      <item index="2" class="java.lang.String" itemvalue="Python.agrimet" />
-      <item index="3" class="java.lang.String" itemvalue="Python.agrimet (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Python.csv_to_shp" />
+      <item index="0" class="java.lang.String" itemvalue="Python.agrimet (1)" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_find_agri_by_latlon" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_great_circle_dist" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_loat_station_data" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.agrimet (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.csv_to_shp" />
-        <item index="2" class="java.lang.String" itemvalue="Python.agrimet" />
-        <item index="3" class="java.lang.String" itemvalue="Python.entry_script" />
-        <item index="4" class="java.lang.String" itemvalue="Python.ssebop" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_great_circle_dist" />
+        <item index="2" class="java.lang.String" itemvalue="Python.agrimet (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_loat_station_data" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_find_agri_by_latlon" />
       </list>
     </recent_temporary>
   </component>
@@ -503,20 +525,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00157" summary="moved longwave radiation equations to fao.py">
-      <created>1503949418364</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1503949418364</updated>
-    </task>
-    <task id="LOCAL-00158" summary="moved longwave radiation equations to fao.py">
-      <created>1503950157322</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1503950157322</updated>
     </task>
     <task id="LOCAL-00159" summary="looking for information on rah calculation">
       <created>1503951818252</created>
@@ -847,39 +855,53 @@
       <option name="project" value="LOCAL" />
       <updated>1506614671212</updated>
     </task>
-    <option name="localTasksCounter" value="206" />
+    <task id="LOCAL-00206" summary="building shapefile from agrimet json">
+      <created>1506647182864</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1506647182865</updated>
+    </task>
+    <task id="LOCAL-00207" summary="initial commit agrimet data folder and points files">
+      <created>1506648775096</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1506648775096</updated>
+    </task>
+    <option name="localTasksCounter" value="208" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST5_test_surface_temps - 2017.09.27 at 16h 33m 19s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST5.test_surface_temps" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 26m 24s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST7 - 2017.09.27 at 16h 31m 09s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 28m 52s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST7 - 2017.09.27 at 16h 31m 32s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 28m 59s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST7 - 2017.09.27 at 16h 31m 59s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 35m 24s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST7 - 2017.09.27 at 16h 38m 29s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 35m 27s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST7 - 2017.09.27 at 16h 49m 52s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 35m 45s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST7 - 2017.09.27 at 16h 50m 06s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 37m 15s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST7 - 2017.09.27 at 16h 50m 15s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST7" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 37m 17s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST8_test_surface_temps - 2017.09.27 at 16h 32m 14s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST8.test_surface_temps" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 37m 56s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_image_lst_TestImageLST8_test_surface_temps - 2017.09.27 at 16h 39m 25s.xml">
-      <configuration name="Unittests for tests.test_image_lst.TestImageLST8.test_surface_temps" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_find_closest_station - 2017.10.02 at 13h 38m 04s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_find_closest_station" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -895,16 +917,16 @@
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11061947" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15929204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4380531" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43289086" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49262536" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52359885" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -973,8 +995,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="save and return Gridmet product" />
-    <MESSAGE value="derivative products in test data, missing le7 data somehow" />
     <MESSAGE value="derivative products in test data, missing le7 data somehow," />
     <MESSAGE value="replace le7 ssebop testing data" />
     <MESSAGE value="\add band 6_vcid_1 handling to LE7 radiance calculations, necessary to &#10;compute LST" />
@@ -998,7 +1018,9 @@
     <MESSAGE value="separated gridmet tests" />
     <MESSAGE value="separated topowx tests" />
     <MESSAGE value="initial commit agrimet and test_agrimet" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit agrimet and test_agrimet" />
+    <MESSAGE value="building shapefile from agrimet json" />
+    <MESSAGE value="initial commit agrimet data folder and points files" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit agrimet data folder and points files" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1049,21 +1071,6 @@
           <line>37</line>
           <option name="timeStamp" value="1374" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/metio/agrimet.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="1385" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/metio/agrimet.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="1386" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/metio/agrimet.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="1393" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1072,7 +1079,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1394" />
+      <option name="time" value="1426" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1082,13 +1089,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/numpy/lib/type_check.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="363" column="0" lean-forward="false" selection-start-line="363" selection-start-column="0" selection-end-line="363" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/data/image_test/lc8_image/LC8_brightemp_B10.TIF">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1254,13 +1254,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_image_lst.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="37" column="10" lean-forward="true" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
@@ -1376,9 +1369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1393,19 +1383,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/fiona/crs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-714">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1413,10 +1394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="34" selection-end-column="14" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1424,7 +1401,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="998" column="8" lean-forward="false" selection-start-line="998" selection-start-column="8" selection-end-line="998" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1432,17 +1408,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
           <caret line="334" column="0" lean-forward="false" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/numpy/core/umath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-370">
+          <caret line="361" column="4" lean-forward="false" selection-start-line="361" selection-start-column="4" selection-end-line="361" selection-end-column="4" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_image_lst.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="104" column="16" lean-forward="true" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="692">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#749#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="763">
-          <caret line="86" column="26" lean-forward="true" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
+        <state relative-caret-position="573">
+          <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
+            <element signature="e#762#773#0" expanded="true" />
+            <element signature="e#1421#1563#1" expanded="false" />
+            <element signature="e#1972#2060#0" expanded="false" />
+            <element signature="e#2104#3693#0" expanded="false" />
           </folding>
         </state>
       </provider>
