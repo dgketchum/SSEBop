@@ -34,7 +34,8 @@ class TestAgrimet(unittest.TestCase):
     def test_instantiate_Agrimet(self):
 
         ag = Agrimet(start_date='2000-01-01', end_date='2000-12-31',
-                     station=self.fetch_site, sat_image=Landsat8(self.dirname_image))
+                     station=self.fetch_site,
+                     sat_image=Landsat8(self.dirname_image))
         self.assertIsInstance(ag, Agrimet)
 
     def test_load_station_data(self):
@@ -61,8 +62,29 @@ class TestAgrimet(unittest.TestCase):
 
     def test_fetch_data(self):
         agrimet = Agrimet(station=self.fetch_site, start_date='2015-01-01',
-                          end_date='2015-12-31')
-        data = agrimet
+                          end_date='2015-12-31', interval='daily')
+
+        raw = agrimet.fetch_data(return_raw=True)
+        formed = agrimet.fetch_data()
+
+        a = raw.iloc[1, :].tolist()
+        b = formed.iloc[1, :].tolist()
+
+        heads = ['DATETIME', 'ET', 'ETOS', 'ETRS', 'MM', 'MN', 'MX', 'PP',
+                 'PU', 'SR', 'TA', 'TG', 'UA', 'UD', 'WG', 'WR', 'YM']
+        # dates equality
+        self.assertEqual(a[0], b[0])
+        self.assertEqual(a[0], '2015-01-02')
+        # in to mm
+        self.assertEqual(a[2], b[2] / 25.4)
+        # deg F to deg C
+        self.assertAlmostEqual(a[4], (b[4] - 32) / 1.8, delta=0.01)
+        # in to mm
+        self.assertEqual(a[7], b[7] / 25.4)
+        # Langleys to J m-2
+        self.assertEqual(a[9], b[9] / 41868.)
+        # mph to m sec-1
+        self.assertEqual(a[12], b[12] / 0.44704)
 
 if __name__ == '__main__':
     unittest.main()
