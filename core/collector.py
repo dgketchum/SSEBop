@@ -61,7 +61,7 @@ def fetch_gridmet(model_geo, variable='pet', file_path=None):
                       target_profile=model_geo.profile,
                       clip_feature=model_geo.clip_geo)
 
-    var = gridmet.get_data_subset(grid_conform=True, out_filename=file_path)
+    var = gridmet.get_data_subset(out_filename=file_path)
 
     return var
 

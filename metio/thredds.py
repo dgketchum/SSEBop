@@ -44,7 +44,7 @@ class Thredds(object):
     """
 
     def __init__(self, start=None, end=None, date=None,
-                 bounds=None, target_profile=None,
+                 bounds=None, target_profile=None, lat=None, lon=None
                  ):
         self.start = start
         self.end = end
@@ -54,6 +54,8 @@ class Thredds(object):
 
         self.target_profile = target_profile
         self.bbox = bounds
+        self.lat = lat
+        self.lon = lon
 
     def conform(self, subset, out_file=None):
         if subset.dtype != float32:
@@ -359,7 +361,7 @@ class GridMet(Thredds):
 
     """
 
-    def __init__(self, variables, **kwargs):
+    def __init__(self, variable, **kwargs):
         Thredds.__init__(self)
 
         for key, val in kwargs.items():
@@ -370,10 +372,14 @@ class GridMet(Thredds):
 
         self.temp_dir = mkdtemp()
 
-        self.requested_variables = variables
+        self.variable = variable
         self.available = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
                           'th', 'tmmn', 'tmmx', 'pet', 'vs', 'erc', 'bi',
                           'fm100', 'pdsi']
+
+        if self.variable not in self.available:
+            Warning('Variable {} is not available'.
+                    format(self.variable))
 
         self.kwords = {'bi': 'burning_index_g',
                        'elev': '',
@@ -396,67 +402,17 @@ class GridMet(Thredds):
             self.start = self.date
             self.end = self.date
 
-        self.variables = []
-        if self.requested_variables:
-            [setattr(self, var, None) for var in self.requested_variables if var in self.available]
-            [self.variables.append(var) for var in self.requested_variables if var in self.available]
-            [Warning('Variable {} is not available'.
-                     format(var)) for var in self.requested_variables if var not in self.available]
-
         self.year = self.start.year
 
-        if not self.bbox:
+        if not self.bbox and not self.lat:
             self.bbox = GeoBounds()
 
-    def get_data_subset(self, grid_conform=False, out_filename=None):
+    def get_data_subset(self, out_filename=None, native_dataset=False):
 
-        for var in self.variables:
-
-            url = self._build_url(var)
-            xray = open_dataset(url)
-
-            if var != 'elev':
-                start_xl, end_xl = self._dtime_to_xldate()
-
-                subset = xray.loc[dict(day=slice(start_xl, end_xl),
-                                       lat=slice(ceil(self.bbox.north),
-                                                 floor(self.bbox.south)),
-                                       lon=slice(floor(self.bbox.west),
-                                                 ceil(self.bbox.east)))]
-
-                subset.rename({'day': 'time'}, inplace=True)
-                date_ind = self._date_index()
-                subset['time'] = date_ind
-                setattr(self, 'width', subset.dims['lon'])
-                setattr(self, 'height', subset.dims['lat'])
-                if not grid_conform:
-                    setattr(self, var, subset)
-                else:
-                    arr = subset[self.kwords[var]].values
-                    conformed_array = self.conform(arr, out_file=out_filename)
-                    return conformed_array
-
-            else:
-
-                setattr(self, 'width', subset.dims['lon'])
-                setattr(self, 'height', subset.dims['lat'])
-                subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
-                                       lon=slice(self.bbox.west, self.bbox.east))]
-                arr = subset.elevation.values
-                if grid_conform:
-                    conformed_array = self.conform(arr, out_file=out_filename)
-                    return conformed_array
-                else:
-                    setattr(self, var, subset)
-
-        return None
-
-    def get_point_timeseries(self):
-
-        url = self._build_url(var)
+        url = self._build_url()
         xray = open_dataset(url)
 
-        if var != 'elev':
+        if self.variable != 'elev':
             start_xl, end_xl = self._dtime_to_xldate()
 
             subset = xray.loc[dict(day=slice(start_xl, end_xl),
@@ -468,25 +424,47 @@ class GridMet(Thredds):
             subset.rename({'day': 'time'}, inplace=True)
             date_ind = self._date_index()
             subset['time'] = date_ind
+            if native_dataset:
+                return subset
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
-            if not grid_conform:
-                setattr(self, var, subset)
-            else:
-                arr = subset[self.kwords[var]].values
-                conformed_array = self.conform(arr, out_file=out_filename)
-                return conformed_array
+            arr = subset[self.kwords[self.variable]].values
+            conformed_array = self.conform(arr, out_file=out_filename)
+            return conformed_array
 
-    def _build_url(self, var):
+        else:
+            subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
+                                   lon=slice(self.bbox.west, self.bbox.east))]
+            if native_dataset:
+                return subset
+            setattr(self, 'width', subset.dims['lon'])
+            setattr(self, 'height', subset.dims['lat'])
+            arr = subset.elevation.values
+            conformed_array = self.conform(arr, out_file=out_filename)
+            return conformed_array
+
+    def get_point_timeseries(self):
+
+        url = self._build_url()
+        xray = open_dataset(url)
+        start_xl, end_xl = self._dtime_to_xldate()
+        subset = xray.sel(lon=self.lon, lat=self.lat, method='nearest')
+        subset = subset.loc[dict(day=slice(start_xl, end_xl))]
+        subset.rename({'day': 'time'}, inplace=True)
+        date_ind = self._date_index()
+        subset['time'] = date_ind
+        return subset
+
+    def _build_url(self):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
-        if var == 'elev':
+        if self.variable == 'elev':
             url = urlunparse([self.scheme, self.service,
-                              '/thredds/dodsC/MET/{0}/metdata_elevationdata.nc'.format(var),
+                              '/thredds/dodsC/MET/{0}/metdata_elevationdata.nc'.format(self.variable),
                               '', '', ''])
         else:
             url = urlunparse([self.scheme, self.service,
-                              '/thredds/dodsC/MET/{0}/{0}_{1}.nc'.format(var, self.year),
+                              '/thredds/dodsC/MET/{0}/{0}_{1}.nc'.format(self.variable, self.year),
                               '', '', ''])
 
         return url
