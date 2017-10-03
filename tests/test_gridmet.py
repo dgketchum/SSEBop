@@ -28,7 +28,8 @@ class TestGridMet(unittest.TestCase):
         self.bbox = GeoBounds(west_lon=-116.4, east_lon=-103.0,
                               south_lat=44.3, north_lat=49.1)
 
-        self.vars = ['pr', 'pet', 'not_a_var', 'elev', 'srad']
+        self.var = 'pr'
+        self.bad_var = 'rain'
         self.test_url_str = 'http://thredds.northwestknowledge.net:8080/thredds/ncss/MET/pet/pet_2011.nc?' \
                             'var=potential_evapotranspiration&north=49.1&west=-116.4&east=-103.0&south=44.3&' \
                             '&horizStride=1&time_start=2011-01-01T00%3A00%3A00Z&' \
@@ -39,28 +40,29 @@ class TestGridMet(unittest.TestCase):
         self.end = datetime(2011, 10, 31)
         self.image_shape = (1, 7431, 8161)
 
+        self.drlm_loc = 46.336, -112.767
+
         self.dir_name_LT5 = 'tests/data/image_test/lt5_image'
 
     def test_instantiate(self):
-        gridmet = GridMet(self.vars, start=self.start, end=self.end,
-                          bbox=self.bbox)
+        gridmet = GridMet(self.var, start=self.start, end=self.end)
         self.assertIsInstance(gridmet, GridMet)
 
     def test_get_data_date(self):
-        gridmet = GridMet(self.vars, date=self.date,
+        gridmet = GridMet(self.var, date=self.date,
                           bbox=self.bbox)
-        gridmet.get_data_subset()
-        self.assertIsInstance(gridmet.pet, Dataset)
-        self.assertEqual(gridmet.pet.dims['lon'], 322)
-        self.assertEqual(gridmet.pet.dims['time'], 1)
+        pet = gridmet.get_data_subset(native_dataset=True)
+        self.assertIsInstance(pet, Dataset)
+        self.assertEqual(pet.dims['lon'], 336)
+        self.assertEqual(pet.dims['time'], 1)
 
     def test_get_data_date_range(self):
-        gridmet = GridMet(self.vars, start=self.start, end=self.end,
+        gridmet = GridMet(self.var, start=self.start, end=self.end,
                           bbox=self.bbox)
-        gridmet.get_data_subset()
-        self.assertIsInstance(gridmet.pet, Dataset)
-        self.assertEqual(gridmet.pet.dims['lon'], 322)
-        self.assertEqual(gridmet.pet.dims['time'], 214)
+        pet = gridmet.get_data_subset(native_dataset=True)
+        self.assertIsInstance(pet, Dataset)
+        self.assertEqual(pet.dims['lon'], 336)
+        self.assertEqual(pet.dims['time'], 214)
 
     def test_conforming_array(self):
         home = os.path.expanduser('~')
@@ -68,10 +70,17 @@ class TestGridMet(unittest.TestCase):
         l5 = Landsat5(tif_dir)
         polygon = l5.get_tile_geometry()
         bounds = RasterBounds(affine_transform=l5.transform, profile=l5.profile)
-        gridmet = GridMet(self.vars, date=self.date, bbox=bounds,
+        gridmet = GridMet(self.var, date=self.date, bbox=bounds,
                           target_profile=l5.profile, clip_feature=polygon)
-        gridmet.get_data_subset(grid_conform=True)
-        self.assertEqual(gridmet.pr.shape, self.image_shape)
+        pr = gridmet.get_data_subset()
+        self.assertEqual(pr.shape, self.image_shape)
+
+    def test_save_multi(self):
+        gridmet.save(pr, gridmet.target_profile,
+                     output_filename='/data01/images/sandbox/{}_pet.tif'.format(self.date))
+
+    def test_get_time_series(self):
+        gridmet = GridMet(self.var, start=self.start, end=self.end)
 
 
 if __name__ == '__main__':
