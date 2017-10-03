@@ -59,6 +59,11 @@ class TestAgrimet(unittest.TestCase):
         agrimet = Agrimet(sat_image=l8)
         self.assertEqual(agrimet.station, self.fetch_site)
 
+    def test_fetch_data(self):
+        agrimet = Agrimet(station=self.fetch_site, start_date='2015-01-01',
+                          end_date='2015-12-31')
+        data = agrimet
+
 if __name__ == '__main__':
     unittest.main()
 

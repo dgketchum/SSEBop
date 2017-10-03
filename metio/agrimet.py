@@ -86,6 +86,9 @@ class Agrimet(object):
         stations = json.loads(r.text)
         return stations
 
+    def fetch_data(self):
+
+
     @staticmethod
     def write_shp(json_data, epsg, out):
         agri_schema = {'geometry': 'Point',
