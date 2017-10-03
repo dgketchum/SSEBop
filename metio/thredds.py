@@ -451,6 +451,32 @@ class GridMet(Thredds):
 
         return None
 
+    def get_point_timeseries(self):
+
+        url = self._build_url(var)
+        xray = open_dataset(url)
+
+        if var != 'elev':
+            start_xl, end_xl = self._dtime_to_xldate()
+
+            subset = xray.loc[dict(day=slice(start_xl, end_xl),
+                                   lat=slice(ceil(self.bbox.north),
+                                             floor(self.bbox.south)),
+                                   lon=slice(floor(self.bbox.west),
+                                             ceil(self.bbox.east)))]
+
+            subset.rename({'day': 'time'}, inplace=True)
+            date_ind = self._date_index()
+            subset['time'] = date_ind
+            setattr(self, 'width', subset.dims['lon'])
+            setattr(self, 'height', subset.dims['lat'])
+            if not grid_conform:
+                setattr(self, var, subset)
+            else:
+                arr = subset[self.kwords[var]].values
+                conformed_array = self.conform(arr, out_file=out_filename)
+                return conformed_array
+
     def _build_url(self, var):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
