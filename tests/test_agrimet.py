@@ -19,8 +19,7 @@ import json
 import requests
 from fiona import open as fopen
 
-from metio.agrimet import load_stations, find_closest_station
-from metio.agrimet import fetch_agrimet
+from metio.agrimet import Agrimet
 from sat_image.image import Landsat8
 
 
@@ -32,6 +31,12 @@ class TestAgrimet(unittest.TestCase):
         self.site_ids = ['umhm', 'robi', 'hntu', 'faln', 'mdxo', 'mdso', 'masw']
         self.fetch_site = 'drlm'
 
+    def test_instantiate_Agrimet(self):
+
+        ag = Agrimet(start_date='2000-01-01', end_date='2000-12-31',
+                     station=self.fetch_site, sat_image=Landsat8(self.dirname_image))
+        self.assertIsInstance(ag, Agrimet)
+
     def test_load_station_data(self):
         r = requests.get(self.station_info)
         stations = json.loads(r.text)
@@ -39,28 +44,20 @@ class TestAgrimet(unittest.TestCase):
 
     def test_find_closest_station(self):
 
-        data = load_stations()
-
         coords = []
         with fopen(self.point_file, 'r') as src:
             for feature in src:
                 coords.append(feature['geometry']['coordinates'])
 
         for coord in coords:
-            stn = find_closest_station(data, target_lon=coord[0], target_lat=coord[1])
-            self.assertTrue(stn in self.site_ids)
+            agrimet = Agrimet(lon=coord[0], lat=coord[1])
+
+            self.assertTrue(agrimet.station in self.site_ids)
 
     def test_find_image_station(self):
         l8 = Landsat8(self.dirname_image)
-        centroid = l8.scene_coords_deg
-        lat, lon = centroid[0], centroid[1]
-        station = find_closest_station(lat, lon)
-        self.assertEqual(station, self.fetch_site)
-
-    def test_agrmiet_fetch(self):
-        data = fetch_agrimet(station=self.fetch_site, start='2017-01-01',
-                             end='2017-01-01')
-        data = None
+        agrimet = Agrimet(sat_image=l8)
+        self.assertEqual(agrimet.station, self.fetch_site)
 
 if __name__ == '__main__':
     unittest.main()
