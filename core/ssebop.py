@@ -54,7 +54,6 @@ class SSEBopModel(object):
 
         self.image_geo = None
 
-        self.k_factor = runspec.k_factor
         self.usgs_creds = runspec.usgs_creds
         self.api_key = runspec.api_key
 
@@ -71,7 +70,7 @@ class SSEBopModel(object):
         self._info('Configuring SSEBop run, checking data...')
 
         print('----------- CONFIGURATION --------------')
-        for attr in ('image_date', 'satellite', 'k_factor',
+        for attr in ('image_date', 'satellite',
                      'path', 'row', 'image_id', 'image_exists'):
             print('{:<20s}{}'.format(attr, getattr(self, '{}'.format(attr))))
         print('----------- ------------- --------------')
@@ -118,11 +117,11 @@ class SSEBopModel(object):
                            sat_image=self.image, fmask_clear_val=1)
         et_mskd = where(fmask, et, nan)
 
-        self.save_array(et_mskd, 'ssebop_et_mskd', self.image_dir)
-        self.save_array(pet, 'pet', self.image_dir)
-        self.save_array(ts, 'lst', self.image_dir)
-        self.save_array(et, 'ssebop_et', self.image_dir)
-        self.save_array(etrf, 'ssebop_etrf', self.image_dir)
+        self.save_array(et_mskd, variable_name='ssebop_et_mskd', output_path=self.image_dir)
+        self.save_array(pet, variable_name='pet', output_path=self.image_dir)
+        self.save_array(ts, variable_name='lst', output_path=self.image_dir)
+        self.save_array(et, variable_name='ssebop_et', output_path=self.image_dir)
+        self.save_array(etrf, variable_name='ssebop_etrf', output_path=self.image_dir)
 
         return None
 

@@ -1,8 +1,8 @@
 
 path: 38
 row: 27
-#root: /data01/PycharmProjects/ssebop/tests/data/ssebop_test/lc8
-root: /data01/images/sandbox/ssebop_analysis
+root: /data01/PycharmProjects/ssebop/tests/data/ssebop_test/lc8
+#root: /data01/images/sandbox/ssebop_analysis
 output_root:
 
 api_key: 'mapzen-JmKu1BF'
@@ -10,8 +10,8 @@ usgs_creds: /data01/images/usgs.txt
 
 satellite: LC8
 # Date format; string 'YYYYMMDD'
-start_date: 20150401
-end_date: 20151030
+start_date: 20140814
+end_date: 20140816
 verify_paths: True
-down_images_only: True
+down_images_only: False
 

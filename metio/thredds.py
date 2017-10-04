@@ -33,7 +33,7 @@ from rasterio.warp import reproject, Resampling
 from rasterio.warp import calculate_default_transform as cdt
 from xlrd.xldate import xldate_from_date_tuple
 from xarray import open_dataset
-from pandas import date_range
+from pandas import date_range, DataFrame, to_datetime
 
 from bounds.bounds import GeoBounds
 
@@ -68,9 +68,12 @@ class Thredds(object):
             self.save(result, self.target_profile, output_filename=out_file)
         return result
 
-    def _project(self, subset):
+    def _project(self, subset, outfile=None):
 
-        proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
+        if outfile:
+            proj_path = os.path.join(outfile)
+        else:
+            proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
         setattr(self, 'projection', proj_path)
 
         profile = copy.deepcopy(self.target_profile)
@@ -322,7 +325,9 @@ class TopoWX(Thredds):
 
 
 class GridMet(Thredds):
-    """ U of I Gridmet, return as numpy array per met variable in daily stack unless modified.
+    """ U of I Gridmet
+    
+    Return as numpy array per met variable in daily stack unless modified.
 
     Available variables: ['bi', 'elev', 'erc', 'fm100', fm1000', 'pdsi', 'pet', 'pr', 'rmax', 'rmin', 'sph', 'srad',
                           'th', 'tmmn', 'tmmx', 'vs']
@@ -424,11 +429,11 @@ class GridMet(Thredds):
             subset.rename({'day': 'time'}, inplace=True)
             date_ind = self._date_index()
             subset['time'] = date_ind
-            if native_dataset:
-                return subset
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
             arr = subset[self.kwords[self.variable]].values
+            if out_filename and native_dataset:
+                self._project(arr, out_filename)
             conformed_array = self.conform(arr, out_file=out_filename)
             return conformed_array
 
@@ -440,6 +445,8 @@ class GridMet(Thredds):
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
             arr = subset.elevation.values
+            if out_filename and native_dataset:
+                self._project(arr, out_filename)
             conformed_array = self.conform(arr, out_file=out_filename)
             return conformed_array
 
@@ -453,7 +460,11 @@ class GridMet(Thredds):
         subset.rename({'day': 'time'}, inplace=True)
         date_ind = self._date_index()
         subset['time'] = date_ind
-        return subset
+        time = subset['time'].values
+        series = subset[self.kwords[self.variable]].values
+        df = DataFrame(data=series, index=time)
+        df.columns = [self.variable]
+        return df
 
     def _build_url(self):
 
