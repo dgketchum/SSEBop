@@ -37,7 +37,7 @@ class TestGridMet(unittest.TestCase):
                             'time_end=2011-12-31T00%3A00%3A00Z&timeStride=1&accept=netcdf4'
 
         self.start = datetime(2014, 4, 1)
-        self.date = datetime(2014, 4, 10)
+        self.date = datetime(2014, 8, 15)
         self.end = datetime(2014, 10, 31)
 
         self.agrimet_var = 'pet'
@@ -45,7 +45,7 @@ class TestGridMet(unittest.TestCase):
 
         self.grid_vals = [('2014-4-23', 5.13205), ('2014-4-24', 1.49978), ('2014-4-20', 12.0076)]
 
-        self.dir_name_LT5 = 'tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01'
+        self.dir_name_LC8 = 'tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01'
 
     def test_instantiate(self):
         gridmet = GridMet(self.var, start=self.start, end=self.end)
@@ -68,7 +68,7 @@ class TestGridMet(unittest.TestCase):
         self.assertEqual(pet.dims['time'], 214)
 
     def test_conforming_array(self):
-        l8 = Landsat8(self.dir_name_LT5)
+        l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
         bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile)
         gridmet = GridMet(self.var, date=self.date, bbox=bounds,
@@ -78,18 +78,13 @@ class TestGridMet(unittest.TestCase):
         self.assertEqual(pr.shape, shape)
 
     def test_save_multi(self):
-        l8 = Landsat8(self.dir_name_LT5)
-        polygon = l8.get_tile_geometry()
-        bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile)
-        for day in rrule(DAILY, dtstart=self.start, until=self.end):
-            gridmet = GridMet(self.var, date=day, bbox=bounds,
-                              target_profile=l8.profile, clip_feature=polygon)
-            gridmet.get_data_subset(native_dataset=True,
-                                    out_filename='/data01/images/sand'
-                                                 'box/{}-{}-{}_pet.tif'.format(
-                                        day.year,
-                                        day.month,
-                                        day.day))
+        gridmet = GridMet(self.var, date=self.date, bbox=self.bbox)
+        gridmet.get_data_subset(native_dataset=True,
+                                out_filename='/data01/images/sand'
+                                             'box/{}-{}-{}_pet.tif'.format(
+                                    self.date.year,
+                                    self.date.month,
+                                    self.date.day))
 
     def test_get_time_series(self):
         gridmet = GridMet(self.agrimet_var, start=self.start, end=self.end,

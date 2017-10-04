@@ -33,7 +33,8 @@ from rasterio.warp import reproject, Resampling
 from rasterio.warp import calculate_default_transform as cdt
 from xlrd.xldate import xldate_from_date_tuple
 from xarray import open_dataset
-from pandas import date_range, DataFrame, to_datetime
+from pandas import date_range, DataFrame
+from geopy.distance import vincenty
 
 from bounds.bounds import GeoBounds
 
@@ -65,15 +66,12 @@ class Thredds(object):
         self._mask()
         result = self._resample()
         if out_file:
-            self.save(result, self.target_profile, output_filename=out_file)
+            self.save_raster(result, self.target_profile, output_filename=out_file)
         return result
 
-    def _project(self, subset, outfile=None):
+    def _project(self, subset):
 
-        if outfile:
-            proj_path = os.path.join(outfile)
-        else:
-            proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
+        proj_path = os.path.join(self.temp_dir, 'tiled_proj.tif')
         setattr(self, 'projection', proj_path)
 
         profile = copy.deepcopy(self.target_profile)
@@ -208,7 +206,7 @@ class Thredds(object):
         return dtnumpy
 
     @staticmethod
-    def save(arr, geometry, output_filename, crs=None):
+    def save_raster(arr, geometry, output_filename, crs=None):
         try:
             arr = arr.reshape(1, arr.shape[1], arr.shape[2])
         except IndexError:
@@ -219,6 +217,31 @@ class Thredds(object):
         with rasopen(output_filename, 'w', **geometry) as dst:
             dst.write(arr)
         return None
+
+    def get_subset_profile(self, subset):
+
+        geometry = {'width': self.width,
+                    'height': self.height,
+                    'interleave': 'band',
+                    'nodata': None,
+                    'crs': CRS({'init': 'epsg:4326'}),
+                    'count': 1}
+
+        lat1, lon1 = subset['lat'].values[0], subset['lon'].values[0]
+        lat2, lon2 = subset['lat'].values[1], subset['lon'].values[1]
+        resolution = vincenty((lat1, lon1), (lat2, lon2)).m
+        affine = cdt(src_crs=CRS({'init': 'epsg:4326'}),
+                     dst_crs=CRS({'init': 'epsg:4326'}),
+                     width=self.width,
+                     height=self.height,
+                     left=subset['lon'].values[0],
+                     right=subset['lon'].values[-1],
+                     top=subset['lat'].values[0],
+                     bottom=subset['lat'].values[-1],
+                     resolution=resolution)
+
+        geometry['transform'] = affine[0]
+        return geometry
 
 
 class TopoWX(Thredds):
@@ -432,21 +455,27 @@ class GridMet(Thredds):
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
             arr = subset[self.kwords[self.variable]].values
-            if out_filename and native_dataset:
-                self._project(arr, out_filename)
+            if native_dataset:
+                if out_filename:
+                    geometry = self.get_subset_profile(subset)
+                    self.save_raster(arr, geometry, out_filename,
+                                     crs=CRS({'init': 'epsg:4326'}))
+                return subset
             conformed_array = self.conform(arr, out_file=out_filename)
             return conformed_array
 
         else:
             subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
                                    lon=slice(self.bbox.west, self.bbox.east))]
-            if native_dataset:
-                return subset
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
             arr = subset.elevation.values
-            if out_filename and native_dataset:
-                self._project(arr, out_filename)
+            if native_dataset:
+                if out_filename:
+                    geometry = self.get_subset_profile(subset)
+                    self.save_raster(arr, geometry, out_filename,
+                                     crs=CRS({'init': 'epsg:4326'}))
+                return subset
             conformed_array = self.conform(arr, out_file=out_filename)
             return conformed_array
 
