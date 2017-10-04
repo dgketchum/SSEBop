@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/collector.py" afterPath="$PROJECT_DIR$/core/collector.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" afterPath="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_gridmet.py" afterPath="$PROJECT_DIR$/tests/test_gridmet.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
@@ -23,17 +20,17 @@
       <file leaf-file-name="test_gridmet.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+            <state relative-caret-position="185">
+              <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#733#748#0" expanded="true" />
-                <element signature="e#1047#2018#0" expanded="false" />
-                <element signature="e#2060#2167#0" expanded="false" />
-                <element signature="e#2211#2492#0" expanded="false" />
-                <element signature="e#2542#2841#0" expanded="false" />
-                <element signature="e#2888#3344#0" expanded="false" />
-                <element signature="e#3385#4109#0" expanded="false" />
+                <element signature="e#1238#1705#0" expanded="false" />
+                <element signature="e#2149#2256#0" expanded="false" />
+                <element signature="e#2300#2581#0" expanded="false" />
+                <element signature="e#2631#2930#0" expanded="false" />
+                <element signature="e#2977#3433#0" expanded="false" />
+                <element signature="e#3959#4257#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -42,56 +39,49 @@
       <file leaf-file-name="thredds.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
-              <caret line="466" column="17" lean-forward="false" selection-start-line="466" selection-start-column="17" selection-end-line="466" selection-end-column="17" />
+            <state relative-caret-position="293">
+              <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#1500#1596#1" expanded="false" />
-                <element signature="e#1752#1974#0" expanded="false" />
-                <element signature="e#2030#2338#0" expanded="false" />
-                <element signature="e#2395#3545#0" expanded="false" />
-                <element signature="e#2809#2868#0" expanded="false" />
-                <element signature="e#2819#2867#0" expanded="false" />
-                <element signature="e#3283#3457#0" expanded="false" />
-                <element signature="e#3582#5023#0" expanded="false" />
-                <element signature="e#3753#3850#0" expanded="false" />
-                <element signature="e#4338#4516#0" expanded="false" />
-                <element signature="e#4593#5023#0" expanded="false" />
-                <element signature="e#5055#5709#0" expanded="false" />
-                <element signature="e#5170#5540#0" expanded="false" />
-                <element signature="e#5354#5539#0" expanded="false" />
-                <element signature="e#5745#7164#0" expanded="false" />
-                <element signature="e#5745#5777#0" expanded="false" />
-                <element signature="e#6015#7164#0" expanded="false" />
-                <element signature="e#6237#6349#0" expanded="false" />
-                <element signature="e#6851#7053#0" expanded="false" />
-                <element signature="e#7201#7279#0" expanded="false" />
-                <element signature="e#7321#7576#0" expanded="false" />
-                <element signature="e#7638#7707#0" expanded="false" />
-                <element signature="e#7791#8157#0" expanded="false" />
-                <element signature="e#8187#11514#0" expanded="false" />
-                <element signature="e#8187#8858#1" expanded="false" />
-                <element signature="e#8902#9276#0" expanded="false" />
-                <element signature="e#9184#9239#0" expanded="false" />
-                <element signature="e#9409#11156#0" expanded="false" />
-                <element signature="e#9750#9782#0" expanded="false" />
-                <element signature="e#10370#10452#0" expanded="false" />
-                <element signature="e#10807#11156#0" expanded="false" />
-                <element signature="e#11198#11514#0" expanded="false" />
-                <element signature="e#11296#11493#0" expanded="false" />
-                <element signature="e#11350#11442#0" expanded="false" />
-                <element signature="e#11545#13477#1" expanded="false" />
-                <element signature="e#13531#15203#0" expanded="false" />
-                <element signature="e#13816#13978#0" expanded="false" />
-                <element signature="e#14040#14122#0" expanded="false" />
-                <element signature="e#14146#14995#0" expanded="false" />
-                <element signature="e#15031#15086#0" expanded="false" />
-                <element signature="e#15286#16877#0" expanded="false" />
-                <element signature="e#17527#18072#0" expanded="false" />
-                <element signature="e#17648#17838#0" expanded="false" />
-                <element signature="e#17665#17837#0" expanded="false" />
-                <element signature="e#17865#18052#0" expanded="false" />
-                <element signature="e#17882#18051#0" expanded="false" />
+                <element signature="e#1523#1619#1" expanded="false" />
+                <element signature="e#1775#1997#0" expanded="false" />
+                <element signature="e#2053#2368#0" expanded="false" />
+                <element signature="e#2411#3477#0" expanded="false" />
+                <element signature="e#2741#2800#0" expanded="false" />
+                <element signature="e#2751#2799#0" expanded="false" />
+                <element signature="e#3215#3389#0" expanded="false" />
+                <element signature="e#3514#4955#0" expanded="false" />
+                <element signature="e#3685#3782#0" expanded="false" />
+                <element signature="e#4270#4448#0" expanded="false" />
+                <element signature="e#4525#4955#0" expanded="false" />
+                <element signature="e#4987#5641#0" expanded="false" />
+                <element signature="e#5102#5472#0" expanded="false" />
+                <element signature="e#5286#5471#0" expanded="false" />
+                <element signature="e#5677#7096#0" expanded="false" />
+                <element signature="e#5677#5709#0" expanded="false" />
+                <element signature="e#5947#7096#0" expanded="false" />
+                <element signature="e#6169#6281#0" expanded="false" />
+                <element signature="e#6783#6985#0" expanded="false" />
+                <element signature="e#7133#7211#0" expanded="false" />
+                <element signature="e#7253#7508#0" expanded="false" />
+                <element signature="e#7570#7639#0" expanded="false" />
+                <element signature="e#7720#8022#0" expanded="false" />
+                <element signature="e#9054#12381#0" expanded="false" />
+                <element signature="e#9054#9725#1" expanded="false" />
+                <element signature="e#9769#10143#0" expanded="false" />
+                <element signature="e#10051#10106#0" expanded="false" />
+                <element signature="e#10276#12023#0" expanded="false" />
+                <element signature="e#10617#10649#0" expanded="false" />
+                <element signature="e#11237#11319#0" expanded="false" />
+                <element signature="e#11674#12023#0" expanded="false" />
+                <element signature="e#12065#12381#0" expanded="false" />
+                <element signature="e#12163#12360#0" expanded="false" />
+                <element signature="e#12217#12309#0" expanded="false" />
+                <element signature="e#12412#14344#1" expanded="false" />
+                <element signature="e#14683#14845#0" expanded="false" />
+                <element signature="e#14907#14989#0" expanded="false" />
+                <element signature="e#15013#15862#0" expanded="false" />
+                <element signature="e#18120#18686#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -109,7 +99,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>calcced</find>
       <find>calced</find>
       <find>l8</find>
       <find>output_path='/data01/images/sandbox/ssebop_testing')</find>
@@ -139,6 +128,7 @@
       <find>day</find>
       <find>self.date</find>
       <find>var</find>
+      <find>cdt</find>
     </findStrings>
     <replaceStrings>
       <replace>self._get_band('green', saturation_mask=True)</replace>
@@ -236,8 +226,8 @@
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
         <option value="$PROJECT_DIR$/core/collector.py" />
         <option value="$PROJECT_DIR$/core/ssebop.py" />
-        <option value="$PROJECT_DIR$/metio/thredds.py" />
         <option value="$PROJECT_DIR$/tests/test_gridmet.py" />
+        <option value="$PROJECT_DIR$/metio/thredds.py" />
       </list>
     </option>
   </component>
@@ -338,6 +328,10 @@
               <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -349,7 +343,79 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="metio" />
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lc8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="038_027" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lc8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="038_027" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2014" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LC80380272014227LGN01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -393,7 +459,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series">
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_native_dataset">
     <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -406,21 +472,6 @@
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_conforming_array&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_get_data_date_range" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_get_data_date_range&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -466,6 +517,21 @@
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_get_time_series&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_native_dataset&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -546,18 +612,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_data_date_range" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_multi" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.test_get_time_series" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_multi" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.test_get_time_series" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.test_get_time_series" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_multi" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_data_date_range" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_multi" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.test_get_time_series" />
       </list>
     </recent_temporary>
   </component>
@@ -574,20 +640,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00167" summary="moving fmask init band loading to a get call">
-      <created>1506106792406</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1506106792406</updated>
-    </task>
-    <task id="LOCAL-00168" summary="finished moving fmask init band loading to a get call">
-      <created>1506109094310</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1506109094310</updated>
     </task>
     <task id="LOCAL-00169" summary="added Kelvin option to Thredds Topowx output">
       <created>1506115145027</created>
@@ -918,39 +970,53 @@
       <option name="project" value="LOCAL" />
       <updated>1507072756173</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="got dataframe netcdf time series, not sure if the time series or &#10;the projected raster is off, prolly raster">
+      <created>1507075757159</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1507075757159</updated>
+    </task>
+    <task id="LOCAL-00217" summary="stuck writing the subset to tif,">
+      <created>1507079721363</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1507079721363</updated>
+    </task>
+    <option name="localTasksCounter" value="218" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 39m 12s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 15m 40s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 40m 14s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 20m 30s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 43m 09s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 23m 04s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 45m 27s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 24m 29s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 47m 37s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 30m 33s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 48m 49s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 07h 56m 20s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 54m 29s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 07h 58m 15s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 55m 33s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 07h 59m 04s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 57m 18s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 08h 04m 14s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_get_time_series - 2017.10.03 at 17h 59m 29s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 08h 08m 08s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -969,13 +1035,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23967552" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48303834" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40265486" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5162242" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47050148" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5176991" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1044,8 +1110,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="initial commit land surface temperature tests vs EEFlux" />
-    <MESSAGE value="getting ready to load up shapefiles for lst comparison" />
     <MESSAGE value="initial commit 041_025_Let* points data" />
     <MESSAGE value="adding point extract utility to image lst tests" />
     <MESSAGE value="initial commit US Mj 1 + 2 data" />
@@ -1069,7 +1133,9 @@
     <MESSAGE value="passing tests for pandas agrimet dataframe" />
     <MESSAGE value="start building a point time series for gridmet netcdf" />
     <MESSAGE value="goinig to reshape 038-027 polygon for tests with agrimet" />
-    <option name="LAST_COMMIT_MESSAGE" value="goinig to reshape 038-027 polygon for tests with agrimet" />
+    <MESSAGE value="got dataframe netcdf time series, not sure if the time series or &#10;the projected raster is off, prolly raster" />
+    <MESSAGE value="stuck writing the subset to tif," />
+    <option name="LAST_COMMIT_MESSAGE" value="stuck writing the subset to tif," />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1110,6 +1176,16 @@
           <line>720</line>
           <option name="timeStamp" value="1517" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py</url>
+          <line>321</line>
+          <option name="timeStamp" value="1545" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/test_gridmet.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="1555" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1118,45 +1194,18 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1533" />
+      <option name="time" value="1561" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
         <watch expression="subset._abc_negative_cache_version" />
         <watch expression="aspect" />
         <watch expression="gridmet.target_profile.data" />
+        <watch expression="l8.profile.data['width']" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/urllib/request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="905">
-          <caret line="589" column="0" lean-forward="false" selection-start-line="589" selection-start-column="0" selection-end-line="589" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_MTL.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="1577" column="0" lean-forward="false" selection-start-line="1577" selection-start-column="0" selection-end-line="1577" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../utils/utils/ras_point_extract.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1350,16 +1399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#749#0" expanded="false" />
-            <element signature="e#951#1282#0" expanded="false" />
-            <element signature="e#1333#1543#0" expanded="false" />
-            <element signature="e#1591#1710#0" expanded="false" />
-            <element signature="e#1762#2071#0" expanded="false" />
-            <element signature="e#2120#2252#0" expanded="false" />
-            <element signature="e#2293#3213#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1375,9 +1414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1385,7 +1421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="539">
           <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1403,7 +1438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="463">
           <caret line="115" column="33" lean-forward="true" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1411,7 +1445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1419,13 +1452,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
           <caret line="223" column="0" lean-forward="false" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#799#0" expanded="false" />
-            <element signature="e#4589#5977#0" expanded="false" />
-            <element signature="e#6805#6929#0" expanded="false" />
-            <element signature="e#7997#8519#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1433,7 +1459,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1441,25 +1466,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="668">
-          <caret line="107" column="62" lean-forward="true" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
-          <folding>
-            <element signature="e#762#771#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="321" column="0" lean-forward="false" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1471,100 +1477,130 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="281" column="0" lean-forward="false" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="559">
           <caret line="142" column="40" lean-forward="true" selection-start-line="142" selection-start-column="8" selection-end-line="142" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/affine/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="131" column="24" lean-forward="true" selection-start-line="131" selection-start-column="24" selection-end-line="131" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/geopy/distance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="317" column="8" lean-forward="false" selection-start-line="317" selection-start-column="8" selection-end-line="317" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/transform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1202#2444#0" expanded="false" />
-            <element signature="e#2617#3495#0" expanded="false" />
-            <element signature="e#3541#3726#0" expanded="false" />
-            <element signature="e#3796#4419#0" expanded="false" />
-            <element signature="e#4458#4559#0" expanded="false" />
-            <element signature="e#4613#5045#0" expanded="false" />
-            <element signature="e#6632#8341#0" expanded="false" />
+            <element signature="e#762#771#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/warp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="289" column="4" lean-forward="false" selection-start-line="289" selection-start-column="4" selection-end-line="289" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="318" column="4" lean-forward="false" selection-start-line="318" selection-start-column="4" selection-end-line="318" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="272" column="0" lean-forward="false" selection-start-line="272" selection-start-column="0" selection-end-line="272" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="466" column="17" lean-forward="false" selection-start-line="466" selection-start-column="17" selection-end-line="466" selection-end-column="17" />
+        <state relative-caret-position="293">
+          <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1500#1596#1" expanded="false" />
-            <element signature="e#1752#1974#0" expanded="false" />
-            <element signature="e#2030#2338#0" expanded="false" />
-            <element signature="e#2395#3545#0" expanded="false" />
-            <element signature="e#2809#2868#0" expanded="false" />
-            <element signature="e#2819#2867#0" expanded="false" />
-            <element signature="e#3283#3457#0" expanded="false" />
-            <element signature="e#3582#5023#0" expanded="false" />
-            <element signature="e#3753#3850#0" expanded="false" />
-            <element signature="e#4338#4516#0" expanded="false" />
-            <element signature="e#4593#5023#0" expanded="false" />
-            <element signature="e#5055#5709#0" expanded="false" />
-            <element signature="e#5170#5540#0" expanded="false" />
-            <element signature="e#5354#5539#0" expanded="false" />
-            <element signature="e#5745#7164#0" expanded="false" />
-            <element signature="e#5745#5777#0" expanded="false" />
-            <element signature="e#6015#7164#0" expanded="false" />
-            <element signature="e#6237#6349#0" expanded="false" />
-            <element signature="e#6851#7053#0" expanded="false" />
-            <element signature="e#7201#7279#0" expanded="false" />
-            <element signature="e#7321#7576#0" expanded="false" />
-            <element signature="e#7638#7707#0" expanded="false" />
-            <element signature="e#7791#8157#0" expanded="false" />
-            <element signature="e#8187#11514#0" expanded="false" />
-            <element signature="e#8187#8858#1" expanded="false" />
-            <element signature="e#8902#9276#0" expanded="false" />
-            <element signature="e#9184#9239#0" expanded="false" />
-            <element signature="e#9409#11156#0" expanded="false" />
-            <element signature="e#9750#9782#0" expanded="false" />
-            <element signature="e#10370#10452#0" expanded="false" />
-            <element signature="e#10807#11156#0" expanded="false" />
-            <element signature="e#11198#11514#0" expanded="false" />
-            <element signature="e#11296#11493#0" expanded="false" />
-            <element signature="e#11350#11442#0" expanded="false" />
-            <element signature="e#11545#13477#1" expanded="false" />
-            <element signature="e#13531#15203#0" expanded="false" />
-            <element signature="e#13816#13978#0" expanded="false" />
-            <element signature="e#14040#14122#0" expanded="false" />
-            <element signature="e#14146#14995#0" expanded="false" />
-            <element signature="e#15031#15086#0" expanded="false" />
-            <element signature="e#15286#16877#0" expanded="false" />
-            <element signature="e#17527#18072#0" expanded="false" />
-            <element signature="e#17648#17838#0" expanded="false" />
-            <element signature="e#17665#17837#0" expanded="false" />
-            <element signature="e#17865#18052#0" expanded="false" />
-            <element signature="e#17882#18051#0" expanded="false" />
+            <element signature="e#1523#1619#1" expanded="false" />
+            <element signature="e#1775#1997#0" expanded="false" />
+            <element signature="e#2053#2368#0" expanded="false" />
+            <element signature="e#2411#3477#0" expanded="false" />
+            <element signature="e#2741#2800#0" expanded="false" />
+            <element signature="e#2751#2799#0" expanded="false" />
+            <element signature="e#3215#3389#0" expanded="false" />
+            <element signature="e#3514#4955#0" expanded="false" />
+            <element signature="e#3685#3782#0" expanded="false" />
+            <element signature="e#4270#4448#0" expanded="false" />
+            <element signature="e#4525#4955#0" expanded="false" />
+            <element signature="e#4987#5641#0" expanded="false" />
+            <element signature="e#5102#5472#0" expanded="false" />
+            <element signature="e#5286#5471#0" expanded="false" />
+            <element signature="e#5677#7096#0" expanded="false" />
+            <element signature="e#5677#5709#0" expanded="false" />
+            <element signature="e#5947#7096#0" expanded="false" />
+            <element signature="e#6169#6281#0" expanded="false" />
+            <element signature="e#6783#6985#0" expanded="false" />
+            <element signature="e#7133#7211#0" expanded="false" />
+            <element signature="e#7253#7508#0" expanded="false" />
+            <element signature="e#7570#7639#0" expanded="false" />
+            <element signature="e#7720#8022#0" expanded="false" />
+            <element signature="e#9054#12381#0" expanded="false" />
+            <element signature="e#9054#9725#1" expanded="false" />
+            <element signature="e#9769#10143#0" expanded="false" />
+            <element signature="e#10051#10106#0" expanded="false" />
+            <element signature="e#10276#12023#0" expanded="false" />
+            <element signature="e#10617#10649#0" expanded="false" />
+            <element signature="e#11237#11319#0" expanded="false" />
+            <element signature="e#11674#12023#0" expanded="false" />
+            <element signature="e#12065#12381#0" expanded="false" />
+            <element signature="e#12163#12360#0" expanded="false" />
+            <element signature="e#12217#12309#0" expanded="false" />
+            <element signature="e#12412#14344#1" expanded="false" />
+            <element signature="e#14683#14845#0" expanded="false" />
+            <element signature="e#14907#14989#0" expanded="false" />
+            <element signature="e#15013#15862#0" expanded="false" />
+            <element signature="e#18120#18686#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        <state relative-caret-position="185">
+          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#733#748#0" expanded="true" />
-            <element signature="e#1047#2018#0" expanded="false" />
-            <element signature="e#2060#2167#0" expanded="false" />
-            <element signature="e#2211#2492#0" expanded="false" />
-            <element signature="e#2542#2841#0" expanded="false" />
-            <element signature="e#2888#3344#0" expanded="false" />
-            <element signature="e#3385#4109#0" expanded="false" />
+            <element signature="e#1238#1705#0" expanded="false" />
+            <element signature="e#2149#2256#0" expanded="false" />
+            <element signature="e#2300#2581#0" expanded="false" />
+            <element signature="e#2631#2930#0" expanded="false" />
+            <element signature="e#2977#3433#0" expanded="false" />
+            <element signature="e#3959#4257#0" expanded="false" />
           </folding>
         </state>
       </provider>

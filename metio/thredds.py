@@ -206,14 +206,13 @@ class Thredds(object):
         return dtnumpy
 
     @staticmethod
-    def save_raster(arr, geometry, output_filename, crs=None):
+    def save_raster(arr, geometry, output_filename):
         try:
             arr = arr.reshape(1, arr.shape[1], arr.shape[2])
         except IndexError:
             arr = arr.reshape(1, arr.shape[0], arr.shape[1])
         geometry['dtype'] = arr.dtype
-        if crs:
-            geometry['crs'] = CRS({'init': crs})
+
         with rasopen(output_filename, 'w', **geometry) as dst:
             dst.write(arr)
         return None
@@ -222,23 +221,25 @@ class Thredds(object):
 
         geometry = {'width': self.width,
                     'height': self.height,
-                    'interleave': 'band',
-                    'nodata': None,
+                    'driver': 'GTiff',
+                    'nodata': -32767,
                     'crs': CRS({'init': 'epsg:4326'}),
                     'count': 1}
 
         lat1, lon1 = subset['lat'].values[0], subset['lon'].values[0]
         lat2, lon2 = subset['lat'].values[1], subset['lon'].values[1]
-        resolution = vincenty((lat1, lon1), (lat2, lon2)).m
+
+        resolution = lon2 - lon1
         affine = cdt(src_crs=CRS({'init': 'epsg:4326'}),
                      dst_crs=CRS({'init': 'epsg:4326'}),
-                     width=self.width,
-                     height=self.height,
+                     height=self.width,
+                     width=self.height,
                      left=subset['lon'].values[0],
                      right=subset['lon'].values[-1],
                      top=subset['lat'].values[0],
                      bottom=subset['lat'].values[-1],
-                     resolution=resolution)
+                     resolution=resolution
+                     )
 
         geometry['transform'] = affine[0]
         return geometry
@@ -435,7 +436,22 @@ class GridMet(Thredds):
         if not self.bbox and not self.lat:
             self.bbox = GeoBounds()
 
-    def get_data_subset(self, out_filename=None, native_dataset=False):
+    def get_data_full_extent(self, out_filename=None):
+
+        url = self._build_url()
+        xray = open_dataset(url)
+        start_xl, end_xl = self._dtime_to_xldate()
+        subset = xray.loc[dict(day=slice(start_xl, end_xl))]
+        subset.rename({'day': 'time'}, inplace=True)
+        setattr(self, 'width', subset.dims['lon'])
+        setattr(self, 'height', subset.dims['lat'])
+        arr = subset[self.kwords[self.variable]].values
+        if out_filename:
+            geometry = self.get_subset_profile(subset)
+            self.save_raster(arr, geometry, out_filename)
+        return subset
+
+    def get_data_subset(self, out_filename=None):
 
         url = self._build_url()
         xray = open_dataset(url)
@@ -455,12 +471,6 @@ class GridMet(Thredds):
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
             arr = subset[self.kwords[self.variable]].values
-            if native_dataset:
-                if out_filename:
-                    geometry = self.get_subset_profile(subset)
-                    self.save_raster(arr, geometry, out_filename,
-                                     crs=CRS({'init': 'epsg:4326'}))
-                return subset
             conformed_array = self.conform(arr, out_file=out_filename)
             return conformed_array
 
@@ -470,12 +480,6 @@ class GridMet(Thredds):
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
             arr = subset.elevation.values
-            if native_dataset:
-                if out_filename:
-                    geometry = self.get_subset_profile(subset)
-                    self.save_raster(arr, geometry, out_filename,
-                                     crs=CRS({'init': 'epsg:4326'}))
-                return subset
             conformed_array = self.conform(arr, out_file=out_filename)
             return conformed_array
 

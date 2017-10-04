@@ -14,7 +14,6 @@
 # limitations under the License.
 # ===============================================================================
 import unittest
-import os
 from datetime import datetime
 from xarray import Dataset
 from dateutil.rrule import rrule, DAILY
@@ -31,10 +30,13 @@ class TestGridMet(unittest.TestCase):
 
         self.var = 'pr'
         self.bad_var = 'rain'
-        self.test_url_str = 'http://thredds.northwestknowledge.net:8080/thredds/ncss/MET/pet/pet_2011.nc?' \
-                            'var=potential_evapotranspiration&north=49.1&west=-116.4&east=-103.0&south=44.3&' \
+        self.test_url_str = 'http://thredds.northwestknowledge.net:' \
+                            '8080/thredds/ncss/MET/pet/pet_2011.nc?' \
+                            'var=potential_evapotranspiration&north=' \
+                            '49.1&west=-116.4&east=-103.0&south=44.3&' \
                             '&horizStride=1&time_start=2011-01-01T00%3A00%3A00Z&' \
-                            'time_end=2011-12-31T00%3A00%3A00Z&timeStride=1&accept=netcdf4'
+                            'time_end=2011-12-31T00%3A00%3A00Z&timeSt' \
+                            'ride=1&accept=netcdf4'
 
         self.start = datetime(2014, 4, 1)
         self.date = datetime(2014, 8, 15)
@@ -77,14 +79,14 @@ class TestGridMet(unittest.TestCase):
         shape = 1, l8.rasterio_geometry['height'], l8.rasterio_geometry['width']
         self.assertEqual(pr.shape, shape)
 
-    def test_save_multi(self):
+    def test_native_dataset(self):
         gridmet = GridMet(self.var, date=self.date, bbox=self.bbox)
-        gridmet.get_data_subset(native_dataset=True,
-                                out_filename='/data01/images/sand'
-                                             'box/{}-{}-{}_pet.tif'.format(
-                                    self.date.year,
-                                    self.date.month,
-                                    self.date.day))
+        pet = gridmet.get_data_full_extent(out_filename='/data01/images/sand'
+                                                        'box/{}-{}-{}_pet.tif'.
+                                           format(self.date.year,
+                                                  self.date.month,
+                                                  self.date.day))
+        pet = None
 
     def test_get_time_series(self):
         gridmet = GridMet(self.agrimet_var, start=self.start, end=self.end,
