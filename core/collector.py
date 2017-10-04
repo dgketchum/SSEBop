@@ -56,7 +56,7 @@ def data_check(model_geo, variable, sat_image=None,
 
 
 def fetch_gridmet(model_geo, variable='pet', file_path=None):
-    gridmet = GridMet([variable], date=model_geo.date,
+    gridmet = GridMet(variable, date=model_geo.date,
                       bbox=model_geo.bounds,
                       target_profile=model_geo.profile,
                       clip_feature=model_geo.clip_geo)

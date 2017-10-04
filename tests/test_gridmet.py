@@ -17,10 +17,11 @@ import unittest
 import os
 from datetime import datetime
 from xarray import Dataset
+from dateutil.rrule import rrule, DAILY
 
 from bounds.bounds import GeoBounds, RasterBounds
-from metio.thredds import GridMet, TopoWX
-from sat_image.image import Landsat5
+from metio.thredds import GridMet
+from sat_image.image import Landsat8
 
 
 class TestGridMet(unittest.TestCase):
@@ -35,14 +36,16 @@ class TestGridMet(unittest.TestCase):
                             '&horizStride=1&time_start=2011-01-01T00%3A00%3A00Z&' \
                             'time_end=2011-12-31T00%3A00%3A00Z&timeStride=1&accept=netcdf4'
 
-        self.start = datetime(2011, 4, 1)
-        self.date = datetime(2011, 4, 1)
-        self.end = datetime(2011, 10, 31)
-        self.image_shape = (1, 7431, 8161)
+        self.start = datetime(2014, 4, 1)
+        self.date = datetime(2014, 4, 10)
+        self.end = datetime(2014, 10, 31)
 
-        self.drlm_loc = 46.336, -112.767
+        self.agrimet_var = 'pet'
+        self.agri_loc = 47.0585365, -109.9507523
 
-        self.dir_name_LT5 = 'tests/data/image_test/lt5_image'
+        self.grid_vals = [('2014-4-23', 5.13205), ('2014-4-24', 1.49978), ('2014-4-20', 12.0076)]
+
+        self.dir_name_LT5 = 'tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01'
 
     def test_instantiate(self):
         gridmet = GridMet(self.var, start=self.start, end=self.end)
@@ -65,22 +68,35 @@ class TestGridMet(unittest.TestCase):
         self.assertEqual(pet.dims['time'], 214)
 
     def test_conforming_array(self):
-        home = os.path.expanduser('~')
-        tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
-        l5 = Landsat5(tif_dir)
-        polygon = l5.get_tile_geometry()
-        bounds = RasterBounds(affine_transform=l5.transform, profile=l5.profile)
+        l8 = Landsat8(self.dir_name_LT5)
+        polygon = l8.get_tile_geometry()
+        bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile)
         gridmet = GridMet(self.var, date=self.date, bbox=bounds,
-                          target_profile=l5.profile, clip_feature=polygon)
+                          target_profile=l8.profile, clip_feature=polygon)
         pr = gridmet.get_data_subset()
-        self.assertEqual(pr.shape, self.image_shape)
+        shape = 1, l8.rasterio_geometry['height'], l8.rasterio_geometry['width']
+        self.assertEqual(pr.shape, shape)
 
     def test_save_multi(self):
-        gridmet.save(pr, gridmet.target_profile,
-                     output_filename='/data01/images/sandbox/{}_pet.tif'.format(self.date))
+        l8 = Landsat8(self.dir_name_LT5)
+        polygon = l8.get_tile_geometry()
+        bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile)
+        for day in rrule(DAILY, dtstart=self.start, until=self.end):
+            gridmet = GridMet(self.var, date=day, bbox=bounds,
+                              target_profile=l8.profile, clip_feature=polygon)
+            gridmet.get_data_subset(native_dataset=True,
+                                    out_filename='/data01/images/sand'
+                                                 'box/{}-{}-{}_pet.tif'.format(
+                                        day.year,
+                                        day.month,
+                                        day.day))
 
     def test_get_time_series(self):
-        gridmet = GridMet(self.var, start=self.start, end=self.end)
+        gridmet = GridMet(self.agrimet_var, start=self.start, end=self.end,
+                          lat=self.agri_loc[0], lon=self.agri_loc[1])
+        series = gridmet.get_point_timeseries()
+        for date, val in self.grid_vals:
+            self.assertAlmostEqual(series.loc[date][0], val, delta=0.1)
 
 
 if __name__ == '__main__':
