@@ -24,7 +24,7 @@ import os
 import copy
 from tempfile import mkdtemp
 from numpy import empty, float32, datetime64, timedelta64, argmin, abs, array
-from numpy import floor, ceil
+from numpy import floor, ceil, transpose
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 from rasterio.transform import Affine
@@ -446,8 +446,11 @@ class GridMet(Thredds):
         setattr(self, 'width', subset.dims['lon'])
         setattr(self, 'height', subset.dims['lat'])
         arr = subset[self.kwords[self.variable]].values
+        arr = arr.reshape(arr.shape[1], arr.shape[2])
+        arr = transpose(arr)
         if out_filename:
             geometry = self.get_subset_profile(subset)
+            geometry['transform'] = geometry['transform'].identity()
             self.save_raster(arr, geometry, out_filename)
         return subset
 

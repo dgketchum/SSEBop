@@ -17,71 +17,69 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_gridmet.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_gridmet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+            <state relative-caret-position="493">
+              <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#733#748#0" expanded="true" />
+                <element signature="e#1037#2107#0" expanded="false" />
                 <element signature="e#1238#1705#0" expanded="false" />
                 <element signature="e#2149#2256#0" expanded="false" />
                 <element signature="e#2300#2581#0" expanded="false" />
                 <element signature="e#2631#2930#0" expanded="false" />
                 <element signature="e#2977#3433#0" expanded="false" />
-                <element signature="e#3959#4257#0" expanded="false" />
+                <element signature="e#3942#4240#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="thredds.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="thredds.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
+            <state relative-caret-position="528">
+              <caret line="241" column="22" lean-forward="true" selection-start-line="241" selection-start-column="22" selection-end-line="241" selection-end-column="22" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#1523#1619#1" expanded="false" />
-                <element signature="e#1775#1997#0" expanded="false" />
-                <element signature="e#2053#2368#0" expanded="false" />
-                <element signature="e#2411#3477#0" expanded="false" />
-                <element signature="e#2741#2800#0" expanded="false" />
-                <element signature="e#2751#2799#0" expanded="false" />
-                <element signature="e#3215#3389#0" expanded="false" />
-                <element signature="e#3514#4955#0" expanded="false" />
-                <element signature="e#3685#3782#0" expanded="false" />
-                <element signature="e#4270#4448#0" expanded="false" />
-                <element signature="e#4525#4955#0" expanded="false" />
-                <element signature="e#4987#5641#0" expanded="false" />
-                <element signature="e#5102#5472#0" expanded="false" />
-                <element signature="e#5286#5471#0" expanded="false" />
-                <element signature="e#5677#7096#0" expanded="false" />
-                <element signature="e#5677#5709#0" expanded="false" />
-                <element signature="e#5947#7096#0" expanded="false" />
-                <element signature="e#6169#6281#0" expanded="false" />
-                <element signature="e#6783#6985#0" expanded="false" />
-                <element signature="e#7133#7211#0" expanded="false" />
-                <element signature="e#7253#7508#0" expanded="false" />
-                <element signature="e#7570#7639#0" expanded="false" />
-                <element signature="e#7720#8022#0" expanded="false" />
-                <element signature="e#9054#12381#0" expanded="false" />
-                <element signature="e#9054#9725#1" expanded="false" />
-                <element signature="e#9769#10143#0" expanded="false" />
-                <element signature="e#10051#10106#0" expanded="false" />
-                <element signature="e#10276#12023#0" expanded="false" />
-                <element signature="e#10617#10649#0" expanded="false" />
-                <element signature="e#11237#11319#0" expanded="false" />
-                <element signature="e#11674#12023#0" expanded="false" />
-                <element signature="e#12065#12381#0" expanded="false" />
-                <element signature="e#12163#12360#0" expanded="false" />
-                <element signature="e#12217#12309#0" expanded="false" />
-                <element signature="e#12412#14344#1" expanded="false" />
-                <element signature="e#14683#14845#0" expanded="false" />
-                <element signature="e#14907#14989#0" expanded="false" />
-                <element signature="e#15013#15862#0" expanded="false" />
-                <element signature="e#18120#18686#0" expanded="false" />
+                <element signature="e#1534#1630#1" expanded="false" />
+                <element signature="e#1786#2008#0" expanded="false" />
+                <element signature="e#2064#2379#0" expanded="false" />
+                <element signature="e#3525#4966#0" expanded="false" />
+                <element signature="e#3696#3793#0" expanded="false" />
+                <element signature="e#4998#5652#0" expanded="false" />
+                <element signature="e#5113#5483#0" expanded="false" />
+                <element signature="e#5297#5482#0" expanded="false" />
+                <element signature="e#5688#7107#0" expanded="false" />
+                <element signature="e#5688#5720#0" expanded="false" />
+                <element signature="e#5958#7107#0" expanded="false" />
+                <element signature="e#6180#6292#0" expanded="false" />
+                <element signature="e#6794#6996#0" expanded="false" />
+                <element signature="e#7144#7222#0" expanded="false" />
+                <element signature="e#7264#7519#0" expanded="false" />
+                <element signature="e#7581#7650#0" expanded="false" />
+                <element signature="e#7731#8033#0" expanded="false" />
+                <element signature="e#9065#12392#0" expanded="false" />
+                <element signature="e#9065#9736#1" expanded="false" />
+                <element signature="e#9780#10154#0" expanded="false" />
+                <element signature="e#10062#10117#0" expanded="false" />
+                <element signature="e#10287#12034#0" expanded="false" />
+                <element signature="e#10628#10660#0" expanded="false" />
+                <element signature="e#11248#11330#0" expanded="false" />
+                <element signature="e#11685#12034#0" expanded="false" />
+                <element signature="e#12076#12392#0" expanded="false" />
+                <element signature="e#12174#12371#0" expanded="false" />
+                <element signature="e#12228#12320#0" expanded="false" />
+                <element signature="e#12423#14355#1" expanded="false" />
+                <element signature="e#14409#16081#0" expanded="false" />
+                <element signature="e#14694#14856#0" expanded="false" />
+                <element signature="e#14918#15000#0" expanded="false" />
+                <element signature="e#15024#15873#0" expanded="false" />
+                <element signature="e#16900#18236#0" expanded="false" />
+                <element signature="e#18283#18849#0" expanded="false" />
+                <element signature="e#18886#19431#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -269,7 +267,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -282,146 +280,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop_test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop_test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lc8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="038_027" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop_test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lc8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="038_027" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2014" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LC80380272014227LGN01" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssebop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -490,21 +349,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for tests.test_gridmet.test_get_time_series" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_gridmet.test_get_time_series&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
     <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -532,6 +376,21 @@
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_native_dataset&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_save_to_netcdf" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_save_to_netcdf&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -613,17 +472,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_multi" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.test_get_time_series" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_to_netcdf" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_multi" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.test_get_time_series" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_to_netcdf" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_multi" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
       </list>
     </recent_temporary>
   </component>
@@ -640,13 +499,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00169" summary="added Kelvin option to Thredds Topowx output">
-      <created>1506115145027</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1506115145027</updated>
     </task>
     <task id="LOCAL-00170" summary="added clipped, flux-centered landsat data to tests">
       <created>1506365909824</created>
@@ -984,39 +836,46 @@
       <option name="project" value="LOCAL" />
       <updated>1507079721363</updated>
     </task>
-    <option name="localTasksCounter" value="218" />
+    <task id="LOCAL-00218" summary="building a netcdf native gtiff writer">
+      <created>1507128802620</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1507128802621</updated>
+    </task>
+    <option name="localTasksCounter" value="219" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 15m 40s.xml">
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 18m 32s.xml">
       <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 20m 30s.xml">
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 18m 56s.xml">
       <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 23m 04s.xml">
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 19m 20s.xml">
       <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 24m 29s.xml">
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 24m 49s.xml">
       <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 08h 30m 33s.xml">
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 25m 27s.xml">
       <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 07h 56m 20s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 26m 12s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 07h 58m 15s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 26m 58s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 07h 59m 04s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 31m 01s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 08h 04m 14s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 33m 13s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_multi - 2017.10.04 at 08h 08m 08s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_multi" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_native_dataset - 2017.10.04 at 17h 35m 14s.xml">
+      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_native_dataset" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -1035,13 +894,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23967552" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50958705" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40265486" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48746312" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47050148" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5176991" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1110,7 +969,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="initial commit 041_025_Let* points data" />
     <MESSAGE value="adding point extract utility to image lst tests" />
     <MESSAGE value="initial commit US Mj 1 + 2 data" />
     <MESSAGE value="adding point reader raster to lst tests" />
@@ -1135,7 +993,8 @@
     <MESSAGE value="goinig to reshape 038-027 polygon for tests with agrimet" />
     <MESSAGE value="got dataframe netcdf time series, not sure if the time series or &#10;the projected raster is off, prolly raster" />
     <MESSAGE value="stuck writing the subset to tif," />
-    <option name="LAST_COMMIT_MESSAGE" value="stuck writing the subset to tif," />
+    <MESSAGE value="building a netcdf native gtiff writer" />
+    <option name="LAST_COMMIT_MESSAGE" value="building a netcdf native gtiff writer" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1186,6 +1045,16 @@
           <line>88</line>
           <option name="timeStamp" value="1555" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/metio/thredds.py</url>
+          <line>232</line>
+          <option name="timeStamp" value="1573" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/metio/thredds.py</url>
+          <line>244</line>
+          <option name="timeStamp" value="1574" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1194,7 +1063,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1561" />
+      <option name="time" value="1575" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1509,9 +1378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding>
-            <element signature="e#762#771#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1519,7 +1385,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-238">
           <caret line="289" column="4" lean-forward="false" selection-start-line="289" selection-start-column="4" selection-end-line="289" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1535,72 +1400,69 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="590">
           <caret line="272" column="0" lean-forward="false" selection-start-line="272" selection-start-column="0" selection-end-line="272" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metio/thredds.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1523#1619#1" expanded="false" />
-            <element signature="e#1775#1997#0" expanded="false" />
-            <element signature="e#2053#2368#0" expanded="false" />
-            <element signature="e#2411#3477#0" expanded="false" />
-            <element signature="e#2741#2800#0" expanded="false" />
-            <element signature="e#2751#2799#0" expanded="false" />
-            <element signature="e#3215#3389#0" expanded="false" />
-            <element signature="e#3514#4955#0" expanded="false" />
-            <element signature="e#3685#3782#0" expanded="false" />
-            <element signature="e#4270#4448#0" expanded="false" />
-            <element signature="e#4525#4955#0" expanded="false" />
-            <element signature="e#4987#5641#0" expanded="false" />
-            <element signature="e#5102#5472#0" expanded="false" />
-            <element signature="e#5286#5471#0" expanded="false" />
-            <element signature="e#5677#7096#0" expanded="false" />
-            <element signature="e#5677#5709#0" expanded="false" />
-            <element signature="e#5947#7096#0" expanded="false" />
-            <element signature="e#6169#6281#0" expanded="false" />
-            <element signature="e#6783#6985#0" expanded="false" />
-            <element signature="e#7133#7211#0" expanded="false" />
-            <element signature="e#7253#7508#0" expanded="false" />
-            <element signature="e#7570#7639#0" expanded="false" />
-            <element signature="e#7720#8022#0" expanded="false" />
-            <element signature="e#9054#12381#0" expanded="false" />
-            <element signature="e#9054#9725#1" expanded="false" />
-            <element signature="e#9769#10143#0" expanded="false" />
-            <element signature="e#10051#10106#0" expanded="false" />
-            <element signature="e#10276#12023#0" expanded="false" />
-            <element signature="e#10617#10649#0" expanded="false" />
-            <element signature="e#11237#11319#0" expanded="false" />
-            <element signature="e#11674#12023#0" expanded="false" />
-            <element signature="e#12065#12381#0" expanded="false" />
-            <element signature="e#12163#12360#0" expanded="false" />
-            <element signature="e#12217#12309#0" expanded="false" />
-            <element signature="e#12412#14344#1" expanded="false" />
-            <element signature="e#14683#14845#0" expanded="false" />
-            <element signature="e#14907#14989#0" expanded="false" />
-            <element signature="e#15013#15862#0" expanded="false" />
-            <element signature="e#18120#18686#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+        <state relative-caret-position="493">
+          <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#733#748#0" expanded="true" />
+            <element signature="e#1037#2107#0" expanded="false" />
             <element signature="e#1238#1705#0" expanded="false" />
             <element signature="e#2149#2256#0" expanded="false" />
             <element signature="e#2300#2581#0" expanded="false" />
             <element signature="e#2631#2930#0" expanded="false" />
             <element signature="e#2977#3433#0" expanded="false" />
-            <element signature="e#3959#4257#0" expanded="false" />
+            <element signature="e#3942#4240#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/thredds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="241" column="22" lean-forward="true" selection-start-line="241" selection-start-column="22" selection-end-line="241" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1534#1630#1" expanded="false" />
+            <element signature="e#1786#2008#0" expanded="false" />
+            <element signature="e#2064#2379#0" expanded="false" />
+            <element signature="e#3525#4966#0" expanded="false" />
+            <element signature="e#3696#3793#0" expanded="false" />
+            <element signature="e#4998#5652#0" expanded="false" />
+            <element signature="e#5113#5483#0" expanded="false" />
+            <element signature="e#5297#5482#0" expanded="false" />
+            <element signature="e#5688#7107#0" expanded="false" />
+            <element signature="e#5688#5720#0" expanded="false" />
+            <element signature="e#5958#7107#0" expanded="false" />
+            <element signature="e#6180#6292#0" expanded="false" />
+            <element signature="e#6794#6996#0" expanded="false" />
+            <element signature="e#7144#7222#0" expanded="false" />
+            <element signature="e#7264#7519#0" expanded="false" />
+            <element signature="e#7581#7650#0" expanded="false" />
+            <element signature="e#7731#8033#0" expanded="false" />
+            <element signature="e#9065#12392#0" expanded="false" />
+            <element signature="e#9065#9736#1" expanded="false" />
+            <element signature="e#9780#10154#0" expanded="false" />
+            <element signature="e#10062#10117#0" expanded="false" />
+            <element signature="e#10287#12034#0" expanded="false" />
+            <element signature="e#10628#10660#0" expanded="false" />
+            <element signature="e#11248#11330#0" expanded="false" />
+            <element signature="e#11685#12034#0" expanded="false" />
+            <element signature="e#12076#12392#0" expanded="false" />
+            <element signature="e#12174#12371#0" expanded="false" />
+            <element signature="e#12228#12320#0" expanded="false" />
+            <element signature="e#12423#14355#1" expanded="false" />
+            <element signature="e#14409#16081#0" expanded="false" />
+            <element signature="e#14694#14856#0" expanded="false" />
+            <element signature="e#14918#15000#0" expanded="false" />
+            <element signature="e#15024#15873#0" expanded="false" />
+            <element signature="e#16900#18236#0" expanded="false" />
+            <element signature="e#18283#18849#0" expanded="false" />
+            <element signature="e#18886#19431#0" expanded="false" />
           </folding>
         </state>
       </provider>

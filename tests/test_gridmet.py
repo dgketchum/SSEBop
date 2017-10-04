@@ -80,9 +80,9 @@ class TestGridMet(unittest.TestCase):
         self.assertEqual(pr.shape, shape)
 
     def test_native_dataset(self):
-        gridmet = GridMet(self.var, date=self.date, bbox=self.bbox)
+        gridmet = GridMet(self.var, date=self.date)
         pet = gridmet.get_data_full_extent(out_filename='/data01/images/sand'
-                                                        'box/{}-{}-{}_pet.tif'.
+                                                        'box/{}-{}-{}_pr.tif'.
                                            format(self.date.year,
                                                   self.date.month,
                                                   self.date.day))
