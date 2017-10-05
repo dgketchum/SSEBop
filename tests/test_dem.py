@@ -16,15 +16,14 @@
 
 import unittest
 
-from bounds.bounds import GeoBounds
+from bounds.bounds import RasterBounds
 from dem.dem import MapzenDem
 from sat_image.image import Landsat8
 
 
 class MapzenDemTestCase(unittest.TestCase):
     def setUp(self):
-        self.bbox = GeoBounds(west_lon=-116.5, east_lon=-111.0,
-                              south_lat=44.3, north_lat=47.)
+
         self.api_key = 'mapzen-JmKu1BF'
         self.dir_name_LC8 = '/data01/images/sandbox/ssebop_analysis/' \
                             '038_027/2014/LC80380272014227LGN01'
@@ -33,8 +32,10 @@ class MapzenDemTestCase(unittest.TestCase):
         l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
         profile = l8.rasterio_geometry
+        bb = RasterBounds(affine_transform=profile['transform'],
+                          profile=profile, latlon=True)
 
-        dem = MapzenDem(zoom=10, bounds=l8.bounds, target_profile=profile,
+        dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile,
                         clip_object=polygon,
                         api_key=self.api_key)
 

@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_dem.py" afterPath="$PROJECT_DIR$/tests/test_dem.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_gridmet.py" afterPath="$PROJECT_DIR$/tests/test_gridmet.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +17,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_gridmet.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_gridmet.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="335">
@@ -36,34 +36,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_dem.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
+      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sat_image/image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="45" column="53" lean-forward="true" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#734#749#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dem.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dem/dem.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+            <state relative-caret-position="242">
+              <caret line="98" column="32" lean-forward="false" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <file leaf-file-name="bounds.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="54" column="18" lean-forward="false" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+            <state relative-caret-position="301">
+              <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -131,7 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>daily_mean_t</find>
       <find>runspec.</find>
       <find>163LGN</find>
       <find>&quot;</find>
@@ -161,6 +147,7 @@
       <find>grimet_raster_dir</find>
       <find>agri_loc</find>
       <find>l5</find>
+      <find>bounds</find>
     </findStrings>
     <replaceStrings>
       <replace>self._get_band('green', saturation_mask=True)</replace>
@@ -234,7 +221,6 @@
         <option value="$PROJECT_DIR$/tests/test_metio.py" />
         <option value="$PROJECT_DIR$/tests/test_fao.py" />
         <option value="$PROJECT_DIR$/tests/test_ssebop.py" />
-        <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_le7.yml" />
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml" />
         <option value="$PROJECT_DIR$/tests/test_image.py" />
@@ -259,6 +245,7 @@
         <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
         <option value="$PROJECT_DIR$/../Landsat578/landsat/sample_script.py" />
         <option value="$PROJECT_DIR$/tests/test_gridmet.py" />
+        <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
       </list>
     </option>
@@ -567,13 +554,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00175" summary="separated write and read, so resample reads new .tif rather than array passed &#10;to write function">
-      <created>1506374725833</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1506374725833</updated>
     </task>
     <task id="LOCAL-00176" summary="corrected avp to take K, convert to C, and do comp">
       <created>1506387165718</created>
@@ -911,7 +891,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507226426414</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <task id="LOCAL-00224" summary="change to l8 for tests">
+      <created>1507241004718</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1507241004718</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -921,20 +908,20 @@
     <history-entry file="Unittests_for_tests_test_dem_MapzenDemTestCase_test_dem - 2017.10.05 at 16h 02m 35s.xml">
       <configuration name="Unittests for tests.test_dem.MapzenDemTestCase.test_dem" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.05 at 14h 38m 29s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MapzenDemTestCase_test_dem - 2017.10.05 at 16h 03m 33s.xml">
+      <configuration name="Unittests for tests.test_dem.MapzenDemTestCase.test_dem" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.05 at 14h 40m 48s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MapzenDemTestCase_test_dem - 2017.10.05 at 16h 11m 09s.xml">
+      <configuration name="Unittests for tests.test_dem.MapzenDemTestCase.test_dem" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.05 at 14h 43m 07s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MapzenDemTestCase_test_dem - 2017.10.05 at 16h 13m 07s.xml">
+      <configuration name="Unittests for tests.test_dem.MapzenDemTestCase.test_dem" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.05 at 15h 34m 22s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MapzenDemTestCase_test_dem - 2017.10.05 at 16h 15m 02s.xml">
+      <configuration name="Unittests for tests.test_dem.MapzenDemTestCase.test_dem" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.05 at 15h 34m 37s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_dem_MapzenDemTestCase_test_dem - 2017.10.05 at 16h 17m 19s.xml">
+      <configuration name="Unittests for tests.test_dem.MapzenDemTestCase.test_dem" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.05 at 15h 35m 22s.xml">
       <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
@@ -961,17 +948,17 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20575221" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116022" sideWeight="0.50294983" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41297936" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41297936" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50442475" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5036873" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5176991" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1037,7 +1024,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/PyETo" />
     </ignored-roots>
-    <MESSAGE value="updating config format" />
     <MESSAGE value="update paths for new config option 'down_images_only'" />
     <MESSAGE value="testing a move to call configure_project_dirs before process reaches&#10;ssebop model instantiation" />
     <MESSAGE value="removed noaa service from metio" />
@@ -1062,7 +1048,8 @@
     <MESSAGE value="working on test get time series, so close!" />
     <MESSAGE value="passing get_time_series tests!" />
     <MESSAGE value="passing agrimet tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="passing agrimet tests" />
+    <MESSAGE value="change to l8 for tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="change to l8 for tests" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1131,7 +1118,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1672" />
+      <option name="time" value="1676" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1143,7 +1130,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/climata/usgs/__init__.py" />
     <entry file="file://$PROJECT_DIR$/climata/huc8/__init__.py" />
     <entry file="file://$PROJECT_DIR$/climata/acis/__init__.py" />
     <entry file="file://$PROJECT_DIR$/../climata/climata/get_agrimet.py">
@@ -1519,6 +1505,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="98" column="32" lean-forward="false" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bounds/bounds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dem/dem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#749#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
@@ -1532,33 +1553,6 @@
             <element signature="e#3217#3688#0" expanded="false" />
             <element signature="e#3735#4640#0" expanded="false" />
             <element signature="e#5559#6201#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sat_image/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="54" column="18" lean-forward="false" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dem/dem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="45" column="53" lean-forward="true" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#749#0" expanded="true" />
           </folding>
         </state>
       </provider>

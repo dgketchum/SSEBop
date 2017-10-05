@@ -99,7 +99,13 @@ class MapzenDem(Dem):
 
         self.zoom = zoom
         self.target_profile = target_profile
-        self.bbox = bounds
+
+        for bound in [bounds.east, bounds.north, bounds.south, bounds.west]:
+            if bound > 180.0 or bound < -180.:
+                raise ValueError('MapzenDem class takes a latlon bounds object!')
+            else:
+                self.bbox = bounds
+
         self.clip_feature = clip_object
         self.key = api_key
         self.url = 'https://tile.mapzen.com'
