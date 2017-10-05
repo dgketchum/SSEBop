@@ -31,7 +31,7 @@ class TestGridMet(unittest.TestCase):
         self.bbox = GeoBounds(west_lon=-116.4, east_lon=-103.0,
                               south_lat=44.3, north_lat=49.1)
 
-        self.var = 'pet'
+        self.var = 'elev'
         self.bad_var = 'rain'
         self.test_url_str = 'http://thredds.northwestknowledge.net:' \
                             '8080/thredds/ncss/MET/pet/pet_2011.nc?' \
@@ -46,14 +46,13 @@ class TestGridMet(unittest.TestCase):
         self.end = datetime(2014, 10, 31)
 
         self.agrimet_var = 'pet'
-        self.agri_loc = 47.0585365, -109.9507523
         self.grimet_raster_dir = 'tests/data/agrimet_test/gridmet_rasters'
-        self.grid_vals = [('2014-4-23', 5.13205), ('2014-4-24', 1.49978), ('2014-4-20', 12.0076)]
         # time series test points here are agrimet stations
         self.agri_points = 'tests/data/agrimet_test/points/agrimet_test_sites.shp'
         # agrimet_test.shp are points between sites to test location
         self.point_file = 'tests/data/agrimet_test/points/agrimet__location_test.shp'
-        self.dir_name_LC8 = 'tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01'
+        # self.dir_name_LC8 = 'tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01'
+        self.dir_name_LC8 = '/data01/images/sandbox/ssebop_analysis/038_027/2014/LC80380272014227LGN01'
 
     def test_instantiate(self):
         gridmet = GridMet(self.var, start=self.start, end=self.end)
@@ -103,6 +102,19 @@ class TestGridMet(unittest.TestCase):
                 for key, val in points.items():
                     self.assertEqual(val[dt][0], val[dt][1])
 
+    def test_conforming_array_to_native(self):
+        l8 = Landsat8(self.dir_name_LC8)
+        polygon = l8.get_tile_geometry()
+        bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile)
+        gridmet = GridMet(self.var, date=self.date, bbox=bounds,
+                          target_profile=l8.profile, clip_feature=polygon)
+        pet = gridmet.get_data_subset(out_filename='/data01/images/sandbox/ssebop_testing'
+                                                   '/{}_{}.tif'.format(datetime.strftime(self.date,
+                                                                                         '%Y-%m-%d'),
+                                                                       self.var))
+        pet = None
+        self.assertEqual(True, False)
+
 
 # ============================================================================
 
@@ -125,7 +137,6 @@ def raster_point_extract(raster, points, dtime):
             point_data[key][dtime] = [val, None]
 
         return point_data
-
 
 if __name__ == '__main__':
     unittest.main()
