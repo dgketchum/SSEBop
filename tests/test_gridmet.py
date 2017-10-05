@@ -15,6 +15,7 @@
 # ===============================================================================
 import unittest
 import os
+from random import shuffle
 from datetime import datetime
 from xarray import open_dataset, Dataset
 from fiona import open as fopen
@@ -49,9 +50,9 @@ class TestGridMet(unittest.TestCase):
         self.grimet_raster_dir = 'tests/data/agrimet_test/gridmet_rasters'
         self.grid_vals = [('2014-4-23', 5.13205), ('2014-4-24', 1.49978), ('2014-4-20', 12.0076)]
         # time series test points here are agrimet stations
-        self.all_agri_points = 'tests/data/agrimet_test/points/agrimet_sites.shp'
+        self.agri_points = 'tests/data/agrimet_test/points/agrimet_test_sites.shp'
         # agrimet_test.shp are points between sites to test location
-        self.point_file = 'tests/data/agrimet_test/points/agrimet_test.shp'
+        self.point_file = 'tests/data/agrimet_test/points/agrimet__location_test.shp'
         self.dir_name_LC8 = 'tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01'
 
     def test_instantiate(self):
@@ -79,26 +80,28 @@ class TestGridMet(unittest.TestCase):
         self.assertIsInstance(data, Dataset)
         os.remove(out)
 
-    def test_save_native_dataset(self):
-        self.assertEqual(True, False)
-
     def test_get_time_series(self):
 
         rasters = os.listdir(self.grimet_raster_dir)
-
+        shuffle(rasters)
+        count = 0
         for ras in rasters:
-            dt = datetime.strptime(ras[:9], '%Y-%m-%d')
-            ras = os.path.join(self.grimet_raster_dir, ras)
-            points = raster_point_extract(ras, self.all_agri_points, dt)
+            while count < 4:
+                dt = datetime.strptime(ras[:10], '%Y-%m-%d')
+                raster = os.path.join(self.grimet_raster_dir, ras)
+                points = raster_point_extract(raster, self.agri_points, dt)
 
-            for key, val in points:
-
-            gridmet = GridMet(self.agrimet_var, date=dt,
-                              lat=self.agri_loc[0], lon=self.agri_loc[1])
-            gridmet = None
-        series = gridmet.get_point_timeseries()
-        for date, val in self.grid_vals:
-            self.assertAlmostEqual(series.loc[date][0], val, delta=0.1)
+                for key, val in points.items():
+                    lon, lat = val['coords']
+                    _, var = ras.split('_')
+                    var = var.replace('.tif', '')
+                    gridmet = GridMet(var, date=dt,
+                                      lat=lat, lon=lon)
+                    gridmet_pet = gridmet.get_point_timeseries()
+                    val[dt][1] = gridmet_pet.iloc[0, 0]
+                    count += 1
+                for key, val in points.items():
+                    self.assertEqual(val[dt][0], val[dt][1])
 
 
 # ============================================================================
