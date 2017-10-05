@@ -21,32 +21,51 @@ from datetime import datetime
 from fiona import collection
 from fiona.crs import from_epsg
 from geopy.distance import vincenty
-from pandas import read_table, to_datetime
+from pandas import read_table, to_datetime, date_range
 
 STATION_INFO_URL = 'https://www.usbr.gov/pn/agrimet/agrimetmap/usbr_map.json'
 AGRIMET_REQ_SCRIPT = 'https://www.usbr.gov/pn-bin/agrimet.pl'
 # in km
 EARTH_RADIUS = 6371.
 
-WEATHER_PARAMETRS = [('DATETIME', 'Date - [YYYY-MM-DD]'),
-                     ('ET', 'Evapotranspiration Kimberly-Penman - [in]'),
-                     ('ETos', 'Evapotranspiration ASCE-EWRI Grass - [in]'),
-                     ('ETrs', 'Evapotranspiration ASCE-EWRI Alfalfa - [in]'),
-                     ('MM', 'Mean Daily Air Temperature - [F]'),
-                     ('MN', 'Minimum Daily Air Temperature - [F]'),
-                     ('MX', 'Maximum Daily Air Temperature - [F]'),
-                     ('PC', 'Accumulated Precipitation Since Recharge/Reset - [in]'),
-                     ('PP', 'Daily (24 hour) Precipitation - [in]'),
-                     ('PU', 'Accumulated Water Year Precipitation - [in]'),
-                     ('SR', 'Daily Global Solar Radiation - [langleys]'),
-                     ('TA', 'Mean Daily Humidity - [%]'),
-                     ('TG', 'Growing Degree Days - [base 50F]'),
-                     ('YM', 'Mean Daily Dewpoint Temperature - [F]'),
-                     ('UA', 'Daily Average Wind Speed - [mph]'),
-                     ('UD', 'Daily Average Wind Direction - [deg az]'),
-                     ('WG', 'Daily Peak Wind Gust - [mph]'),
-                     ('WR', 'Daily Wind Run - [miles]'),
-                     ]
+WEATHER_PARAMETRS_UNCONVERTED = [('DATETIME', 'Date - [YYYY-MM-DD]'),
+                                 ('ET', 'Evapotranspiration Kimberly-Penman - [in]'),
+                                 ('ETos', 'Evapotranspiration ASCE-EWRI Grass - [in]'),
+                                 ('ETrs', 'Evapotranspiration ASCE-EWRI Alfalfa - [in]'),
+                                 ('MM', 'Mean Daily Air Temperature - [F]'),
+                                 ('MN', 'Minimum Daily Air Temperature - [F]'),
+                                 ('MX', 'Maximum Daily Air Temperature - [F]'),
+                                 ('PC', 'Accumulated Precipitation Since Recharge/Reset - [in]'),
+                                 ('PP', 'Daily (24 hour) Precipitation - [in]'),
+                                 ('PU', 'Accumulated Water Year Precipitation - [in]'),
+                                 ('SR', 'Daily Global Solar Radiation - [langleys]'),
+                                 ('TA', 'Mean Daily Humidity - [%]'),
+                                 ('TG', 'Growing Degree Days - [base 50F]'),
+                                 ('YM', 'Mean Daily Dewpoint Temperature - [F]'),
+                                 ('UA', 'Daily Average Wind Speed - [mph]'),
+                                 ('UD', 'Daily Average Wind Direction - [deg az]'),
+                                 ('WG', 'Daily Peak Wind Gust - [mph]'),
+                                 ('WR', 'Daily Wind Run - [miles]'),
+                                 ]
+
+WEATHER_PARAMETRS = [('DATETIME', 'Date', '[YYYY-MM-DD]'),
+                     ('ET', 'Evapotranspiration Kimberly-Penman', '[mm]'),
+                     ('ETos', 'Evapotranspiration ASCE-EWRI Grass', '[mm]'),
+                     ('ETrs', 'Evapotranspiration ASCE-EWRI Alfalfa', '[mm]'),
+                     ('MM', 'Mean Daily Air Temperature', '[C]'),
+                     ('MN', 'Minimum Daily Air Temperature', '[C]'),
+                     ('MX', 'Maximum Daily Air Temperature', '[C]'),
+                     ('PC', 'Accumulated Precipitation Since Recharge/Reset', '[mm]'),
+                     ('PP', 'Daily (24 hour) Precipitation', '[mm]'),
+                     ('PU', 'Accumulated Water Year Precipitation', '[mm]'),
+                     ('SR', 'Daily Global Solar Radiation', '[W m-2]'),
+                     ('TA', 'Mean Daily Humidity', '[%]'),
+                     ('TG', 'Growing Degree Days', '[base 50F]'),
+                     ('YM', 'Mean Daily Dewpoint Temperature', '[C]'),
+                     ('UA', 'Daily Average Wind Speed', '[m sec-1]'),
+                     ('UD', 'Daily Average Wind Direction - [deg az]', '[deg az]'),
+                     ('WG', 'Daily Peak Wind Gust', '[m sec-1]'),
+                     ('WR', 'Daily Wind Run', '[m]')]
 
 
 class Agrimet(object):
@@ -55,6 +74,8 @@ class Agrimet(object):
 
         self.station_info_url = STATION_INFO_URL
         self.station = station
+
+        self.empty_df = True
 
         if not station:
             if not lat and not sat_image:
@@ -72,9 +93,7 @@ class Agrimet(object):
         if start_date and end_date:
             self.start = datetime.strptime(start_date, '%Y-%m-%d')
             self.end = datetime.strptime(end_date, '%Y-%m-%d')
-
             self.today = datetime.now()
-
             self.start_index = (self.today - self.start).days - 1
 
     @property
@@ -109,68 +128,71 @@ class Agrimet(object):
         stations = json.loads(r.text)
         return stations
 
-    def fetch_data(self, return_raw=False):
+    def fetch_data(self, return_raw=False, out_csv_file=None):
         url = '{}?{}'.format(AGRIMET_REQ_SCRIPT, self.params)
-        raw_data = read_table(url, skip_blank_lines=True,
-                              header=1, sep=r'\,|\t', engine='python',
-                              )
+        raw_df = read_table(url, skip_blank_lines=True,
+                            header=1, sep=r'\,|\t', engine='python')
+        raw_df.index = date_range(self.start, periods=raw_df.shape[0])
+        raw_df = raw_df[to_datetime(self.start): to_datetime(self.end)]
+
+        if raw_df.shape[0] > 3:
+            self.empty_df = False
+
         if return_raw:
-            return raw_data
+            return raw_df
 
-        reformed_data = self._reformat_dataframe(raw_data)
+        reformed_data = self._reformat_dataframe(raw_df)
 
-        reformed_data.to_csv(path_or_buf='/data01/images/sandbox/drlm.csv')
+        if out_csv_file:
+            reformed_data.to_csv(path_or_buf=out_csv_file)
 
         return reformed_data
 
     def _reformat_dataframe(self, df):
 
         old_cols = df.columns.values.tolist()
-        new_cols = WEATHER_PARAMETRS
         head_1 = []
         head_2 = []
         head_3 = []
         for x in old_cols:
             end = x.replace('{}_'.format(self.station), '')
-            for y, z in new_cols:
-                if end.upper() == y.upper():
-                    head_1.append(y.upper())
-                    desc, unit = z.split(' - ')
-                    head_2.append(desc)
-                    head_3.append(unit)
+            for j, k, l in WEATHER_PARAMETRS:
+                if end.upper() == j.upper():
+                    head_1.append(j.upper())
+                    head_2.append(k)
+                    head_3.append(l)
                     break
         df.columns = [head_1, head_2, head_3]
-        df.index = to_datetime(df.index)
 
-        # convert to standard units
-        for col in ['ET', 'ETRS', 'ETOS', 'PC', 'PP', 'PU']:
-            # in to mm
+        for i, col in enumerate(head_1, start=0):
             try:
-                df[col] *= 25.4
+                # convert to standard units
+                if col in ['ET', 'ETRS', 'ETOS', 'PC', 'PP', 'PU']:
+                    # in to mm
+                    df[col] *= 25.4
+                if col in ['MN', 'MX', 'MM', 'YM']:
+                    # F to C
+                    df[col] = (df[col] - 32) * 5 / 9
+                if col in ['UA', 'WG']:
+                    # mph to m s-1
+                    df[col] *= 0.44704
+                if col == 'WR':
+                    # mi to m
+                    df['WR'] *= 1609.34
+                if col == 'SR':
+                    # Langleys to W m-2
+                    df['SR'] *= 41868.
             except KeyError:
-                pass
-        for col in ['MN', 'MX', 'MM', 'YM']:
-            # F to C
-            df[col] *= 9 / 5
-            df[col] += 32
-        for col in ['UA', 'WG']:
-            # mph to m s-1
-            df[col] *= 0.44704
-        # mi to m
-        df['WR'] *= 1609.34
-        # Langleys to J m-2
-        df['SR'] *= 41868.
+                head_1.remove(head_1[i])
+                head_2.remove(head_2[i])
+                head_3.remove(head_3[i])
 
-        headed_converted = ['[YYYY-MM-DD]', '[mm]', '[mm]', '[mm]',
-                            '[C]', '[C]', '[C]', '[mm]', '[mm]', '[W m-2]',
-                            '[%]', '[base 50F]', '[m sec-1]', '[deg az]',
-                            '[m sec-1]', '[m]', '[C]']
-        df.columns = [head_1, head_2, headed_converted]
+        df.columns = [head_1, head_2, head_3]
 
         return df
 
     @staticmethod
-    def write_shp(json_data, epsg, out):
+    def write_agrimet_sation_shp(json_data, epsg, out):
         agri_schema = {'geometry': 'Point',
                        'properties': {
                            'program': 'str',

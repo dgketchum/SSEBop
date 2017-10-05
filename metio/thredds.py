@@ -34,7 +34,6 @@ from rasterio.warp import calculate_default_transform as cdt
 from xlrd.xldate import xldate_from_date_tuple
 from xarray import open_dataset
 from pandas import date_range, DataFrame
-from geopy.distance import vincenty
 
 from bounds.bounds import GeoBounds
 
@@ -416,24 +415,6 @@ class GridMet(Thredds):
         subset = xray.loc[dict(day=slice(start_xl, end_xl))]
         subset.rename({'day': 'time'}, inplace=True)
         subset.to_netcdf(path=outputroot, engine='netcdf4')
-
-    def get_data_full_extent(self, out_filename=None):
-
-        url = self._build_url()
-        xray = open_dataset(url)
-        start_xl, end_xl = self._dtime_to_xldate()
-        subset = xray.loc[dict(day=slice(start_xl, end_xl))]
-        subset.rename({'day': 'time'}, inplace=True)
-        setattr(self, 'width', subset.dims['lon'])
-        setattr(self, 'height', subset.dims['lat'])
-        arr = subset[self.kwords[self.variable]].values
-        arr = arr.reshape(arr.shape[1], arr.shape[2])
-        arr = transpose(arr)
-        if out_filename:
-            geometry = self.get_subset_profile(subset)
-            geometry['transform'] = geometry['transform'].identity()
-            self.save_raster(arr, geometry, out_filename)
-        return subset
 
     def get_data_subset(self, out_filename=None):
 
