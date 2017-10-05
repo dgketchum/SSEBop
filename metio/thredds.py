@@ -217,33 +217,6 @@ class Thredds(object):
             dst.write(arr)
         return None
 
-    def get_subset_profile(self, subset):
-
-        geometry = {'width': self.width,
-                    'height': self.height,
-                    'driver': 'GTiff',
-                    'nodata': -32767,
-                    'crs': CRS({'init': 'epsg:4326'}),
-                    'count': 1}
-
-        lat1, lon1 = subset['lat'].values[0], subset['lon'].values[0]
-        lat2, lon2 = subset['lat'].values[1], subset['lon'].values[1]
-
-        resolution = lon2 - lon1
-        affine = cdt(src_crs=CRS({'init': 'epsg:4326'}),
-                     dst_crs=CRS({'init': 'epsg:4326'}),
-                     height=self.width,
-                     width=self.height,
-                     left=subset['lon'].values[0],
-                     right=subset['lon'].values[-1],
-                     top=subset['lat'].values[0],
-                     bottom=subset['lat'].values[-1],
-                     resolution=resolution
-                     )
-
-        geometry['transform'] = affine[0]
-        return geometry
-
 
 class TopoWX(Thredds):
     """ TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
@@ -435,6 +408,14 @@ class GridMet(Thredds):
 
         if not self.bbox and not self.lat:
             self.bbox = GeoBounds()
+
+    def write_netcdf(self, outputroot):
+        url = self._build_url()
+        xray = open_dataset(url)
+        start_xl, end_xl = self._dtime_to_xldate()
+        subset = xray.loc[dict(day=slice(start_xl, end_xl))]
+        subset.rename({'day': 'time'}, inplace=True)
+        subset.to_netcdf(path=outputroot, engine='netcdf4')
 
     def get_data_full_extent(self, out_filename=None):
 
