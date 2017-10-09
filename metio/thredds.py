@@ -179,7 +179,7 @@ class Thredds(object):
 
             with rasopen(resample_path, 'w', **profile) as dst:
                 reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
-                          dst_crs=src.crs, resampling=Resampling.bilinear)
+                          dst_crs=src.crs, resampling=Resampling.cubic)
 
                 dst.write(new_array)
 
