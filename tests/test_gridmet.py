@@ -20,6 +20,7 @@ from datetime import datetime
 from xarray import open_dataset, Dataset
 from fiona import open as fopen
 from rasterio import open as rasopen
+from dateutil.rrule import rrule, DAILY
 
 from bounds.bounds import GeoBounds, RasterBounds
 from metio.thredds import GridMet
@@ -31,7 +32,7 @@ class TestGridMet(unittest.TestCase):
         self.bbox = GeoBounds(west_lon=-116.4, east_lon=-103.0,
                               south_lat=44.3, north_lat=49.1)
 
-        self.var = 'elev'
+        self.var = 'pet'
         self.bad_var = 'rain'
         self.test_url_str = 'http://thredds.northwestknowledge.net:' \
                             '8080/thredds/ncss/MET/pet/pet_2011.nc?' \
@@ -42,8 +43,9 @@ class TestGridMet(unittest.TestCase):
                             'ride=1&accept=netcdf4'
 
         self.start = datetime(2014, 8, 15)
+        self.end = datetime(2014, 8, 20)
+
         self.date = datetime(2014, 8, 20)
-        self.end = datetime(2014, 10, 31)
 
         self.agrimet_var = 'pet'
         self.grimet_raster_dir = 'tests/data/agrimet_test/gridmet_rasters'
@@ -106,13 +108,15 @@ class TestGridMet(unittest.TestCase):
         l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
         bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile)
-        gridmet = GridMet(self.var, date=self.date, bbox=bounds,
-                          target_profile=l8.profile, clip_feature=polygon)
-        pet = gridmet.get_data_subset(out_filename='/data01/images/sandbox/ssebop_testing'
-                                                   '/{}_{}.tif'.format(datetime.strftime(self.date,
-                                                                                         '%Y-%m-%d'),
-                                                                       self.var))
-        pet = None
+        for day in rrule(DAILY, dtstart=self.start, until=self.end):
+            gridmet = GridMet(self.var, date=day, bbox=bounds,
+                              target_profile=l8.profile, clip_feature=polygon)
+            pet = gridmet.get_data_subset(out_filename='/data01/images/sandbox'
+                                                       '/ssebop_testing'
+                                                       '/{}_{}.tif'.
+                                          format(datetime.strftime(day, '%Y-%m-%d'),
+                                                 self.var))
+            pet = None
         self.assertEqual(True, False)
 
 
@@ -137,6 +141,7 @@ def raster_point_extract(raster, points, dtime):
             point_data[key][dtime] = [val, None]
 
         return point_data
+
 
 if __name__ == '__main__':
     unittest.main()
