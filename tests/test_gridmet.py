@@ -43,7 +43,7 @@ class TestGridMet(unittest.TestCase):
                             'ride=1&accept=netcdf4'
 
         self.start = datetime(2014, 8, 15)
-        self.end = datetime(2014, 8, 20)
+        self.end = datetime(2014, 8, 15)
 
         self.date = datetime(2014, 8, 20)
 
@@ -107,15 +107,17 @@ class TestGridMet(unittest.TestCase):
     def test_conforming_array_to_native(self):
         l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
-        bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile)
+        bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile, latlon=True)
+
         for day in rrule(DAILY, dtstart=self.start, until=self.end):
             gridmet = GridMet(self.var, date=day, bbox=bounds,
                               target_profile=l8.profile, clip_feature=polygon)
             pet = gridmet.get_data_subset(out_filename='/data01/images/sandbox'
                                                        '/ssebop_testing'
-                                                       '/{}_{}.tif'.
+                                                       '/{}_{}_subset.tif'.
                                           format(datetime.strftime(day, '%Y-%m-%d'),
                                                  self.var))
+
             pet = None
         self.assertEqual(True, False)
 
