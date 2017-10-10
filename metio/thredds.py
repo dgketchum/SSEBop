@@ -216,6 +216,21 @@ class Thredds(object):
             dst.write(arr)
         return None
 
+    def _find_nc_subset_bounds(self, data):
+        # find index and value of bounds
+        # 1 degree adds a buffer for this data
+        north_ind = argmin(abs(data.lat.values - (self.bbox.north + 1.)))
+        south_ind = argmin(abs(data.lat.values - (self.bbox.south - 1.)))
+        west_ind = argmin(abs(data.lon.values - (self.bbox.west - 1.)))
+        east_ind = argmin(abs(data.lon.values - (self.bbox.east + 1.)))
+
+        north_val = data.lat.values[north_ind]
+        south_val = data.lat.values[south_ind]
+        west_val = data.lon.values[west_ind]
+        east_val = data.lon.values[east_ind]
+
+        return west_val, south_val, east_val, north_val
+
 
 class TopoWX(Thredds):
     """ Twix
@@ -233,9 +248,7 @@ class TopoWX(Thredds):
     :param variables: List  of available variables. At lease one.
     :param date: single-day datetime date object
     :param bounds: metio.misc.BBox object representing spatial bounds, default to conterminous US
-    :return: numpy.ndarray
-
-    """
+    :return: numpy.ndarray """
 
     def __init__(self, **kwargs):
         Thredds.__init__(self)
@@ -270,24 +283,10 @@ class TopoWX(Thredds):
         if self.date:
             end = end + timedelta64(1, 'D')
 
-        # find index and value of bounds
-        # 1/100 degree adds a small buffer for this 800 m res data
-        north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 1.)))
-        south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 1.)))
-        west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 1.)))
-        east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 1.)))
-
-        north_val = xray.lat.values[north_ind]
-        south_val = xray.lat.values[south_ind]
-        west_val = xray.lon.values[west_ind]
-        east_val = xray.lon.values[east_ind]
-
-        setattr(self, 'src_bounds_wsen', (west_val, south_val,
-                                          east_val, north_val))
-
+        w, s, e, n = self._find_nc_subset_bounds(xray)
         subset = xray.loc[dict(time=slice(start, end),
-                               lat=slice(north_val, south_val),
-                               lon=slice(west_val, east_val))]
+                               lat=slice(n, s),
+                               lon=slice(w, e))]
 
         date_ind = self._date_index()
         subset['time'] = date_ind
@@ -409,42 +408,19 @@ class GridMet(Thredds):
         if not self.bbox and not self.lat:
             self.bbox = GeoBounds()
 
-    def write_netcdf(self, outputroot):
-        url = self._build_url()
-        xray = open_dataset(url)
-        if self.variable != 'elev':
-            start_xl, end_xl = self._dtime_to_xldate()
-            subset = xray.loc[dict(day=slice(start_xl, end_xl))]
-            subset.rename({'day': 'time'}, inplace=True)
-        else:
-            subset = xray
-        subset.to_netcdf(path=outputroot, engine='netcdf4')
-
     def get_data_subset(self, out_filename=None):
 
         url = self._build_url()
         xray = open_dataset(url)
-
-        north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 1.)))
-        south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 1.)))
-        west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 1.)))
-        east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 1.)))
-
-        north_val = xray.lat.values[north_ind]
-        south_val = xray.lat.values[south_ind]
-        west_val = xray.lon.values[west_ind]
-        east_val = xray.lon.values[east_ind]
-
-        setattr(self, 'src_bounds_wsen', (west_val, south_val,
-                                          east_val, north_val))
+        w, s, e, n = self._find_nc_subset_bounds(xray)
 
         if self.variable != 'elev':
             start_xl, end_xl = self._dtime_to_xldate()
 
             xray.rename({'day': 'time'}, inplace=True)
             subset = xray.loc[dict(time=slice(start_xl, end_xl),
-                                   lat=slice(north_val, south_val),
-                                   lon=slice(west_val, east_val))]
+                                   lat=slice(n, s),
+                                   lon=slice(w, e))]
 
             date_ind = self._date_index()
             subset['time'] = date_ind
@@ -457,10 +433,10 @@ class GridMet(Thredds):
             return conformed_array
 
         else:
-            subset = xray.loc[dict(lat=slice((self.bbox.north + 1),
-                                             (self.bbox.south - 1)),
-                                   lon=slice((self.bbox.west - 1),
-                                             (self.bbox.east + 1)))]
+            subset = xray.loc[dict(lat=slice(self.bbox.north,
+                                             self.bbox.south),
+                                   lon=slice(self.bbox.west,
+                                             self.bbox.east))]
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
             arr = subset.elevation.values
@@ -496,5 +472,16 @@ class GridMet(Thredds):
                               '', '', ''])
 
         return url
+
+    def write_netcdf(self, outputroot):
+        url = self._build_url()
+        xray = open_dataset(url)
+        if self.variable != 'elev':
+            start_xl, end_xl = self._dtime_to_xldate()
+            subset = xray.loc[dict(day=slice(start_xl, end_xl))]
+            subset.rename({'day': 'time'}, inplace=True)
+        else:
+            subset = xray
+        subset.to_netcdf(path=outputroot, engine='netcdf4')
 
 # ========================= EOF ====================================================================
