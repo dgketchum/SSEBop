@@ -15,7 +15,6 @@
 # ===============================================================================
 import unittest
 import os
-from random import shuffle
 from datetime import datetime
 from xarray import open_dataset, Dataset
 from fiona import open as fopen
@@ -48,11 +47,11 @@ class TestGridMet(unittest.TestCase):
         self.date = datetime(2014, 8, 20)
 
         self.agrimet_var = 'pet'
-        self.grimet_raster_dir = 'tests/data/agrimet_test/gridmet_rasters'
+        self.grimet_raster_dir = 'tests/data/met_test/gridmet_rasters'
         # time series test points here are agrimet stations
-        self.agri_points = 'tests/data/agrimet_test/points/agrimet_test_sites.shp'
-        # agrimet_test.shp are points between sites to test location
-        self.point_file = 'tests/data/agrimet_test/points/agrimet__location_test.shp'
+        self.agri_points = 'tests/data/met_test/points/agrimet_test_sites.shp'
+        # met_test.shp are points between sites to test location
+        self.point_file = 'tests/data/met_test/points/agrimet__location_test.shp'
         # self.dir_name_LC8 = 'tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01'
         self.dir_name_LC8 = '/data01/images/sandbox/ssebop_analysis/038_027/2014/LC80380272014227LGN01'
 
@@ -72,9 +71,9 @@ class TestGridMet(unittest.TestCase):
 
     def test_save_to_netcdf(self):
         gridmet = GridMet(self.var, date=self.date)
-        out = 'tests/data/agrimet_test/{}-{}-{}_pet.nc'.format(self.date.year,
-                                                               self.date.month,
-                                                               self.date.day)
+        out = 'tests/data/met_test/{}-{}-{}_pet.nc'.format(self.date.year,
+                                                           self.date.month,
+                                                           self.date.day)
         gridmet.write_netcdf(outputroot=out)
         self.assertTrue(os.path.exists(out))
         data = open_dataset(out)
@@ -84,10 +83,8 @@ class TestGridMet(unittest.TestCase):
     def test_get_time_series(self):
 
         rasters = os.listdir(self.grimet_raster_dir)
-        shuffle(rasters)
-        count = 0
         for ras in rasters:
-            while count < 4:
+            if ras.endswith('pet.tif'):
                 dt = datetime.strptime(ras[:10], '%Y-%m-%d')
                 raster = os.path.join(self.grimet_raster_dir, ras)
                 points = raster_point_extract(raster, self.agri_points, dt)
@@ -100,7 +97,6 @@ class TestGridMet(unittest.TestCase):
                                       lat=lat, lon=lon)
                     gridmet_pet = gridmet.get_point_timeseries()
                     val[dt][1] = gridmet_pet.iloc[0, 0]
-                    count += 1
                 for key, val in points.items():
                     self.assertEqual(val[dt][0], val[dt][1])
 

@@ -26,7 +26,7 @@ from sat_image.image import Landsat8
 
 class TestAgrimet(unittest.TestCase):
     def setUp(self):
-        self.point_file = 'tests/data/agrimet_test/points/agrimet_location_test.shp'
+        self.point_file = 'tests/data/met_test/points/agrimet_location_test.shp'
         self.station_info = 'https://www.usbr.gov/pn/agrimet/agrimetmap/usbr_map.json'
         self.dirname_image = 'tests/data/image_test/lc8_image'
         self.site_ids = ['umhm', 'robi', 'hntu', 'faln', 'mdxo', 'mdso', 'masw']
