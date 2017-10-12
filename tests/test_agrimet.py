@@ -14,6 +14,7 @@
 # limitations under the License.
 # ===============================================================================
 
+import os
 import unittest
 import json
 import requests
@@ -26,12 +27,14 @@ from sat_image.image import Landsat8
 
 class TestAgrimet(unittest.TestCase):
     def setUp(self):
-        self.point_file = 'tests/data/met_test/points/agrimet_location_test.shp'
+        self.point_file = 'tests/data/points/agrimet_location_test.shp'
         self.station_info = 'https://www.usbr.gov/pn/agrimet/agrimetmap/usbr_map.json'
         self.dirname_image = 'tests/data/image_test/lc8_image'
         self.site_ids = ['umhm', 'robi', 'hntu', 'faln', 'mdxo', 'mdso', 'masw']
         self.fetch_site = 'drlm'
         self.outside_PnGp_sites = ['pvan', 'mdki', 'laju']
+        self.points_dir = 'tests/data/points'
+        self.out_shape = 'tests/data/points/agmet_station_write_test.shp'
 
     def test_instantiate_Agrimet(self):
         """ Test object instantiation.
@@ -131,6 +134,23 @@ class TestAgrimet(unittest.TestCase):
                     pass
                 else:
                     self.assertAlmostEqual(converted, unconverted, delta=0.01)
+
+    def test_write_agrimet_shapefile(self):
+
+        agrimet = Agrimet(write_stations=True)
+        station_data = agrimet.load_stations()
+        epsg = '4326'
+        outfile = self.out_shape
+        agrimet.write_agrimet_sation_shp(station_data, epsg, outfile)
+        with fopen(outfile, 'r') as shp:
+            count = 0
+            for _ in shp:
+                count += 1
+        self.assertEqual(186, count)
+        file_list = os.listdir(self.points_dir)
+        for f in file_list:
+            if 'write_test' in f:
+                os.remove(os.path.join(self.points_dir, f))
 
 if __name__ == '__main__':
     unittest.main()
