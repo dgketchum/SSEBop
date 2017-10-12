@@ -20,6 +20,8 @@ from xarray import open_dataset, Dataset
 from fiona import open as fopen
 from rasterio import open as rasopen
 from dateutil.rrule import rrule, DAILY
+from pyproj import Proj
+from numpy import mean
 
 from bounds.bounds import GeoBounds, RasterBounds
 from metio.thredds import GridMet
@@ -42,17 +44,18 @@ class TestGridMet(unittest.TestCase):
                             'ride=1&accept=netcdf4'
 
         self.start = datetime(2014, 8, 15)
-        self.end = datetime(2014, 8, 15)
+        self.end = datetime(2014, 8, 20)
 
         self.date = datetime(2014, 8, 20)
 
-        self.agrimet_var = 'pet'
         self.grimet_raster_dir = 'tests/data/met_test/gridmet_rasters'
         # time series test points here are agrimet stations
-        self.agri_points = 'tests/data/met_test/points/agrimet_test_sites.shp'
+        self.agri_points = 'tests/data/points/agrimet_test_sites.shp'
         # met_test.shp are points between sites to test location
-        self.point_file = 'tests/data/met_test/points/agrimet__location_test.shp'
-        # self.dir_name_LC8 = 'tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01'
+        self.search_point_file = 'tests/data/points/agrimet_location_test.shp'
+        # 41_25 points are used to test native gridmet raster to conforming array,
+        # these have been projected to the native CRS (i.e., 4326)
+        self.scene_points = 'tests/data/points/038_027_US_Mj_manypoints_4326.shp'
         self.dir_name_LC8 = '/data01/images/sandbox/ssebop_analysis/038_027/2014/LC80380272014227LGN01'
 
     def test_instantiate(self):
@@ -103,22 +106,38 @@ class TestGridMet(unittest.TestCase):
     def test_conforming_array_to_native(self):
         l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
-        bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile, latlon=True)
+        bounds = RasterBounds(affine_transform=l8.transform,
+                              profile=l8.profile, latlon=True)
 
         for day in rrule(DAILY, dtstart=self.start, until=self.end):
             gridmet = GridMet(self.var, date=day, bbox=bounds,
-                              target_profile=l8.profile, clip_feature=polygon)
-            pet = gridmet.get_data_subset(out_filename='/data01/images/sandbox'
-                                                       '/ssebop_testing'
-                                                       '/{}_{}_subset.tif'.
-                                          format(datetime.strftime(day, '%Y-%m-%d'),
-                                                 self.var))
+                              target_profile=l8.profile,
+                              clip_feature=polygon)
+            date_str = datetime.strftime(day, '%Y-%m-%d')
+            met_arr = os.path.join(self.grimet_raster_dir,
+                                   'met_{}_{}.tif'.format(date_str,
+                                                          self.var))
+            met = gridmet.get_data_subset(out_filename=met_arr)
+            native = os.path.join(self.grimet_raster_dir,
+                                  '{}_pet.tif'.format(date_str))
 
-            pet = None
-        self.assertEqual(True, False)
+            points_dict = multi_raster_point_extract(local_raster=met_arr,
+                                                     geographic_raster=native,
+                                                     points=self.scene_points,
+                                                     image_profile=l8.profile)
+            geo_list, local_list = [], []
+            for key, val in points_dict.items():
+                geo_list.append(val['geo_val'])
+                local_list.append(val['local_val'])
+            ratio = mean(geo_list) / mean(local_list)
+            print('Ratio on {} of CONUSRaster:LocalRaster calculated is {}.'.format(
+                datetime.strftime(day, '%Y-%m-%d'), ratio))
+            self.assertAlmostEqual(ratio, 1.0, delta=0.005)
+            os.remove(met_arr)
 
 
-# ============================================================================
+# ========= ANCILLARY FUNCTIONS ==============================================================
+
 
 def raster_point_extract(raster, points, dtime):
     point_data = {}
@@ -137,6 +156,49 @@ def raster_point_extract(raster, points, dtime):
             col, row = ~affine * (x, y)
             val = rass_arr[int(row), int(col)]
             point_data[key][dtime] = [val, None]
+
+        return point_data
+
+
+def multi_raster_point_extract(local_raster, geographic_raster, points,
+                               image_profile):
+    point_data = {}
+    with fopen(points, 'r') as src:
+        for feature in src:
+            try:
+                name = feature['properties']['Name']
+            except KeyError:
+                name = feature['properties']['FID']
+            geo_coords = feature['geometry']['coordinates']
+            image_crs = image_profile['crs']
+            in_proj = Proj(image_crs)
+            utm = in_proj(geo_coords[0], geo_coords[1])
+            point_data[name] = {'coords': {'geo': geo_coords, 'utm': utm}}
+
+        with rasopen(local_raster, 'r') as srrc:
+            local_arr = srrc.read()
+            local_arr = local_arr.reshape(local_arr.shape[1],
+                                          local_arr.shape[2])
+            local_affine = srrc.transform
+
+        with rasopen(geographic_raster, 'r') as ssrc:
+            geo_raster = ssrc.read()
+            geo_raster = geo_raster.reshape(geo_raster.shape[1],
+                                            geo_raster.shape[2])
+            geo_affine = ssrc.transform
+
+        for key, val in point_data.items():
+            i, j = val['coords']['utm']
+            col, row = ~local_affine * (i, j)
+            local_val = local_arr[int(row), int(col)]
+            point_data[key]['local_val'] = local_val
+            point_data[key]['local_row_col'] = int(row), int(col)
+
+            x, y, z = val['coords']['geo']
+            col, row = ~geo_affine * (x, y)
+            geo_val = geo_raster[int(row), int(col)]
+            point_data[key]['geo_val'] = geo_val
+            point_data[key]['geo_row_col'] = int(row), int(col)
 
         return point_data
 

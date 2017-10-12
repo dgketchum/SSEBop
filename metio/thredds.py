@@ -22,9 +22,9 @@ with hooks():
 
 import os
 import copy
+from shutil import rmtree
 from tempfile import mkdtemp
 from numpy import empty, float32, datetime64, timedelta64, argmin, abs, array
-from numpy import floor, ceil, transpose
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 from rasterio.transform import Affine
@@ -127,7 +127,7 @@ class Thredds(object):
 
             reproject(src_array, dst_array, src_transform=src_profile['transform'],
                       src_crs=src_profile['crs'], dst_crs=self.target_profile['crs'],
-                      dst_transform=dst_affine, resampling=Resampling.cubic,
+                      dst_transform=dst_affine, resampling=Resampling.nearest,
                       num_threads=2)
 
             dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
@@ -165,7 +165,7 @@ class Thredds(object):
             target_res = self.target_profile['transform'].a
             res_coeff = res[0] / target_res
 
-            new_array = empty(shape=(1, round(array.shape[0] * res_coeff - 2),
+            new_array = empty(shape=(1, round(array.shape[0] * res_coeff),
                                      round(array.shape[1] * res_coeff)), dtype=float32)
             aff = src.transform
             new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
@@ -179,7 +179,7 @@ class Thredds(object):
 
             with rasopen(resample_path, 'w', **profile) as dst:
                 reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
-                          dst_crs=src.crs, resampling=Resampling.cubic)
+                          dst_crs=src.crs, resampling=Resampling.nearest)
 
                 dst.write(new_array)
 
@@ -215,21 +215,6 @@ class Thredds(object):
         with rasopen(output_filename, 'w', **geometry) as dst:
             dst.write(arr)
         return None
-
-    def _find_nc_subset_bounds(self, data):
-        # find index and value of bounds
-        # 1 degree adds a buffer for this data
-        north_ind = argmin(abs(data.lat.values - (self.bbox.north + 1.)))
-        south_ind = argmin(abs(data.lat.values - (self.bbox.south - 1.)))
-        west_ind = argmin(abs(data.lon.values - (self.bbox.west - 1.)))
-        east_ind = argmin(abs(data.lon.values - (self.bbox.east + 1.)))
-
-        north_val = data.lat.values[north_ind]
-        south_val = data.lat.values[south_ind]
-        west_val = data.lon.values[west_ind]
-        east_val = data.lon.values[east_ind]
-
-        return west_val, south_val, east_val, north_val
 
 
 class TopoWX(Thredds):
@@ -283,10 +268,24 @@ class TopoWX(Thredds):
         if self.date:
             end = end + timedelta64(1, 'D')
 
-        w, s, e, n = self._find_nc_subset_bounds(xray)
+        # find index and value of bounds
+        # 1/100 degree adds a small buffer for this 800 m res data
+        north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 1.)))
+        south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 1.)))
+        west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 1.)))
+        east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 1.)))
+
+        north_val = xray.lat.values[north_ind]
+        south_val = xray.lat.values[south_ind]
+        west_val = xray.lon.values[west_ind]
+        east_val = xray.lon.values[east_ind]
+
+        setattr(self, 'src_bounds_wsen', (west_val, south_val,
+                                          east_val, north_val))
+
         subset = xray.loc[dict(time=slice(start, end),
-                               lat=slice(n, s),
-                               lon=slice(w, e))]
+                               lat=slice(north_val, south_val),
+                               lon=slice(west_val, east_val))]
 
         date_ind = self._date_index()
         subset['time'] = date_ind
@@ -412,15 +411,27 @@ class GridMet(Thredds):
 
         url = self._build_url()
         xray = open_dataset(url)
-        w, s, e, n = self._find_nc_subset_bounds(xray)
+
+        north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 1.)))
+        south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 1.)))
+        west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 1.)))
+        east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 1.)))
+
+        north_val = xray.lat.values[north_ind]
+        south_val = xray.lat.values[south_ind]
+        west_val = xray.lon.values[west_ind]
+        east_val = xray.lon.values[east_ind]
+
+        setattr(self, 'src_bounds_wsen', (west_val, south_val,
+                                          east_val, north_val))
 
         if self.variable != 'elev':
             start_xl, end_xl = self._dtime_to_xldate()
 
             xray.rename({'day': 'time'}, inplace=True)
             subset = xray.loc[dict(time=slice(start_xl, end_xl),
-                                   lat=slice(n, s),
-                                   lon=slice(w, e))]
+                                   lat=slice(north_val, south_val),
+                                   lon=slice(west_val, east_val))]
 
             date_ind = self._date_index()
             subset['time'] = date_ind
@@ -430,13 +441,14 @@ class GridMet(Thredds):
             arr = arr.reshape(arr.shape[1], arr.shape[2]).transpose()
             arr = arr.reshape(1, arr.shape[0], arr.shape[1])
             conformed_array = self.conform(arr, out_file=out_filename)
+            rmtree(self.temp_dir)
             return conformed_array
 
         else:
-            subset = xray.loc[dict(lat=slice(self.bbox.north,
-                                             self.bbox.south),
-                                   lon=slice(self.bbox.west,
-                                             self.bbox.east))]
+            subset = xray.loc[dict(lat=slice((self.bbox.north + 1),
+                                             (self.bbox.south - 1)),
+                                   lon=slice((self.bbox.west - 1),
+                                             (self.bbox.east + 1)))]
             setattr(self, 'width', subset.dims['lon'])
             setattr(self, 'height', subset.dims['lat'])
             arr = subset.elevation.values

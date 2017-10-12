@@ -27,10 +27,9 @@ class TestImageLST5(unittest.TestCase):
         self.dir_name_LT5 = 'tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01'
         self.l5 = Landsat5(self.dir_name_LT5)
         self.lst = self.l5.land_surface_temp()
-        # self.lst_raster_path = os.path.join(self.dir_name_LT5, 'lst5_test.tif')
-        self.lst_raster_path = '/data01/images/sandbox/lst5_test.tif'
+        self.lst_raster_path = os.path.join(self.dir_name_LT5, 'lst5_test.tif')
         self.l5.save_array(self.lst, self.lst_raster_path)
-        self.point_file = 'tests/data/ssebop_test/points/041_025_CA_Let_points.shp'
+        self.point_file = 'tests/data/points/041_025_CA_Let_points.shp'
         self.eef_lst_raster = os.path.join('tests/data/ssebop_test/lt5/041_025/2000/',
                                            'LT50410252000194AAA01',
                                            'LT50410252000194AAA01_LST_EEF.tif')
@@ -46,6 +45,7 @@ class TestImageLST5(unittest.TestCase):
             print('Ratio at {} of EEFlux:LST calculated is {}.'.format(
                 key, ratio))
             self.assertAlmostEqual(ratio, 1.0, delta=0.01)
+        os.remove(self.lst_raster_path)
 
 
 class TestImageLST7(unittest.TestCase):
@@ -53,10 +53,9 @@ class TestImageLST7(unittest.TestCase):
         self.dir_name_LT7 = 'tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00'
         self.l7 = Landsat7(self.dir_name_LT7)
         self.lst = self.l7.land_surface_temp()
-        # self.lst_raster_path = os.path.join(self.dir_name_LT7, 'lst7_test.tif')
-        self.lst_raster_path = '/data01/images/sandbox/lst7_test.tif'
+        self.lst_raster_path = os.path.join(self.dir_name_LT7, 'lst7_test.tif')
         self.l7.save_array(self.lst, self.lst_raster_path)
-        self.point_file = 'tests/data/ssebop_test/points/041_025_CA_Let_points.shp'
+        self.point_file = 'tests/data/points/041_025_CA_Let_points.shp'
         self.eef_lst_raster = os.path.join('tests/data/ssebop_test/le7/041_025/2000',
                                            'LE70410252000234PAC00/LE70410252000234PAC00_LST_EEF.tif')
 
@@ -71,6 +70,7 @@ class TestImageLST7(unittest.TestCase):
             print('Ratio at {} of EEFlux:LST calculated is {}.'.format(
                 key, ratio))
             self.assertAlmostEqual(ratio, 1.0, delta=0.01)
+        os.remove(self.lst_raster_path)
 
 
 class TestImageLST8(unittest.TestCase):
@@ -81,7 +81,7 @@ class TestImageLST8(unittest.TestCase):
         # self.lst_raster_path = os.path.join(self.dir_name_LT8, 'lst8_test.tif')
         self.lst_raster_path = '/data01/images/sandbox/lst8_test.tif'
         self.l8.save_array(self.lst, self.lst_raster_path)
-        self.point_file = 'tests/data/ssebop_test/points/038_027_US_Mj_points.shp'
+        self.point_file = 'tests/data/points/038_027_US_Mj_points.shp'
         self.eef_lst_raster = os.path.join('tests/data/ssebop_test/lc8/038_027',
                                            '2014/LC80380272014227LGN01/LC80380272014227LGN01_LST_EEF.tif')
 
@@ -96,7 +96,10 @@ class TestImageLST8(unittest.TestCase):
             print('Ratio at {} of EEFlux:LST calculated is {}.'.format(
                 key, ratio))
             self.assertAlmostEqual(ratio, 1.0, delta=0.01)
+        os.remove(self.lst_raster_path)
 
+
+# ===================== ANCILLARY FUNCTIONS =================================
 
 def raster_point_extract(lst_raster, eef_raster, points):
     point_data = {}
