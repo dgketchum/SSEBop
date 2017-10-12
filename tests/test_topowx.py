@@ -33,6 +33,9 @@ class TestTopoWX(unittest.TestCase):
         self.dir_name_LT5 = 'tests/data/image_test/lt5_image'
 
     def test_conforming_array(self):
+        """ Test Thredds.TopoWx conforming array has equal shape to Landsat image
+        :return: 
+        """
         home = os.path.expanduser('~')
         tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
         for t in ['tmin', 'tmax']:

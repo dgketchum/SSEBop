@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_gridmet.py" afterPath="$PROJECT_DIR$/tests/test_gridmet.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_topowx.py" afterPath="$PROJECT_DIR$/tests/test_topowx.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,20 +16,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_gridmet.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#733#748#0" expanded="true" />
-                <element signature="e#1379#1846#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="thredds.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -88,6 +74,19 @@
                 <element signature="e#18175#18344#0" expanded="false" />
                 <element signature="e#18415#18784#0" expanded="false" />
                 <element signature="e#18520#18684#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_topowx.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/test_topowx.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#989#2259#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -213,7 +212,6 @@
         <option value="$PROJECT_DIR$/../utils/utils/ras_point_extract.py" />
         <option value="$PROJECT_DIR$/app/entry_script.py" />
         <option value="$PROJECT_DIR$/metio/fao.py" />
-        <option value="$PROJECT_DIR$/tests/test_topowx.py" />
         <option value="$PROJECT_DIR$/app/paths.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py" />
         <option value="$PROJECT_DIR$/app/config.py" />
@@ -234,6 +232,7 @@
         <option value="$PROJECT_DIR$/bounds/example_code.py" />
         <option value="$PROJECT_DIR$/metio/thredds.py" />
         <option value="$PROJECT_DIR$/tests/test_gridmet.py" />
+        <option value="$PROJECT_DIR$/tests/test_topowx.py" />
       </list>
     </option>
   </component>
@@ -556,13 +555,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00186" summary="added floor and ceiling to WGS coords in xray subset to avoid &#10;subset less than resolution">
-      <created>1506456451341</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1506456451341</updated>
     </task>
     <task id="LOCAL-00187" summary="update testing data with derived grids">
       <created>1506456507110</created>
@@ -900,7 +892,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507826191495</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="added gridmet test docstrings">
+      <created>1507827306255</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1507827306255</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1027,7 +1026,6 @@
       <path value="$PROJECT_DIR$/PyETo" />
       <path value="$PROJECT_DIR$/climata" />
     </ignored-roots>
-    <MESSAGE value="passing tests w new Agrimet class, on to downloads" />
     <MESSAGE value="make get request from pandas if posssible" />
     <MESSAGE value="passing tests for pandas agrimet dataframe" />
     <MESSAGE value="start building a point time series for gridmet netcdf" />
@@ -1052,7 +1050,8 @@
     <MESSAGE value="gridmet scaled well again, check topowx, move gridmet tests WGS rasters&#10;back to test/data" />
     <MESSAGE value="added many points layer for 38_27 for native confomed array comp" />
     <MESSAGE value="passing native vs. conformed array test, finally" />
-    <option name="LAST_COMMIT_MESSAGE" value="passing native vs. conformed array test, finally" />
+    <MESSAGE value="added gridmet test docstrings" />
+    <option name="LAST_COMMIT_MESSAGE" value="added gridmet test docstrings" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1563,16 +1562,21 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bounds/example_code.py" />
-    <entry file="file://$PROJECT_DIR$/tests/test_topowx.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="50" column="26" lean-forward="false" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/data/met_test/gridmet_rasters/2014-08-15_pet.tif">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="48" column="41" lean-forward="true" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#733#748#0" expanded="true" />
+            <element signature="e#1379#1846#0" expanded="false" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
@@ -1636,14 +1640,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_gridmet.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_topowx.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
-            <element signature="e#733#748#0" expanded="true" />
-            <element signature="e#1379#1846#0" expanded="false" />
+            <element signature="e#989#2259#0" expanded="false" />
           </folding>
         </state>
       </provider>
