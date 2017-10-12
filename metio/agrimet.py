@@ -70,14 +70,15 @@ WEATHER_PARAMETRS = [('DATETIME', 'Date', '[YYYY-MM-DD]'),
 
 class Agrimet(object):
     def __init__(self, start_date=None, end_date=None, station=None,
-                 interval=None, lat=None, lon=None, sat_image=None):
+                 interval=None, lat=None, lon=None, sat_image=None,
+                 write_stations=False):
 
         self.station_info_url = STATION_INFO_URL
         self.station = station
 
         self.empty_df = True
 
-        if not station:
+        if not station and not write_stations:
             if not lat and not sat_image:
                 raise ValueError('Must initialize agrimet with a station, '
                                  'an Image, or some coordinates.')
