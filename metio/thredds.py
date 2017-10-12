@@ -13,12 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # =============================================================================================
+
 from __future__ import print_function
 
 from future.standard_library import hooks
-
-with hooks():
-    from urllib.parse import urlunparse
 
 import os
 import copy
@@ -36,6 +34,9 @@ from xarray import open_dataset
 from pandas import date_range, DataFrame
 
 from bounds.bounds import GeoBounds
+
+with hooks():
+    from urllib.parse import urlunparse
 
 
 class Thredds(object):
