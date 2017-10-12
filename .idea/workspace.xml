@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_agrimet.py" afterPath="$PROJECT_DIR$/tests/test_agrimet.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,65 +16,27 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="thredds.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/metio/thredds.py">
+      <file leaf-file-name="test_agrimet.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="1054">
+              <caret line="77" column="53" lean-forward="false" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
               <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#1484#1580#1" expanded="false" />
-                <element signature="e#1736#1958#0" expanded="false" />
-                <element signature="e#2014#2329#0" expanded="false" />
-                <element signature="e#2372#3438#0" expanded="false" />
-                <element signature="e#2702#2761#0" expanded="false" />
-                <element signature="e#2712#2760#0" expanded="false" />
-                <element signature="e#3176#3350#0" expanded="false" />
-                <element signature="e#3475#4918#0" expanded="false" />
-                <element signature="e#3646#3743#0" expanded="false" />
-                <element signature="e#4231#4409#0" expanded="false" />
-                <element signature="e#4486#4918#0" expanded="false" />
-                <element signature="e#4950#5604#0" expanded="false" />
-                <element signature="e#5065#5435#0" expanded="false" />
-                <element signature="e#5249#5434#0" expanded="false" />
-                <element signature="e#5640#7054#0" expanded="false" />
-                <element signature="e#5640#5672#0" expanded="false" />
-                <element signature="e#5910#7054#0" expanded="false" />
-                <element signature="e#6132#6240#0" expanded="false" />
-                <element signature="e#6742#6943#0" expanded="false" />
-                <element signature="e#7091#7169#0" expanded="false" />
-                <element signature="e#7211#7466#0" expanded="false" />
-                <element signature="e#7528#7597#0" expanded="false" />
-                <element signature="e#7678#7980#0" expanded="false" />
-                <element signature="e#8010#8685#1" expanded="false" />
-                <element signature="e#8729#9103#0" expanded="false" />
-                <element signature="e#9011#9066#0" expanded="false" />
-                <element signature="e#9236#10983#0" expanded="false" />
-                <element signature="e#9577#9609#0" expanded="false" />
-                <element signature="e#10197#10279#0" expanded="false" />
-                <element signature="e#10634#10983#0" expanded="false" />
-                <element signature="e#11025#11341#0" expanded="false" />
-                <element signature="e#11123#11320#0" expanded="false" />
-                <element signature="e#11177#11269#0" expanded="false" />
-                <element signature="e#11372#13304#1" expanded="false" />
-                <element signature="e#13358#15030#0" expanded="false" />
-                <element signature="e#13643#13805#0" expanded="false" />
-                <element signature="e#13867#13949#0" expanded="false" />
-                <element signature="e#13973#14822#0" expanded="false" />
-                <element signature="e#14858#14913#0" expanded="false" />
-                <element signature="e#15091#17171#0" expanded="false" />
-                <element signature="e#15669#15751#0" expanded="false" />
-                <element signature="e#15803#16624#0" expanded="false" />
-                <element signature="e#16652#17171#0" expanded="false" />
-                <element signature="e#17218#17784#0" expanded="false" />
-                <element signature="e#17821#18366#0" expanded="false" />
-                <element signature="e#17942#18132#0" expanded="false" />
-                <element signature="e#17959#18131#0" expanded="false" />
-                <element signature="e#18159#18346#0" expanded="false" />
-                <element signature="e#18176#18345#0" expanded="false" />
-                <element signature="e#18416#18785#0" expanded="false" />
-                <element signature="e#18521#18685#0" expanded="false" />
+                <element signature="e#1420#1480#1" expanded="false" />
+                <element signature="e#1747#1817#1" expanded="false" />
+                <element signature="e#1996#2077#1" expanded="false" />
+                <element signature="e#2444#2538#1" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="agrimet.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="107" column="8" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -210,7 +172,6 @@
         <option value="$PROJECT_DIR$/core/collector.py" />
         <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/metio/agrimet.py" />
-        <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
         <option value="$PROJECT_DIR$/../Landsat578/landsat/sample_script.py" />
         <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
@@ -220,6 +181,7 @@
         <option value="$PROJECT_DIR$/tests/test_gridmet.py" />
         <option value="$PROJECT_DIR$/tests/test_topowx.py" />
         <option value="$PROJECT_DIR$/metio/thredds.py" />
+        <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
       </list>
     </option>
   </component>
@@ -542,13 +504,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00188" summary="adding narrow band emissivity from Allen/ Tasumi, and lai from Trezza">
-      <created>1506460275242</created>
-      <option name="number" value="00188" />
-      <option name="presentableId" value="LOCAL-00188" />
-      <option name="project" value="LOCAL" />
-      <updated>1506460275242</updated>
     </task>
     <task id="LOCAL-00189" summary="added LST data from EEF">
       <created>1506472565161</created>
@@ -886,7 +841,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507827405158</updated>
     </task>
-    <option name="localTasksCounter" value="237" />
+    <task id="LOCAL-00237" summary="reformat imports">
+      <created>1507827503069</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
+      <option name="project" value="LOCAL" />
+      <updated>1507827503069</updated>
+    </task>
+    <option name="localTasksCounter" value="238" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1013,7 +975,6 @@
       <path value="$PROJECT_DIR$/PyETo" />
       <path value="$PROJECT_DIR$/climata" />
     </ignored-roots>
-    <MESSAGE value="passing tests for pandas agrimet dataframe" />
     <MESSAGE value="start building a point time series for gridmet netcdf" />
     <MESSAGE value="goinig to reshape 038-027 polygon for tests with agrimet" />
     <MESSAGE value="got dataframe netcdf time series, not sure if the time series or &#10;the projected raster is off, prolly raster" />
@@ -1038,7 +999,8 @@
     <MESSAGE value="passing native vs. conformed array test, finally" />
     <MESSAGE value="added gridmet test docstrings" />
     <MESSAGE value="added docstring, TODO add values test" />
-    <option name="LAST_COMMIT_MESSAGE" value="added docstring, TODO add values test" />
+    <MESSAGE value="reformat imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat imports" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1354,13 +1316,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="130" column="62" lean-forward="false" selection-start-line="130" selection-start-column="62" selection-end-line="130" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/fao_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-209">
@@ -1401,13 +1356,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="115" column="19" lean-forward="true" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1579,8 +1527,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="459">
+          <caret line="200" column="23" lean-forward="true" selection-start-line="200" selection-start-column="23" selection-end-line="200" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#1484#1580#1" expanded="false" />
@@ -1634,6 +1582,27 @@
             <element signature="e#18176#18345#0" expanded="false" />
             <element signature="e#18416#18785#0" expanded="false" />
             <element signature="e#18521#18685#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="107" column="8" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="77" column="53" lean-forward="false" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
+          <folding>
+            <element signature="e#1420#1480#1" expanded="false" />
+            <element signature="e#1747#1817#1" expanded="false" />
+            <element signature="e#1996#2077#1" expanded="false" />
+            <element signature="e#2444#2538#1" expanded="false" />
           </folding>
         </state>
       </provider>

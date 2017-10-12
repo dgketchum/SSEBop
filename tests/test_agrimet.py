@@ -34,19 +34,26 @@ class TestAgrimet(unittest.TestCase):
         self.outside_PnGp_sites = ['pvan', 'mdki', 'laju']
 
     def test_instantiate_Agrimet(self):
-
+        """ Test object instantiation.
+        :return: 
+        """
         ag = Agrimet(start_date='2000-01-01', end_date='2000-12-31',
                      station=self.fetch_site,
                      sat_image=Landsat8(self.dirname_image))
         self.assertIsInstance(ag, Agrimet)
 
     def test_load_station_data(self):
+        """ Test load all station data from web.
+        :return: 
+        """
         r = requests.get(self.station_info)
         stations = json.loads(r.text)
         self.assertIsInstance(stations, dict)
 
     def test_find_closest_station(self):
-
+        """ Test find closest agrimet station to any point.
+        :return: 
+        """
         coords = []
         with fopen(self.point_file, 'r') as src:
             for feature in src:
@@ -58,11 +65,19 @@ class TestAgrimet(unittest.TestCase):
             self.assertTrue(agrimet.station in self.site_ids)
 
     def test_find_image_station(self):
+        """ Test find closest agrimet station to Landsat image centroid.
+        :return: 
+        """
         l8 = Landsat8(self.dirname_image)
         agrimet = Agrimet(sat_image=l8)
         self.assertEqual(agrimet.station, self.fetch_site)
 
     def test_fetch_data(self):
+        """ Test download agrimet data within time slice.
+        Test refomatting of data, test unit converstion to std units.
+        Checked data is in a Pandas.DataFrame object.
+        :return: 
+        """
         agrimet = Agrimet(station=self.fetch_site, start_date='2015-01-01',
                           end_date='2015-12-31', interval='daily')
 
@@ -87,6 +102,11 @@ class TestAgrimet(unittest.TestCase):
         self.assertEqual(a[12], b[12] / 0.44704)
 
     def test_fetch_data_many_stations(self):
+        """ Test download nultiple agrimet station data download.
+        This runs through a list of stations, reformats data, checks unit conversion,
+        and Pandas.DataFrame
+        :return: 
+        """
         for site in self.outside_PnGp_sites:
             agrimet = Agrimet(station=site, start_date='2015-05-15',
                               end_date='2015-05-15', interval='daily')
