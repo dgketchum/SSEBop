@@ -59,10 +59,16 @@ class TestGridMet(unittest.TestCase):
         self.dir_name_LC8 = '/data01/images/sandbox/ssebop_analysis/038_027/2014/LC80380272014227LGN01'
 
     def test_instantiate(self):
+        """ Test instantiation of Thredds.Grimet object.
+        :return: 
+        """
         gridmet = GridMet(self.var, start=self.start, end=self.end)
         self.assertIsInstance(gridmet, GridMet)
 
     def test_conforming_array(self):
+        """ Test shape of Gridmet vs. Landsat image.
+        :return: 
+        """
         l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
         bounds = RasterBounds(affine_transform=l8.transform, profile=l8.profile)
@@ -73,6 +79,9 @@ class TestGridMet(unittest.TestCase):
         self.assertEqual(pr.shape, shape)
 
     def test_save_to_netcdf(self):
+        """ Test save native netcdf data from Thredds.Gridmet to disk.
+        :return: 
+        """
         gridmet = GridMet(self.var, date=self.date)
         out = 'tests/data/met_test/{}-{}-{}_pet.nc'.format(self.date.year,
                                                            self.date.month,
@@ -84,7 +93,9 @@ class TestGridMet(unittest.TestCase):
         os.remove(out)
 
     def test_get_time_series(self):
-
+        """ Test native pet rasters vs. xarray netcdf point extract.
+        :return: 
+        """
         rasters = os.listdir(self.grimet_raster_dir)
         for ras in rasters:
             if ras.endswith('pet.tif'):
@@ -104,6 +115,17 @@ class TestGridMet(unittest.TestCase):
                     self.assertEqual(val[dt][0], val[dt][1])
 
     def test_conforming_array_to_native(self):
+        """ Test confoming array to native Gridmet raster.
+        Conforming array is what Thredds.Gridmet will build given geometry
+        paramters derived from LandsatImage object.  This test builds that
+        array, and then compares it with several day's of native Gridmet netcdf
+        data.  The rasters can't align perfectly, as the grid has been resampled.
+        This is built to look up 30 points, extract their location, get the native
+        raster value (i.e., geo) at that location, and the (local) conforming 
+        array value.  The ratio of the means from each raster must be w/in
+        0.5%.
+        :return:
+        """
         l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
         bounds = RasterBounds(affine_transform=l8.transform,
@@ -140,6 +162,12 @@ class TestGridMet(unittest.TestCase):
 
 
 def raster_point_extract(raster, points, dtime):
+    """ Get point values from a raster.
+    :param raster: local_raster: Thredds.Gridmet-derived array in Landsat image geometry.
+    :param points: Shapefile of points.
+    :param dtime: Datetime.datetime object.
+    :return: Dict of coords, row/cols, and values of raster at that point.
+    """
     point_data = {}
     with fopen(points, 'r') as src:
         for feature in src:
@@ -162,6 +190,13 @@ def raster_point_extract(raster, points, dtime):
 
 def multi_raster_point_extract(local_raster, geographic_raster, points,
                                image_profile):
+    """ Get raster data from two rasters at shapefile points.
+    :param local_raster: Thredds.Gridmet-derived array in Landsat image geometry.
+    :param geographic_raster: Native netcdf gridmet raster.
+    :param points: Shapefile points, in geographic crs. 
+    :param image_profile: Landsat.LandsatX.profile, contains CRS and other raster info.
+    :return: Dict of coords, row/cols, and values at those points.
+    """
     point_data = {}
     with fopen(points, 'r') as src:
         for feature in src:
