@@ -27,7 +27,7 @@ from sat_image.image import Landsat8
 
 class SSEBopModelTestCaseLC8(unittest.TestCase):
     def setUp(self):
-        self.config_path = 'tests/ssebop_config_test_lc8.yml'
+        self.config_path = 'tests/ssebop_config_lc8.yml'
         self.cfg = Config(self.config_path)
 
     def test_config(self):
