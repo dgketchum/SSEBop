@@ -33,8 +33,8 @@ class FluxSite(object):
                           'Elevation',
                           'Mean Annual Temp (degrees C)',
                           'Mean Annual Precip. (mm)',
-                          'Years Of Data Available',
-                          '')
+                          'Years Of Data Available')
+        self.needs_conversion = self.site_keys[1:-1]
 
     def load_json(self):
         pass
@@ -60,7 +60,7 @@ class FluxSite(object):
             if title.endswith('.csv'):
                 csv_location = '{}{}'.format(self.ntsg_url_head, a.attrs['href'])
                 site_abv = title[:6]
-                country_abv = title[:3]
+                country_abv = title[:2]
 
                 if country_abvs:
                     if country_abv in country_abvs:
@@ -82,7 +82,13 @@ class FluxSite(object):
 
             for _ in keys:
                 ind, sub_key = _[0], _[1]
-                data[key][sub_key] = vals[ind]
+                if sub_key in self.needs_conversion:
+                    try:
+                        data[key][sub_key] = float(vals[ind])
+                    except TypeError:
+                        pass
+                else:
+                    data[key][sub_key] = vals[ind]
 
         if outfile:
             with open(outfile, 'w') as f:
