@@ -14,13 +14,15 @@
 # limitations under the License.
 # =============================================================================================
 
-import requests
-from bs4 import BeautifulSoup as bs
 import json
+import requests
+from fiona.crs import from_epsg
+from fiona import collection
+from bs4 import BeautifulSoup as bs
 
 
 class FluxSite(object):
-    def __init__(self):
+    def __init__(self, json_file=None):
 
         self.ntsg_url_head = 'http://luna.ntsg.umt.edu.'
         self.ntsg_url_middle = '/data/forDavidKetchum/LaThuile/daily/'
@@ -34,10 +36,12 @@ class FluxSite(object):
                           'Mean Annual Temp (degrees C)',
                           'Mean Annual Precip. (mm)',
                           'Years Of Data Available')
+        sdfdsfs
         self.needs_conversion = self.site_keys[1:-1]
 
-    def load_json(self):
-        pass
+        if json_file:
+            d = self._load_json(json_file)
+            self.data = d
 
     def build_data_all_sites(self, outfile=None, country_abvs=None):
         """ Get all LaThuile data available.
@@ -64,9 +68,9 @@ class FluxSite(object):
 
                 if country_abvs:
                     if country_abv in country_abvs:
-                        data[site_abv] = {'csv_loc': csv_location}
+                        data[site_abv] = {'csv_url': csv_location}
                 else:
-                    data[site_abv] = {'csv_loc': csv_location}
+                    data[site_abv] = {'csv_url': csv_location}
 
         for key, val in data.items():
             req_url = '{}{}{}'.format(self.fluxdata_org_head,
@@ -106,6 +110,42 @@ class FluxSite(object):
     @staticmethod
     def _strip_label(i):
         return i.contents[0].string.strip().replace(':', '')
+
+    @staticmethod
+    def _load_json(json_file):
+        with open(json_file) as f:
+            d = json.load(f)
+            return d
+
+    @staticmethod
+    def write_locations_to_shp(site_dict, outfile, epsg='4326'):
+        agri_schema = {'geometry': 'Point',
+                       'properties': {
+                           'site_id': 'str',
+                           'Mean Annual Precip. (mm)': 'float',
+                           'Mean Annual Temp (degrees C)': 'float',
+                           'csv_url': 'str',
+                           'Years Of Data Available': 'str'}}
+
+        cord_ref = from_epsg(epsg)
+        shp_driver = 'ESRI Shapefile'
+
+        with collection(outfile, mode='w', driver=shp_driver, schema=agri_schema,
+                        crs=cord_ref) as output:
+            for key, val in site_dict.items():
+                try:
+                    output.write({'geometry': {'type': 'Point',
+                                               'coordinates':
+                                                   (site_dict[key]['Latitude'],
+                                                    site_dict[key]['Longitude'])},
+                                  'properties': {
+                                      'site_id': site_dict[key],
+                                      'Mean Annual Precip. (mm)': site_dict[key]['Site_name'],
+                                      'Mean Annual Temp (degrees C)': site_dict[key]['Site_name'],
+                                      'csv_url': site_dict[key]['Site_name'],
+                                      'Years Of Data Available': site_dict[key]['Years Of Data Available']}})
+                except KeyError:
+                    pass
 
 
 if __name__ == '__main__':

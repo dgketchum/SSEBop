@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ssebop_config_lc8.yml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SSEBop_Landsat_OverpassETa.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csv_to_shp.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_agrimet.py" afterPath="$PROJECT_DIR$/tests/test_agrimet.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/entry_script.py" afterPath="$PROJECT_DIR$/app/entry_script.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/eddy_flux.py" afterPath="$PROJECT_DIR$/metio/eddy_flux.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_eddy_flux.py" afterPath="$PROJECT_DIR$/tests/test_eddy_flux.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_ssebop.py" afterPath="$PROJECT_DIR$/tests/test_ssebop.py" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,17 +21,42 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_agrimet.py" pinned="false" current-in-tab="true">
+    <leaf>
+      <file leaf-file-name="eddy_flux.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/metio/eddy_flux.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="37" column="59" lean-forward="false" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#762#773#0" expanded="true" />
+                <element signature="e#4103#4184#0" expanded="false" />
+                <element signature="e#4237#4289#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_agrimet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="77" column="53" lean-forward="false" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
+            <state relative-caret-position="714">
+              <caret line="143" column="29" lean-forward="false" selection-start-line="143" selection-start-column="29" selection-end-line="143" selection-end-column="29" />
               <folding>
-                <element signature="e#1420#1480#1" expanded="false" />
-                <element signature="e#1747#1817#1" expanded="false" />
-                <element signature="e#1996#2077#1" expanded="false" />
-                <element signature="e#2444#2538#1" expanded="false" />
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#734#743#0" expanded="true" />
+                <element signature="e#1541#1820#0" expanded="false" />
+                <element signature="e#1541#1601#1" expanded="false" />
+                <element signature="e#1868#2066#0" expanded="false" />
+                <element signature="e#1868#1938#1" expanded="false" />
+                <element signature="e#2117#2516#0" expanded="false" />
+                <element signature="e#2117#2198#1" expanded="false" />
+                <element signature="e#2565#2800#0" expanded="false" />
+                <element signature="e#2565#2659#1" expanded="false" />
+                <element signature="e#2841#3825#0" expanded="false" />
+                <element signature="e#2841#3044#1" expanded="false" />
+                <element signature="e#3880#5184#0" expanded="false" />
+                <element signature="e#3880#4082#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -34,9 +65,31 @@
       <file leaf-file-name="agrimet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="107" column="8" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
-              <folding />
+            <state relative-caret-position="157">
+              <caret line="193" column="0" lean-forward="true" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+              <folding>
+                <element signature="e#1226#2684#0" expanded="false" />
+                <element signature="e#2706#3955#0" expanded="false" />
+                <element signature="e#5142#5327#0" expanded="false" />
+                <element signature="e#5397#6020#0" expanded="false" />
+                <element signature="e#6059#6160#0" expanded="false" />
+                <element signature="e#6233#6844#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_eddy_flux.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_eddy_flux.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="63" column="23" lean-forward="false" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#734#749#0" expanded="true" />
+                <element signature="e#1207#1704#0" expanded="false" />
+                <element signature="e#1760#2050#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,16 +99,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Unit Test" />
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>start</find>
-      <find>start_</find>
-      <find>&amp;</find>
       <find>requests</find>
       <find>=</find>
       <find>y</find>
@@ -83,10 +133,11 @@
       <find>from_epsg</find>
       <find>dir_name_LC8</find>
       <find>grimet_raster_dir</find>
+      <find>AT-Neu</find>
+      <find>rec</find>
+      <find>key</find>
     </findStrings>
     <replaceStrings>
-      <replace>self.image</replace>
-      <replace>self._get_band('cirrus')</replace>
       <replace>arr</replace>
       <replace>._get_band('b1')</replace>
       <replace>8</replace>
@@ -115,6 +166,8 @@
       <replace>l8</replace>
       <replace>ssrc</replace>
       <replace>srrc</replace>
+      <replace>key</replace>
+      <replace>site_dict[key]</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -131,13 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bounds/conform.py" />
-        <option value="$PROJECT_DIR$/metio/ncd_gtiff.py" />
-        <option value="$PROJECT_DIR$/bounds/bounds.py" />
-        <option value="$PROJECT_DIR$/tests/test_bounds.py" />
-        <option value="$PROJECT_DIR$/metio/sandbox.py" />
-        <option value="$PROJECT_DIR$/download/sample_script.py" />
-        <option value="$PROJECT_DIR$/download/download_composer.py" />
         <option value="$PROJECT_DIR$/download/usgs_download.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/web_tools.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/download_composer.py" />
@@ -159,7 +205,6 @@
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml" />
         <option value="$PROJECT_DIR$/tests/test_image.py" />
         <option value="$PROJECT_DIR$/../utils/utils/ras_point_extract.py" />
-        <option value="$PROJECT_DIR$/app/entry_script.py" />
         <option value="$PROJECT_DIR$/metio/fao.py" />
         <option value="$PROJECT_DIR$/app/paths.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py" />
@@ -171,7 +216,6 @@
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
         <option value="$PROJECT_DIR$/core/collector.py" />
         <option value="$PROJECT_DIR$/core/ssebop.py" />
-        <option value="$PROJECT_DIR$/metio/agrimet.py" />
         <option value="$PROJECT_DIR$/../Landsat578/landsat/sample_script.py" />
         <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
@@ -181,7 +225,16 @@
         <option value="$PROJECT_DIR$/tests/test_gridmet.py" />
         <option value="$PROJECT_DIR$/tests/test_topowx.py" />
         <option value="$PROJECT_DIR$/metio/thredds.py" />
+        <option value="$PROJECT_DIR$/metio/agrimet.py" />
         <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
+        <option value="$PROJECT_DIR$/conform_array.py" />
+        <option value="$PROJECT_DIR$/ssebop_config_test_lc8.yml" />
+        <option value="$PROJECT_DIR$/app/entry_script.py" />
+        <option value="$PROJECT_DIR$/tests/flux_test.py" />
+        <option value="$PROJECT_DIR$/tests/test_flux.py" />
+        <option value="$PROJECT_DIR$/flux/eddy_flux.py" />
+        <option value="$PROJECT_DIR$/tests/test_eddy_flux.py" />
+        <option value="$PROJECT_DIR$/metio/eddy_flux.py" />
       </list>
     </option>
   </component>
@@ -281,6 +334,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="metio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -296,19 +363,19 @@
     <property name="SearchEverywhereHistoryKey" value="add scene:&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/metio/data" />
+      <recent name="$PROJECT_DIR$/metio" />
+      <recent name="$PROJECT_DIR$/tests/data/points" />
+      <recent name="$PROJECT_DIR$/climata" />
+      <recent name="$PROJECT_DIR$/tests/data/ssebop_test/points" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/metio" />
       <recent name="$PROJECT_DIR$/../climata/climata" />
       <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/core/pyeto" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests/data/points" />
-      <recent name="$PROJECT_DIR$/climata" />
-      <recent name="$PROJECT_DIR$/tests/data/ssebop_test/points" />
-      <recent name="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000" />
-      <recent name="$PROJECT_DIR$/metio" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -323,8 +390,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native">
-    <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_write_shapefile">
+    <configuration default="false" name="eddy_flux" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flux" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/metio/eddy_flux.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_eddy_flux.MyTestCase.test_data_all_sites" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -335,11 +420,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_conforming_array&quot;" />
+      <option name="_new_target" value="&quot;tests.test_eddy_flux.MyTestCase.test_data_all_sites&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_save_to_netcdf" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests for tests.test_eddy_flux.MyTestCase.test_data_collector_many_sites" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -350,11 +435,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_save_to_netcdf&quot;" />
+      <option name="_new_target" value="&quot;tests.test_eddy_flux.MyTestCase.test_data_collector_many_sites&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests for tests.test_eddy_flux.MyTestCase.test_local_json_loader" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -365,11 +450,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_get_time_series&quot;" />
+      <option name="_new_target" value="&quot;tests.test_eddy_flux.MyTestCase.test_local_json_loader&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests in test_gridmet.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests for tests.test_eddy_flux.MyTestCase.test_write_shapefile" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -380,22 +465,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_gridmet.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_gridmet.TestGridMet.test_conforming_array_to_native&quot;" />
+      <option name="_new_target" value="&quot;tests.test_eddy_flux.MyTestCase.test_write_shapefile&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -475,19 +545,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_to_netcdf" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_gridmet.py" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" />
+      <item index="0" class="java.lang.String" itemvalue="Python.eddy_flux" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_data_all_sites" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_data_collector_many_sites" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_local_json_loader" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_write_shapefile" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_gridmet.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_get_time_series" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_save_to_netcdf" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_gridmet.TestGridMet.test_conforming_array" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_write_shapefile" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_local_json_loader" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_data_collector_many_sites" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.MyTestCase.test_data_all_sites" />
+        <item index="4" class="java.lang.String" itemvalue="Python.eddy_flux" />
       </list>
     </recent_temporary>
   </component>
@@ -504,55 +574,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00189" summary="added LST data from EEF">
-      <created>1506472565161</created>
-      <option name="number" value="00189" />
-      <option name="presentableId" value="LOCAL-00189" />
-      <option name="project" value="LOCAL" />
-      <updated>1506472565161</updated>
-    </task>
-    <task id="LOCAL-00190" summary="initial commit land surface temperature tests vs EEFlux">
-      <created>1506473393900</created>
-      <option name="number" value="00190" />
-      <option name="presentableId" value="LOCAL-00190" />
-      <option name="project" value="LOCAL" />
-      <updated>1506473393900</updated>
-    </task>
-    <task id="LOCAL-00191" summary="getting ready to load up shapefiles for lst comparison">
-      <created>1506475984531</created>
-      <option name="number" value="00191" />
-      <option name="presentableId" value="LOCAL-00191" />
-      <option name="project" value="LOCAL" />
-      <updated>1506475984531</updated>
-    </task>
-    <task id="LOCAL-00192" summary="initial commit 041_025_Let* points data">
-      <created>1506520939766</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1506520939767</updated>
-    </task>
-    <task id="LOCAL-00193" summary="adding point extract utility to image lst tests">
-      <created>1506521883853</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1506521883853</updated>
-    </task>
-    <task id="LOCAL-00194" summary="initial commit US Mj 1 + 2 data">
-      <created>1506521973981</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1506521973981</updated>
-    </task>
-    <task id="LOCAL-00195" summary="adding point reader raster to lst tests">
-      <created>1506524155714</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1506524155714</updated>
     </task>
     <task id="LOCAL-00196" summary="raster points extract working on image lst test">
       <created>1506550752667</created>
@@ -848,39 +869,88 @@
       <option name="project" value="LOCAL" />
       <updated>1507827503069</updated>
     </task>
-    <option name="localTasksCounter" value="238" />
+    <task id="LOCAL-00238" summary="docstrings to agrimet tests">
+      <created>1507827898221</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
+      <option name="project" value="LOCAL" />
+      <updated>1507827898221</updated>
+    </task>
+    <task id="LOCAL-00239" summary="add write_station shp, avoid missing other parameters in init">
+      <created>1507829755295</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1507829755295</updated>
+    </task>
+    <task id="LOCAL-00240" summary="test write agrimet stations to shapefile">
+      <created>1507829777760</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1507829777760</updated>
+    </task>
+    <task id="LOCAL-00241" summary="initial commit, FluxSite class">
+      <created>1507940338352</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1507940338358</updated>
+    </task>
+    <task id="LOCAL-00242" summary="initial commit, FluxSite tests">
+      <created>1507940354103</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1507940354103</updated>
+    </task>
+    <task id="LOCAL-00243" summary="initial commit, json library of flux sites via lathuille">
+      <created>1507941841167</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1507941841167</updated>
+    </task>
+    <task id="LOCAL-00244" summary="passing tests for down to json site data">
+      <created>1507941864939</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1507941864939</updated>
+    </task>
+    <option name="localTasksCounter" value="245" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.12 at 08h 44m 40s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_data_all_sites - 2017.10.13 at 18h 31m 39s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_data_all_sites" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.12 at 08h 45m 30s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_data_all_sites - 2017.10.13 at 18h 32m 11s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_data_all_sites" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.12 at 10h 26m 29s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_data_all_sites - 2017.10.13 at 18h 33m 24s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_data_all_sites" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.12 at 10h 29m 51s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_data_collector_many_sites - 2017.10.13 at 18h 38m 52s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_data_collector_many_sites" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.12 at 10h 31m 28s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_data_collector_many_sites - 2017.10.13 at 18h 41m 54s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_data_collector_many_sites" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_conforming_array_to_native - 2017.10.12 at 10h 32m 19s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_conforming_array_to_native" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_local_json_loader - 2017.10.13 at 18h 48m 42s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_local_json_loader" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_instantiate - 2017.10.11 at 18h 37m 45s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_instantiate" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_local_json_loader - 2017.10.13 at 18h 49m 28s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_local_json_loader" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_gridmet_TestGridMet_test_save_to_netcdf - 2017.10.11 at 18h 38m 01s.xml">
-      <configuration name="Unittests for tests.test_gridmet.TestGridMet.test_save_to_netcdf" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_write_shapefile - 2017.10.13 at 19h 02m 42s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_write_shapefile" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_topowx_TestTopoWX - 2017.10.11 at 18h 37m 25s.xml">
-      <configuration name="Unittests for tests.test_topowx.TestTopoWX" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_write_shapefile - 2017.10.13 at 19h 10m 14s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_write_shapefile" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_gridmet_py - 2017.10.11 at 18h 49m 09s.xml">
-      <configuration name="Unittests in test_gridmet.py" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_eddy_flux_MyTestCase_test_write_shapefile - 2017.10.13 at 19h 11m 07s.xml">
+      <configuration name="Unittests for tests.test_eddy_flux.MyTestCase.test_write_shapefile" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
@@ -896,15 +966,16 @@
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1600295" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19026549" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.50442475" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5036873" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48230088" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.49557522" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43141592" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41740412" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5176991" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -914,7 +985,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -975,13 +1045,6 @@
       <path value="$PROJECT_DIR$/PyETo" />
       <path value="$PROJECT_DIR$/climata" />
     </ignored-roots>
-    <MESSAGE value="start building a point time series for gridmet netcdf" />
-    <MESSAGE value="goinig to reshape 038-027 polygon for tests with agrimet" />
-    <MESSAGE value="got dataframe netcdf time series, not sure if the time series or &#10;the projected raster is off, prolly raster" />
-    <MESSAGE value="stuck writing the subset to tif," />
-    <MESSAGE value="building a netcdf native gtiff writer" />
-    <MESSAGE value="throwing out getsubsetdataset" />
-    <MESSAGE value="initial commit ALL agrimter_sites.shp and gridmet pr and pet rasters" />
     <MESSAGE value="working on test get time series, so close!" />
     <MESSAGE value="passing get_time_series tests!" />
     <MESSAGE value="passing agrimet tests" />
@@ -1000,7 +1063,14 @@
     <MESSAGE value="added gridmet test docstrings" />
     <MESSAGE value="added docstring, TODO add values test" />
     <MESSAGE value="reformat imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="reformat imports" />
+    <MESSAGE value="docstrings to agrimet tests" />
+    <MESSAGE value="add write_station shp, avoid missing other parameters in init" />
+    <MESSAGE value="test write agrimet stations to shapefile" />
+    <MESSAGE value="initial commit, FluxSite class" />
+    <MESSAGE value="initial commit, FluxSite tests" />
+    <MESSAGE value="initial commit, json library of flux sites via lathuille" />
+    <MESSAGE value="passing tests for down to json site data" />
+    <option name="LAST_COMMIT_MESSAGE" value="passing tests for down to json site data" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1059,7 +1129,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1706" />
+      <option name="time" value="1749" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1071,76 +1141,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/fiona/crs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-714">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/csv_to_shp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="34" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/fiona/ogrext.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="998" column="8" lean-forward="false" selection-start-line="998" selection-start-column="8" selection-end-line="998" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/fiona/collection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="334" column="0" lean-forward="false" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-497779486/numpy/core/umath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-370">
-          <caret line="361" column="4" lean-forward="false" selection-start-line="361" selection-start-column="4" selection-end-line="361" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="186" column="42" lean-forward="false" selection-start-line="186" selection-start-column="42" selection-end-line="186" selection-end-column="42" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#920#1181#0" expanded="false" />
-            <element signature="e#1231#5054#0" expanded="false" />
-            <element signature="e#5104#8218#0" expanded="false" />
-            <element signature="e#8268#11226#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/wq/io/exceptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/wq/io/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/wq/io/loaders.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/climata/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -1198,13 +1198,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="463">
           <caret line="115" column="33" lean-forward="true" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1363,108 +1356,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#762#771#0" expanded="true" />
-            <element signature="e#1232#1236#0" expanded="false" />
-            <element signature="e#1280#1284#0" expanded="false" />
-            <element signature="e#1319#1568#1" expanded="false" />
-            <element signature="e#1607#4406#0" expanded="false" />
-            <element signature="e#1607#1778#1" expanded="false" />
-            <element signature="e#2053#2090#0" expanded="false" />
-            <element signature="e#2371#2513#0" expanded="false" />
-            <element signature="e#2424#2513#0" expanded="false" />
-            <element signature="e#2735#3856#0" expanded="false" />
-            <element signature="e#3145#3856#0" expanded="false" />
-            <element signature="e#3194#3261#0" expanded="false" />
-            <element signature="e#4451#4633#0" expanded="false" />
-            <element signature="e#4674#5048#0" expanded="false" />
-            <element signature="e#4674#4773#1" expanded="false" />
-            <element signature="e#5104#5483#0" expanded="false" />
-            <element signature="e#5104#5317#1" expanded="false" />
-            <element signature="e#5550#5688#0" expanded="false" />
-            <element signature="e#5612#5688#0" expanded="false" />
-            <element signature="e#5779#7638#0" expanded="false" />
-            <element signature="e#7397#7638#0" expanded="false" />
-            <element signature="e#7490#7638#0" expanded="false" />
-            <element signature="e#7696#7934#0" expanded="false" />
-            <element signature="e#7978#8145#0" expanded="false" />
-            <element signature="e#8175#8338#0" expanded="false" />
-            <element signature="e#8375#14076#0" expanded="false" />
-            <element signature="e#8408#8898#0" expanded="false" />
-            <element signature="e#8656#8734#0" expanded="false" />
-            <element signature="e#8745#8772#0" expanded="false" />
-            <element signature="e#8938#9389#0" expanded="false" />
-            <element signature="e#9453#9957#0" expanded="false" />
-            <element signature="e#10000#10414#0" expanded="false" />
-            <element signature="e#10000#10113#1" expanded="false" />
-            <element signature="e#10461#11461#0" expanded="false" />
-            <element signature="e#10461#11025#1" expanded="false" />
-            <element signature="e#11067#11357#0" expanded="false" />
-            <element signature="e#11099#11246#0" expanded="false" />
-            <element signature="e#11519#11913#0" expanded="false" />
-            <element signature="e#11519#11755#1" expanded="false" />
-            <element signature="e#11943#12165#0" expanded="false" />
-            <element signature="e#11943#12020#1" expanded="false" />
-            <element signature="e#12194#12531#0" expanded="false" />
-            <element signature="e#12194#12414#1" expanded="false" />
-            <element signature="e#12587#13416#0" expanded="false" />
-            <element signature="e#12652#12984#0" expanded="false" />
-            <element signature="e#12681#12702#0" expanded="false" />
-            <element signature="e#13032#13416#0" expanded="false" />
-            <element signature="e#13459#13818#0" expanded="false" />
-            <element signature="e#13459#13530#1" expanded="false" />
-            <element signature="e#13848#14076#0" expanded="false" />
-            <element signature="e#13848#13919#1" expanded="false" />
-            <element signature="e#14113#19500#0" expanded="false" />
-            <element signature="e#14146#14547#0" expanded="false" />
-            <element signature="e#14413#14502#0" expanded="false" />
-            <element signature="e#14587#15073#0" expanded="false" />
-            <element signature="e#15151#15826#0" expanded="false" />
-            <element signature="e#15303#15360#0" expanded="false" />
-            <element signature="e#15869#16315#0" expanded="false" />
-            <element signature="e#15869#15982#1" expanded="false" />
-            <element signature="e#16347#17031#0" expanded="false" />
-            <element signature="e#16347#16720#1" expanded="false" />
-            <element signature="e#16761#16904#0" expanded="false" />
-            <element signature="e#17089#17463#0" expanded="false" />
-            <element signature="e#17089#17325#1" expanded="false" />
-            <element signature="e#17493#17715#0" expanded="false" />
-            <element signature="e#17493#17570#1" expanded="false" />
-            <element signature="e#17744#18081#0" expanded="false" />
-            <element signature="e#17744#17964#1" expanded="false" />
-            <element signature="e#18137#18966#0" expanded="false" />
-            <element signature="e#18202#18534#0" expanded="false" />
-            <element signature="e#18231#18252#0" expanded="false" />
-            <element signature="e#18582#18966#0" expanded="false" />
-            <element signature="e#19009#19243#0" expanded="false" />
-            <element signature="e#19273#19500#0" expanded="false" />
-            <element signature="e#19273#19343#1" expanded="false" />
-            <element signature="e#19537#27190#0" expanded="false" />
-            <element signature="e#19570#19656#0" expanded="false" />
-            <element signature="e#19719#21452#0" expanded="false" />
-            <element signature="e#19719#20801#1" expanded="false" />
-            <element signature="e#21495#23318#0" expanded="false" />
-            <element signature="e#21495#22706#1" expanded="false" />
-            <element signature="e#23100#23231#0" expanded="false" />
-            <element signature="e#23117#23230#0" expanded="false" />
-            <element signature="e#23358#24358#0" expanded="false" />
-            <element signature="e#23358#24118#1" expanded="false" />
-            <element signature="e#24390#25010#0" expanded="false" />
-            <element signature="e#24390#24698#1" expanded="false" />
-            <element signature="e#24740#24883#0" expanded="false" />
-            <element signature="e#25040#25262#0" expanded="false" />
-            <element signature="e#25040#25117#1" expanded="false" />
-            <element signature="e#25291#25628#0" expanded="false" />
-            <element signature="e#25291#25511#1" expanded="false" />
-            <element signature="e#25684#26513#0" expanded="false" />
-            <element signature="e#25749#26081#0" expanded="false" />
-            <element signature="e#25778#25799#0" expanded="false" />
-            <element signature="e#26129#26513#0" expanded="false" />
-            <element signature="e#26557#26930#0" expanded="false" />
-            <element signature="e#26960#27188#0" expanded="false" />
-            <element signature="e#26960#27031#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1493,6 +1384,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1506,11 +1398,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="48" column="41" lean-forward="true" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#733#748#0" expanded="true" />
-            <element signature="e#1379#1846#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1518,17 +1405,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#989#2259#0" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/fiona/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/fiona/collection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/thredds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="200" column="23" lean-forward="true" selection-start-line="200" selection-start-column="23" selection-end-line="200" selection-end-column="23" />
+        <state relative-caret-position="663">
+          <caret line="254" column="35" lean-forward="true" selection-start-line="254" selection-start-column="35" selection-end-line="254" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#1484#1580#1" expanded="false" />
@@ -1586,23 +1485,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
+    <entry file="file://$PROJECT_DIR$/csv_to_shp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="107" column="8" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+        <state relative-caret-position="561">
+          <caret line="36" column="26" lean-forward="true" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conform_array.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssebop_config_lc8.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/flux_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_flux.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="77" column="53" lean-forward="false" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
+        <state relative-caret-position="714">
+          <caret line="143" column="29" lean-forward="false" selection-start-line="143" selection-start-column="29" selection-end-line="143" selection-end-column="29" />
           <folding>
-            <element signature="e#1420#1480#1" expanded="false" />
-            <element signature="e#1747#1817#1" expanded="false" />
-            <element signature="e#1996#2077#1" expanded="false" />
-            <element signature="e#2444#2538#1" expanded="false" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#743#0" expanded="true" />
+            <element signature="e#1541#1820#0" expanded="false" />
+            <element signature="e#1541#1601#1" expanded="false" />
+            <element signature="e#1868#2066#0" expanded="false" />
+            <element signature="e#1868#1938#1" expanded="false" />
+            <element signature="e#2117#2516#0" expanded="false" />
+            <element signature="e#2117#2198#1" expanded="false" />
+            <element signature="e#2565#2800#0" expanded="false" />
+            <element signature="e#2565#2659#1" expanded="false" />
+            <element signature="e#2841#3825#0" expanded="false" />
+            <element signature="e#2841#3044#1" expanded="false" />
+            <element signature="e#3880#5184#0" expanded="false" />
+            <element signature="e#3880#4082#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="193" column="0" lean-forward="true" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <folding>
+            <element signature="e#1226#2684#0" expanded="false" />
+            <element signature="e#2706#3955#0" expanded="false" />
+            <element signature="e#5142#5327#0" expanded="false" />
+            <element signature="e#5397#6020#0" expanded="false" />
+            <element signature="e#6059#6160#0" expanded="false" />
+            <element signature="e#6233#6844#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_eddy_flux.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="63" column="23" lean-forward="false" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#734#749#0" expanded="true" />
+            <element signature="e#1207#1704#0" expanded="false" />
+            <element signature="e#1760#2050#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/eddy_flux.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="37" column="59" lean-forward="false" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#773#0" expanded="true" />
+            <element signature="e#4103#4184#0" expanded="false" />
+            <element signature="e#4237#4289#0" expanded="false" />
           </folding>
         </state>
       </provider>
