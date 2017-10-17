@@ -14,36 +14,45 @@
 # limitations under the License.
 # =============================================================================================
 
+import os
 import json
 import requests
 from fiona.crs import from_epsg
 from fiona import collection
 from bs4 import BeautifulSoup as bs
+from pandas import read_csv
 
 
 class FluxSite(object):
-    def __init__(self, json_file=None):
+    def __init__(self, site_key=None):
 
         self.ntsg_url_head = 'http://luna.ntsg.umt.edu.'
         self.ntsg_url_middle = '/data/forDavidKetchum/LaThuile/daily/'
         self.fluxdata_org_head = 'http://www.fluxdata.org:8080/SitePages/'
         self.fluxdata_org_middle = 'siteInfo.aspx?'
 
-        self.site_keys = ('Site_name',
-                          'Latitude',
-                          'Longitude',
-                          'Elevation',
-                          'Mean Annual Temp (degrees C)',
-                          'Mean Annual Precip. (mm)',
-                          'Years Of Data Available')
-        sdfdsfs
-        self.needs_conversion = self.site_keys[1:-1]
+        self.site_params = ('Site_name',
+                            'Latitude',
+                            'Longitude',
+                            'Elevation',
+                            'Mean Annual Temp (degrees C)',
+                            'Mean Annual Precip. (mm)',
+                            'Years Of Data Available')
 
-        if json_file:
-            d = self._load_json(json_file)
+        self.json_file = 'metio/data/flux_locations_lathuille.json'
+
+        self.needs_float_conversion = self.site_params[1:-1]
+
+        if os.path.isfile(self.json_file):
+            d = self._load_json(self.json_file)
             self.data = d
+        else:
+            self.build_network_json(outfile=self.json_file,
+                                    country_abvs=None)
 
-    def build_data_all_sites(self, outfile=None, country_abvs=None):
+        self.site_key = site_key
+
+    def build_network_json(self, outfile=None, country_abvs=None):
         """ Get all LaThuile data available.
         Should be on the order of 200+ sites. This web scraper is slow,
         recommended to run it once, save it locally, and use FluxSite.load_json to 
@@ -59,18 +68,30 @@ class FluxSite(object):
         soup = bs(cont, 'lxml')
         sample = soup.find_all('a')
         data = {}
+        csv_list = []
+        first = True
         for a in sample:
             title = a.string.strip()
+            site_abv = title[:6]
+            country_abv = title[:2]
+
+            if last_site == site_abv:
+                first = False
+
+            if first:
+                data[site_abv] = {'csv_url': []}
+                first = False
+
             if title.endswith('.csv'):
                 csv_location = '{}{}'.format(self.ntsg_url_head, a.attrs['href'])
-                site_abv = title[:6]
-                country_abv = title[:2]
 
                 if country_abvs:
                     if country_abv in country_abvs:
-                        data[site_abv] = {'csv_url': csv_location}
+                        data[site_abv]['csv_url'].append(csv_location)
                 else:
-                    data[site_abv] = {'csv_url': csv_location}
+                    data[site_abv]['csv_url'].append(csv_location)
+
+            last_site = site_abv
 
         for key, val in data.items():
             req_url = '{}{}{}'.format(self.fluxdata_org_head,
@@ -80,13 +101,13 @@ class FluxSite(object):
             cont = r.content
             soup = bs(cont, 'lxml')
             labels = soup.find_all('td', 'label')
-            keys = [(i, self._strip_label(k)) for i, k in enumerate(labels) if self._strip_label(k) in self.site_keys]
+            keys = [(i, self._strip_label(k)) for i, k in enumerate(labels) if self._strip_label(k) in self.site_params]
             values = soup.find_all('td', 'value')
             vals = [self._strip_val(i) for i in values]
 
             for _ in keys:
                 ind, sub_key = _[0], _[1]
-                if sub_key in self.needs_conversion:
+                if sub_key in self.needs_float_conversion:
                     try:
                         data[key][sub_key] = float(vals[ind])
                     except TypeError:
@@ -99,6 +120,16 @@ class FluxSite(object):
                 json.dump(data, f)
 
         return data
+
+    def load_site_data(self):
+        if not self.site_key:
+            raise ValueError('Must provide a valid site key, e.g., "US-FPe"')
+
+        all_site_meta = self._load_json(self.json_file)
+
+        site_metadata = all_site_meta[self.site_key]
+
+        url = site_metadata['csv_loc']
 
     @staticmethod
     def _strip_val(i):
@@ -136,8 +167,8 @@ class FluxSite(object):
                 try:
                     output.write({'geometry': {'type': 'Point',
                                                'coordinates':
-                                                   (site_dict[key]['Latitude'],
-                                                    site_dict[key]['Longitude'])},
+                                                   (site_dict[key]['Longitude'],
+                                                    site_dict[key]['Latitude'])},
                                   'properties': {
                                       'site_id': site_dict[key],
                                       'Mean Annual Precip. (mm)': site_dict[key]['Site_name'],
@@ -150,6 +181,6 @@ class FluxSite(object):
 
 if __name__ == '__main__':
     flux = FluxSite()
-    flux.build_data_all_sites()
+    flux.build_network_json()
 
 # ========================= EOF ====================================================================

@@ -25,30 +25,38 @@ from metio.eddy_flux import FluxSite
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.data_save_loc = 'tests/data/flux_locations.json'
-        self.data_perm = 'metio/data/flux_locations.json'
+        self.data_save_loc = 'tests/data/flux_locations_lathuille.json'
+        self.data_perm = 'metio/data/flux_locations_lathuille.json'
         self.select_sites = ['BR']
-        self.shape_out = 'metio/data/flux_locations.shp'
+        self.shape_out = 'metio/data/flux_locations_lathuille.shp'
+        self.site = 'US-FPe'
 
     def tearDown(self):
         pass
 
-    def test_data_collector_few_sites(self):
+    def test_load_site_data(self):
+        site = self.site
+        flux = FluxSite(site_key=site)
+        data = flux.load_site_data()
+        data = None
+
+    def test_network_json_few_sites(self):
         flux = FluxSite()
-        data_dict = flux.build_data_all_sites(self.data_save_loc,
-                                              country_abvs=self.select_sites)
+        data_dict = flux.build_network_json(self.data_save_loc,
+                                            country_abvs=self.select_sites)
         self.assertIsInstance(data_dict, dict)
         br = data_dict['BR-Ban']
         self.assertEqual(br['Latitude'], -9.8244)
         self.assertEqual(br['Longitude'], -50.1591)
+        self.assertEqual(len(br['csv_url']), 4)
         with open(self.data_save_loc) as f:
             d = json.load(f)
             self.assertIsInstance(d, dict)
         os.remove(self.data_save_loc)
 
-    def test_data_collector_many_sites(self):
+    def test_network_json_all_sites(self):
         flux = FluxSite()
-        data_dict = flux.build_data_all_sites(self.data_save_loc)
+        data_dict = flux.build_network_json(self.data_save_loc)
         self.assertEqual(len(data_dict.keys()), 252)
         with open(self.data_save_loc) as f:
             d = json.load(f)
