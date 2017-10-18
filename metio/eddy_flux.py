@@ -20,12 +20,14 @@ import requests
 from fiona.crs import from_epsg
 from fiona import collection
 from bs4 import BeautifulSoup as bs
-from pandas import read_csv
+from pandas import read_csv, date_range, DataFrame, merge_ordered
+from datetime import datetime as dt
 
 
 class FluxSite(object):
-    def __init__(self, site_key=None):
+    def __init__(self, site_key=None, json_file=None):
 
+        self.json_file = json_file
         self.ntsg_url_head = 'http://luna.ntsg.umt.edu.'
         self.ntsg_url_middle = '/data/forDavidKetchum/LaThuile/daily/'
         self.fluxdata_org_head = 'http://www.fluxdata.org:8080/SitePages/'
@@ -39,7 +41,8 @@ class FluxSite(object):
                             'Mean Annual Precip. (mm)',
                             'Years Of Data Available')
 
-        self.json_file = 'metio/data/flux_locations_lathuille.json'
+        if not json_file:
+            self.json_file = 'metio/data/flux_locations_lathuille.json'
 
         self.needs_float_conversion = self.site_params[1:-1]
 
@@ -47,8 +50,9 @@ class FluxSite(object):
             d = self._load_json(self.json_file)
             self.data = d
         else:
-            self.build_network_json(outfile=self.json_file,
-                                    country_abvs=None)
+            print('No flux data json given, constructing from '
+                  'web resources.')
+            self.build_network_json(outfile=self.json_file)
 
         self.site_key = site_key
 
@@ -62,14 +66,17 @@ class FluxSite(object):
         :param outfile: Path (incl. filename) to save json, optional
         :return: dict of flux sites by site abbreviation key.
         """
+
+        if not country_abvs:
+            country_abvs = []
+
         req_url = '{}{}'.format(self.ntsg_url_head, self.ntsg_url_middle)
         r = requests.request('GET', req_url, stream=True)
         cont = r.content
         soup = bs(cont, 'lxml')
         sample = soup.find_all('a')
         data = {}
-        csv_list = []
-        first = True
+        last_site = None
         for a in sample:
             title = a.string.strip()
             site_abv = title[:6]
@@ -77,19 +84,29 @@ class FluxSite(object):
 
             if last_site == site_abv:
                 first = False
+            else:
+                first = True
 
-            if first:
-                data[site_abv] = {'csv_url': []}
-                first = False
+            if country_abv in country_abvs:
+                if title.startswith(site_abv) and title.endswith('.csv'):
+                    csv_location = '{}{}'.format(self.ntsg_url_head, a.attrs['href'])
+                    if first:
+                        data[site_abv] = {'csv_url': []}
+                        first = False
+                    year = int(title.split('.')[1])
+                    data[site_abv]['csv_url'].append((year, csv_location))
 
-            if title.endswith('.csv'):
-                csv_location = '{}{}'.format(self.ntsg_url_head, a.attrs['href'])
+            elif country_abvs:
+                pass
 
-                if country_abvs:
-                    if country_abv in country_abvs:
-                        data[site_abv]['csv_url'].append(csv_location)
-                else:
-                    data[site_abv]['csv_url'].append(csv_location)
+            else:
+                if title.startswith(site_abv) and title.endswith('.csv'):
+                    csv_location = '{}{}'.format(self.ntsg_url_head, a.attrs['href'])
+                    if first:
+                        data[site_abv] = {'csv_url': []}
+                        first = False
+                    year = int(title.split('.')[1])
+                    data[site_abv]['csv_url'].append((year, csv_location))
 
             last_site = site_abv
 
@@ -129,7 +146,24 @@ class FluxSite(object):
 
         site_metadata = all_site_meta[self.site_key]
 
-        url = site_metadata['csv_loc']
+        df = None
+        for (year, url) in site_metadata['csv_url']:
+            raw = read_csv(url, header=0)
+            year, doy = int(raw.iloc[0, 0]), int(raw.iloc[0, 1])
+            start = dt.strptime('{}{}'.format(year, doy),
+                                '%Y%j')
+            year, doy = int(raw.iloc[-1, 0]), int(raw.iloc[-1, 1])
+            end = dt.strptime('{}{}'.format(year, doy),
+                              '%Y%j')
+            dt_range = date_range(start=start, end=end, freq='D')
+            raw.index = dt_range
+            raw.drop(labels=['Year', 'DoY'], axis=1, inplace=True)
+            if isinstance(df, DataFrame):
+                df = merge_ordered(left=df, right=raw, how='outer')
+            else:
+                df = raw
+
+        return df
 
     @staticmethod
     def _strip_val(i):
@@ -164,19 +198,24 @@ class FluxSite(object):
         with collection(outfile, mode='w', driver=shp_driver, schema=agri_schema,
                         crs=cord_ref) as output:
             for key, val in site_dict.items():
-                try:
-                    output.write({'geometry': {'type': 'Point',
-                                               'coordinates':
-                                                   (site_dict[key]['Longitude'],
-                                                    site_dict[key]['Latitude'])},
-                                  'properties': {
-                                      'site_id': site_dict[key],
-                                      'Mean Annual Precip. (mm)': site_dict[key]['Site_name'],
-                                      'Mean Annual Temp (degrees C)': site_dict[key]['Site_name'],
-                                      'csv_url': site_dict[key]['Site_name'],
-                                      'Years Of Data Available': site_dict[key]['Years Of Data Available']}})
-                except KeyError:
-                    pass
+                for k in ['Mean Annual Precip. (mm)', 'Mean Annual Temp (degrees C)',
+                          'csv_url', 'Years Of Data Available']:
+                    try:
+                        _ = val[k]
+                    except KeyError:
+                        val[k] = None
+
+                output.write({'geometry':
+                                  {'type': 'Point',
+                                   'coordinates':
+                                       (site_dict[key]['Longitude'],
+                                        site_dict[key]['Latitude'])},
+                              'properties': {
+                                  'site_id': key,
+                                  'Mean Annual Precip. (mm)': site_dict[key]['Mean Annual Precip. (mm)'],
+                                  'Mean Annual Temp (degrees C)': site_dict[key]['Mean Annual Temp (degrees C)'],
+                                  'csv_url': site_dict[key]['Site_name'],
+                                  'Years Of Data Available': site_dict[key]['Years Of Data Available']}})
 
 
 if __name__ == '__main__':
