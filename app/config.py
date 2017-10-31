@@ -132,8 +132,10 @@ class Config:
             super_list.append(images)
             try:
                 flat_list = [item for sublist in super_list for item in sublist]
+                flat_list.reverse()
                 return flat_list
             except TypeError:
+                super_list.reverse()
                 return super_list
         else:
             raise AttributeError('No images for this time-frame and satellite....')
