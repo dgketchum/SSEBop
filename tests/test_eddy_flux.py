@@ -18,27 +18,34 @@ import unittest
 
 import os
 import json
+from datetime import datetime
 from fiona import open as fopen
 
 from metio.eddy_flux import FluxSite
 
 
-class MyTestCase(unittest.TestCase):
+class EddyTowerTestCase(unittest.TestCase):
     def setUp(self):
         self.data_save_loc = 'tests/data/flux_locations_lathuille.json'
         self.data_perm = 'metio/data/flux_locations_lathuille.json'
         self.select_sites = ['BR']
         self.shape_out = 'metio/data/flux_locations_lathuille.shp'
         self.site = 'US-FPe'
+        self.fmt = '%Y-%m-%d'
+        self.fpe_start, self.fpe_end = '2000-01-01', '2006-12-31'
 
     def tearDown(self):
         pass
 
     def test_load_site_data(self):
         site = self.site
-        flux = FluxSite(site_key=site)
+        flux = FluxSite(site_key=site, json_file=self.data_perm)
         data = flux.load_site_data()
-        data = None
+        start = datetime.strptime(self.fpe_start, self.fmt)
+        end = datetime.strptime(self.fpe_end, self.fmt)
+        delta = end - start
+        days = delta.days
+        self.assertEqual(data.shape, (days + 1, 122))
 
     def test_network_json_few_sites(self):
         flux = FluxSite()
