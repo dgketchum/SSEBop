@@ -15,7 +15,6 @@
 # =============================================================================================
 
 import os
-from pprint import pprint
 
 
 def get_lathuille_variables():
@@ -142,7 +141,6 @@ def get_lathuille_variables():
                  'H2Ostro2_hWHC': None,
                  'Drain_hWHC': None}
 
-    pprint(variables)
     return variables
 
 

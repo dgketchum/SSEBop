@@ -20,8 +20,9 @@ import requests
 from fiona.crs import from_epsg
 from fiona import collection
 from bs4 import BeautifulSoup as bs
-from pandas import read_csv, date_range, DataFrame, merge_ordered
+from pandas import read_csv, date_range, DataFrame, concat
 from datetime import datetime as dt
+from metio.lathuille_variables import get_lathuille_variables as lathuille
 
 
 class FluxSite(object):
@@ -42,7 +43,7 @@ class FluxSite(object):
                             'Years Of Data Available')
 
         if not json_file:
-            self.json_file = 'metio/data/flux_locations_lathuille.json'
+            self.json_file = 'data/flux_locations_lathuille.json'
 
         self.needs_float_conversion = self.site_params[1:-1]
 
@@ -55,6 +56,35 @@ class FluxSite(object):
             self.build_network_json(outfile=self.json_file)
 
         self.site_key = site_key
+
+        self.lathuille_params = lathuille()
+
+    def load_site_data(self):
+        if not self.site_key:
+            raise ValueError('Must provide a valid site key, e.g., "US-FPe"')
+
+        all_site_meta = self._load_json(self.json_file)
+
+        site_metadata = all_site_meta[self.site_key]
+
+        df = None
+        for (year, url) in site_metadata['csv_url']:
+            raw = read_csv(url, header=0)
+            year, doy = int(raw.iloc[0, 0]), int(raw.iloc[0, 1])
+            start = dt.strptime('{}{}'.format(year, doy),
+                                '%Y%j')
+            year, doy = int(raw.iloc[-1, 0]), int(raw.iloc[-1, 1])
+            end = dt.strptime('{}{}'.format(year, doy),
+                              '%Y%j')
+            dt_range = date_range(start=start, end=end, freq='D')
+            raw.index = dt_range
+            raw.drop(labels=['Year', 'DoY'], axis=1, inplace=True)
+            if isinstance(df, DataFrame):
+                df = concat([df, raw])
+            else:
+                df = raw
+
+        return df
 
     def build_network_json(self, outfile=None, country_abvs=None):
         """ Get all LaThuile data available.
@@ -92,6 +122,7 @@ class FluxSite(object):
                     csv_location = '{}{}'.format(self.ntsg_url_head, a.attrs['href'])
                     if first:
                         data[site_abv] = {'csv_url': []}
+                        data[site_abv]['site_id'] = site_abv
                         first = False
                     year = int(title.split('.')[1])
                     data[site_abv]['csv_url'].append((year, csv_location))
@@ -118,7 +149,8 @@ class FluxSite(object):
             cont = r.content
             soup = bs(cont, 'lxml')
             labels = soup.find_all('td', 'label')
-            keys = [(i, self._strip_label(k)) for i, k in enumerate(labels) if self._strip_label(k) in self.site_params]
+            keys = [(i, self._strip_label(k)) for i, k in enumerate(labels) if
+                    self._strip_label(k) in self.site_params]
             values = soup.find_all('td', 'value')
             vals = [self._strip_val(i) for i in values]
 
@@ -137,33 +169,6 @@ class FluxSite(object):
                 json.dump(data, f)
 
         return data
-
-    def load_site_data(self):
-        if not self.site_key:
-            raise ValueError('Must provide a valid site key, e.g., "US-FPe"')
-
-        all_site_meta = self._load_json(self.json_file)
-
-        site_metadata = all_site_meta[self.site_key]
-
-        df = None
-        for (year, url) in site_metadata['csv_url']:
-            raw = read_csv(url, header=0)
-            year, doy = int(raw.iloc[0, 0]), int(raw.iloc[0, 1])
-            start = dt.strptime('{}{}'.format(year, doy),
-                                '%Y%j')
-            year, doy = int(raw.iloc[-1, 0]), int(raw.iloc[-1, 1])
-            end = dt.strptime('{}{}'.format(year, doy),
-                              '%Y%j')
-            dt_range = date_range(start=start, end=end, freq='D')
-            raw.index = dt_range
-            raw.drop(labels=['Year', 'DoY'], axis=1, inplace=True)
-            if isinstance(df, DataFrame):
-                df = merge_ordered(left=df, right=raw, how='outer')
-            else:
-                df = raw
-
-        return df
 
     @staticmethod
     def _strip_val(i):
@@ -217,9 +222,8 @@ class FluxSite(object):
                                   'csv_url': site_dict[key]['Site_name'],
                                   'Years Of Data Available': site_dict[key]['Years Of Data Available']}})
 
-
 if __name__ == '__main__':
     flux = FluxSite()
     flux.build_network_json()
 
-# ========================= EOF ====================================================================
+    # ========================= EOF ====================================================================
