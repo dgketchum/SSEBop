@@ -124,10 +124,10 @@ class Config:
     def get_image_list(self):
 
         super_list = []
-        images = down_from_runspec((self.start_date, self.end_date),
+        images = down_from_runspec(start=self.start_date, end=self.end_date,
                                    satellite=self.satellite,
-                                   path_row_list=[(self.path, self.row)],
-                                   dry_run=True)
+                                   path=self.path, row=self.row,
+                                   return_list=True)
         if images:
             super_list.append(images)
             try:

@@ -174,7 +174,7 @@ class Thredds(object):
             profile['transform'] = self.target_profile['transform']
             profile['width'] = self.target_profile['width']
             profile['height'] = self.target_profile['height']
-            profile['dtype'] = new_array.dtype
+            profile['dtype'] = str(new_array.dtype)
 
             delattr(self, 'mask')
 
@@ -211,7 +211,7 @@ class Thredds(object):
             arr = arr.reshape(1, arr.shape[1], arr.shape[2])
         except IndexError:
             arr = arr.reshape(1, arr.shape[0], arr.shape[1])
-        geometry['dtype'] = arr.dtype
+        geometry['dtype'] = str(arr.dtype)
 
         with rasopen(output_filename, 'w', **geometry) as dst:
             dst.write(arr)

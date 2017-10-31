@@ -46,7 +46,7 @@ class Dem(object):
             array = array.reshape(1, array.shape[1], array.shape[2])
         except IndexError:
             array = array.reshape(1, array.shape[0], array.shape[1])
-        geometry['dtype'] = array.dtype
+        geometry['dtype'] = str(array.dtype)
         if crs:
             geometry['crs'] = CRS({'init': crs})
         with rasopen(output_filename, 'w', **geometry) as dst:
@@ -311,12 +311,13 @@ class MapzenDem(Dem):
             profile['transform'] = self.target_profile['transform']
             profile['width'] = self.target_profile['width']
             profile['height'] = self.target_profile['height']
-            profile['dtype'] = new_array.dtype
+            profile['dtype'] = str(new_array.dtype)
 
             delattr(self, 'mask')
 
             with rasopen(temp_path, 'w', **profile) as dst:
-                reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
+                reproject(array, new_array, src_transform=aff,
+                          dst_transform=new_affine, src_crs=src.crs,
                           dst_crs=src.crs, resampling=Resampling.bilinear)
 
                 dst.write(new_array)

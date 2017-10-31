@@ -217,7 +217,7 @@ class SSEBopModel(object):
         except IndexError:
             arr = arr.reshape(1, arr.shape[0], arr.shape[1])
 
-        geometry['dtype'] = arr.dtype
+        geometry['dtype'] = str(arr.dtype)
 
         if crs:
             geometry['crs'] = CRS({'init': crs})

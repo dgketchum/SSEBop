@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ssebop_config_lt5.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/entry_script.py" afterPath="$PROJECT_DIR$/app/entry_script.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml" afterPath="$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config.py" afterPath="$PROJECT_DIR$/app/config.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dem/dem.py" afterPath="$PROJECT_DIR$/dem/dem.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/thredds.py" afterPath="$PROJECT_DIR$/metio/thredds.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssebop_config_lt5.yml" afterPath="$PROJECT_DIR$/ssebop_config_lt5.yml" />
     </list>
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,61 +19,37 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_eddy_flux.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_eddy_flux.py">
+    <leaf>
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="59" column="28" lean-forward="false" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
+            <state relative-caret-position="629">
+              <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#734#749#0" expanded="true" />
-                <element signature="e#1340#1344#0" expanded="false" />
-                <element signature="e#2378#2666#0" expanded="false" />
-                <element signature="e#2714#2870#0" expanded="false" />
-                <element signature="e#2916#3200#0" expanded="false" />
+                <element signature="e#740#777#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entry_script.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/entry_script.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="request.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/urllib/request.py">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="293">
-              <caret line="589" column="0" lean-forward="false" selection-start-line="589" selection-start-column="0" selection-end-line="589" selection-end-column="0" />
+              <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+      <file leaf-file-name="thredds.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/metio/thredds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="3621">
+              <caret line="213" column="42" lean-forward="false" selection-start-line="213" selection-start-column="42" selection-end-line="213" selection-end-column="42" />
               <folding>
-                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#762#799#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,53 +58,42 @@
       <file leaf-file-name="ssebop_config_lt5.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ssebop_config_lt5.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ssebop_config_test_lt5.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml">
+      <file leaf-file-name="dem.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dem/dem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="429">
+              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="eddy_flux.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metio/eddy_flux.py">
+      <file leaf-file-name="collector.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+            <state relative-caret-position="293">
+              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
-                <element signature="e#762#771#0" expanded="true" />
-                <element signature="e#3373#6564#0" expanded="false" />
-                <element signature="e#6615#6696#0" expanded="false" />
-                <element signature="e#6749#6801#0" expanded="false" />
-                <element signature="e#6860#6936#0" expanded="false" />
-                <element signature="e#6899#6936#0" expanded="false" />
-                <element signature="e#7029#8706#0" expanded="false" />
-                <element signature="e#7102#7386#0" expanded="false" />
-                <element signature="e#7812#7926#0" expanded="false" />
-                <element signature="e#8004#8209#0" expanded="false" />
-                <element signature="e#8112#8207#0" expanded="false" />
-                <element signature="e#8255#8704#0" expanded="false" />
+                <element signature="e#762#799#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="agrimet.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2176">
-              <caret line="135" column="70" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -221,7 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/download_composer.py" />
         <option value="$PROJECT_DIR$/tests/test_paths.py" />
         <option value="$PROJECT_DIR$/tests/test_down.py" />
         <option value="$PROJECT_DIR$/metio/topowx_issue.py" />
@@ -242,23 +208,19 @@
         <option value="$PROJECT_DIR$/metio/fao.py" />
         <option value="$PROJECT_DIR$/app/paths.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py" />
-        <option value="$PROJECT_DIR$/app/config.py" />
         <option value="$PROJECT_DIR$/../climata/climata/agrimet.py" />
         <option value="$PROJECT_DIR$/csv_to_shp.py" />
         <option value="$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/climata/hydromet/__init__.py" />
         <option value="$PROJECT_DIR$/../utils/utils/clip_by_polygon.py" />
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_lc8.yml" />
         <option value="$PROJECT_DIR$/core/collector.py" />
-        <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/../Landsat578/landsat/sample_script.py" />
-        <option value="$PROJECT_DIR$/dem/dem.py" />
         <option value="$PROJECT_DIR$/tests/test_dem.py" />
         <option value="$PROJECT_DIR$/sat_image/image.py" />
         <option value="$PROJECT_DIR$/tests/test_image_lst.py" />
         <option value="$PROJECT_DIR$/bounds/example_code.py" />
         <option value="$PROJECT_DIR$/tests/test_gridmet.py" />
         <option value="$PROJECT_DIR$/tests/test_topowx.py" />
-        <option value="$PROJECT_DIR$/metio/thredds.py" />
         <option value="$PROJECT_DIR$/metio/agrimet.py" />
         <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
         <option value="$PROJECT_DIR$/conform_array.py" />
@@ -272,6 +234,11 @@
         <option value="$PROJECT_DIR$/tests/test_eddy_flux.py" />
         <option value="$PROJECT_DIR$/tests/ssebop_config_test_lt5.yml" />
         <option value="$PROJECT_DIR$/app/entry_script.py" />
+        <option value="$PROJECT_DIR$/app/config.py" />
+        <option value="$PROJECT_DIR$/ssebop_config_lt5.yml" />
+        <option value="$PROJECT_DIR$/dem/dem.py" />
+        <option value="$PROJECT_DIR$/metio/thredds.py" />
+        <option value="$PROJECT_DIR$/core/ssebop.py" />
       </list>
     </option>
   </component>
@@ -327,7 +294,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -371,6 +337,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -593,13 +560,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00205" summary="initial commit agrimet and test_agrimet">
-      <created>1506614671212</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1506614671212</updated>
     </task>
     <task id="LOCAL-00206" summary="building shapefile from agrimet json">
       <created>1506647182864</created>
@@ -937,7 +897,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509410759276</updated>
     </task>
-    <option name="localTasksCounter" value="254" />
+    <task id="LOCAL-00254" summary="problem with import landsat&#10;changed name to core">
+      <created>1509411680173</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1509411680173</updated>
+    </task>
+    <option name="localTasksCounter" value="255" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -988,13 +955,14 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19616519" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.50442475" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.460177" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.49557522" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50294983" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49483776" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49115044" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47861356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1003,7 +971,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1064,7 +1031,6 @@
       <path value="$PROJECT_DIR$/PyETo" />
       <path value="$PROJECT_DIR$/climata" />
     </ignored-roots>
-    <MESSAGE value="added WGS 041_025 points" />
     <MESSAGE value="working on gridmet native vs. image test" />
     <MESSAGE value="added Mj points in geographic for native/met test" />
     <MESSAGE value="somehow gridmet data is scaled badly again, though the orientation of &#10;the raster is correct" />
@@ -1089,7 +1055,8 @@
     <MESSAGE value="merged list of csv into dataframe&#10;&#10;TODO: find key to flux data headers and replace nodata val with nan" />
     <MESSAGE value="initial commit of lathuile dict getter for variables" />
     <MESSAGE value="fixed some indexing problems" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some indexing problems" />
+    <MESSAGE value="problem with import landsat&#10;changed name to core" />
+    <option name="LAST_COMMIT_MESSAGE" value="problem with import landsat&#10;changed name to core" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1153,7 +1120,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1819" />
+      <option name="time" value="1826" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1165,39 +1132,11 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/geopy/distance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="317" column="8" lean-forward="false" selection-start-line="317" selection-start-column="8" selection-end-line="317" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/transform.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/warp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="289" column="4" lean-forward="false" selection-start-line="289" selection-start-column="4" selection-end-line="289" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/io.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="318" column="4" lean-forward="false" selection-start-line="318" selection-start-column="4" selection-end-line="318" selection-end-column="4" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="272" column="0" lean-forward="false" selection-start-line="272" selection-start-column="0" selection-end-line="272" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1241,13 +1180,6 @@
     <entry file="file://$PROJECT_DIR$/../Landsat578/landsat/usgs_download.py" />
     <entry file="file://$PROJECT_DIR$/../Landsat578/landsat/landsat.py" />
     <entry file="file://$PROJECT_DIR$/../Landsat578/landsat/sample_script.py" />
-    <entry file="file://$PROJECT_DIR$/dem/dem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_dem.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
@@ -1317,13 +1249,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metio/thredds.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="254" column="35" lean-forward="true" selection-start-line="254" selection-start-column="35" selection-end-line="254" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/csv_to_shp.py" />
     <entry file="file://$PROJECT_DIR$/conform_array.py" />
     <entry file="file://$PROJECT_DIR$/ssebop_config_lc8.yml">
@@ -1381,7 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2176">
           <caret line="135" column="70" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1396,10 +1320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#809#5145#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1437,7 +1357,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1445,14 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="59" column="28" lean-forward="false" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#734#749#0" expanded="true" />
-            <element signature="e#1340#1344#0" expanded="false" />
-            <element signature="e#2378#2666#0" expanded="false" />
-            <element signature="e#2714#2870#0" expanded="false" />
-            <element signature="e#2916#3200#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1460,23 +1371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssebop_config_lt5.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1484,32 +1378,101 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="589" column="0" lean-forward="false" selection-start-line="589" selection-start-column="0" selection-end-line="589" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/entry_script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="74" lean-forward="true" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/download_composer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="41" column="32" lean-forward="false" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/landsat/usgs_download.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="204" column="4" lean-forward="false" selection-start-line="204" selection-start-column="4" selection-end-line="204" selection-end-column="4" />
+        <state relative-caret-position="193">
+          <caret line="108" column="4" lean-forward="false" selection-start-line="108" selection-start-column="4" selection-end-line="108" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/dtypes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+        <state relative-caret-position="497">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dem/dem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssebop_config_lt5.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="629">
+          <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
+            <element signature="e#740#777#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/rasterio/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/thredds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3621">
+          <caret line="213" column="42" lean-forward="false" selection-start-line="213" selection-start-column="42" selection-end-line="213" selection-end-column="42" />
+          <folding>
+            <element signature="e#762#799#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/ssebop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#762#799#0" expanded="true" />
           </folding>
         </state>
       </provider>
