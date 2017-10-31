@@ -10,8 +10,8 @@ usgs_creds: /data01/images/usgs.txt
 
 satellite: LT5
 # Date format; string 'YYYYMMDD'
-start_date: 20000401
-end_date: 20000930
+start_date: 20010401
+end_date: 20010930
 k_factor: 1.25
 verify_paths: True
 
