@@ -30,6 +30,7 @@ from landsat.usgs_download import down_usgs_by_list as down
 from core.collector import data_check
 from metio.fao import get_net_radiation, air_density, air_specific_heat
 from metio.fao import canopy_resistance
+from metio.agrimet import Agrimet
 
 
 class SSEBopModel(object):
@@ -51,6 +52,7 @@ class SSEBopModel(object):
         self.path = runspec.path
         self.row = runspec.row
         self.image_id = runspec.image_id
+        self.agrimet_corrected = runspec.agrimet_corrected
 
         self.image_geo = None
 
@@ -107,6 +109,9 @@ class SSEBopModel(object):
         dt = self.difference_temp()
         ts = self.image.land_surface_temp()
         c = self.c_factor(ts)
+        if not c:
+            print('moving to next day due to invalid image for t_corr')
+            return None
         ta = data_check(self.image_geo, variable='tmax', temp_units='K')
         tc = c * ta
         th = tc + dt
@@ -123,6 +128,9 @@ class SSEBopModel(object):
         self.save_array(et, variable_name='ssebop_et', output_path=self.image_dir)
         self.save_array(etrf, variable_name='ssebop_etrf', output_path=self.image_dir)
 
+        if self.agrimet_corrected:
+            lat, lon = self.image.scene_cords_deg[0], self.image.scene_cords_deg[1]
+            agrimet = Agrimet(lat=lat, lon=lon)
         return None
 
     def c_factor(self, ts):
@@ -162,8 +170,10 @@ class SSEBopModel(object):
         test_count = count_nonzero(~isnan(t_corr))
 
         if test_count < 50:
-            raise Warning('Count of clear pixels in {} is insufficient'
-                          ' to perform analysis.'.format(self.image_id))
+            print('Count of clear pixels in {} is insufficient'
+                  ' to perform analysis.'.format(self.image_id))
+            return None
+
         print('You have {} pixels for your temperature '
               'correction scheme.'.format(test_count))
 
@@ -206,11 +216,13 @@ class SSEBopModel(object):
         geometry = self.image.rasterio_geometry
 
         if not output_path:
-            output_filename = os.path.join(self.image_dir, '{}_{}.tif'.format(self.image_id,
-                                                                              variable_name))
+            output_filename = os.path.join(self.image_dir,
+                                           '{}_{}.tif'.format(self.image_id,
+                                                              variable_name))
         else:
-            output_filename = os.path.join(output_path, '{}_{}.tif'.format(self.image_id,
-                                                                           variable_name))
+            output_filename = os.path.join(output_path,
+                                           '{}_{}.tif'.format(self.image_id,
+                                                              variable_name))
 
         try:
             arr = arr.reshape(1, arr.shape[1], arr.shape[2])
