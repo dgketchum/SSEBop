@@ -122,15 +122,21 @@ class SSEBopModel(object):
                            sat_image=self.image, fmask_clear_val=1)
         et_mskd = where(fmask, et, nan)
 
-        self.save_array(et_mskd, variable_name='ssebop_et_mskd', output_path=self.image_dir)
+        self.save_array(et_mskd, variable_name='ssebop_et_mskd',
+                        output_path=self.image_dir)
         self.save_array(pet, variable_name='pet', output_path=self.image_dir)
         self.save_array(ts, variable_name='lst', output_path=self.image_dir)
         self.save_array(et, variable_name='ssebop_et', output_path=self.image_dir)
-        self.save_array(etrf, variable_name='ssebop_etrf', output_path=self.image_dir)
+        self.save_array(etrf, variable_name='ssebop_etrf',
+                        output_path=self.image_dir)
 
         if self.agrimet_corrected:
-            lat, lon = self.image.scene_cords_deg[0], self.image.scene_cords_deg[1]
+            lat, lon = self.image.scene_coords_deg[0], \
+                       self.image.scene_coords_deg[1]
             agrimet = Agrimet(lat=lat, lon=lon)
+            agri_data = agrimet.fetch_data()
+            # TODO move fetch formed data into instantiation
+            # function in both (?) gridmet and agrimet to find bias and correct
         return None
 
     def c_factor(self, ts):
