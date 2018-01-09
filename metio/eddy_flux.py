@@ -26,13 +26,15 @@ from metio.lathuille_variables import get_lathuille_variables as lathuille
 
 
 class FluxSite(object):
-    def __init__(self, site_key=None, json_file=None):
+    def __init__(self, site_key=None, json_file=None, country_abvs=None):
 
         self.json_file = json_file
         self.ntsg_url_head = 'http://luna.ntsg.umt.edu.'
         self.ntsg_url_middle = '/data/forDavidKetchum/LaThuile/daily/'
         self.fluxdata_org_head = 'http://www.fluxdata.org:8080/SitePages/'
         self.fluxdata_org_middle = 'siteInfo.aspx?'
+
+        self.country_abvs = country_abvs
 
         self.site_params = ('Site_name',
                             'Latitude',
@@ -43,7 +45,7 @@ class FluxSite(object):
                             'Years Of Data Available')
 
         if not json_file:
-            self.json_file = 'data/flux_locations_lathuille.json'
+            self.json_file = 'metio/data/flux_locations_lathuille.json'
 
         self.needs_float_conversion = self.site_params[1:-1]
 
@@ -53,7 +55,7 @@ class FluxSite(object):
         else:
             print('No flux data json given, constructing from '
                   'web resources.')
-            self.build_network_json(outfile=self.json_file)
+            self.data = self.build_network_json(outfile=self.json_file)
 
         self.site_key = site_key
 
@@ -86,7 +88,7 @@ class FluxSite(object):
 
         return df
 
-    def build_network_json(self, outfile=None, country_abvs=None):
+    def build_network_json(self, outfile=None):
         """ Get all LaThuile data available.
         Should be on the order of 200+ sites. This web scraper is slow,
         recommended to run it once, save it locally, and use FluxSite.load_json to 
@@ -97,8 +99,8 @@ class FluxSite(object):
         :return: dict of flux sites by site abbreviation key.
         """
 
-        if not country_abvs:
-            country_abvs = []
+        if not self.country_abvs:
+            self.country_abvs = []
 
         req_url = '{}{}'.format(self.ntsg_url_head, self.ntsg_url_middle)
         r = requests.request('GET', req_url, stream=True)
@@ -117,7 +119,7 @@ class FluxSite(object):
             else:
                 first = True
 
-            if country_abv in country_abvs:
+            if country_abv in self.country_abvs:
                 if title.startswith(site_abv) and title.endswith('.csv'):
                     csv_location = '{}{}'.format(self.ntsg_url_head, a.attrs['href'])
                     if first:
@@ -127,7 +129,7 @@ class FluxSite(object):
                     year = int(title.split('.')[1])
                     data[site_abv]['csv_url'].append((year, csv_location))
 
-            elif country_abvs:
+            elif self.country_abvs:
                 pass
 
             else:

@@ -31,8 +31,6 @@ DEFAULT_CFG = '''
 path: 40
 row: 28
 root: /path/to/parent_directory
-input_root: /path/to/inputs
-output_root: /path/to/output
 
 api_key: 'set your Mapzen API Key'
 
@@ -42,6 +40,7 @@ single_date: False
 start_date: 4/1/2010
 end_date: 11/1/2010
 verify_paths: True
+agrimet_corrected: True
 down_images_only: False
 '''
 
@@ -93,7 +92,8 @@ class Config:
                      'start_date', 'end_date',
                      'satellite',
                      'verify_paths',
-                     'down_images_only')
+                     'down_images_only',
+                     'agrimet_corrected')
 
             time_attrs = ('start_date', 'end_date')
 
@@ -149,7 +149,8 @@ class RunSpec(object):
                  'usgs_creds', 'verify_paths',
                  'root',
                  'start_date', 'end_date',
-                 'down_images_only')
+                 'down_images_only',
+                 'agrimet_corrected')
 
         for attr in attrs:
             cfg_attr = getattr(cfg, attr)
@@ -163,7 +164,8 @@ class RunSpec(object):
                        'start_date': self.start_date,
                        'end_date': self.end_date,
                        'image_dir': self.image_dir,
-                       'root': self.root}
+                       'root': self.root,
+                       'agrimet_corrected': self.agrimet_corrected}
         self.image_exists = paths.configure_project_dirs(pseudo_spec)
 
 

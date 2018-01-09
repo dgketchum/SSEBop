@@ -34,9 +34,6 @@ class EddyTowerTestCase(unittest.TestCase):
         self.fmt = '%Y-%m-%d'
         self.fpe_start, self.fpe_end = '2000-01-01', '2006-12-31'
 
-    def tearDown(self):
-        pass
-
     def test_load_site_data(self):
         site = self.site
         flux = FluxSite(site_key=site, json_file=self.data_perm)
@@ -48,9 +45,9 @@ class EddyTowerTestCase(unittest.TestCase):
         self.assertEqual(data.shape, (days + 1, 122))
 
     def test_network_json_few_sites(self):
-        flux = FluxSite()
-        data_dict = flux.build_network_json(self.data_save_loc,
-                                            country_abvs=self.select_sites)
+        flux = FluxSite(json_file=self.data_save_loc,
+                        country_abvs=self.select_sites)
+        data_dict = flux.data
         self.assertIsInstance(data_dict, dict)
         br = data_dict['BR-Ban']
         self.assertEqual(br['Latitude'], -9.8244)
@@ -62,8 +59,8 @@ class EddyTowerTestCase(unittest.TestCase):
         os.remove(self.data_save_loc)
 
     def test_network_json_all_sites(self):
-        flux = FluxSite()
-        data_dict = flux.build_network_json(self.data_save_loc)
+        flux = FluxSite(json_file=self.data_save_loc)
+        data_dict = flux.data
         self.assertEqual(len(data_dict.keys()), 252)
         with open(self.data_save_loc) as f:
             d = json.load(f)
@@ -85,6 +82,7 @@ class EddyTowerTestCase(unittest.TestCase):
             for feature in shp:
                 count += 1
             self.assertEqual(count, 252)
+
 
 if __name__ == '__main__':
     unittest.main()

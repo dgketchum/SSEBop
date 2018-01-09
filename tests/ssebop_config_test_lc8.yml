@@ -13,5 +13,6 @@ satellite: LC8
 start_date: 20140814
 end_date: 20140816
 verify_paths: True
+agrimet_corrected: True
 down_images_only: False
 
