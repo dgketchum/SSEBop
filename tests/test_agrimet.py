@@ -84,7 +84,7 @@ class TestAgrimet(unittest.TestCase):
         agrimet = Agrimet(station=self.fetch_site, start_date='2015-01-01',
                           end_date='2015-12-31', interval='daily')
 
-        raw = agrimet.fetch_data(return_raw=True)
+        raw = agrimet.fetch_data(raw=True)
         formed = agrimet.fetch_data()
 
         a = raw.iloc[1, :].tolist()
@@ -113,7 +113,7 @@ class TestAgrimet(unittest.TestCase):
         for site in self.outside_PnGp_sites:
             agrimet = Agrimet(station=site, start_date='2015-05-15',
                               end_date='2015-05-15', interval='daily')
-            raw = agrimet.fetch_data(return_raw=True)
+            raw = agrimet.fetch_data(raw=True)
             formed = agrimet.fetch_data()
             params = ['et', 'mm', 'pc', 'sr', 'wr']
             for param in params:

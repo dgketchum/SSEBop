@@ -134,7 +134,6 @@ class SSEBopModel(object):
             lat, lon = self.image.scene_coords_deg[0], \
                        self.image.scene_coords_deg[1]
             agrimet = Agrimet(lat=lat, lon=lon)
-            agri_data = agrimet.fetch_data()
             # TODO move fetch formed data into instantiation
             # function in both (?) gridmet and agrimet to find bias and correct
         return None
