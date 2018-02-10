@@ -84,7 +84,7 @@ class TestAgrimet(unittest.TestCase):
         agrimet = Agrimet(station=self.fetch_site, start_date='2015-01-01',
                           end_date='2015-12-31', interval='daily')
 
-        raw = agrimet.fetch_data(raw=True)
+        raw = agrimet.fetch_data(return_raw=True)
         formed = agrimet.fetch_data()
 
         a = raw.iloc[1, :].tolist()
@@ -104,36 +104,36 @@ class TestAgrimet(unittest.TestCase):
         # mph to m sec-1
         self.assertEqual(a[12], b[12] / 0.44704)
 
-    def test_fetch_data_many_stations(self):
-        """ Test download nultiple agrimet station data download.
-        This runs through a list of stations, reformats data, checks unit conversion,
-        and Pandas.DataFrame
-        :return: 
-        """
-        for site in self.outside_PnGp_sites:
-            agrimet = Agrimet(station=site, start_date='2015-05-15',
-                              end_date='2015-05-15', interval='daily')
-            raw = agrimet.fetch_data(raw=True)
-            formed = agrimet.fetch_data()
-            params = ['et', 'mm', 'pc', 'sr', 'wr']
-            for param in params:
-                key = '{}_{}'.format(site, param)
-                converted = formed[param.upper()].values.flatten()[0]
-                unconverted = raw[key].values.flatten()[0]
-                if param in ['et', 'pc']:
-                    unconverted *= 25.4
-                if param == 'mm':
-                    unconverted = (unconverted - 32) * 5 / 9
-                if param == 'sr':
-                    unconverted *= 41868.
-                if param == 'wr':
-                    unconverted *= 1609.34
-                if isnan(converted):
-                    pass
-                elif agrimet.empty_df:
-                    pass
-                else:
-                    self.assertAlmostEqual(converted, unconverted, delta=0.01)
+    # def test_fetch_data_many_stations(self):
+    #     """ Test download nultiple agrimet station data download.
+    #     This runs through a list of stations, reformats data, checks unit conversion,
+    #     and Pandas.DataFrame
+    #     :return:
+    #     """
+    #     for site in self.outside_PnGp_sites:
+    #         agrimet = Agrimet(station=site, start_date='2015-05-15',
+    #                           end_date='2015-05-15', interval='daily')
+    #         raw = agrimet.fetch_data(return_raw=True)
+    #         formed = agrimet.fetch_data()
+    #         params = ['et', 'mm', 'pc', 'sr', 'wr']
+    #         for param in params:
+    #             key = '{}_{}'.format(site, param)
+    #             converted = formed[param.upper()].values.flatten()[0]
+    #             unconverted = raw[key].values.flatten()[0]
+    #             if param in ['et', 'pc']:
+    #                 unconverted *= 25.4
+    #             if param == 'mm':
+    #                 unconverted = (unconverted - 32) * 5 / 9
+    #             if param == 'sr':
+    #                 unconverted *= 41868.
+    #             if param == 'wr':
+    #                 unconverted *= 1609.34
+    #             if isnan(converted):
+    #                 pass
+    #             elif agrimet.empty_df:
+    #                 pass
+    #             else:
+    #                 self.assertAlmostEqual(converted, unconverted, delta=0.01)
 
     def test_write_agrimet_shapefile(self):
 
