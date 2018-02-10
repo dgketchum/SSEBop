@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/ssebop.py" afterPath="$PROJECT_DIR$/core/ssebop.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metio/agrimet.py" afterPath="$PROJECT_DIR$/metio/agrimet.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_agrimet.py" afterPath="$PROJECT_DIR$/tests/test_agrimet.py" />
     </list>
@@ -21,8 +20,8 @@
       <file leaf-file-name="ssebop.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="686">
-              <caret line="132" column="34" lean-forward="true" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+            <state relative-caret-position="2006">
+              <caret line="132" column="34" lean-forward="false" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#762#799#0" expanded="true" />
@@ -33,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_agrimet.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_agrimet.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+            <state relative-caret-position="289">
+              <caret line="51" column="43" lean-forward="true" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#985#1491#0" expanded="false" />
@@ -46,27 +45,27 @@
                 <element signature="e#2117#2198#1" expanded="false" />
                 <element signature="e#2565#2659#1" expanded="false" />
                 <element signature="e#2841#3044#1" expanded="false" />
-                <element signature="e#3873#4075#1" expanded="false" />
-                <element signature="e#5489#5551#0" expanded="false" />
-                <element signature="e#5677#5758#0" expanded="false" />
+                <element signature="e#3831#3873#0" expanded="false" />
+                <element signature="e#5562#5624#0" expanded="false" />
+                <element signature="e#5750#5831#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="agrimet.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="agrimet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="151" column="28" lean-forward="true" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
+            <state relative-caret-position="1445">
+              <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
               <folding>
                 <element signature="e#762#773#0" expanded="true" />
-                <element signature="e#5213#5398#0" expanded="false" />
-                <element signature="e#5242#5396#0" expanded="false" />
-                <element signature="e#5468#6091#0" expanded="false" />
-                <element signature="e#6130#6231#0" expanded="false" />
-                <element signature="e#6276#6305#0" expanded="false" />
-                <element signature="e#8397#10106#0" expanded="false" />
+                <element signature="e#4167#5096#0" expanded="false" />
+                <element signature="e#5142#5327#0" expanded="false" />
+                <element signature="e#5171#5325#0" expanded="false" />
+                <element signature="e#5397#6020#0" expanded="false" />
+                <element signature="e#6059#6160#0" expanded="false" />
+                <element signature="e#8370#10079#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -235,7 +234,6 @@
         <option value="$PROJECT_DIR$/bounds/example_code.py" />
         <option value="$PROJECT_DIR$/tests/test_gridmet.py" />
         <option value="$PROJECT_DIR$/tests/test_topowx.py" />
-        <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
         <option value="$PROJECT_DIR$/conform_array.py" />
         <option value="$PROJECT_DIR$/ssebop_config_test_lc8.yml" />
         <option value="$PROJECT_DIR$/tests/flux_test.py" />
@@ -256,6 +254,7 @@
         <option value="$PROJECT_DIR$/app/entry_script.py" />
         <option value="$PROJECT_DIR$/core/ssebop.py" />
         <option value="$PROJECT_DIR$/metio/agrimet.py" />
+        <option value="$PROJECT_DIR$/tests/test_agrimet.py" />
       </list>
     </option>
   </component>
@@ -297,7 +296,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -310,7 +309,52 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ssebop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sat_image" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -348,40 +392,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_instantiate_Agrimet">
-    <configuration default="false" name="entry_script" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/entry_script.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests for tests.test_eddy_flux.EddyTowerTestCase.test_network_json_all_sites" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ssebop" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_eddy_flux.EddyTowerTestCase.test_network_json_all_sites&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data_many_stations">
     <configuration default="false" name="Unittests in test_agrimet.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -424,6 +435,36 @@
       <module name="ssebop" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_agrimet.TestAgrimet.test_fetch_data&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_agrimet.TestAgrimet" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_agrimet.TestAgrimet&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data_many_stations" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ssebop" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_agrimet.TestAgrimet.test_fetch_data_many_stations&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
@@ -503,19 +544,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.entry_script" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.EddyTowerTestCase.test_network_json_all_sites" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_agrimet.py" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_instantiate_Agrimet" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_agrimet.py" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_instantiate_Agrimet" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data_many_stations" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_instantiate_Agrimet" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data_many_stations" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_agrimet.py" />
-        <item index="3" class="java.lang.String" itemvalue="Python.entry_script" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_eddy_flux.EddyTowerTestCase.test_network_json_all_sites" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.test_agrimet.TestAgrimet.test_instantiate_Agrimet" />
       </list>
     </recent_temporary>
   </component>
@@ -532,13 +573,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
-    </task>
-    <task id="LOCAL-00210" summary="passing tests w new Agrimet class, on to downloads">
-      <created>1506992471602</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
-      <option name="project" value="LOCAL" />
-      <updated>1506992471602</updated>
     </task>
     <task id="LOCAL-00211" summary="make get request from pandas if posssible">
       <created>1506993175962</created>
@@ -876,18 +910,37 @@
       <option name="project" value="LOCAL" />
       <updated>1515541726397</updated>
     </task>
-    <option name="localTasksCounter" value="259" />
+    <task id="LOCAL-00259" summary="reformat agrimet instantiation">
+      <created>1515613083555</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1515613083556</updated>
+    </task>
+    <option name="localTasksCounter" value="260" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_fetch_data - 2018.01.10 at 12h 19m 43s.xml">
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet - 2018.01.10 at 12h 39m 21s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet - 2018.01.10 at 12h 39m 52s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet - 2018.01.10 at 15h 45m 49s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_fetch_data - 2018.01.10 at 12h 41m 40s.xml">
       <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_fetch_data - 2018.01.10 at 12h 30m 03s.xml">
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_fetch_data - 2018.01.10 at 12h 43m 28s.xml">
       <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_instantiate_Agrimet - 2018.01.10 at 10h 08m 22s.xml">
-      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_instantiate_Agrimet" configurationId="tests" />
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_fetch_data - 2018.01.10 at 12h 44m 21s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_fetch_data - 2018.01.10 at 12h 44m 36s.xml">
+      <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_fetch_data" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_instantiate_Agrimet - 2018.01.10 at 12h 34m 11s.xml">
       <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_instantiate_Agrimet" configurationId="tests" />
@@ -895,19 +948,7 @@
     <history-entry file="Unittests_for_tests_test_agrimet_TestAgrimet_test_instantiate_Agrimet - 2018.01.10 at 12h 35m 06s.xml">
       <configuration name="Unittests for tests.test_agrimet.TestAgrimet.test_instantiate_Agrimet" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_tests_test_eddy_flux_EddyTowerTestCase_test_network_json_few_sites - 2017.11.06 at 11h 37m 02s.xml">
-      <configuration name="Unittests for tests.test_eddy_flux.EddyTowerTestCase.test_network_json_few_sites" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_eddy_flux_EddyTowerTestCase_test_network_json_few_sites - 2017.11.06 at 11h 41m 13s.xml">
-      <configuration name="Unittests for tests.test_eddy_flux.EddyTowerTestCase.test_network_json_few_sites" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_eddy_flux_EddyTowerTestCase_test_network_json_few_sites - 2017.11.06 at 11h 47m 14s.xml">
-      <configuration name="Unittests for tests.test_eddy_flux.EddyTowerTestCase.test_network_json_few_sites" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_tests_test_eddy_flux_EddyTowerTestCase_test_network_json_few_sites - 2017.11.06 at 11h 50m 07s.xml">
-      <configuration name="Unittests for tests.test_eddy_flux.EddyTowerTestCase.test_network_json_few_sites" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_agrimet_py - 2018.01.10 at 10h 07m 39s.xml">
+    <history-entry file="Unittests_in_test_agrimet_py - 2018.01.10 at 12h 49m 45s.xml">
       <configuration name="Unittests in test_agrimet.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -922,19 +963,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21386431" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21976401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.50442475" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5014749" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.49557522" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5014749" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48967552" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48967552" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47861356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -943,6 +982,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1003,7 +1043,6 @@
       <path value="$PROJECT_DIR$/PyETo" />
       <path value="$PROJECT_DIR$/climata" />
     </ignored-roots>
-    <MESSAGE value="somehow gridmet data is scaled badly again, though the orientation of &#10;the raster is correct" />
     <MESSAGE value="gridmet scaled well again, check topowx, move gridmet tests WGS rasters&#10;back to test/data" />
     <MESSAGE value="added many points layer for 38_27 for native confomed array comp" />
     <MESSAGE value="passing native vs. conformed array test, finally" />
@@ -1028,7 +1067,8 @@
     <MESSAGE value="problem with import landsat&#10;changed name to core" />
     <MESSAGE value="failing on handshake earthexplorer down" />
     <MESSAGE value="adding agrimet correction code" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding agrimet correction code" />
+    <MESSAGE value="reformat agrimet instantiation" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat agrimet instantiation" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1102,7 +1142,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1849" />
+      <option name="time" value="1858" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1372,7 +1412,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1433,8 +1472,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/ssebop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="132" column="34" lean-forward="true" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+        <state relative-caret-position="2006">
+          <caret line="132" column="34" lean-forward="false" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#762#799#0" expanded="true" />
@@ -1444,10 +1483,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/pandas/io/parsers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1976">
+          <caret line="2908" column="0" lean-forward="false" selection-start-line="2908" selection-start-column="0" selection-end-line="2908" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+          <folding>
+            <element signature="e#762#773#0" expanded="true" />
+            <element signature="e#4167#5096#0" expanded="false" />
+            <element signature="e#5142#5327#0" expanded="false" />
+            <element signature="e#5171#5325#0" expanded="false" />
+            <element signature="e#5397#6020#0" expanded="false" />
+            <element signature="e#6059#6160#0" expanded="false" />
+            <element signature="e#8370#10079#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_agrimet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+        <state relative-caret-position="289">
+          <caret line="51" column="43" lean-forward="true" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#985#1491#0" expanded="false" />
@@ -1456,33 +1518,9 @@
             <element signature="e#2117#2198#1" expanded="false" />
             <element signature="e#2565#2659#1" expanded="false" />
             <element signature="e#2841#3044#1" expanded="false" />
-            <element signature="e#3873#4075#1" expanded="false" />
-            <element signature="e#5489#5551#0" expanded="false" />
-            <element signature="e#5677#5758#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/pandas/io/parsers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1976">
-          <caret line="2908" column="0" lean-forward="false" selection-start-line="2908" selection-start-column="0" selection-end-line="2908" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="151" column="28" lean-forward="true" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
-          <folding>
-            <element signature="e#762#773#0" expanded="true" />
-            <element signature="e#5213#5398#0" expanded="false" />
-            <element signature="e#5242#5396#0" expanded="false" />
-            <element signature="e#5468#6091#0" expanded="false" />
-            <element signature="e#6130#6231#0" expanded="false" />
-            <element signature="e#6276#6305#0" expanded="false" />
-            <element signature="e#8397#10106#0" expanded="false" />
+            <element signature="e#3831#3873#0" expanded="false" />
+            <element signature="e#5562#5624#0" expanded="false" />
+            <element signature="e#5750#5831#0" expanded="false" />
           </folding>
         </state>
       </provider>

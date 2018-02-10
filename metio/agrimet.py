@@ -71,7 +71,7 @@ WEATHER_PARAMETRS = [('DATETIME', 'Date', '[YYYY-MM-DD]'),
 class Agrimet(object):
     def __init__(self, start_date=None, end_date=None, station=None,
                  interval=None, lat=None, lon=None, sat_image=None,
-                 write_stations=False, return_raw=False):
+                 write_stations=False):
 
         self.station_info_url = STATION_INFO_URL
         self.station = station
@@ -96,8 +96,6 @@ class Agrimet(object):
             self.end = datetime.strptime(end_date, '%Y-%m-%d')
             self.today = datetime.now()
             self.start_index = (self.today - self.start).days - 1
-
-        self.data = self.fetch_data(raw=return_raw)
 
     @property
     def params(self):
@@ -131,23 +129,23 @@ class Agrimet(object):
         stations = json.loads(r.text)
         return stations
 
-    def to_csv(self, path_or_buf):
-        self.data.to_csv(path_or_buf)
-
-    def fetch_data(self, raw=False):
+    def fetch_data(self, return_raw=False, out_csv_file=None):
         url = '{}?{}'.format(AGRIMET_REQ_SCRIPT, self.params)
         raw_df = read_table(url, skip_blank_lines=True,
-                            header=1, sep=r'\,|\t', engine='python')
+                            header=0, sep=r'\,|\t', engine='python')
         raw_df.index = date_range(self.start, periods=raw_df.shape[0])
         raw_df = raw_df[to_datetime(self.start): to_datetime(self.end)]
 
         if raw_df.shape[0] > 3:
             self.empty_df = False
 
-        if raw:
+        if return_raw:
             return raw_df
 
         reformed_data = self._reformat_dataframe(raw_df)
+
+        if out_csv_file:
+            reformed_data.to_csv(path_or_buf=out_csv_file)
 
         return reformed_data
 
