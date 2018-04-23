@@ -2,75 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
-    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="apply fmask script">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/ssebop.iml" afterPath="$PROJECT_DIR$/.idea/ssebop.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_ANG.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B1.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B10.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B11.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B2.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B3.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B3.TIF.aux.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B4.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B5.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B6.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B7.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B8.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B9.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_BQA.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_MTL.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_LST_EEF.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_dem.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_fmask.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_lst.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_pet.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_ssebop_et.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_ssebop_et_mskd.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_ssebop_etrf.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_tmax.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_tmin.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_ANG.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B1.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B2.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B3.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B4.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B5.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B6_VCID_1.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B6_VCID_2.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B7.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B8.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_BQA.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_GCP.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_MTL.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_LST_EEF.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_dem.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_fmask.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_pet.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_tmax.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_tmin.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/lst7_test.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_ANG.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B1.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B2.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B3.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B4.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B5.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B6.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B7.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_BQA.TIF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_GCP.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_MTL.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_VER.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_LST_EEF.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_dem.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_fmask.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_pet.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_tmax.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_tmin.tif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/lst_test.tif" afterPath="" />
-    </list>
+    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="apply fmask script" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +47,7 @@
       <file leaf-file-name="agrimet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
+            <state relative-caret-position="1326">
               <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
               <folding>
                 <element signature="e#4167#5096#0" expanded="false" />
@@ -132,7 +64,7 @@
       <file leaf-file-name="test_ssebop.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-399">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -335,7 +267,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -364,6 +295,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -972,10 +904,9 @@
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2394775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2394775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.50442475" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.49557522" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48618785" sideWeight="0.49705014" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5014749" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -990,6 +921,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47861356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1397,7 +1329,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/metio/agrimet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
+        <state relative-caret-position="1326">
           <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding>
             <element signature="e#4167#5096#0" expanded="false" />
@@ -1412,7 +1344,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-399">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
