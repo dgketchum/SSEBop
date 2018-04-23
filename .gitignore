@@ -102,4 +102,4 @@ ENV/
 obsio/
 tests/data/local
 SSEBop_Landsat_OverpassETa.py
-workspace.xml
+workspace.xmltests/data/ssebop_test
