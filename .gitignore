@@ -100,6 +100,6 @@ ENV/
 # mypy
 .mypy_cache/
 obsio/
-tests/data/local
 SSEBop_Landsat_OverpassETa.py
-workspace.xmltests/data/ssebop_test
+workspace.xml
+tests/data/ssebop_test
