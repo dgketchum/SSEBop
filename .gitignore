@@ -102,6 +102,6 @@ ENV/
 obsio/
 tests/data/local
 SSEBop_Landsat_OverpassETa.py
-.idea
+.idea/
 bounds/.idea/
 .git-rewrite/
