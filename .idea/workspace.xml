@@ -510,13 +510,6 @@
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
     </task>
-    <task id="LOCAL-00213" summary="start building a point time series for gridmet netcdf">
-      <created>1507061283046</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1507061283046</updated>
-    </task>
     <task id="LOCAL-00214" summary="goinig to reshape 038-027 polygon for tests with agrimet">
       <created>1507066156326</created>
       <option name="number" value="00214" />
@@ -853,7 +846,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524498977536</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="remove ssebop_test/data landsat images">
+      <created>1524499191657</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1524499191657</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TestHistory">
