@@ -103,3 +103,4 @@ obsio/
 SSEBop_Landsat_OverpassETa.py
 workspace.xml
 tests/data/ssebop_test
+.idea/
