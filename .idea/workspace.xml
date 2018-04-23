@@ -2,8 +2,74 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="704d53eb-3fe2-4660-8e1f-08e224f29891" name="Revert: ssebop class to one image instance at a time" comment="" />
-    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="">
+    <list default="true" id="a59e5297-5d84-4858-8044-f6a5a1cdc078" name="Default" comment="apply fmask script">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/ssebop.iml" afterPath="$PROJECT_DIR$/.idea/ssebop.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_ANG.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B1.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B10.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B11.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B2.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B3.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B3.TIF.aux.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B4.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B5.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B6.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B7.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B8.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_B9.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_BQA.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC08_L1TP_038027_20140815_20170304_01_T1_MTL.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_LST_EEF.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_dem.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_fmask.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_lst.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_pet.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_ssebop_et.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_ssebop_et_mskd.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_ssebop_etrf.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_tmax.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lc8/038_027/2014/LC80380272014227LGN01/LC80380272014227LGN01_tmin.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_ANG.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B1.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B2.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B3.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B4.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B5.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B6_VCID_1.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B6_VCID_2.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B7.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_B8.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_BQA.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_GCP.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE07_L1TP_041025_20000821_20170210_01_T1_MTL.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_LST_EEF.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_dem.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_fmask.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_pet.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_tmax.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/LE70410252000234PAC00_tmin.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/le7/041_025/2000/LE70410252000234PAC00/lst7_test.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_ANG.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B1.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B2.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B3.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B4.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B5.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B6.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_B7.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_BQA.TIF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_GCP.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_MTL.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT05_L1TP_041025_20000712_20161214_01_T1_VER.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_LST_EEF.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_dem.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_fmask.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_pet.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_tmax.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/LT50410252000194AAA01_tmin.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/data/ssebop_test/lt5/041_025/2000/LT50410252000194AAA01/lst_test.tif" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,21 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_ssebop.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_ssebop.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_ssebop.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-399">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="48" column="11" lean-forward="false" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -287,6 +343,22 @@
             <path>
               <item name="ssebop" type="b2602c69:ProjectViewProjectNode" />
               <item name="ssebop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ssebop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ssebop" type="462c0819:PsiDirectoryNode" />
+              <item name="metio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ssebop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ssebop" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ssebop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ssebop" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -509,6 +581,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494538622931</updated>
+    </task>
+    <task id="LOCAL-00212" summary="passing tests for pandas agrimet dataframe">
+      <created>1507050952161</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1507050952161</updated>
+    </task>
+    <task id="LOCAL-00213" summary="start building a point time series for gridmet netcdf">
+      <created>1507061283046</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1507061283046</updated>
     </task>
     <task id="LOCAL-00214" summary="goinig to reshape 038-027 polygon for tests with agrimet">
       <created>1507066156326</created>
@@ -839,21 +925,7 @@
       <option name="project" value="LOCAL" />
       <updated>1518222823088</updated>
     </task>
-    <task id="LOCAL-00261" summary="remove ssebop_test/data landsat images">
-      <created>1524498977535</created>
-      <option name="number" value="00261" />
-      <option name="presentableId" value="LOCAL-00261" />
-      <option name="project" value="LOCAL" />
-      <updated>1524498977536</updated>
-    </task>
-    <task id="LOCAL-00262" summary="remove ssebop_test/data landsat images">
-      <created>1524499191657</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
-      <option name="project" value="LOCAL" />
-      <updated>1524499191657</updated>
-    </task>
-    <option name="localTasksCounter" value="263" />
+    <option name="localTasksCounter" value="261" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -899,9 +971,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="252" y="61" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2394775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2394775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.50442475" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -980,6 +1051,7 @@
       <path value="$PROJECT_DIR$/PyETo" />
       <path value="$PROJECT_DIR$/climata" />
     </ignored-roots>
+    <MESSAGE value="added many points layer for 38_27 for native confomed array comp" />
     <MESSAGE value="passing native vs. conformed array test, finally" />
     <MESSAGE value="added gridmet test docstrings" />
     <MESSAGE value="added docstring, TODO add values test" />
@@ -1004,8 +1076,7 @@
     <MESSAGE value="adding agrimet correction code" />
     <MESSAGE value="reformat agrimet instantiation" />
     <MESSAGE value="apply fmask script" />
-    <MESSAGE value="remove ssebop_test/data landsat images" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove ssebop_test/data landsat images" />
+    <option name="LAST_COMMIT_MESSAGE" value="apply fmask script" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1091,6 +1162,7 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/site-packages/pyproj/__init__.py" />
     <entry file="file://$USER_HOME$/anaconda2/envs/sandbox/lib/python3.5/os.py" />
     <entry file="file://$PROJECT_DIR$/bounds/example_code.py" />
     <entry file="file://$PROJECT_DIR$/tests/data/met_test/gridmet_rasters/2014-08-15_pet.tif">
@@ -1342,14 +1414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-399">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="11" lean-forward="false" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
           <folding />
         </state>
       </provider>
