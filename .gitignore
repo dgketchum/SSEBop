@@ -104,3 +104,4 @@ tests/data/local
 SSEBop_Landsat_OverpassETa.py
 .idea
 bounds/.idea/
+.git-rewrite/
