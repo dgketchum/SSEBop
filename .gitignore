@@ -102,3 +102,4 @@ ENV/
 obsio/
 tests/data/local
 SSEBop_Landsat_OverpassETa.py
+.idea
