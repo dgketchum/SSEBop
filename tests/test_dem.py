@@ -14,39 +14,36 @@
 # limitations under the License.
 # ===============================================================================
 
-import os
 import unittest
 
-from bounds.bounds import GeoBounds, RasterBounds
+from bounds.bounds import RasterBounds
 from dem.dem import MapzenDem
-from sat_image.image import Landsat5
-
-
-class ThreddsDemTestCase(unittest.TestCase):
-    def setUp(self):
-        pass
+from sat_image.image import Landsat8
 
 
 class MapzenDemTestCase(unittest.TestCase):
     def setUp(self):
-        self.bbox = GeoBounds(west_lon=-116.5, east_lon=-111.0,
-                              south_lat=44.3, north_lat=47.)
+
         self.api_key = 'mapzen-JmKu1BF'
+        self.dir_name_LC8 = '/data01/images/sandbox/ssebop_analysis/' \
+                            '038_027/2014/LC80380272014227LGN01'
 
     def test_dem(self):
-        home = os.path.expanduser('~')
-        tif_dir = os.path.join(home, 'images', 'LT5', 'image_test', 'full_image')
-        tif = os.path.join(tif_dir, 'LT05_L1TP_040028_20060706_20160909_01_T1_B5.TIF')
+        l8 = Landsat8(self.dir_name_LC8)
+        polygon = l8.get_tile_geometry()
+        profile = l8.rasterio_geometry
+        bb = RasterBounds(affine_transform=profile['transform'],
+                          profile=profile, latlon=True)
 
-        l5 = Landsat5(tif_dir)
-        bb = RasterBounds(tif)
-        polygon = l5.get_tile_geometry()
-        profile = l5.rasterio_geometry
-
-        dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile, clip_object=polygon,
+        dem = MapzenDem(zoom=10, bounds=bb, target_profile=profile,
+                        clip_object=polygon,
                         api_key=self.api_key)
 
-        elev = dem.terrain(attribute='elevation')
+        elev = dem.terrain(attribute='elevation',
+                           out_file='/data01/images/sandbox/'
+                                    'ssebop_testing/mapzen_'
+                                    '{}_{}.tif'.format(l8.target_wrs_path,
+                                                       l8.target_wrs_row))
         self.assertEqual(elev.shape, (1, 7429, 8163))
 
         aspect = dem.terrain(attribute='aspect')

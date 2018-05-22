@@ -19,7 +19,8 @@ from __future__ import print_function
 import os
 import sys
 from datetime import datetime
-from landsat.download_composer import download_landsat as down
+from landsat.download_composer import download_landsat as down_from_runspec
+from landsat.usgs_download import down_usgs_by_list as down_list
 
 import yaml
 
@@ -30,8 +31,6 @@ DEFAULT_CFG = '''
 path: 40
 row: 28
 root: /path/to/parent_directory
-input_root: /path/to/inputs
-output_root: /path/to/output
 
 api_key: 'set your Mapzen API Key'
 
@@ -40,14 +39,9 @@ year: None
 single_date: False
 start_date: 4/1/2010
 end_date: 11/1/2010
-k_factor: 1.25
 verify_paths: True
-
-# Add the path relative to /input_root/ or /root/
-# They will be joined to input_root.
-# Parameters mask and polygon are optional, put None if None
-polygons: None
-mask: None
+agrimet_corrected: True
+down_images_only: False
 '''
 
 DATETIME_FMT = '%Y%m%d'
@@ -66,8 +60,8 @@ class Config:
     start_date = None
     end_date = None
     usgs_creds = None
-    k_factor = None
     verify_paths = None
+    down_images_only = None
 
     def __init__(self, path=None):
         self.load(path=path)
@@ -95,10 +89,11 @@ class Config:
 
             attrs = ('path', 'row', 'root',
                      'api_key', 'usgs_creds',
-                     'mask', 'polygons',
                      'start_date', 'end_date',
                      'satellite',
-                     'k_factor', 'verify_paths',)
+                     'verify_paths',
+                     'down_images_only',
+                     'agrimet_corrected')
 
             time_attrs = ('start_date', 'end_date')
 
@@ -118,18 +113,29 @@ class Config:
 
         self.runspecs = [RunSpec(image, self) for image in images]
 
+        if self.down_images_only:
+
+            for spec in self.runspecs:
+                down_list([spec.image_id], output_dir=spec.parent_dir,
+                          usgs_creds_txt=spec.usgs_creds)
+
+            self.runspecs = None
+
     def get_image_list(self):
 
         super_list = []
-        images = down((self.start_date, self.end_date), satellite=self.satellite,
-                      path_row_list=[(self.path, self.row)],
-                      dry_run=True)
+        images = down_from_runspec(start=self.start_date, end=self.end_date,
+                                   satellite=self.satellite,
+                                   path=self.path, row=self.row,
+                                   return_list=True)
         if images:
             super_list.append(images)
             try:
                 flat_list = [item for sublist in super_list for item in sublist]
+                flat_list.reverse()
                 return flat_list
             except TypeError:
+                super_list.reverse()
                 return super_list
         else:
             raise AttributeError('No images for this time-frame and satellite....')
@@ -141,16 +147,26 @@ class RunSpec(object):
         attrs = ('path', 'row',
                  'satellite', 'api_key',
                  'usgs_creds', 'verify_paths',
-                 'k_factor', 'root',
-                 'mask', 'polygons',
-                 'start_date', 'end_date',)
+                 'root',
+                 'start_date', 'end_date',
+                 'down_images_only',
+                 'agrimet_corrected')
 
         for attr in attrs:
             cfg_attr = getattr(cfg, attr)
             setattr(self, attr, cfg_attr)
 
         self.image_date = date = datetime.strptime(image[9:16], JULIAN_FMT)
-        self.image_dir = os.path.join(cfg.path_row_dir, str(date.year), image)
+        self.parent_dir = os.path.join(cfg.path_row_dir, str(date.year))
+        self.image_dir = os.path.join(self.parent_dir, image)
+        pseudo_spec = {'path': self.path,
+                       'row': self.row,
+                       'start_date': self.start_date,
+                       'end_date': self.end_date,
+                       'image_dir': self.image_dir,
+                       'root': self.root,
+                       'agrimet_corrected': self.agrimet_corrected}
+        self.image_exists = paths.configure_project_dirs(pseudo_spec)
 
 
 def check_config(path=None):

@@ -1,0 +1,18 @@
+
+path: 41
+row: 25
+root: /data01/PycharmProjects/ssebop/tests/data/ssebop_test/le7
+input_root:
+output_root:
+
+api_key: 'mapzen-JmKu1BF'
+usgs_creds: /data01/images/usgs.txt
+
+satellite: LE7
+# Date format; string 'YYYYMMDD'
+start_date: 20010401
+end_date: 20010930
+k_factor: 1.25
+verify_paths: True
+agrimet_corrected: True
+down_images_only: False

@@ -36,7 +36,7 @@ def run_ssebop(cfg_path):
 if __name__ == '__main__':
     home = os.path.expanduser('~')
     root = os.path.join(home, 'PycharmProjects', 'ssebop')
-    config_path = os.path.join(root, 'tests/ssebop_config_test.yml')
+    config_path = os.path.join(root, 'ssebop_config_lc8.yml')
     run_ssebop(config_path)
 
 # ========================= EOF ====================================================================

@@ -17,8 +17,8 @@
 import os
 import shutil
 from rasterio import open as rasopen
-from numpy import where, pi, cos, nan, inf, true_divide, errstate, log, nan_to_num
-from numpy import float32, sin, deg2rad
+from numpy import where, pi, cos, nan, inf, true_divide, errstate, log
+from numpy import float32, sin, deg2rad, array, isnan
 from shapely.geometry import Polygon, mapping
 from fiona import open as fiopen
 from fiona.crs import from_epsg
@@ -76,9 +76,7 @@ class LandsatImage(object):
         self.tif_dict = {}
         for i, tif in enumerate(self.tif_list):
             raster = os.path.join(self.obj, tif)
-            with rasopen(raster) as src:
-                transform = src.transform
-                profile = src.profile
+
             # set all lower case attributes
             tif = tif.lower()
             front_ind = tif.index('b')
@@ -90,6 +88,9 @@ class LandsatImage(object):
             self.band_count = i + 1
 
             if i == 0:
+                with rasopen(raster) as src:
+                    transform = src.transform
+                    profile = src.profile
                 # get rasterio metadata/geospatial reference for one tif
                 meta = src.meta.copy()
                 self.rasterio_geometry = meta
@@ -116,7 +117,10 @@ class LandsatImage(object):
     def _get_band(self, band_str):
         path = self.tif_dict[band_str]
         with rasopen(path) as src:
-            return src.read(1)
+            arr = src.read(1)
+        arr = array(arr, dtype=float32)
+        arr[arr < 1.] = nan
+        return arr
 
     def _scene_centroid(self):
         """ Compute image center coordinates
@@ -149,7 +153,6 @@ class LandsatImage(object):
         with errstate(divide='ignore', invalid='ignore'):
             c = true_divide(a, b)
             c[c == inf] = replace
-            c = nan_to_num(c)
             return c
 
     def get_tile_geometry(self, output_filename=None, geographic_coords=False):
@@ -203,13 +206,27 @@ class LandsatImage(object):
 
                 return features
 
-    def save_array(self, array, output_filename):
+    def save_array(self, arr, output_filename):
         geometry = self.rasterio_geometry
-        array = array.reshape(1, array.shape[0], array.shape[1])
-        geometry['dtype'] = array.dtype
+        arr = arr.reshape(1, arr.shape[0], arr.shape[1])
+        geometry['dtype'] = arr.dtype
         with rasopen(output_filename, 'w', **geometry) as dst:
-            dst.write(array)
+            dst.write(arr)
         return None
+
+    def mask_by_image(self, arr):
+        image = self._get_band('b1')
+        image = array(image, dtype=float32)
+        image[image < 1.] = nan
+        arr = where(isnan(image), nan, arr)
+        return arr
+
+    def mask(self):
+        image = self._get_band('b1')
+        image = array(image, dtype=float32)
+        image[image < 1.] = nan
+        arr = where(isnan(image), 0, 1)
+        return arr
 
 
 class Landsat5(LandsatImage):
@@ -303,7 +320,8 @@ class Landsat5(LandsatImage):
         :return: boolean array
         """
         dn = self._get_band('b{}'.format(band))
-        mask = where((dn == value) & (self.mask > 0), True, False)
+        mask = self.mask()
+        mask = where((dn == value) & (mask > 0), True, False)
 
         return mask
 
@@ -316,25 +334,54 @@ class Landsat5(LandsatImage):
 
         return ndvi
 
-    def emissivity(self):
+    def lai(self):
+        """
+        Leaf area index (LAI), or the surface area of leaves to surface area ground.
+        Trezza and Allen, 2014
+        :param ndvi: normalized difference vegetation index [-]
+        :return: LAI [-]
+        """
+        ndvi = self.ndvi()
+        lai = 7.0 * (ndvi ** 3)
+        lai = where(lai > 6., 6., lai)
+        return lai
+
+    def emissivity(self, approach='tasumi'):
 
         ndvi = self.ndvi()
-        red = self.reflectance(3)
-        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
-        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
 
-        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
-        pv_emiss = 0.004 * pv + 0.986
-        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+        if approach == 'tasumi':
+            lai = self.lai()
+            # Tasumi et al., 2003
+            # narrow-band emissivity
+            nb_epsilon = where((ndvi > 0) & (lai <= 3), 0.97 + 0.0033 * lai, nan)
+            nb_epsilon = where((ndvi > 0) & (lai > 3), 0.98, nb_epsilon)
+            nb_epsilon = where(ndvi <= 0, 0.99, nb_epsilon)
+            return nb_epsilon
 
-        return emissivity
+        if approach == 'sobrino':
+            # Sobrino et el., 2004
+            red = self.reflectance(3)
+            bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+            bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+
+            pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+            pv_emiss = 0.004 * pv + 0.986
+            emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+
+            return emissivity
 
     def land_surface_temp(self):
+        """
+        Mean values from Allen (2007)
+        :return: 
+        """
         rp = 0.91
         tau = 0.866
         rsky = 1.32
-        epsilon = self.emissivity()
-        rc = ((self.radiance(6) - rp) / tau) - ((1 - epsilon) * rsky)
+        epsilon = self.emissivity(approach='tasumi')
+        radiance = self.radiance(6)
+        rc = ((radiance - rp) / tau) - ((1 - epsilon) * rsky)
         lst = self.k2 / (log((epsilon * self.k1 / rc) + 1))
         return lst
 
@@ -361,6 +408,8 @@ class Landsat7(LandsatImage):
         self.k1, self.k2 = 666.09, 1282.71
 
     def radiance(self, band):
+        if band == 6:
+            band = '6_vcid_1'
         qcal_min = getattr(self, 'quantize_cal_min_band_{}'.format(band))
         qcal_max = getattr(self, 'quantize_cal_max_band_{}'.format(band))
         l_min = getattr(self, 'radiance_minimum_band_{}'.format(band))
@@ -432,7 +481,7 @@ class Landsat7(LandsatImage):
         :return: boolean array
         """
         dn = self._get_band('b{}'.format(band))
-        mask = where((dn == value) & (self.mask > 0), True, False)
+        mask = where((dn == value) & (self.mask() > 0), True, False)
 
         return mask
 
@@ -445,17 +494,42 @@ class Landsat7(LandsatImage):
 
         return ndvi
 
-    def emissivity(self):
+    def lai(self):
+        """
+        Leaf area index (LAI), or the surface area of leaves to surface area ground.
+        Trezza and Allen, 2014
+        :param ndvi: normalized difference vegetation index [-]
+        :return: LAI [-]
+        """
+        ndvi = self.ndvi()
+        lai = 7.0 * (ndvi ** 3)
+        lai = where(lai > 6., 6., lai)
+        return lai
+
+    def emissivity(self, approach='tasumi'):
 
         ndvi = self.ndvi()
-        red = self.reflectance(3)
-        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
-        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
 
-        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
-        pv_emiss = 0.004 * pv + 0.986
-        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
-        return emissivity
+        if approach == 'tasumi':
+            lai = self.lai()
+            # Tasumi et al., 2003
+            # narrow-band emissivity
+            nb_epsilon = where((ndvi > 0) & (lai <= 3), 0.97 + 0.0033 * lai, nan)
+            nb_epsilon = where((ndvi > 0) & (lai > 3), 0.98, nb_epsilon)
+            nb_epsilon = where(ndvi <= 0, 0.99, nb_epsilon)
+            return nb_epsilon
+
+        if approach == 'sobrino':
+            # Sobrino et el., 2004
+            red = self.reflectance(3)
+            bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+            bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+
+            pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+            pv_emiss = 0.004 * pv + 0.986
+            emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+
+            return emissivity
 
     def land_surface_temp(self):
         rp = 0.91
@@ -567,7 +641,7 @@ class Landsat8(LandsatImage):
             raise ValueError('Landsat 8 reflectance should OLI band (i.e. bands 1-8)')
 
         elev = getattr(self, 'sun_elevation')
-        dn = getattr(self, 'b{}'.format(band))
+        dn = self._get_band('b{}'.format(band))
         mr = getattr(self, 'reflectance_mult_band_{}'.format(band))
         ar = getattr(self, 'reflectance_add_band_{}'.format(band))
 
@@ -631,17 +705,42 @@ class Landsat8(LandsatImage):
 
         return ndvi
 
-    def emissivity(self):
+    def lai(self):
+        """
+        Leaf area index (LAI), or the surface area of leaves to surface area ground.
+        Trezza and Allen, 2014
+        :param ndvi: normalized difference vegetation index [-]
+        :return: LAI [-]
+        """
+        ndvi = self.ndvi()
+        lai = 7.0 * (ndvi ** 3)
+        lai = where(lai > 6., 6., lai)
+        return lai
+
+    def emissivity(self, approach='tasumi'):
 
         ndvi = self.ndvi()
-        red = self.reflectance(4)
-        bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
-        bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
 
-        pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
-        pv_emiss = 0.004 * pv + 0.986
-        emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
-        return emissivity
+        if approach == 'tasumi':
+            lai = self.lai()
+            # Tasumi et al., 2003
+            # narrow-band emissivity
+            nb_epsilon = where((ndvi > 0) & (lai <= 3), 0.97 + 0.0033 * lai, nan)
+            nb_epsilon = where((ndvi > 0) & (lai > 3), 0.98, nb_epsilon)
+            nb_epsilon = where(ndvi <= 0, 0.99, nb_epsilon)
+            return nb_epsilon
+
+        if approach == 'sobrino':
+            # Sobrino et el., 2004
+            red = self.reflectance(3)
+            bound_ndvi = where(ndvi > 0.5, ndvi, 0.99)
+            bound_ndvi = where(ndvi < 0.2, red, bound_ndvi)
+
+            pv = ((ndvi - 0.2) / (0.5 - 0.2)) ** 2
+            pv_emiss = 0.004 * pv + 0.986
+            emissivity = where((ndvi >= 0.2) & (ndvi <= 0.5), pv_emiss, bound_ndvi)
+
+            return emissivity
 
     def land_surface_temp(self):
 
@@ -667,4 +766,4 @@ class Landsat8(LandsatImage):
 
         return ndsi
 
-# ========================================================================= ====================
+# =============================================================================================

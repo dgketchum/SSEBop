@@ -41,17 +41,22 @@ class Dem(object):
         pass
 
     @staticmethod
-    def save(array, geometry, output_filename, crs=None):
+    def save(array, geometry, output_filename, crs=None, return_array=False):
         try:
             array = array.reshape(1, array.shape[1], array.shape[2])
         except IndexError:
             array = array.reshape(1, array.shape[0], array.shape[1])
-        geometry['dtype'] = array.dtype
+        geometry['dtype'] = str(array.dtype)
         if crs:
             geometry['crs'] = CRS({'init': crs})
         with rasopen(output_filename, 'w', **geometry) as dst:
             dst.write(array)
-        return None
+        if return_array:
+            with rasopen(output_filename, 'r') as src:
+                arr = src.read()
+            return arr
+        else:
+            return None
 
 
 class ThreddsDem(Dem):
@@ -94,7 +99,13 @@ class MapzenDem(Dem):
 
         self.zoom = zoom
         self.target_profile = target_profile
-        self.bbox = bounds
+
+        for bound in [bounds.east, bounds.north, bounds.south, bounds.west]:
+            if bound > 180.0 or bound < -180.:
+                raise ValueError('MapzenDem class takes a latlon bounds object!')
+            else:
+                self.bbox = bounds
+
         self.clip_feature = clip_object
         self.key = api_key
         self.url = 'https://tile.mapzen.com'
@@ -112,10 +123,10 @@ class MapzenDem(Dem):
 
         if attribute == 'elevation':
             if out_file:
-                self.save(dem, self.target_profile, out_file)
-            elif save_and_return:
-                self.save(dem, self.target_profile, out_file)
-                return dem
+                arr = self.save(dem, self.target_profile, out_file,
+                                return_array=True)
+                if save_and_return:
+                    return arr
             else:
                 return dem
 
@@ -124,12 +135,10 @@ class MapzenDem(Dem):
             if out_file:
                 if len(slope.shape) > 2:
                     slope = reshape(1, dem.shape[0], dem.shape[1])
-                self.save(slope, self.target_profile, out_file)
-            elif save_and_return:
-                if len(slope.shape) > 2:
-                    slope = reshape(1, dem.shape[0], dem.shape[1])
-                self.save(slope, self.target_profile, out_file)
-                return slope
+                arr = self.save(slope, self.target_profile, out_file,
+                                return_array=True)
+                if save_and_return:
+                    return arr
             else:
                 return slope
 
@@ -139,12 +148,10 @@ class MapzenDem(Dem):
             if out_file:
                 if len(aspect.shape) > 2:
                     aspect = reshape(1, dem.shape[0], dem.shape[1])
-                self.save(aspect, self.target_profile, out_file)
-            elif save_and_return:
-                if len(aspect.shape) > 2:
-                    aspect = reshape(1, dem.shape[0], dem.shape[1])
-                self.save(aspect, self.target_profile, out_file)
-                return aspect
+                arr = self.save(aspect, self.target_profile, out_file,
+                                return_array=True)
+                if save_and_return:
+                    return arr
             else:
                 return aspect
 
@@ -304,12 +311,13 @@ class MapzenDem(Dem):
             profile['transform'] = self.target_profile['transform']
             profile['width'] = self.target_profile['width']
             profile['height'] = self.target_profile['height']
-            profile['dtype'] = new_array.dtype
+            profile['dtype'] = str(new_array.dtype)
 
             delattr(self, 'mask')
 
             with rasopen(temp_path, 'w', **profile) as dst:
-                reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
+                reproject(array, new_array, src_transform=aff,
+                          dst_transform=new_affine, src_crs=src.crs,
                           dst_crs=src.crs, resampling=Resampling.bilinear)
 
                 dst.write(new_array)

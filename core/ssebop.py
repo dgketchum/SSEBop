@@ -16,12 +16,21 @@
 
 from __future__ import print_function
 
+import os
+from numpy import where, nan, count_nonzero, isnan
+from numpy import nanmean, nanstd
+
+from rasterio import open as rasopen
+from rasterio.crs import CRS
+
 from app.paths import paths, PathsNotSetExecption
+from bounds.bounds import RasterBounds
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from landsat.usgs_download import down_usgs_by_list as down
-from core.collector import anc_data_check_dem, anc_data_check_temp
+from core.collector import data_check
 from metio.fao import get_net_radiation, air_density, air_specific_heat
-from metio.fao import canopy_resistance, difference_temp
+from metio.fao import canopy_resistance
+from metio.agrimet import Agrimet
 
 
 class SSEBopModel(object):
@@ -36,28 +45,25 @@ class SSEBopModel(object):
         self.image_exists = None
 
         self.image_dir = runspec.image_dir
+        self.parent_dir = runspec.parent_dir
+        self.image_exists = runspec.image_exists
         self.image_date = runspec.image_date
         self.satellite = runspec.satellite
         self.path = runspec.path
         self.row = runspec.row
         self.image_id = runspec.image_id
+        self.agrimet_corrected = runspec.agrimet_corrected
 
         self.image_geo = None
 
-        self.k_factor = runspec.k_factor
         self.usgs_creds = runspec.usgs_creds
         self.api_key = runspec.api_key
 
         if not paths.is_set():
             raise PathsNotSetExecption
 
-        paths.set_polygons_path(runspec.polygons)
-        paths.set_mask_path(runspec.mask)
-
         if runspec.verify_paths:
             paths.verify()
-
-        self.image_exists = paths.configure_project_dirs(runspec)
 
         self._info('Constructing/Initializing SSEBop...')
 
@@ -66,17 +72,10 @@ class SSEBopModel(object):
         self._info('Configuring SSEBop run, checking data...')
 
         print('----------- CONFIGURATION --------------')
-        for attr in ('image_date', 'satellite', 'k_factor',
+        for attr in ('image_date', 'satellite',
                      'path', 'row', 'image_id', 'image_exists'):
             print('{:<20s}{}'.format(attr, getattr(self, '{}'.format(attr))))
         print('----------- ------------- --------------')
-
-        self._is_configured = True
-
-    def run(self):
-        """ Run the SSEBop algorithm.
-        :return: 
-        """
 
         if not self.image_exists:
             self.down_image()
@@ -92,31 +91,119 @@ class SSEBopModel(object):
                   (self.satellite,
                    ','.join(mapping.keys())))
 
-        self.image_geo = SSEBopGeo(self.image_id, self.image_dir,
-                                   self.image.get_tile_geometry(),
-                                   self.image.transform, self.image.profile,
-                                   self.image.rasterio_geometry,
-                                   self.image.bounds, self.api_key, self.image_date)
+        self._is_configured = True
 
-        ts = self.image.land_surface_temp()
+        self.image_geo = SSEBopGeo(image_id=self.image_id,
+                                   image_dir=self.image_dir,
+                                   transform=self.image.transform,
+                                   profile=self.image.profile,
+                                   clip_geo=self.image.get_tile_geometry(),
+                                   api_key=self.api_key,
+                                   date=self.image_date)
+
+    def run(self):
+        """ Run the SSEBop algorithm.
+        :return: 
+        """
+
         dt = self.difference_temp()
-        x = 0
-        
+        ts = self.image.land_surface_temp()
+        c = self.c_factor(ts)
+        if not c:
+            print('moving to next day due to invalid image for t_corr')
+            return None
+        ta = data_check(self.image_geo, variable='tmax', temp_units='K')
+        tc = c * ta
+        th = tc + dt
+        etrf = (th - ts) / dt
+        pet = data_check(self.image_geo, variable='pet')
+        et = pet * etrf
+        fmask = data_check(self.image_geo, variable='fmask',
+                           sat_image=self.image, fmask_clear_val=1)
+        et_mskd = where(fmask, et, nan)
+
+        self.save_array(et_mskd, variable_name='ssebop_et_mskd',
+                        output_path=self.image_dir)
+        self.save_array(pet, variable_name='pet', output_path=self.image_dir)
+        self.save_array(ts, variable_name='lst', output_path=self.image_dir)
+        self.save_array(et, variable_name='ssebop_et', output_path=self.image_dir)
+        self.save_array(etrf, variable_name='ssebop_etrf',
+                        output_path=self.image_dir)
+
+        if self.agrimet_corrected:
+            lat, lon = self.image.scene_coords_deg[0], \
+                       self.image.scene_coords_deg[1]
+            agrimet = Agrimet(lat=lat, lon=lon)
+            # TODO move fetch formed data into instantiation
+            # function in both (?) gridmet and agrimet to find bias and correct
+        return None
+
+    def c_factor(self, ts):
+
+        ndvi = self.image.ndvi()
+        tmax = data_check(self.image_geo, variable='tmax', temp_units='K')
+        if len(tmax.shape) > 2:
+            tmax = tmax.reshape(tmax.shape[1], tmax.shape[2])
+
+        loc = where(ndvi > 0.7)
+        temps = []
+        for j, k in zip(loc[0], loc[1]):
+            temps.append(tmax[j, k])
+        ind = loc[0][0], loc[1][0]
+
+        ta = tmax[ind]
+        t_corr_orig = ts / ta
+        t_corr_mean = nanmean(t_corr_orig)
+        t_diff = ts - ta
+        ta = None
+
+        t_corr = where((ndvi >= 0.7) & (ndvi <= 1.0), t_corr_orig, nan)
+        ndvi = None
+        t_corr_orig = None
+
+        t_corr = where(ts > 270., t_corr, nan)
+        ts = None
+
+        t_corr = where((t_diff > 0) & (t_diff < 30), t_corr, nan)
+        t_diff = None
+
+        fmask = data_check(self.image_geo, variable='fmask',
+                           sat_image=self.image, fmask_clear_val=1)
+
+        t_corr = where(fmask == 1, t_corr, nan)
+
+        test_count = count_nonzero(~isnan(t_corr))
+
+        if test_count < 50:
+            print('Count of clear pixels in {} is insufficient'
+                  ' to perform analysis.'.format(self.image_id))
+            return None
+
+        print('You have {} pixels for your temperature '
+              'correction scheme.'.format(test_count))
+
+        t_corr_std = nanstd(t_corr)
+        c = t_corr_mean - (2 * t_corr_std)
+
+        return c
+
     def difference_temp(self):
         doy = self.image.doy
-        dem = anc_data_check_dem(self.image_geo)
-        tmin = anc_data_check_temp(self.image_geo, variable='tmin')
-        tmax = anc_data_check_temp(self.image_geo, variable='tmax')
+        dem = data_check(self.image_geo, variable='dem')
+        tmin = data_check(self.image_geo, variable='tmin', temp_units='K')
+        tmax = data_check(self.image_geo, variable='tmax', temp_units='K')
         center_lat = self.image.scene_coords_rad[0]
         albedo = self.image.albedo()
 
         net_rad = get_net_radiation(tmin=tmin, tmax=tmax, doy=doy,
-                                    elevation=dem, lat=center_lat, albedo=albedo)
+                                    elevation=dem, lat=center_lat,
+                                    albedo=albedo)
         rho = air_density(tmin=tmin, tmax=tmax, elevation=dem)
         cp = air_specific_heat()
         rah = canopy_resistance()
 
-        dt = difference_temp(rn=net_rad, rho=rho, cp=cp, rah=rah)
+        dt = (net_rad * rah) / (rho * cp)
+        dt = self.image.mask_by_image(arr=dt)
         return dt
 
     @staticmethod
@@ -125,25 +212,48 @@ class SSEBopModel(object):
         print(msg)
         print('---------------------------------------')
 
-    @staticmethod
-    def _debug(msg):
-        print('%%%%%%%%%%%%%%%% {}'.format(msg))
-
     def down_image(self):
-        down([self.image_id], output_dir=self.image_dir,
+        down([self.image_id], output_dir=self.parent_dir,
              usgs_creds_txt=self.usgs_creds)
+
+    def save_array(self, arr, variable_name, crs=None, output_path=None):
+
+        geometry = self.image.rasterio_geometry
+
+        if not output_path:
+            output_filename = os.path.join(self.image_dir,
+                                           '{}_{}.tif'.format(self.image_id,
+                                                              variable_name))
+        else:
+            output_filename = os.path.join(output_path,
+                                           '{}_{}.tif'.format(self.image_id,
+                                                              variable_name))
+
+        try:
+            arr = arr.reshape(1, arr.shape[1], arr.shape[2])
+        except IndexError:
+            arr = arr.reshape(1, arr.shape[0], arr.shape[1])
+
+        geometry['dtype'] = str(arr.dtype)
+
+        if crs:
+            geometry['crs'] = CRS({'init': crs})
+        with rasopen(output_filename, 'w', **geometry) as dst:
+            dst.write(arr)
+
+        return None
 
 
 class SSEBopGeo:
-    def __init__(self, image_id, image_dir, clip, transform,
-                 profile, geometry, bounds, api_key, date):
+    def __init__(self, image_id, image_dir, transform,
+                 profile, clip_geo, api_key, date):
         self.image_id = image_id
         self.image_dir = image_dir
-        self.clip = clip
         self.transform = transform
         self.profile = profile
-        self.geometry = geometry
-        self.bounds = bounds
+        self.clip_geo = clip_geo
+        self.bounds = RasterBounds(affine_transform=self.transform,
+                                   profile=self.profile, latlon=True)
         # add utm and latlon bounds to RasterBounds TODO
         self.api_key = api_key
         self.date = date

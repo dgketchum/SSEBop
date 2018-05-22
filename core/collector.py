@@ -18,70 +18,85 @@ import os
 
 from rasterio import open as rasopen
 
-from metio.thredds import TopoWX
-from bounds.bounds import RasterBounds
+from metio.thredds import TopoWX, GridMet
 from dem.dem import MapzenDem
+from sat_image.fmask import Fmask
 
 
-def anc_data_check_dem(model_geo):
-    dem_file = '{}_dem.tif'.format(model_geo.image_id)
+def data_check(model_geo, variable, sat_image=None,
+               fmask_clear_val=1, temp_units='C'):
+    valid_vars = ['tmax', 'tmin', 'dem', 'fmask', 'pet']
 
-    if dem_file not in os.listdir(model_geo.image_dir):
+    if variable not in valid_vars:
+        raise KeyError('Variable {} is invalid, choose from {}'.format(variable,
+                                                                       valid_vars))
+    file_name = '{}_{}.tif'.format(model_geo.image_id, variable)
+    file_path = os.path.join(model_geo.image_dir, file_name)
 
-        print('Downloading dem for {}...'.format(model_geo.image_id))
-        clip_shape = model_geo.clip
+    if file_name not in os.listdir(model_geo.image_dir):
 
-        bounds = RasterBounds(affine_transform=model_geo.transform,
-                              profile=model_geo.profile, latlon=True)
+        if variable == 'tmax':
+            var = fetch_temp(model_geo, 'tmax', temp_units, file_path)
+        if variable == 'tmin':
+            var = fetch_temp(model_geo, 'tmin', temp_units, file_path)
+        if variable == 'dem':
+            var = fetch_dem(model_geo, file_path)
+        if variable == 'fmask':
+            var = fetch_fmask(sat_image, fmask_clear_val, file_path)
+        if variable == 'pet':
+            var = fetch_gridmet(model_geo, 'pet', file_path)
 
-        dem = MapzenDem(bounds=bounds, clip_object=clip_shape,
-                        target_profile=model_geo.geometry, zoom=8,
-                        api_key=model_geo.api_key)
-
-        out_file = os.path.join(model_geo.image_dir, dem_file)
-
-        dem = dem.terrain(attribute='elevation', out_file=out_file,
-                          save_and_return=True)
-
-        return dem
-
-    else:
-        print('Found dem for {}...'.format(model_geo.image_id))
-        image_file = os.path.join(model_geo.image_dir, dem_file)
-        with rasopen(image_file, 'r') as src:
-            dem = src.read()
-
-        return dem
-
-
-def anc_data_check_temp(model_geo, variable='tmax'):
-    if variable == 'tmax':
-
-        temp_file_name = '{}_tmax.tif'.format(model_geo.image_id)
-        temp_file = os.path.join(model_geo.image_dir, temp_file_name)
-
-    elif variable == 'tmin':
-
-        temp_file_name = '{}_tmin.tif'.format(model_geo.image_id)
-        temp_file = os.path.join(model_geo.image_dir, temp_file_name)
-
-    if temp_file_name not in os.listdir(model_geo.image_dir):
-        bounds = RasterBounds(affine_transform=model_geo.transform,
-                              profile=model_geo.profile, latlon=True)
-        topowx = TopoWX(date=model_geo.date, bbox=bounds,
-                        target_profile=model_geo.profile,
-                        clip_feature=model_geo.clip, out_file=temp_file)
-
-        temp = topowx.get_data_subset(grid_conform=True, var=variable,
-                                      out_file=temp_file)
-
-        return temp
+        return var
 
     else:
 
-        with rasopen(temp_file, 'r') as src:
-            temp = src.read()
-            return temp
+        with rasopen(file_path, 'r') as src:
+            var = src.read()
+            return var
+
+
+def fetch_gridmet(model_geo, variable='pet', file_path=None):
+    gridmet = GridMet(variable, date=model_geo.date,
+                      bbox=model_geo.bounds,
+                      target_profile=model_geo.profile,
+                      clip_feature=model_geo.clip_geo)
+
+    var = gridmet.get_data_subset(out_filename=file_path)
+
+    return var
+
+
+def fetch_temp(model_geo, variable='tmax', temp_units='C', file_path=None):
+    print('Downloading new {}.....'.format(variable))
+    topowx = TopoWX(date=model_geo.date, bbox=model_geo.bounds,
+                    target_profile=model_geo.profile,
+                    clip_feature=model_geo.clip_geo, out_file=file_path)
+
+    var = topowx.get_data_subset(grid_conform=True, var=variable,
+                                 out_file=file_path,
+                                 temp_units_out=temp_units)
+    return var
+
+
+def fetch_dem(model_geo, file_path=None):
+    dem = MapzenDem(bounds=model_geo.bounds, clip_object=model_geo.clip_geo,
+                    target_profile=model_geo.profile, zoom=8,
+                    api_key=model_geo.api_key)
+
+    var = dem.terrain(attribute='elevation', out_file=file_path,
+                      save_and_return=True)
+    return var
+
+
+def fetch_fmask(sat_image=None, fmask_clear_val=1, file_path=None):
+    if not sat_image:
+        raise Exception('If calling fmask, must provide a Landsat image object')
+
+    f = Fmask(sat_image)
+    combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40),
+                         combined=True, clear_value=fmask_clear_val,
+                         output_file=file_path)
+    return combo
 
 
 if __name__ == '__main__':

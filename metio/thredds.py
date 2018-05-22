@@ -13,15 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # =============================================================================================
+
 from __future__ import print_function
 
 from future.standard_library import hooks
 
-with hooks():
-    from urllib.parse import urlunparse
-
 import os
 import copy
+from shutil import rmtree
 from tempfile import mkdtemp
 from numpy import empty, float32, datetime64, timedelta64, argmin, abs, array
 from rasterio import open as rasopen
@@ -32,9 +31,12 @@ from rasterio.warp import reproject, Resampling
 from rasterio.warp import calculate_default_transform as cdt
 from xlrd.xldate import xldate_from_date_tuple
 from xarray import open_dataset
-from pandas import date_range
+from pandas import date_range, DataFrame
 
 from bounds.bounds import GeoBounds
+
+with hooks():
+    from urllib.parse import urlunparse
 
 
 class Thredds(object):
@@ -43,7 +45,7 @@ class Thredds(object):
     """
 
     def __init__(self, start=None, end=None, date=None,
-                 bounds=None, target_profile=None,
+                 bounds=None, target_profile=None, lat=None, lon=None
                  ):
         self.start = start
         self.end = end
@@ -53,6 +55,8 @@ class Thredds(object):
 
         self.target_profile = target_profile
         self.bbox = bounds
+        self.lat = lat
+        self.lon = lon
 
     def conform(self, subset, out_file=None):
         if subset.dtype != float32:
@@ -62,7 +66,7 @@ class Thredds(object):
         self._mask()
         result = self._resample()
         if out_file:
-            self.save(result, self.target_profile, output_filename=out_file)
+            self.save_raster(result, self.target_profile, output_filename=out_file)
         return result
 
     def _project(self, subset):
@@ -124,14 +128,14 @@ class Thredds(object):
 
             reproject(src_array, dst_array, src_transform=src_profile['transform'],
                       src_crs=src_profile['crs'], dst_crs=self.target_profile['crs'],
-                      dst_transform=dst_affine, resampling=Resampling.cubic,
+                      dst_transform=dst_affine, resampling=Resampling.nearest,
                       num_threads=2)
 
             dst.write(dst_array.reshape(1, dst_array.shape[1], dst_array.shape[2]))
 
     def _mask(self):
 
-        mask_path = os.path.join(self.temp_dir, 'masked_dem.tif')
+        mask_path = os.path.join(self.temp_dir, 'masked.tif')
 
         with rasopen(self.reprojection) as src:
             out_arr, out_trans = mask(src, self.clip_feature, crop=True,
@@ -162,7 +166,7 @@ class Thredds(object):
             target_res = self.target_profile['transform'].a
             res_coeff = res[0] / target_res
 
-            new_array = empty(shape=(1, round(array.shape[0] * res_coeff - 2),
+            new_array = empty(shape=(1, round(array.shape[0] * res_coeff),
                                      round(array.shape[1] * res_coeff)), dtype=float32)
             aff = src.transform
             new_affine = Affine(aff.a / res_coeff, aff.b, aff.c, aff.d, aff.e / res_coeff, aff.f)
@@ -170,17 +174,20 @@ class Thredds(object):
             profile['transform'] = self.target_profile['transform']
             profile['width'] = self.target_profile['width']
             profile['height'] = self.target_profile['height']
-            profile['dtype'] = new_array.dtype
+            profile['dtype'] = str(new_array.dtype)
 
             delattr(self, 'mask')
 
             with rasopen(resample_path, 'w', **profile) as dst:
                 reproject(array, new_array, src_transform=aff, dst_transform=new_affine, src_crs=src.crs,
-                          dst_crs=src.crs, resampling=Resampling.bilinear)
+                          dst_crs=src.crs, resampling=Resampling.nearest)
 
                 dst.write(new_array)
 
-            return new_array
+            with rasopen(resample_path, 'r') as src:
+                arr = src.read()
+
+            return arr
 
     def _date_index(self):
         date_ind = date_range(self.start, self.end, freq='d')
@@ -199,21 +206,21 @@ class Thredds(object):
         return dtnumpy
 
     @staticmethod
-    def save(arr, geometry, output_filename, crs=None):
+    def save_raster(arr, geometry, output_filename):
         try:
             arr = arr.reshape(1, arr.shape[1], arr.shape[2])
         except IndexError:
             arr = arr.reshape(1, arr.shape[0], arr.shape[1])
-        geometry['dtype'] = arr.dtype
-        if crs:
-            geometry['crs'] = CRS({'init': crs})
+        geometry['dtype'] = str(arr.dtype)
+
         with rasopen(output_filename, 'w', **geometry) as dst:
             dst.write(arr)
         return None
 
 
 class TopoWX(Thredds):
-    """ TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
+    """ Twix
+    TopoWX Surface Temperature, return as numpy array in daily stack unless modified.
 
     Available variables: [ 'tmmn', 'tmmx']
 
@@ -227,9 +234,7 @@ class TopoWX(Thredds):
     :param variables: List  of available variables. At lease one.
     :param date: single-day datetime date object
     :param bounds: metio.misc.BBox object representing spatial bounds, default to conterminous US
-    :return: numpy.ndarray
-
-    """
+    :return: numpy.ndarray """
 
     def __init__(self, **kwargs):
         Thredds.__init__(self)
@@ -250,7 +255,7 @@ class TopoWX(Thredds):
         self.year = self.start.year
 
     def get_data_subset(self, grid_conform=False, var='tmax',
-                        out_file=None):
+                        out_file=None, temp_units_out='C'):
 
         if var not in self.variables:
             raise TypeError('Must choose from "tmax" or "tmin"..')
@@ -297,9 +302,12 @@ class TopoWX(Thredds):
             else:
                 arr = None
 
+            if temp_units_out == 'K':
+                arr += 273.15
+
             conformed_array = self.conform(arr, out_file=out_file)
 
-        return conformed_array
+            return conformed_array
 
     def _build_url(self, var):
 
@@ -313,7 +321,9 @@ class TopoWX(Thredds):
 
 
 class GridMet(Thredds):
-    """ U of I Gridmet, return as numpy array per met variable in daily stack unless modified.
+    """ U of I Gridmet
+    
+    Return as numpy array per met variable in daily stack unless modified.
 
     Available variables: ['bi', 'elev', 'erc', 'fm100', fm1000', 'pdsi', 'pet', 'pr', 'rmax', 'rmin', 'sph', 'srad',
                           'th', 'tmmn', 'tmmx', 'vs']
@@ -330,7 +340,6 @@ class GridMet(Thredds):
         - 'rmax' : daily maximum relative humidity [%]
         - 'rmin' : daily minimum relative humidity [%]
         - 'sph' : daily mean specific humidity [kg/kg]
-        - 'srad' : daily maximum relative humidity [%]
         - 'prcp' : daily total precipitation [mm]
         - 'srad' : daily mean downward shortwave radiation at surface [W m-2]
         - 'th' : daily mean wind direction clockwise from North [degrees]
@@ -353,7 +362,7 @@ class GridMet(Thredds):
 
     """
 
-    def __init__(self, variables, **kwargs):
+    def __init__(self, variable, **kwargs):
         Thredds.__init__(self)
 
         for key, val in kwargs.items():
@@ -364,10 +373,14 @@ class GridMet(Thredds):
 
         self.temp_dir = mkdtemp()
 
-        self.requested_variables = variables
+        self.variable = variable
         self.available = ['elev', 'pr', 'rmax', 'rmin', 'sph', 'srad',
                           'th', 'tmmn', 'tmmx', 'pet', 'vs', 'erc', 'bi',
                           'fm100', 'pdsi']
+
+        if self.variable not in self.available:
+            Warning('Variable {} is not available'.
+                    format(self.variable))
 
         self.kwords = {'bi': 'burning_index_g',
                        'elev': '',
@@ -390,70 +403,98 @@ class GridMet(Thredds):
             self.start = self.date
             self.end = self.date
 
-        self.variables = []
-        if self.requested_variables:
-            [setattr(self, var, None) for var in self.requested_variables if var in self.available]
-            [self.variables.append(var) for var in self.requested_variables if var in self.available]
-            [Warning('Variable {} is not available'.
-                     format(var)) for var in self.requested_variables if var not in self.available]
-
         self.year = self.start.year
 
-        if not self.bbox:
+        if not self.bbox and not self.lat:
             self.bbox = GeoBounds()
 
-    def get_data_subset(self, grid_conform=False):
+    def get_data_subset(self, out_filename=None):
 
-        for var in self.variables:
+        url = self._build_url()
+        xray = open_dataset(url)
 
-            url = self._build_url(var)
-            xray = open_dataset(url)
+        north_ind = argmin(abs(xray.lat.values - (self.bbox.north + 1.)))
+        south_ind = argmin(abs(xray.lat.values - (self.bbox.south - 1.)))
+        west_ind = argmin(abs(xray.lon.values - (self.bbox.west - 1.)))
+        east_ind = argmin(abs(xray.lon.values - (self.bbox.east + 1.)))
 
-            if var != 'elev':
-                start_xl, end_xl = self._dtime_to_xldate()
+        north_val = xray.lat.values[north_ind]
+        south_val = xray.lat.values[south_ind]
+        west_val = xray.lon.values[west_ind]
+        east_val = xray.lon.values[east_ind]
 
-                subset = xray.loc[dict(day=slice(start_xl, end_xl),
-                                       lat=slice(self.bbox.north, self.bbox.south),
-                                       lon=slice(self.bbox.west, self.bbox.east))]
-                subset.rename({'day': 'time'}, inplace=True)
-                date_ind = self._date_index()
-                subset['time'] = date_ind
-                setattr(self, 'width', subset.dims['lon'])
-                setattr(self, 'height', subset.dims['lat'])
-                if not grid_conform:
-                    setattr(self, var, subset)
-                else:
-                    arr = subset[self.kwords[var]].values
-                    conformed_array = self.conform(arr)
-                    setattr(self, var, conformed_array)
+        setattr(self, 'src_bounds_wsen', (west_val, south_val,
+                                          east_val, north_val))
 
-            else:
+        if self.variable != 'elev':
+            start_xl, end_xl = self._dtime_to_xldate()
 
-                setattr(self, 'width', subset.dims['lon'])
-                setattr(self, 'height', subset.dims['lat'])
-                subset = xray.loc[dict(lat=slice(self.bbox.north, self.bbox.south),
-                                       lon=slice(self.bbox.west, self.bbox.east))]
-                arr = subset.elevation.values
-                if grid_conform:
-                    conformed_array = self.conform(arr)
-                    setattr(self, var, conformed_array)
-                else:
-                    setattr(self, var, subset)
+            xray.rename({'day': 'time'}, inplace=True)
+            subset = xray.loc[dict(time=slice(start_xl, end_xl),
+                                   lat=slice(north_val, south_val),
+                                   lon=slice(west_val, east_val))]
 
-        return None
+            date_ind = self._date_index()
+            subset['time'] = date_ind
+            setattr(self, 'width', subset.dims['lon'])
+            setattr(self, 'height', subset.dims['lat'])
+            arr = subset[self.kwords[self.variable]].values
+            arr = arr.reshape(arr.shape[1], arr.shape[2]).transpose()
+            arr = arr.reshape(1, arr.shape[0], arr.shape[1])
+            conformed_array = self.conform(arr, out_file=out_filename)
+            rmtree(self.temp_dir)
+            return conformed_array
 
-    def _build_url(self, var):
+        else:
+            subset = xray.loc[dict(lat=slice((self.bbox.north + 1),
+                                             (self.bbox.south - 1)),
+                                   lon=slice((self.bbox.west - 1),
+                                             (self.bbox.east + 1)))]
+            setattr(self, 'width', subset.dims['lon'])
+            setattr(self, 'height', subset.dims['lat'])
+            arr = subset.elevation.values
+            conformed_array = self.conform(arr, out_file=out_filename)
+            return conformed_array
+
+    def get_point_timeseries(self):
+
+        url = self._build_url()
+        xray = open_dataset(url)
+        start_xl, end_xl = self._dtime_to_xldate()
+        subset = xray.sel(lon=self.lon, lat=self.lat, method='nearest')
+        subset = subset.loc[dict(day=slice(start_xl, end_xl))]
+        subset.rename({'day': 'time'}, inplace=True)
+        date_ind = self._date_index()
+        subset['time'] = date_ind
+        time = subset['time'].values
+        series = subset[self.kwords[self.variable]].values
+        df = DataFrame(data=series, index=time)
+        df.columns = [self.variable]
+        return df
+
+    def _build_url(self):
 
         # ParseResult('scheme', 'netloc', 'path', 'params', 'query', 'fragment')
-        if var == 'elev':
+        if self.variable == 'elev':
             url = urlunparse([self.scheme, self.service,
-                              '/thredds/dodsC/MET/{0}/metdata_elevationdata.nc'.format(var),
+                              '/thredds/dodsC/MET/{0}/metdata_elevationdata.nc'.format(self.variable),
                               '', '', ''])
         else:
             url = urlunparse([self.scheme, self.service,
-                              '/thredds/dodsC/MET/{0}/{0}_{1}.nc'.format(var, self.year),
+                              '/thredds/dodsC/MET/{0}/{0}_{1}.nc'.format(self.variable, self.year),
                               '', '', ''])
 
         return url
+
+    def write_netcdf(self, outputroot):
+        url = self._build_url()
+        xray = open_dataset(url)
+        if self.variable != 'elev':
+            start_xl, end_xl = self._dtime_to_xldate()
+            subset = xray.loc[dict(day=slice(start_xl, end_xl))]
+            subset.rename({'day': 'time'}, inplace=True)
+        else:
+            subset = xray
+        subset.to_netcdf(path=outputroot, engine='netcdf4')
 
 # ========================= EOF ====================================================================
