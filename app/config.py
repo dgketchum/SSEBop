@@ -26,21 +26,18 @@ import yaml
 from app.paths import paths
 
 DEFAULT_CFG = '''
-
-path: 40
-row: 28
-root: /path/to/parent_directory
-
-api_key: 'set your Mapzen API Key'
-
-satellite: LT5
-year: None
-single_date: False
-start_date: 4/1/2010
-end_date: 11/1/2010
+# SSEBop config file
+path: 39
+row: 27
+root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/
+output_root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/39/27/2013/
+satellite: 8
+start_date: 20130401
+end_date: 20131001
 verify_paths: True
 agrimet_corrected: True
 down_images_only: False
+use_existing_images: True
 '''
 
 DATETIME_FMT = '%Y%m%d'
@@ -65,8 +62,8 @@ class Config:
     def __init__(self, path=None):
         self.load(path=path)
 
-        p, r = str(self.path).zfill(3), str(self.row).zfill(3)
-        self.path_row_dir = os.path.join(self.root, '{}_{}'.format(p, r))
+        p, r, s = str(self.path), str(self.row), str(self.start_date.year)
+        self.path_row_dir = os.path.join(self.root, p, r)
 
         self.set_runspecs()
 
@@ -87,12 +84,12 @@ class Config:
                 print(exc)
 
             attrs = ('path', 'row', 'root',
-                     'api_key', 'usgs_creds',
                      'start_date', 'end_date',
                      'satellite',
                      'verify_paths',
                      'down_images_only',
-                     'agrimet_corrected')
+                     'agrimet_corrected',
+                     'use_existing_images')
 
             time_attrs = ('start_date', 'end_date')
 
@@ -115,18 +112,19 @@ class Config:
         if self.down_images_only:
 
             for spec in self.runspecs:
-                down_list([spec.image_id], output_dir=spec.parent_dir,
-                          usgs_creds_txt=spec.usgs_creds)
+                pass
 
             self.runspecs = None
 
     def get_image_list(self):
 
         super_list = []
-        images = down_from_runspec(start=self.start_date, end=self.end_date,
-                                   satellite=self.satellite,
-                                   path=self.path, row=self.row,
-                                   return_list=True)
+        s = datetime.strftime(self.start_date, '%Y-%m-%d')
+        e = datetime.strftime(self.end_date, '%Y-%m-%d')
+        sat_key = int(self.satellite[-1])
+        g = GoogleDownload(start=s, end=e, satellite=sat_key,
+                           path=self.path, row=self.row, max_cloud_percent=20)
+        images = g.scene_ids
         if images:
             super_list.append(images)
             try:
@@ -144,12 +142,15 @@ class RunSpec(object):
     def __init__(self, image, cfg):
         self.image_id = image
         attrs = ('path', 'row',
-                 'satellite', 'api_key',
-                 'usgs_creds', 'verify_paths',
+                 'satellite',
+                 'api_key',
+                 'verify_paths',
                  'root',
-                 'start_date', 'end_date',
+                 'start_date',
+                 'end_date',
                  'down_images_only',
-                 'agrimet_corrected')
+                 'agrimet_corrected',
+                 'use_existing_images')
 
         for attr in attrs:
             cfg_attr = getattr(cfg, attr)
@@ -164,7 +165,8 @@ class RunSpec(object):
                        'end_date': self.end_date,
                        'image_dir': self.image_dir,
                        'root': self.root,
-                       'agrimet_corrected': self.agrimet_corrected}
+                       'agrimet_corrected': self.agrimet_corrected,
+                       'use_existing_images': self.use_existing_images}
         self.image_exists = paths.configure_project_dirs(pseudo_spec)
 
 

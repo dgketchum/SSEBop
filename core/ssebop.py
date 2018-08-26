@@ -18,7 +18,8 @@ from __future__ import print_function
 
 import os
 from numpy import where, nan, count_nonzero, isnan
-from numpy import nanmean, nanstd
+from numpy import nanmean, nanstd, deg2rad
+from datetime import datetime
 
 from rasterio import open as rasopen
 from rasterio.crs import CRS
@@ -26,11 +27,10 @@ from rasterio.crs import CRS
 from app.paths import paths, PathsNotSetExecption
 from bounds.bounds import RasterBounds
 from sat_image.image import Landsat5, Landsat7, Landsat8
-from landsat.usgs_download import down_usgs_by_list as down
 from core.collector import data_check
-from metio.fao import get_net_radiation, air_density, air_specific_heat
-from metio.fao import canopy_resistance
-from metio.agrimet import Agrimet
+from met.fao import get_net_radiation, air_density, air_specific_heat
+from met.fao import canopy_resistance
+from met.agrimet import Agrimet
 
 
 class SSEBopModel(object):
@@ -43,6 +43,7 @@ class SSEBopModel(object):
         self.dem = None
         self.bounds = None
         self.image_exists = None
+        self.use_existing_images = None
 
         self.image_dir = runspec.image_dir
         self.parent_dir = runspec.parent_dir
@@ -56,7 +57,6 @@ class SSEBopModel(object):
 
         self.image_geo = None
 
-        self.usgs_creds = runspec.usgs_creds
         self.api_key = runspec.api_key
 
         if not paths.is_set():
@@ -78,7 +78,7 @@ class SSEBopModel(object):
         print('----------- ------------- --------------')
 
         if not self.image_exists:
-            self.down_image()
+            raise NotImplementedError
 
         print('Instantiating image...')
 
@@ -95,8 +95,8 @@ class SSEBopModel(object):
 
         self.image_geo = SSEBopGeo(image_id=self.image_id,
                                    image_dir=self.image_dir,
-                                   transform=self.image.transform,
-                                   profile=self.image.profile,
+                                   transform=self.image.rasterio_geometry['affine'],
+                                   profile=self.image.rasterio_geometry,
                                    clip_geo=self.image.get_tile_geometry(),
                                    api_key=self.api_key,
                                    date=self.image_date)
@@ -188,22 +188,24 @@ class SSEBopModel(object):
         return c
 
     def difference_temp(self):
-        doy = self.image.doy
+        doy = int(datetime.strftime(self.image.date_acquired, '%j'))
         dem = data_check(self.image_geo, variable='dem')
         tmin = data_check(self.image_geo, variable='tmin', temp_units='K')
         tmax = data_check(self.image_geo, variable='tmax', temp_units='K')
-        center_lat = self.image.scene_coords_rad[0]
+        center_lat = (self.image.corner_ll_lat_product + self.image.corner_ul_lat_product) / 2.
+        lat_radians = deg2rad(center_lat)
         albedo = self.image.albedo()
 
         net_rad = get_net_radiation(tmin=tmin, tmax=tmax, doy=doy,
-                                    elevation=dem, lat=center_lat,
+                                    elevation=dem, lat=lat_radians,
                                     albedo=albedo)
+
         rho = air_density(tmin=tmin, tmax=tmax, elevation=dem)
         cp = air_specific_heat()
         rah = canopy_resistance()
 
         dt = (net_rad * rah) / (rho * cp)
-        dt = self.image.mask_by_image(arr=dt)
+        # dt = self.image.mask_by_image(arr=dt)
         return dt
 
     @staticmethod
@@ -211,10 +213,6 @@ class SSEBopModel(object):
         print('---------------------------------------')
         print(msg)
         print('---------------------------------------')
-
-    def down_image(self):
-        down([self.image_id], output_dir=self.parent_dir,
-             usgs_creds_txt=self.usgs_creds)
 
     def save_array(self, arr, variable_name, crs=None, output_path=None):
 

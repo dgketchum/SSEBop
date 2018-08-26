@@ -49,8 +49,8 @@ class Paths:
     @staticmethod
     def configure_project_dirs(spec):
 
-        p, r = str(spec['path']).zfill(3), str(spec['row']).zfill(3)
-        path_row_dir = os.path.join(spec['root'], '{}_{}'.format(p, r))
+        p, r, s = str(spec['path']), str(spec['row']), str(spec['start_date'].year)
+        path_row_dir = os.path.join(spec['root'], p, r, s)
 
         if not os.path.exists(path_row_dir):
             os.mkdir(path_row_dir)
@@ -67,7 +67,8 @@ class Paths:
                 return True
             else:
                 return False
-
+        elif spec['use_existing_images']:
+            pass
         else:
             os.mkdir(image_path)
             return False

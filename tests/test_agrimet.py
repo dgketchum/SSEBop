@@ -19,7 +19,6 @@ import unittest
 import json
 import requests
 from fiona import open as fopen
-from numpy import isnan
 
 from metio.agrimet import Agrimet
 from sat_image.image import Landsat8

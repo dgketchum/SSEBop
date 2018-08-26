@@ -1,18 +1,13 @@
-
-path: 38
+# SSEBop config file
+path: 39
 row: 27
-#root: /data01/PycharmProjects/ssebop/tests/data/ssebop_test/lc8
-root: /data01/images/sandbox/ssebop_analysis
-output_root:
-
-api_key: 'mapzen-JmKu1BF'
-usgs_creds: /data01/images/usgs.txt
-
+root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/
+output_root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/39/27/2013/
 satellite: LC8
-# Date format; string 'YYYYMMDD'
-start_date: 20150401
-end_date: 20151001
+start_date: 20130401
+end_date: 20131001
 verify_paths: True
 agrimet_corrected: True
 down_images_only: False
+use_existing_images: True
 

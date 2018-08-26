@@ -18,8 +18,8 @@ import os
 
 from rasterio import open as rasopen
 
-from metio.thredds import TopoWX, GridMet
-from dem.dem import MapzenDem
+from met.thredds import TopoWX, GridMet
+from dem import AwsDem
 from sat_image.fmask import Fmask
 
 
@@ -79,23 +79,20 @@ def fetch_temp(model_geo, variable='tmax', temp_units='C', file_path=None):
 
 
 def fetch_dem(model_geo, file_path=None):
-    dem = MapzenDem(bounds=model_geo.bounds, clip_object=model_geo.clip_geo,
-                    target_profile=model_geo.profile, zoom=8,
-                    api_key=model_geo.api_key)
+    dem = AwsDem(bounds=model_geo.bounds, clip_object=model_geo.clip_geo,
+                 target_profile=model_geo.profile, zoom=8)
 
     var = dem.terrain(attribute='elevation', out_file=file_path,
                       save_and_return=True)
     return var
 
 
-def fetch_fmask(sat_image=None, fmask_clear_val=1, file_path=None):
+def fetch_fmask(sat_image=None):
     if not sat_image:
         raise Exception('If calling fmask, must provide a Landsat image object')
 
     f = Fmask(sat_image)
-    combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40),
-                         combined=True, clear_value=fmask_clear_val,
-                         output_file=file_path)
+    combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40), combined=True)
     return combo
 
 
