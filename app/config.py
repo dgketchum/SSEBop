@@ -19,8 +19,7 @@ from __future__ import print_function
 import os
 import sys
 from datetime import datetime
-from landsat.download_composer import download_landsat as down_from_runspec
-from landsat.usgs_download import down_usgs_by_list as down_list
+from landsat.google_download import GoogleDownload
 
 import yaml
 
