@@ -25,7 +25,7 @@ from rasterio import open as rasopen
 from rasterio.crs import CRS
 
 from app.paths import paths, PathsNotSetExecption
-from bounds.bounds import RasterBounds
+from bounds import RasterBounds
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from core.collector import data_check
 from met.fao import get_net_radiation, air_density, air_specific_heat
@@ -44,6 +44,8 @@ class SSEBopModel(object):
         self.bounds = None
         self.image_exists = None
         self.use_existing_images = None
+
+        self.completed = False
 
         self.image_dir = runspec.image_dir
         self.parent_dir = runspec.parent_dir
@@ -80,6 +82,8 @@ class SSEBopModel(object):
         if not self.image_exists:
             raise NotImplementedError
 
+        self.check_products()
+
         print('Instantiating image...')
 
         mapping = {'LT5': Landsat5, 'LE7': Landsat7, 'LC8': Landsat8}
@@ -98,13 +102,15 @@ class SSEBopModel(object):
                                    transform=self.image.rasterio_geometry['affine'],
                                    profile=self.image.rasterio_geometry,
                                    clip_geo=self.image.get_tile_geometry(),
-                                   api_key=self.api_key,
                                    date=self.image_date)
 
-    def run(self):
+    def run(self, overwrite=False):
         """ Run the SSEBop algorithm.
         :return: 
         """
+
+        if self.completed and not overwrite:
+            return None
 
         dt = self.difference_temp()
         ts = self.image.land_surface_temp()
@@ -119,8 +125,8 @@ class SSEBopModel(object):
         pet = data_check(self.image_geo, variable='pet')
         et = pet * etrf
         fmask = data_check(self.image_geo, variable='fmask',
-                           sat_image=self.image, fmask_clear_val=1)
-        et_mskd = where(fmask, et, nan)
+                           sat_image=self.image)
+        et_mskd = where(fmask == 0, et, nan)
 
         self.save_array(et_mskd, variable_name='ssebop_et_mskd',
                         output_path=self.image_dir)
@@ -168,7 +174,7 @@ class SSEBopModel(object):
         t_diff = None
 
         fmask = data_check(self.image_geo, variable='fmask',
-                           sat_image=self.image, fmask_clear_val=1)
+                           sat_image=self.image)
 
         t_corr = where(fmask == 1, t_corr, nan)
 
@@ -241,19 +247,28 @@ class SSEBopModel(object):
 
         return None
 
+    def check_products(self):
+        products = ['ssebop_et_mskd', 'pet', 'lst', 'ssebop_et', 'ssebop_etrf']
+        for p in products:
+            raster = os.path.join(self.image_dir, '{}_{}.tif'.format(self.image_id, p))
+            if os.path.isfile(raster):
+                print('This analysis has been done for at least {},\n named {} '
+                      'use '"overwrite"' parameter'
+                      'to overwrite the results or bring them to completion.'.format(p, raster))
+                self.completed = True
+                return None
+
 
 class SSEBopGeo:
     def __init__(self, image_id, image_dir, transform,
-                 profile, clip_geo, api_key, date):
+                 profile, clip_geo, date):
         self.image_id = image_id
         self.image_dir = image_dir
         self.transform = transform
         self.profile = profile
         self.clip_geo = clip_geo
+        self.date = date
         self.bounds = RasterBounds(affine_transform=self.transform,
                                    profile=self.profile, latlon=True)
-        # add utm and latlon bounds to RasterBounds TODO
-        self.api_key = api_key
-        self.date = date
 
 # ========================= EOF ====================================================================

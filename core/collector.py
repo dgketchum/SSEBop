@@ -23,8 +23,7 @@ from dem import AwsDem
 from sat_image.fmask import Fmask
 
 
-def data_check(model_geo, variable, sat_image=None,
-               fmask_clear_val=1, temp_units='C'):
+def data_check(model_geo, variable, sat_image=None, temp_units='C'):
     valid_vars = ['tmax', 'tmin', 'dem', 'fmask', 'pet']
 
     if variable not in valid_vars:
@@ -42,7 +41,7 @@ def data_check(model_geo, variable, sat_image=None,
         if variable == 'dem':
             var = fetch_dem(model_geo, file_path)
         if variable == 'fmask':
-            var = fetch_fmask(sat_image, fmask_clear_val, file_path)
+            var = fetch_fmask(sat_image, file_path)
         if variable == 'pet':
             var = fetch_gridmet(model_geo, 'pet', file_path)
 
@@ -87,12 +86,12 @@ def fetch_dem(model_geo, file_path=None):
     return var
 
 
-def fetch_fmask(sat_image=None):
-    if not sat_image:
-        raise Exception('If calling fmask, must provide a Landsat image object')
+def fetch_fmask(sat_image, file_path):
 
     f = Fmask(sat_image)
     combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40), combined=True)
+    f.save_array(combo, file_path)
+
     return combo
 
 

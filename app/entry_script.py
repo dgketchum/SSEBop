@@ -23,14 +23,13 @@ from core.ssebop import SSEBopModel
 
 def run_ssebop(cfg_path):
     cfg = Config(cfg_path)
+    welcome()
     for runspec in cfg.runspecs:
         paths.build(runspec.root)
 
-        welcome()
-
         sseb = SSEBopModel(runspec)
         sseb.configure_run()
-        sseb.run()
+        sseb.run(overwrite=True)
 
 
 if __name__ == '__main__':
