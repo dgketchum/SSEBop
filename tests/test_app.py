@@ -21,7 +21,7 @@ try:
 except ImportError:
     from io import StringIO
 
-from app.config import Config
+from ssebop_app.config import Config
 
 
 class MyTestCase(unittest.TestCase):

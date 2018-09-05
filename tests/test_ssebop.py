@@ -20,8 +20,8 @@ abspath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(abspath)
 import unittest
 
-from app.config import Config
-from app.paths import paths
+from ssebop_app.config import Config
+from ssebop_app.paths import paths
 
 from ssebop.ssebop import SSEBopModel
 from ssebop.ssebop import SSEBopGeo

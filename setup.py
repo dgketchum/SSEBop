@@ -24,11 +24,11 @@ os.environ['TRAVIS_CI'] = 'True'
 try:
     from setuptools import setup
 
-    setup_kwargs = {'entry_points': {'console_scripts': ['ssebop=app.cli:run']}}
+    setup_kwargs = {'entry_points': {'console_scripts': ['ssebop=ssebop_app.cli:run']}}
 except ImportError:
     from distutils.core import setup
 
-    setup_kwargs = {'scripts': ['bin/app/cli']}
+    setup_kwargs = {'scripts': ['bin/ssebop_app/cli']}
 
 with open('README.md') as f:
     readme = f.read()
@@ -41,7 +41,7 @@ setup(name='ssebop',
       setup_requires=[],
       install_requires=['numpy', 'requests', 'netCDF4', 'future',
                         'pandas', 'rasterio', 'fiona'],
-      py_modules=['ssebop', 'app'],
+      py_modules=['ssebop', 'ssebop_app'],
       license='Apache',
       classifiers=[
           'Development Status :: 3 - Alpha',
@@ -53,7 +53,7 @@ setup(name='ssebop',
       author='David Ketchum (code), Gabriel Senay (algorithm)',
       author_email='dgketchum@gmail.com',
       platforms='Posix; MacOS X; Windows',
-      packages=['ssebop', 'app', 'tests'],
+      packages=['ssebop', 'ssebop_app', 'tests'],
       download_url='https://github.com/{}/{}/archive/{}.tar.gz'.format('dgketchum', 'ssebop', tag),
       url='https://github.com/dgketchum',
       test_suite='tests.test_suite.suite',

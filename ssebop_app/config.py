@@ -23,7 +23,7 @@ from landsat.google_download import GoogleDownload
 
 import yaml
 
-from app.paths import paths
+from ssebop_app.paths import paths
 
 DEFAULT_CFG = '''
 # SSEBop config file

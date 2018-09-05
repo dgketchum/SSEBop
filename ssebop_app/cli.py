@@ -23,8 +23,8 @@ import logging
 
 # checkout rasterio.rio.options creation_options for mixins todo
 
-from app.paths import paths
-from app.config import Config, check_config
+from ssebop_app.paths import paths
+from ssebop_app.config import Config, check_config
 from ssebop.ssebop import SSEBopModel
 
 pp = os.path.realpath(__file__)

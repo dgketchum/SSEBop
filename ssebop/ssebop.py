@@ -28,7 +28,7 @@ from datetime import datetime
 from rasterio import open as rasopen
 from rasterio.crs import CRS
 
-from app.paths import paths, PathsNotSetExecption
+from ssebop_app.paths import paths, PathsNotSetExecption
 from bounds import RasterBounds
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from ssebop.collector import data_check

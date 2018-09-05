@@ -16,8 +16,8 @@
 
 import os
 
-from app.config import Config, paths
-from app.cli import welcome
+from ssebop_app.config import Config, paths
+from ssebop_app.cli import welcome
 from ssebop.ssebop import SSEBopModel
 
 
