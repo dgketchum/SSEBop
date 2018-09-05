@@ -116,14 +116,14 @@ class Config:
 
             self.runspecs = None
 
-    def get_image_list(self):
+    def get_image_list(self, max_cloud_pct=20):
 
         super_list = []
         s = datetime.strftime(self.start_date, '%Y-%m-%d')
         e = datetime.strftime(self.end_date, '%Y-%m-%d')
         sat_key = int(self.satellite[-1])
         g = GoogleDownload(start=s, end=e, satellite=sat_key,
-                           path=self.path, row=self.row, max_cloud_percent=20)
+                           path=self.path, row=self.row, max_cloud_percent=max_cloud_pct)
         images = g.scene_ids
         if images:
             super_list.append(images)

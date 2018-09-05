@@ -13,7 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ===============================================================================
+import os
+import sys
 
+abspath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(abspath)
 import unittest
 
 from app.config import Config
@@ -27,7 +31,7 @@ from sat_image.image import Landsat8
 
 class SSEBopModelTestCaseLC8(unittest.TestCase):
     def setUp(self):
-        self.config_path = 'tests/ssebop_config_lc8.yml'
+        self.config_path = os.path.join(os.path.dirname(__file__), 'ssebop_config_test_lc8.yml')
         self.cfg = Config(self.config_path)
 
     def test_config(self):

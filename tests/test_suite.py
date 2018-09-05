@@ -13,7 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ===============================================================================
+import os
+import sys
 
+abspath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(abspath)
 import unittest
 
 
@@ -21,12 +25,12 @@ def suite():
 
     print('Testing.......................................')
 
-    from tests.test_image import LandsatImageTestCase, Landsat5TestCase, Landsat7TestCase, Landsat8TestCase
+    from tests.test_ssebop import SSEBopModelTestCaseLC8
 
     loader = unittest.TestLoader()
     test_suite = unittest.TestSuite()
 
-    tests = (LandsatImageTestCase, Landsat5TestCase, Landsat7TestCase, Landsat8TestCase,)
+    tests = (SSEBopModelTestCaseLC8,)
 
     for t in tests:
         test_suite.addTest(loader.loadTestsFromTestCase(t))

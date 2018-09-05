@@ -33,14 +33,14 @@ except ImportError:
 with open('README.md') as f:
     readme = f.read()
 
-tag = '0.0.1'
+tag = '0.0.2'
 
 setup(name='ssebop',
       version=tag,
       description='The Operational Simplified Surface Energy Balance',
       setup_requires=[],
-      install_requires=['Click', 'numpy==1.12.1', 'requests', 'netCDF4', 'xlrd', 'future', 'setuptools-yaml', 'xarray',
-                        'pandas', 'rasterio', 'fiona', 'climata'],
+      install_requires=['numpy', 'requests', 'netCDF4', 'future',
+                        'pandas', 'rasterio', 'fiona'],
       py_modules=['ssebop', 'app'],
       license='Apache',
       classifiers=[
