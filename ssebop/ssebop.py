@@ -31,7 +31,7 @@ from rasterio.crs import CRS
 from app.paths import paths, PathsNotSetExecption
 from bounds import RasterBounds
 from sat_image.image import Landsat5, Landsat7, Landsat8
-from core.collector import data_check
+from ssebop.collector import data_check
 from met.fao import get_net_radiation, air_density, air_specific_heat
 from met.fao import canopy_resistance
 from met.agrimet import Agrimet

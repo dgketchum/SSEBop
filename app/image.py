@@ -15,10 +15,11 @@
 # ===============================================================================
 
 import os
+import sys
 
-from app.config import Config, paths
-from app.cli import welcome
-from core.ssebop import SSEBopModel
+abspath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(abspath)
+from ssebop.ssebop import SSEBopModel
 
 
 def get_image(image_dir=None, parent_dir=None, image_exists=None,

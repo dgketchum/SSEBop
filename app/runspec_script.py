@@ -18,7 +18,7 @@ import os
 
 from app.config import Config, paths
 from app.cli import welcome
-from core.ssebop import SSEBopModel
+from ssebop.ssebop import SSEBopModel
 
 
 def run_ssebop(cfg_path):

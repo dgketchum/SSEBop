@@ -5,7 +5,7 @@ root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/
 output_root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/39/27/2013/
 satellite: LC8
 start_date: 20130401
-end_date: 20131001
+end_date: 20131021
 verify_paths: True
 agrimet_corrected: True
 down_images_only: False

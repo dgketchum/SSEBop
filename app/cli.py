@@ -25,12 +25,12 @@ import logging
 
 from app.paths import paths
 from app.config import Config, check_config
-from core.ssebop import SSEBopModel
+from ssebop.ssebop import SSEBopModel
 
 pp = os.path.realpath(__file__)
 sys.path.append(os.path.dirname(os.path.dirname(pp)))
 
-logger = logging.getLogger('core')
+logger = logging.getLogger('ssebop')
 
 
 @click.group()

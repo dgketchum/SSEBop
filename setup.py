@@ -15,9 +15,23 @@
 # =============================================================================================
 
 
+import os
+
 from setuptools import setup
 
-# os.environ['TRAVIS_CI'] = 'True'
+os.environ['TRAVIS_CI'] = 'True'
+
+try:
+    from setuptools import setup
+
+    setup_kwargs = {'entry_points': {'console_scripts': ['ssebop=app.cli:run']}}
+except ImportError:
+    from distutils.core import setup
+
+    setup_kwargs = {'scripts': ['bin/app/cli']}
+
+with open('README.md') as f:
+    readme = f.read()
 
 tag = '0.0.1'
 
@@ -27,12 +41,8 @@ setup(name='ssebop',
       setup_requires=[],
       install_requires=['Click', 'numpy==1.12.1', 'requests', 'netCDF4', 'xlrd', 'future', 'setuptools-yaml', 'xarray',
                         'pandas', 'rasterio', 'fiona', 'climata'],
-      py_modules=['ssebop'],
+      py_modules=['ssebop', 'app'],
       license='Apache',
-      entry_points='''
-        [console_scripts]
-        ssebop=app.cli:cli
-        ''',
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Intended Audience :: Science/Research',
@@ -41,10 +51,10 @@ setup(name='ssebop',
           'Programming Language :: Python :: 3.5'],
       keywords='SSEB operational evapotranspiration algorithm',
       author='David Ketchum (code), Gabriel Senay (algorithm)',
-      author_email='dgketchum at gmail dot com',
+      author_email='dgketchum@gmail.com',
       platforms='Posix; MacOS X; Windows',
-      packages=[''],
-      download_url='https://github.com/{}/{}/archive/{}.tar.gz'.format('dgketchum', 'core', tag),
+      packages=['ssebop', 'app', 'tests'],
+      download_url='https://github.com/{}/{}/archive/{}.tar.gz'.format('dgketchum', 'ssebop', tag),
       url='https://github.com/dgketchum',
       test_suite='tests.test_suite.suite',
       )
