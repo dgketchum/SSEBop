@@ -29,7 +29,7 @@ def run_ssebop(cfg_path):
 
         sseb = SSEBopModel(runspec)
         sseb.configure_run()
-        sseb.run(overwrite=True)
+        sseb.run(overwrite=False)
 
 
 if __name__ == '__main__':

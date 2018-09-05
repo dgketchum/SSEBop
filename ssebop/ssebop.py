@@ -17,6 +17,10 @@
 from __future__ import print_function
 
 import os
+import sys
+
+abspath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(abspath)
 from numpy import where, nan, count_nonzero, isnan
 from numpy import nanmean, nanstd, deg2rad
 from datetime import datetime
@@ -37,29 +41,30 @@ class SSEBopModel(object):
     _satellite = None
     _is_configured = False
 
-    def __init__(self, runspec):
+    def __init__(self, runspec=None, **kwargs):
 
         self.image = None
         self.dem = None
         self.bounds = None
         self.image_exists = None
         self.use_existing_images = None
+        self.image_geo = None
 
         self.completed = False
 
-        self.image_dir = runspec.image_dir
-        self.parent_dir = runspec.parent_dir
-        self.image_exists = runspec.image_exists
-        self.image_date = runspec.image_date
-        self.satellite = runspec.satellite
-        self.path = runspec.path
-        self.row = runspec.row
-        self.image_id = runspec.image_id
-        self.agrimet_corrected = runspec.agrimet_corrected
-
-        self.image_geo = None
-
-        self.api_key = runspec.api_key
+        if runspec:
+            self.image_dir = runspec.image_dir
+            self.parent_dir = runspec.parent_dir
+            self.image_exists = runspec.image_exists
+            self.image_date = runspec.image_date
+            self.satellite = runspec.satellite
+            self.path = runspec.path
+            self.row = runspec.row
+            self.image_id = runspec.image_id
+            self.agrimet_corrected = runspec.agrimet_corrected
+        else:
+            for name, val in kwargs.items():
+                setattr(self, name, val)
 
         if not paths.is_set():
             raise PathsNotSetExecption
