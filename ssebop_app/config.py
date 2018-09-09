@@ -124,7 +124,7 @@ class Config:
         sat_key = int(self.satellite[-1])
         g = GoogleDownload(start=s, end=e, satellite=sat_key,
                            path=self.path, row=self.row, max_cloud_percent=max_cloud_pct)
-        images = g.scene_ids
+        images = g.scene_ids_low_cloud
         if images:
             super_list.append(images)
             try:

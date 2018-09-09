@@ -101,10 +101,9 @@ class SSEBopModel(object):
                    ','.join(mapping.keys())))
 
         self._is_configured = True
-
         self.image_geo = SSEBopGeo(image_id=self.image_id,
                                    image_dir=self.image_dir,
-                                   transform=self.image.rasterio_geometry['affine'],
+                                   transform=self.image.rasterio_geometry['transform'],
                                    profile=self.image.rasterio_geometry,
                                    clip_geo=self.image.get_tile_geometry(),
                                    date=self.image_date)
