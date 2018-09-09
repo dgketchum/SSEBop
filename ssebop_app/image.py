@@ -29,7 +29,7 @@ def get_image(image_dir=None, parent_dir=None, image_exists=None,
             'image_date': image_date, 'satellite': satellite, 'path': path, 'row': row,
             'image_id': image_id}
 
-    sseb = SSEBopModel(spec)
+    sseb = SSEBopModel(**spec)
     sseb.configure_run()
     sseb.run(overwrite=False)
 
