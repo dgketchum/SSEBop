@@ -62,15 +62,15 @@ class SSEBopModel(object):
             self.row = runspec.row
             self.image_id = runspec.image_id
             self.agrimet_corrected = runspec.agrimet_corrected
+
+            if not paths.is_set():
+                raise PathsNotSetExecption
+
+            if runspec.verify_paths:
+                paths.verify()
         else:
             for name, val in kwargs.items():
                 setattr(self, name, val)
-
-        if not paths.is_set():
-            raise PathsNotSetExecption
-
-        if runspec.verify_paths:
-            paths.verify()
 
         self._info('Constructing/Initializing SSEBop...')
 
