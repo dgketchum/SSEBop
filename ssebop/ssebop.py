@@ -49,7 +49,7 @@ class SSEBopModel(object):
         self.image_exists = None
         self.use_existing_images = None
         self.image_geo = None
-
+        self.agrimet_corrected = None
         self.completed = False
 
         if runspec:
@@ -92,15 +92,17 @@ class SSEBopModel(object):
         print('Instantiating image...')
 
         mapping = {'LT5': Landsat5, 'LE7': Landsat7, 'LC8': Landsat8}
-        try:
-            cls = mapping[self.satellite]
-            self.image = cls(self.image_dir)
-        except KeyError:
-            print('Invalid satellite key: "{}". available key = {}'.format
-                  (self.satellite,
-                   ','.join(mapping.keys())))
+        if not self.image:
+            try:
+                cls = mapping[self.satellite]
+                self.image = cls(self.image_dir)
+            except KeyError:
+                print('Invalid satellite key: "{}". available key = {}'.format
+                      (self.satellite,
+                       ','.join(mapping.keys())))
 
         self._is_configured = True
+
         self.image_geo = SSEBopGeo(image_id=self.image_id,
                                    image_dir=self.image_dir,
                                    transform=self.image.rasterio_geometry['transform'],
@@ -205,7 +207,8 @@ class SSEBopModel(object):
         center_lat = (self.image.corner_ll_lat_product + self.image.corner_ul_lat_product) / 2.
         lat_radians = deg2rad(center_lat)
         albedo = self.image.albedo()
-
+        print('dem {}\ntmin {}\ntmax {}\nalbedo {}'.format(dem.shape, tmin.shape, tmax.shape,
+                                                           albedo.shape))
         net_rad = get_net_radiation(tmin=tmin, tmax=tmax, doy=doy,
                                     elevation=dem, lat=lat_radians,
                                     albedo=albedo)
