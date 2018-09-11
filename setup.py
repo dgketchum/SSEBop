@@ -33,7 +33,7 @@ except ImportError:
 with open('README.md') as f:
     readme = f.read()
 
-tag = '0.0.2'
+tag = '0.0.3'
 
 setup(name='ssebop',
       version=tag,
