@@ -31,7 +31,7 @@ from rasterio.crs import CRS
 from ssebop_app.paths import paths, PathsNotSetExecption
 from bounds import RasterBounds
 from sat_image.image import Landsat5, Landsat7, Landsat8
-from ssebop.collector import data_check
+from ssebop.collector import SSEBopData
 from met.fao import get_net_radiation, air_density, air_specific_heat
 from met.fao import canopy_resistance
 from met.agrimet import Agrimet
@@ -103,7 +103,7 @@ class SSEBopModel(object):
 
         self._is_configured = True
 
-        self.image_geo = SSEBopGeo(image_id=self.image_id,
+        self.dc = SSEBopData(image_id=self.image_id,
                                    image_dir=self.image_dir,
                                    transform=self.image.rasterio_geometry['transform'],
                                    profile=self.image.rasterio_geometry,
@@ -124,14 +124,13 @@ class SSEBopModel(object):
         if not c:
             print('moving to next day due to invalid image for t_corr')
             return None
-        ta = data_check(self.image_geo, variable='tmax', temp_units='K')
+        ta = self.dc.data_check(variable='tmax', temp_units='K')
         tc = c * ta
         th = tc + dt
         etrf = (th - ts) / dt
-        pet = data_check(self.image_geo, variable='pet')
+        pet = self.dc.data_check(variable='pet')
         et = pet * etrf
-        fmask = data_check(self.image_geo, variable='fmask',
-                           sat_image=self.image)
+        fmask = self.dc.data_check(variable='fmask', sat_image=self.image)
         et_mskd = where(fmask == 0, et, nan)
 
         self.save_array(et_mskd, variable_name='ssebop_et_mskd',
@@ -153,7 +152,7 @@ class SSEBopModel(object):
     def c_factor(self, ts):
 
         ndvi = self.image.ndvi()
-        tmax = data_check(self.image_geo, variable='tmax', temp_units='K')
+        tmax = self.dc.data_check(variable='tmax', temp_units='K')
         if len(tmax.shape) > 2:
             tmax = tmax.reshape(tmax.shape[1], tmax.shape[2])
 
@@ -179,8 +178,7 @@ class SSEBopModel(object):
         t_corr = where((t_diff > 0) & (t_diff < 30), t_corr, nan)
         t_diff = None
 
-        fmask = data_check(self.image_geo, variable='fmask',
-                           sat_image=self.image)
+        fmask = self.dc.data_check(variable='fmask', sat_image=self.image)
 
         t_corr = where(fmask == 1, t_corr, nan)
 
@@ -201,14 +199,12 @@ class SSEBopModel(object):
 
     def difference_temp(self):
         doy = int(datetime.strftime(self.image.date_acquired, '%j'))
-        dem = data_check(self.image_geo, variable='dem')
-        tmin = data_check(self.image_geo, variable='tmin', temp_units='K')
-        tmax = data_check(self.image_geo, variable='tmax', temp_units='K')
+        dem = self.dc.data_check(variable='dem')
+        tmin = self.dc.data_check(variable='tmin', temp_units='K')
+        tmax = self.dc.data_check(variable='tmax', temp_units='K')
         center_lat = (self.image.corner_ll_lat_product + self.image.corner_ul_lat_product) / 2.
         lat_radians = deg2rad(center_lat)
         albedo = self.image.albedo()
-        print('dem {}\ntmin {}\ntmax {}\nalbedo {}'.format(dem.shape, tmin.shape, tmax.shape,
-                                                           albedo.shape))
         net_rad = get_net_radiation(tmin=tmin, tmax=tmax, doy=doy,
                                     elevation=dem, lat=lat_radians,
                                     albedo=albedo)
@@ -218,7 +214,6 @@ class SSEBopModel(object):
         rah = canopy_resistance()
 
         dt = (net_rad * rah) / (rho * cp)
-        # dt = self.image.mask_by_image(arr=dt)
         return dt
 
     @staticmethod
@@ -264,18 +259,5 @@ class SSEBopModel(object):
                       'to overwrite the results or bring them to completion.'.format(p, raster))
                 self.completed = True
                 return None
-
-
-class SSEBopGeo:
-    def __init__(self, image_id, image_dir, transform,
-                 profile, clip_geo, date):
-        self.image_id = image_id
-        self.image_dir = image_dir
-        self.transform = transform
-        self.profile = profile
-        self.clip_geo = clip_geo
-        self.date = date
-        self.bounds = RasterBounds(affine_transform=self.transform,
-                                   profile=self.profile, latlon=True)
 
 # ========================= EOF ====================================================================
