@@ -89,8 +89,6 @@ class SSEBopModel(object):
 
         self.check_products()
 
-        print('Instantiating image...')
-
         mapping = {'LT5': Landsat5, 'LE7': Landsat7, 'LC8': Landsat8}
         if not self.image:
             try:

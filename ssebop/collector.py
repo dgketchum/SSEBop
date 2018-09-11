@@ -111,10 +111,10 @@ class SSEBopData:
                           save_and_return=True)
         return var
 
-    def fetch_fmask(self, sat_image, file_path):
+    def fetch_fmask(self, sat_image):
         f = Fmask(sat_image)
         combo = f.cloud_mask(min_filter=(3, 3), max_filter=(40, 40), combined=True)
-        f.save_array(combo, file_path)
+        f.save_array(combo, self.file_path)
         return combo
 
 
