@@ -23,11 +23,10 @@ os.environ['TRAVIS_CI'] = 'True'
 
 try:
     from setuptools import setup
-
     setup_kwargs = {'entry_points': {'console_scripts': ['ssebop=ssebop_app.cli:run']}}
+
 except ImportError:
     from distutils.core import setup
-
     setup_kwargs = {'scripts': ['bin/ssebop_app/cli']}
 
 with open('README.md') as f:
