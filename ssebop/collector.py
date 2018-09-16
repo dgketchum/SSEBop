@@ -95,13 +95,28 @@ class SSEBopData:
 
     def fetch_temp(self, variable='tmax', temp_units='C'):
         print('Downloading new {}.....'.format(variable))
-        topowx = TopoWX(date=self.date, bbox=self.bounds,
-                        target_profile=self.profile,
-                        clip_feature=self.clip_geo, out_file=self.file_path)
+        try:
+            topowx = TopoWX(date=self.date, bbox=self.bounds,
+                            target_profile=self.profile,
+                            clip_feature=self.clip_geo, out_file=self.file_path)
 
-        var = topowx.get_data_subset(grid_conform=True, var=variable,
-                                     out_file=self.file_path,
-                                     temp_units_out=temp_units)
+            var = topowx.get_data_subset(grid_conform=True, var=variable,
+                                         out_file=self.file_path,
+                                         temp_units_out=temp_units)
+        except ValueError:
+            if variable == 'tmax':
+                variable = 'tmmx'
+            elif variable == 'tmin':
+                variable = 'tmmn'
+            else:
+                raise AttributeError
+
+            print('TopoWX temp retrieval failed, attempting same w/ Gridmet.')
+
+            gridmet = GridMet(variable, date=self.date, bbox=self.bounds,
+                              target_profile=self.profile, clip_feature=self.clip_geo)
+            var = gridmet.get_data_subset()
+
         return var
 
     def fetch_dem(self):
