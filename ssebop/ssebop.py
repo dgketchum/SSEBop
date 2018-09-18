@@ -23,6 +23,7 @@ abspath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(abspath)
 from numpy import where, nan, count_nonzero, isnan
 from numpy import nanmean, nanstd, deg2rad
+
 from datetime import datetime
 
 from rasterio import open as rasopen
@@ -102,11 +103,11 @@ class SSEBopModel(object):
         self._is_configured = True
 
         self.dc = SSEBopData(image_id=self.image_id,
-                             image_dir=self.image_dir,
-                             transform=self.image.rasterio_geometry['transform'],
-                             profile=self.image.rasterio_geometry,
-                             clip_geo=self.image.get_tile_geometry(),
-                             date=self.image_date)
+                                   image_dir=self.image_dir,
+                                   transform=self.image.rasterio_geometry['transform'],
+                                   profile=self.image.rasterio_geometry,
+                                   clip_geo=self.image.get_tile_geometry(),
+                                   date=self.image_date)
 
     def run(self, overwrite=False):
         """ Run the SSEBop algorithm.
@@ -125,9 +126,6 @@ class SSEBopModel(object):
         ta = self.dc.data_check(variable='tmax', temp_units='K')
         tc = c * ta
         th = tc + dt
-        # constrain 0 to 1.05
-        # if greater than 1.3 cloud
-        # 1.05 to 1.3 cap to 1.05
         etrf = (th - ts) / dt
         pet = self.dc.data_check(variable='pet')
         et = pet * etrf
@@ -150,16 +148,13 @@ class SSEBopModel(object):
             # function in both (?) gridmet and agrimet to find bias and correct
         return None
 
-    def environmental_lapse_rate_correction(self):
-        # 7000 ft plus lapse rate correction using DEM
-        pass
-
     def c_factor(self, ts):
 
         ndvi = self.image.ndvi()
         tmax = self.dc.data_check(variable='tmax', temp_units='K')
+        if len(tmax.shape) > 2:
+            tmax = tmax.reshape(tmax.shape[1], tmax.shape[2])
 
-        # use median daily tmax
         loc = where(ndvi > 0.7)
         temps = []
         for j, k in zip(loc[0], loc[1]):
@@ -258,9 +253,7 @@ class SSEBopModel(object):
         for p in products:
             raster = os.path.join(self.image_dir, '{}_{}.tif'.format(self.image_id, p))
             if os.path.isfile(raster):
-                print('This analysis has been done for at least {},\n named {} '
-                      'use '"overwrite"' parameter'
-                      'to overwrite the results or bring them to completion.'.format(p, raster))
+                print('This analysis has been done for at least {}'.format(p))
                 self.completed = True
                 return None
 
