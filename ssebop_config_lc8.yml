@@ -9,5 +9,5 @@ end_date: 20130730
 verify_paths: True
 agrimet_corrected: False
 down_images_only: False
-use_existing_images: True
+use_existing_images: False
 

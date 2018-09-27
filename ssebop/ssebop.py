@@ -36,6 +36,8 @@ from met.fao import get_net_radiation, air_density, air_specific_heat
 from met.fao import canopy_resistance
 from met.agrimet import Agrimet
 
+from landsat.google_download import GoogleDownload
+
 
 class SSEBopModel(object):
     _satellite = None

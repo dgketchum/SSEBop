@@ -50,10 +50,13 @@ class Paths:
     def configure_project_dirs(spec):
 
         p, r, s = str(spec['path']), str(spec['row']), str(spec['start_date'].year)
-        path_row_dir = os.path.join(spec['root'], p, r, s)
+        path_row_dir = os.path.join(spec['root'], p, r)
 
         if not os.path.exists(path_row_dir):
-            os.mkdir(path_row_dir)
+            try:
+                os.mkdir(path_row_dir)
+            except FileNotFoundError:
+                os.makedirs(path_row_dir, exist_ok=1)
         start, end = spec['start_date'], spec['end_date']
 
         for dt in rrule(YEARLY, dtstart=start, until=end):

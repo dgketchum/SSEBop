@@ -64,6 +64,7 @@ class Config:
 
         p, r, s = str(self.path), str(self.row), str(self.start_date.year)
         self.path_row_dir = os.path.join(self.root, p, r)
+        self.year_dir = os.path.join(self.path_row_dir, s)
 
         self.set_runspecs()
 
@@ -122,9 +123,11 @@ class Config:
         s = datetime.strftime(self.start_date, '%Y-%m-%d')
         e = datetime.strftime(self.end_date, '%Y-%m-%d')
         sat_key = int(self.satellite[-1])
-        g = GoogleDownload(start=s, end=e, satellite=sat_key,
+        g = GoogleDownload(start=s, end=e, satellite=sat_key, output_path=self.year_dir,
                            path=self.path, row=self.row, max_cloud_percent=max_cloud_pct)
         images = g.scene_ids_low_cloud
+        if not self.use_existing_images:
+            g.download(list_type='low_cloud')
         if images:
             super_list.append(images)
             try:
