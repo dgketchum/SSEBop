@@ -1,13 +1,13 @@
 # SSEBop config file
-path: 39
-row: 27
-root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/
-output_root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/39/27/2013/
+path: 37
+row: 28
+root: /home/dgketchum/IrrigationGIS/ssebop_results/
+output_root: /home/dgketchum/IrrigationGIS/ssebop_results/
 satellite: LC8
-start_date: 20130401
-end_date: 20131021
+start_date: 20130701
+end_date: 20130730
 verify_paths: True
-agrimet_corrected: True
+agrimet_corrected: False
 down_images_only: False
 use_existing_images: True
 

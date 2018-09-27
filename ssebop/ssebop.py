@@ -30,7 +30,6 @@ from rasterio import open as rasopen
 from rasterio.crs import CRS
 
 from ssebop_app.paths import paths, PathsNotSetExecption
-from bounds import RasterBounds
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from ssebop.collector import SSEBopData
 from met.fao import get_net_radiation, air_density, air_specific_heat
@@ -103,11 +102,11 @@ class SSEBopModel(object):
         self._is_configured = True
 
         self.dc = SSEBopData(image_id=self.image_id,
-                                   image_dir=self.image_dir,
-                                   transform=self.image.rasterio_geometry['transform'],
-                                   profile=self.image.rasterio_geometry,
-                                   clip_geo=self.image.get_tile_geometry(),
-                                   date=self.image_date)
+                             image_dir=self.image_dir,
+                             transform=self.image.rasterio_geometry['transform'],
+                             profile=self.image.rasterio_geometry,
+                             clip_geo=self.image.get_tile_geometry(),
+                             date=self.image_date)
 
     def run(self, overwrite=False):
         """ Run the SSEBop algorithm.
