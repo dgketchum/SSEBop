@@ -19,9 +19,9 @@ from __future__ import print_function
 import os
 import sys
 from datetime import datetime
-from landsat.google_download import GoogleDownload
 
 import yaml
+from landsat.google_download import GoogleDownload
 
 from ssebop_app.paths import paths
 
@@ -58,6 +58,8 @@ class Config:
     usgs_creds = None
     verify_paths = None
     down_images_only = None
+    use_existing_images = False
+    g = None
 
     def __init__(self, path=None):
         self.load(path=path)
@@ -123,11 +125,9 @@ class Config:
         s = datetime.strftime(self.start_date, '%Y-%m-%d')
         e = datetime.strftime(self.end_date, '%Y-%m-%d')
         sat_key = int(self.satellite[-1])
-        g = GoogleDownload(start=s, end=e, satellite=sat_key, output_path=self.year_dir,
-                           path=self.path, row=self.row, max_cloud_percent=max_cloud_pct)
-        images = g.scene_ids_low_cloud
-        if not self.use_existing_images:
-            g.download(list_type='low_cloud')
+        self.g = GoogleDownload(start=s, end=e, satellite=sat_key, output_path=self.year_dir,
+                                path=self.path, row=self.row, max_cloud_percent=max_cloud_pct)
+        images = self.g.scene_ids_low_cloud
         if images:
             super_list.append(images)
             try:
@@ -171,6 +171,9 @@ class RunSpec(object):
                        'agrimet_corrected': self.agrimet_corrected,
                        'use_existing_images': self.use_existing_images}
         self.image_exists = paths.configure_project_dirs(pseudo_spec)
+        if not self.image_exists:
+            cfg.g.download()
+            self.image_exists = True
 
 
 def check_config(path=None):

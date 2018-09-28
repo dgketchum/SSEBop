@@ -73,7 +73,10 @@ class Paths:
         elif spec['use_existing_images']:
             pass
         else:
-            os.mkdir(image_path)
+            try:
+                os.mkdir(os.path.dirname(image_path))
+            except FileExistsError:
+                pass
             return False
 
     def is_set(self):
