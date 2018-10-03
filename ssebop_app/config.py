@@ -107,7 +107,9 @@ class Config:
                     setattr(self, attr, self._obj.get(attr))
 
     def set_runspecs(self):
-
+        """ Set runspec.
+        :return:
+        """
         images = self.get_image_list()
 
         self.runspecs = [RunSpec(image, self) for image in images]
