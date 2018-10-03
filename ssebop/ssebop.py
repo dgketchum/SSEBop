@@ -110,7 +110,7 @@ class SSEBopModel(object):
                                    date=self.image_date)
 
     def run(self, overwrite=False):
-        """ Run the SSEBop algorithm.
+        """ Run the SSEBop algorithm for an image.
         :return: 
         """
 
