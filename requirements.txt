@@ -1,90 +1,101 @@
-absl-py==0.2.0
-affine==2.2.1
-asn1crypto==0.24.0
-astor==0.6.2
-attrs==18.2.0
-beautifulsoup4==4.6.3
-bleach==1.5.0
-boto3==1.9.2
-botocore==1.12.2
-bounds==0.0.1
-bs4==0.0.1
-certifi==2018.8.24
-cffi==1.11.5
-cftime==1.0.1
-chardet==3.0.4
-click==6.7
-click-plugins==1.0.3
-cligj==0.4.0
-climata==0.5.0
-cloudpickle==0.5.5
-cryptography==2.3.1
-cryptography-vectors==2.3.1
-dask==0.19.1
-dill==0.2.8.2
-docutils==0.14
-fastparquet==0.1.6
-Fiona==1.7.11.post2
-future==0.16.0
-gast==0.2.0
-geographiclib==1.49
-geopy==1.16.0
-grpcio==1.11.0
-html5lib==0.9999999
-idna==2.7
-jmespath==0.9.3
-Landsat578==0.5.0
-llvmlite==0.24.0
-locket==0.2.0
-lxml==4.2.4
-Markdown==2.6.11
-metio==0.0.22
-mkl-fft==1.0.6
-mkl-random==1.0.1
-multiprocess==0.70.5
-munch==2.3.2
-netCDF4==1.4.1
-numba==0.39.0
-numpy==1.15.1
-opendem==0.0.21
-OWSLib==0.16.0
-pandas==0.22.0
-partd==0.3.8
-pathos==0.2.1
-pox==0.2.3
-ppft==1.6.4.7.1
-protobuf==3.5.2.post1
-pyarrow==0.10.0
-pycparser==2.18
-pyOpenSSL==18.0.0
-pyparsing==2.2.0
-pyproj==1.9.5.1
-PySocks==1.6.8
-pytest-runner==4.2
-python-dateutil==2.7.3
-pytz==2018.4
-PyYAML==3.12
-rasterio==1.0.3
-refet==0.3.7
-requests==2.18.4
-s3transfer==0.1.13
-SatelliteImage==0.1.26
-scikit-learn==0.19.1
-scipy==1.1.0
-setuptools-yaml==0.4
-Shapely==1.6.4.post1
-six==1.11.0
-snuggs==1.4.1
-ssebop==0.0.2
-suds-jurko==0.6
-tensorboard==1.8.0
-tensorflow==1.8.0
-termcolor==1.1.0
-thrift==0.11.0
-toolz==0.9.0
-urllib3==1.23
-Werkzeug==0.14.1
-wq.core==1.1.0
-wq.io==1.1.0
-xarray==0.10.8
-xlrd==1.1.0
+absl-py              0.2.0
+affine               2.2.1       
+asn1crypto           0.24.0      
+astor                0.6.2       
+attrs                18.2.0      
+beautifulsoup4       4.6.3       
+bleach               1.5.0       
+boto3                1.9.2       
+botocore             1.12.2      
+bounds               0.0.1       
+bs4                  0.0.1       
+certifi              2018.8.24   
+cffi                 1.11.5      
+cftime               1.0.1       
+chardet              3.0.4       
+click                6.7         
+click-plugins        1.0.3       
+cligj                0.4.0       
+climata              0.5.0       
+cloudpickle          0.5.5       
+cryptography         2.3.1       
+cryptography-vectors 2.3.1       
+cycler               0.10.0      
+dask                 0.19.1      
+dill                 0.2.8.2     
+docutils             0.14        
+etrm                 0.0.1       
+fastkml              0.11        
+fastparquet          0.1.6       
+Fiona                1.7.11.post2
+future               0.16.0      
+gast                 0.2.0       
+geographiclib        1.49        
+geopy                1.16.0      
+grpcio               1.11.0      
+html5lib             0.9999999   
+idna                 2.7         
+jmespath             0.9.3       
+kiwisolver           1.0.1       
+Landsat578           0.5.0       
+llvmlite             0.24.0      
+locket               0.2.0       
+lxml                 4.2.4       
+Markdown             2.6.11      
+matplotlib           3.0.0       
+metio                0.0.22      
+mkl-fft              1.0.6       
+mkl-random           1.0.1       
+multiprocess         0.70.5      
+munch                2.3.2       
+netCDF4              1.4.1       
+numba                0.39.0      
+numpy                1.15.1      
+opendem              0.0.21      
+OWSLib               0.16.0      
+pandas               0.22.0      
+partd                0.3.8       
+pathos               0.2.1       
+pip                  18.0        
+pox                  0.2.3       
+ppft                 1.6.4.7.1   
+protobuf             3.5.2.post1 
+psutil               5.4.7       
+pyarrow              0.10.0      
+pycparser            2.18        
+pygeoif              0.7         
+pyOpenSSL            18.0.0      
+pyparsing            2.2.0       
+pyproj               1.9.5.1     
+PySocks              1.6.8       
+pytest-runner        4.2         
+python-dateutil      2.7.3       
+pytz                 2018.4      
+PyYAML               3.12        
+rasterio             1.0.3       
+refet                0.3.7       
+requests             2.18.4      
+s3transfer           0.1.13      
+SatelliteImage       0.1.26      
+scikit-learn         0.19.1      
+scipy                1.1.0       
+setuptools           39.1.0      
+setuptools-yaml      0.4         
+Shapely              1.6.4.post1 
+six                  1.11.0      
+snuggs               1.4.1       
+ssebop               0.0.2       
+suds-jurko           0.6         
+tensorboard          1.8.0       
+tensorflow           1.8.0       
+termcolor            1.1.0       
+thrift               0.11.0      
+toolz                0.9.0       
+tornado              5.1.1       
+urllib3              1.23        
+Werkzeug             0.14.1      
+wheel                0.31.0      
+wq.core              1.1.0       
+wq.io                1.1.0       
+xarray               0.10.8      
+xlrd                 1.1.0       
