@@ -184,8 +184,8 @@ class SSEBopModel(object):
         test_count = count_nonzero(~isnan(t_corr))
 
         if test_count < 50:
-            print('Count of clear pixels in {} is insufficient'
-                  ' to perform analysis.'.format(self.image_id))
+            print('Count of clear pixels {} in {} is insufficient'
+                  ' to perform analysis.'.format(test_count, self.image_id))
             return None
 
         print('You have {} pixels for your temperature '
