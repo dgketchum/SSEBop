@@ -79,7 +79,7 @@ class SSEBopData:
 
     def check_shape(self, var, path):
         if not var.shape == self.shape:
-            new = warped_vrt.warp_single_image(image_path=path, profile=self.profile)
+            new = warped_vrt.warp_single_image(image_path=path, profile=self.profile, resampling='nearest')
             return new
         else:
             return var
