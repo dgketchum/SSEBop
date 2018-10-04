@@ -183,7 +183,7 @@ class SSEBopModel(object):
 
         test_count = count_nonzero(~isnan(t_corr))
 
-        if test_count < 50:
+        if test_count < 50 and not self.override_count:
             print('Count of clear pixels {} in {} is insufficient'
                   ' to perform analysis.'.format(test_count, self.image_id))
             return None
