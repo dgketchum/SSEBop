@@ -51,8 +51,12 @@ class SSEBopData:
             raise KeyError('Variable {} is invalid, choose from {}'.format(self.variable,
                                                                            valid_vars))
 
-        self.file_name = '{}_{}.tif'.format(self.image_id, variable)
-        self.file_path = os.path.join(self.image_dir, self.file_name)
+        if self.variable == 'dem':
+            self.file_name = '{}.tif'.format(self.variable)
+            self.file_path = os.path.join(os.path.dirname(self.image_dir), self.file_name)
+        else:
+            self.file_name = '{}_{}.tif'.format(self.image_id, variable)
+            self.file_path = os.path.join(self.image_dir, self.file_name)
 
         if self.file_name not in os.listdir(self.image_dir):
             if variable == 'tmax':
