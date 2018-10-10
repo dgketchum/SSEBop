@@ -52,6 +52,7 @@ class SSEBopModel(object):
         self.image_geo = None
         self.agrimet_corrected = None
         self.completed = False
+        self.override_count = False
 
         if runspec:
             self.image_dir = runspec.image_dir
@@ -110,7 +111,7 @@ class SSEBopModel(object):
                                    date=self.image_date)
 
     def run(self, overwrite=False):
-        """ Run the SSEBop algorithm for an image.
+        """ Run the SSEBop algorithm for an image. Check for outputs from previous run.
         :return: 
         """
 
@@ -183,7 +184,7 @@ class SSEBopModel(object):
 
         test_count = count_nonzero(~isnan(t_corr))
 
-        if test_count < 50:
+        if test_count < 50 and not self.override_count:
             print('Count of clear pixels {} in {} is insufficient'
                   ' to perform analysis.'.format(test_count, self.image_id))
             return None

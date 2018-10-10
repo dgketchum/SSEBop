@@ -24,11 +24,11 @@ from ssebop.ssebop import SSEBopModel
 
 def get_image(image_dir=None, parent_dir=None, image_exists=None,
               image_date=None, satellite=None, path=None, row=None,
-              image_id=None, landsat_object=None, overwrite=False):
+        image_id=None, landsat_object=None, overwrite=False, override_count=False):
     
     spec = {'image_dir': image_dir, 'parent_dir': parent_dir, 'image_exists': image_exists,
             'image_date': image_date, 'satellite': satellite, 'path': path, 'row': row,
-            'image_id': image_id, 'image': landsat_object, 'overwrite': overwrite}
+            'image_id': image_id, 'image': landsat_object, 'overwrite': overwrite, 'override_count': override_count}
 
     sseb = SSEBopModel(**spec)
     sseb.configure_run()
