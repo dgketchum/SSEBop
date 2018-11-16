@@ -117,6 +117,11 @@ class SSEBopModel(object):
         if self.completed and not overwrite:
             return None
 
+        ndvi = self.image.ndvi()
+	
+         
+
+
         dt = self.difference_temp()
         ts = self.image.land_surface_temp()
         c = self.c_factor(ts)
@@ -128,7 +133,7 @@ class SSEBopModel(object):
         th = tc + dt
         etrf = (th - ts) / dt
         pet = self.dc.data_check(variable='pet')
-        et = pet * etrf
+        et = pet * etrf * 1.25
         fmask = self.dc.data_check(variable='fmask', sat_image=self.image)
         et_mskd = where(fmask == 0, et, nan)
 
@@ -139,6 +144,11 @@ class SSEBopModel(object):
         self.save_array(et, variable_name='ssebop_et', output_path=self.image_dir)
         self.save_array(etrf, variable_name='ssebop_etrf',
                         output_path=self.image_dir)
+
+        self.save_array(ndvi, variable_name='ndvi',
+                        output_path=self.image_dir)
+
+
 
         if self.agrimet_corrected:
             lat, lon = self.image.scene_coords_deg[0], \
@@ -249,7 +259,7 @@ class SSEBopModel(object):
         return None
 
     def check_products(self):
-        products = ['ssebop_et_mskd', 'pet', 'lst', 'ssebop_et', 'ssebop_etrf']
+        products = ['ssebop_et_mskd', 'pet', 'lst', 'ssebop_et', 'ssebop_etrf', 'ndvi']
         for p in products:
             raster = os.path.join(self.image_dir, '{}_{}.tif'.format(self.image_id, p))
             if os.path.isfile(raster):

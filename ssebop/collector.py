@@ -23,6 +23,10 @@ from sat_image.fmask import Fmask
 from sat_image import warped_vrt
 from bounds import RasterBounds
 
+from dateutil.rrule import rrule, DAILY
+from datetime import datetime
+
+
 
 class SSEBopData:
     def __init__(self, image_id, image_dir, transform,
@@ -93,7 +97,29 @@ class SSEBopData:
         var = gridmet.get_data_subset(out_filename=self.file_path)
         return var
 
-    def fetch_temp(self, variable='tmax', temp_units='C'):
+
+
+
+    def fetch_gridmet_after(self, variable='pet'):
+
+
+        gridmet2 = Gridmet(variable, date=self.date,
+                          bbox=self.bounds,
+                          target_profile=self.profile,
+                          clip_feature=self.clip_geo)
+
+        start_date = self.date
+        list(rrule(freq=DAILY, count=2, dtstart=start_date))
+
+        var = gridmet.get_data_subset(out_filename=self.file_path)
+        return var
+
+
+
+
+
+
+        def fetch_temp(self, variable='tmax', temp_units='C'):
         print('Downloading new {}.....'.format(variable))
         try:
             topowx = TopoWX(date=self.date, bbox=self.bounds,

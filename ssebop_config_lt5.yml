@@ -1,18 +1,18 @@
 
-path: 35
-row: 26
+path: 32
+row: 34
 root: /data01/images/thermal_analysis
-input_root:
-output_root:
+input_root: /top/students/GRAD/CE/mrlurtz8/home/ssebop_results
+output_root: /top/students/GRAD/CE/mrlurtz8/home/ssebop_results
 
 api_key: 'mapzen-JmKu1BF'
 usgs_creds: /data01/images/usgs.txt
 
 satellite: LT5
 # Date format; string 'YYYYMMDD'
-start_date: 20010401
-end_date: 20010930
+start_date: 20030401
+end_date: 20030430
 k_factor: 1.25
 verify_paths: True
-agrimet_corrected: True
+agrimet_corrected: False
 down_images_only: False

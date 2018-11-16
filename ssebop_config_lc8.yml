@@ -1,11 +1,11 @@
 # SSEBop config file
-path: 37
-row: 28
-root: /home/dgketchum/IrrigationGIS/ssebop_results/
-output_root: /home/dgketchum/IrrigationGIS/ssebop_results/
-satellite: LC8
-start_date: 20130701
-end_date: 20130730
+path: 32
+row: 34
+root: /top/students/GRAD/CE/mrlurtz8/home/ssebop_results
+output_root: /top/students/GRAD/CE/mrlurtz8/home/ssebop_results
+satellite: LT5
+start_date: 20031130
+end_date: 20031231
 verify_paths: True
 agrimet_corrected: False
 down_images_only: False
