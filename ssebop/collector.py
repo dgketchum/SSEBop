@@ -38,6 +38,7 @@ class SSEBopData:
         self.profile = profile
         self.clip_geo = clip_geo
         self.date = date
+        self.file_name = None
         self.bounds = RasterBounds(affine_transform=self.transform,
                                    profile=self.profile, latlon=True)
 
@@ -83,7 +84,7 @@ class SSEBopData:
 
     def check_shape(self, var, path):
         if not var.shape == self.shape:
-            new = warped_vrt.warp_single_image(image_path=path, profile=self.profile)
+            new = warped_vrt.warp_single_image(image_path=path, profile=self.profile, resampling='nearest')
             return new
         else:
             return var

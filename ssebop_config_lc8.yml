@@ -10,4 +10,3 @@ verify_paths: True
 agrimet_corrected: False
 down_images_only: False
 use_existing_images: False
-
