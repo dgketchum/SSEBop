@@ -73,8 +73,7 @@ class SSEBopData:
                 var = self.fetch_fmask(sat_image)
             if variable == 'pet':
                 var = self.fetch_gridmet('pet')
-            if variable == 'pet':
-                var = self.fetch_gridmet2('pet')
+
 
         else:
 
@@ -100,13 +99,15 @@ class SSEBopData:
         var = gridmet.get_data_subset(out_filename=self.file_path)
         return var
 
-    def fetch_gridmet2(self, variable='pet'):
-        start_date = self.date
-        list(rrule(freq=DAILY, count=2, dtstart=start_date, cache=True))
-        gridmet = GridMet(variable, date=start_date,
+    def fetch_gridmet(self, variable='pet', start_date='date'):
+        delta = timedelta(days=20)
+        end = start_date + delta
+        for day in rrule(freq=DAILY, dtstart=start_date, until=end):
+            gridmet = GridMet(variable, date=start_date,
                           bbox=self.bounds,
                           target_profile=self.profile,
                           clip_feature=self.clip_geo)
+
         var = gridmet.get_data_subset(out_filename=self.file_path)
         return var
 
