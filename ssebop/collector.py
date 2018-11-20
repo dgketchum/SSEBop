@@ -24,7 +24,7 @@ from sat_image import warped_vrt
 from bounds import RasterBounds
 
 from dateutil.rrule import rrule, DAILY
-##from datetime import datetime
+from datetime import timedelta
 
 
 
@@ -73,6 +73,8 @@ class SSEBopData:
                 var = self.fetch_fmask(sat_image)
             if variable == 'pet':
                 var = self.fetch_gridmet('pet')
+            if variable == 'pet':
+                var = self.get_daily_gridmet('pet')
 
 
         else:
@@ -99,9 +101,9 @@ class SSEBopData:
         var = gridmet.get_data_subset(out_filename=self.file_path)
         return var
 
-    def fetch_gridmet(self, variable='pet', start_date='date'):
+    def get_daily_gridmet(self, variable='pet', start_date='date'):
         delta = timedelta(days=20)
-        end = start_date + delta
+        end = start_date + delta.strftime('%Y%m%d')
         for day in rrule(freq=DAILY, dtstart=start_date, until=end):
             gridmet = GridMet(variable, date=start_date,
                           bbox=self.bounds,
