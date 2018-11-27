@@ -134,7 +134,7 @@ class SSEBopModel(object):
         th = tc + dt
         etrf = (th - ts) / dt
         pet = self.dc.data_check(variable='pet')
-        et = pet * etrf * 1.25
+        et = pet * etrf
         fmask = self.dc.data_check(variable='fmask', sat_image=self.image)
         et_mskd = where(fmask == 0, et, nan)
 
