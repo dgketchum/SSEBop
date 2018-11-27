@@ -31,7 +31,8 @@ class MyTestCase(unittest.TestCase):
         self.out_dir = os.path.dirname(__file__)
 
     def test_daily_gridmet_conforming(self):
-        # test retrival of daily gridmet, resampled to specific Landsat image geometry
+        """test retrieval of daily gridmet, resampled to specific Landsat image geometry"""
+
         l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
         bounds = RasterBounds(affine_transform=l8.rasterio_geometry['transform'], profile=l8.rasterio_geometry)
