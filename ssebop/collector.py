@@ -25,7 +25,7 @@ from bounds import RasterBounds
 
 from dateutil.rrule import rrule, DAILY
 from datetime import timedelta
-
+import datetime
 
 
 class SSEBopData:
@@ -101,11 +101,20 @@ class SSEBopData:
         var = gridmet.get_data_subset(out_filename=self.file_path)
         return var
 
-    def get_daily_gridmet(self, variable='pet', start_date='date'):
-        delta = timedelta(days=20)
-        end = start_date + delta.strftime('%Y%m%d')
+# Adding an extra function here to retrieve multiple days of PET rasters from Gridmet.
+
+# Need to add a folder path to output so I can save extra raster because I may be overwriting them??
+# Latest output had resolution of 4000mx4000m with no date or time 'signature' on the tiff file.
+# The latest simulation will complete but I am not sure the ssebop code is doing anything wth the extra definition of
+# get_daily_gridmet because I cannot find the 'extra' pet rasters.
+# may need to apply 'conforming_array' to output to resolve the raster to higher resolution.
+
+    def get_daily_gridmet(self, variable='pet'):
+        delta = timedelta(days=10)
+        start_date = datetime.date(1999, 4, 5)
+        end = start_date + delta
         for day in rrule(freq=DAILY, dtstart=start_date, until=end):
-            gridmet = GridMet(variable, date=start_date,
+            gridmet = GridMet(variable, date=day,
                           bbox=self.bounds,
                           target_profile=self.profile,
                           clip_feature=self.clip_geo)
