@@ -15,17 +15,15 @@
 # =============================================================================================
 
 import os
-from rasterio import open as rasopen
-
-from met.thredds import TopoWX, GridMet
-from dem import AwsDem
-from sat_image.fmask import Fmask
-from sat_image import warped_vrt
-from bounds import RasterBounds
-
-from dateutil.rrule import rrule, DAILY
 from datetime import timedelta
 
+from bounds import RasterBounds
+from dateutil.rrule import rrule, DAILY
+from dem import AwsDem
+from met.thredds import TopoWX, GridMet
+from rasterio import open as rasopen
+from sat_image import warped_vrt
+from sat_image.fmask import Fmask
 
 
 class SSEBopData:
