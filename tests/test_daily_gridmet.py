@@ -13,11 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ===============================================================================
+import os
 import unittest
+from datetime import datetime
+from dateutil.rrule import rrule, DAILY
 from bounds import RasterBounds
 from met.thredds import GridMet
 from sat_image.image import Landsat8
-from datetime import datetime
+
 
 class MyTestCase(unittest.TestCase):
 
@@ -25,16 +28,22 @@ class MyTestCase(unittest.TestCase):
         self.start = datetime(2014, 8, 15)
         self.end = datetime(2014, 8, 20)
         self.dir_name_LC8 = '/home/dgketchum/IrrigationGIS/tests/gridmet/LC80380272014227LGN01'
+        self.out_dir = os.path.dirname(__file__)
 
     def test_daily_gridmet_conforming(self):
+
         l8 = Landsat8(self.dir_name_LC8)
         polygon = l8.get_tile_geometry()
         bounds = RasterBounds(affine_transform=l8.rasterio_geometry['transform'], profile=l8.rasterio_geometry)
-        gridmet = GridMet(self.var, date=self.date, bbox=bounds,
-                          target_profile=l8.rasterio_geometry, clip_feature=polygon)
-        pet = gridmet.get_data_subset()
-        shape = 1, l8.rasterio_geometry['height'], l8.rasterio_geometry['width']
-        self.assertEqual(pet.shape, shape)
+
+        for dt in rrule(DAILY, dtstart=self.start, until=self.end):
+            gridmet = GridMet('etr', date=dt, bbox=bounds,
+                              target_profile=l8.rasterio_geometry, clip_feature=polygon)
+            etr = gridmet.get_data_subset()
+            gridmet.save_raster(etr, l8.rasterio_geometry,
+                                os.path.join(self.out_dir, '{}.tif'.format(datetime.strftime(dt, '%Y_%j'))))
+            shape = 1, l8.rasterio_geometry['height'], l8.rasterio_geometry['width']
+            self.assertEqual(etr.shape, shape)
 
 
 if __name__ == '__main__':
