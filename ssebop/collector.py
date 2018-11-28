@@ -24,7 +24,7 @@ from met.thredds import TopoWX, GridMet
 from rasterio import open as rasopen
 from sat_image import warped_vrt
 from sat_image.fmask import Fmask
-from sat_image.image import Landsat5, Landsat7, Landsat8
+from sat_image.image import Landsat5
 
 
 class SSEBopData:
@@ -75,8 +75,6 @@ class SSEBopData:
                 var = self.fetch_dem()
             if variable == 'fmask':
                 var = self.fetch_fmask(sat_image)
-            if variable == 'pet':
-                var = self.fetch_gridmet('pet')
             if variable == 'etr':
                 var = self.get_daily_gridmet('etr')
 
