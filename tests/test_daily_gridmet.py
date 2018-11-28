@@ -27,7 +27,7 @@ class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.start = datetime(2014, 8, 15)
         self.end = datetime(2014, 8, 20)
-        self.dir_name_LC8 = '/home/dgketchum/IrrigationGIS/tests/gridmet/LC80380272014227LGN01'
+        self.dir_name_LC8 = '/top/students/GRAD/CE/mrlurtz8/home/ssebop_results/tests/gridmet/LC80380272014227LGN01'
         self.out_dir = os.path.dirname(__file__)
 
     def test_daily_gridmet_conforming(self):
