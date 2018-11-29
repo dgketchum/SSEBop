@@ -51,6 +51,7 @@ class Paths:
 
         p, r, s = str(spec['path']), str(spec['row']), str(spec['start_date'].year)
         path_row_dir = os.path.join(spec['root'], p, r)
+        year_dir = os.path.join(path_row_dir, s)
 
         if not os.path.exists(path_row_dir):
             try:
@@ -63,6 +64,15 @@ class Paths:
             year_dir = os.path.join(path_row_dir, str(dt.year))
             if not os.path.exists(year_dir):
                 os.mkdir(year_dir)
+
+        if spec['interpolate']:
+            daily_dir = os.path.join(year_dir, 'daily_data')
+            if not os.path.isdir(daily_dir):
+                os.mkdir(daily_dir)
+
+            interpolate_dir = os.path.join(year_dir, 'interpolation')
+            if not os.path.isdir(interpolate_dir):
+                os.mkdir(interpolate_dir)
 
         image_path = spec['image_dir']
         if os.path.exists(image_path):
