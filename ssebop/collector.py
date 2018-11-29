@@ -24,7 +24,6 @@ from met.thredds import TopoWX, GridMet
 from rasterio import open as rasopen
 from sat_image import warped_vrt
 from sat_image.fmask import Fmask
-from sat_image.image import Landsat5, Landsat7, Landsat8
 
 
 class SSEBopData:
@@ -106,18 +105,19 @@ class SSEBopData:
     def get_daily_gridmet(self, variable='etr'):
 
         daily_dir = os.path.join(os.path.dirname(self.image_dir), 'daily_data')
-        if not os.path.isdir(daily_dir):
-            os.mkdir(daily_dir)
 
         for dt in rrule(DAILY, dtstart=self.start, until=self.end):
-            gridmet = GridMet(variable, date=dt,
-                              bbox=self.bounds,
-                              target_profile=self.profile,
-                              clip_feature=self.clip_geo)
+            file_name = os.path.join(daily_dir, 'etr_{}.tif'.format(datetime.strftime(dt, '%Y_%j')))
+            if not os.path.isfile(file_name):
+                gridmet = GridMet(variable, date=dt,
+                                  bbox=self.bounds,
+                                  target_profile=self.profile,
+                                  clip_feature=self.clip_geo)
 
-            etr = gridmet.get_data_subset()
-            gridmet.save_raster(etr, self.profile,
-                                os.path.join(daily_dir, 'etr_{}.tif'.format(datetime.strftime(dt, '%Y_%j'))))
+                etr = gridmet.get_data_subset()
+                gridmet.save_raster(etr, self.profile, file_name)
+            else:
+                print('{} exists'.format(file_name))
 
     def fetch_temp(self, variable='tmax', temp_units='C'):
         print('Downloading new {}.....'.format(variable))
