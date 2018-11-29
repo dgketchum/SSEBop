@@ -31,7 +31,7 @@ path: 39
 row: 27
 root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/
 output_root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/39/27/2013/
-satellite: 8
+satellite: LC8
 start_date: 20130401
 end_date: 20131001
 verify_paths: True
