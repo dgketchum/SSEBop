@@ -30,7 +30,6 @@ from rasterio import open as rasopen
 from rasterio.crs import CRS
 
 from ssebop_app.paths import paths, PathsNotSetExecption
-from bounds import RasterBounds
 from sat_image.image import Landsat5, Landsat7, Landsat8
 from ssebop.collector import SSEBopData
 from met.fao import get_net_radiation, air_density, air_specific_heat
@@ -53,6 +52,9 @@ class SSEBopModel(object):
         self.agrimet_corrected = None
         self.completed = False
         self.override_count = False
+        self.dc = None
+        self.start = None
+        self.end = None
 
         if runspec:
             self.image_dir = runspec.image_dir
@@ -64,6 +66,8 @@ class SSEBopModel(object):
             self.row = runspec.row
             self.image_id = runspec.image_id
             self.agrimet_corrected = runspec.agrimet_corrected
+            self.start = runspec.start_date
+            self.end = runspec.end_date
 
             if not paths.is_set():
                 raise PathsNotSetExecption
@@ -104,11 +108,13 @@ class SSEBopModel(object):
         self._is_configured = True
 
         self.dc = SSEBopData(image_id=self.image_id,
-                                   image_dir=self.image_dir,
-                                   transform=self.image.rasterio_geometry['transform'],
-                                   profile=self.image.rasterio_geometry,
-                                   clip_geo=self.image.get_tile_geometry(),
-                                   date=self.image_date)
+                             image_dir=self.image_dir,
+                             transform=self.image.rasterio_geometry['transform'],
+                             profile=self.image.rasterio_geometry,
+                             clip_geo=self.image.get_tile_geometry(),
+                             date=self.image_date,
+                             start=self.start,
+                             end=self.end)
 
     def run(self, overwrite=False):
         """ Run the SSEBop algorithm for an image. Check for outputs from previous run.
@@ -119,9 +125,6 @@ class SSEBopModel(object):
             return None
 
         ndvi = self.image.ndvi()
-	
-         
-
 
         dt = self.difference_temp()
         ts = self.image.land_surface_temp()
@@ -133,14 +136,14 @@ class SSEBopModel(object):
         tc = c * ta
         th = tc + dt
         etrf = (th - ts) / dt
-        pet = self.dc.data_check(variable='pet')
-        et = pet * etrf
+        etr = self.dc.data_check(variable='etr', daily=True)
+        et = etr * etrf
         fmask = self.dc.data_check(variable='fmask', sat_image=self.image)
         et_mskd = where(fmask == 0, et, nan)
 
         self.save_array(et_mskd, variable_name='ssebop_et_mskd',
                         output_path=self.image_dir)
-        self.save_array(pet, variable_name='pet', output_path=self.image_dir)
+        self.save_array(etr, variable_name='etr', output_path=self.image_dir)
         self.save_array(ts, variable_name='lst', output_path=self.image_dir)
         self.save_array(et, variable_name='ssebop_et', output_path=self.image_dir)
         self.save_array(etrf, variable_name='ssebop_etrf',
@@ -148,8 +151,6 @@ class SSEBopModel(object):
 
         self.save_array(ndvi, variable_name='ndvi',
                         output_path=self.image_dir)
-
-
 
         if self.agrimet_corrected:
             lat, lon = self.image.scene_coords_deg[0], \
@@ -260,12 +261,20 @@ class SSEBopModel(object):
         return None
 
     def check_products(self):
-        products = ['ssebop_et_mskd', 'pet', 'lst', 'ssebop_et', 'ssebop_etrf', 'ndvi']
+        products = ['ssebop_et_mskd', 'etr', 'lst', 'ssebop_et', 'ssebop_etrf', 'ndvi']
+        check = []
         for p in products:
             raster = os.path.join(self.image_dir, '{}_{}.tif'.format(self.image_id, p))
             if os.path.isfile(raster):
-                print('This analysis has been done for at least {}'.format(p))
-                self.completed = True
-                return None
+                check.append(True)
+            else:
+                check.append(False)
+
+        if False in check:
+            self.completed = False
+        else:
+            print('This analysis has been done for at least {}'.format(p))
+            self.completed = True
+        return None
 
 # ========================= EOF ====================================================================
