@@ -14,11 +14,15 @@
 # limitations under the License.
 # ===============================================================================
 
-from pandas import read_csv
+from pandas import read_csv, date_range
 
 
 def reform_images_table(csv):
-    df = read_csv(csv)
+    csv = read_csv(csv, index_col=5, parse_dates=[5], header=0)
+    odx = csv.index
+    ndx = date_range(odx.min(), odx.max(), freq='D')
+    df = csv.reindex(odx.union(ndx)).interpolate('index').reindex(ndx)
+    pass
 
 
 if __name__ == '__main__':
