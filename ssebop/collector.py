@@ -47,7 +47,7 @@ class SSEBopData:
         self.file_path = None
         self.shape = (1, profile['height'], profile['width'])
 
-    def data_check(self, variable, sat_image=None, temp_units='C', daily=False):
+    def data_check(self, variable, sat_image=None, temp_units='C'):
 
         self.variable = variable
         valid_vars = ['tmax', 'tmin', 'dem', 'fmask', 'etr']
@@ -79,10 +79,6 @@ class SSEBopData:
             with rasopen(self.file_path, 'r') as src:
                 var = src.read()
 
-        if daily:
-            if variable == 'etr':
-                self.get_daily_gridmet('etr')
-
         var = self.check_shape(var, self.file_path)
         return var
 
@@ -104,10 +100,14 @@ class SSEBopData:
 
     def get_daily_gridmet(self, variable='etr'):
 
+        print('get daily gridmet {}: {} to {}'.format(variable,
+                                                      datetime.strftime(self.start, '%Y-%m-%d'),
+                                                      datetime.strftime(self.end, '%Y-%m-%d')))
+
         daily_dir = os.path.join(os.path.dirname(self.image_dir), 'daily_data')
 
         for dt in rrule(DAILY, dtstart=self.start, until=self.end):
-            file_name = os.path.join(daily_dir, 'etr_{}.tif'.format(datetime.strftime(dt, '%Y_%j')))
+            file_name = os.path.join(daily_dir, 'etr_{}.tif'.format(datetime.strftime(dt, '%Y-%m-%d')))
             if not os.path.isfile(file_name):
                 gridmet = GridMet(variable, date=dt,
                                   bbox=self.bounds,
@@ -116,6 +116,8 @@ class SSEBopData:
 
                 etr = gridmet.get_data_subset()
                 gridmet.save_raster(etr, self.profile, file_name)
+
+        return True
 
     def fetch_temp(self, variable='tmax', temp_units='C'):
         print('Downloading new {}.....'.format(variable))
