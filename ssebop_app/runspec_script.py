@@ -19,6 +19,7 @@ import os
 from ssebop_app.config import Config, paths
 from ssebop_app.cli import welcome
 from ssebop.ssebop import SSEBopModel
+from ssebop.interpolate import reform_images_table
 
 
 def run_ssebop(cfg_path):
@@ -26,10 +27,11 @@ def run_ssebop(cfg_path):
     welcome()
     for runspec in cfg.runspecs:
         paths.build(runspec.root)
-
         sseb = SSEBopModel(runspec)
         sseb.configure_run()
         sseb.run(overwrite=False)
+
+    reform_images_table(cfg.table)
 
 
 if __name__ == '__main__':
