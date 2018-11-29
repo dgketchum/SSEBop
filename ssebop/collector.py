@@ -116,8 +116,6 @@ class SSEBopData:
 
                 etr = gridmet.get_data_subset()
                 gridmet.save_raster(etr, self.profile, file_name)
-            else:
-                print('{} exists'.format(file_name))
 
     def fetch_temp(self, variable='tmax', temp_units='C'):
         print('Downloading new {}.....'.format(variable))
