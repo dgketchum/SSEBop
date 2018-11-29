@@ -55,6 +55,7 @@ class SSEBopModel(object):
         self.dc = None
         self.start = None
         self.end = None
+        self.interpolate = False
 
         if runspec:
             self.image_dir = runspec.image_dir
@@ -68,6 +69,7 @@ class SSEBopModel(object):
             self.agrimet_corrected = runspec.agrimet_corrected
             self.start = runspec.start_date
             self.end = runspec.end_date
+            self.interpolate = runspec.interpolate
 
             if not paths.is_set():
                 raise PathsNotSetExecption
