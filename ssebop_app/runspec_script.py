@@ -31,7 +31,7 @@ def run_ssebop(cfg_path):
         sseb.configure_run()
         sseb.run(overwrite=False)
 
-    reform_images_table(cfg.table)
+    reform_images_table(cfg.table, os.path.join(cfg.year_dir, 'daily_data'))
 
 
 if __name__ == '__main__':
