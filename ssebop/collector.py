@@ -24,12 +24,13 @@ from met.thredds import TopoWX, GridMet
 from rasterio import open as rasopen
 from sat_image import warped_vrt
 from sat_image.fmask import Fmask
-from sat_image.image import Landsat5
+from sat_image.image import Landsat5, Landsat7, Landsat8
 
 
 class SSEBopData:
     def __init__(self, image_id, image_dir, transform,
-            profile, clip_geo, date):
+                 profile, clip_geo, date, start=None,
+                 end=None):
 
         self.image_id = image_id
         self.image_dir = image_dir
@@ -37,6 +38,8 @@ class SSEBopData:
         self.profile = profile
         self.clip_geo = clip_geo
         self.date = date
+        self.start = start
+        self.end = end
         self.file_name = None
         self.bounds = RasterBounds(affine_transform=self.transform,
                                    profile=self.profile, latlon=True)
@@ -45,15 +48,10 @@ class SSEBopData:
         self.file_path = None
         self.shape = (1, profile['height'], profile['width'])
 
-        self.starty = datetime(1999, 4, 5)
-        self.endy = datetime(1999, 4, 9)
-        self.dir_name_LT5y = '/home/ssebop_results/tests/gridmet/LT50320341999096XXX01'
-        self.out_diry = os.path.dirname('/home/ssebop_results/tests/gridmet/LT50320341999096XXX01')
-
-    def data_check(self, variable, sat_image=None, temp_units='C'):
+    def data_check(self, variable, sat_image=None, temp_units='C', daily=False):
 
         self.variable = variable
-        valid_vars = ['tmax', 'tmin', 'dem', 'fmask', 'pet', 'etr']
+        valid_vars = ['tmax', 'tmin', 'dem', 'fmask', 'etr']
 
         if self.variable not in valid_vars:
             raise KeyError('Variable {} is invalid, choose from {}'.format(self.variable,
@@ -76,24 +74,27 @@ class SSEBopData:
             if variable == 'fmask':
                 var = self.fetch_fmask(sat_image)
             if variable == 'etr':
-                var = self.get_daily_gridmet('etr')
+                var = self.fetch_gridmet('etr')
 
         else:
-
             with rasopen(self.file_path, 'r') as src:
                 var = src.read()
+
+        if daily:
+            if variable == 'etr':
+                self.get_daily_gridmet('etr')
 
         var = self.check_shape(var, self.file_path)
         return var
 
     def check_shape(self, var, path):
         if not var.shape == self.shape:
-            new = warped_vrt.warp_single_image(image_path=path, profile=self.profile, resampling='nearest')
+            new = warped_vrt.warp_single_image(image_path=path, profile=self.profile)
             return new
         else:
             return var
 
-    def fetch_gridmet(self, variable='pet'):
+    def fetch_gridmet(self, variable='etr'):
         gridmet = GridMet(variable, date=self.date,
                           bbox=self.bounds,
                           target_profile=self.profile,
@@ -103,20 +104,20 @@ class SSEBopData:
         return var
 
     def get_daily_gridmet(self, variable='etr'):
-        l5 = Landsat5(self.dir_name_LT5y)
-        polygon = l5.get_tile_geometry()
-        bounds = RasterBounds(affine_transform=l5.rasterio_geometry['transform'], profile=l5.rasterio_geometry)
 
-        for dt in rrule(DAILY, dtstart=self.starty, until=self.endy):
-            gridmet = GridMet(variable, date=dt, bbox=bounds,
-                target_profile=l5.rasterio_geometry, clip_feature=polygon)
+        daily_dir = os.path.join(os.path.dirname(self.image_dir), 'daily_data')
+        if not os.path.isdir(daily_dir):
+            os.mkdir(daily_dir)
+
+        for dt in rrule(DAILY, dtstart=self.start, until=self.end):
+            gridmet = GridMet(variable, date=dt,
+                              bbox=self.bounds,
+                              target_profile=self.profile,
+                              clip_feature=self.clip_geo)
+
             etr = gridmet.get_data_subset()
-            gridmet.save_raster(etr, l5.rasterio_geometry,
-                    os.path.join(self.out_diry, '{}.tif'.format(datetime.strftime(dt, '%Y_%j'))))
-            shape = 1, l5.rasterio_geometry['height'], l5.rasterio_geometry['width']
-            self.assertEqual(etr.shape, shape)
-
-            return etr
+            gridmet.save_raster(etr, self.profile,
+                                os.path.join(daily_dir, 'etr_{}.tif'.format(datetime.strftime(dt, '%Y_%j'))))
 
     def fetch_temp(self, variable='tmax', temp_units='C'):
         print('Downloading new {}.....'.format(variable))
