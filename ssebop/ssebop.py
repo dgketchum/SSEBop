@@ -117,6 +117,8 @@ class SSEBopModel(object):
                              date=self.image_date,
                              start=self.start,
                              end=self.end)
+        if self.interpolate:
+            self.dc.get_daily_gridmet(variable='etr')
 
     def run(self, overwrite=False):
         """ Run the SSEBop algorithm for an image. Check for outputs from previous run.
@@ -138,7 +140,7 @@ class SSEBopModel(object):
         tc = c * ta
         th = tc + dt
         etrf = (th - ts) / dt
-        etr = self.dc.data_check(variable='etr', daily=True)
+        etr = self.dc.data_check(variable='etr')
         et = etr * etrf
         fmask = self.dc.data_check(variable='fmask', sat_image=self.image)
         et_mskd = where(fmask == 0, et, nan)
@@ -275,7 +277,7 @@ class SSEBopModel(object):
         if False in check:
             self.completed = False
         else:
-            print('This analysis has been done for at least {}'.format(p))
+            print('This analysis has been done'.format(p))
             self.completed = True
         return None
 
