@@ -18,6 +18,7 @@ from __future__ import print_function
 
 import os
 import sys
+from pandas import DataFrame
 from datetime import datetime
 
 import yaml
@@ -34,6 +35,7 @@ output_root: /home/dgketchum/IrrigationGIS/western_states_irrgis/MT/39/27/2013/
 satellite: LC8
 start_date: 20130401
 end_date: 20131001
+interpolate: False
 verify_paths: True
 agrimet_corrected: True
 down_images_only: False
@@ -59,9 +61,12 @@ class Config:
     verify_paths = None
     down_images_only = None
     use_existing_images = False
+    interpolate = False
+    table = None
     g = None
 
     def __init__(self, path=None):
+        self.interpolation_table = None
         self.load(path=path)
 
         p, r, s = str(self.path), str(self.row), str(self.start_date.year)
@@ -92,7 +97,8 @@ class Config:
                      'verify_paths',
                      'down_images_only',
                      'agrimet_corrected',
-                     'use_existing_images')
+                     'use_existing_images',
+                     'interpolate')
 
             time_attrs = ('start_date', 'end_date')
 
@@ -130,6 +136,13 @@ class Config:
         self.g = GoogleDownload(start=s, end=e, satellite=sat_key, output_path=self.year_dir,
                                 path=self.path, row=self.row, max_cloud_percent=max_cloud_pct)
         images = self.g.scene_ids_low_cloud
+        if self.interpolate:
+            table = self.g.scenes_low_cloud
+            assert isinstance(table, DataFrame), 'table is not a DataFrame'
+            table_file = os.path.join(self.year_dir, 'images.csv')
+            table.to_csv(table_file)
+            self.table = table_file
+
         if images:
             super_list.append(images)
             try:
@@ -155,7 +168,8 @@ class RunSpec(object):
                  'end_date',
                  'down_images_only',
                  'agrimet_corrected',
-                 'use_existing_images')
+                 'use_existing_images',
+                 'interpolate')
 
         for attr in attrs:
             cfg_attr = getattr(cfg, attr)
@@ -164,6 +178,7 @@ class RunSpec(object):
         self.image_date = date = datetime.strptime(image[9:16], JULIAN_FMT)
         self.parent_dir = os.path.join(cfg.path_row_dir, str(date.year))
         self.image_dir = os.path.join(self.parent_dir, image)
+
         pseudo_spec = {'path': self.path,
                        'row': self.row,
                        'start_date': self.start_date,
@@ -171,7 +186,9 @@ class RunSpec(object):
                        'image_dir': self.image_dir,
                        'root': self.root,
                        'agrimet_corrected': self.agrimet_corrected,
-                       'use_existing_images': self.use_existing_images}
+                       'use_existing_images': self.use_existing_images,
+                       'interpolate': self.interpolate}
+
         self.image_exists = paths.configure_project_dirs(pseudo_spec)
         if not self.image_exists:
             cfg.g.download()
