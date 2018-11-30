@@ -14,8 +14,9 @@
 # limitations under the License.
 # ===============================================================================
 import os
+
 from rasterio import open as rasopen
-from pandas import read_csv, date_range, DataFrame, to_datetime, merge
+from pandas import read_csv, date_range, DataFrame, to_datetime, merge, notna
 
 from sat_image.warped_vrt import warp_vrt, warp_single_image
 
@@ -35,12 +36,17 @@ class Interpolator(object):
         self.image_table = images
         self.daily_data = os.path.join(self.data_dir, 'daily_data')
 
-        csv = read_csv(self.csv, index_col=5, parse_dates=[5], header=0).drop(columns=DROP)
-        etrf_dirs = [os.path.join(self.data_dir, x) for x in csv['SCENE_ID'].values]
-        csv['etrf_path'] = [[os.path.join(y, x) for x in os.listdir(y) if x.endswith('etrf.tif')][0] for y in etrf_dirs]
-        odx = csv.index
+        self.image_table = read_csv(self.image_table, index_col=5,
+                                    parse_dates=[5], header=0).drop(columns=DROP)
+
+        etrf_dirs = [os.path.join(self.data_dir, x) for x in self.image_table['SCENE_ID'].values]
+
+        self.image_table['etrf_path'] = [[os.path.join(y, x) for x in os.listdir(y) if x.endswith(
+            'etrf.tif')][0] for y in etrf_dirs]
+
+        odx = self.image_table.index
         ndx = date_range(odx.min(), odx.max(), freq='D')
-        df = csv.reindex(odx.union(ndx)).reindex(ndx)
+        df = self.image_table.reindex(odx.union(ndx)).reindex(ndx)
 
         etr_files = [(os.path.join(self.daily_data, x), x.replace('.tif', '')[-10:]) for x in os.listdir(
             self.daily_data) if x.endswith('.tif')]
@@ -48,6 +54,17 @@ class Interpolator(object):
         etr_files.sort(key=lambda x: x[1])
         series = DataFrame([x[0] for x in etr_files], columns=['etr_path'],
                            index=to_datetime([x[1] for x in etr_files]))
+
+        interp_days = []
+        count = 0
+        for i, r in df.iterrows():
+            if notna(r['SCENE_ID']):
+                interp_days.append(0)
+                count = 0
+            else:
+                count += 1
+                interp_days.append(count)
+        df['interp_days'] = interp_days
 
         self.base_table = merge(df, series, how='inner', left_index=True, right_index=True)
         self._warp()
