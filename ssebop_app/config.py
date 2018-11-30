@@ -136,9 +136,12 @@ class Config:
         self.g = GoogleDownload(start=s, end=e, satellite=sat_key, output_path=self.year_dir,
                                 path=self.path, row=self.row, max_cloud_percent=max_cloud_pct)
         images = self.g.scene_ids_all
+
         if self.interpolate:
             table = self.g.scenes_low_cloud
             assert isinstance(table, DataFrame), 'table is not a DataFrame'
+            if not os.path.isdir(self.year_dir):
+                os.makedirs(self.year_dir)
             table_file = os.path.join(self.year_dir, 'images.csv')
             table.to_csv(table_file)
             self.table = table_file
