@@ -19,7 +19,7 @@ import os
 from ssebop_app.config import Config, paths
 from ssebop_app.cli import welcome
 from ssebop.ssebop import SSEBopModel
-from ssebop.interpolate import reform_images_table
+from ssebop.interpolate import Interpolator
 
 
 def run_ssebop(cfg_path):
@@ -31,8 +31,8 @@ def run_ssebop(cfg_path):
         sseb.configure_run()
         sseb.run(overwrite=False)
 
-    reform_images_table(cfg.table, os.path.join(cfg.year_dir, 'daily_data'))
-
+    i = Interpolator(cfg.table, cfg.year_dir)
+    i.interpolate()
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
