@@ -70,9 +70,13 @@ class Interpolator(object):
         self._warp()
 
     def _warp(self):
-        profile = warp_vrt(self.data_dir, overwrite=False, return_profile=True)
+        profile = warp_vrt(self.data_dir, return_profile=True)
+        if not profile:
+            with open(os.path.join(self.data_dir, 'resample_meta.txt')) as f:
+                f.read()
+
         for i, r in self.base_table.iterrows():
-            with rasopen(r[3], 'r') as src:
+            with rasopen(r['etr_path'], 'r') as src:
                 if src.profile != profile:
                     warp_single_image(r[3], profile=profile)
 
