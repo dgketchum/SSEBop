@@ -77,8 +77,9 @@ class Interpolator(object):
 
         for i, r in self.base_table.iterrows():
             with rasopen(r['etr_path'], 'r') as src:
-                if src.profile != profile:
-                    warp_single_image(r[3], profile=profile)
+                #if src.profile != profile:
+                    #warp_single_image(r[3], profile=profile)
+                warp_single_image(r[2], src.profile)
 
     def interpolate(self):
         pass
