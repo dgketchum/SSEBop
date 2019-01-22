@@ -36,7 +36,7 @@ def run_ssebop(cfg_path):
 
 if __name__ == '__main__':
     home = os.path.expanduser('~')
-    root = os.path.join(home, 'ssebop_testing', 'SSEBop')
+    root = os.path.join(home, 'ssebop_test2', 'SSEBop')
     config_path = os.path.join(root, 'ssebop_config_test_lt5.yml')
     run_ssebop(config_path)
 

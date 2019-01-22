@@ -70,6 +70,7 @@ class Interpolator(object):
         self._warp()
 
     def _warp(self):
+        #TODO: Why is this returning None?
         profile = warp_vrt(self.data_dir, return_profile=True)
         if not profile:
             with open(os.path.join(self.data_dir, 'resample_meta.txt')) as f:
