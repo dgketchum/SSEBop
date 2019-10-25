@@ -1,0 +1,13 @@
+# SSEBop config file
+path: 31
+row: 34
+root: /top/students/GRAD/CE/mrlurtz8/home/ssebop_results
+output_root: /top/students/GRAD/CE/mrlurtz8/home/ssebop_results
+satellite: LT5
+start_date: 20070601
+end_date: 20070609
+interpolate: False
+verify_paths: True
+agrimet_corrected: False
+down_images_only: False
+use_existing_images: False
